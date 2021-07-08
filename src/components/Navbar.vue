@@ -9,8 +9,14 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="(item, index) in items" :key="index" link>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item link to="/" class="text-capitalize">
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/about" class="text-capitalize">
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/contact" class="text-capitalize">
+              <v-list-item-title>Contact</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -27,8 +33,11 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item v-for="(item, index) in loginItems" :key="index" link>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item link to="/login" class="text-capitalize">
+              <v-list-item-title>Login</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/register" class="text-capitalize">
+              <v-list-item-title>Register</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -38,12 +47,7 @@
 </template>
 
 <script>
-export default {
-  data: () => ({
-    items: [{ title: "Home" }, { title: "About" }, { title: "Contact" }],
-    loginItems: [{ title: "Login" }, { title: "Register" }],
-  }),
-};
+export default {};
 </script>
 
 

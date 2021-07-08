@@ -4,25 +4,50 @@
       <v-card width="100%" class="py-13">
         <v-row>
           <v-col cols="2" class="text-left">
-            <v-card-title>TIK</v-card-title>
-            <v-card-text class="pb=0">Location</v-card-text>
-            <v-card-text> 1/22, Raja Street Tirupur, </v-card-text>
-            <v-card-text> Tamilnadu </v-card-text>
-            <v-card-text> +91 912344 98763 </v-card-text>
-            <v-card-text> +91 912344 98763 </v-card-text>
-            <v-card-text> support@textile.com </v-card-text>
+            <v-card-title class="pb-6">TIK</v-card-title>
+            <div class="pb-2">Location</div>
+            <div class="pb-2">1/22, Raja Street Tirupur,</div>
+            <div class="pb-2">Tamilnadu</div>
+            <div class="pb-2">+91 912344 98763</div>
+            <div class="pb-2">+91 912344 98763</div>
+            <div class="pb-2">support@textile.com</div>
           </v-col>
 
           <v-col class="text-left" cols-2>
-            <v-card-text>Popular Category</v-card-text>
+            <v-card-text class="pb-6">Popular Category</v-card-text>
+            <div><v-btn plain class="pb-2"> Yarns </v-btn></div>
+            <div><v-btn plain class="pb-2">Mens Wear</v-btn></div>
+            <div><v-btn plain class="pb-2">Womes Wear</v-btn></div>
+            <div><v-btn plain class="pb-2">T-shirt</v-btn></div>
+            <div><v-btn plain class="pb-2">Cotton Cloths</v-btn></div>
           </v-col>
 
           <v-col cols="2">
-            <v-card-text>Quick Links</v-card-text>
+            <v-card-text class="pb-6">Quick Links</v-card-text>
+            <div><v-btn plain class="pb-2"> About us </v-btn></div>
+            <div><v-btn plain class="pb-2">Category</v-btn></div>
+            <div><v-btn plain class="pb-2">Affilaites</v-btn></div>
+            <div><v-btn plain class="pb-2">Register</v-btn></div>
+            <div><v-btn plain class="pb-2">Contact us</v-btn></div>
           </v-col>
 
           <v-col cols="2">
-            <v-card-text>Terms</v-card-text>
+            <v-card-text class="pb-6">Terms</v-card-text>
+            <div>
+              <v-btn plain class="pb-2 font-weight-regular"> About us </v-btn>
+            </div>
+            <div>
+              <v-btn plain class="pb-2 font-weight-regular">How it works</v-btn>
+            </div>
+            <div>
+              <v-btn plain class="pb-2 font-weight-regular">Affilaites</v-btn>
+            </div>
+            <div>
+              <v-btn plain class="pb-2 font-weight-regular">Testimonails</v-btn>
+            </div>
+            <div>
+              <v-btn plain class="pb-2 font-weight-regular">Contact us</v-btn>
+            </div>
           </v-col>
 
           <v-col cols="4">

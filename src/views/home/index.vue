@@ -28,10 +28,10 @@
         </div>
       </v-carousel-item>
     </v-carousel>
-    <v-row justify="center mt-3">
+    <v-row justify="center mt-5">
       <v-col cols="12" md="6">
         <h2
-          class="pa-4 text-center grey lighten-1 rounded-0 font-weight-light"
+          class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
           v-text="`Your AD Here !`"
         ></h2>
       </v-col>
@@ -42,6 +42,7 @@
           class="pa-4 text-center rounded-0 font-weight-light"
           v-text="`Category`"
         ></h2>
+        <v-divider inset></v-divider>
       </v-col>
     </v-row>
 
@@ -64,24 +65,47 @@
         </v-row>
       </v-container>
     </div>
-    <v-parallax
-      src="https://www.tikonline.in/newthemeassets/assets/img/bg1.jpg"
-      height="700"
-    >
-      <v-row>
-        <v-col class="text-center black--text pb-0" cols="12">
-          <h1 class="text-h4 font-weight-thin my-4">Benifits</h1>
-          <h4 class="heading">You get working with us</h4>
-        </v-col>
-
-        <v-col class="text-end pt-0 mt-0 black--text" cols="8">
-          <div v-for="(benifit, index) in benifits" :key="index">
-            <img :src="`../assets/${index + 1}.png`" :alt="pic" />
-            <span>{{ benifit.details }}</span>
+    <v-parallax src="@/assets/benifits/benifits-background.png" height="600">
+      <v-row justify="center mt-3">
+        <div class="text-center black--text">
+          <h1 class="text-h4 font-weight-thin my-6">Benifits</h1>
+          <h4 class="heading pb-0">You get working with us</h4>
+        </div>
+      </v-row>
+      <row class="d-flex" cols="12" md="4">
+        <v-col> </v-col>
+        <v-col class="text-center pt-0 mt-0 black--text">
+          <div>
+            <img src="@/assets/benifits/1.png" alt="pic" />
+            <span>Timely Deliery can be improved</span>
+          </div>
+          <div>
+            <img src="@/assets/benifits/3.png" alt="pic" />
+            <span>Payment delay can be reduced</span>
+          </div>
+          <div>
+            <img src="@/assets/benifits/5.png" alt="pic" />
+            <span>Working Capital blokage in terms</span>
           </div>
         </v-col>
-      </v-row>
-      <v-row><v-btn rounded color="orange" dark> know more </v-btn></v-row>
+        <v-col class="text-center pt-0 mt-0 black--text">
+          <div>
+            <img src="@/assets/benifits/2.png" alt="pic" />
+            <span>Finding Or Sourcing Vendros made Easy</span>
+          </div>
+          <div>
+            <img src="@/assets/benifits/4.png" alt="pic" />
+            <span>Reduce dependency</span>
+          </div>
+          <div>
+            <img src="@/assets/benifits/6.png" alt="pic" />
+            <span>Reduce commusion by employee</span>
+          </div>
+        </v-col>
+      </row>
+      <v-row justify="center mt-6">
+        <v-btn rounded color="orange" dark> know more </v-btn></v-row
+      >
     </v-parallax>
     <div class="px-10 d-flex">
       <v-card
@@ -111,8 +135,74 @@
           class="pa-4 text-center rounded-0 font-weight-light"
           v-text="`Customer Say`"
         ></h2>
+        <v-divider inset></v-divider>
       </v-col>
     </v-row>
+    <template>
+      <v-row justify="center mt-3">
+        <v-col cols="12" md="6">
+          <h2
+            class="pa-4 text-center rounded-0 font-weight-light"
+            v-text="`Register`"
+          ></h2>
+          <v-divider inset></v-divider>
+          <h3
+            class="pa-4 text-center rounded-0 font-weight-light"
+            v-text="`Register your company today and start your business`"
+          ></h3>
+        </v-col>
+      </v-row>
+
+      <v-row justify="center mt-3">
+        <v-col cols="12" sm="6" md="2">
+          <v-text-field outlined></v-text-field>
+        </v-col>
+
+        <v-col cols="12" sm="6" md="2">
+          <v-text-field outlined></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" md="2">
+          <v-text-field outlined></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row justify="center mt-3">
+        <v-btn small color="warning" dark> Register</v-btn>
+      </v-row>
+    </template>
+    <template>
+      <v-row justify="center mt-3">
+        <v-col cols="12" md="6">
+          <h1
+            class="pa-4 text-center rounded-0 font-weight-light"
+            v-text="`Download The App`"
+          ></h1>
+          <v-divider inset></v-divider>
+          <h3
+            class="pa-4 text-center rounded-0 font-weight-light"
+            v-text="`The Best Business app for you`"
+          ></h3>
+        </v-col>
+      </v-row>
+      <v-row justify="center mt-3">
+        <v-btn height="60" dark class="mr-4">
+          <v-icon large dark class="mr-2"> mdi-google-play </v-icon>
+          Get it on Google Pay
+        </v-btn>
+        <v-btn height="60" large dark>
+          <v-icon large dark class="mr-2"> mdi-apple </v-icon>
+          Download on the
+          <h5>APP Store</h5>
+        </v-btn>
+      </v-row>
+      <v-row justify="center my-7">
+        <v-col cols="12" md="6">
+          <h2
+            class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
+            v-text="`Your AD Here !`"
+          ></h2>
+        </v-col>
+      </v-row>
+    </template>
   </div>
 </template>
 <script lang="ts">

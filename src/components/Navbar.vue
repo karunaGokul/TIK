@@ -36,7 +36,7 @@
             <v-list-item link to="/login" class="text-capitalize">
               <v-list-item-title>Login</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/register" class="text-capitalize">
+            <v-list-item link to="/registration" class="text-capitalize">
               <v-list-item-title>Register</v-list-item-title>
             </v-list-item>
           </v-list>

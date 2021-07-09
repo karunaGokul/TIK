@@ -16,12 +16,15 @@
 
         <v-col class="pt-16 px-16 mx-5">
           <h2 class="pb-7 pt-15"> Sign in </h2>
-          <v-form class="">
+          <v-container class="fluid">
+          <v-form class="" v-model="valid">
             <v-label>Email ID</v-label>
                 <v-text-field
                   outlined
                   placeholder="Enter Email ID"
                   class="py-3"
+                  v-model="email"
+                  :rules = "emailRules"
                 ></v-text-field>
 
                  <v-label>Password</v-label>
@@ -29,6 +32,9 @@
                   outlined
                   placeholder="Enter Password"
                   class="pt-3"
+                  v-model="password"
+                  :rules ="passwordRules"
+                  required
                 ></v-text-field>
 
                 <v-checkbox
@@ -39,15 +45,24 @@
                   class="align-center"
                 ></v-checkbox>
 
+                <div>
+                  <router-link to="/forgot password">Forget Password</router-link>
+                </div>
+
                 <v-btn 
                   color="#ff6500" 
-                  class="py-5 d-flex justify-center white--text font-weight-light text-capitalize"
+                  class="py-5 white--text font-weight-light text-capitalize"
                   width="30%"
                   depressed
-                >Sign Up</v-btn>
+                  @click="submitForm"
+                >Sign In</v-btn>
 
-                <div class="text-caption py-5">Don't have an account yet?sign up</div>
+                <div class="text-caption py-5">
+                  Don't have an account yet?
+                  <router-link to="/registration">sign up</router-link>
+                </div>
           </v-form>
+          </v-container>
         </v-col>
     </v-row>
   </div>
@@ -55,7 +70,27 @@
 
 <script>
   export default {
-    
+    data() {
+      return {
+        valid: 'false',
+        email: '',
+        password: '',
+        emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            ],
+        passwordRules: [
+                v => !!v || 'Password is required',
+                v => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) || 'Password must contain at least lowercase letter, one number, a special character and one uppercase letter',
+            ],
+      }
+    },
+
+    methods: {
+      submitForm() {
+        this.$refs.form.validate();
+      }
+    }
   }
 </script>
 

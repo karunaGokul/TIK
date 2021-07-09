@@ -6,9 +6,20 @@
             src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
             height="600"
           >
-            <h2>Lets Get </h2>
-            <h1 class="font-weight-black">Started</h1> 
-            <p>Today we are thinking of all our members across the world and are encouraged by the support our networks bring in times such as these. Use the left test instrument details to attempt a transaction on the staging environment and Register.</p>
+            <h2 class="pl-10">Lets Get </h2>
+            <h1 class="font-weight-black pl-10">Started</h1> 
+            <p class="pl-10">Today we are thinking of all our members across the world and are encouraged by the support our networks bring in times such as these. Use the left test instrument details to attempt a transaction on the staging environment and Register.</p>
+          </v-parallax>
+
+          <v-parallax
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+            height="600"
+          >
+          </v-parallax>
+          <v-parallax
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+            height="600"
+          >
           </v-parallax>
         </v-col>
 
@@ -23,6 +34,7 @@
                   outlined
                   placeholder="Enter First Name"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
 
@@ -32,6 +44,7 @@
                   outlined
                   placeholder="Enter Last Name"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -52,6 +65,7 @@
                   outlined
                   placeholder="Enter Email ID"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -63,6 +77,7 @@
                   outlined
                   placeholder="Enter Password"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
 
@@ -92,6 +107,7 @@
                   outlined
                   placeholder="Enter GST Number"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
 
@@ -134,6 +150,7 @@
                   v-model="select"
                   :items = "country"
                   class="py-3"
+                  required
                 ></v-select>
               </v-col>
 
@@ -145,6 +162,7 @@
                   v-model="select"
                   :items = "state"
                   class="py-3"
+                  required
                 ></v-select>
               </v-col>  
             </v-row>
@@ -158,6 +176,7 @@
                   v-model="select"
                   :items = "city"
                   class="py-3"
+                  required
                 ></v-select>
               </v-col>
 
@@ -167,6 +186,7 @@
                   outlined
                   placeholder="Enter Zip Code"
                   class="py-3"
+                  required
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -176,17 +196,23 @@
               label="I Agree to all the Terms & conditions"
               type="checkbox"
               required
-              class="align-center"
+              v-model="checkbox"
+              :rules="checkboxRules"
             ></v-checkbox>
 
+            
             <v-btn 
             color="#ff6500" 
             class="py-5 d-flex justify-center white--text font-weight-light text-capitalize"
             width="30%"
             depressed
             >Sign Up</v-btn>
+           
 
-            <div class="text-caption py-5">Already have an account?sign in</div>
+            <div class="text-caption py-5">
+              Already have an account?
+              <router-link to="/login">sign in</router-link>
+            </div>
           </v-form>
         </v-col>
       </v-row>
@@ -199,6 +225,10 @@
 
         data() {
             return {
+                checkbox: 'false',
+                checkboxRules: [
+                  v => !!v || 'You must agree to continue!'
+                ],
                 category: [
                     'Company',
                     'Company + jobwork Unit',

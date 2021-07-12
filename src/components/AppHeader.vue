@@ -34,18 +34,36 @@
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left class="y-app-header">
-      <v-app-bar-nav-icon
-        @click.stop="drawer = !drawer"
-        v-if="isLoggedIn"
-      ></v-app-bar-nav-icon>
-
+      <div v-if="isLoggedIn">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      </div>
+      <div v-else>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn fab v-bind="attrs" v-on="on">
+              <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item link to="/" class="text-capitalize">
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/about" class="text-capitalize">
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/contact" class="text-capitalize">
+              <v-list-item-title>Contact</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
       <v-toolbar-title class="y-logo text-h5 mx-2">T I K</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <div v-if="isLoggedIn">
         <v-icon large class="mx-4">mdi-bell</v-icon>
       </div>
-      <div class="d-flex align-center" v-if="isLoggedIn">
+      <div class="d-flex align-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn fab v-bind="attrs" v-on="on">
@@ -54,7 +72,21 @@
               </v-avatar>
             </v-btn>
           </template>
-          <v-list>
+          <v-list v-if="isLoggedIn">
+            <v-list-item link to="/profile" class="text-capitalize">
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/myaccount" class="text-capitalize">
+              <v-list-item-title>My Account</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/employee" class="text-capitalize">
+              <v-list-item-title>Employee</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/logout" class="text-capitalize">
+              <v-list-item-title>Log Out</v-list-item-title>
+            </v-list-item>
+          </v-list>
+          <v-list v-else>
             <v-list-item link to="/login" class="text-capitalize">
               <v-list-item-title>Login</v-list-item-title>
             </v-list-item>

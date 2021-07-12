@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home/Index.vue'
-import Login from '../views/Login/Index.vue'
-import Registration from '../views/Login/Registration.vue'
-import ForgotPassword from '../views/Login/Forgot-Password.vue'
+import Home from '../views/home/Index.vue'
+import Login from '../views/login/Index.vue'
+import Registration from '../views/login/Registration.vue'
+import ForgotPassword from '../views/login/Forgot-Password.vue'
 import Profile from '../views/Profile/Index.vue'
 
 
@@ -38,8 +38,22 @@ const routes: Array<RouteConfig> = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('../views/dashboard/index.vue')
-  
+    component: () => import('../views/dashboard/Index.vue')
+  },
+  {
+    path: '/newproject',
+    name: 'Newproject',
+    component: () => import('../views/newproject/Index.vue')
+  },
+  {
+    path: '/employee',
+    name: 'Employee',
+    component: () => import('../views/employee/Index.vue')
+  },
+  {
+    path: '/createemployee',
+    name: 'CreateEmployee',
+    component: () => import('../views/employee/CreateEmployee.vue')
   }
 ]
 

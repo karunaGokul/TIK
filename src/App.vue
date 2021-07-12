@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <Navbar />
+    <AppHeader />
     <v-main>
       <router-view />
     </v-main>
-    <Footer />
+    <AppFooter />
   </v-app>
 </template>
 
@@ -12,12 +12,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
 
 export default Vue.extend({
   name: "App",
-  components: { Navbar, Footer },
+  components: { AppHeader, AppFooter },
   data: () => ({
     //
   }),

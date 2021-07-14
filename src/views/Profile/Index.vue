@@ -37,9 +37,18 @@
               <v-row>
                 <h3>About</h3>
                 <v-spacer></v-spacer>
-                <v-btn class="white--text font-weight-regular" color="#fd7e14"
+                <v-btn
+                  class="white--text font-weight-regular text-capitalize"
+                  color="#fd7e14"
                   >Edit Profile</v-btn
                 >
+              </v-row>
+
+              <v-row class="pr-16 text-wrap">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Similique illum amet quibusdam. Repellendus maxime natus
+                expedita placeat atque. Esse voluptatibus porro delectus rem,
+                aut cumque obcaecati! Cum at suscipit illo?
               </v-row>
 
               <v-row class="pr-16 text-wrap">
@@ -72,7 +81,9 @@
       </v-card>
     </v-parallax>
 
-    <h1 class="d-flex justify-center my-15">Gallery</h1>
+    <h1 class="d-flex justify-center my-15 text-decoration-underline">
+      Gallery
+    </h1>
 
     <v-sheet class="mx-auto" max-width="1500">
       <v-slide-group
@@ -90,21 +101,119 @@
       </v-slide-group>
     </v-sheet>
 
-    <h1 class="d-flex justify-center my-15">Company Details</h1>
+    <v-container>
+      <h1 class="d-flex justify-center my-15 text-decoration-underline">
+        Company Details
+      </h1>
 
-    <Slider />
+      <v-card class="d-flex justify-left pl-10 mb-16">
+        <v-btn flat>Mills</v-btn>
+        <v-btn>Knitting</v-btn>
+        <v-btn>Pieces</v-btn>
+        <v-btn>Dying</v-btn>
+        <v-btn>Job Work</v-btn>
+        <v-btn>Printing</v-btn>
+      </v-card>
+
+      <v-row>
+        <v-col v-for="image in images" :key="image.title">
+          <v-card>
+            <v-img
+              src="@/assets/Gallery/gallery1.jpg"
+              class="white--text align-end"
+              width="250"
+              height="250"
+            >
+              <v-card-title v-text="image.title"></v-card-title>
+            </v-img>
+          </v-card>
+        </v-col>
+      </v-row>
+
+      <h1 class="d-flex justify-center my-15 text-decoration-underline">
+        Completed Projects
+      </h1>
+
+      <v-row>
+        <v-col>
+          <v-select
+            filled
+            dense
+            solo
+            label="Select Your Category"
+            :items="category"
+            width="100"
+          >
+          </v-select>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col v-for="image in images" :key="image.title">
+          <v-card :loading="loading" class="mx-auto my-12" max-width="250">
+            <v-img height="250" src="@/assets/Gallery/gallery1.jpg"></v-img>
+
+            <v-card-title>{{ image.title }}</v-card-title>
+
+            <v-card-text>
+              <v-row align="center" class="mx-0">
+                <v-rating
+                  :value="4.5"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="14"
+                ></v-rating>
+              </v-row>
+
+              <div class="mt-5">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Expedita in facere eaque debitis nihil culpa? Molestiae, ducimus
+                eaque consequuntur aliquid neque totam nisi veritatis provident
+                ad, adipisci tenetur nihil id.
+              </div>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-btn
+                class="white--text font-weight-regular text-capitalize"
+                color="#fd7e14"
+              >
+                View Project
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default {
-  name: "Profile",
-
-  data() {
-    return {
-      model: null,
+<script>
+    export default {
+       data() {
+           return {
+               model: null,
+               images: [
+                   { title: 'Yarn', src: '@/assets/Gallery/gallery1.jpg'},
+                   { title: 'Brochures', src: '@/assets/Gallery/gallery2.jpg'},
+                   { title: 'Machineries', src: '@/assets/Gallery/gallery3.jpg'},
+                   { title: 'Certificates', src: '@/assets/Gallery/gallery4.jpg'}
+               ],
+               category: [
+                   'Mills', 
+                   'Knitting', 
+                   'Dyeing', 
+                   'Processing', 
+                   'Printing', 
+                   'Ready Fabrics', 
+                   'Embroidery', 
+                   'Job Work Units', 
+                   'Pieces'
+               ]
+           };
+       },
     };
   },
 };

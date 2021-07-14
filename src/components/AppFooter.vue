@@ -14,40 +14,76 @@
           </v-col>
 
           <v-col class="text-left" cols-2>
-            <v-card-text class="pb-6">Popular Category</v-card-text>
-            <div><v-btn plain class="pb-2"> Yarns </v-btn></div>
-            <div><v-btn plain class="pb-2">Mens Wear</v-btn></div>
-            <div><v-btn plain class="pb-2">Womes Wear</v-btn></div>
-            <div><v-btn plain class="pb-2">T-shirt</v-btn></div>
-            <div><v-btn plain class="pb-2">Cotton Cloths</v-btn></div>
+            <v-card class="mx-0" max-width="300" elevation="0">
+              <v-list flat>
+                <v-header class="pb-6">Popular Category</v-header>
+                <v-list-item-group color="orange">
+                  <v-list-item class="font-weight-light mt-4">
+                    Yarns
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Mens Wear
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Womes Wear
+                  </v-list-item>
+                  <v-list-item class="font-weight-light"> T-shirt</v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Cotton Cloths
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
           </v-col>
 
-          <v-col cols="2">
-            <v-card-text class="pb-6">Quick Links</v-card-text>
-            <div><v-btn plain class="pb-2"> About us </v-btn></div>
-            <div><v-btn plain class="pb-2">Category</v-btn></div>
-            <div><v-btn plain class="pb-2">Affilaites</v-btn></div>
-            <div><v-btn plain class="pb-2">Register</v-btn></div>
-            <div><v-btn plain class="pb-2">Contact us</v-btn></div>
-          </v-col>
+          <v-col class="text-left" cols-2>
+            <v-card class="mx-0" max-width="300" elevation="0">
+              <v-list flat>
+                <v-header class="pb-6">Quick Links</v-header>
 
-          <v-col cols="2">
-            <v-card-text class="pb-6">Terms</v-card-text>
-            <div>
-              <v-btn plain class="pb-2 font-weight-regular"> About us </v-btn>
-            </div>
-            <div>
-              <v-btn plain class="pb-2 font-weight-regular">How it works</v-btn>
-            </div>
-            <div>
-              <v-btn plain class="pb-2 font-weight-regular">Affilaites</v-btn>
-            </div>
-            <div>
-              <v-btn plain class="pb-2 font-weight-regular">Testimonails</v-btn>
-            </div>
-            <div>
-              <v-btn plain class="pb-2 font-weight-regular">Contact us</v-btn>
-            </div>
+                <v-list-item-group color="orange">
+                  <v-list-item class="font-weight-light mt-4">
+                    About us
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Category
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Affilaites
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Register
+                  </v-list-item>
+                  <v-list-item class="font-weight-light">
+                    Contact us
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
+          </v-col>
+          <v-col class="text-left" cols-2>
+            <v-card class="mx-0" max-width="300" elevation="0">
+              <v-list flat>
+                <v-header class="pb-6 px-4">Terms</v-header>
+                <v-list-item-group color="orange">
+                  <v-list-item class="font-weight-light mt-4"
+                    >About us</v-list-item
+                  >
+                  <v-list-item class="font-weight-light"
+                    >How it works
+                  </v-list-item>
+                  <v-list-item class="font-weight-light"
+                    >Affilaites
+                  </v-list-item>
+                  <v-list-item class="font-weight-light"
+                    >Testimonails</v-list-item
+                  >
+                  <v-list-item class="font-weight-light"
+                    >Contact us</v-list-item
+                  >
+                </v-list-item-group>
+              </v-list>
+            </v-card>
           </v-col>
 
           <v-col cols="4">
@@ -58,9 +94,11 @@
               value="Enter Your Email Address"
               outlined
               clearable
+              dense
+              class="my-2"
             >
               <template slot="append-outer">
-                <v-btn light large color="#fd7e14"> SEARCH </v-btn>
+                <v-btn light medium color="#fd7e14"> SEARCH </v-btn>
               </template>
             </v-text-field>
 

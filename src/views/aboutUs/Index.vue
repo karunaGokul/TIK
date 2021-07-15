@@ -115,29 +115,19 @@
             </v-row>
         </div>
 
-        <div>
-            <h1 class ="d-flex justify-center 
-                    my-15 
-                    text-decoration-underline 
-                    text-capitalize"
-            >
-                customer say
-            </h1>
-
-            <v-carousel>
-                <v-card class="grey lighten-2 color">
-                    <v-icon>mdi-home</v-icon>
-                </v-card>
-                
-            </v-carousel>
-        </div>
+        <CustomerFeedback />
+        
     </div>
 </template>
 
-<script>
-    export default {
-        
-    }
+<script lang="ts">
+import Vue from "vue";
+import CustomerFeedback from "@/components/CustomerFeedback.vue";
+
+    export default Vue.extend ({
+        components: { CustomerFeedback },
+
+    });
 </script>
 
 <style scoped>

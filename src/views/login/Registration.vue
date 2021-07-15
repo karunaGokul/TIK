@@ -203,9 +203,10 @@
             
             <v-btn 
             color="#ff6500" 
-            class="py-5 d-flex justify-center white--text font-weight-light text-capitalize"
+            class="py-5 rounded-0 d-flex justify-center white--text font-weight-light text-capitalize"
             width="30%"
             depressed
+            block
             >Sign Up</v-btn>
            
 

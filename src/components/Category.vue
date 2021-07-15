@@ -21,57 +21,61 @@
     </v-container>
   </div>
 </template>
-
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-export default Vue.extend({
-  data() {
-    return {
-      categories: [
-        {
-          categoryName: "Mills",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Knitting",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Deying",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Printing",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Processing",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Job Work Unit",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Finishing Fabric",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Second Fabric",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Second Pieces",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-        {
-          categoryName: "Accessories",
-          categoryImage: "mdi-account-reactivate-outline",
-        },
-      ],
-    };
-  },
-});
+@Component
+export default class Category extends Vue {
+  @Prop() projectName: any;
+  linkCategory: any = false;
+  categoryName: any = "";
+  openCategory(categoryName: any) {
+    if (!(this.projectName == "")) this.linkCategory = true;
+    this.categoryName = categoryName;
+  }
+  categories: any = [
+    {
+      categoryName: "Mills",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Knitting",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Deying",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Printing",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Processing",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Job Work Unit",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Finishing Fabric",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Second Fabric",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Second Pieces",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+    {
+      categoryName: "Accessories",
+      categoryImage: "mdi-account-reactivate-outline",
+    },
+  ];
+}
 </script>
+
 

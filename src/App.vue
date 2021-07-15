@@ -11,17 +11,14 @@
 
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 
-export default Vue.extend({
-  name: "App",
+@Component({
   components: { AppHeader, AppFooter },
-  data: () => ({
-    //
-  }),
-});
+})
+export default class App extends Vue {}
 </script>
 
 

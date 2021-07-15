@@ -84,9 +84,9 @@
 </template>
  
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "CreateEmployee",
-});
+@Component
+export default class CreateEmployee extends Vue {}
 </script>
+  

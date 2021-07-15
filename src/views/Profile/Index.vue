@@ -183,32 +183,28 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      model: null,
-      images: [
-        { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
-        { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
-        { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
-        { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
-      ],
-      category: [
-        "Mills",
-        "Knitting",
-        "Dyeing",
-        "Processing",
-        "Printing",
-        "Ready Fabrics",
-        "Embroidery",
-        "Job Work Units",
-        "Pieces",
-      ],
-    };
-  },
-};
-</script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-<style scoped>
-</style>
+@Component
+export default class Profile extends Vue {
+  model: any = null;
+  images: any = [
+    { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
+    { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
+    { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
+    { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
+  ];
+  category: any = [
+    "Mills",
+    "Knitting",
+    "Dyeing",
+    "Processing",
+    "Printing",
+    "Ready Fabrics",
+    "Embroidery",
+    "Job Work Units",
+    "Pieces",
+  ];
+}
+</script>

@@ -125,17 +125,13 @@
     </v-footer>
   </div>
 </template>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-<script>
-export default {
-  name: "Footer",
-  data() {
-    return {
-      icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
-    };
-  },
-};
+@Component
+export default class AppFooter extends Vue {
+  icons: any = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
+}
 </script>
 
-<style scoped>
-</style>
+

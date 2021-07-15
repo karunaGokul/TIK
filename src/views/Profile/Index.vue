@@ -51,13 +51,6 @@
                 aut cumque obcaecati! Cum at suscipit illo?
               </v-row>
 
-              <v-row class="pr-16 text-wrap">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique illum amet quibusdam. Repellendus maxime natus
-                expedita placeat atque. Esse voluptatibus porro delectus rem,
-                aut cumque obcaecati! Cum at suscipit illo?
-              </v-row>
-
               <v-row>
                 <v-col>
                   <h3>Phone</h3>
@@ -191,29 +184,27 @@
 </template>
 
 <script>
-    export default {
-       data() {
-           return {
-               model: null,
-               images: [
-                   { title: 'Yarn', src: '@/assets/Gallery/gallery1.jpg'},
-                   { title: 'Brochures', src: '@/assets/Gallery/gallery2.jpg'},
-                   { title: 'Machineries', src: '@/assets/Gallery/gallery3.jpg'},
-                   { title: 'Certificates', src: '@/assets/Gallery/gallery4.jpg'}
-               ],
-               category: [
-                   'Mills', 
-                   'Knitting', 
-                   'Dyeing', 
-                   'Processing', 
-                   'Printing', 
-                   'Ready Fabrics', 
-                   'Embroidery', 
-                   'Job Work Units', 
-                   'Pieces'
-               ]
-           };
-       },
+export default {
+  data() {
+    return {
+      model: null,
+      images: [
+        { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
+        { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
+        { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
+        { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
+      ],
+      category: [
+        "Mills",
+        "Knitting",
+        "Dyeing",
+        "Processing",
+        "Printing",
+        "Ready Fabrics",
+        "Embroidery",
+        "Job Work Units",
+        "Pieces",
+      ],
     };
   },
 };

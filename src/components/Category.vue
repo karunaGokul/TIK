@@ -10,9 +10,11 @@
           class="ma-3"
           align="center"
         >
-          <v-btn class="ma-2" outlined x-large fab color="orange">
-            <v-icon>{{ category.categoryImage }}</v-icon>
-          </v-btn>
+          <router-link :to="category.categoryName" tag="button">
+            <v-btn class="ma-2" outlined x-large fab color="orange">
+              <v-icon>{{ category.categoryImage }}</v-icon>
+            </v-btn>
+          </router-link>
           <div>{{ category.categoryName }}</div>
         </v-col>
       </v-row>

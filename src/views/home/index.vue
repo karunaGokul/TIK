@@ -195,90 +195,87 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import Category from "@/components/Category.vue";
-export default Vue.extend({
-  name: "Home",
+
+@Component({
   components: { Category },
-  data() {
-    return {
-      items: [
-        {
-          src: "https://www.tikonline.in/newthemeassets/assets/img/home-bg.png",
-          category: "../assets.factory.png",
-        },
+})
+export default class Home extends Vue {
+  items: any = [
+    {
+      src: "https://www.tikonline.in/newthemeassets/assets/img/home-bg.png",
+      category: "../assets.factory.png",
+    },
 
-        {
-          src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg1.jpeg",
-          category: "../assets.factory.png",
-        },
-        {
-          src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg2.jpeg",
-          category: "../assets.factory.png",
-        },
-      ],
-
-      cardDetails: [
-        {
-          icon: "@/assets/i1.png",
-          cardTitle: "A textile industry",
-          cardText1:
-            "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-          cardText2:
-            "primarily concerned with the design, production and distribution",
-        },
-        {
-          icon: "@/assets/i1.png",
-          cardTitle: "Best material Collection",
-          cardText1:
-            "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-          cardText2:
-            "primarily concerned with the design, production and distribution",
-        },
-        {
-          icon: "@/assets/i1.png",
-          cardTitle: "Nice collection for you",
-          cardText1:
-            "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-          cardText2:
-            "primarily concerned with the design, production and distribution",
-        },
-        {
-          icon: "@/assets/i1.png",
-          cardTitle: "A fabrics and material",
-          cardText1:
-            "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-          cardText2:
-            "primarily concerned with the design, production and distribution",
-        },
-      ],
-      benifits: [
-        {
-          image: "../assets/1.png",
-          details: "Timely Deliery can be improved",
-        },
-        {
-          image: "../assets/2.png",
-          details: "Finding Or Sourcing Vendros made Easy",
-        },
-        {
-          image: "../assets/3.png",
-          details: "Payment delay can be reduced",
-        },
-        {
-          image: "../assets/4.png",
-          details: "Reduce dependency",
-        },
-        {
-          image: "../assets/5.png",
-          details: "Working Capital blokage in terms",
-        },
-        {
-          image: "../assets/6.png",
-          details: "Reduce commusion by employee",
-        },
-      ],
-    };
-  },
-});
+    {
+      src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg1.jpeg",
+      category: "../assets.factory.png",
+    },
+    {
+      src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg2.jpeg",
+      category: "../assets.factory.png",
+    },
+  ];
+  cardDetails: any = [
+    {
+      icon: "@/assets/i1.png",
+      cardTitle: "A textile industry",
+      cardText1:
+        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
+      cardText2:
+        "primarily concerned with the design, production and distribution",
+    },
+    {
+      icon: "@/assets/i1.png",
+      cardTitle: "Best material Collection",
+      cardText1:
+        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
+      cardText2:
+        "primarily concerned with the design, production and distribution",
+    },
+    {
+      icon: "@/assets/i1.png",
+      cardTitle: "Nice collection for you",
+      cardText1:
+        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
+      cardText2:
+        "primarily concerned with the design, production and distribution",
+    },
+    {
+      icon: "@/assets/i1.png",
+      cardTitle: "A fabrics and material",
+      cardText1:
+        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
+      cardText2:
+        "primarily concerned with the design, production and distribution",
+    },
+  ];
+  benifits: any = [
+    {
+      image: "../assets/1.png",
+      details: "Timely Deliery can be improved",
+    },
+    {
+      image: "../assets/2.png",
+      details: "Finding Or Sourcing Vendros made Easy",
+    },
+    {
+      image: "../assets/3.png",
+      details: "Payment delay can be reduced",
+    },
+    {
+      image: "../assets/4.png",
+      details: "Reduce dependency",
+    },
+    {
+      image: "../assets/5.png",
+      details: "Working Capital blokage in terms",
+    },
+    {
+      image: "../assets/6.png",
+      details: "Reduce commusion by employee",
+    },
+  ];
+}
 </script>

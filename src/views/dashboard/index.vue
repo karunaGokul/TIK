@@ -44,94 +44,89 @@
 </template>
  
 <script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-  name: "Dashboard",
-  data() {
-    return {
-      search: "",
-      items: ["New Enquiry", "Conformed Project", "Completed Project"],
-      headers: [
-        {
-          text: "Enquiry Name",
-          align: "start",
-          sortable: false,
-          value: "EnquiryName",
-          class: "teal lighten-4 title",
-        },
-        {
-          text: "Merchandiser",
-          value: "Merchandiser",
-          class: "teal lighten-4 title",
-        },
-        { text: "Category", value: "Category", class: "teal lighten-4 title" },
-        {
-          text: "Subcategory",
-          value: "Subcategory",
-          class: "teal lighten-4 title",
-        },
-        { text: "In Stages", value: "InStages", class: "teal lighten-4 title" },
-        { text: "Status", value: "Status", class: "teal lighten-4 title" },
-        { text: "Action", value: "Action", class: "teal lighten-4 title" },
-      ],
-      desserts: [
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-        {
-          EnquiryName: "10",
-          Merchandiser: 159,
-          Category: "Mill",
-          Subcategory: "Yarn",
-          InStages: "Bid Received",
-          Status: "xx",
-          Action: "xx",
-        },
-      ],
-    };
-  },
-});
+import { Component, Vue } from "vue-property-decorator";
+@Component
+export default class Dashboard extends Vue {
+  search: any = "";
+  items: any = ["New Enquiry", "Conformed Project", "Completed Project"];
+  headers: any = [
+    {
+      text: "Enquiry Name",
+      align: "start",
+      sortable: false,
+      value: "EnquiryName",
+      class: "teal lighten-4 title",
+    },
+    {
+      text: "Merchandiser",
+      value: "Merchandiser",
+      class: "teal lighten-4 title",
+    },
+    { text: "Category", value: "Category", class: "teal lighten-4 title" },
+    {
+      text: "Subcategory",
+      value: "Subcategory",
+      class: "teal lighten-4 title",
+    },
+    { text: "In Stages", value: "InStages", class: "teal lighten-4 title" },
+    { text: "Status", value: "Status", class: "teal lighten-4 title" },
+    { text: "Action", value: "Action", class: "teal lighten-4 title" },
+  ];
+  desserts: any = [
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+    {
+      EnquiryName: "10",
+      Merchandiser: 159,
+      Category: "Mill",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "xx",
+      Action: "xx",
+    },
+  ];
+}
 </script>

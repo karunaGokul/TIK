@@ -14,13 +14,11 @@
             <v-icon class="white--text">mdi-view-dashboard</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title class="white--text" to="/"
-              >Dashboard</v-list-item-title
-            >
+            <v-list-item-title class="white--text">Dashboard</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item to="/newproject">
+        <v-list-item link to="/newproject">
           <v-list-item-action>
             <v-icon class="white--text">mdi-av-timer</v-icon>
           </v-list-item-action>
@@ -100,13 +98,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    drawer: false,
-    isLoggedIn: true,
-  }),
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class AppHeader extends Vue {
+  drawer: any = false;
+  isLoggedIn: any = true;
+}
 </script>
+
+
   
   

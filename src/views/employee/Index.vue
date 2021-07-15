@@ -42,99 +42,94 @@
 </template>
  
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "Employee",
-
-  data() {
-    return {
-      search: "",
-      onCreateEmployee: false,
-      headers: [
-        {
-          text: "#S.No",
-          align: "start",
-          sortable: true,
-          value: "Sno",
-          class: "teal lighten-4 title",
-        },
-        {
-          text: "First Name",
-          value: "FirstName",
-          class: "teal lighten-4 title",
-        },
-        { text: "Last Name", value: "LastName", class: "teal lighten-4 title" },
-        {
-          text: "Designation",
-          value: "Designation",
-          class: "teal lighten-4 title",
-        },
-        {
-          text: "Email Name",
-          value: "EmailName",
-          class: "teal lighten-4 title",
-        },
-        { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
-        { text: "Action", value: "Action", class: "teal lighten-4 title" },
-      ],
-      desserts: [
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-        {
-          Sno: "1",
-          FirstName: "MasterAdmin",
-          LastName: "A",
-          Designation: "MasterAdmin",
-          EmailName: "MasterAdmin@gmail.com",
-          Phone: "06789987654",
-          Action: "xx",
-        },
-      ],
-    };
-  },
-});
+@Component
+export default class Employee extends Vue {
+  search: any = "";
+  onCreateEmployee: any = false;
+  headers: any = [
+    {
+      text: "#S.No",
+      align: "start",
+      sortable: true,
+      value: "Sno",
+      class: "teal lighten-4 title",
+    },
+    {
+      text: "First Name",
+      value: "FirstName",
+      class: "teal lighten-4 title",
+    },
+    { text: "Last Name", value: "LastName", class: "teal lighten-4 title" },
+    {
+      text: "Designation",
+      value: "Designation",
+      class: "teal lighten-4 title",
+    },
+    {
+      text: "Email Name",
+      value: "EmailName",
+      class: "teal lighten-4 title",
+    },
+    { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
+    { text: "Action", value: "Action", class: "teal lighten-4 title" },
+  ];
+  desserts: any = [
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+    {
+      Sno: "1",
+      FirstName: "MasterAdmin",
+      LastName: "A",
+      Designation: "MasterAdmin",
+      EmailName: "MasterAdmin@gmail.com",
+      Phone: "06789987654",
+      Action: "xx",
+    },
+  ];
+}
 </script>

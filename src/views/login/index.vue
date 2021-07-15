@@ -51,9 +51,10 @@
 
                 <v-btn 
                   color="#ff6500" 
-                  class="py-5 white--text font-weight-light text-capitalize"
+                  class="py-5 rounded-0 white--text font-weight-light text-capitalize"
                   width="30%"
                   depressed
+                  block
                   @click="submitForm"
                 >Sign In</v-btn>
 

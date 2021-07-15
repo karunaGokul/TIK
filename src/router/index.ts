@@ -50,7 +50,12 @@ const routes: Array<RouteConfig> = [
     path: '/createemployee',
     name: 'CreateEmployee',
     component: () => import('../views/employee/CreateEmployee.vue')
-  }
+  },
+  {
+    path: '/aboutUs',
+    name: 'AboutUs',
+    component: () => import('../views/aboutUs/Index.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -117,89 +117,30 @@
           <v-card-text class="mb-1"> {{ carddetail.cardText2 }}</v-card-text>
         </v-card>
       </div>
-    </template>
-    <v-row justify="center mt-3">
-      <v-col cols="12" md="6">
-        <h2
-          class="pa-4 text-center rounded-0 font-weight-light"
-          v-text="`Customer Say`"
-        ></h2>
-        <v-divider inset></v-divider>
-      </v-col>
-    </v-row>
-    <template>
-      <v-row justify="center mt-3">
-        <v-col cols="12" md="6">
-          <h2
-            class="pa-4 text-center rounded-0 font-weight-light"
-            v-text="`Register`"
-          ></h2>
-          <v-divider inset></v-divider>
-          <h3
-            class="pa-4 text-center rounded-0 font-weight-light"
-            v-text="`Register your company today and start your business`"
-          ></h3>
-        </v-col>
-      </v-row>
-
-      <v-row justify="center mt-3">
-        <v-col cols="12" sm="6" md="2">
-          <v-text-field outlined></v-text-field>
-        </v-col>
-
-        <v-col cols="12" sm="6" md="2">
-          <v-text-field outlined></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6" md="2">
-          <v-text-field outlined></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row justify="center mt-3">
-        <v-btn small color="warning" dark> Register</v-btn>
-      </v-row>
-    </template>
-    <template>
-      <v-row justify="center mt-3">
-        <v-col cols="12" md="6">
-          <h1
-            class="pa-4 text-center rounded-0 font-weight-light"
-            v-text="`Download The App`"
-          ></h1>
-          <v-divider inset></v-divider>
-          <h3
-            class="pa-4 text-center rounded-0 font-weight-light"
-            v-text="`The Best Business app for you`"
-          ></h3>
-        </v-col>
-      </v-row>
-      <v-row justify="center mt-3">
-        <v-btn height="60" dark class="mr-4">
-          <v-icon large dark class="mr-2"> mdi-google-play </v-icon>
-          Get it on Google Pay
-        </v-btn>
-        <v-btn height="60" large dark>
-          <v-icon large dark class="mr-2"> mdi-apple </v-icon>
-          Download on the
-          <h5>APP Store</h5>
-        </v-btn>
-      </v-row>
-      <v-row justify="center my-7">
-        <v-col cols="12" md="6">
-          <h2
-            class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
-            v-text="`Your AD Here !`"
-          ></h2>
-        </v-col>
-      </v-row>
-    </template>
+    </template>    
+      
+      <CustomerFeedback />
+      
+      <div>
+        <v-row justify="center my-7">
+          <v-col cols="12" md="6">
+            <h2
+              class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
+              v-text="`Your AD Here !`"
+            ></h2>
+          </v-col>
+        </v-row>
+      </div>
+    
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Category from "@/components/Category.vue";
+import CustomerFeedback from "@/components/CustomerFeedback.vue";
 
 @Component({
-  components: { Category },
+  components: { Category, CustomerFeedback },
 })
 export default class Home extends Vue {
   items: any = [

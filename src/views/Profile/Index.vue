@@ -74,9 +74,15 @@
       </v-card>
     </v-parallax>
 
-    <h1 class="d-flex justify-center my-15 text-decoration-underline">
-      Gallery
-    </h1>
+    <div 
+      class="my-15" 
+      justify = "center"
+      align = "center">
+
+      <h1> Gallery </h1>
+      <Divider />
+
+    </div>
 
     <v-sheet class="mx-auto" max-width="1500">
       <v-slide-group
@@ -95,9 +101,13 @@
     </v-sheet>
 
     <v-container>
-      <h1 class="d-flex justify-center my-15 text-decoration-underline">
-        Company Details
-      </h1>
+      <div class="my-15"
+          justify="center"
+          align="center"
+      >
+        <h1> Company Details </h1>
+        <Divider />
+      </div>
 
       <v-card class="d-flex justify-left pl-10 mb-16">
         <v-btn flat>Mills</v-btn>
@@ -117,30 +127,35 @@
               width="250"
               height="250"
             >
+              <Divider />
               <v-card-title v-text="image.title"></v-card-title>
             </v-img>
           </v-card>
         </v-col>
       </v-row>
 
-      <h1 class="d-flex justify-center my-15 text-decoration-underline">
-        Completed Projects
-      </h1>
+      <div class="my-15"
+          justify="center"
+          align="center"
+      >
+        <h1> Completed Projects </h1>
+        <Divider />
 
-      <v-row>
-        <v-col>
+      </div>
+
+      
+       <div width="50px">
           <v-select
             filled
             dense
             solo
             label="Select Your Category"
             :items="category"
-            width="100"
+            class=""
           >
           </v-select>
-        </v-col>
-      </v-row>
-
+       </div>
+     
       <v-row>
         <v-col v-for="image in images" :key="image.title">
           <v-card :loading="loading" class="mx-auto my-12" max-width="250">
@@ -185,8 +200,13 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Divider from "@/components/Divider.vue";
+
 
   export default Vue.extend ({
+    name: "Profile",
+    components: { Divider },
+
     data() {
       return {
         model: null,

@@ -1,14 +1,18 @@
 <template>
     <div>
         <v-container>
-            <h1 class ="d-flex justify-center 
-                    my-15 
-                    text-decoration-underline 
+            <div justify = "center"
+                align = "center"
+            >
+            <h1 class =" mt-15 
                     text-capitalize"
             >
                 customer say
             </h1>
-
+                <Divider />
+            </div>
+            
+            
             <v-carousel 
                 v-model="model"
                 hide-delimiters
@@ -101,9 +105,11 @@
                 justify = "center"
                 align = "center"
             >
-                <h1 class ="text-decoration-underline text-capitalize">
+                <h1 class ="text-capitalize">
                    register
                 </h1>
+
+                <Divider />
 
                 <p class ="my-10">
                     Register your company today and Start your business. 
@@ -123,11 +129,11 @@
                 justify = "center"
                 align = "center"
             >
-                <h1 class ="text-decoration-underline text-capitalize">
+                <h1 class ="text-capitalize">
                    download the app
                 </h1>
 
-                <v-divider role="presentation"></v-divider>
+                <Divider />
 
                 <p class ="my-10 font-weight-medium">
                     The Best Business app for you. 
@@ -177,9 +183,11 @@
 
 <script lang="ts">
     import Vue from 'vue'
+    import Divider from "@/components/Divider.vue";
 
     export default Vue.extend({
         name: "CustomerFeedback",
+        components: { Divider },
         
         data() {
             return {

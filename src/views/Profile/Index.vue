@@ -1,11 +1,16 @@
 <template>
   <div>
-    <v-parallax
+    <!-- <v-parallax
       height="400"
       src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
-      class="mb-16 pt-16"
-    >
-      <v-card elevation="4" class="mx-16 mt-16" height="300" color="#EEEEEE">
+      class="pt-16"
+    > -->
+
+      <v-card>
+        <v-img src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"  max-height="300" />
+      </v-card>
+
+      <v-card elevation="4" class="mx-16  mt-n16" height="300" color="#EEEEEE">
         <v-container>
           <v-row>
             <v-col class="col-2 pt-5">
@@ -61,18 +66,19 @@
                   <h3>Address</h3>
                 </v-col>
                 <v-col>
-                  <i-frame
-                    width="50"
-                    height="50"
+                  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+                  <iframe
+                    width="300"
+                    height="150"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin"
-                  ></i-frame>
+                  ></iframe>
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
         </v-container>
       </v-card>
-    </v-parallax>
+    <!-- </v-parallax> -->
 
     <div 
       class="my-15" 
@@ -159,7 +165,7 @@
       <v-row>
         <v-col v-for="image in images" :key="image.title">
           <v-card :loading="loading" class="mx-auto my-12" max-width="250">
-            <v-img height="250" src="@/assets/Gallery/gallery1.jpg"></v-img>
+            <v-img height="250" src="@/assets/Gallery/gallery1.jpg" alt="gallery"></v-img>
 
             <v-card-title>{{ image.title }}</v-card-title>
 

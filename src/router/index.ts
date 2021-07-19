@@ -61,6 +61,11 @@ const routes: Array<RouteConfig> = [
     name: 'AboutUs',
     component: () => import('../views/aboutUs/Index.vue')
   },
+  {
+    path: '/contactUs',
+    name: 'ContactUs',
+    component: () => import('../views/contactUs/Index.vue')
+  }
 ]
 
 const router = new VueRouter({

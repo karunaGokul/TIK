@@ -44,7 +44,9 @@
           class="pa-4 text-center rounded-0 font-weight-light"
           v-text="`Category`"
         ></h2>
-        <v-divider inset></v-divider>
+        <div align="center">
+          <v-divider class="pb-1" color="#ff6500" width="50px" />
+        </div>
       </v-col>
     </v-row>
 
@@ -54,7 +56,10 @@
       <v-parallax src="@/assets/benifits/benifits-background.png" height="600">
         <v-row justify="center mt-3">
           <div class="text-center black--text">
-            <h1 class="text-h4 font-weight-thin my-6">Benifits</h1>
+            <h1 class="text-h4 font-weight-thin mt-6">Benifits</h1>
+            <div align="center" class="mb-5">
+              <v-divider class="pb-1" color="#ff6500" width="50px" />
+            </div>
             <h4 class="heading pb-0">You get working with us</h4>
           </div>
         </v-row>
@@ -117,21 +122,20 @@
           <v-card-text class="mb-1"> {{ carddetail.cardText2 }}</v-card-text>
         </v-card>
       </div>
-    </template>    
-      
-      <CustomerFeedback />
-      
-      <div>
-        <v-row justify="center my-7">
-          <v-col cols="12" md="6">
-            <h2
-              class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
-              v-text="`Your AD Here !`"
-            ></h2>
-          </v-col>
-        </v-row>
-      </div>
-    
+    </template>
+
+    <CustomerFeedback />
+
+    <div>
+      <v-row justify="center my-7">
+        <v-col cols="12" md="6">
+          <h2
+            class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
+            v-text="`Your AD Here !`"
+          ></h2>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 <script lang="ts">

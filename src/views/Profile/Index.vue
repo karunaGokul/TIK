@@ -51,11 +51,13 @@
               <v-row>
                 <h3>About</h3>
                 <v-spacer></v-spacer>
-                <v-btn
+                <EditProfile />
+
+                <!-- <v-btn
                   class="white--text font-weight-regular text-capitalize"
                   color="#fd7e14"
                   >Edit Profile</v-btn
-                >
+                > -->
               </v-row>
 
               <v-row class="pr-16 text-wrap">
@@ -221,11 +223,12 @@
 <script lang="ts">
 import Vue from "vue";
 import Divider from "@/components/Divider.vue";
+import EditProfile from "@/views/profile/EditProfile.vue";
 
 
   export default Vue.extend ({
     name: "Profile",
-    components: { Divider },
+    components: { Divider, EditProfile },
 
     data() {
       return {

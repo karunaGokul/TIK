@@ -22,9 +22,9 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/login/Registration.vue')
   },
   {
-    path: '/forgot-password',
+    path: '/forgotpassword',
     name: 'ForgotPassword',
-    component: () => import('../views/login/Forgot-Password.vue')
+    component: () => import('../views/login/ForgotPassword.vue')
   },
   {
     path: '/profile',

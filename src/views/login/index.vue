@@ -49,7 +49,7 @@
             ></v-checkbox>
 
             <div>
-              <router-link to="/forgot password">Forget Password</router-link>
+              <router-link to="/forgotpassword">Forget Password</router-link>
             </div>
 
             <v-btn

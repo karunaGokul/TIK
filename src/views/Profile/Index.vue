@@ -22,18 +22,27 @@
               ><br />
               <h2 class="text-align-center">Heading</h2>
               <br />
+              <!-- <v-icon color="#fd7e14"> mdi-star </v-icon>
               <v-icon color="#fd7e14"> mdi-star </v-icon>
               <v-icon color="#fd7e14"> mdi-star </v-icon>
               <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon><br />
+              <v-icon color="#fd7e14"> mdi-star </v-icon><br /> -->
+
+              <v-rating
+                  :value="4.5"
+                  color="#fd7e14"
+                  dense
+                  half-increments
+                  readonly
+                  size="14"
+                ></v-rating>
 
               <div>
                 <span>
                   <v-icon>mdi-facebook</v-icon>
                   <v-icon>mdi-instagram</v-icon>
-                  <v-icon>mdi-facebook</v-icon>
-                  <v-icon>mdi-home</v-icon>
+                  <v-icon>mdi-information</v-icon>
+                  <v-icon>mdi-earth</v-icon>
                 </span>
               </div>
             </v-col>
@@ -64,6 +73,11 @@
                 </v-col>
                 <v-col>
                   <h3>Address</h3>
+                  <div class="font-weight-regular text-capitalize">
+                    <p>shrivari srimat, 1045,</p>
+                    avinashi road,
+                    <p>coimbatore - 641 018</p>
+                  </div>
                 </v-col>
                 <v-col>
                   <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
@@ -173,7 +187,7 @@
               <v-row align="center" class="mx-0">
                 <v-rating
                   :value="4.5"
-                  color="amber"
+                  color="#fd7e14"
                   dense
                   half-increments
                   readonly

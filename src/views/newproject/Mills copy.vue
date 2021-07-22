@@ -1,18 +1,6 @@
  <template>
   <div>
-    <v-row v-for="(control, index) in data.controls" :key="index">
-      <v-col>
-        <mills-control :control="control" />
-
-        <div v-if="control.active">
-          <div v-for="(cc, j) in control.children" :key="j">
-            <mills-control :control="cc" />
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-
-    <!-- <v-row justify="center mt-3">
+    <v-row justify="center mt-3">
       <v-col cols="12" sm="8">
         <v-card class="ma-2" color="cyan lighten-4" height="600" elevation="0">
           <v-card-title> Mills </v-card-title>
@@ -235,59 +223,45 @@
           Back
         </v-btn>
       </v-col>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import { ProjectFormModel, ProjectFormControlModel } from './Model';
-import MillsControl from './Mills-Control.vue';
+@Component
+export default class Mills extends Vue {
+  items: any = ["100% Cotton", "100% Viscose", "100% Modal", "100% polyster"];
+  progress: any = 0;
+  mill: any = "p";
+  summary: any = "";
+  paa_selected: any = "";
 
-@Component({
-  components: { MillsControl 
- }
-})
-export default class ProjectFormBuilder extends Vue {
-  data: ProjectFormModel = new ProjectFormModel();
-
-  created() {
-    this.data.controls = [];
-
-    let control = new ProjectFormControlModel();
-    control.controlType = "toggle-button";
-    control.text = "Yarn";
-    control.label = "A";
-
-    let childControl = new ProjectFormControlModel();
-    childControl.controlType = "toggle-button";
-    childControl.text = "Single";
-    childControl.label = "A";
-
-    control.children.push(childControl);
-
-    childControl = new ProjectFormControlModel();
-    childControl.controlType = "toggle-button";
-    childControl.text = "Blend";
-    childControl.label = "B";
-
-    control.children.push(childControl);
-
-    this.data.controls.push(control);
-
-    control = new ProjectFormControlModel();
-    control.controlType = "toggle-button";
-    control.text = "Fabric";
-    control.label = "B";
-
-    this.data.controls.push(control);
-
-    console.log(this.data);
+  pa() {
+    this.mill = "pa";
+    this.progress = this.progress + 20;
   }
-
-
+  pb() {
+    this.mill = "pb";
+    this.progress = this.progress + 20;
+  }
+  paa() {
+    this.mill = "paa";
+    this.progress = this.progress + 20;
+  }
+  paaa() {
+    this.mill = "paaa";
+    this.progress = this.progress + 20;
+  }
+  back() {
+    this.mill = this.mill.slice(0, -1);
+    this.progress = this.progress - 20;
+  }
+  reset() {
+    this.mill = "p";
+    this.progress = 0;
+  }
 }
-
 </script>
 

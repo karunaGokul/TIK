@@ -72,37 +72,36 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
+    import { Component, Vue } from "vue-property-decorator";
     import CustomerFeedback from "@/components/CustomerFeedback.vue";
     import Divider from "@/components/Divider.vue";
 
-    export default Vue.extend({
-        components: { CustomerFeedback, Divider },
-        data() {
-            return {
-                contacts: [
-                    { 
-                        title: "mail us", 
-                        icon: "mdi-email", 
-                        description: "Say something to start a live chat",
-                        id: "support@textile.com"
-                    },
-                    { 
-                        title: "24/7 live chat", 
-                        icon: "mdi-headphones", 
-                        description: "We endeavour to answer all enquiries within 24 hours on business days.",
-                        id: "+91 912344 98763"
-                    },
-                    {
-                        title: "visit us", 
-                        icon: "mdi-map-marker", 
-                        description: "1/22, Raja street, Tiruppur, Tamilnadu",
-                        id: " "
-                    }
-                ]
-            };
-        }
-    });
+    @Component({
+        components: { Divider, CustomerFeedback },
+    })
+
+    export default class ContactUs extends Vue {
+        contacts: any = [
+            { 
+                title: "mail us", 
+                icon: "mdi-email", 
+                description: "Say something to start a live chat",
+                id: "support@textile.com"
+            },
+            { 
+                title: "24/7 live chat", 
+                icon: "mdi-headphones", 
+                description: "We endeavour to answer all enquiries within 24 hours on business days.",
+                id: "+91 912344 98763"
+            },        
+            {
+                title: "visit us", 
+                icon: "mdi-map-marker", 
+                description: "1/22, Raja street, Tiruppur, Tamilnadu",
+                id: " "
+            }
+        ];
+    }
 </script>
 
 <style scoped>

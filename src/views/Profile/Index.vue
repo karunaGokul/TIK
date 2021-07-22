@@ -221,36 +221,36 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+
+import { Component, Vue } from "vue-property-decorator";
+
 import Divider from "@/components/Divider.vue";
 import EditProfile from "@/views/profile/EditProfile.vue";
 
+@Component({
+  components: { Divider, EditProfile },
+})
 
-  export default Vue.extend ({
-    name: "Profile",
-    components: { Divider, EditProfile },
 
-    data() {
-      return {
-        model: null,
-        images: [
-          { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
-          { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
-          { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
-          { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
-        ],
-        category: [
-          "Mills",
-          "Knitting",
-          "Dyeing",
-          "Processing",
-          "Printing",
-          "Ready Fabrics",
-          "Embroidery",
-          "Job Work Units",
-          "Pieces",
-        ],
-      };
-    }
-  });
+  export default class Home extends Vue {
+    
+    images: any = [
+        { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
+        { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
+        { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
+        { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
+    ];
+    category: any = [
+        "Mills",
+        "Knitting",
+        "Dyeing",
+        "Processing",
+        "Printing",
+        "Ready Fabrics",
+        "Embroidery",
+        "Job Work Units",
+        "Pieces",
+    ];
+   
+  }
 </script>

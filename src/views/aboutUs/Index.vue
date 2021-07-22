@@ -148,14 +148,17 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import CustomerFeedback from "@/components/CustomerFeedback.vue";
 import Divider from "@/components/Divider.vue";
 
-    export default Vue.extend ({
-        components: { CustomerFeedback, Divider },
+@Component({
+  components: { Divider, CustomerFeedback },
+})
 
-    });
+export default class AboutUs extends Vue {      
+
+    }
 </script>
 
 <style scoped>

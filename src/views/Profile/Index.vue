@@ -1,109 +1,89 @@
 <template>
   <div>
-    <!-- <v-parallax
-      height="400"
-      src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
-      class="pt-16"
-    > -->
+    <v-card>
+      <v-img
+        src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+        max-height="300"
+      />
+    </v-card>
 
-      <v-card>
-        <v-img src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"  max-height="300" />
-      </v-card>
+    <v-card elevation="4" class="mx-16  mt-n16" height="300" color="#EEEEEE">
+      <v-container>
+        <v-row>
+          <v-col class="col-2 pt-5">
+            <v-img
+              src="@/assets/textile1.png"
+              max-width="250"
+              max-height="250"
+            ></v-img
+            ><br />
+            <h2 class="text-align-center">Heading</h2>
+            <br />
 
-      <v-card elevation="4" class="mx-16  mt-n16" height="300" color="#EEEEEE">
-        <v-container>
-          <v-row>
-            <v-col class="col-2 pt-5">
-              <v-img
-                src="@/assets/textile1.png"
-                max-width="250"
-                max-height="250"
-              ></v-img
-              ><br />
-              <h2 class="text-align-center">Heading</h2>
-              <br />
-              <!-- <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon>
-              <v-icon color="#fd7e14"> mdi-star </v-icon><br /> -->
+            <v-rating
+              :value="4.5"
+              color="#fd7e14"
+              dense
+              half-increments
+              readonly
+              size="14"
+            ></v-rating>
 
-              <v-rating
-                  :value="4.5"
-                  color="#fd7e14"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-                ></v-rating>
+            <div>
+              <span>
+                <v-icon>mdi-facebook</v-icon>
+                <v-icon>mdi-instagram</v-icon>
+                <v-icon>mdi-information</v-icon>
+                <v-icon>mdi-earth</v-icon>
+              </span>
+            </div>
+          </v-col>
 
-              <div>
-                <span>
-                  <v-icon>mdi-facebook</v-icon>
-                  <v-icon>mdi-instagram</v-icon>
-                  <v-icon>mdi-information</v-icon>
-                  <v-icon>mdi-earth</v-icon>
-                </span>
-              </div>
-            </v-col>
+          <v-col class="pt-10 pl-5">
+            <v-row>
+              <h3>About</h3>
+              <v-spacer></v-spacer>
+              <EditProfile />
+            </v-row>
 
-            <v-col class="pt-10 pl-5">
-              <v-row>
-                <h3>About</h3>
-                <v-spacer></v-spacer>
-                <EditProfile />
+            <v-row class="pr-16 text-wrap">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
+              illum amet quibusdam. Repellendus maxime natus expedita placeat
+              atque. Esse voluptatibus porro delectus rem, aut cumque obcaecati!
+              Cum at suscipit illo?
+            </v-row>
 
-                <!-- <v-btn
-                  class="white--text font-weight-regular text-capitalize"
-                  color="#fd7e14"
-                  >Edit Profile</v-btn
-                > -->
-              </v-row>
+            <v-row>
+              <v-col>
+                <h3>Phone</h3>
+                +(001) 234 567 89<br />
+                9876543210
+              </v-col>
+              <v-col>
+                <h3>Address</h3>
+                <div class="font-weight-regular text-capitalize">
+                  <p>shrivari srimat, 1045,</p>
+                  avinashi road,
+                  <p>coimbatore - 641 018</p>
+                </div>
+              </v-col>
+              <v-col>
+                <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
+                <iframe
+                  width="300"
+                  height="150"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin"
+                ></iframe>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
 
-              <v-row class="pr-16 text-wrap">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique illum amet quibusdam. Repellendus maxime natus
-                expedita placeat atque. Esse voluptatibus porro delectus rem,
-                aut cumque obcaecati! Cum at suscipit illo?
-              </v-row>
-
-              <v-row>
-                <v-col>
-                  <h3>Phone</h3>
-                  +(001) 234 567 89<br />
-                  9876543210
-                </v-col>
-                <v-col>
-                  <h3>Address</h3>
-                  <div class="font-weight-regular text-capitalize">
-                    <p>shrivari srimat, 1045,</p>
-                    avinashi road,
-                    <p>coimbatore - 641 018</p>
-                  </div>
-                </v-col>
-                <v-col>
-                  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
-                  <iframe
-                    width="300"
-                    height="150"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin"
-                  ></iframe>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    <!-- </v-parallax> -->
-
-    <div 
-      class="my-15" 
-      justify = "center"
-      align = "center">
-
-      <h1> Gallery </h1>
+    <div class="my-15" justify="center" align="center">
+      <h1>Gallery</h1>
       <Divider />
-
     </div>
 
     <v-sheet class="mx-auto" max-width="1500">
@@ -123,11 +103,8 @@
     </v-sheet>
 
     <v-container>
-      <div class="my-15"
-          justify="center"
-          align="center"
-      >
-        <h1> Company Details </h1>
+      <div class="my-15" justify="center" align="center">
+        <h1>Company Details</h1>
         <Divider />
       </div>
 
@@ -156,32 +133,31 @@
         </v-col>
       </v-row>
 
-      <div class="my-15"
-          justify="center"
-          align="center"
-      >
-        <h1> Completed Projects </h1>
+      <div class="my-15" justify="center" align="center">
+        <h1>Completed Projects</h1>
         <Divider />
-
       </div>
 
-      
-       <div width="50px">
-          <v-select
-            filled
-            dense
-            solo
-            label="Select Your Category"
-            :items="category"
-            class=""
-          >
-          </v-select>
-       </div>
-     
+      <div width="50px">
+        <v-select
+          filled
+          dense
+          solo
+          label="Select Your Category"
+          :items="category"
+          class=""
+        >
+        </v-select>
+      </div>
+
       <v-row>
         <v-col v-for="image in images" :key="image.title">
           <v-card :loading="loading" class="mx-auto my-12" max-width="250">
-            <v-img height="250" src="@/assets/Gallery/gallery1.jpg" alt="gallery"></v-img>
+            <v-img
+              height="250"
+              src="@/assets/Gallery/gallery1.jpg"
+              alt="gallery"
+            ></v-img>
 
             <v-card-title>{{ image.title }}</v-card-title>
 
@@ -221,36 +197,31 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
+
 import Divider from "@/components/Divider.vue";
 import EditProfile from "@/views/profile/EditProfile.vue";
 
-
-  export default Vue.extend ({
-    name: "Profile",
-    components: { Divider, EditProfile },
-
-    data() {
-      return {
-        model: null,
-        images: [
-          { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
-          { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
-          { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
-          { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
-        ],
-        category: [
-          "Mills",
-          "Knitting",
-          "Dyeing",
-          "Processing",
-          "Printing",
-          "Ready Fabrics",
-          "Embroidery",
-          "Job Work Units",
-          "Pieces",
-        ],
-      };
-    }
-  });
+@Component({
+  components: { Divider, EditProfile },
+})
+export default class Home extends Vue {
+  images: any = [
+    { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
+    { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
+    { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
+    { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
+  ];
+  category: any = [
+    "Mills",
+    "Knitting",
+    "Dyeing",
+    "Processing",
+    "Printing",
+    "Ready Fabrics",
+    "Embroidery",
+    "Job Work Units",
+    "Pieces",
+  ];
+}
 </script>

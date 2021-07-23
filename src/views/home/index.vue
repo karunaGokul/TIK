@@ -138,14 +138,17 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+
 import Category from "@/components/Category.vue";
 import CustomerFeedback from "@/components/CustomerFeedback.vue";
 
 @Component({
   components: { Category, CustomerFeedback },
 })
+
 export default class Home extends Vue {
   items: any = [
     {

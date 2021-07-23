@@ -79,30 +79,31 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      valid: "false",
-      email: "",
-      password: "",
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-      passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) =>
-          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
-          "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
-      ],
-    };
-  },
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-  methods: {
-    submitForm() {
-      this.$refs.form.validate();
-    },
-  },
-};
+@Component({
+  
+})
+
+export default class Login extends Vue {
+  valid: boolean;
+  email: string;
+  password: string;
+  // emailRules: any = [
+  //       (v) => !!v || "E-mail is required",
+  //       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  //     ];
+  // passwordRules: any = [
+  //       (v) => !!v || "Password is required",
+  //       (v) =>
+  //         /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
+  //         "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
+  //     ];
+
+  // submitForm() {
+  //     this.$refs.form.validate();
+  //   };
+
+}
 </script>

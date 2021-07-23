@@ -225,16 +225,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
-  name: "Registration",
+@Component({
+ 
+})
 
-  data() {
-    return {
-      checkbox: "false",
-      checkboxRules: [(v) => !!v || "You must agree to continue!"],
-      category: [
+export default class Registration extends Vue {
+  checkbox: boolean;
+  category: any = [
         "Company",
         "Company + jobwork Unit",
         "Mills",
@@ -246,13 +246,12 @@ export default {
         "Embroidery",
         "Job Work Units",
         "Pieces",
-      ],
-      country: ["India"],
-      state: ["select state"],
-      city: ["select city"],
-    };
-  },
-};
+      ];
+      country: ["India"];
+      state: ["select state"];
+      city: ["select city"];
+      // checkboxRules: [(v) => !!v || "You must agree to continue!"];
+}
 </script>
 
 <style scoped></style>

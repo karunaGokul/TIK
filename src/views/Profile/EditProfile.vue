@@ -18,11 +18,10 @@
                         Profile
                     </v-card-title>
                     <v-spacer></v-spacer>
-                    <v-btn
-                        icon
-                        @click="dialog"
-                    >
-                        <v-icon>mdi-close</v-icon>
+                    <v-btn 
+                        @click="closeDialog" 
+                        icon>
+                        <v-icon id="close-button">mdi-close</v-icon>
                     </v-btn>
                 </v-row>
 
@@ -101,18 +100,19 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator";
-   
 
-    export default Vue.extend({
-      
-        // data() {
-        //     return {
-        //         dialog: "false",
-        //     }
-        // },
-
+    @Component({
         
-    })
+})
+  
+
+    export default class EditProfile extends Vue {
+        dialog: boolean;
+
+        closeDialog() {
+                this.$emit("update:dialog", false);
+            }        
+    }
 </script>
 
 <style scoped>

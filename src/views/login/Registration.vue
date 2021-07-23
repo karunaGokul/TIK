@@ -37,8 +37,9 @@
               <v-label>First Name</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter First Name"
-                class="py-3"
+                class="py-2"
                 required
               ></v-text-field>
             </v-col>
@@ -47,8 +48,9 @@
               <v-label>Last Name</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Last Name"
-                class="py-3"
+                class="py-2"
                 required
               ></v-text-field>
             </v-col>
@@ -59,8 +61,9 @@
               <v-label>Phone Number</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Phone Number"
-                class="py-3"
+                class="py-2"
               ></v-text-field>
             </v-col>
 
@@ -68,8 +71,9 @@
               <v-label>Email ID</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Email ID"
-                class="py-3"
+                class="py-2"
                 required
               ></v-text-field>
             </v-col>
@@ -80,8 +84,9 @@
               <v-label>Password</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Password"
-                class="py-3"
+                class="py-2"
                 required
               ></v-text-field>
             </v-col>
@@ -90,8 +95,9 @@
               <v-label>Confirm Password</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Re-Enter Password"
-                class="py-3"
+                class="py-2"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -99,10 +105,11 @@
           <v-label>Select Your Category</v-label>
           <v-select
             outlined
+            dense
             placeholder="Select Category"
             v-model="select"
             :items="category"
-            class="py-3"
+            class="py-2"
           ></v-select>
 
           <v-row>
@@ -110,17 +117,18 @@
               <v-label>Enter GST Number</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter GST Number"
-                class="py-3"
+                class="py-2"
                 required
               ></v-text-field>
             </v-col>
 
-            <v-col class="pt-13 pl-16">
+            <v-col class="pt-13 pl-16 mt-n3">
               <v-btn
                 class="white--text font-weight-light text-capitalize"
                 color="#ff6500"
-                x-large
+                large
                 depressed
                 >Verify</v-btn
               >
@@ -132,8 +140,9 @@
               <v-label>Address</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Address"
-                class="py-3"
+                class="py-2"
               ></v-text-field>
             </v-col>
 
@@ -141,8 +150,9 @@
               <v-label>Appartment, Unit, Office</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Appartment, Unit, Office"
-                class="py-3"
+                class="py-2"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -152,10 +162,11 @@
               <v-label>Country</v-label>
               <v-select
                 outlined
+                dense
                 placeholder="Select Country"
                 v-model="select"
                 :items="country"
-                class="py-3"
+                class="py-2"
                 required
               ></v-select>
             </v-col>
@@ -164,10 +175,11 @@
               <v-label>State</v-label>
               <v-select
                 outlined
+                dense
                 placeholder="Select State"
                 v-model="select"
                 :items="state"
-                class="py-3"
+                class="py-2"
                 required
               ></v-select>
             </v-col>
@@ -178,6 +190,7 @@
               <v-label>City</v-label>
               <v-select
                 outlined
+                dense
                 placeholder="Select City"
                 v-model="select"
                 :items="city"
@@ -190,6 +203,7 @@
               <v-label>Zip Code</v-label>
               <v-text-field
                 outlined
+                dense
                 placeholder="Enter Zip Code"
                 class="py-3"
                 required

@@ -200,7 +200,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
-import EditProfile from "@/views/profile/EditProfile.vue";
+import EditProfile from "./EditProfile.vue";
 
 @Component({
   components: { Divider, EditProfile },

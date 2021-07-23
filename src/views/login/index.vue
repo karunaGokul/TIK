@@ -24,8 +24,9 @@
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
+              dense
               placeholder="Enter Email ID"
-              class="py-3"
+              class="py-2"
               v-model="email"
               :rules="emailRules"
             ></v-text-field>
@@ -33,24 +34,29 @@
             <v-label>Password</v-label>
             <v-text-field
               outlined
+              dense
               placeholder="Enter Password"
-              class="pt-3"
+              class="pt-2"
               v-model="password"
               :rules="passwordRules"
               required
             ></v-text-field>
 
-            <v-checkbox
-              value="1"
-              label="Remember Me"
-              type="checkbox"
-              required
-              class="align-center"
-            ></v-checkbox>
-
-            <div>
-              <router-link to="/forgotpassword">Forget Password</router-link>
-            </div>
+            <v-row>
+              <v-col>
+                <v-checkbox
+                  value="1"
+                  label="Remember Me"
+                  type="checkbox"
+                  required
+                  class="align-center mt-n5"
+                ></v-checkbox>
+              </v-col>
+              <v-spacer></v-spacer>
+              <v-col class="mt-n5 ml-16 pl-16">
+                  <router-link to="/forgotpassword">Forget Password?</router-link>
+              </v-col>
+            </v-row>
 
             <v-btn
               color="#ff6500"

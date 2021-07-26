@@ -32,6 +32,38 @@
           </v-row>
         </v-card>
       </v-col>
+      <v-col cols="12" sm="4">
+        <div class="text-h5">Summary</div>
+        <div class="py-2 text-subtitle-1" v-if="active">
+          Choose Yarn Content <br />
+          <span class="orange--text"> {{ summary }} </span>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" sm="6">
+        <v-btn
+          elevation="2"
+          class="px-8 ma-4 text-capitalize"
+          large
+          color="warning"
+          @click="reset"
+        >
+          Reset
+        </v-btn>
+      </v-col>
+      <v-col cols="12" sm="6">
+        <v-btn
+          elevation="2"
+          class="px-8 ma-4 text-capitalize"
+          large
+          color="warning"
+          v-if="active"
+          @click="back"
+        >
+          Back
+        </v-btn>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -48,6 +80,8 @@ import MillsControl from "./Mills-Control.vue";
 export default class ProjectFormBuilder extends Vue {
   data: ProjectFormModel = new ProjectFormModel();
   progress: any = 0;
+  summary: any = "";
+  active: boolean;
   created() {
     this.data.formHeading = "Mills";
     this.data.formSubHeading = "1. Choose Your Content";
@@ -72,7 +106,7 @@ export default class ProjectFormBuilder extends Vue {
     cchildren.label = "Blend";
     cchildren.option = "B";
     childControl.controls.push(cchildren);
-    control.children.push(childControl);
+    control.child = childControl;
     this.data.controls.push(control);
 
     control = new ProjectFormControlModel();
@@ -93,14 +127,15 @@ export default class ProjectFormBuilder extends Vue {
     cchildren.label = "Blend";
     cchildren.option = "B";
     childControl.controls.push(cchildren);
-    control.children.push(childControl);
+    control.child = childControl;
     this.data.controls.push(control);
   }
-  public activateChildModel(control: ProjectFormModel) {
+  public activateChildModel(control: ProjectFormControlModel) {
     this.data.visibility = false;
     this.progress = this.progress + 20;
-    this.data = control;
-    console.log(this.data);
+    this.summary = control.label;
+    this.active = control.active;
+    this.data = control.child;
   }
 }
 </script>

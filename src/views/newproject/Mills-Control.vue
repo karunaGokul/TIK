@@ -26,7 +26,7 @@ export default class MillsControl extends Vue {
 
   controlClicked(control: ProjectFormControlModel) {
     control.active = true;
-    this.$emit("activateChildModel", control.children);
+    this.$emit("activateChildModel", control);
   }
 }
 </script>

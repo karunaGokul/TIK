@@ -21,6 +21,7 @@ export class ProjectFormControlModel {
     listControlOptions?: Array<ListItem>;
     constructor() {
         this.active = false;
+        this.commandValue = '';
     }
     child?: ProjectFormModel;
 }

@@ -34,9 +34,11 @@
       </v-col>
       <v-col cols="12" sm="4">
         <div class="text-h5">Summary</div>
-        <div class="py-2 text-subtitle-1" v-if="active">
-          Choose Yarn Content <br />
-          <span class="orange--text"> {{ summary }} </span>
+        <div class="py-2 text-subtitle-1">
+          <div v-for="(Selection, index) in summary" :key="index">
+            Choose Yarn Content <br />
+            <span class="orange--text"> {{ Selection }} </span>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -69,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 import { ProjectFormModel, ProjectFormControlModel } from "./Model";
 import MillsControl from "./Mills-Control.vue";
@@ -78,11 +80,16 @@ import MillsControl from "./Mills-Control.vue";
   components: { MillsControl },
 })
 export default class ProjectFormBuilder extends Vue {
+  @Prop() categoryName: any;
   data: ProjectFormModel = new ProjectFormModel();
+  backForm: Array<ProjectFormModel> = [];
   progress: any = 0;
-  summary: any = "";
+  summary: Array<any> = [];
   active: boolean;
   created() {
+    this.initial();
+  }
+  public initial() {
     this.data.formHeading = "Mills";
     this.data.formSubHeading = "1. Choose Your Content";
     this.data.visibility = true;
@@ -101,7 +108,26 @@ export default class ProjectFormBuilder extends Vue {
     cchildren.controlType = "toggle-button";
     cchildren.label = "Blend";
     cchildren.option = "A";
+
+    let cchildControl = new ProjectFormModel();
+    cchildControl.formHeading = "Mills";
+    cchildControl.formSubHeading = "3. Choose Your Content";
+    cchildControl.visibility = true;
+
+    cchildControl.controls = [];
+    let ccchildren = new ProjectFormControlModel();
+    ccchildren.controlType = "toggle-button";
+    ccchildren.label = "fabric";
+    ccchildren.option = "A";
+    cchildControl.controls.push(ccchildren);
+    ccchildren.controlType = "toggle-button";
+    ccchildren.label = "fabric";
+    ccchildren.option = "B";
+    cchildControl.controls.push(ccchildren);
+
+    cchildren.child = cchildControl;
     childControl.controls.push(cchildren);
+
     cchildren.controlType = "toggle-button";
     cchildren.label = "Blend";
     cchildren.option = "B";
@@ -119,6 +145,13 @@ export default class ProjectFormBuilder extends Vue {
     childControl.visibility = true;
     childControl.controls = [];
     cchildren = new ProjectFormControlModel();
+
+    cchildren.controlType = "select";
+    /*cchildren.listControlOptions = [];
+    let selectOption: Array<ListItem> = ["100% cotton", "100% viscos,100% modal"];
+    cchildren.listControlOptions.push(selectOption);*/
+    childControl.controls.push(cchildren);
+
     cchildren.controlType = "toggle-button";
     cchildren.label = "Blend";
     cchildren.option = "A";
@@ -131,11 +164,25 @@ export default class ProjectFormBuilder extends Vue {
     this.data.controls.push(control);
   }
   public activateChildModel(control: ProjectFormControlModel) {
+    this.backForm.push(this.data);
     this.data.visibility = false;
     this.progress = this.progress + 20;
-    this.summary = control.label;
+    this.summary.push(control.commandValue + control.label);
     this.active = control.active;
     this.data = control.child;
+  }
+  back() {
+    this.data = this.backForm.pop();
+    if (!this.backForm.length) {
+      this.active = false;
+    }
+    this.data.visibility = true;
+    this.progress = this.progress - 20;
+    this.summary.pop();
+  }
+  reset() {
+    this.progress = 0;
+    this.initial();
   }
 }
 </script>

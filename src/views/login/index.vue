@@ -88,9 +88,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+// import { validationMixin } from "vuelidate";
 
 @Component({
-  
+  // mixins: [validationMixin],
 })
 
 export default class Login extends Vue {

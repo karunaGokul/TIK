@@ -65,6 +65,11 @@ const routes: Array<RouteConfig> = [
     path: '/contactUs',
     name: 'ContactUs',
     component: () => import('../views/contactUs/Index.vue')
+  },
+  {
+    path: '/productDetails',
+    name: 'Product-Details',
+    component: () => import('../views/productDetails/Index.vue')
   }
 ]
 

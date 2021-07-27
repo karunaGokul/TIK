@@ -16,16 +16,11 @@ export class ProjectFormControlModel {
     controlType: string;
     option?: string;
     label?: string;
-
     active: boolean;
     commandValue?: any;
     listControlOptions?: Array<ListItem>;
-
     constructor() {
         this.active = false;
-
     }
-
-    children: Array<ProjectFormModel> = [];
-
+    child?: ProjectFormModel;
 }

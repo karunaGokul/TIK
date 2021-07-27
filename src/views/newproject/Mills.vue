@@ -182,6 +182,7 @@ export default class ProjectFormBuilder extends Vue {
   }
   reset() {
     this.progress = 0;
+    this.summary = [];
     this.initial();
   }
 }

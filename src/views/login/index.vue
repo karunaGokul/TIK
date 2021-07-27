@@ -29,6 +29,7 @@
               class="py-2"
               v-model="email"
               :rules="emailRules"
+              required
             ></v-text-field>
 
             <v-label>Password</v-label>
@@ -38,6 +39,7 @@
               placeholder="Enter Password"
               class="pt-2"
               v-model="password"
+              type = "password"
               :rules="passwordRules"
               required
             ></v-text-field>
@@ -48,7 +50,6 @@
                   value="1"
                   label="Remember Me"
                   type="checkbox"
-                  required
                   class="align-center mt-n5"
                 ></v-checkbox>
               </v-col>

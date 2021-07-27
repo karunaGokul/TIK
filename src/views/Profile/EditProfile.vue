@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog max-width="1200px" v-modal="dialog">
+    <v-dialog max-width="1200px" v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           class="white--text font-weight-regular text-capitalize"
@@ -98,8 +98,10 @@ import { Component, Vue } from "vue-property-decorator";
 export default class EditProfile extends Vue {
   dialog: boolean;
 
-  closeDialog() {
-    this.$emit("update:dialog", false);
+ closeDialog() {
+    // this.$emit("update:dialog", false);
+   this.dialog = false
+    console.log(this.dialog)
   }
 }
 </script>

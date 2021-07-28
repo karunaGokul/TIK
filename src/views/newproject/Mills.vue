@@ -86,6 +86,7 @@ export default class ProjectFormBuilder extends Vue {
   progress: any = 0;
   summary: Array<any> = [];
   active: boolean;
+  SelectOption: any = " ";
   created() {
     this.initial();
   }
@@ -105,29 +106,32 @@ export default class ProjectFormBuilder extends Vue {
     childControl.visibility = true;
     childControl.controls = [];
     let cchildren = new ProjectFormControlModel();
+    cchildren.controlType = "select";
+    childControl.controls.push(cchildren);
+
+    cchildren = new ProjectFormControlModel();
     cchildren.controlType = "toggle-button";
-    cchildren.label = "Blend";
+    cchildren.label = "Single";
     cchildren.option = "A";
 
     let cchildControl = new ProjectFormModel();
     cchildControl.formHeading = "Mills";
     cchildControl.formSubHeading = "3. Choose Your Content";
     cchildControl.visibility = true;
-
     cchildControl.controls = [];
     let ccchildren = new ProjectFormControlModel();
     ccchildren.controlType = "toggle-button";
-    ccchildren.label = "fabric";
+    ccchildren.label = "Spum";
     ccchildren.option = "A";
     cchildControl.controls.push(ccchildren);
+    ccchildren = new ProjectFormControlModel();
     ccchildren.controlType = "toggle-button";
-    ccchildren.label = "fabric";
+    ccchildren.label = "filament";
     ccchildren.option = "B";
     cchildControl.controls.push(ccchildren);
-
     cchildren.child = cchildControl;
     childControl.controls.push(cchildren);
-
+    cchildren = new ProjectFormControlModel();
     cchildren.controlType = "toggle-button";
     cchildren.label = "Blend";
     cchildren.option = "B";
@@ -145,15 +149,8 @@ export default class ProjectFormBuilder extends Vue {
     childControl.visibility = true;
     childControl.controls = [];
     cchildren = new ProjectFormControlModel();
-
-    cchildren.controlType = "select";
-    /*cchildren.listControlOptions = [];
-    let selectOption: Array<ListItem> = ["100% cotton", "100% viscos,100% modal"];
-    cchildren.listControlOptions.push(selectOption);*/
-    childControl.controls.push(cchildren);
-
     cchildren.controlType = "toggle-button";
-    cchildren.label = "Blend";
+    cchildren.label = "Single";
     cchildren.option = "A";
     childControl.controls.push(cchildren);
     cchildren.controlType = "toggle-button";
@@ -164,12 +161,17 @@ export default class ProjectFormBuilder extends Vue {
     this.data.controls.push(control);
   }
   public activateChildModel(control: ProjectFormControlModel) {
-    this.backForm.push(this.data);
-    this.data.visibility = false;
-    this.progress = this.progress + 20;
-    this.summary.push(control.commandValue + control.label);
-    this.active = control.active;
-    this.data = control.child;
+    if (control.controlType === "select") {
+      this.SelectOption = control.commandValue;
+    } else {
+      this.backForm.push(this.data);
+      this.data.visibility = false;
+      this.progress = this.progress + 20;
+      this.summary.push(this.SelectOption + control.label);
+      this.SelectOption = "";
+      this.active = control.active;
+      this.data = control.child;
+    }
   }
   back() {
     this.data = this.backForm.pop();

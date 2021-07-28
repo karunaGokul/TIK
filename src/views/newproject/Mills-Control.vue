@@ -9,6 +9,7 @@
         class="shrink pt-3"
         outlined
         dense
+        @change="controlClicked(control)"
       ></v-select>
     </template>
     <template v-else-if="control.controlType === 'toggle-button'">

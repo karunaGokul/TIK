@@ -17,7 +17,7 @@
               max-height="250"
             ></v-img
             ><br />
-            <h2 class="text-align-center">Heading</h2>
+            <h2 class="text-align-center">{{   }}</h2>
             <br />
 
             <v-rating
@@ -197,7 +197,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
@@ -205,7 +205,9 @@ import EditProfile from "./EditProfile.vue";
 @Component({
   components: { Divider, EditProfile },
 })
-export default class Home extends Vue {
+export default class Profile extends Vue {
+  @Prop() details: [];
+ 
   images: any = [
     { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
     { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },

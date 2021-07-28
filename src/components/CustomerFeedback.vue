@@ -117,9 +117,9 @@
 
                 <v-btn
                     color="#ff6500" 
-                    class="white--text font-weight-light text-capitalize rounded-0"
+                    class="font-weight-light text-capitalize rounded-0"
                 >
-                    Register
+                   <router-link to="/registration" class="white--text text-decoration-none">Register</router-link> 
                 </v-btn>
             </div>
 

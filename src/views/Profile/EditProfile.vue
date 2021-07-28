@@ -7,16 +7,17 @@
           color="#fd7e14"
           v-bind="attrs"
           v-on="on"
+          @click="openDialog"
           >Edit Profile</v-btn
         >
       </template>
-      <v-card>
+      <v-card >
         <v-row class="my-4 px-4">
           <v-card-title>
             Profile
           </v-card-title>
           <v-spacer></v-spacer>
-          <v-btn @click="closeDialog" icon>
+          <v-btn @click="closeDialog" icon >
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
         </v-row>
@@ -43,28 +44,28 @@
               <v-text-field
                 dense
                 outlined
-                placeholder="Global TEX"
+                v-model="companyName"
               ></v-text-field>
 
-              <v-text-field dense outlined placeholder="Hi"></v-text-field>
+              <v-text-field dense outlined v-model="description"></v-text-field>
 
-              <v-text-field dense outlined placeholder="Hi"></v-text-field>
+              <v-text-field dense outlined v-model="summary"></v-text-field>
 
               <div class="text-subtitle-1">Contact Information</div>
-              <v-text-field dense outlined placeholder="address"></v-text-field>
+              <v-text-field dense outlined v-model="address"></v-text-field>
 
-              <v-text-field dense outlined placeholder="email"></v-text-field>
+              <v-text-field dense outlined v-model="email"></v-text-field>
 
               <v-text-field
                 dense
                 outlined
-                placeholder="contact number 1"
+                v-model="contactNumberOne"
               ></v-text-field>
 
               <v-text-field
                 dense
                 outlined
-                placeholder="contact number 2"
+                v-model="contactNumberTwo"
               ></v-text-field>
             </v-form>
           </v-col>
@@ -82,8 +83,10 @@
         </v-row>
 
         <v-row class="mx-4 pb-2">
-          <v-btn dark class="text-capitalize red color font-weight-regular"
-            >save</v-btn
+          <v-btn dark class="text-capitalize red color font-weight-regular" 
+            @click.prevent="submitForm" 
+            :details="details"
+          >save</v-btn
           >
         </v-row>
       </v-card>
@@ -97,11 +100,37 @@ import { Component, Vue } from "vue-property-decorator";
 @Component({})
 export default class EditProfile extends Vue {
   dialog: boolean;
+  companyName: string;
+  description: string;
+  summary: string;
+  address: string | number;
+  email: string | number;
+  contactNumberOne: number;
+  contactNumberTwo: number;
+  details: Array<string | number>;
 
+  
  closeDialog() {
     // this.$emit("update:dialog", false);
-   this.dialog = false
+
+    // this.$emit("this.dialog", false)
+    this.dialog = false
     console.log(this.dialog)
+  }
+
+  submitForm() {
+    
+    this.details = [ 
+      this.companyName, 
+      this.description, 
+      this.summary, 
+      this.address, 
+      this.email, 
+      this.contactNumberOne, 
+      this.contactNumberTwo
+    ]
+    console.log(this.details)
+
   }
 }
 </script>

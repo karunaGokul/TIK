@@ -231,7 +231,7 @@
 
           <div class="text-caption py-5">
             Already have an account?
-            <router-link to="/login">sign in</router-link>
+            <router-link to="/login" class="text-decoration-none">sign in</router-link>
           </div>
         </v-form>
       </v-col>
@@ -241,9 +241,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { validationMixin } from "vuelidate";
 
 @Component({
- 
+ mixins: [validationMixin],
 })
 
 export default class Registration extends Vue {
@@ -264,7 +265,7 @@ export default class Registration extends Vue {
       country: ["India"];
       state: ["select state"];
       city: ["select city"];
-      // checkboxRules: [(v) => !!v || "You must agree to continue!"];
+      checkboxRules: any = [(v:any) => !!v || "You must agree to continue!"];
 }
 </script>
 

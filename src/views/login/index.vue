@@ -55,7 +55,7 @@
               </v-col>
               <v-spacer></v-spacer>
               <v-col class="mt-n5 ml-16 pl-16">
-                  <router-link to="/forgotpassword">Forget Password?</router-link>
+                  <router-link to="/forgotpassword" class="text-decoration-none">Forget Password?</router-link>
               </v-col>
             </v-row>
 
@@ -77,7 +77,7 @@
 
             <div class="text-caption py-5">
               Don't have an account yet?
-              <router-link to="/registration">sign up</router-link>
+              <router-link to="/registration" class="text-decoration-none">sign up</router-link>
             </div>
           </v-form>
         </v-container>
@@ -88,26 +88,26 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import { validationMixin } from "vuelidate";
+import { validationMixin } from "vuelidate";
 
 @Component({
-  // mixins: [validationMixin],
+  mixins: [validationMixin],
 })
 
 export default class Login extends Vue {
   valid: boolean;
   email: string;
   password: string;
-  // emailRules: any = [
-  //       (v) => !!v || "E-mail is required",
-  //       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-  //     ];
-  // passwordRules: any = [
-  //       (v) => !!v || "Password is required",
-  //       (v) =>
-  //         /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
-  //         "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
-  //     ];
+  emailRules: any = [
+        (v:any) => !!v || "E-mail is required",
+        (v:any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ];
+  passwordRules: any = [
+        (v:any) => !!v || "Password is required",
+        (v:any) =>
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
+          "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
+      ];
 
   // submitForm() {
   //     this.$refs.form.validate();

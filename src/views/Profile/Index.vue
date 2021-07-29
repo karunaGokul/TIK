@@ -47,12 +47,18 @@
               <v-btn
                 class="white--text font-weight-regular text-capitalize"
                 color="#fd7e14"
-                v-bind="attrs"
-                v-on="on"
                 @click="toggleEditProfile = 'true'"
               >
                 Edit Profile
               </v-btn>
+              <div align="center">
+                <EditProfile
+                  :editData="editData"
+                  @editModel="onEditProfileModel"
+                  @closeModel="onCloseEditProfileModel"
+                  v-if="toggleEditProfile"
+                />
+              </div>
             </v-row>
 
             <v-row class="pr-16 text-wrap">
@@ -88,14 +94,7 @@
         </v-row>
       </v-container>
     </v-card>
-    <div align="center">
-      <EditProfile
-        :editData="editData"
-        @editModel="onEditProfileModel"
-        @closeModel="onCloseEditProfileModel"
-        v-if="toggleEditProfile"
-      />
-    </div>
+
     <div class="my-15" justify="center" align="center">
       <h1>Gallery</h1>
       <Divider />

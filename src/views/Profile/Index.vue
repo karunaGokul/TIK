@@ -7,7 +7,7 @@
       />
     </v-card>
 
-    <v-card elevation="4" class="mx-16  mt-n16" height="300" color="#EEEEEE">
+    <v-card elevation="4" class="mx-16 mt-n16" height="300" color="#EEEEEE">
       <v-container>
         <v-row>
           <v-col class="col-2 pt-5">
@@ -17,7 +17,7 @@
               max-height="250"
             ></v-img
             ><br />
-            <h2 class="text-align-center">{{   }}</h2>
+            <h2 class="text-align-center">{{ editData.logoText }}</h2>
             <br />
 
             <v-rating
@@ -42,31 +42,39 @@
           <v-col class="pt-10 pl-5">
             <v-row>
               <h3>About</h3>
+
               <v-spacer></v-spacer>
-              <EditProfile />
+              <v-btn
+                class="white--text font-weight-regular text-capitalize"
+                color="#fd7e14"
+                v-bind="attrs"
+                v-on="on"
+                @click="toggleEditProfile = 'true'"
+              >
+                Edit Profile
+              </v-btn>
             </v-row>
 
             <v-row class="pr-16 text-wrap">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-              illum amet quibusdam. Repellendus maxime natus expedita placeat
-              atque. Esse voluptatibus porro delectus rem, aut cumque obcaecati!
-              Cum at suscipit illo?
+              <div>{{ editData.aboutFirstText }}</div>
+              <div>{{ editData.aboutSecondText }}</div>
             </v-row>
 
             <v-row>
               <v-col>
                 <h3>Phone</h3>
-                +(001) 234 567 89<br />
-                9876543210
+                {{ editData.phoneNofirst }}<br />
+                {{ editData.phoneNoSecond }}
               </v-col>
               <v-col>
                 <h3>Address</h3>
                 <div class="font-weight-regular text-capitalize">
-                  <p>shrivari srimat, 1045,</p>
-                  avinashi road,
-                  <p>coimbatore - 641 018</p>
+                  <p>
+                    {{ editData.address }}
+                  </p>
                 </div>
               </v-col>
+
               <v-col>
                 <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.4480573726487!2d76.9719331152611!3d11.004970857941775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859afbcf5eddf%3A0xbff9a46833e3bd2c!2s1045%2C%20Avinashi%20Rd%2C%20ATT%20Colony%2C%20Gopalapuram%2C%20Coimbatore%2C%20Tamil%20Nadu%20641018!5e0!3m2!1sen!2sin!4v1612870942687!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
                 <iframe
@@ -80,7 +88,14 @@
         </v-row>
       </v-container>
     </v-card>
-
+    <div align="center">
+      <EditProfile
+        :editData="editData"
+        @editModel="onEditProfileModel"
+        @closeModel="onCloseEditProfileModel"
+        v-if="toggleEditProfile"
+      />
+    </div>
     <div class="my-15" justify="center" align="center">
       <h1>Gallery</h1>
       <Divider />
@@ -201,13 +216,35 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
+import { EditProfileModel } from "./Model";
 
 @Component({
   components: { Divider, EditProfile },
 })
 export default class Profile extends Vue {
   @Prop() details: [];
- 
+  editData: EditProfileModel = new EditProfileModel();
+  toggleEditProfile: any = false;
+  created() {
+    this.editData.logoText = "Global TEX";
+    this.editData.aboutFirstText =
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+    this.editData.aboutSecondText =
+      "Esse voluptatibus porro delectus rem, aut cumque obcaecati! Cum at suscipit illo?";
+    this.editData.address =
+      "shrivari srimat, 1045,avinashi road, coimbatore - 641 018";
+    this.editData.phoneNofirst = "+(001) 234 567 89";
+    this.editData.phoneNoSecond = "9876543210";
+    this.editData.email = "abc@gmail.com";
+  }
+  public onEditProfileModel(editedData: EditProfileModel) {
+    this.editData = editedData;
+    this.toggleEditProfile = false;
+  }
+  public onCloseEditProfileModel(trigger: boolean) {
+    this.toggleEditProfile = false;
+  }
+
   images: any = [
     { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
     { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },

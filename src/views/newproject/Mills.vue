@@ -167,7 +167,7 @@ export default class ProjectFormBuilder extends Vue {
       this.backForm.push(this.data);
       this.data.visibility = false;
       this.progress = this.progress + 20;
-      this.summary.push(this.SelectOption + control.label);
+      this.summary.push(this.SelectOption + " " + control.label);
       this.SelectOption = "";
       this.active = control.active;
       this.data = control.child;

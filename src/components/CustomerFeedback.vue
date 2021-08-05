@@ -1,15 +1,10 @@
 <template>
   <div>
     <v-container>
-<<<<<<< HEAD
       <div justify="center" align="center">
         <h1 class="mt-15 text-capitalize">
           customer say
         </h1>
-=======
-      <div justify="center" class="ma-3" align="center">
-        <h1 class="text-capitalize">customer say</h1>
->>>>>>> 1447cb5ac644efac3560e69a56dddb8b5359ea6e
         <Divider />
       </div>
 

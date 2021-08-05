@@ -8,7 +8,7 @@
     <template>
       <v-card class="mx-3" elevation="8">
         <v-row class="mx-6">
-          <v-col cols="12" sm="6" md="2">
+          <v-col cols="12" md="6">
             <div class="text-center">Role <span class="red--text">*</span></div>
 
             <v-select

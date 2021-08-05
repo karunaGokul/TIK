@@ -16,20 +16,23 @@
         transition="fade-transition"
       >
         <div align="left" class="white--text ma-10">
-          <v-row class="my-10"><h1>All Your Textile Needs</h1></v-row>
-          <v-row class="mb-5">
-            <p>
-              Check out the major milestones and achievements in the<br />
-              history of textiles that have led to it becoming one of the<br />
-              largest spinning mill in india.
-            </p></v-row
-          >
-          <v-row><v-btn rounded color="orange" dark> know more </v-btn></v-row>
+          <v-row class="my-10">
+            <v-col col="12" md="5">
+              <h1>All Your Textile Needs</h1>
+
+              <p class="my-5">
+                Check out the major milestones and achievements in the history
+                of textiles that have led to it becoming one of the largest
+                spinning mill in india.
+              </p>
+              <v-btn rounded color="orange" dark> know more </v-btn>
+            </v-col>
+          </v-row>
         </div>
       </v-carousel-item>
     </v-carousel>
     <template>
-      <v-row justify="center mt-5">
+      <v-row justify="center ma-5" no-gutters>
         <v-col cols="12" md="6">
           <h2
             class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
@@ -38,7 +41,7 @@
         </v-col>
       </v-row>
     </template>
-    <v-row justify="center mt-3">
+    <v-row justify="center mt-3" no-gutters>
       <v-col cols="12" md="6">
         <h2
           class="pa-4 text-center rounded-0 font-weight-light"
@@ -53,8 +56,8 @@
     <Category />
 
     <template>
-      <v-parallax src="@/assets/benifits/benifits-background.png" height="600">
-        <v-row justify="center mt-3">
+      <v-parallax src="@/assets/benifits/benifits-background.png" class="my-5">
+        <v-row justify="center mt-3" no-gutters>
           <div class="text-center black--text">
             <h1 class="text-h4 font-weight-thin mt-6">Benifits</h1>
             <div align="center" class="mb-5">
@@ -63,9 +66,9 @@
             <h4 class="heading pb-0">You get working with us</h4>
           </div>
         </v-row>
-        <row class="d-flex" cols="12" md="4">
+        <row class="d-flex" no-gutters>
           <v-col> </v-col>
-          <v-col class="text-center pt-0 mt-0 black--text">
+          <v-col class="text-center black--text" cols="12" md="4">
             <div>
               <img src="@/assets/benifits/1.png" alt="pic" />
               <span>Timely Deliery can be improved</span>
@@ -79,7 +82,7 @@
               <span>Working Capital blokage in terms</span>
             </div>
           </v-col>
-          <v-col class="text-center pt-0 mt-0 black--text">
+          <v-col class="text-center black--text" cols="12" md="4">
             <div>
               <img src="@/assets/benifits/2.png" alt="pic" />
               <span>Finding Or Sourcing Vendros made Easy</span>
@@ -94,40 +97,42 @@
             </div>
           </v-col>
         </row>
-        <v-row justify="center mt-6">
+        <v-row justify="center mt-6" no-gutters>
           <v-btn rounded color="orange" dark> know more </v-btn></v-row
         >
       </v-parallax>
     </template>
     <template>
-      <div class="px-10 d-flex">
-        <v-card
-          class="mx-2"
-          align="center"
-          max-width="344"
-          height="344"
-          v-for="(carddetail, index) in cardDetails"
-          :key="index"
-          flat
-        >
-          <v-img max-height="50" max-width="50" src="@/assets/i1.png"></v-img>
-
-          <v-card-subtitle class="mb-10">
-            <h3>{{ carddetail.cardTitle }}</h3></v-card-subtitle
+      <div class="pa-10 d-flex">
+        <v-row cols="12" md="6">
+          <v-card
+            class="mx-2"
+            align="center"
+            max-width="344"
+            height="344"
+            v-for="(carddetail, index) in cardDetails"
+            :key="index"
+            flat
           >
-          <v-card-text class="mb-1">
-            <h4>{{ carddetail.cardText1 }}</h4></v-card-text
-          >
+            <v-img max-height="50" max-width="50" src="@/assets/i1.png"></v-img>
 
-          <v-card-text class="mb-1"> {{ carddetail.cardText2 }}</v-card-text>
-        </v-card>
+            <v-card-subtitle class="mb-10">
+              <h3>{{ carddetail.cardTitle }}</h3></v-card-subtitle
+            >
+            <v-card-text class="mb-1">
+              <h4>{{ carddetail.cardText1 }}</h4></v-card-text
+            >
+
+            <v-card-text class="mb-1"> {{ carddetail.cardText2 }}</v-card-text>
+          </v-card>
+        </v-row>
       </div>
     </template>
 
     <CustomerFeedback />
 
     <div>
-      <v-row justify="center my-7">
+      <v-row justify="center ma-5" no-gutters>
         <v-col cols="12" md="6">
           <h2
             class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
@@ -148,7 +153,6 @@ import CustomerFeedback from "@/components/CustomerFeedback.vue";
 @Component({
   components: { Category, CustomerFeedback },
 })
-
 export default class Home extends Vue {
   items: any = [
     {

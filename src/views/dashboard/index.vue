@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-3">
     <v-container fluid class="pa-8">
       <div class="ma-2 font-weight-regular">
         <v-icon medium class="pr-2"> mdi-home</v-icon
@@ -27,7 +27,7 @@
             dense
           ></v-text-field>
 
-          <v-icon large class="ml-2 pa-1">mdi-plus-circle</v-icon>
+          <v-icon large class="ml-7 pa-1">mdi-plus-circle</v-icon>
           <v-icon large class="pa-1">mdi-blinds</v-icon>
           <v-icon large class="pa-1">mdi-format-align-bottom</v-icon>
         </v-card-title>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="pt-16">
-      <v-col cols="6" class="pt-16" color="green">
+      <v-col cols="12" md="6" class="pt-16" color="green">
         <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
           height="600"
@@ -113,7 +113,7 @@
           ></v-select>
 
           <v-row>
-            <v-col cols="8">
+            <v-col sm="8">
               <v-label>Enter GST Number</v-label>
               <v-text-field
                 outlined
@@ -142,17 +142,17 @@
                 outlined
                 dense
                 placeholder="Enter Address"
-                class="py-2"
+               
               ></v-text-field>
             </v-col>
 
             <v-col>
-              <v-label>Appartment, Unit, Office</v-label>
+              <v-label>Appartment</v-label>
               <v-text-field
                 outlined
                 dense
                 placeholder="Enter Appartment, Unit, Office"
-                class="py-2"
+                
               ></v-text-field>
             </v-col>
           </v-row>
@@ -222,8 +222,7 @@
 
           <v-btn
             color="#ff6500"
-            class="py-5 rounded-0 d-flex justify-center white--text font-weight-light text-capitalize"
-            width="30%"
+            class="rounded-0 white--text font-weight-light text-capitalize"
             depressed
             block
             >Sign Up</v-btn

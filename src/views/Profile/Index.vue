@@ -45,7 +45,7 @@
 
               <v-spacer></v-spacer>
               <v-btn
-                class="white--text font-weight-regular text-capitalize"
+                class="white--text font-weight-regular text-capitalize hidden-sm-and-down"
                 color="#fd7e14"
                 @click="toggleEditProfile = 'true'"
               >
@@ -221,7 +221,7 @@ import { EditProfileModel } from "./Model";
   components: { Divider, EditProfile },
 })
 export default class Profile extends Vue {
-  @Prop() details: [];
+ 
   editData: EditProfileModel = new EditProfileModel();
   toggleEditProfile: any = false;
   created() {

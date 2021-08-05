@@ -1,9 +1,9 @@
  <template>
   <div>
-    <div v-if="!linkCategory">
+    <div v-if="!toggleCategory">
       <template>
         <v-row justify="Left mt-3">
-          <v-col cols="12 ml-5" sm="6" md="3">
+          <v-col cols="8" class="ml-5" md="3">
             <h3 class="my-4">Enter Project Name</h3>
             <v-text-field
               label="Enter Project Name"
@@ -17,11 +17,11 @@
       <template>
         <div class="ml-5">
           <h3 class="my-4">Select Catagory</h3>
-          <div class="mb-16 pb-16">
+          <div class="my-7 pb-5">
             <v-container>
-              <v-row :align="align" no-gutters style="height: 150px">
+              <v-row :align="align" no-gutters>
                 <v-col
-                  cols="12"
+                  cols="4"
                   md="2"
                   v-for="category in categories"
                   :key="category.categoryName"
@@ -63,7 +63,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <div v-if="linkCategory">
+    <div v-if="toggleCategory">
       <mills :categoryName="categoryName" />
     </div>
   </div>
@@ -77,7 +77,7 @@ import Mills from "./Mills.vue";
 })
 export default class Newproject extends Vue {
   projectName: any = "";
-  linkCategory: any = false;
+  toggleCategory: any = false;
   categoryName: any = "";
   snackbar: any = false;
   snackbarText: any;
@@ -86,7 +86,7 @@ export default class Newproject extends Vue {
       this.snackbarText = "Please Enter Project Name";
       this.snackbar = true;
     } else {
-      this.linkCategory = true;
+      this.toggleCategory = true;
       this.categoryName = categoryName;
     }
   }

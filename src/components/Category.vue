@@ -1,9 +1,9 @@
  <template>
-  <div class="mb-16 pb-16">
+  <div class="my-7 pb-5">
     <v-container>
-      <v-row :align="align" no-gutters style="height: 150px">
+      <v-row :align="align" no-gutters>
         <v-col
-          cols="12"
+          cols="5"
           md="2"
           v-for="category in categories"
           :key="category.categoryName"

@@ -1,10 +1,11 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="6" color="green">
+      <v-col cols="12" md="6" >
         <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
           height="600"
+          no-gutters
         >
           <h1>Welcome To Textile</h1>
           <h2>Login to continue Access</h2>
@@ -45,16 +46,16 @@
             ></v-text-field>
 
             <v-row>
-              <v-col>
+              <v-col cols="12" sm="8">
                 <v-checkbox
                   value="1"
                   label="Remember Me"
                   type="checkbox"
-                  class="align-center mt-n5"
+                  class="mt-n5"
                 ></v-checkbox>
               </v-col>
-              <v-spacer></v-spacer>
-              <v-col class="mt-n5 ml-16 pl-16">
+              <!-- <v-spacer></v-spacer> -->
+              <v-col class="mt-n5">
                   <router-link to="/forgotpassword" class="text-decoration-none">Forget Password?</router-link>
               </v-col>
             </v-row>

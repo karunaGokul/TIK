@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row justify="center mt-3">
-      <v-col cols="12" sm="8">
+      <v-col cols="12" md="8">
         <v-card class="ma-2" color="cyan lighten-4" height="600" elevation="0">
           <div v-if="data.visibility">
             <v-card-title> {{ data.formHeading }} </v-card-title>
@@ -20,8 +20,8 @@
             </v-card-text>
           </div>
           <v-row class="mb-16 pt-16" justify="space-between">
-            <v-col cols="12" sm="2"></v-col>
-            <v-col cols="12" sm="2">
+            <v-col cols="10" md="2"></v-col>
+            <v-col cols="10" md="2" class="mx-2">
               <div>Completed</div>
               <v-progress-linear v-model="progress" color="warning" height="25">
                 <template v-slot:default="{ value }">
@@ -33,8 +33,8 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <div class="text-h5">Summary</div>
-        <div class="py-2 text-subtitle-1">
+        <div class="text-h5 ml-2">Summary</div>
+        <div class="py-2 text-subtitle-1 ml-2">
           <div v-for="(Selection, index) in summary" :key="index">
             Choose Yarn Content <br />
             <span class="orange--text"> {{ Selection }} </span>
@@ -43,7 +43,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6">
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
@@ -54,7 +54,7 @@
           Reset
         </v-btn>
       </v-col>
-      <v-col cols="12" sm="6">
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"

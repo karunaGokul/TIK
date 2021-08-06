@@ -5,7 +5,7 @@
         <v-row class="my-4 px-4">
           <v-card-title> Profile </v-card-title>
           <v-spacer></v-spacer>
-          <v-btn @click="close()" icon>
+          <v-btn @click="close" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
         </v-row>
@@ -86,7 +86,7 @@
           <v-btn
             dark
             class="text-capitalize red color font-weight-regular"
-            @click="edit()"
+            @click="edit"
           >
             save
           </v-btn>

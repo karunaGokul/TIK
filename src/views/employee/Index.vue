@@ -9,11 +9,11 @@
     <template>
       <v-card class="mx-3" elevation="8">
         <v-card-title>
-          <v-btn elevation="2" class="mx-3">Copy</v-btn>
-          <v-btn elevation="2" class="mx-3">CSV</v-btn>
-          <v-btn elevation="2" class="mx-3">Excel</v-btn>
-          <v-btn elevation="2" class="mx-3">PDF</v-btn>
-          <v-btn elevation="2" class="ml-3">Print</v-btn>
+          <v-btn elevation="2" class="ma-3">Copy</v-btn>
+          <v-btn elevation="2" class="ma-3">CSV</v-btn>
+          <v-btn elevation="2" class="ma-3">Excel</v-btn>
+          <v-btn elevation="2" class="ma-3">PDF</v-btn>
+          <v-btn elevation="2" class="ma-3">Print</v-btn>
           <v-spacer></v-spacer>
           <router-link to="/createemployee" tag="button">
             <v-btn elevation="2" class="info">Create</v-btn>

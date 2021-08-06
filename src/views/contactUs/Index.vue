@@ -12,7 +12,7 @@
             </div>
 
             <v-row>
-                <v-col v-for ="contact in contacts" :key ="contact.title">
+                <v-col v-for ="contact in contacts" :key ="contact.title" cols="12" sm="4">
                     <v-card justify="center" align="center" min-height="200">
                         <div>
                             <v-icon x-large color="teal darken-4">{{ contact.icon }}</v-icon> 

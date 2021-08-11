@@ -10,7 +10,6 @@ export class ProjectFormModel {
     controls: Array<ProjectFormControlModel> = [];
 
 }
-
 export class ProjectFormControlModel {
 
     controlType: string;

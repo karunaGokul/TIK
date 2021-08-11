@@ -1,8 +1,10 @@
 <template>
   <div>
     <v-container>
-      <div justify="center" class="ma-3" align="center">
-        <h1 class="text-capitalize">customer say</h1>
+      <div justify="center" align="center">
+        <h1 class="mt-15 text-capitalize">
+          customer say
+        </h1>
         <Divider />
       </div>
 
@@ -10,16 +12,16 @@
         <v-carousel-item
           v-for="customer in customers"
           :key="customer.name"
-          class="px-10"
+          class="px-10 mb-16"
         >
-          <v-row class="fill-height" align="center" justify="center" no-gutters>
-            <v-col cols="12" md="6">
+          <v-row class="fill-height" align="center" justify="center">
+            <v-col>
               <v-card
                 class="grey lighten-4 color black--text mx-auto px-5"
                 height="300"
                 width="500"
               >
-                <v-icon x-large color="teal">mdi-home</v-icon>
+                <v-icon x-large color="teal">mdi-comma</v-icon>
                 <p>{{ customer.description }}</p>
 
                 <v-row>
@@ -46,13 +48,13 @@
               </v-card>
             </v-col>
 
-            <v-col cols="12" md="6">
+            <v-col>
               <v-card
                 class="grey lighten-4 color black--text mx-auto px-5"
                 height="300"
                 width="500"
               >
-                <v-icon x-large color="teal">mdi-home</v-icon>
+                <v-icon x-large color="teal">mdi-comma</v-icon>
                 <p>{{ customer.description }}</p>
 
                 <v-row>
@@ -83,14 +85,19 @@
       </v-carousel>
 
       <div
-        class="white--text teal darken-4 color rounded-xl py-10"
+        class="white--text teal darken-4 color rounded-xl py-10 mt-16"
         height="300"
         justify="center"
         align="center"
+        no-gutters
       >
-        <h1 class="text-capitalize">register</h1>
-
-        <Divider />
+       
+          <h1 class="text-capitalize">
+            register
+          </h1>
+       
+          <Divider />
+        
 
         <p class="my-10">
           Register your company today and Start your business.
@@ -109,43 +116,53 @@
       </div>
 
       <div class="py-10" height="300" justify="center" align="center">
-        <h1 class="text-capitalize">download the app</h1>
+        <h1 class="text-capitalize">
+          download the app
+        </h1>
 
         <Divider />
 
-        <p class="my-10 font-weight-medium">The Best Business app for you.</p>
+        <p class="my-10 font-weight-medium">
+          The Best Business app for you.
+        </p>
 
-        <v-btn class="text-capitalize rounded-lg ma-2" dark large>
-          <v-row>
-            <v-icon class="pr-2"> mdi-google-play </v-icon>
+        <v-row>
+          <v-col align="end">
+            <v-btn class="text-capitalize rounded-lg mr-2" dark large>
+              <v-row>
+                <v-icon class="pr-2"> mdi-google-play </v-icon>
 
-            <v-col class="py-3">
-              <v-row>
-                <p class="subtitle-1 mb-n1 font-weight-light">get it on</p>
+                <v-col class="py-3">
+                  <v-row>
+                    <p class="subtitle-1 mb-n1 font-weight-light">get it on</p>
+                  </v-row>
+                  <v-row>
+                    <h2 class="mt-n1 font-weight-regular">google play</h2>
+                  </v-row>
+                </v-col>
               </v-row>
-              <v-row>
-                <h2 class="mt-n1 font-weight-regular">google play</h2>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-btn>
+            </v-btn>
+          </v-col>
 
-        <v-btn class="text-capitalize rounded-lg ma-2" dark large>
-          <v-row>
-            <v-icon class="pr-2"> mdi-apple </v-icon>
+          <v-col align="start">
+            <v-btn class="text-capitalize rounded-lg ml-2" dark large>
+              <v-row>
+                <v-icon class="pr-2"> mdi-apple </v-icon>
 
-            <v-col>
-              <v-row>
-                <p class="subtitle-1 mb-n1 font-weight-light">
-                  Download on the
-                </p>
+                <v-col>
+                  <v-row>
+                    <p class="subtitle-1 mb-n1 font-weight-light">
+                      Download on the
+                    </p>
+                  </v-row>
+                  <v-row>
+                    <h2 class="mt-n1 font-weight-regular">app store</h2>
+                  </v-row>
+                </v-col>
               </v-row>
-              <v-row>
-                <h2 class="mt-n1 font-weight-regular">app store</h2>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-btn>
+            </v-btn>
+          </v-col>
+        </v-row>
       </div>
     </v-container>
   </div>
@@ -181,5 +198,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

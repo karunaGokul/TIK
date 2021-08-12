@@ -1,218 +1,49 @@
- <template>
+<template>
   <div>
-    <v-row v-for="(control, index) in data.controls" :key="index">
-      <v-col>
-        <mills-control :control="control" />
-
-        <div v-if="control.active">
-          <div v-for="(cc, j) in control.children" :key="j">
-            <mills-control :control="cc" />
-          </div>
-        </div>
-      </v-col>
-    </v-row>
-
-    <!-- <v-row justify="center mt-3">
-      <v-col cols="12" sm="8">
+    <v-row justify="center mt-3">
+      <v-col cols="12" md="8">
         <v-card class="ma-2" color="cyan lighten-4" height="600" elevation="0">
-          <v-card-title> Mills </v-card-title>
-          <div v-if="mill === 'p'">
+          <div v-if="data.visibility">
+            <v-card-title> {{ data.formHeading }} </v-card-title>
             <v-card-subtitle class="text-h5 font-weight-regular my-4">
-              1. Choose Your Content
-            </v-card-subtitle>
-            <v-card-text>
-              <v-row class="mb-16 pb-16">
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="rounded-lg white text-capitalize"
-                    elevation="2"
-                    x-large
-                    block
-                    @click="pa"
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      A
-                    </span>
-                    Yarn
-                  </v-btn>
-                </v-col>
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="text-capitalize rounded-lg white"
-                    elevation="2"
-                    x-large
-                    block
-                    @click="pb"
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      B
-                    </span>
-                    Fabric
-                  </v-btn>
-                </v-col>
-              </v-row>
-              <v-row class="mb-16 pt-16" justify="space-between">
-                <v-col cols="12" sm="2"></v-col>
-                <v-col cols="12" sm="2">
-                  <div>Completed</div>
-                  <v-progress-linear
-                    v-model="progress"
-                    color="warning"
-                    height="25"
-                  >
-                    <template v-slot:default="{ value }">
-                      <strong>{{ Math.ceil(value) }}%</strong>
-                    </template>
-                  </v-progress-linear>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </div>
-          <div v-if="mill === 'pa'">
-            <v-card-subtitle class="text-h5 font-weight-regular my-4">
-              2. Choose Yarn Content
-            </v-card-subtitle>
-            <v-card-text>
-              <v-row class="mb-16 pb-16">
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="rounded-lg white text-capitalize"
-                    elevation="2"
-                    x-large
-                    block
-                    @click="paa"
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      A
-                    </span>
-                    Single
-                  </v-btn>
-                </v-col>
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="rounded-lg white text-capitalize"
-                    elevation="2"
-                    x-large
-                    block
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      B
-                    </span>
-                    Blends
-                  </v-btn>
-                </v-col>
-              </v-row>
-              <v-row class="mb-16 pt-0" justify="space-between">
-                <v-col cols="12" sm="2"></v-col>
-                <v-col cols="12" sm="2">
-                  <div>Completed</div>
-                  <v-progress-linear
-                    v-model="progress"
-                    color="warning"
-                    height="25"
-                  >
-                    <template v-slot:default="{ value }">
-                      <strong>{{ Math.ceil(value) }}%</strong>
-                    </template>
-                  </v-progress-linear>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </div>
-
-          <div v-if="mill === 'paa'">
-            <v-card-subtitle class="text-h5 font-weight-regular my-4">
-              3. Choose Single Yarn Content
+              {{ data.formSubHeading }}
             </v-card-subtitle>
             <v-card-text>
               <v-row>
-                <v-select
-                  :items="items"
-                  v-model="paa_selected"
-                  :menu-props="{ offsetY: true }"
-                  label="Select"
-                  class="shrink pt-3"
-                  outlined
-                  dense
-                >
-                </v-select>
-              </v-row>
-              <v-row>
-                <v-col class="text-h5">Choose Single Yarn Content </v-col>
-              </v-row>
-              <v-row class="mb-16 pb-16">
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="rounded-lg white text-capitalize"
-                    elevation="2"
-                    x-large
-                    block
-                    @click="paaa"
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      A
-                    </span>
-                    Spun
-                  </v-btn>
-                </v-col>
-                <v-col cols="12" sm="5">
-                  <v-btn
-                    class="rounded-lg white text-capitalize"
-                    elevation="2"
-                    x-large
-                    block
-                  >
-                    <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-                      B
-                    </span>
-                    Filament
-                  </v-btn>
-                </v-col>
-              </v-row>
-              <v-row class="mb-16 pt-10" justify="space-between">
-                <v-col cols="12" sm="2"></v-col>
-                <v-col cols="12" sm="2">
-                  <div>Completed</div>
-                  <v-progress-linear
-                    v-model="progress"
-                    color="warning"
-                    height="25"
-                  >
-                    <template v-slot:default="{ value }">
-                      <strong>{{ Math.ceil(value) }}%</strong>
-                    </template>
-                  </v-progress-linear>
+                <v-col v-for="(control, index) in data.controls" :key="index">
+                  <mills-control
+                    :control="control"
+                    @activateChildModel="activateChildModel"
+                  />
                 </v-col>
               </v-row>
             </v-card-text>
           </div>
+          <v-row class="mb-16 pt-16" justify="space-between">
+            <v-col cols="10" md="2"></v-col>
+            <v-col cols="10" md="2" class="mx-2">
+              <div>Completed</div>
+              <v-progress-linear v-model="progress" color="warning" height="25">
+                <template v-slot:default="{ value }">
+                  <strong>{{ Math.ceil(value) }}%</strong>
+                </template>
+              </v-progress-linear>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
-
       <v-col cols="12" sm="4">
-        <div class="text-h5">Summary</div>
-        <div class="py-2 text-subtitle-1" v-if="mill.slice(0, 2) === 'pa'">
-          Choose Yarn Content <br />
-          <span class="orange--text"> Yarn </span>
-          <div class="py-2 text-subtitle-1" v-if="mill.slice(0, 3) === 'paa'">
+        <div class="text-h5 ml-2">Summary</div>
+        <div class="py-2 text-subtitle-1 ml-2">
+          <div v-for="(Selection, index) in summary" :key="index">
             Choose Yarn Content <br />
-            <span class="orange--text"> Single </span>
-            <div
-              class="py-2 text-subtitle-1"
-              v-if="mill.slice(0, 4) === 'paaa'"
-            >
-              Choose Yarn Content <br />
-              <div class="orange--text">
-                {{ paa_selected }}<span class="pl-2">spun </span>
-              </div>
-            </div>
+            <span class="orange--text"> {{ Selection }} </span>
           </div>
         </div>
       </v-col>
     </v-row>
-
     <v-row>
-      <v-col cols="12" sm="6">
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
@@ -223,71 +54,138 @@
           Reset
         </v-btn>
       </v-col>
-      <v-col cols="12" sm="6">
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
           large
           color="warning"
-          v-if="!(mill === 'p')"
+          v-if="active"
           @click="back"
         >
           Back
         </v-btn>
       </v-col>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-import { ProjectFormModel, ProjectFormControlModel } from './Model';
-import MillsControl from './Mills-Control.vue';
+import { ProjectFormModel, ProjectFormControlModel } from "./Model";
+import MillsControl from "./Mills-Control.vue";
 
 @Component({
-  components: { MillsControl 
- }
+  components: { MillsControl },
 })
 export default class ProjectFormBuilder extends Vue {
+  @Prop() categoryName: any;
   data: ProjectFormModel = new ProjectFormModel();
-
+  backForm: Array<ProjectFormModel> = [];
+  progress: any = 0;
+  summary: Array<any> = [];
+  active: boolean;
+  SelectOption: any = " ";
   created() {
+    this.initial();
+  }
+  public initial() {
+    this.data.formHeading = "Mills";
+    this.data.formSubHeading = "1. Choose Your Content";
+    this.data.visibility = true;
     this.data.controls = [];
 
     let control = new ProjectFormControlModel();
     control.controlType = "toggle-button";
-    control.text = "Yarn";
-    control.label = "A";
+    control.label = "Yarn";
+    control.option = "A";
+    let childControl = new ProjectFormModel();
+    childControl.formHeading = "Mills";
+    childControl.formSubHeading = "2. Choose Your Content";
+    childControl.visibility = true;
+    childControl.controls = [];
+    let cchildren = new ProjectFormControlModel();
+    cchildren.controlType = "select";
+    childControl.controls.push(cchildren);
 
-    let childControl = new ProjectFormControlModel();
-    childControl.controlType = "toggle-button";
-    childControl.text = "Single";
-    childControl.label = "A";
+    cchildren = new ProjectFormControlModel();
+    cchildren.controlType = "toggle-button";
+    cchildren.label = "Single";
+    cchildren.option = "A";
 
-    control.children.push(childControl);
-
-    childControl = new ProjectFormControlModel();
-    childControl.controlType = "toggle-button";
-    childControl.text = "Blend";
-    childControl.label = "B";
-
-    control.children.push(childControl);
-
+    let cchildControl = new ProjectFormModel();
+    cchildControl.formHeading = "Mills";
+    cchildControl.formSubHeading = "3. Choose Your Content";
+    cchildControl.visibility = true;
+    cchildControl.controls = [];
+    let ccchildren = new ProjectFormControlModel();
+    ccchildren.controlType = "toggle-button";
+    ccchildren.label = "Spum";
+    ccchildren.option = "A";
+    cchildControl.controls.push(ccchildren);
+    ccchildren = new ProjectFormControlModel();
+    ccchildren.controlType = "toggle-button";
+    ccchildren.label = "filament";
+    ccchildren.option = "B";
+    cchildControl.controls.push(ccchildren);
+    cchildren.child = cchildControl;
+    childControl.controls.push(cchildren);
+    cchildren = new ProjectFormControlModel();
+    cchildren.controlType = "toggle-button";
+    cchildren.label = "Blend";
+    cchildren.option = "B";
+    childControl.controls.push(cchildren);
+    control.child = childControl;
     this.data.controls.push(control);
 
     control = new ProjectFormControlModel();
     control.controlType = "toggle-button";
-    control.text = "Fabric";
-    control.label = "B";
-
+    control.label = "Fabric";
+    control.option = "B";
+    childControl = new ProjectFormModel();
+    childControl.formHeading = "Mills";
+    childControl.formSubHeading = "2. Choose Your Content";
+    childControl.visibility = true;
+    childControl.controls = [];
+    cchildren = new ProjectFormControlModel();
+    cchildren.controlType = "toggle-button";
+    cchildren.label = "Single";
+    cchildren.option = "A";
+    childControl.controls.push(cchildren);
+    cchildren.controlType = "toggle-button";
+    cchildren.label = "Blend";
+    cchildren.option = "B";
+    childControl.controls.push(cchildren);
+    control.child = childControl;
     this.data.controls.push(control);
-
-    console.log(this.data);
   }
-
-
+  public activateChildModel(control: ProjectFormControlModel) {
+    if (control.controlType === "select") {
+      this.SelectOption = control.commandValue;
+    } else {
+      this.backForm.push(this.data);
+      this.data.visibility = false;
+      this.progress = this.progress + 20;
+      this.summary.push(this.SelectOption + " " + control.label);
+      this.SelectOption = "";
+      this.active = control.active;
+      this.data = control.child;
+    }
+  }
+  back() {
+    this.data = this.backForm.pop();
+    if (!this.backForm.length) {
+      this.active = false;
+    }
+    this.data.visibility = true;
+    this.progress = this.progress - 20;
+    this.summary.pop();
+  }
+  reset() {
+    this.progress = 0;
+    this.summary = [];
+    this.initial();
+  }
 }
-
 </script>
-

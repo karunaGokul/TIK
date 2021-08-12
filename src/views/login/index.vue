@@ -1,10 +1,11 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="6" color="green">
+      <v-col cols="12" md="6" >
         <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
           height="600"
+          no-gutters
         >
           <h1>Welcome To Textile</h1>
           <h2>Login to continue Access</h2>
@@ -24,33 +25,40 @@
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
+              dense
               placeholder="Enter Email ID"
-              class="py-3"
+              class="py-2"
               v-model="email"
               :rules="emailRules"
+              required
             ></v-text-field>
 
             <v-label>Password</v-label>
             <v-text-field
               outlined
+              dense
               placeholder="Enter Password"
-              class="pt-3"
+              class="pt-2"
               v-model="password"
+              type = "password"
               :rules="passwordRules"
               required
             ></v-text-field>
 
-            <v-checkbox
-              value="1"
-              label="Remember Me"
-              type="checkbox"
-              required
-              class="align-center"
-            ></v-checkbox>
-
-            <div>
-              <router-link to="/forgotpassword">Forget Password</router-link>
-            </div>
+            <v-row>
+              <v-col cols="12" sm="8">
+                <v-checkbox
+                  value="1"
+                  label="Remember Me"
+                  type="checkbox"
+                  class="mt-n5"
+                ></v-checkbox>
+              </v-col>
+              <!-- <v-spacer></v-spacer> -->
+              <v-col class="mt-n5">
+                  <router-link to="/forgotpassword" class="text-decoration-none">Forget Password?</router-link>
+              </v-col>
+            </v-row>
 
             <v-btn
               color="#ff6500"
@@ -70,7 +78,7 @@
 
             <div class="text-caption py-5">
               Don't have an account yet?
-              <router-link to="/registration">sign up</router-link>
+              <router-link to="/registration" class="text-decoration-none">sign up</router-link>
             </div>
           </v-form>
         </v-container>
@@ -79,30 +87,32 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      valid: "false",
-      email: "",
-      password: "",
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-      passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) =>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { validationMixin } from "vuelidate";
+
+@Component({
+  mixins: [validationMixin],
+})
+
+export default class Login extends Vue {
+  valid: boolean;
+  email: string;
+  password: string;
+  emailRules: any = [
+        (v:any) => !!v || "E-mail is required",
+        (v:any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ];
+  passwordRules: any = [
+        (v:any) => !!v || "Password is required",
+        (v:any) =>
           /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||
           "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
-      ],
-    };
-  },
+      ];
 
-  methods: {
-    submitForm() {
-      this.$refs.form.validate();
-    },
-  },
-};
+  // submitForm() {
+  //     this.$refs.form.validate();
+  //   };
+
+}
 </script>

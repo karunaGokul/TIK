@@ -104,27 +104,35 @@
     </template>
     <template>
       <div class="pa-10 d-flex">
-        <v-row cols="12" md="6">
-          <v-card
-            class="mx-2"
-            align="center"
-            max-width="344"
-            height="344"
+        <v-row no-gutters>
+          <v-col
+            cols="12"
+            md="3"
             v-for="(carddetail, index) in cardDetails"
             :key="index"
-            flat
           >
-            <v-img max-height="50" max-width="50" src="@/assets/i1.png"></v-img>
-
-            <v-card-subtitle class="mb-10">
-              <h3>{{ carddetail.cardTitle }}</h3></v-card-subtitle
+            <v-card
+              class="mx-2"
+              align="center"
+              max-width="344"
+              height="344"
+              flat
             >
-            <v-card-text class="mb-1">
-              <h4>{{ carddetail.cardText1 }}</h4></v-card-text
-            >
+              <v-img max-height="50" max-width="50" src="@/assets/i1.png">
+              </v-img>
 
-            <v-card-text class="mb-1"> {{ carddetail.cardText2 }}</v-card-text>
-          </v-card>
+              <v-card-subtitle class="mb-10">
+                <h3>{{ carddetail.cardTitle }}</h3>
+              </v-card-subtitle>
+              <v-card-text class="mb-1">
+                <h4>{{ carddetail.cardText1 }}</h4>
+              </v-card-text>
+
+              <v-card-text class="mb-1">
+                {{ carddetail.cardText2 }}
+              </v-card-text>
+            </v-card>
+          </v-col>
         </v-row>
       </div>
     </template>

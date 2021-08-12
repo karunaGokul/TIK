@@ -15,10 +15,9 @@
           class="px-10 mb-16"
         >
           <v-row class="fill-height" align="center" justify="center">
-            <v-col>
+            <v-col cols="12" sm="6">
               <v-card
-                class="grey lighten-4 color black--text mx-auto px-5"
-                height="300"
+                class="grey lighten-4 color black--text mx-auto px-5 pb-10"
                 width="500"
               >
                 <v-icon x-large color="teal">mdi-comma</v-icon>
@@ -48,10 +47,9 @@
               </v-card>
             </v-col>
 
-            <v-col>
+            <v-col cols="12" sm="6">
               <v-card
-                class="grey lighten-4 color black--text mx-auto px-5"
-                height="300"
+                class="grey lighten-4 color black--text mx-auto px-5 pb-10"
                 width="500"
               >
                 <v-icon x-large color="teal">mdi-comma</v-icon>

@@ -15,11 +15,9 @@
               src="@/assets/textile1.png"
               max-width="250"
               max-height="250"
-            ></v-img
-            ><br />
-            <h2 class="text-align-center">{{ editData.logoText }}</h2>
-            <br />
-
+            ></v-img>
+            <h2 class="text-align-center pt-5">{{ editData.logoText }}</h2>
+    
             <v-rating
               :value="4.5"
               color="#fd7e14"
@@ -47,7 +45,7 @@
               <v-btn
                 class="white--text font-weight-regular text-capitalize hidden-sm-and-down"
                 color="#fd7e14"
-                @click="toggleEditProfile = 'true'"
+                @click="toggleEditProfile = true"
               >
                 Edit Profile
               </v-btn>

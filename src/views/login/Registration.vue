@@ -40,6 +40,7 @@
                 dense
                 placeholder="Enter First Name"
                 class="py-2"
+                v-model="request.FirstName"
                 required
               ></v-text-field>
             </v-col>
@@ -51,6 +52,7 @@
                 dense
                 placeholder="Enter Last Name"
                 class="py-2"
+                v-model="request.LastName"
                 required
               ></v-text-field>
             </v-col>
@@ -64,6 +66,7 @@
                 dense
                 placeholder="Enter Phone Number"
                 class="py-2"
+                v-model="request.PhoneNumber"
               ></v-text-field>
             </v-col>
 
@@ -74,6 +77,7 @@
                 dense
                 placeholder="Enter Email ID"
                 class="py-2"
+                v-model="request.EmailAddress"
                 required
               ></v-text-field>
             </v-col>
@@ -87,7 +91,11 @@
                 dense
                 placeholder="Enter Password"
                 class="py-2"
+                v-model="request.Password"
                 required
+                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="() => (value = !value)"
+                :type="value ? 'password' : 'text'"
               ></v-text-field>
             </v-col>
 
@@ -97,7 +105,11 @@
                 outlined
                 dense
                 placeholder="Re-Enter Password"
+                v-model="request.ConfirmPassword"
                 class="py-2"
+                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="() => (value = !value)"
+                :type="value ? 'password' : 'text'"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -107,7 +119,7 @@
             outlined
             dense
             placeholder="Select Category"
-            v-model="select"
+            v-model="request.Category"
             :items="category"
             class="py-2"
           ></v-select>
@@ -120,6 +132,7 @@
                 dense
                 placeholder="Enter GST Number"
                 class="py-2"
+                v-model="request.GSTNumber"
                 required
               ></v-text-field>
             </v-col>
@@ -142,7 +155,7 @@
                 outlined
                 dense
                 placeholder="Enter Address"
-               
+                v-model="request.Address"
               ></v-text-field>
             </v-col>
 
@@ -152,7 +165,7 @@
                 outlined
                 dense
                 placeholder="Enter Appartment, Unit, Office"
-                
+                v-model="request.ApartmentUnitOffice"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -164,7 +177,7 @@
                 outlined
                 dense
                 placeholder="Select Country"
-                v-model="select"
+                v-model="request.CountryId"
                 :items="country"
                 class="py-2"
                 required
@@ -177,7 +190,7 @@
                 outlined
                 dense
                 placeholder="Select State"
-                v-model="select"
+                v-model="request.StateId"
                 :items="state"
                 class="py-2"
                 required
@@ -192,7 +205,7 @@
                 outlined
                 dense
                 placeholder="Select City"
-                v-model="select"
+                v-model="request.CityId"
                 :items="city"
                 class="py-3"
                 required
@@ -207,6 +220,7 @@
                 placeholder="Enter Zip Code"
                 class="py-3"
                 required
+                v-model="request.ZipCode"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -225,12 +239,15 @@
             class="rounded-0 white--text font-weight-light text-capitalize"
             depressed
             block
+            @click="submitForm"
             >Sign Up</v-btn
           >
 
           <div class="text-caption py-5">
             Already have an account?
-            <router-link to="/login" class="text-decoration-none">sign in</router-link>
+            <router-link to="/login" class="text-decoration-none"
+              >sign in</router-link
+            >
           </div>
         </v-form>
       </v-col>
@@ -239,33 +256,47 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
+import { RegistrationRequestModel } from "@/model";
+import { IRegistrationService } from "@/service";
 
 @Component({
- mixins: [validationMixin],
+  mixins: [validationMixin],
 })
-
 export default class Registration extends Vue {
+  @Inject("registrationService") registrationService: IRegistrationService;
+  public request = new RegistrationRequestModel();
+
   checkbox: boolean;
+  value: boolean = true;
   category: any = [
-        "Company",
-        "Company + jobwork Unit",
-        "Mills",
-        "Knitting",
-        "Dyeing",
-        "Processing",
-        "Printing",
-        "Ready Fabrics",
-        "Embroidery",
-        "Job Work Units",
-        "Pieces",
-      ];
-      country: ["India"];
-      state: ["select state"];
-      city: ["select city"];
-      checkboxRules: any = [(v:any) => !!v || "You must agree to continue!"];
+    "Company",
+    "Company + jobwork Unit",
+    "Mills",
+    "Knitting",
+    "Dyeing",
+    "Processing",
+    "Printing",
+    "Ready Fabrics",
+    "Embroidery",
+    "Job Work Units",
+    "Pieces",
+  ];
+  country: any = ["1", "2", "3"];
+  state: any = ["1", "2", "3"];
+  city: any = ["1", "2", "3"];
+  checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
+
+  public submitForm() {
+    this.registrationService
+      .registration(this.request)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 </script>
-
-<style scoped></style>

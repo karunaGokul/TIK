@@ -114,7 +114,7 @@ export default class ProjectFormBuilder extends Vue {
     cchildren.label = "Single";
     cchildren.option = "A";
 
-    let cchildControl = new ProjectFormModel();
+    const cchildControl = new ProjectFormModel();
     cchildControl.formHeading = "Mills";
     cchildControl.formSubHeading = "3. Choose Your Content";
     cchildControl.visibility = true;

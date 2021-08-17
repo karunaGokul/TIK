@@ -12,13 +12,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { DIContainer } from "./dicontainer";
+
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 
 @Component({
   components: { AppHeader, AppFooter },
 })
-export default class App extends Vue {}
+export default class App extends DIContainer {}
 </script>
 
 

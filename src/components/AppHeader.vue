@@ -104,7 +104,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class AppHeader extends Vue {
   drawer: any = false;
-  isLoggedIn: any = true;
+  isLoggedIn: any = false;
 }
 </script>
 

@@ -74,7 +74,7 @@
               width="30%"
               depressed
               block
-              @click="submitForm"
+              @click="signIn"
               >Sign In</v-btn
             >
 
@@ -97,13 +97,13 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
 import { AuthenticationRequestModel } from "@/model";
-import { IAuthenticationService } from '@/service';
+import { IAuthenticationService } from "@/service";
 
 @Component({
   mixins: [validationMixin],
 })
 export default class Login extends Vue {
-  @Inject('authService') authService: IAuthenticationService;
+  @Inject("authService") authService: IAuthenticationService;
 
   public valid: true;
   public request = new AuthenticationRequestModel();
@@ -112,19 +112,22 @@ export default class Login extends Vue {
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
-  public passwordRules: any = [
-    (v: any) => !!v || "Password is required",
-  ];
+  public passwordRules: any = [(v: any) => !!v || "Password is required"];
 
   //(v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||  "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
 
-  public submitForm() {
-    if((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      this.authService.login(this.request).then((response) => {
-        console.log(response);
-      }).catch((err) => {
-        console.log(err);
-      })
+  public signIn() {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.authService
+        .login(this.request)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          if (err.response.status == 400) {
+            console.log(err.response.data.message);
+          }
+        });
     }
   }
 }

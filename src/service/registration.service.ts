@@ -7,7 +7,7 @@ export interface IRegistrationService extends IBaseService<RegistrationRequestMo
 export class RegistrationService extends BaseService<RegistrationRequestModel, any> implements IRegistrationService {
 
     constructor() {
-        super('');
+        super('public');
     }
 
     public registration(request: RegistrationRequestModel): Promise<any> {

@@ -105,6 +105,15 @@ import { Component, Vue } from "vue-property-decorator";
 export default class AppHeader extends Vue {
   drawer: any = false;
   isLoggedIn: any = false;
+  mounted() {
+  window.setInterval(() => {
+    this.getisLoggedIn()
+  }, 30000)
+}
+getisLoggedIn()
+{
+   this.isLoggedIn= this.$store.getters.isLoggedIn;
+  }
 }
 </script>
 

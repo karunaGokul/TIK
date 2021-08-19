@@ -178,7 +178,7 @@
                 dense
                 placeholder="Select Country"
                 v-model="request.CountryId"
-                :items="country"
+                :items="country1"
                 class="py-2"
                 required
               ></v-select>
@@ -191,7 +191,7 @@
                 dense
                 placeholder="Select State"
                 v-model="request.StateId"
-                :items="state"
+                :items="state1"
                 class="py-2"
                 required
               ></v-select>
@@ -206,7 +206,7 @@
                 dense
                 placeholder="Select City"
                 v-model="request.CityId"
-                :items="city"
+                :items="city1"
                 class="py-3"
                 required
               ></v-select>
@@ -258,7 +258,8 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import { RegistrationRequestModel } from "@/model";
+import { RegistrationRequestModel,CountryResponseModel,StateRequestModel,StateResponseModel,
+    CityRequestModel,CityResponseModel } from '@/model';
 import { IRegistrationService } from "@/service";
 
 @Component({
@@ -267,9 +268,16 @@ import { IRegistrationService } from "@/service";
 export default class Registration extends Vue {
   @Inject("registrationService") registrationService: IRegistrationService;
   public request = new RegistrationRequestModel();
-
-  checkbox: boolean;
+  public country: Array<CountryResponseModel> = [];
+  public state: Array<StateResponseModel> = [];
+  public city: Array<CityResponseModel> = [];
+  public CountryId= new StateRequestModel();
+  public StateId= new CityRequestModel();
+    checkbox: boolean;
   value: boolean = true;
+  country1: any = ["1", "2", "3"];
+  state1: any = ["1", "2", "3"];
+  city1: any = ["1", "2", "3"];
   category: any = [
     "Company",
     "Company + jobwork Unit",
@@ -283,11 +291,29 @@ export default class Registration extends Vue {
     "Job Work Units",
     "Pieces",
   ];
-  country: any = ["1", "2", "3"];
-  state: any = ["1", "2", "3"];
-  city: any = ["1", "2", "3"];
-  checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
-
+    checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
+  created() {
+    this.getCountry();
+    this.getState();
+    this.getCity();
+  }
+  private getCountry() {
+      this.registrationService.getCountry().then((response:Array<CountryResponseModel>) => {
+      this.country = response;
+      console.log(this.country);
+       });
+  }
+  private getState() {
+      this.registrationService.getState(this.CountryId).then((response:Array<StateResponseModel>) => {
+      this.state = response;
+       });
+  }
+  private getCity() {
+          this.registrationService.getCity(this.StateId).then((response:Array<CityResponseModel>) => {
+      this.city = response;
+      console.log(this.country);
+       });
+  }
   public submitForm() {
     this.registrationService
       .registration(this.request)

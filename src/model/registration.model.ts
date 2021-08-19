@@ -16,3 +16,21 @@ export class RegistrationRequestModel extends DataRequest {
     CityId: number;
     ZipCode: number;
 }
+export class CountryResponseModel{
+    id: number;
+    countryName: string;
+}
+export class StateRequestModel{
+    CountryId: number=101;
+}
+export class StateResponseModel{
+    id: number;
+    stateName: string;
+}
+export class CityRequestModel{
+    StateId: number=1547;
+}
+export class CityResponseModel{
+    id: number;
+    cityName: string;
+}

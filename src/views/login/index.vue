@@ -31,7 +31,7 @@
               v-model="request.EmailAddress"
               :rules="emailRules"
               required
-            ></v-text-field>
+            > </v-text-field>
 
             <v-label>Password</v-label>
             <v-text-field
@@ -75,9 +75,24 @@
               depressed
               block
               @click="signIn"
-              >Sign In</v-btn
-            >
+              > Sign In </v-btn>
+          <v-snackbar
+         v-model="snackbar"
+      :timeout="2000"      
+      color="deep-orange lighten-5 pink--text"
+      absolute
+      right
+      center
+      >
+      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      {{ snackbarText }}
 
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
             <div class="text-caption py-5">
               Don't have an account yet?
               <router-link to="/registration" class="text-decoration-none"
@@ -96,7 +111,7 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 
 import { validationMixin } from "vuelidate";
 
-import { AuthenticationRequestModel } from "@/model";
+import { AuthenticationRequestModel,AuthenticationResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({
@@ -106,6 +121,8 @@ export default class Login extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
   public valid: true;
+  snackbar: any = false;
+  snackbarText: any;
   public request = new AuthenticationRequestModel();
 
   public emailRules: any = [
@@ -118,16 +135,19 @@ export default class Login extends Vue {
 
   public signIn() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      this.authService
-        .login(this.request)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          if (err.response.status == 400) {
-            console.log(err.response.data.message);
+      this.$store.dispatch("login", this.request).then(
+        (response: AuthenticationResponse) => {
+                    if (this.$store.getters.isLoggedIn) {
+                        this.$router.push("/");
           }
-        });
+        },
+        err => {
+          if (err.response.status == 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;            
+          }
+        }
+      );
     }
   }
 }

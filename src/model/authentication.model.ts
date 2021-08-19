@@ -8,11 +8,10 @@ export class AuthenticationRequestModel extends DataRequest {
 export class AuthenticationResponse {
     accessToken: string;
     refreshToken: string;
-    success: boolean;
-    error: string;
-}
+    }
 export class AuthenticationState {
     accessToken: string = "";
     refreshToken: string = "";
     isAdmin: boolean = true;
+    sucess: boolean;
 }

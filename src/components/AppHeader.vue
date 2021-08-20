@@ -108,7 +108,7 @@ export default class AppHeader extends Vue {
   mounted() {
   window.setInterval(() => {
     this.getisLoggedIn()
-  }, 30000)
+  }, 1000)
 }
 getisLoggedIn()
 {

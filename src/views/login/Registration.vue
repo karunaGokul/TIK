@@ -121,6 +121,8 @@
             placeholder="Select Category"
             v-model="request.Category"
             :items="category"
+            item-text="categoryName"
+            item-value="id"
             class="py-2"
           ></v-select>
 
@@ -178,8 +180,11 @@
                 dense
                 placeholder="Select Country"
                 v-model="request.CountryId"
-                :items="country1"
+                :items="country"
+                item-text="countryName"
+                item-value="id"
                 class="py-2"
+                @change="getState()"
                 required
               ></v-select>
             </v-col>
@@ -191,8 +196,11 @@
                 dense
                 placeholder="Select State"
                 v-model="request.StateId"
-                :items="state1"
+                :items="state"
+                item-text="stateName"
+                item-value="id"
                 class="py-2"
+                @change="getCity()"
                 required
               ></v-select>
             </v-col>
@@ -206,7 +214,9 @@
                 dense
                 placeholder="Select City"
                 v-model="request.CityId"
-                :items="city1"
+                :items="city"
+                item-text="cityName"
+                item-value="id"
                 class="py-3"
                 required
               ></v-select>
@@ -239,9 +249,25 @@
             class="rounded-0 white--text font-weight-light text-capitalize"
             depressed
             block
-            @click="submitForm"
-            >Sign Up</v-btn
+            @click="SignUp"
           >
+            Sign Up
+          </v-btn>
+          <v-snackbar
+            v-model="snackbar"
+            :timeout="2000"
+            color="deep-orange lighten-5 pink--text"
+            right
+            top
+          >
+            <v-icon color="pink">mdi-exclamation-thick </v-icon>
+            {{ snackbarText }}
+            <template v-slot:action="{ attrs }">
+              <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+                <v-icon> mdi-close-box</v-icon>
+              </v-btn>
+            </template>
+          </v-snackbar>
 
           <div class="text-caption py-5">
             Already have an account?
@@ -258,8 +284,15 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import { RegistrationRequestModel,CountryResponseModel,StateRequestModel,StateResponseModel,
-    CityRequestModel,CityResponseModel } from '@/model';
+import {
+  RegistrationRequestModel,
+  CountryResponseModel,
+  StateRequestModel,
+  StateResponseModel,
+  CityRequestModel,
+  CityResponseModel,
+  CategoryResponseModel,
+} from "@/model";
 import { IRegistrationService } from "@/service";
 
 @Component({
@@ -268,61 +301,64 @@ import { IRegistrationService } from "@/service";
 export default class Registration extends Vue {
   @Inject("registrationService") registrationService: IRegistrationService;
   public request = new RegistrationRequestModel();
+  public category: Array<CategoryResponseModel> = [];
   public country: Array<CountryResponseModel> = [];
   public state: Array<StateResponseModel> = [];
   public city: Array<CityResponseModel> = [];
-  public CountryId= new StateRequestModel();
-  public StateId= new CityRequestModel();
-    checkbox: boolean;
+  public CountryId = new StateRequestModel();
+  public StateId = new CityRequestModel();
+  snackbar: boolean = false;
+  snackbarText: string = "";
+  checkbox: boolean;
   value: boolean = true;
-  country1: any = ["1", "2", "3"];
-  state1: any = ["1", "2", "3"];
-  city1: any = ["1", "2", "3"];
-  category: any = [
-    "Company",
-    "Company + jobwork Unit",
-    "Mills",
-    "Knitting",
-    "Dyeing",
-    "Processing",
-    "Printing",
-    "Ready Fabrics",
-    "Embroidery",
-    "Job Work Units",
-    "Pieces",
-  ];
-    checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
+  checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
   created() {
     this.getCountry();
-    this.getState();
-    this.getCity();
+    this.getCategory();
+  }
+  private getCategory() {
+    this.registrationService
+      .getCategory()
+      .then((response: Array<CategoryResponseModel>) => {
+        this.category = response;
+      });
   }
   private getCountry() {
-      this.registrationService.getCountry().then((response:Array<CountryResponseModel>) => {
-      this.country = response;
-      console.log(this.country);
-       });
+    this.registrationService
+      .getCountry()
+      .then((response: Array<CountryResponseModel>) => {
+        this.country = response;
+      });
   }
   private getState() {
-      this.registrationService.getState(this.CountryId).then((response:Array<StateResponseModel>) => {
-      this.state = response;
-       });
+    this.CountryId.CountryId = this.request.CountryId;
+    this.registrationService
+      .getState(this.CountryId)
+      .then((response: Array<StateResponseModel>) => {
+        this.state = response;
+      });
   }
   private getCity() {
-          this.registrationService.getCity(this.StateId).then((response:Array<CityResponseModel>) => {
-      this.city = response;
-      console.log(this.country);
-       });
-  }
-  public submitForm() {
+    this.StateId.StateId = this.request.StateId;
     this.registrationService
-      .registration(this.request)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
+      .getCity(this.StateId)
+      .then((response: Array<CityResponseModel>) => {
+        this.city = response;
       });
+  }
+  public SignUp() {
+    this.registrationService.registration(this.request).then(
+      (response) => {
+        this.snackbarText = response;
+        this.snackbar = true;
+      },
+      (err) => {
+        if (err.response.status == 400) {
+          this.snackbarText = err.response.data;
+          this.snackbar = true;
+        }
+      }
+    );
   }
 }
 </script>

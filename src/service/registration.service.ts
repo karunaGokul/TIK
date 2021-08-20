@@ -1,9 +1,10 @@
 import { IBaseService, BaseService } from './base.service';
 import { RegistrationRequestModel,CountryResponseModel,StateRequestModel,StateResponseModel,
-    CityRequestModel,CityResponseModel } from '@/model';
+    CityRequestModel,CityResponseModel, CategoryResponseModel } from '@/model';
 
 export interface IRegistrationService extends IBaseService<RegistrationRequestModel, any> {
     registration(request: RegistrationRequestModel): Promise<any>;
+    getCategory(): Promise<Array<CategoryResponseModel>>;
     getCountry(): Promise<Array<CountryResponseModel>>;
     getState(request:StateRequestModel): Promise<Array<StateResponseModel>>;
     getCity(request:CityRequestModel): Promise<Array<CityResponseModel>>;
@@ -13,10 +14,15 @@ export class RegistrationService extends BaseService<RegistrationRequestModel, a
     constructor() {
         super('public');
     }
-
     public registration(request: RegistrationRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/login"
         return this.httpPost('registration', request).then(response => {
+            return response.data;
+        });
+    }
+    public getCategory(): Promise<Array<CategoryResponseModel>>{
+        this.apiUrl = "https://tikdev-api.azure-api.net/common"
+        return this.httpGet('Category', null).then(response => {
             return response.data;
         });
     }
@@ -26,13 +32,13 @@ export class RegistrationService extends BaseService<RegistrationRequestModel, a
             return response.data;
         });
     }
-    getState(request:StateRequestModel): Promise<Array<StateResponseModel>>{
+    public getState(request:StateRequestModel): Promise<Array<StateResponseModel>>{
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
         return this.httpGet('State',request).then(response => {
             return response.data;
         });
     }
-    getCity(request:CityRequestModel): Promise<Array<CityResponseModel>>{
+    public getCity(request:CityRequestModel): Promise<Array<CityResponseModel>>{
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
         return this.httpGet('City', request).then(response => {
             return response.data;

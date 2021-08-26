@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { ProjectFormModel, ProjectFormControlModel } from "@/model";
+import { ProjectFormResponseModel, ProjectFormControlModel } from "@/model";
 
 @Component
 export default class MillsControl extends Vue {

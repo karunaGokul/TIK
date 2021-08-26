@@ -64,7 +64,7 @@
       </template>
     </v-snackbar>
     <div v-if="toggleCategory">
-      <Project :categoryName="categoryName" />
+      <Project :categoryName="categoryName" :projectName="projectName" />
     </div>
   </div>
 </template>

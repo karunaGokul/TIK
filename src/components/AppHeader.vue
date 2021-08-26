@@ -80,7 +80,7 @@
             <v-list-item link to="/employee" class="text-capitalize">
               <v-list-item-title>Employee</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/logout" class="text-capitalize">
+            <v-list-item @click="logout" class="text-capitalize">
               <v-list-item-title>Log Out</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -93,6 +93,21 @@
             </v-list-item>
           </v-list>
         </v-menu>
+        <v-snackbar
+            v-model="snackbar"
+            :timeout="2000"
+            color="deep-orange lighten-5 pink--text"
+            right
+            top
+          >
+            <v-icon color="pink">mdi-exclamation-thick </v-icon>
+            {{ snackbarText }}
+            <template v-slot:action="{ attrs }">
+              <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+                <v-icon> mdi-close-box</v-icon>
+              </v-btn>
+            </template>
+          </v-snackbar>
       </div>
     </v-app-bar>
   </div>
@@ -105,15 +120,30 @@ import { Component, Vue } from "vue-property-decorator";
 export default class AppHeader extends Vue {
   drawer: any = false;
   isLoggedIn: any = false;
+  snackbar: boolean = false;
+  snackbarText: string = "";
   mounted() {
   window.setInterval(() => {
     this.getisLoggedIn()
   }, 1000)
 }
-getisLoggedIn()
+public getisLoggedIn()
 {
    this.isLoggedIn= this.$store.getters.isLoggedIn;
   }
+  public logout()
+  {
+      this.$store.dispatch("logout").then(
+        (response: any) => {
+          if (response) {
+            this.getisLoggedIn();
+            this.snackbarText = response;
+            this.snackbar = true;
+          }
+        }
+          );
+  }
+ 
 }
 </script>
 

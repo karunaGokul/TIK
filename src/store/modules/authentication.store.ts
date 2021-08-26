@@ -21,6 +21,11 @@ const mutations: MutationTree<AuthenticationState> = {
         state.refreshToken = data.refreshToken;
         state.sucess= true;
     },
+    onLogout(state) {
+        state.accessToken = "";
+        state.refreshToken = "";
+        state.sucess= false;
+    },
 
 }
 
@@ -34,6 +39,14 @@ const actions: ActionTree<AuthenticationState, any> = {
              return response;
          });
      },
+     logout(context) {
+        
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            context.commit('onLogout');
+            return 'logout Successfully';
+      
+    },
 }
 
 export const LoginModule = {

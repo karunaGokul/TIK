@@ -349,8 +349,9 @@ export default class Registration extends Vue {
   public SignUp() {
     this.registrationService.registration(this.request).then(
       (response) => {
-        this.snackbarText = response;
-        this.snackbar = true;
+        /*this.snackbarText = response;
+        this.snackbar = true;*/
+         this.$router.push("/");
       },
       (err) => {
         if (err.response.status == 400) {

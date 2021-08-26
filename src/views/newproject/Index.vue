@@ -64,16 +64,16 @@
       </template>
     </v-snackbar>
     <div v-if="toggleCategory">
-      <mills :categoryName="categoryName" />
+      <Project :categoryName="categoryName" />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Mills from "./Mills.vue";
+import Project from "./Project.vue";
 
 @Component({
-  components: { Mills },
+  components: { Project },
 })
 export default class Newproject extends Vue {
   projectName: any = "";

@@ -11,7 +11,7 @@
             <v-card-text>
               <v-row>
                 <v-col v-for="(control, index) in data.controls" :key="index">
-                  <mills-control
+                  <ProjectControl
                     :control="control"
                     @activateChildModel="activateChildModel"
                   />
@@ -72,12 +72,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-
-import { ProjectFormModel, ProjectFormControlModel } from "./Model";
-import MillsControl from "./Mills-Control.vue";
+import { ProjectFormModel, ProjectFormControlModel } from "@/model";
+import ProjectControl from "./Project-Control.vue";
 
 @Component({
-  components: { MillsControl },
+  components: { ProjectControl },
 })
 export default class ProjectFormBuilder extends Vue {
   @Prop() categoryName: any;

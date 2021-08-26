@@ -1,7 +1,4 @@
-
-export class ListItem {
-    constructor(public text: string, public value?: string) { }
-}
+import { BaseModel, DataRequest, ListItem } from './base.model';
 
 export class ProjectFormModel {
     formHeading: string;

@@ -16,7 +16,7 @@
               max-width="250"
               max-height="250"
             ></v-img>
-            <h2 class="text-align-center pt-5">{{ editData.logoText }}</h2>
+            <h2 class="text-align-center pt-5">{{ response.logoText }}</h2>
     
             <v-rating
               :value="4.5"
@@ -60,21 +60,21 @@
             </v-row>
 
             <v-row class="pr-16 text-wrap">
-              <div>{{ editData.aboutFirstText }}</div>
-              <div>{{ editData.aboutSecondText }}</div>
+              <div>{{ response.aboutFirstText }}</div>
+              <div>{{ response.aboutSecondText }}</div>
             </v-row>
 
             <v-row>
               <v-col>
                 <h3>Phone</h3>
-                {{ editData.phoneNofirst }}<br />
-                {{ editData.phoneNoSecond }}
+                {{ response.phoneNofirst }}<br />
+                {{ response.phoneNoSecond }}
               </v-col>
               <v-col>
                 <h3>Address</h3>
                 <div class="font-weight-regular text-capitalize">
                   <p>
-                    {{ editData.address }}
+                    {{ response.address }}
                   </p>
                 </div>
               </v-col>
@@ -209,30 +209,59 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
+
+import { GetProfileRequestModel, EditProfileRequestModel, ProfileResponse } from "@/model";
+import { IProfileService } from "@/service";
+
 import { EditProfileModel } from "./Model";
+import axios from "axios";
 
 @Component({
   components: { Divider, EditProfile },
 })
+
 export default class Profile extends Vue {
+ @Inject("ProfileService") ProfileService: IProfileService;
+
+
+ public request = new GetProfileRequestModel();
+ public response = new ProfileResponse();
+
+//  public profile() {
+//     axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
+//     this.ProfileService.getProfile(this.request).then(
+//       (response: ProfileResponse) => {
+//         this.response = response;
+//       }
+//     );
+//  }
+
  
+
   editData: EditProfileModel = new EditProfileModel();
   toggleEditProfile: any = false;
   created() {
-    this.editData.logoText = "Global TEX";
-    this.editData.aboutFirstText =
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-    this.editData.aboutSecondText =
-      "Esse voluptatibus porro delectus rem, aut cumque obcaecati! Cum at suscipit illo?";
-    this.editData.address =
-      "shrivari srimat, 1045,avinashi road, coimbatore - 641 018";
-    this.editData.phoneNofirst = "+(001) 234 567 89";
-    this.editData.phoneNoSecond = "9876543210";
-    this.editData.email = "abc@gmail.com";
+    // this.profile();
+     axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
+    this.ProfileService.getProfile(this.request).then(
+      (response: ProfileResponse) => {
+        this.response = response;
+      }
+    );
+    // this.editData.logoText = "Global TEX";
+    // this.editData.aboutFirstText =
+    //   "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
+    // this.editData.aboutSecondText =
+    //   "Esse voluptatibus porro delectus rem, aut cumque obcaecati! Cum at suscipit illo?";
+    // this.editData.address =
+    //   "shrivari srimat, 1045,avinashi road, coimbatore - 641 018";
+    // this.editData.phoneNofirst = "+(001) 234 567 89";
+    // this.editData.phoneNoSecond = "9876543210";
+    // this.editData.email = "abc@gmail.com";
   }
   public onEditProfileModel(editedData: EditProfileModel) {
     this.editData = editedData;

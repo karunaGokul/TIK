@@ -15,9 +15,8 @@ export class ProfileResponse {
     email: string;
 }
 
-export class EditProfileRequestModel extends DataRequest {
+export class EditProfileRequestModel extends ProfileResponse {
     accessToken: string;
     id: number;
-    onChange?: (...params: any) => void;
 }
 

@@ -98,6 +98,10 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+
+import { GetProfileRequestModel, EditProfileRequestModel, ProfileResponse } from "@/model";
+import { IProfileService } from "@/service";
+
 import { EditProfileModel } from "./Model";
 
 @Component

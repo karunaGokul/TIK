@@ -3,6 +3,9 @@ import { GetterTree, MutationTree, ActionTree } from 'vuex';
 import { AuthenticationState, AuthenticationRequestModel, AuthenticationResponse } from '@/model';
 import {AuthenticationService } from '@/service';
 
+import axios from "axios";
+
+
 const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
@@ -10,6 +13,9 @@ const state: AuthenticationState = {
     sucess: false
 }
 const getters: GetterTree<AuthenticationState, any> = {
+    accessToken: state => {
+        return state.accessToken;
+    },
     isLoggedIn: state => {
         return state.sucess;
     },
@@ -25,6 +31,7 @@ const mutations: MutationTree<AuthenticationState> = {
         state.accessToken = "";
         state.refreshToken = "";
         state.sucess= false;
+        axios.defaults.headers.common["Authorization"] = "";
     },
 
 }

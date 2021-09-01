@@ -1,23 +1,20 @@
 import { BaseModel, DataRequest } from './base.model';
 
-export class GetProfileRequestModel extends DataRequest {
-    accessToken: string;
-    id: number;
+export class ProfileRequestModel {
+    id: string;
 }
 
 export class ProfileResponse {
-    logoText: string;
-    aboutFirstText: string;
-    aboutSecondText: string;
+    id: string;
+    unitName: string;
+    title: string;
+    description: string;
     address: string;
-    phoneNofirst: string;
-    phoneNoSecond: string;
+    phoneNumber1: string;
+    phoneNumber2: string;
     email: string;
+    imageName: string;
 }
 
-export class EditProfileRequestModel extends DataRequest {
-    accessToken: string;
-    id: number;
-    onChange?: (...params: any) => void;
-}
+
 

@@ -3,9 +3,6 @@ import axios from "axios";
 import { AuthenticationState, AuthenticationRequestModel, AuthenticationResponse } from '@/model';
 import { AuthenticationService } from '@/service';
 
-import axios from "axios";
-
-
 const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
@@ -19,9 +16,6 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     isLoggedIn: state => {
         return state.sucess;
-    },
-    accessToken: state => {
-        return state.accessToken;
     },
     id: state => {
         return state.id;
@@ -38,11 +32,7 @@ const mutations: MutationTree<AuthenticationState> = {
     onLogout(state) {
         state.accessToken = "";
         state.refreshToken = "";
-<<<<<<< HEAD
         state.sucess = false;
-=======
-        state.sucess= false;
->>>>>>> 6c41dab024e4f1a87af8994495a7aeb4c37e285c
         axios.defaults.headers.common["Authorization"] = "";
     },
 

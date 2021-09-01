@@ -18,8 +18,6 @@
               max-height="250"
             ></v-img>
             <h2 class="text-align-center pt-5">{{ response.logoText }}</h2>
-            <<<<<<< HEAD ======= >>>>>>>
-            6c41dab024e4f1a87af8994495a7aeb4c37e285c
             <v-rating
               :value="4.5"
               color="#fd7e14"

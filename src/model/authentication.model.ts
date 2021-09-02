@@ -14,4 +14,5 @@ export class AuthenticationState {
     refreshToken: string = "";
     isAdmin: boolean = true;
     sucess: boolean;
+   
 }

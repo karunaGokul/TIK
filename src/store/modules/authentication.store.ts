@@ -7,6 +7,7 @@ import axios from "axios";
 
 
 const state: AuthenticationState = {
+    
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     isAdmin: localStorage.getItem('isAdmin') === "false" ? false : true,
@@ -26,6 +27,7 @@ const mutations: MutationTree<AuthenticationState> = {
         state.accessToken = data.accessToken;
         state.refreshToken = data.refreshToken;
         state.sucess= true;
+      
     },
     onLogout(state) {
         state.accessToken = "";

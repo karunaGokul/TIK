@@ -231,27 +231,22 @@ export default class Profile extends Vue {
  public request = new GetProfileRequestModel();
  public response = new ProfileResponse();
 
-//  public profile() {
-//     axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
-//     this.ProfileService.getProfile(this.request).then(
-//       (response: ProfileResponse) => {
-//         this.response = response;
-//       }
-//     );
-//  }
+ public profile() {
+    axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
+    this.ProfileService.getProfile(this.request).then(
+      (response: ProfileResponse) => {
+        this.response = response;
+      }
+    );
+ }
 
  
 
   editData: EditProfileModel = new EditProfileModel();
   toggleEditProfile: any = false;
   created() {
-    // this.profile();
-     axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
-    this.ProfileService.getProfile(this.request).then(
-      (response: ProfileResponse) => {
-        this.response = response;
-      }
-    );
+    this.profile();
+     
     // this.editData.logoText = "Global TEX";
     // this.editData.aboutFirstText =
     //   "Lorem ipsum dolor sit amet consectetur adipisicing elit.";

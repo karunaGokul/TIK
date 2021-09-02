@@ -107,9 +107,9 @@
                 placeholder="Re-Enter Password"
                 v-model="request.ConfirmPassword"
                 class="py-2"
-                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="() => (value = !value)"
-                :type="value ? 'password' : 'text'"
+                :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="() => (value1 = !value1)"
+                :type="value1 ? 'password' : 'text'"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -311,6 +311,7 @@ export default class Registration extends Vue {
   snackbarText: string = "";
   checkbox: boolean;
   value: boolean = true;
+  value1: boolean = true;
   checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
   created() {
     this.getCountry();
@@ -351,7 +352,7 @@ export default class Registration extends Vue {
       (response) => {
         /*this.snackbarText = response;
         this.snackbar = true;*/
-         this.$router.push("/");
+        this.$router.push("/");
       },
       (err) => {
         if (err.response.status == 400) {

@@ -146,7 +146,7 @@ export default class Login extends Vue {
       this.$store.dispatch("login", this.request).then(
         (response: AuthenticationResponse) => {
           if (this.$store.getters.isLoggedIn) {
-            this.$router.push("/");
+            this.$router.push("/dashboard");
           }
         },
         (err) => {

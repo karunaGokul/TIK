@@ -4,7 +4,7 @@ import { AuthenticationState, AuthenticationRequestModel, AuthenticationResponse
 import { AuthenticationService } from '@/service';
 
 const state: AuthenticationState = {
-    
+
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     id: localStorage.getItem('id') || '',
@@ -27,8 +27,9 @@ const mutations: MutationTree<AuthenticationState> = {
     onAuthenticate(state, data: AuthenticationResponse) {
         state.accessToken = data.accessToken;
         state.refreshToken = data.refreshToken;
-        state.sucess= true;
-      
+        state.id = data.id;
+        state.sucess = true;
+
     },
     onLogout(state) {
         state.accessToken = "";

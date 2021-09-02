@@ -1,7 +1,6 @@
 import { BaseModel, DataRequest } from './base.model';
 
-export class GetProfileRequestModel  {
-    accessToken: string;
+export class ProfileRequestModel {
     id: number;
 }
 

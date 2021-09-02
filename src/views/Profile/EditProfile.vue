@@ -29,44 +29,52 @@
             <v-text-field
               dense
               outlined
-              v-model="editData.logoText"
+              placeholder="Enter UnitName"
+              v-model="request.unitName"
             ></v-text-field>
 
             <v-text-field
               dense
               outlined
-              v-model="editData.aboutFirstText"
+              placeholder="Enter Title"
+              v-model="request.title"
             ></v-text-field>
 
             <v-text-field
               dense
               outlined
-              v-model="editData.aboutSecondText"
+              placeholder="Enter Description"
+              v-model="request.description"
             ></v-text-field>
 
             <div class="text-subtitle-1">Contact Information</div>
             <v-text-field
               dense
               outlined
-              v-model="editData.address"
+              placeholder="Enter Address"
+              v-model="request.address"
             ></v-text-field>
 
             <v-text-field
               dense
               outlined
-              v-model="editData.email"
+              placeholder="Enter Email"
+              v-model="request.email"
+            >
+            </v-text-field>
+
+            <v-text-field
+              dense
+              outlined
+              placeholder="Enter PhoneNumber"
+              v-model="request.phoneNumber1"
             ></v-text-field>
 
             <v-text-field
               dense
               outlined
-              v-model="editData.phoneNofirst"
-            ></v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              v-model="editData.phoneNoSecond"
+              placeholder="Enter Alternate PhoneNumber"
+              v-model="request.phoneNumber2"
             ></v-text-field>
           </v-col>
           <v-col class="col-4">
@@ -97,20 +105,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
-import { GetProfileRequestModel, EditProfileRequestModel, ProfileResponse } from "@/model";
 import { IProfileService } from "@/service";
-
-import { EditProfileModel } from "./Model";
+import { ProfileResponse } from "@/model";
 
 @Component
 export default class EditProfile extends Vue {
-  @Prop() editData: EditProfileModel;
+  @Inject("ProfileService") ProfileService: IProfileService;
+  @Prop() request: ProfileResponse;
   dialog: any = true;
 
   public edit() {
-    this.$emit("editModel", this.editData);
+    this.request.id = this.$store.getters.id;
+    this.ProfileService.editProfile(this.request).then((response: any) => {
+      this.$emit("onEditProfileModel");
+    });
   }
   public close() {
     this.$emit("closeModel", false);

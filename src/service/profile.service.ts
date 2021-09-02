@@ -1,9 +1,9 @@
 import { IBaseService, BaseService } from './base.service';
-import { GetProfileRequestModel, ProfileResponse, EditProfileRequestModel } from '@/model';
+import { ProfileRequestModel, ProfileResponse } from '@/model';
 
-export interface IProfileService extends IBaseService<any, ProfileResponse > {
-    getProfile(request: GetProfileRequestModel): Promise<ProfileResponse>;
-    editProfile(request: EditProfileRequestModel): Promise<ProfileResponse>;
+export interface IProfileService extends IBaseService<any, ProfileResponse> {
+    getProfile(request: ProfileRequestModel): Promise<ProfileResponse>;
+    editProfile(request: ProfileResponse): Promise<any>;
 }
 
 export class ProfileService extends BaseService<any, ProfileResponse> implements IProfileService {
@@ -12,14 +12,14 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
         super('public');
     }
 
-    public getProfile(request: GetProfileRequestModel): Promise<ProfileResponse> {
+    getProfile(request: ProfileRequestModel): Promise<ProfileResponse> {
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
         return this.httpGet('loadprofile', request).then(response => {
             return response.data;
         });
     }
 
-    public editProfile(request: EditProfileRequestModel): Promise<ProfileResponse> {
+    public editProfile(request: ProfileResponse): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
         return this.httpPost('EditProfile', request).then(response => {
             return response.data;

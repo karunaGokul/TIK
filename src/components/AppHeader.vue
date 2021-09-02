@@ -94,20 +94,20 @@
           </v-list>
         </v-menu>
         <v-snackbar
-            v-model="snackbar"
-            :timeout="2000"
-            color="deep-orange lighten-5 pink--text"
-            right
-            top
-          >
-            <v-icon color="pink">mdi-exclamation-thick </v-icon>
-            {{ snackbarText }}
-            <template v-slot:action="{ attrs }">
-              <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-                <v-icon> mdi-close-box</v-icon>
-              </v-btn>
-            </template>
-          </v-snackbar>
+          v-model="snackbar"
+          :timeout="2000"
+          color="deep-orange lighten-5 pink--text"
+          right
+          top
+        >
+          <v-icon color="pink">mdi-exclamation-thick </v-icon>
+          {{ snackbarText }}
+          <template v-slot:action="{ attrs }">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+              <v-icon> mdi-close-box</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
       </div>
     </v-app-bar>
   </div>
@@ -123,27 +123,22 @@ export default class AppHeader extends Vue {
   snackbar: boolean = false;
   snackbarText: string = "";
   mounted() {
-  window.setInterval(() => {
-    this.getisLoggedIn()
-  }, 1000)
-}
-public getisLoggedIn()
-{
-   this.isLoggedIn= this.$store.getters.isLoggedIn;
+    window.setInterval(() => {
+      this.getisLoggedIn();
+    }, 1000);
   }
-  public logout()
-  {
-      this.$store.dispatch("logout").then(
-        (response: any) => {
-          if (response) {
-            this.getisLoggedIn();
-            this.snackbarText = response;
-            this.snackbar = true;
-          }
-        }
-          );
+  public getisLoggedIn() {
+    this.isLoggedIn = this.$store.getters.isLoggedIn;
   }
- 
+  public logout() {
+    this.$store.dispatch("logout").then((response: any) => {
+      if (response) {
+        this.snackbarText = response;
+        this.snackbar = true;
+        this.$router.push("/");
+      }
+    });
+  }
 }
 </script>
 

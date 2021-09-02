@@ -18,6 +18,7 @@
               max-height="250"
             ></v-img>
             <h2 class="text-align-center pt-5">{{ response.logoText }}</h2>
+
             <v-rating
               :value="4.5"
               color="#fd7e14"
@@ -230,22 +231,8 @@ export default class Profile extends Vue {
   response: ProfileResponse = new ProfileResponse();
   request: ProfileRequestModel = new ProfileRequestModel();
 
- public profile() {
-    axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
-    this.ProfileService.getProfile(this.request).then(
-      (response: ProfileResponse) => {
-        this.response = response;
-      }
-    );
- }
-
- 
-
-  editData: EditProfileModel = new EditProfileModel();
   toggleEditProfile: any = false;
   created() {
-    this.profile();
-     
     // this.editData.logoText = "Global TEX";
     // this.editData.aboutFirstText =
     //   "Lorem ipsum dolor sit amet consectetur adipisicing elit.";

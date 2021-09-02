@@ -1,5 +1,5 @@
 <template>
-  <div class="home mt-5">
+  <div class="home">
     <v-carousel
       :continuous="false"
       :cycle="cycle"

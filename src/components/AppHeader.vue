@@ -64,11 +64,9 @@
       <div class="d-flex align-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn fab v-bind="attrs" v-on="on">
-              <v-avatar>
-                <img src="../assets/profile.png" alt="profile" />
-              </v-avatar>
-            </v-btn>
+            <v-avatar v-bind="attrs" v-on="on" size="32">
+              <img src="../assets/face4.jpg" alt="profile" />
+            </v-avatar>
           </template>
           <v-list v-if="isLoggedIn">
             <v-list-item link to="/profile" class="text-capitalize">
@@ -141,7 +139,3 @@ export default class AppHeader extends Vue {
   }
 }
 </script>
-
-
-  
-  

@@ -11,13 +11,13 @@
       <v-container>
         <v-row>
           <v-col class="col-2 pt-5">
+            <!-- src="@/assets/textile1.png" -->
             <v-img
-              src="@/assets/textile1.png"
+              :src="`data:image/png;base64,${response.encodedImage}`"
               max-width="250"
               max-height="250"
             ></v-img>
             <h2 class="text-align-center pt-5">{{ response.logoText }}</h2>
-    
             <v-rating
               :value="4.5"
               color="#fd7e14"
@@ -43,7 +43,12 @@
 
               <v-spacer></v-spacer>
               <v-btn
-                class="white--text font-weight-regular text-capitalize hidden-sm-and-down"
+                class="
+                  white--text
+                  font-weight-regular
+                  text-capitalize
+                  hidden-sm-and-down
+                "
                 color="#fd7e14"
                 @click="toggleEditProfile = true"
               >
@@ -51,8 +56,8 @@
               </v-btn>
               <div align="center">
                 <EditProfile
-                  :editData="editData"
-                  @editModel="onEditProfileModel"
+                  :request="response"
+                  @onEditProfileModel="onEditProfileModel"
                   @closeModel="onCloseEditProfileModel"
                   v-if="toggleEditProfile"
                 />
@@ -213,23 +218,17 @@ import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
-
-import { GetProfileRequestModel, EditProfileRequestModel, ProfileResponse } from "@/model";
 import { IProfileService } from "@/service";
-
-import { EditProfileModel } from "./Model";
+import { ProfileRequestModel, ProfileResponse } from "@/model";
 import axios from "axios";
 
 @Component({
   components: { Divider, EditProfile },
 })
-
 export default class Profile extends Vue {
- @Inject("ProfileService") ProfileService: IProfileService;
-
-
- public request = new GetProfileRequestModel();
- public response = new ProfileResponse();
+  @Inject("ProfileService") ProfileService: IProfileService;
+  response: ProfileResponse = new ProfileResponse();
+  request: ProfileRequestModel = new ProfileRequestModel();
 
  public profile() {
     axios.defaults.headers.common["Authorization"] = "Bearer" + this.$store.getters.accessToken;
@@ -257,10 +256,22 @@ export default class Profile extends Vue {
     // this.editData.phoneNofirst = "+(001) 234 567 89";
     // this.editData.phoneNoSecond = "9876543210";
     // this.editData.email = "abc@gmail.com";
+    this.loadprofile();
   }
-  public onEditProfileModel(editedData: EditProfileModel) {
-    this.editData = editedData;
+  public loadprofile() {
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer " + this.$store.getters.accessToken;
+    this.request.id = this.$store.getters.id;
+    this.ProfileService.getProfile(this.request).then(
+      (response: ProfileResponse) => {
+        this.response = response;
+      }
+    );
+  }
+
+  public onEditProfileModel() {
     this.toggleEditProfile = false;
+    this.loadprofile();
   }
   public onCloseEditProfileModel(trigger: boolean) {
     this.toggleEditProfile = false;

@@ -6,17 +6,15 @@ export class GetProfileRequestModel  {
 }
 
 export class ProfileResponse {
-    logoText: string;
-    aboutFirstText: string;
-    aboutSecondText: string;
+    id: string;
+    unitName: string;
+    title: string;
+    description: string;
     address: string;
-    phoneNofirst: string;
-    phoneNoSecond: string;
+    phoneNumber1: string;
+    phoneNumber2: string;
     email: string;
+    imageName: string;
 }
 
-export class EditProfileRequestModel extends ProfileResponse {
-    accessToken: string;
-    id: number;
-}
 

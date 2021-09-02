@@ -1,7 +1,7 @@
 import { BaseModel, DataRequest } from './base.model';
 
 export class ProfileRequestModel {
-    id: number;
+    id: string;
 }
 
 export class ProfileResponse {

@@ -16,7 +16,7 @@
           <v-col class="text-left" cols="6" md="2">
             <v-card class="mx-0" max-width="300" elevation="0">
               <v-list flat>
-                <v-header class="pb-6">Popular Category</v-header>
+                <div class="pb-6 sub-title">Popular Category</div>
                 <v-list-item-group color="orange">
                   <v-list-item class="font-weight-light mt-4">
                     Yarns
@@ -39,7 +39,7 @@
           <v-col class="text-left" cols="6" md="2">
             <v-card class="mx-0" max-width="300" elevation="0">
               <v-list flat>
-                <v-header class="pb-6">Quick Links</v-header>
+                <div class="pb-6 sub-title">Quick Links</div>
 
                 <v-list-item-group color="orange">
                   <v-list-item class="font-weight-light mt-4">
@@ -64,7 +64,7 @@
           <v-col class="text-left" cols="6" md="2">
             <v-card class="mx-0" max-width="300" elevation="0">
               <v-list flat>
-                <v-header class="pb-6 px-4">Terms</v-header>
+                <div class="pb-6 sub-title">Terms</div>
                 <v-list-item-group color="orange">
                   <v-list-item class="font-weight-light mt-4"
                     >About us</v-list-item

@@ -2,7 +2,6 @@
   <div class="home">
     <v-carousel
       :continuous="false"
-      :cycle="cycle"
       :show-arrows="false"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
@@ -15,7 +14,7 @@
         reverse-transition="fade-transition"
         transition="fade-transition"
       >
-        <div align="left" class="white--text ma-10">
+        <div class="white--text ma-10">
           <v-row class="my-10">
             <v-col col="12" md="5">
               <h1>All Your Textile Needs</h1>
@@ -31,135 +30,149 @@
         </div>
       </v-carousel-item>
     </v-carousel>
-    <template>
-      <v-row justify="center ma-5" no-gutters>
-        <v-col cols="12" md="6">
-          <h2
-            class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
-            v-text="`Your AD Here !`"
-          ></h2>
-        </v-col>
-      </v-row>
-    </template>
-    <v-row justify="center mt-3" no-gutters>
-      <v-col cols="12" md="6">
+    <v-row justify="center" class="ma-5" no-gutters>
+      <v-col cols="10">
         <h2
-          class="pa-4 text-center rounded-0 font-weight-light"
-          v-text="`Category`"
+          class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
+          v-text="`Your AD Here !`"
         ></h2>
-        <div align="center">
-          <v-divider class="pb-1" color="#ff6500" width="50px" />
-        </div>
       </v-col>
     </v-row>
 
-    <Category />
+    <div justify="center" align="center" class="py-4">
+      <h2 class="font-weight-light">Category</h2>
+      <Divider />
 
-    <template>
-      <v-parallax src="@/assets/benifits/benifits-background.png" class="my-5">
-        <v-row justify="center mt-3" no-gutters>
-          <div class="text-center black--text">
-            <h1 class="text-h4 font-weight-thin mt-6">Benifits</h1>
-            <div align="center" class="mb-5">
-              <v-divider class="pb-1" color="#ff6500" width="50px" />
-            </div>
-            <h4 class="heading pb-0">You get working with us</h4>
-          </div>
+      <Category />
+    </div>
+
+    <v-parallax src="@/assets/benifits/benifits-background.png" class="my-5">
+      <div justify="center" align="center" class="py-4 black--text">
+        <h2 class="text-h4 font-weight-thin mt-6">Benefits</h2>
+        <Divider />
+
+        <h4 class="heading py-4">You get working with us</h4>
+
+        <v-row class="d-flex my-6 black--text" no-gutters>
+          <v-col md="4"></v-col>
+          <v-col cols="12" md="4">
+            <v-list class="text-left" color="transparent">
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/1.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >Timely Deliery can be improved</v-list-item-title
+                  >
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/3.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >Payment delay can be reduced
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/5.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >Working Capital blokage in terms
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col cols="12" md="4">
+            <v-list class="text-left" color="transparent">
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/2.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >Finding Or Sourcing Vendros made Easy
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/4.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title>Reduce dependency </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-avatar>
+                  <v-img src="@/assets/benifits/6.png"></v-img>
+                </v-list-item-avatar>
+                <v-list-item-content>
+                  <v-list-item-title
+                    >Reduce commusion by employee
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-col>
         </v-row>
-        <row class="d-flex" no-gutters>
-          <v-col> </v-col>
-          <v-col class="text-center black--text" cols="12" md="4">
-            <div>
-              <img src="@/assets/benifits/1.png" alt="pic" />
-              <span>Timely Deliery can be improved</span>
-            </div>
-            <div>
-              <img src="@/assets/benifits/3.png" alt="pic" />
-              <span>Payment delay can be reduced</span>
-            </div>
-            <div>
-              <img src="@/assets/benifits/5.png" alt="pic" />
-              <span>Working Capital blokage in terms</span>
-            </div>
-          </v-col>
-          <v-col class="text-center black--text" cols="12" md="4">
-            <div>
-              <img src="@/assets/benifits/2.png" alt="pic" />
-              <span>Finding Or Sourcing Vendros made Easy</span>
-            </div>
-            <div>
-              <img src="@/assets/benifits/4.png" alt="pic" />
-              <span>Reduce dependency</span>
-            </div>
-            <div>
-              <img src="@/assets/benifits/6.png" alt="pic" />
-              <span>Reduce commusion by employee</span>
-            </div>
-          </v-col>
-        </row>
-        <v-row justify="center mt-6" no-gutters>
-          <v-btn rounded color="orange" dark> know more </v-btn></v-row
-        >
-      </v-parallax>
-    </template>
-    <template>
-      <div class="pa-10 d-flex">
-        <v-row no-gutters>
-          <v-col
-            cols="12"
-            md="3"
-            v-for="(carddetail, index) in cardDetails"
-            :key="index"
-          >
-            <v-card
-              class="mx-2"
-              align="center"
-              max-width="344"
-              height="344"
-              flat
-            >
-              <v-img max-height="50" max-width="50" src="@/assets/i1.png">
-              </v-img>
-
-              <v-card-subtitle class="mb-10">
-                <h3>{{ carddetail.cardTitle }}</h3>
-              </v-card-subtitle>
-              <v-card-text class="mb-1">
-                <h4>{{ carddetail.cardText1 }}</h4>
-              </v-card-text>
-
-              <v-card-text class="mb-1">
-                {{ carddetail.cardText2 }}
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
+        <div class="center" no-gutters>
+          <v-btn rounded color="orange" dark> know more </v-btn>
+        </div>
       </div>
-    </template>
+    </v-parallax>
+    <div class="pa-10 d-flex">
+      <v-row no-gutters>
+        <v-col
+          cols="12"
+          md="3"
+          v-for="(carddetail, index) in cardDetails"
+          :key="index"
+        >
+          <v-card class="mx-2 text-center" max-width="344" height="344" flat>
+            <img src="@/assets/i1.png" style="max-height: 50px" />
 
-    <CustomerFeedback />
+            <v-card-subtitle class="mb-2">
+              <h3>{{ carddetail.cardTitle }}</h3>
+            </v-card-subtitle>
 
-    <div>
-      <v-row justify="center ma-5" no-gutters>
-        <v-col cols="12" md="6">
-          <h2
-            class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
-            v-text="`Your AD Here !`"
-          ></h2>
+            <v-card-text class="mb-1">
+              {{ carddetail.cardText1 }}
+              {{ carddetail.cardText2 }}
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </div>
+
+    <CustomerFeedback />
+
+    <v-row justify="center" class="ma-5" no-gutters>
+      <v-col cols="10">
+        <h2
+          class="pa-6 text-center grey lighten-1 rounded-0 font-weight-light"
+          v-text="`Your AD Here !`"
+        ></h2>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+import Divider from "@/components/Divider.vue";
 import Category from "@/components/Category.vue";
 import CustomerFeedback from "@/components/CustomerFeedback.vue";
 
 @Component({
-  components: { Category, CustomerFeedback },
+  components: { Category, CustomerFeedback, Divider },
 })
 export default class Home extends Vue {
   items: any = [

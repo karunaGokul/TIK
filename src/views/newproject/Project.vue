@@ -107,6 +107,8 @@ export default class ProjectFormBuilder extends Vue {
   public initial() {
     this.ProjectService.newProject(this.request).then(
       (response: ProjectFormResponseModel) => {
+
+        console.log(response);
         this.response = response;
       }
     );

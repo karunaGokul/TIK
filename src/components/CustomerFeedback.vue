@@ -182,13 +182,13 @@ export default Vue.extend({
           name: "james sulivan",
           description:
             "The Goverment for initiating policies that ensure creation of world class texttile infrastructure in the country and management tech.",
-          src: "https://www.tikonline.in/newthemeassets/assets/img/face4.jpg",
+          src: "../assets/img/face4.jpg",
         },
         {
           name: "sam smith",
           description:
             "This sector is highly responsible for propelling india's overall and develop development and enjoys intense focus from it policies and energy of health.",
-          src: "https://www.tikonline.in/newthemeassets/assets/img/face1.jpg",
+          src: "../assets/img/face1.jpg",
         },
       ],
     };

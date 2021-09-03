@@ -1,7 +1,7 @@
  <template>
   <div class="my-7 pb-5">
     <v-container>
-      <v-row :align="align" no-gutters>
+      <v-row no-gutters>
         <v-col
           cols="5"
           md="2"

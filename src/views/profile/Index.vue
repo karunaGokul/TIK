@@ -66,15 +66,15 @@
             </v-row>
 
             <v-row class="pr-16 text-wrap">
-              <div>{{ response.aboutFirstText }}</div>
-              <div>{{ response.aboutSecondText }}</div>
+              <div>{{ response.title }}</div>
+              <div>{{ response.description }}</div>
             </v-row>
 
             <v-row>
               <v-col>
                 <h3>Phone</h3>
-                {{ response.phoneNofirst }}<br />
-                {{ response.phoneNoSecond }}
+                {{ response.phoneNumber1 }}<br />
+                {{ response.phoneNumber2 }}
               </v-col>
               <v-col>
                 <h3>Address</h3>
@@ -266,9 +266,6 @@ export default class Profile extends Vue {
     // this.editData.email = "abc@gmail.com";
     this.loadprofile();
   }
-  
-
-  
 
   images: any = [
     { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },

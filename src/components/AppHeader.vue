@@ -38,9 +38,7 @@
       <div v-else>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-btn fab v-bind="attrs" v-on="on">
-              <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            </v-btn>
+              <v-app-bar-nav-icon v-bind="attrs" v-on="on"></v-app-bar-nav-icon>
           </template>
           <v-list>
             <v-list-item link to="/" class="text-capitalize">
@@ -59,12 +57,12 @@
 
       <v-spacer></v-spacer>
       <div v-if="isLoggedIn">
-        <v-icon large class="mx-4">mdi-bell</v-icon>
+        <v-icon medium class="mx-6">mdi-bell</v-icon>
       </div>
       <div class="d-flex align-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <v-avatar v-bind="attrs" v-on="on" size="32">
+            <v-avatar v-bind="attrs" v-on="on" size="32" class="mr-4">
               <img src="../assets/face4.jpg" alt="profile" />
             </v-avatar>
           </template>
@@ -117,17 +115,14 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class AppHeader extends Vue {
   drawer: any = false;
-  isLoggedIn: any = false;
   snackbar: boolean = false;
   snackbarText: string = "";
-  mounted() {
-    window.setInterval(() => {
-      this.getisLoggedIn();
-    }, 1000);
+ 
+
+  get isLoggedIn() : boolean {
+    return this.$store.getters.isLoggedIn;
   }
-  public getisLoggedIn() {
-    this.isLoggedIn = this.$store.getters.isLoggedIn;
-  }
+
   public logout() {
     this.$store.dispatch("logout").then((response: any) => {
       if (response) {

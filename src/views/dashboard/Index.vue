@@ -1,45 +1,40 @@
 <template>
-  <div class="my-3">
-    <v-container fluid class="pa-8">
-      <div class="ma-2 font-weight-regular">
-        <v-icon medium class="pr-2"> mdi-home</v-icon
-        ><span class="pr-3 large">></span> Dashboard
-      </div>
-    </v-container>
-    <template>
-      <v-card class="mx-3" elevation="8">
-        <v-card-title>
-          <v-select
-            :items="items"
-            :menu-props="{ offsetY: true }"
-            label="Select"
-            class="shrink pt-3"
-            outlined
-            dense
-          ></v-select>
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            label="Search"
-            append-icon="mdi-magnify"
-            class="shrink pt-4"
-            outlined
-            dense
-          ></v-text-field>
+  <div>
+    <v-breadcrumbs class="py-8">      
+      <v-breadcrumbs-item><v-icon medium>mdi-home</v-icon> </v-breadcrumbs-item>
+      <v-breadcrumbs-item><v-icon small>mdi-chevron-right</v-icon> </v-breadcrumbs-item>
+      <v-breadcrumbs-item><span>Dashboard</span> </v-breadcrumbs-item>
+    </v-breadcrumbs>
+    <v-card class="ma-3" elevation="8">
+      <v-card-title>
+        <v-select
+          :items="items"
+          :menu-props="{ offsetY: true }"
+          label="Select"
+          class="shrink pt-3"
+          dense
+          hide-details
+        ></v-select>
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          append-icon="mdi-magnify"
+          class="shrink pt-4"
+          outlined
+          dense
+          hide-details
+        ></v-text-field>
 
-          <v-icon large class="ml-7 pa-1">mdi-plus-circle</v-icon>
-          <v-icon large class="pa-1">mdi-blinds</v-icon>
-          <v-icon large class="pa-1">mdi-format-align-bottom</v-icon>
-        </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="desserts"
-          :search="search"
-          class="elevation-1"
-        >
-        </v-data-table>
-      </v-card>
-    </template>
+      </v-card-title>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        :search="search"
+        class="elevation-1"
+      >
+      </v-data-table>
+    </v-card>
   </div>
 </template>
  
@@ -55,22 +50,26 @@ export default class Dashboard extends Vue {
       align: "start",
       sortable: false,
       value: "EnquiryName",
-      class: "teal lighten-4 title",
+      class: "teal lighten-4 subtitle-2",
     },
     {
       text: "Merchandiser",
       value: "Merchandiser",
-      class: "teal lighten-4 title",
+      class: "teal lighten-4 subtitle-2",
     },
-    { text: "Category", value: "Category", class: "teal lighten-4 title" },
+    { text: "Category", value: "Category", class: "teal lighten-4 subtitle-2" },
     {
       text: "Subcategory",
       value: "Subcategory",
-      class: "teal lighten-4 title",
+      class: "teal lighten-4 subtitle-2",
     },
-    { text: "In Stages", value: "InStages", class: "teal lighten-4 title" },
-    { text: "Status", value: "Status", class: "teal lighten-4 title" },
-    { text: "Action", value: "Action", class: "teal lighten-4 title" },
+    {
+      text: "In Stages",
+      value: "InStages",
+      class: "teal lighten-4 subtitle-2",
+    },
+    { text: "Status", value: "Status", class: "teal lighten-4 subtitle-2" },
+    { text: "Action", value: "Action", class: "teal lighten-4 subtitle-2" },
   ];
   desserts: any = [
     {

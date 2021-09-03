@@ -164,16 +164,16 @@ import CustomerFeedback from "@/components/CustomerFeedback.vue";
 export default class Home extends Vue {
   items: any = [
     {
-      src: "https://www.tikonline.in/newthemeassets/assets/img/home-bg.png",
+      src: "/carosel-1.jpg",
       category: "../assets.factory.png",
     },
 
     {
-      src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg1.jpeg",
+      src: "/carosel-2.jpg",
       category: "../assets.factory.png",
     },
     {
-      src: "	https://www.tikonline.in/newthemeassets/assets/img/home-bg2.jpeg",
+      src: "/carosel-3.jpg",
       category: "../assets.factory.png",
     },
   ];

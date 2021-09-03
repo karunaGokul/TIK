@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer dark padless>
+    <v-footer dark padless v-if="!isLoggedIn">
       <v-card width="100%" class="py-13">
         <v-row class="ma-1">
           <v-col cols="6" md="2" class="text-left">
@@ -131,6 +131,10 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class AppFooter extends Vue {
   icons: any = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
+
+  get isLoggedIn() : boolean {
+    return this.$store.getters.isLoggedIn;
+  }
 }
 </script>
 

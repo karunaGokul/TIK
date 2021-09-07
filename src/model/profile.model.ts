@@ -14,6 +14,7 @@ export class ProfileResponse {
     phoneNumber2: string;
     email: string;
     imageName: string;
+    image: string;
 }
 
 

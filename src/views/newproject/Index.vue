@@ -27,17 +27,21 @@
                   :key="category.categoryName"
                   class="ma-3"
                   align="center"
-                >
-                  <v-btn
-                    class="ma-2"
-                    outlined
-                    x-large
-                    fab
-                    color="orange"
-                    @click="openCategory(category.categoryName)"
-                  >
-                    <v-icon>{{ category.categoryImage }}</v-icon>
-                  </v-btn>
+                  ><v-hover v-slot:default="{ hover }">
+                    <v-btn
+                      class="ma-2"
+                      x-large
+                      fab
+                      elevation="4"
+                      :color="hover ? '#ff6500' : ''"
+                      @click="openCategory(category.categoryName)"
+                    >
+                      <v-icon color="green darken-4">{{
+                        category.categoryImage
+                      }}</v-icon>
+                    </v-btn>
+                  </v-hover>
+
                   <div>{{ category.categoryName }}</div>
                 </v-col>
               </v-row>

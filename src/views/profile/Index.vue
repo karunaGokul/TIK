@@ -13,7 +13,7 @@
           <v-col class="col-2 pt-5">
             <!-- src="@/assets/textile1.png" -->
             <v-img
-              :src="`data:image/png;base64,${response.encodedImage}`"
+              :src="`data:image/png;base64,${response.image}`"
               max-width="250"
               max-height="250"
             ></v-img>
@@ -251,6 +251,7 @@ export default class Profile extends Vue {
 
   public onCloseEditProfileModel(trigger: boolean) {
     this.toggleEditProfile = false;
+    this.loadprofile();
   }
 
   created() {

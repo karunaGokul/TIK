@@ -22,6 +22,7 @@
                 accept="image/png, image/jpeg, image/bmp"
                 prepend-icon="mdi-camera"
                 class="d-flex justify-center"
+                @change="handleimage"
               ></v-file-input>
             </v-card>
           </v-col>
@@ -109,15 +110,20 @@ import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 import { IProfileService } from "@/service";
 import { ProfileResponse } from "@/model";
+import axios from "axios";
 
 @Component
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
-  dialog: any = true;
+  dialog: boolean = true;
 
+  public handleimage(e: any) {
+    this.request.image = btoa(e.name);
+  }
   public edit() {
     this.request.id = this.$store.getters.id;
+    axios.defaults.headers["Content-Type"] = "multipart/form-data";
     this.ProfileService.editProfile(this.request).then((response: any) => {
       this.$emit("onEditProfileModel");
     });

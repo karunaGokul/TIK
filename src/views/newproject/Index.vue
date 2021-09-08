@@ -2,7 +2,7 @@
   <div>
     <div v-if="!toggleCategory">
       <template>
-        <v-row justify="Left mt-3">
+        <v-row>
           <v-col cols="8" class="ml-5" md="3">
             <h3 class="my-4">Enter Project Name</h3>
             <v-text-field
@@ -19,7 +19,7 @@
           <h3 class="my-4">Select Catagory</h3>
           <div class="my-7 pb-5">
             <v-container>
-              <v-row :align="align" no-gutters>
+              <v-row no-gutters>
                 <v-col
                   cols="4"
                   md="2"
@@ -80,7 +80,7 @@ export default class Newproject extends Vue {
   toggleCategory: any = false;
   categoryName: any = "";
   snackbar: any = false;
-  snackbarText: any;
+  snackbarText: string = "";
   openCategory(categoryName: any) {
     if (this.projectName == "") {
       this.snackbarText = "Please Enter Project Name";

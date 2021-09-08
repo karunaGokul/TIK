@@ -1,6 +1,6 @@
  <template>
   <div>
-    <template v-if="control.controlType === 'select'">
+    <template v-if="control.type === 'select'">
       <v-select
         :items="items"
         :menu-props="{ offsetY: true }"
@@ -12,19 +12,21 @@
         @change="controlClicked(control)"
       ></v-select>
     </template>
-    <template v-else-if="control.controlType === 'toggle-button'">
-      <v-btn
-        class="rounded-lg white text-capitalize"
-        elevation="3"
-        x-large
-        block
-        @click="controlClicked(control)"
-      >
-        <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-          {{ control.option }}
-        </span>
-        {{ control.label }}
-      </v-btn>
+    <template v-else-if="control.type === 'toggle-button'">
+      <v-btn-toggle v-model="selectedValue" group>
+        <v-btn
+          class="rounded-lg text-capitalize"
+          elevation="3"
+          block
+          v-for="(option, index) in control.options" :key="index"
+          @click="controlSelected(option)"
+        >
+          <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
+            {{ option.label }}
+          </span>
+          {{ option.text }}
+        </v-btn>
+      </v-btn-toggle>
     </template>
   </div>
 </template>
@@ -32,16 +34,31 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import { ProjectFormResponseModel, ProjectFormControlModel } from "@/model";
+import { ProjectFormResponseModel, ProjectFormStepControl, ProjectFormStepControlOption } from "@/model";
 
 @Component
-export default class MillsControl extends Vue {
-  @Prop() control: ProjectFormControlModel;
+export default class ProjectControl extends Vue {
+  @Prop() control: ProjectFormStepControl;
   items: any = ["100% Cotton", "100% Viscose", "100% Modal", "100% polyster"];
 
-  controlClicked(control: ProjectFormControlModel) {
-    control.active = true;
-    this.$emit("activateChildModel", control);
+  controlSelected(option: ProjectFormStepControlOption) {
+    this.control.options.forEach(o => o.selected = false);
+
+    option.selected = true;
+
+    this.$emit("change");
+  }
+
+  controlClicked(control: ProjectFormStepControl) {
+    this.$emit("change");
+  }
+
+  get selectedValue() {
+    return this.control.options.findIndex(o => o.selected);
+  }
+
+  set selectedValue(value: any) {
+    console.log(value);
   }
 }
 </script>

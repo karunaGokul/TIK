@@ -4,8 +4,10 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import Vuelidate from 'vuelidate';
+import VueHelper from './plugins/vue-helper';
 
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
+Vue.use(VueHelper); 
 
 Vue.config.productionTip = false;
 

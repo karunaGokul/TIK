@@ -11,9 +11,11 @@
           align="center"
         >
           <router-link :to="category.categoryName" tag="button">
-            <v-btn class="ma-2" outlined x-large fab color="orange">
-              <v-icon>{{ category.categoryImage }}</v-icon>
+            <v-hover v-slot:default="{ hover }">
+            <v-btn class="ma-2" x-large fab elevation="4" :color = "hover?'#ff6500':''">
+              <v-icon color="green darken-4">{{ category.categoryImage }}</v-icon>
             </v-btn>
+            </v-hover>
           </router-link>
           <div>{{ category.categoryName }}</div>
         </v-col>
@@ -27,8 +29,10 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
 export default class Category extends Vue {
   @Prop() projectName: any;
+
   linkCategory: any = false;
   categoryName: any = "";
+
   openCategory(categoryName: any) {
     if (!(this.projectName == "")) this.linkCategory = true;
     this.categoryName = categoryName;

@@ -71,10 +71,10 @@ export abstract class ServiceHelper {
     }
 
 
-    protected httpPost(route: string, data: any): Promise<AxiosResponse<any>> {
+    protected httpPost(route: string, data: any,config?:AxiosRequestConfig): Promise<AxiosResponse<any>> {
         const path = `${this.apiUrl}/${route}`;
 
-        return axios.post(path, data);
+        return axios.post(path, data,config);
     }
 
     protected httpPut(route: string, data: any): Promise<AxiosResponse<any>> {

@@ -233,9 +233,7 @@ export default class Profile extends Vue {
 
   toggleEditProfile: boolean = false;
 
-  public loadprofile() {
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer " + this.$store.getters.accessToken;
+  public loadprofile() {    
     this.request.id = this.$store.getters.id;
     this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {

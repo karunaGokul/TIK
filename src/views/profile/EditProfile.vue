@@ -117,14 +117,15 @@ export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
   dialog: boolean = true;
-
-  public handleimage(e: any) {
-    this.request.image = btoa(e.name);
+ logo:File;
+  public handleimage(e: File) {
+    this.logo=e;
+    // this.request.image = btoa(e.name);
   }
   public edit() {
     this.request.id = this.$store.getters.id;
-    axios.defaults.headers["Content-Type"] = "multipart/form-data";
-    this.ProfileService.editProfile(this.request).then((response: any) => {
+    // axios.defaults.headers["Content-Type"] = "multipart/form-data";
+    this.ProfileService.editProfile(this.request,this.logo).then((response: any) => {
       this.$emit("onEditProfileModel");
     });
   }

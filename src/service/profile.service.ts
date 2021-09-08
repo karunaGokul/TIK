@@ -1,9 +1,10 @@
 import { IBaseService, BaseService } from './base.service';
 import { ProfileRequestModel, ProfileResponse } from '@/model';
+import { AxiosRequestConfig } from 'axios';
 
 export interface IProfileService extends IBaseService<any, ProfileResponse> {
     getProfile(request: ProfileRequestModel): Promise<ProfileResponse>;
-    editProfile(request: ProfileResponse): Promise<any>;
+    editProfile(request: ProfileResponse,logo:File): Promise<any>;
 }
 
 export class ProfileService extends BaseService<any, ProfileResponse> implements IProfileService {
@@ -19,9 +20,18 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
         });
     }
 
-    public editProfile(request: ProfileResponse): Promise<any> {
+    public editProfile(request: any,logo:File): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
-        return this.httpPost('EditProfile', request).then(response => {
+        const config: AxiosRequestConfig = { headers: { 'Content-Type': 'multipart/form-data' } };
+        const data=new FormData();
+        data.append("image",logo);
+       
+       for(const k in request)
+        {
+            if(request[k])
+                     data.append(k,request[k])
+        }
+        return this.httpPost('EditProfile', data, config).then(response => {
             return response.data;
         });
     }

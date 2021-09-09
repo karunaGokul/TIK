@@ -1,11 +1,15 @@
 <template>
   <div>
     <v-container fluid class="pa-8">
-      <div class="ma-2 font-weight-regular">
-        <v-icon medium class="pr-2"> mdi-home</v-icon>
-        <span class="pr-3 large">></span> Employee List
+      <div class="ma-2">
+        <router-link link to="/" class="text-decoration-none">
+          <v-icon large> mdi-home</v-icon>
+        </router-link>
+        <v-icon large> mdi-chevron-right</v-icon>
+          Employee List
       </div>
     </v-container>
+    
     <template>
       <v-card class="mx-3" elevation="8">
         <v-card-title>

@@ -11,7 +11,6 @@
       <v-container>
         <v-row>
           <v-col class="col-2 pt-5">
-            <!-- src="@/assets/textile1.png" -->
             <v-img
               :src="`data:image/png;base64,${response.image}`"
               max-width="250"
@@ -58,7 +57,7 @@
               <div align="center">
                 <EditProfile
                   :request="response"
-                  @onEditProfileModel="onEditProfileModel"
+                  @onEditProfileModel="onCloseEditProfileModel"
                   @closeModel="onCloseEditProfileModel"
                   v-if="toggleEditProfile"
                 />
@@ -232,9 +231,13 @@ export default class Profile extends Vue {
   request: ProfileRequestModel = new ProfileRequestModel();
 
   toggleEditProfile: boolean = false;
-
-  public loadprofile() {    
+  created() {
+    this.loadprofile();
+  }
+  public loadprofile() {
     this.request.id = this.$store.getters.id;
+    axios.defaults.headers.common["Authorization"] =
+      "Bearer" + this.$store.getters.accessToken;
     this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {
         this.response = response;
@@ -242,30 +245,10 @@ export default class Profile extends Vue {
     );
   }
 
-  public onEditProfileModel() {
+  public onCloseEditProfileModel() {
     this.toggleEditProfile = false;
     this.loadprofile();
   }
-
-  public onCloseEditProfileModel(trigger: boolean) {
-    this.toggleEditProfile = false;
-    this.loadprofile();
-  }
-
-  created() {
-    // this.editData.logoText = "Global TEX";
-    // this.editData.aboutFirstText =
-    //   "Lorem ipsum dolor sit amet consectetur adipisicing elit.";
-    // this.editData.aboutSecondText =
-    //   "Esse voluptatibus porro delectus rem, aut cumque obcaecati! Cum at suscipit illo?";
-    // this.editData.address =
-    //   "shrivari srimat, 1045,avinashi road, coimbatore - 641 018";
-    // this.editData.phoneNofirst = "+(001) 234 567 89";
-    // this.editData.phoneNoSecond = "9876543210";
-    // this.editData.email = "abc@gmail.com";
-    this.loadprofile();
-  }
-
   images: any = [
     { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
     { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },

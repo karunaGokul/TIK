@@ -107,12 +107,18 @@ export default class ProjectFormBuilder extends Vue {
   public initial() {
     // this.ProjectService.newProject(this.request).then(
     //   (response: ProjectFormResponseModel) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f3ede91568ed00e3f176cd842c94d8de4d736ca
     //     console.log(response);
     //     this.response = response;
     //   }
     // );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f3ede91568ed00e3f176cd842c94d8de4d736ca
     // this.data.formHeading = "Mills";
     // this.data.formSubHeading = "1. Choose Your Content";
     // this.data.visibility = true;

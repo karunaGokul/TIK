@@ -110,27 +110,25 @@ import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 import { IProfileService } from "@/service";
 import { ProfileResponse } from "@/model";
-import axios from "axios";
-
 @Component
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
   dialog: boolean = true;
- logo:File;
+  logo: File;
   public handleimage(e: File) {
-    this.logo=e;
-    // this.request.image = btoa(e.name);
+    this.logo = e;
   }
   public edit() {
     this.request.id = this.$store.getters.id;
-    // axios.defaults.headers["Content-Type"] = "multipart/form-data";
-    this.ProfileService.editProfile(this.request,this.logo).then((response: any) => {
-      this.$emit("onEditProfileModel");
-    });
+    this.ProfileService.editProfile(this.request, this.logo).then(
+      (response: any) => {
+        this.$emit("onEditProfileModel");
+      }
+    );
   }
   public close() {
-    this.$emit("closeModel", false);
+    this.$emit("closeModel");
   }
 }
 </script>

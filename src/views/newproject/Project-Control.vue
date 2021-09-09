@@ -17,19 +17,21 @@
       </v-row>
     </template>
     <template v-else-if="control.type === 'toggle-button'">
-      <v-btn-toggle v-model="buttonValue" group>
+      <v-btn-toggle v-model="buttonValue" flat rounded>
         <v-btn
-          class="rounded-lg text-capitalize"
+          class="rounded-lg text-capitalize mr-5"
           elevation="3"
           block
           v-for="(option, index) in control.options"
           :key="index"
           @click="controlSelected(option)"
         >
-          <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
-            {{ option.label }}
-          </span>
-          {{ option.text }}
+          <v-col class="text-left">
+            <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
+              {{ option.label }}
+            </span>
+            {{ option.text }}</v-col
+          >
         </v-btn>
       </v-btn-toggle>
     </template>

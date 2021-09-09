@@ -1,8 +1,10 @@
 <template>
   <div>
-    <v-breadcrumbs class="py-8">      
+    <v-breadcrumbs class="py-8">
       <v-breadcrumbs-item><v-icon medium>mdi-home</v-icon> </v-breadcrumbs-item>
-      <v-breadcrumbs-item><v-icon small>mdi-chevron-right</v-icon> </v-breadcrumbs-item>
+      <v-breadcrumbs-item
+        ><v-icon small>mdi-chevron-right</v-icon>
+      </v-breadcrumbs-item>
       <v-breadcrumbs-item><span>Dashboard</span> </v-breadcrumbs-item>
     </v-breadcrumbs>
     <v-card class="ma-3" elevation="8">
@@ -25,7 +27,6 @@
           dense
           hide-details
         ></v-text-field>
-
       </v-card-title>
       <v-data-table
         :headers="headers"
@@ -33,16 +34,71 @@
         :search="search"
         class="elevation-1"
       >
+        <template v-slot:[`item.Status`]="{ item }">
+          <span
+            v-if="item.Status === 'Active'"
+            class="green px-2 rounded-circle"
+          ></span>
+          <span v-else class="red px-2 rounded-circle"></span>
+          <span class="pl-2">{{ item.Status }}</span>
+        </template>
+        <template v-slot:[`item.Action`]="{ item }">
+          <v-icon small class="mr-2" @click="editItem(item)">
+            mdi-pencil
+          </v-icon>
+          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        </template>
       </v-data-table>
+      <v-dialog v-model="showDialog" max-width="500">
+        <v-card>
+          <v-row class="my-4 px-4">
+            <v-card-title>Project Details </v-card-title>
+            <v-spacer></v-spacer>
+            <v-btn @click="close" icon>
+              <v-icon id="close-button">mdi-close</v-icon>
+            </v-btn>
+          </v-row>
+          <v-card-text>
+            <div v-for="(item, index) in request" :key="index">
+              <v-text-field
+                :placeholder="item"
+                :v-model="item"
+                outlined
+              ></v-text-field>
+            </div>
+            <div class="d-flex">
+              <v-btn class="ml-auto" color="primary" @click="save(request)"
+                >Save</v-btn
+              >
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
  
 <script lang="ts">
+import { DashboardRequestModel } from "@/model";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class Dashboard extends Vue {
-  search: any = "";
+  search: string = "";
+  showDialog: boolean = false;
+  request: DashboardRequestModel = new DashboardRequestModel();
+  public editItem(item: DashboardRequestModel) {
+    this.showDialog = true;
+    this.request = item;
+  }
+  // public save(request: DashboardRequestModel) {
+  //   this.request = request;
+  //   this.showDialog = false;
+  // }
+
+  public close() {
+    this.showDialog = false;
+  }
+
   items: any = ["New Enquiry", "Conformed Project", "Completed Project"];
   headers: any = [
     {
@@ -78,8 +134,15 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
+      Status: "Active",
+    },
+    {
+      EnquiryName: "20",
+      Merchandiser: 159,
+      Category: "fabric",
+      Subcategory: "Yarn",
+      InStages: "Bid Received",
+      Status: "Active",
     },
     {
       EnquiryName: "10",
@@ -87,8 +150,7 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
+      Status: "Inactive",
     },
     {
       EnquiryName: "10",
@@ -96,8 +158,7 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
+      Status: "Active",
     },
     {
       EnquiryName: "10",
@@ -105,8 +166,7 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
+      Status: "Inactive",
     },
     {
       EnquiryName: "10",
@@ -114,17 +174,7 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
-    },
-    {
-      EnquiryName: "10",
-      Merchandiser: 159,
-      Category: "Mill",
-      Subcategory: "Yarn",
-      InStages: "Bid Received",
-      Status: "xx",
-      Action: "xx",
+      Status: "Inactive",
     },
   ];
 }

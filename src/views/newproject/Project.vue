@@ -7,9 +7,14 @@
           <v-card-text>
             <v-row>
               <v-col>
-                <h4>{{ currentStep.stepNumber }}. {{ currentStep.title }}</h4>
+                <h4 class="text-h6 mb-4">
+                  {{ currentStep.stepNumber }}. {{ currentStep.title }}
+                </h4>
                 <div v-for="(control, j) in currentStep.controls" :key="j">
-                  <ProjectControl :control="control" @change="controlChanged(control)" />
+                  <ProjectControl
+                    :control="control"
+                    @change="controlChanged(control)"
+                  />
                 </div>
               </v-col>
             </v-row>
@@ -21,11 +26,15 @@
               <v-col cols="10" md="2"></v-col>
               <v-col cols="10" md="2" class="mx-2">
                 <div>Completed</div>
-                <v-progress-linear v-model="progress" color="warning" height="25">
-                <template v-slot:default="{ value }">
-                  <strong>{{ Math.ceil(value) }}%</strong>
-                </template>
-              </v-progress-linear>
+                <v-progress-linear
+                  v-model="progress"
+                  color="warning"
+                  height="25"
+                >
+                  <template v-slot:default="{ value }">
+                    <strong>{{ Math.ceil(value) }}%</strong>
+                  </template>
+                </v-progress-linear>
               </v-col>
             </v-row>
           </v-card-text>
@@ -56,7 +65,7 @@
       </v-col>
     </v-row>
     <v-row justify="end">
-      <v-col>
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
@@ -65,6 +74,8 @@
         >
           Back
         </v-btn>
+      </v-col>
+      <v-col cols="6" md="6">
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
@@ -118,11 +129,16 @@ export default class ProjectFormBuilder extends Vue {
   }
 
   back() {
-    if (this.stepNumber > 0) this.stepNumber--;
+    if (this.stepNumber > 0) {
+      this.stepNumber--;
+      this.steps.pop();
+    }
   }
 
   next() {
-    if (!this.currentStep.controls.some(c => c.options.some(o => o.selected))) {
+    if (
+      !this.currentStep.controls.some((c) => c.options.some((o) => o.selected))
+    ) {
       return false;
     }
 
@@ -167,14 +183,15 @@ export default class ProjectFormBuilder extends Vue {
   }
 
   controlChanged(control: ProjectFormStepControl) {
-    this.currentStep.selectedOption = control.options.find(o => o.selected);
+    this.currentStep.selectedOption = control.options.find((o) => o.selected);
   }
 
   get progress() {
-    const totalSteps = Math.max(...this.data.steps.map(s => s.stepNumber));
+    const totalSteps = Math.max(...this.data.steps.map((s) => s.stepNumber));
 
-    return this.currentStep.stepNumber > 1 ? ((this.currentStep.stepNumber - 1)  / totalSteps) * 100 : 0;
-
+    return this.currentStep.stepNumber > 1
+      ? ((this.currentStep.stepNumber - 1) / totalSteps) * 100
+      : 0;
   }
 
   get currentStep() {

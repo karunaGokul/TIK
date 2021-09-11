@@ -236,9 +236,7 @@ export default class Profile extends Vue {
   }
   public loadprofile() {
     this.request.id = this.$store.getters.id;
-    axios.defaults.headers.common["Authorization"] =
-      "Bearer" + this.$store.getters.accessToken;
-    this.ProfileService.getProfile(this.request).then(
+        this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {
         this.response = response;
       }

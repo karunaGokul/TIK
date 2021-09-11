@@ -32,6 +32,7 @@
         :headers="headers"
         :items="desserts"
         :search="search"
+        :item-class= "row_classes"      
         class="elevation-1"
       >
         <template v-slot:[`item.Status`]="{ item }">
@@ -59,17 +60,17 @@
             </v-btn>
           </v-row>
           <v-card-text>
-            <div v-for="(item, index) in request" :key="index">
+            <div v-for="(value, name) in request" :key="name">
               <v-text-field
-                :placeholder="item"
-                :v-model="item"
+                :label="name"
+                v-model="request[name]"
                 outlined
               ></v-text-field>
             </div>
             <div class="d-flex">
-              <v-btn class="ml-auto" color="primary" @click="save(request)"
-                >Save</v-btn
-              >
+              <v-btn class="ml-auto" color="primary" @click="save(request)">
+                Save
+              </v-btn>
             </div>
           </v-card-text>
         </v-card>
@@ -87,6 +88,7 @@ export default class Dashboard extends Vue {
   showDialog: boolean = false;
   request: DashboardRequestModel = new DashboardRequestModel();
   public editItem(item: DashboardRequestModel) {
+    console.log(item);
     this.showDialog = true;
     this.request = item;
   }
@@ -98,7 +100,10 @@ export default class Dashboard extends Vue {
   public close() {
     this.showDialog = false;
   }
-
+public row_classes(item:any) {
+  return item.Status === 'Active' ? 'white' : 'blue lighten-5'
+           
+    }
   items: any = ["New Enquiry", "Conformed Project", "Completed Project"];
   headers: any = [
     {
@@ -135,6 +140,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
+      Class:"white"
     },
     {
       EnquiryName: "20",
@@ -143,6 +149,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
+      Class:"orange"
     },
     {
       EnquiryName: "10",
@@ -151,6 +158,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
+       Class:"white"
     },
     {
       EnquiryName: "10",
@@ -159,6 +167,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
+      Class:"orange",      
     },
     {
       EnquiryName: "10",
@@ -167,6 +176,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
+       Class:"white"
     },
     {
       EnquiryName: "10",
@@ -175,6 +185,7 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
+      Class:"orange"
     },
   ];
 }

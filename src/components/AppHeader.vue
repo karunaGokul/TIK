@@ -4,6 +4,7 @@
       v-model="drawer"
       app
       clipped
+      width="200"
       class="y-nav-drawer"
       color="teal"
       v-if="isLoggedIn"
@@ -114,7 +115,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class AppHeader extends Vue {
-  drawer: any = false;
+  drawer:boolean= false;
   snackbar: boolean = false;
   snackbarText: string = "";
  

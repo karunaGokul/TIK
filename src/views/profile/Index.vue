@@ -65,8 +65,10 @@
             </v-row>
 
             <v-row class="pr-16 text-wrap">
-              <div>{{ response.title }}</div>
-              <div>{{ response.description }}</div>
+              <v-col>
+                <div>{{ response.title }}</div>
+                <div>{{ response.description }}</div>
+              </v-col>
             </v-row>
 
             <v-row>
@@ -236,7 +238,7 @@ export default class Profile extends Vue {
   }
   public loadprofile() {
     this.request.id = this.$store.getters.id;
-        this.ProfileService.getProfile(this.request).then(
+    this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {
         this.response = response;
       }

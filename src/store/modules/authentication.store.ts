@@ -48,6 +48,7 @@ const actions: ActionTree<AuthenticationState, any> = {
             localStorage.setItem('refreshToken', response.refreshToken);
             localStorage.setItem('id', response.id);
             context.commit('onAuthenticate', response);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
             return response;
         });
     },

@@ -20,7 +20,7 @@
           <v-btn elevation="2" class="ma-3">Print</v-btn>
           <v-spacer></v-spacer>
           <router-link to="/createemployee" tag="button">
-            <v-btn elevation="2" class="info">Create</v-btn>
+            <v-btn class="indigo darken-4 white--text rounded-0 text-capitalize">Create</v-btn>
           </router-link>
 
           <v-spacer></v-spacer>
@@ -35,10 +35,17 @@
         </v-card-title>
         <v-data-table
           :headers="headers"
-          :items="desserts"
+          :items="employees"
           :search="search"
           class="elevation-1"
         >
+        <template v-slot:[`item.Action`]="{ item }">
+          <v-icon small class="mr-2" @click="editItem(item)">
+            mdi-pencil
+          </v-icon>
+          
+          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        </template>
         </v-data-table>
       </v-card>
     </template>
@@ -47,9 +54,11 @@
  
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { EmployeeRequestModel } from "@/model";
 
 @Component
 export default class Employee extends Vue {
+  request: EmployeeRequestModel = new EmployeeRequestModel();
   search: any = "";
   onCreateEmployee: any = false;
   headers: any = [
@@ -79,7 +88,7 @@ export default class Employee extends Vue {
     { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
     { text: "Action", value: "Action", class: "teal lighten-4 title" },
   ];
-  desserts: any = [
+  employees: any = [
     {
       Sno: "1",
       FirstName: "MasterAdmin",
@@ -87,7 +96,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+     
     },
     {
       Sno: "1",
@@ -96,7 +105,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+     
     },
     {
       Sno: "1",
@@ -105,7 +114,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+     
     },
     {
       Sno: "1",
@@ -114,7 +123,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+     
     },
     {
       Sno: "1",
@@ -123,7 +132,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+     
     },
     {
       Sno: "1",
@@ -132,7 +141,7 @@ export default class Employee extends Vue {
       Designation: "MasterAdmin",
       EmailName: "MasterAdmin@gmail.com",
       Phone: "06789987654",
-      Action: "xx",
+      
     },
   ];
 }

@@ -28,7 +28,7 @@
                 <div>Completed</div>
                 <v-progress-linear
                   v-model="progress"
-                  color="warning"
+                  color="#8BBEE7"
                   height="25"
                 >
                   <template v-slot:default="{ value }">
@@ -41,7 +41,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <div class="text-h5 ml-2">Summary</div>
+        <div class="text-h6 ml-2 pt-1">Summary</div>
         <div class="py-2 text-subtitle-1">
           <v-timeline dense align-top clipped>
             <v-timeline-item
@@ -64,28 +64,23 @@
         </div>
       </v-col>
     </v-row>
-    <v-row justify="end">
-      <v-col cols="6" md="6">
-        <v-btn
+    <div class="d-flex justify-end">
+      <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize"
-          color="warning"
           @click="back"
         >
           Back
         </v-btn>
-      </v-col>
-      <v-col cols="6" md="6">
-        <v-btn
+         <v-btn
           elevation="2"
-          class="px-8 ma-4 text-capitalize"
-          color="warning"
+          class="px-8 ma-4 text-capitalize white--text"
+          color="#00365C"
           @click="next"
         >
           Next
         </v-btn>
-      </v-col>
-    </v-row>
+      </div>
   </div>
 </template>
 
@@ -129,7 +124,7 @@ export default class ProjectFormBuilder extends Vue {
   }
 
   back() {
-    if (this.stepNumber > 0) {
+    if (this.stepNumber > 1) {
       this.stepNumber--;
       this.steps.pop();
     }

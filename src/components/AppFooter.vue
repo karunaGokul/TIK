@@ -1,127 +1,83 @@
 <template>
   <div>
     <v-footer dark padless v-if="!isLoggedIn">
-      <v-card width="100%" class="py-13">
-        <v-row class="ma-1">
-          <v-col cols="6" md="2" class="text-left">
-            <v-card-title class="pb-6">TIK</v-card-title>
-            <div class="pb-2">Location</div>
-            <div class="pb-2">1/22, Raja Street Tirupur,</div>
-            <div class="pb-2">Tamilnadu</div>
-            <div class="pb-2">+91 912344 98763</div>
-            <div class="pb-2">+91 912344 98763</div>
-            <div class="pb-2">support@textile.com</div>
-          </v-col>
+      <v-row class="pt-10 px-16">
+        <v-col cols="6" md="2" class="text-left">
+          <div>
+            <h2 class="pb-4">TIK</h2>
+            <subtitle-1>Location</subtitle-1>
+            <p class="pt-5">
+              1/22, Raja Street Tirupur, <br />
+              Tamilnadu <br />
+              +91 912344 98763 <br />
+              +91 912344 98763 <br />
+              support@textile.com
+            </p>
+          </div>
+        </v-col>
 
-          <v-col class="text-left" cols="6" md="2">
-            <v-card class="mx-0" max-width="300" elevation="0">
-              <v-list flat>
-                <div class="pb-6 sub-title">Popular Category</div>
-                <v-list-item-group color="orange">
-                  <v-list-item class="font-weight-light mt-4">
-                    Yarns
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Mens Wear
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Womes Wear
-                  </v-list-item>
-                  <v-list-item class="font-weight-light"> T-shirt</v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Cotton Cloths
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-card>
-          </v-col>
+        <v-col class="text-left" cols="6" md="2">
+          <div>
+            <h4 class="pb-4">Popular Category</h4>
+            <p>Yarns</p>
+            <p>Mens Wear</p>
+            <p>Womens Wear</p>
+            <p>T-Shirt</p>
+            <p>Cotton Cloths</p>
+          </div>
+        </v-col>
 
-          <v-col class="text-left" cols="6" md="2">
-            <v-card class="mx-0" max-width="300" elevation="0">
-              <v-list flat>
-                <div class="pb-6 sub-title">Quick Links</div>
+        <v-col class="text-left" cols="6" md="2">
+          <div>
+            <h4 class="pb-4">Quick Links</h4>
+            <p>About us</p>
+            <p>Category</p>
+            <p>Affilaites</p>
+            <p>Register</p>
+            <p>Contact us</p>
+          </div>
+        </v-col>
 
-                <v-list-item-group color="orange">
-                  <v-list-item class="font-weight-light mt-4">
-                    About us
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Category
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Affilaites
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Register
-                  </v-list-item>
-                  <v-list-item class="font-weight-light">
-                    Contact us
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-card>
-          </v-col>
-          <v-col class="text-left" cols="6" md="2">
-            <v-card class="mx-0" max-width="300" elevation="0">
-              <v-list flat>
-                <div class="pb-6 sub-title">Terms</div>
-                <v-list-item-group color="orange">
-                  <v-list-item class="font-weight-light mt-4"
-                    >About us</v-list-item
-                  >
-                  <v-list-item class="font-weight-light"
-                    >How it works
-                  </v-list-item>
-                  <v-list-item class="font-weight-light"
-                    >Affilaites
-                  </v-list-item>
-                  <v-list-item class="font-weight-light"
-                    >Testimonails</v-list-item
-                  >
-                  <v-list-item class="font-weight-light"
-                    >Contact us</v-list-item
-                  >
-                </v-list-item-group>
-              </v-list>
-            </v-card>
-          </v-col>
+        <v-col class="text-left" cols="6" md="2">
+          <div>
+            <h4 class="pb-4">Terms</h4>
+            <!-- <router-link link to="/aboutUs" class="text-decoration-none white--text">About us</router-link> -->
+            <p>About us</p>
+            <p>How it works</p>
+            <p>Affilaites</p>
+            <p>Testimonails</p>
+            <p>Contact us</p>
+          </div>
+        </v-col>
 
-          <v-col cols="12" md="4">
-            <v-card-text>Newsletter</v-card-text>
-            <v-text-field
-              background-color="white"
-              light
-              value="Enter Your Email Address"
-              outlined
-              clearable
-              dense
-              class="my-2"
-            >
-              <template slot="append-outer">
-                <v-btn light medium color="#fd7e14"> SEARCH </v-btn>
-              </template>
-            </v-text-field>
+        <v-col cols="12" md="4" class="text-left">
+          <h4 class="pb-4">Newsletter</h4>
+          <v-text-field
+            background-color="white"
+            light
+            value="Enter Your Email Address"
+            outlined
+            clearable
+            dense
+          >
+            <template slot="append-outer">
+              <v-btn dark color="#fd7e14" class="mt-n1"> Subscribe </v-btn>
+            </template>
+          </v-text-field>
 
-            <v-card-text>
-              <v-btn
-                v-for="icon in icons"
-                :key="icon"
-                class="mx-4 white--text"
-                icon
-              >
-                <v-icon size="24px">
-                  {{ icon }}
-                </v-icon>
-              </v-btn>
-            </v-card-text>
+          <div>
+            <v-icon v-for="icon in icons" :key="icon" class="pr-5">
+              {{ icon }}
+            </v-icon>
+          </div>
 
-            <v-card-text class="white--text">
-              {{ new Date().getFullYear() }} —
-              <span class="font-weight-regular">TIK.All Rights Reserved.</span>
-            </v-card-text>
-          </v-col>
-        </v-row>
-      </v-card>
+          <div class="mt-5">
+            <span><v-icon small>mdi-copyright</v-icon></span>
+            {{ new Date().getFullYear() }}
+            <span>TIK. All rights reserved.</span>
+          </div>
+        </v-col>
+      </v-row>
     </v-footer>
   </div>
 </template>
@@ -132,10 +88,8 @@ import { Component, Vue } from "vue-property-decorator";
 export default class AppFooter extends Vue {
   icons: any = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 
-  get isLoggedIn() : boolean {
+  get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
   }
 }
 </script>
-
-

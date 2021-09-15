@@ -37,6 +37,7 @@
           :headers="headers"
           :items="employees"
           :search="search"
+          :items-per-page="5"
           class="elevation-1"
         >
         <template v-slot:[`item.Action`]="{ item }">

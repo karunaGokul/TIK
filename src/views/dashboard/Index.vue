@@ -32,7 +32,10 @@
         :headers="headers"
         :items="desserts"
         :search="search"
-        :item-class= "row_classes"      
+        :item-class= "row_classes" 
+        show-expand 
+        :expanded.sync="expanded"
+        item-key="EnquiryName"
         class="elevation-1"
       >
         <template v-slot:[`item.Status`]="{ item }">
@@ -43,11 +46,51 @@
           <span v-else class="red px-2 rounded-circle"></span>
           <span class="pl-2">{{ item.Status }}</span>
         </template>
-        <template v-slot:[`item.Action`]="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
-            mdi-pencil
-          </v-icon>
-          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        
+        <template v-slot:expanded-item="{ headers }">
+          <!-- <v-data-table
+            :headers="headers1"
+            :items="items1"
+            :colspan="headers.length"
+          >
+          </v-data-table> -->
+          <td :colspan="headers.length">
+            <v-simple-table>
+            <thead>
+              <tr class="teal lighten-4">
+                <th>
+                  Approve
+                </th> 
+                <th>
+                  Price
+                </th>
+                <th>
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  masteradmin
+                </td>
+                <td>
+                  98
+                </td>
+                <td>
+                  <v-btn 
+                    small 
+                    color="#ff6500"  
+                    class="rounded-0
+                    white--text
+                    text-capitalize"
+                  >Approve</v-btn>
+                </td>
+              </tr>
+            </tbody>
+            </v-simple-table>
+            
+          </td>
         </template>
       </v-data-table>
       <v-dialog v-model="showDialog" max-width="500">
@@ -86,6 +129,7 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Dashboard extends Vue {
   search: string = "";
   showDialog: boolean = false;
+  expanded: [];
   request: DashboardRequestModel = new DashboardRequestModel();
   public editItem(item: DashboardRequestModel) {
     console.log(item);
@@ -130,7 +174,7 @@ public row_classes(item:any) {
       class: "teal lighten-4 subtitle-2",
     },
     { text: "Status", value: "Status", class: "teal lighten-4 subtitle-2" },
-    { text: "Action", value: "Action", class: "teal lighten-4 subtitle-2" },
+    { text: "Review", value: "Review", class: "teal lighten-4 subtitle-2" },
   ];
   desserts: any = [
     {
@@ -152,7 +196,7 @@ public row_classes(item:any) {
       Class:"orange"
     },
     {
-      EnquiryName: "10",
+      EnquiryName: "30",
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
@@ -161,7 +205,7 @@ public row_classes(item:any) {
        Class:"white"
     },
     {
-      EnquiryName: "10",
+      EnquiryName: "40",
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
@@ -170,7 +214,7 @@ public row_classes(item:any) {
       Class:"orange",      
     },
     {
-      EnquiryName: "10",
+      EnquiryName: "50",
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
@@ -179,13 +223,51 @@ public row_classes(item:any) {
        Class:"white"
     },
     {
-      EnquiryName: "10",
+      EnquiryName: "60",
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
       Class:"orange"
+    },
+  ];
+  headers1: any = [
+    {
+      text: "Approve",
+      align: "start",
+      sortable: false,
+      value: "Approve",
+      class: "teal lighten-4 subtitle-2",
+    },
+    {
+      text: "Price",
+      value: "Price",
+      class: "teal lighten-4 subtitle-2",
+    },
+    { 
+      text: "Your CreditPereiod", 
+      value: "Your CreditPereiod", 
+      class: "teal lighten-4 subtitle-2" },
+    {
+      text: "Your DeliveryPeriod",
+      value: "Your DeliveryPeriod",
+      class: "teal lighten-4 subtitle-2",
+    },
+    {
+      text: "Action",
+      value: "Action",
+      class: "teal lighten-4 subtitle-2",
+    },
+  ];
+  items1: any = [
+    {
+      Approve: "masterdamin",
+      Price: "98",
+      YourCreditPereiod: "40",
+      YourDeliveryPeriod: "34s",
+      Action: "Approve",
+      
     },
   ];
 }

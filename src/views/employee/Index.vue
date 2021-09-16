@@ -63,24 +63,26 @@ import { IEmployeeService } from "@/service";
 @Component
 export default class Employee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  response: EmployeeResponse = new EmployeeResponse();
+  response: Array<EmployeeResponse> = [];
   request: EmployeeRequestModel = new EmployeeRequestModel();
 
   toggleEditProfile: boolean = false;
-  created() {
-    this.loadprofile();
-  }
-  public loadprofile() {
-    this.request.id = this.$store.getters.id;
-    this.EmployeeService.GetEmployees(this.request).then(
-      (response: EmployeeResponse) => {
-        this.response = response;
-      }
-    );
-  }
-
   search: any = "";
   onCreateEmployee: any = false;
+  created() {
+    this.GetEmployees();
+  }
+  public GetEmployees() {
+    this.request.id = this.$store.getters.id;
+    this.EmployeeService.GetEmployees(this.request).then((response) => {});
+  }
+  editItem(item: EmployeeResponse) {
+    this.request.id = this.$store.getters.id;
+    this.EmployeeService.EditEmployee(item).then((response: any) => {
+      this.GetEmployees();
+    });
+  }
+  deleteItem(item: EmployeeResponse) {}
   headers: any = [
     {
       text: "First Name",
@@ -94,11 +96,15 @@ export default class Employee extends Vue {
       class: "teal lighten-4 title",
     },
     {
-      text: "Email Name",
-      value: "EmailName",
+      text: "Email Address",
+      value: "EmailAddress",
       class: "teal lighten-4 title",
     },
-    { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
+    {
+      text: "PhoneNumber",
+      value: "PhoneNumber",
+      class: "teal lighten-4 title",
+    },
     { text: "Action", value: "Action", class: "teal lighten-4 title" },
   ];
   // employees: any = [

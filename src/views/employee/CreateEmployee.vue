@@ -6,18 +6,16 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-          Create New Employee
+        Create New Employee
       </div>
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
       <v-form>
         <v-row class="pl-12 pt-5">
-          <div class="font-weight-regular">
-            Create New Employee
-          </div>
+          <div class="font-weight-regular">Create New Employee</div>
         </v-row>
-        
+
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
@@ -54,7 +52,6 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Gender"
-              v-model="request.Gender"
               :items="gender"
               outlined
               dense
@@ -64,7 +61,7 @@
 
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
-           <v-label>
+            <v-label>
               Email Id
               <span class="red--text">*</span>
             </v-label>
@@ -78,27 +75,26 @@
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
-              Password 
+              Password
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
-              label="Enter Password" 
-              v-model="request.Password"
-              outlined 
+              label="Enter Password"
+              outlined
               dense
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
             <v-label>
-              Phone 
+              Phone
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
               label="Enter Phone Number"
               v-model="request.PhoneNumber"
-              outlined 
+              outlined
               dense
             ></v-text-field>
           </v-col>
@@ -106,14 +102,13 @@
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
-              Address 
+              Address
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
-              label="Enter Address" 
-              v-model="request.Address"
-              outlined 
+              label="Enter Address"
+              outlined
               dense
             ></v-text-field>
           </v-col>
@@ -127,7 +122,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Your Category"
               :items="category"
-              v-model="request.Category"
               outlined
               dense
             ></v-select>
@@ -146,7 +140,7 @@
               outlined
               dense
             ></v-select>
-          </v-col>                  
+          </v-col>
         </v-row>
 
         <v-row class="ml-5">
@@ -160,7 +154,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
               :items="admin"
-              v-model="request.Admin"
               outlined
               dense
             ></v-select>
@@ -175,7 +168,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="master"
-              v-model="request.Master"
               outlined
               dense
             ></v-select>
@@ -188,40 +180,63 @@
             label="Approval Admin Access"
             type="checkbox"
             required
-            v-model="checkbox"
             :rules="checkboxRules"
           ></v-checkbox>
         </v-row>
         <v-row justify="center my-5">
-          <v-btn x-large class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize">Create</v-btn>
+          <v-btn
+            x-large
+            class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"
+            @click="Create"
+            >Create</v-btn
+          >
         </v-row>
       </v-form>
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="deep-orange lighten-5 pink--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="pink">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue,  Inject, Prop } from "vue-property-decorator";
-import { EmployeeRequestModel, EmployeeResponse } from "@/model";
+import { Component, Vue, Inject } from "vue-property-decorator";
+import { EmployeeResponse } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  @Prop() request: EmployeeResponse;
+  request: EmployeeResponse = new EmployeeResponse();
 
-  gender: any = [ "male", "female" ];
+  gender: any = ["male", "female"];
   category: any = [];
-  role: any = [ "approver" ];
+  role: any = ["approver"];
   admin: any = [];
   master: any = [];
+  snackbarText: string = "";
+  snackbar: boolean = false;
 
   public Create() {
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
-        this.snackbarText = response;
-        this.snackbar = true;
-        // this.$router.push("/");
+        // this.snackbarText = response;
+        // this.snackbar = true;
+        this.$router.push("/employee");
       },
       (err) => {
         if (err.response.status == 400) {

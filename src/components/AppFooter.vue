@@ -5,8 +5,8 @@
         <v-col cols="6" md="2" class="text-left">
           <div>
             <h2 class="pb-4">TIK</h2>
-            <subtitle-1>Location</subtitle-1>
-            <p class="pt-5">
+            <p class="subtitle-1">Location</p>
+            <p class="pt-3">
               1/22, Raja Street Tirupur, <br />
               Tamilnadu <br />
               +91 912344 98763 <br />

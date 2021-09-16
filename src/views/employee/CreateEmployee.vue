@@ -6,18 +6,16 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-          Create New Employee
+        Create New Employee
       </div>
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
       <v-form>
         <v-row class="pl-12 pt-5">
-          <div class="font-weight-regular">
-            Create New Employee
-          </div>
+          <div class="font-weight-regular">Create New Employee</div>
         </v-row>
-        
+
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
@@ -54,7 +52,10 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Gender"
+<<<<<<< HEAD
               
+=======
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               :items="gender"
               outlined
               dense
@@ -64,7 +65,7 @@
 
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
-           <v-label>
+            <v-label>
               Email Id
               <span class="red--text">*</span>
             </v-label>
@@ -78,27 +79,32 @@
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
-              Password 
+              Password
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
+<<<<<<< HEAD
               label="Enter Password" 
               
               outlined 
+=======
+              label="Enter Password"
+              outlined
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               dense
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
             <v-label>
-              Phone 
+              Phone
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
               label="Enter Phone Number"
               v-model="request.PhoneNumber"
-              outlined 
+              outlined
               dense
             ></v-text-field>
           </v-col>
@@ -106,14 +112,13 @@
         <v-row class="ml-5">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
-              Address 
+              Address
               <span class="red--text">*</span>
             </v-label>
-            <v-text-field 
+            <v-text-field
               class="pt-2"
-              label="Enter Address" 
-              v-model="request.Address"
-              outlined 
+              label="Enter Address"
+              outlined
               dense
             ></v-text-field>
           </v-col>
@@ -127,7 +132,10 @@
               :menu-props="{ offsetY: true }"
               label="Select Your Category"
               :items="category"
+<<<<<<< HEAD
              
+=======
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>
@@ -146,7 +154,7 @@
               outlined
               dense
             ></v-select>
-          </v-col>                  
+          </v-col>
         </v-row>
 
         <v-row class="ml-5">
@@ -160,7 +168,10 @@
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
               :items="admin"
+<<<<<<< HEAD
              
+=======
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>
@@ -175,7 +186,10 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="master"
+<<<<<<< HEAD
               
+=======
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>
@@ -188,7 +202,6 @@
             label="Approval Admin Access"
             type="checkbox"
             required
-            v-model="checkbox"
             :rules="checkboxRules"
           ></v-checkbox>
         </v-row>
@@ -214,32 +227,59 @@
             </template>
           </v-snackbar>
       </v-form>
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="deep-orange lighten-5 pink--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="pink">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue,  Inject, Prop } from "vue-property-decorator";
-import { EmployeeRequestModel, EmployeeResponse } from "@/model";
+import { Component, Vue, Inject } from "vue-property-decorator";
+import { EmployeeResponse } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
+<<<<<<< HEAD
   
+=======
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
   request: EmployeeResponse = new EmployeeResponse();
 
-  gender: any = [ "male", "female" ];
+  gender: any = ["male", "female"];
   category: any = [];
-  role: any = [ "approver" ];
+  role: any = ["approver"];
   admin: any = [];
   master: any = [];
+  snackbarText: string = "";
+  snackbar: boolean = false;
 
   public createEmployee() {
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
+<<<<<<< HEAD
         this.snackbarText = response;
         this.snackbar = true;
+=======
+        // this.snackbarText = response;
+        // this.snackbar = true;
+>>>>>>> c7745c25166bbb3128083b25a994ad439119e346
         this.$router.push("/employee");
       },
       (err) => {

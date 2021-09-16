@@ -9,12 +9,13 @@ export class AuthenticationResponse {
     accessToken: string;
     refreshToken: string;
     id: string;
+    role: string;
 }
 export class AuthenticationState {
     accessToken: string = "";
     refreshToken: string = "";
     id: string = "";
-    isAdmin: boolean = true;
+    role: string = "";
     sucess: boolean;
 
 }

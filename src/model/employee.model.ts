@@ -5,9 +5,12 @@ export class EmployeeRequestModel {
 }
 
 export class EmployeeResponse {
-    firstName: string;
-    lastName: string;
-    designation: string;
-    emailAddress: string;
-    phoneNumber: number;
+    id: string;
+    FirstName: string;
+    LastName: string;
+    Designation: string;
+    EmailAddress: string;
+    PhoneNumber: number;
+    EmployeeRole: string;
+    EmployeeId: string;
 }

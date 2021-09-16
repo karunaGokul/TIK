@@ -8,7 +8,7 @@ const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     id: localStorage.getItem('id') || '',
-    isAdmin: localStorage.getItem('isAdmin') === "false" ? false : true,
+    role: localStorage.getItem('role') || '',
     sucess: false
 }
 const getters: GetterTree<AuthenticationState, any> = {
@@ -17,6 +17,9 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     isLoggedIn: state => {
         return state.sucess;
+    },
+    role: state => {
+        return state.role;
     },
     id: state => {
         return state.id;
@@ -28,6 +31,7 @@ const mutations: MutationTree<AuthenticationState> = {
         state.accessToken = data.accessToken;
         state.refreshToken = data.refreshToken;
         state.id = data.id;
+        state.role = data.role;
         state.sucess = true;
 
     },
@@ -47,6 +51,7 @@ const actions: ActionTree<AuthenticationState, any> = {
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('refreshToken', response.refreshToken);
             localStorage.setItem('id', response.id);
+            localStorage.setItem('role', response.id);
             context.commit('onAuthenticate', response);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
             return response;

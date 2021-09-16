@@ -63,20 +63,18 @@ import { IEmployeeService } from "@/service";
 @Component
 export default class Employee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  response: EmployeeResponse = new EmployeeResponse();
+  response: Array<EmployeeResponse> = [];
   request: EmployeeRequestModel = new EmployeeRequestModel();
 
   toggleEditProfile: boolean = false;
+  search: any = "";
+  onCreateEmployee: any = false;
   created() {
     this.getEmployee();
   }
   public getEmployee() {
     this.request.id = this.$store.getters.id;
-    this.EmployeeService.GetEmployees(this.request).then(
-      (response: EmployeeResponse) => {
-        this.response = response;
-      }
-    );
+    this.EmployeeService.GetEmployees(this.request).then((response) => {});
   }
 
   // public deleteEmployee() {
@@ -116,11 +114,15 @@ export default class Employee extends Vue {
       class: "teal lighten-4 title",
     },
     {
-      text: "Email Name",
-      value: "EmailName",
+      text: "Email Address",
+      value: "EmailAddress",
       class: "teal lighten-4 title",
     },
-    { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
+    {
+      text: "PhoneNumber",
+      value: "PhoneNumber",
+      class: "teal lighten-4 title",
+    },
     { text: "Action", value: "Action", class: "teal lighten-4 title" },
   ];
   // employees: any = [

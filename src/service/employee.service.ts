@@ -27,6 +27,18 @@ export class EmployeeService extends BaseService<any, EmployeeResponse> implemen
             return response.data;
         });
     }
+    public EditEmployee(request: EmployeeResponse): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/employee"
+        return this.httpPost('EditEmployee', request).then(response => {
+            return response.data;
+        });
+    }
+    public DeleteEmployee(request: EmployeeRequestModel): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/employee"
+        return this.httpPost('DeleteEmployee', request).then(response => {
+            return response.data;
+        });
+    }
 
     public DeleteEmployee(Id: number): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/employee"

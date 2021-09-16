@@ -28,6 +28,7 @@
               outlined
               dense
               placeholder="Enter First Name"
+              v-model="request.FirstName"
               class="pt-2"
             ></v-text-field>
           </v-col>
@@ -40,6 +41,7 @@
               outlined
               dense
               placeholder="Enter Last Name"
+              v-model="request.LastName"
               class="pt-2"
             ></v-text-field>
           </v-col>
@@ -52,6 +54,8 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Gender"
+              v-model="request.Gender"
+              :items="gender"
               outlined
               dense
             ></v-select>
@@ -67,6 +71,7 @@
             <v-text-field
               class="pt-2"
               label="Enter Email Id"
+              v-model="request.EmailAddress"
               outlined
               dense
             ></v-text-field>
@@ -79,6 +84,7 @@
             <v-text-field 
               class="pt-2"
               label="Enter Password" 
+              v-model="request.Password"
               outlined 
               dense
             ></v-text-field>
@@ -91,6 +97,7 @@
             <v-text-field 
               class="pt-2"
               label="Enter Phone Number"
+              v-model="request.PhoneNumber"
               outlined 
               dense
             ></v-text-field>
@@ -105,6 +112,7 @@
             <v-text-field 
               class="pt-2"
               label="Enter Address" 
+              v-model="request.Address"
               outlined 
               dense
             ></v-text-field>
@@ -118,6 +126,8 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Your Category"
+              :items="category"
+              v-model="request.Category"
               outlined
               dense
             ></v-select>
@@ -131,6 +141,8 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Merchandiser"
+              :items="role"
+              v-model="request.EmployeeRole"
               outlined
               dense
             ></v-select>
@@ -147,6 +159,8 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
+              :items="admin"
+              v-model="request.Admin"
               outlined
               dense
             ></v-select>
@@ -160,6 +174,8 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
+              :items="master"
+              v-model="request.Master"
               outlined
               dense
             ></v-select>
@@ -185,8 +201,35 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue,  Inject, Prop } from "vue-property-decorator";
+import { EmployeeRequestModel, EmployeeResponse } from "@/model";
+import { IEmployeeService } from "@/service";
 
 @Component
-export default class CreateEmployee extends Vue {}
+export default class CreateEmployee extends Vue {
+  @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  @Prop() request: EmployeeResponse;
+
+  gender: any = [ "male", "female" ];
+  category: any = [];
+  role: any = [ "approver" ];
+  admin: any = [];
+  master: any = [];
+
+  public Create() {
+    this.EmployeeService.CreateEmployee(this.request).then(
+      (response) => {
+        this.snackbarText = response;
+        this.snackbar = true;
+        // this.$router.push("/");
+      },
+      (err) => {
+        if (err.response.status == 400) {
+          this.snackbarText = err.response.data;
+          this.snackbar = true;
+        }
+      }
+    );
+  }
+}
 </script>

@@ -54,7 +54,7 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Gender"
-              v-model="request.Gender"
+              
               :items="gender"
               outlined
               dense
@@ -84,7 +84,7 @@
             <v-text-field 
               class="pt-2"
               label="Enter Password" 
-              v-model="request.Password"
+              
               outlined 
               dense
             ></v-text-field>
@@ -127,7 +127,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Your Category"
               :items="category"
-              v-model="request.Category"
+             
               outlined
               dense
             ></v-select>
@@ -160,7 +160,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
               :items="admin"
-              v-model="request.Admin"
+             
               outlined
               dense
             ></v-select>
@@ -175,7 +175,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="master"
-              v-model="request.Master"
+              
               outlined
               dense
             ></v-select>
@@ -193,8 +193,26 @@
           ></v-checkbox>
         </v-row>
         <v-row justify="center my-5">
-          <v-btn x-large class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize">Create</v-btn>
+          <v-btn 
+            x-large 
+            class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"
+            @click="createEmployee">Create</v-btn>
         </v-row>
+        <v-snackbar
+            v-model="snackbar"
+            :timeout="2000"
+            color="deep-orange lighten-5 pink--text"
+            right
+            top
+          >
+            <v-icon color="pink">mdi-exclamation-thick </v-icon>
+            {{ snackbarText }}
+            <template v-slot:action="{ attrs }">
+              <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+                <v-icon> mdi-close-box</v-icon>
+              </v-btn>
+            </template>
+          </v-snackbar>
       </v-form>
     </v-card>
   </div>
@@ -208,7 +226,8 @@ import { IEmployeeService } from "@/service";
 @Component
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  @Prop() request: EmployeeResponse;
+  
+  request: EmployeeResponse = new EmployeeResponse();
 
   gender: any = [ "male", "female" ];
   category: any = [];
@@ -216,12 +235,12 @@ export default class CreateEmployee extends Vue {
   admin: any = [];
   master: any = [];
 
-  public Create() {
+  public createEmployee() {
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
         this.snackbarText = response;
         this.snackbar = true;
-        // this.$router.push("/");
+        this.$router.push("/employee");
       },
       (err) => {
         if (err.response.status == 400) {

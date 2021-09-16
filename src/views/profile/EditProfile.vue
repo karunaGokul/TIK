@@ -114,6 +114,7 @@ import { ProfileResponse } from "@/model";
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
+  
   dialog: boolean = true;
   logo: File;
   public handleimage(e: File) {

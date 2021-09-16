@@ -43,11 +43,11 @@
           class="elevation-1"
         >
           <template v-slot:[`item.Action`]="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)">
+            <v-icon small class="mr-2" @click="editEmployee">
               mdi-pencil
             </v-icon>
 
-            <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+            <v-icon small @click="deleteEmployee"> mdi-delete </v-icon>
           </template>
         </v-data-table>
       </v-card>
@@ -68,9 +68,9 @@ export default class Employee extends Vue {
 
   toggleEditProfile: boolean = false;
   created() {
-    this.loadprofile();
+    this.getEmployee();
   }
-  public loadprofile() {
+  public getEmployee() {
     this.request.id = this.$store.getters.id;
     this.EmployeeService.GetEmployees(this.request).then(
       (response: EmployeeResponse) => {
@@ -78,6 +78,28 @@ export default class Employee extends Vue {
       }
     );
   }
+
+  // public deleteEmployee() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.EmployeeService.DeleteEmployee(this.request.id).then((response) => {
+  //     this.$store.dispatch("showAlert", {
+  //       message: "Employee deleted sucessfully",
+  //       snackBarClass: "fa-check",
+  //       type: "success",
+  //     });
+  //     this.request.id = null;
+  //     this.getEmployee();
+  //   });
+  // }
+
+  // public editEmployee() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.EmployeeService.EditEmployee(this.request).then(
+  //     (response: any) => {
+  //       this.$emit(" ");
+  //     }
+  //   );
+  // }
 
   search: any = "";
   onCreateEmployee: any = false;

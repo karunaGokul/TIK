@@ -99,8 +99,7 @@ export default class Employee extends Vue {
   //   );
   // }
 
-  search: any = "";
-  onCreateEmployee: any = false;
+  
   headers: any = [
     {
       text: "First Name",

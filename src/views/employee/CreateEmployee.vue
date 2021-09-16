@@ -52,10 +52,6 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Gender"
-<<<<<<< HEAD
-              
-=======
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               :items="gender"
               outlined
               dense
@@ -84,14 +80,8 @@
             </v-label>
             <v-text-field
               class="pt-2"
-<<<<<<< HEAD
-              label="Enter Password" 
-              
-              outlined 
-=======
               label="Enter Password"
               outlined
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               dense
             ></v-text-field>
           </v-col>
@@ -132,10 +122,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Your Category"
               :items="category"
-<<<<<<< HEAD
-             
-=======
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>
@@ -168,10 +154,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
               :items="admin"
-<<<<<<< HEAD
-             
-=======
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>
@@ -186,10 +168,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="master"
-<<<<<<< HEAD
               
-=======
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
               outlined
               dense
             ></v-select>

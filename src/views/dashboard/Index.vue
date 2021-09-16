@@ -32,8 +32,8 @@
         :headers="headers"
         :items="desserts"
         :search="search"
-        :item-class= "row_classes" 
-        show-expand 
+        :item-class="row_classes"
+        show-expand
         :expanded.sync="expanded"
         item-key="EnquiryName"
         class="elevation-1"
@@ -46,7 +46,7 @@
           <span v-else class="red px-2 rounded-circle"></span>
           <span class="pl-2">{{ item.Status }}</span>
         </template>
-        
+
         <template v-slot:expanded-item="{ headers }">
           <!-- <v-data-table
             :headers="headers1"
@@ -56,40 +56,28 @@
           </v-data-table> -->
           <td :colspan="headers.length">
             <v-simple-table>
-            <thead>
-              <tr class="teal lighten-4">
-                <th>
-                  Approve
-                </th> 
-                <th>
-                  Price
-                </th>
-                <th>
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  masteradmin
-                </td>
-                <td>
-                  98
-                </td>
-                <td>
-                  <v-btn 
-                    small 
-                    color="#ff6500"  
-                    class="rounded-0
-                    white--text
-                    text-capitalize"
-                  >Approve</v-btn>
-                </td>
-              </tr>
-            </tbody>
+              <thead>
+                <tr class="teal lighten-4">
+                  <th>Approve</th>
+                  <th>Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>masteradmin</td>
+                  <td>98</td>
+                  <td>
+                    <v-btn
+                      small
+                      color="#ff6500"
+                      class="rounded-0 white--text text-capitalize"
+                      >Approve</v-btn
+                    >
+                  </td>
+                </tr>
+              </tbody>
             </v-simple-table>
-            
           </td>
         </template>
       </v-data-table>
@@ -144,10 +132,9 @@ export default class Dashboard extends Vue {
   public close() {
     this.showDialog = false;
   }
-public row_classes(item:any) {
-  return item.Status === 'Active' ? 'white' : 'blue lighten-5'
-           
-    }
+  public row_classes(item: any) {
+    return item.Status === "Active" ? "white" : "blue lighten-5";
+  }
   items: any = ["New Enquiry", "Conformed Project", "Completed Project"];
   headers: any = [
     {
@@ -175,6 +162,11 @@ public row_classes(item:any) {
     },
     { text: "Status", value: "Status", class: "teal lighten-4 subtitle-2" },
     { text: "Review", value: "Review", class: "teal lighten-4 subtitle-2" },
+    {
+      text: "",
+      value: "data-table-expand",
+      class: "teal lighten-4 subtitle-2",
+    },
   ];
   desserts: any = [
     {
@@ -184,7 +176,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class:"white"
+      Class: "white",
     },
     {
       EnquiryName: "20",
@@ -193,7 +185,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class:"orange"
+      Class: "orange",
     },
     {
       EnquiryName: "30",
@@ -202,7 +194,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-       Class:"white"
+      Class: "white",
     },
     {
       EnquiryName: "40",
@@ -211,7 +203,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class:"orange",      
+      Class: "orange",
     },
     {
       EnquiryName: "50",
@@ -220,7 +212,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-       Class:"white"
+      Class: "white",
     },
     {
       EnquiryName: "60",
@@ -229,7 +221,7 @@ public row_classes(item:any) {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-      Class:"orange"
+      Class: "orange",
     },
   ];
   headers1: any = [
@@ -245,10 +237,11 @@ public row_classes(item:any) {
       value: "Price",
       class: "teal lighten-4 subtitle-2",
     },
-    { 
-      text: "Your CreditPereiod", 
-      value: "Your CreditPereiod", 
-      class: "teal lighten-4 subtitle-2" },
+    {
+      text: "Your CreditPereiod",
+      value: "Your CreditPereiod",
+      class: "teal lighten-4 subtitle-2",
+    },
     {
       text: "Your DeliveryPeriod",
       value: "Your DeliveryPeriod",
@@ -267,7 +260,6 @@ public row_classes(item:any) {
       YourCreditPereiod: "40",
       YourDeliveryPeriod: "34s",
       Action: "Approve",
-      
     },
   ];
 }

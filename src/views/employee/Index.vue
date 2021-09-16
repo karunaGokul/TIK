@@ -6,10 +6,10 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-          Employee List
+        Employee List
       </div>
     </v-container>
-    
+
     <template>
       <v-card class="mx-3" elevation="8">
         <v-card-title>
@@ -20,7 +20,9 @@
           <v-btn elevation="2" class="ma-3">Print</v-btn>
           <v-spacer></v-spacer>
           <router-link to="/createemployee" tag="button">
-            <v-btn class="indigo darken-4 white--text rounded-0 text-capitalize">Create</v-btn>
+            <v-btn class="indigo darken-4 white--text rounded-0 text-capitalize"
+              >Create</v-btn
+            >
           </router-link>
 
           <v-spacer></v-spacer>
@@ -35,18 +37,18 @@
         </v-card-title>
         <v-data-table
           :headers="headers"
-          :items="employees"
+          :items="response"
           :search="search"
           :items-per-page="5"
           class="elevation-1"
         >
-        <template v-slot:[`item.Action`]="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
-            mdi-pencil
-          </v-icon>
-          
-          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-        </template>
+          <template v-slot:[`item.Action`]="{ item }">
+            <v-icon small class="mr-2" @click="editItem(item)">
+              mdi-pencil
+            </v-icon>
+
+            <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+          </template>
         </v-data-table>
       </v-card>
     </template>
@@ -54,22 +56,32 @@
 </template>
  
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { EmployeeRequestModel } from "@/model";
+import { Component, Inject, Vue } from "vue-property-decorator";
+import { EmployeeRequestModel, EmployeeResponse } from "@/model";
+import { IEmployeeService } from "@/service";
 
 @Component
 export default class Employee extends Vue {
+  @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  response: EmployeeResponse = new EmployeeResponse();
   request: EmployeeRequestModel = new EmployeeRequestModel();
+
+  toggleEditProfile: boolean = false;
+  created() {
+    this.loadprofile();
+  }
+  public loadprofile() {
+    this.request.id = this.$store.getters.id;
+    this.EmployeeService.GetEmployees(this.request).then(
+      (response: EmployeeResponse) => {
+        this.response = response;
+      }
+    );
+  }
+
   search: any = "";
   onCreateEmployee: any = false;
   headers: any = [
-    {
-      text: "#S.No",
-      align: "start",
-      sortable: true,
-      value: "Sno",
-      class: "teal lighten-4 title",
-    },
     {
       text: "First Name",
       value: "FirstName",
@@ -89,61 +101,61 @@ export default class Employee extends Vue {
     { text: "Phone", value: "Phone", class: "teal lighten-4 title" },
     { text: "Action", value: "Action", class: "teal lighten-4 title" },
   ];
-  employees: any = [
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-     
-    },
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-     
-    },
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-     
-    },
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-     
-    },
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-     
-    },
-    {
-      Sno: "1",
-      FirstName: "MasterAdmin",
-      LastName: "A",
-      Designation: "MasterAdmin",
-      EmailName: "MasterAdmin@gmail.com",
-      Phone: "06789987654",
-      
-    },
-  ];
+  // employees: any = [
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  //   {
+  //     Sno: "1",
+  //     FirstName: "MasterAdmin",
+  //     LastName: "A",
+  //     Designation: "MasterAdmin",
+  //     EmailName: "MasterAdmin@gmail.com",
+  //     Phone: "06789987654",
+
+  //   },
+  // ];
 }
 </script>

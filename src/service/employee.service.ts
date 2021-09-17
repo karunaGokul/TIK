@@ -1,41 +1,41 @@
 import { IBaseService, BaseService } from './base.service';
-import { EmployeeRequestModel, EmployeeResponse } from '@/model';
+import { EmployeeRequestModel, EmployeeModel } from '@/model';
 
-export interface IEmployeeService extends IBaseService<any, EmployeeResponse> {
-    GetEmployees(request: EmployeeRequestModel): Promise<EmployeeResponse>;
-    CreateEmployee(request: EmployeeResponse): Promise<any>;
-    DeleteEmployee(Id: number): Promise<any>;
-    EditEmployee(request:any): Promise<any>;
+export interface IEmployeeService extends IBaseService<any, EmployeeModel> {
+    GetEmployees(request: EmployeeRequestModel): Promise<Array<EmployeeModel>>;
+    CreateEmployee(request: EmployeeModel): Promise<any>;
+    DeleteEmployee(request: EmployeeRequestModel): Promise<any>
+    EditEmployee(request:EmployeeModel): Promise<any>;
 }
 
-export class EmployeeService extends BaseService<any, EmployeeResponse> implements IEmployeeService {
+export class EmployeeService extends BaseService<any, EmployeeModel> implements IEmployeeService {
 
     constructor() {
         super('public');
     }
 
-    public GetEmployees(request: EmployeeRequestModel): Promise<EmployeeResponse> {
+    public GetEmployees(request: EmployeeRequestModel): Promise<Array<EmployeeModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/employee"
         return this.httpGet('GetEmployees', request).then(response => {
             return response.data;
         });
     }
 
-    public CreateEmployee(request: EmployeeResponse): Promise<any> {
+    public CreateEmployee(request: EmployeeModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/employee"
         return this.httpPost('CreateEmployee', request).then(response => {
             return response.data;
         });
     }
 
-    public DeleteEmployee(Id: number): Promise<any> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/employee"
-        return this.httpDelete('DeleteEmployee/'+Id, null).then(response => {
-            return response.data;
-        })
-    }
+    public DeleteEmployee(request: EmployeeRequestModel): Promise<any> {
+            this.apiUrl = "https://tikdev-api.azure-api.net/employee"
+            return this.httpPost('DeleteEmployee', request).then(response => {
+                   return response.data;
+              });
+           }
 
-    public EditEmployee(request: any): Promise<any> {
+    public EditEmployee(request: EmployeeModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/employee"
         return this.httpPost('EditEmployee', request).then(response => {
         return response.data;

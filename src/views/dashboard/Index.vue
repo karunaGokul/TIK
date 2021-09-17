@@ -1,12 +1,14 @@
 <template>
   <div>
-    <v-breadcrumbs class="py-8">
-      <v-breadcrumbs-item><v-icon medium>mdi-home</v-icon> </v-breadcrumbs-item>
-      <v-breadcrumbs-item
-        ><v-icon small>mdi-chevron-right</v-icon>
-      </v-breadcrumbs-item>
-      <v-breadcrumbs-item><span>Dashboard</span> </v-breadcrumbs-item>
-    </v-breadcrumbs>
+    <v-container fluid class="pa-4">
+      <div class="ma-2">
+        <router-link link to="/" class="text-decoration-none">
+          <v-icon large> mdi-home</v-icon>
+        </router-link>
+        <v-icon large> mdi-chevron-right</v-icon>
+        Dashboard
+      </div>
+    </v-container>
     <v-card class="ma-3" elevation="8">
       <v-card-title>
         <v-select
@@ -86,7 +88,7 @@
           <v-row class="my-4 px-4">
             <v-card-title>Project Details </v-card-title>
             <v-spacer></v-spacer>
-            <v-btn @click="close" icon>
+            <v-btn @click="showDialog = false" icon>
               <v-icon id="close-button">mdi-close</v-icon>
             </v-btn>
           </v-row>
@@ -119,19 +121,6 @@ export default class Dashboard extends Vue {
   showDialog: boolean = false;
   expanded: [];
   request: DashboardRequestModel = new DashboardRequestModel();
-  public editItem(item: DashboardRequestModel) {
-    console.log(item);
-    this.showDialog = true;
-    this.request = item;
-  }
-  // public save(request: DashboardRequestModel) {
-  //   this.request = request;
-  //   this.showDialog = false;
-  // }
-
-  public close() {
-    this.showDialog = false;
-  }
   public row_classes(item: any) {
     return item.Status === "Active" ? "white" : "blue lighten-5";
   }

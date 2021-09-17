@@ -4,7 +4,7 @@ export class EmployeeRequestModel {
     id: string;
 }
 
-export class EmployeeResponse {
+export class EmployeeModel {
     id: string;
     FirstName: string;
     LastName: string;

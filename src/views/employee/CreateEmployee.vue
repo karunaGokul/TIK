@@ -205,41 +205,20 @@
               </v-btn>
             </template>
           </v-snackbar>
-      </v-form>
-      <v-snackbar
-        v-model="snackbar"
-        :timeout="2000"
-        color="deep-orange lighten-5 pink--text"
-        absolute
-        right
-        top
-      >
-        <v-icon color="pink">mdi-exclamation-thick </v-icon>
-        {{ snackbarText }}
-
-        <template v-slot:action="{ attrs }">
-          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-            <v-icon> mdi-close-box</v-icon>
-          </v-btn>
-        </template>
-      </v-snackbar>
+      </v-form>      
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
-import { EmployeeResponse } from "@/model";
+import {EmployeeModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-<<<<<<< HEAD
-  
-=======
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
-  request: EmployeeResponse = new EmployeeResponse();
+  request: EmployeeModel = new EmployeeModel();
 
   gender: any = ["male", "female"];
   category: any = [];
@@ -251,14 +230,7 @@ export default class CreateEmployee extends Vue {
 
   public createEmployee() {
     this.EmployeeService.CreateEmployee(this.request).then(
-      (response) => {
-<<<<<<< HEAD
-        this.snackbarText = response;
-        this.snackbar = true;
-=======
-        // this.snackbarText = response;
-        // this.snackbar = true;
->>>>>>> c7745c25166bbb3128083b25a994ad439119e346
+      (response) => {        
         this.$router.push("/employee");
       },
       (err) => {

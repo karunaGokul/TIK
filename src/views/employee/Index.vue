@@ -47,7 +47,9 @@
             <v-icon small class="mr-2" @click="editEmployee(item)">
               mdi-pencil
             </v-icon>
-            <v-icon small @click="deleteEmployee(item)"> mdi-delete </v-icon>
+            <v-icon small @click="deleteEmployee(EmployeeId)">
+              mdi-delete
+            </v-icon>
           </template>
         </v-data-table>
       </v-card>
@@ -113,6 +115,7 @@ export default class Employee extends Vue {
   snackbarText: string = "";
   snackbar: boolean = false;
   showDialog: boolean = false;
+  EmployeeId: string = "";
   created() {
     this.getEmployee();
   }
@@ -127,9 +130,11 @@ export default class Employee extends Vue {
     this.EmployeeService.DeleteEmployee(item.EmployeeId).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
+      this.EmployeeId = null;
       this.getEmployee();
     });
   }
+
   public editEmployee(item: EmployeeModel) {
     this.showDialog = true;
     this.editRequest = item;

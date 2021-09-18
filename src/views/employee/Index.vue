@@ -47,9 +47,7 @@
             <v-icon small class="mr-2" @click="editEmployee(item)">
               mdi-pencil
             </v-icon>
-            <v-icon small @click="deleteEmployee(EmployeeId)">
-              mdi-delete
-            </v-icon>
+            <v-icon small @click="deleteEmployee(item)"> mdi-delete </v-icon>
           </template>
         </v-data-table>
       </v-card>

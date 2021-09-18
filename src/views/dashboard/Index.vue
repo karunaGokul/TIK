@@ -83,31 +83,6 @@
           </td>
         </template>
       </v-data-table>
-      <v-dialog v-model="showDialog" max-width="500">
-        <v-card>
-          <v-row class="my-4 px-4">
-            <v-card-title>Project Details </v-card-title>
-            <v-spacer></v-spacer>
-            <v-btn @click="showDialog = false" icon>
-              <v-icon id="close-button">mdi-close</v-icon>
-            </v-btn>
-          </v-row>
-          <v-card-text>
-            <div v-for="(value, name) in request" :key="name">
-              <v-text-field
-                :label="name"
-                v-model="request[name]"
-                outlined
-              ></v-text-field>
-            </div>
-            <div class="d-flex">
-              <v-btn class="ml-auto" color="primary" @click="save(request)">
-                Save
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
     </v-card>
   </div>
 </template>

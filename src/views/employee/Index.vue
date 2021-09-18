@@ -66,7 +66,7 @@
                 :label="name"
                 v-model="editRequest[name]"
                 outlined
-                v-if="!(name==='EmployeeId')"
+                v-if="!(name === 'EmployeeId')"
               ></v-text-field>
             </div>
             <div class="d-flex">
@@ -124,8 +124,7 @@ export default class Employee extends Vue {
   }
 
   public deleteEmployee(item: EmployeeModel) {
-    this.request.id = item.EmployeeId;
-    this.EmployeeService.DeleteEmployee(this.request).then((response) => {
+    this.EmployeeService.DeleteEmployee(item.EmployeeId).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
       this.getEmployee();
@@ -136,7 +135,10 @@ export default class Employee extends Vue {
     this.editRequest = item;
   }
   public save(editRequest: EmployeeModel) {
-    this.EmployeeService.EditEmployee(editRequest).then((response) => {
+    this.EmployeeService.EditEmployee(
+      this.editRequest,
+      editRequest.EmployeeId
+    ).then((response) => {
       this.showDialog = false;
       this.snackbarText = response;
       this.snackbar = true;
@@ -149,10 +151,14 @@ export default class Employee extends Vue {
       value: "FirstName",
       class: "teal lighten-4 subtitle-2",
     },
-    { text: "Last Name", value: "LastName", class: "teal lighten-4 subtitle-2" },
     {
-      text: "Designation",
-      value: "Designation",
+      text: "Last Name",
+      value: "LastName",
+      class: "teal lighten-4 subtitle-2",
+    },
+    {
+      text: "EmployeeRole",
+      value: "EmployeeRole",
       class: "teal lighten-4 subtitle-2",
     },
     {

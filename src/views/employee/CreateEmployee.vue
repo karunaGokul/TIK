@@ -136,6 +136,8 @@
               :menu-props="{ offsetY: true }"
               label="Merchandiser"
               :items="role"
+              item-text="employeeRole"
+              item-value="id"
               v-model="request.EmployeeRole"
               outlined
               dense
@@ -168,7 +170,6 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="master"
-              
               outlined
               dense
             ></v-select>
@@ -185,52 +186,62 @@
           ></v-checkbox>
         </v-row>
         <v-row justify="center my-5">
-          <v-btn 
-            x-large 
+          <v-btn
+            x-large
             class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"
-            @click="createEmployee">Create</v-btn>
+            @click="createEmployee"
+            >Create</v-btn
+          >
         </v-row>
         <v-snackbar
-            v-model="snackbar"
-            :timeout="2000"
-            color="deep-orange lighten-5 pink--text"
-            right
-            top
-          >
-            <v-icon color="pink">mdi-exclamation-thick </v-icon>
-            {{ snackbarText }}
-            <template v-slot:action="{ attrs }">
-              <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-                <v-icon> mdi-close-box</v-icon>
-              </v-btn>
-            </template>
-          </v-snackbar>
-      </v-form>      
+          v-model="snackbar"
+          :timeout="2000"
+          color="deep-orange lighten-5 pink--text"
+          right
+          top
+        >
+          <v-icon color="pink">mdi-exclamation-thick </v-icon>
+          {{ snackbarText }}
+          <template v-slot:action="{ attrs }">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+              <v-icon> mdi-close-box</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
+      </v-form>
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
-import {EmployeeModel } from "@/model";
+import { EmployeeModel, RoleResponseModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  request: EmployeeModel = new EmployeeModel();
-
+  public request: EmployeeModel = new EmployeeModel();
+  public role: Array<RoleResponseModel> = [];
   gender: any = ["male", "female"];
   category: any = [];
-  role: any = ["approver"];
   admin: any = [];
   master: any = [];
   snackbarText: string = "";
   snackbar: boolean = false;
-
+  created() {
+    this.GetRoles();
+  }
+  private GetRoles() {
+    this.EmployeeService.GetRoles().then(
+      (response: Array<RoleResponseModel>) => {
+        this.role = response;
+      }
+    );
+  }
   public createEmployee() {
     this.EmployeeService.CreateEmployee(this.request).then(
-      (response) => {        
+      (response) => {
         this.$router.push("/employee");
       },
       (err) => {

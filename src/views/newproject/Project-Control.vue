@@ -41,11 +41,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import {
-  ProjectFormResponseModel,
-  ProjectFormStepControl,
-  ProjectFormStepControlOption,
-} from "@/model";
+import { ProjectFormStepControl, ProjectFormStepControlOption } from "@/model";
 
 @Component
 export default class ProjectControl extends Vue {

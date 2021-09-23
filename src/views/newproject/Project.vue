@@ -65,22 +65,18 @@
       </v-col>
     </v-row>
     <div class="d-flex justify-end">
+      <v-btn elevation="2" class="px-8 ma-4 text-capitalize" @click="back">
+        Back
+      </v-btn>
       <v-btn
-          elevation="2"
-          class="px-8 ma-4 text-capitalize"
-          @click="back"
-        >
-          Back
-        </v-btn>
-         <v-btn
-          elevation="2"
-          class="px-8 ma-4 text-capitalize white--text"
-          color="#00365C"
-          @click="next"
-        >
-          Next
-        </v-btn>
-      </div>
+        elevation="2"
+        class="px-8 ma-4 text-capitalize white--text"
+        color="#00365C"
+        @click="next"
+      >
+        Next
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -126,7 +122,6 @@ export default class ProjectFormBuilder extends Vue {
   back() {
     if (this.stepNumber > 1) {
       this.stepNumber--;
-      this.steps.pop();
     }
   }
 

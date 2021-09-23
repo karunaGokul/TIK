@@ -128,7 +128,9 @@
       </div>
 
       <v-card class="d-flex justify-left pl-10 mb-16">
-        <v-btn flat>Mills</v-btn>
+        <router-link to="/productDetails" tag="button">
+          <v-btn flat>Mills</v-btn>
+        </router-link>
         <v-btn>Knitting</v-btn>
         <v-btn>Pieces</v-btn>
         <v-btn>Dying</v-btn>

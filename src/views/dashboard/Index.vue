@@ -127,7 +127,7 @@ export default class Dashboard extends Vue {
     { text: "Status", value: "Status", class: "teal lighten-4 subtitle-2" },
     { text: "Review", value: "Review", class: "teal lighten-4 subtitle-2" },
     {
-      text: "",
+      text: "Action",
       value: "data-table-expand",
       class: "teal lighten-4 subtitle-2",
     },

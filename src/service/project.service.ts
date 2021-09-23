@@ -1,10 +1,10 @@
 import { IBaseService, BaseService } from './base.service';
-import { ProjectFormModel, ProjectFormRequestModel, ProjectFormResponseModel } from '@/model';
+import { ProjectFormModel, ProjectFormRequestModel } from '@/model';
 
-export interface IProjectService extends IBaseService<ProjectFormRequestModel, ProjectFormResponseModel> {
+export interface IProjectService extends IBaseService<ProjectFormRequestModel, ProjectFormModel> {
     newProject(request: ProjectFormRequestModel): Promise<ProjectFormModel>;
 }
-export class ProjectService extends BaseService<ProjectFormRequestModel, ProjectFormResponseModel> implements IProjectService {
+export class ProjectService extends BaseService<ProjectFormRequestModel, ProjectFormModel> implements IProjectService {
 
     constructor() {
         super('public');

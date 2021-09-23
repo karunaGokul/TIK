@@ -27,55 +27,57 @@
           <v-card-title> {{ data.formHeading }} </v-card-title>
         </div>
 
-       <ProductControls />
+        <ProductControls />
 
         <h3>
           <v-text class="font-weight-regular">Counts:</v-text>
         </h3>
 
-        <v-text-field solo ></v-text-field>
+        <v-text-field solo></v-text-field>
 
         <h3>
-          <v-text class="font-weight-regular">Enter AVG Credit Time you offer</v-text>
+          <v-text class="font-weight-regular"
+            >Enter AVG Credit Time you offer</v-text
+          >
         </h3>
 
-        <v-text-field solo ></v-text-field>
+        <v-text-field solo></v-text-field>
 
-        <div 
-            justify="center" 
-            align="center"
-            class="mt-10 pb-16"
-        >
-        <v-btn 
+        <div justify="center" align="center" class="mt-10 pb-16">
+          <v-btn
             color="#ff6500"
             class="white--text font-weight-light text-capitalize rounded-0"
-        >save</v-btn>
+            >save</v-btn
+          >
         </div>
-        
       </div>
     </v-card>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Inject, Vue } from "vue-property-decorator";
 import ProductControls from "./ProductControls.vue";
-import { FabricFormModel, FabricFormControlModel } from "./Model";
+import { ProfileModel } from "@/model";
+import { IProfileService } from "@/service";
 
 @Component({
   components: { ProductControls },
 })
 export default class productDetails extends Vue {
-  data: FabricFormModel = new FabricFormModel();
+  @Inject("ProfileService") ProjectService: IProfileService;
+  data: ProfileModel = new ProfileModel();
+  subHeading: string = "";
+  formHeading: string = "";
 
   created() {
-    this.data.formHeading =
-      "Choose the Single & Blend Contents you offer in regular yarn";
-    this.data.subHeading = "Single Content";
-    
+    // this.formHeading =
+    //   "Choose the Single & Blend Contents you offer in regular yarn";
+    // this.subHeading = "Single Content";
 
+    this.ProjectService.profileSetup().then((response: ProfileModel) => {
+      this.data = response;
+    });
   }
 }
 </script>
-
-<style scoped></style>

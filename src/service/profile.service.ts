@@ -244,24 +244,24 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
 										{	"tableHeader":"Single Quality",
                                         "tableData":[
                                             {
-                                                "name": "Super Combed (RL)",
-                                                "calories": 159
+                                                "item1": "Super Combed (RL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Combed (VL)",
-                                                "calories": 159
+                                                "item1": "Combed (VL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Semi Combed (GL)",
-                                                "calories": 159
+                                                "item1": "Semi Combed (GL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Carded",
-                                                "calories": 159
+                                                "item1": "Carded",
+                                                "item2":"checkbox"
                                               },
                                               {
-                                                "name": "OE",
-                                                "calories": 159
+                                                "item1": "OE",
+                                                "item2": "checkbox"
                                               }
                                         ]                        
 											
@@ -269,24 +269,24 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
 										{   "tableHeader":  "Blend Quality",
                                         "tableData":[
                                             {
-                                                "name": "Super Combed (RL)",
-                                                "calories": 159
+                                                "item1": "Super Combed (RL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Combed (VL)",
-                                                "calories": 159
+                                                "item1": "Combed (VL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Semi Combed (GL)",
-                                                "calories": 159
+                                                "item1": "Semi Combed (GL)",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "Carded",
-                                                "calories": 159
+                                                "item1": "Carded",
+                                                "item2": "checkbox"
                                               },
                                               {
-                                                "name": "OE",
-                                                "calories": 159
+                                                "item1": "OE",
+                                                "item2": "checkbox"
                                               }
                                         ]                           
 											

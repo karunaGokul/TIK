@@ -16,7 +16,7 @@
     <template v-if="control.type === 'table'">
       <div v-for="(tableControl, j) in control.tableControls" :key="j">
         <v-row>
-          <v-col>
+          <v-col cols="12" md="6">
             <h3 class="my-4 pa-4 teal lighten-4 text-subtitle-2">
               <v-text class="font-weight-regular">
                 {{ tableControl.tableHeader }}
@@ -35,18 +35,21 @@
     <template v-if="control.type === 'simpletable'">
       <div v-for="(tableControl, j) in control.tableControls" :key="j">
         <v-row>
-          <v-col>
+          <v-col cols="12" md="6">
             <h3 class="my-4 pa-4 teal lighten-4 text-subtitle-2">
               <v-text class="font-weight-regular">
                 {{ tableControl.tableHeader }}
               </v-text>
             </h3>
-            <v-simple-table>
+            <v-simple-table dense>
               <template v-slot:default>
                 <tbody>
                   <tr v-for="item in tableControl.tableData" :key="item.name">
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.calories }}</td>
+                    <td>{{ item.item1 }}</td>
+                    <td v-if="item.item2 == 'checkbox'">
+                      <v-checkbox></v-checkbox>
+                    </td>
+                    <td v-else>{{ item.item2 }}</td>
                   </tr>
                 </tbody>
               </template>

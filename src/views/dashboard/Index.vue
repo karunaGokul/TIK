@@ -140,7 +140,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class: "white",
     },
     {
       EnquiryName: "20",
@@ -149,7 +148,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class: "orange",
     },
     {
       EnquiryName: "30",
@@ -158,7 +156,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-      Class: "white",
     },
     {
       EnquiryName: "40",
@@ -167,7 +164,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Active",
-      Class: "orange",
     },
     {
       EnquiryName: "50",
@@ -176,7 +172,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-      Class: "white",
     },
     {
       EnquiryName: "60",
@@ -185,7 +180,6 @@ export default class Dashboard extends Vue {
       Subcategory: "Yarn",
       InStages: "Bid Received",
       Status: "Inactive",
-      Class: "orange",
     },
   ];
   headers1: any = [

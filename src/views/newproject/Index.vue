@@ -1,7 +1,6 @@
  <template>
   <div>
     <div v-if="!toggleCategory">
-      <template>
         <v-row>
           <v-col cols="8" class="ml-5" md="3">
             <h3 class="my-4">Enter Project Name</h3>
@@ -12,9 +11,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-      </template>
 
-      <template>
         <div class="ml-5">
           <h3 class="my-4">Select Category</h3>
           <div class="my-7 pb-5">
@@ -48,7 +45,6 @@
             </v-container>
           </div>
         </div>
-      </template>
     </div>
     <v-snackbar
       v-model="snackbar"
@@ -72,55 +68,6 @@
       :projectName="projectName"
       v-if="toggleCategory"
     />
-    <div class="px-16">
-      <h1>Mills</h1>
-      <v-row>
-        <v-col cols="2"> <h3>send enquiries by:</h3></v-col>
-        <v-col>
-          <v-select
-            solo
-            label="Selected Units"
-            :items="item"
-            dark
-            dense
-          ></v-select
-        ></v-col>
-        <v-col>
-          <v-select solo label="For All" :items="item" dark dense></v-select>
-        </v-col>
-        <v-col>
-          <v-select
-            solo
-            label="Rating Above"
-            :items="item"
-            dark
-            dense
-          ></v-select>
-        </v-col>
-        <v-col>
-          <v-select
-            solo
-            label="Certifications"
-            :items="certificate"
-            dark
-            dense
-          ></v-select>
-        </v-col>
-      </v-row>
-      <v-data-table
-        :headers="headers"
-        :items="item"
-        v-model="selected"
-        show-select
-        class="elevation-1"
-        :single-select="singleSelect"
-      >
-      </v-data-table
-      ><br /><br />
-
-      <span class="mr-5"> <v-btn dark>back</v-btn></span>
-      <v-btn dark>next</v-btn>
-    </div>
   </div>
 </template>
 

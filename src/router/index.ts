@@ -79,12 +79,6 @@ const routes: Array<RouteConfig> = [
     name: 'Product-Details',
     component: () => import('../views/productDetails/Index.vue'),
     meta: { anonymous: true }
-  },
-  {
-    path: '/resultscreen',
-    name: 'ResultScreen',
-    component: () => import('../views/newproject/ResultScreen.vue'),
-    meta: { anonymous: true }
   }
   
 ]

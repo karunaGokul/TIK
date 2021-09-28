@@ -167,9 +167,9 @@ export default class ProjectFormBuilder extends Vue {
 
       this.stepNumber++;
     }
-    else {
+    // else {
       
-    }
+    // }
   }
 
   controlChanged(control: ProjectFormStepControl) {

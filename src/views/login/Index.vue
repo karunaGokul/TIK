@@ -4,17 +4,19 @@
       <v-col cols="12" md="6">
         <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-          height="600"
-          no-gutters
+          height="700"
+          
         >
-          <h1>Welcome To Textile</h1>
-          <h2>Login to continue Access</h2>
-          <p>
-            Today we are thinking of all our members across the world and are
-            encouraged by the support our networks bring in times such as these.
-            Use the left test instrument details to attempt a transaction on the
-            staging environment and login.
-          </p>
+          <div class="pl-10 pt-16">
+            <h1>Welcome To Textile</h1>
+            <h2 class="py-2">Login to continue Access</h2>
+            <p >
+              Today we are thinking of all our members across the world and are
+              encouraged by the support our networks bring in times such as these.
+              Use the left test instrument details to attempt a transaction on the
+              staging environment and login.
+            </p>
+          </div>
         </v-parallax>
       </v-col>
 
@@ -27,7 +29,7 @@
               outlined
               dense
               placeholder="Enter Email ID"
-              class="py-2"
+              class="py-2 rounded-0"
               v-model="request.EmailAddress"
               :rules="emailRules"
               required
@@ -39,7 +41,7 @@
               outlined
               dense
               placeholder="Enter Password"
-              class="pt-2"
+              class="pt-2 rounded-0"
               v-model="request.Password"
               type="password"
               :rules="passwordRules"

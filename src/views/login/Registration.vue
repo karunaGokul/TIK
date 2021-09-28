@@ -1,22 +1,24 @@
 <template>
   <div>
-    <v-row class="pt-16">
-      <v-col cols="12" md="6" class="pt-16" color="green">
+    <v-row>
+      <v-col cols="12" md="6">
         <v-parallax
-          src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-          height="600"
+          src="@/assets/vbanner.jpg"
+          height="1700"
         >
-          <h2 class="pl-10">Lets Get</h2>
-          <h1 class="font-weight-black pl-10">Started</h1>
-          <p class="pl-10">
-            Today we are thinking of all our members across the world and are
-            encouraged by the support our networks bring in times such as these.
-            Use the left test instrument details to attempt a transaction on the
-            staging environment and Register.
-          </p>
+          <div class="pl-10">
+            <h2>Lets Get</h2>
+            <h1 class="font-weight-black py-3">Started</h1>
+            <p>
+              Today we are thinking of all our members across the world and are
+              encouraged by the support our networks bring in times such as these.
+              Use the left test instrument details to attempt a transaction on the
+              staging environment and Register.
+            </p>
+          </div>
         </v-parallax>
 
-        <v-parallax
+        <!-- <v-parallax
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
           height="600"
         >
@@ -25,10 +27,10 @@
           src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
           height="600"
         >
-        </v-parallax>
+        </v-parallax> -->
       </v-col>
 
-      <v-col class="pt-16 pl-4 pr-10">
+      <v-col class="pt-16 pl-6 pr-10">
         <h2 class="pb-7 pt-15">Sign Up</h2>
 
         <v-form>
@@ -39,7 +41,7 @@
                 outlined
                 dense
                 placeholder="Enter First Name"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.FirstName"
                 required
               ></v-text-field>
@@ -51,7 +53,7 @@
                 outlined
                 dense
                 placeholder="Enter Last Name"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.LastName"
                 required
               ></v-text-field>
@@ -65,7 +67,7 @@
                 outlined
                 dense
                 placeholder="Enter Phone Number"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.PhoneNumber"
               ></v-text-field>
             </v-col>
@@ -76,7 +78,7 @@
                 outlined
                 dense
                 placeholder="Enter Email ID"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.EmailAddress"
                 required
               ></v-text-field>
@@ -90,7 +92,7 @@
                 outlined
                 dense
                 placeholder="Enter Password"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.Password"
                 required
                 :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
@@ -106,7 +108,7 @@
                 dense
                 placeholder="Re-Enter Password"
                 v-model="request.ConfirmPassword"
-                class="py-2"
+                class="py-2 rounded-0"
                 :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="() => (value1 = !value1)"
                 :type="value1 ? 'password' : 'text'"
@@ -123,7 +125,7 @@
             :items="category"
             item-text="categoryName"
             item-value="id"
-            class="py-2"
+            class="py-2 rounded-0"
           ></v-select>
 
           <v-row>
@@ -133,7 +135,7 @@
                 outlined
                 dense
                 placeholder="Enter GST Number"
-                class="py-2"
+                class="py-2 rounded-0"
                 v-model="request.GSTNumber"
                 required
               ></v-text-field>
@@ -141,7 +143,7 @@
 
             <v-col class="pt-13 pl-16 mt-n3">
               <v-btn
-                class="white--text font-weight-light text-capitalize"
+                class="white--text font-weight-light text-capitalize rounded-0"
                 color="#ff6500"
                 large
                 depressed
@@ -158,6 +160,7 @@
                 dense
                 placeholder="Enter Address"
                 v-model="request.Address"
+                class="rounded-0"
               ></v-text-field>
             </v-col>
 
@@ -168,6 +171,7 @@
                 dense
                 placeholder="Enter Appartment, Unit, Office"
                 v-model="request.ApartmentUnitOffice"
+                class="rounded-0"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -183,7 +187,7 @@
                 :items="country"
                 item-text="countryName"
                 item-value="id"
-                class="py-2"
+                class="py-2 rounded-0"
                 @change="getState()"
                 required
               ></v-select>
@@ -199,7 +203,7 @@
                 :items="state"
                 item-text="stateName"
                 item-value="id"
-                class="py-2"
+                class="py-2 rounded-0"
                 @change="getCity()"
                 required
               ></v-select>
@@ -217,7 +221,7 @@
                 :items="city"
                 item-text="cityName"
                 item-value="id"
-                class="py-3"
+                class="py-3 rounded-0"
                 required
               ></v-select>
             </v-col>
@@ -228,7 +232,7 @@
                 outlined
                 dense
                 placeholder="Enter Zip Code"
-                class="py-3"
+                class="py-3 rounded-0"
                 required
                 v-model="request.ZipCode"
               ></v-text-field>

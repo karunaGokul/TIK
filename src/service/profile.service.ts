@@ -146,71 +146,46 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
 				"controls": 
                          {
                              "id": "tabletype",
-                            "type": "table",
+                            "type": "simpletable",
 							"tableControls": 
 									[
 										{	"tableHeader":"Single Content",                          
-											"tableHeading": [{
-											"text":"Content",
-											"align":"start",
-											"sortable":false,
-											"value":"Content",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Spun",                        
-											 "value":"Spun",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Filaments",                        
-											"value":"Filaments",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"plus",                        
-											"value":" ",
-											"class": "teal lighten-4 subtitle-2"
-											}]
+											"tableHeading": [
+                                                            {"text":"Content"},					
+											                {"text":"Spun"},
+											                {"text":"Filaments"},
+											                {"text":"plus"}
+                                                            ],
+                                            "tableData":[
+												{
+													"item1": "select",
+													"item2": "checkbox",
+													"item3": "checkbox",
+                                                    "item4": " "
+												  }
+											] 	
 										},
 										{   "tableHeader":  "Blend Content",                        
-											"tableHeading": [{
-											"text":"Content",
-											"align":"start",
-											"sortable":false,
-											"value":"Content",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 1",                        
-											 "value":"Comb1",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 2",                        
-											"value":"Comb2",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 3",                        
-											"value":"Comb3",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 4",                        
-											"value":"Comb4",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 5",                        
-											"value":"Comb5",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"plus",                        
-											"value":" ",
-											"class": "teal lighten-4 subtitle-2"
-											}]
+											"tableHeading": [
+                                                            {"text":"Content"},
+                                                            {"text":"Comb 1"},
+                                                            {"text":"Comb 2"},										
+                                                            {"text":"Comb 3"},
+                                                            {"text":"Comb 4"},
+                                                            {"text":"Comb 5"},
+                                                            {"text":"plus"}
+                                                        ],
+                                    "tableData":[
+												{
+													"item1": "select",
+													"item2": "textbox",
+													"item3": "textbox",
+													"item4": "textbox",
+													"item5": "textbox",
+													"item6": "textbox",
+                                                    "item7": "  "
+												  }
+											] 												
 										}
 									]
 

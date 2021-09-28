@@ -44,11 +44,7 @@ export class tableStepControl {
 
 }
 export class tableHeaderModel {
-    text: string;
-    align: string;
-    sortable: boolean;
-    value: string;
-    class: string;
+    text: string;    
 }
 export class tableDataModel {
     text: string;

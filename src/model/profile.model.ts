@@ -17,22 +17,20 @@ export class ProfileResponse {
     image: string;
 }
 export class ProfileModel {
-    title: string;
-    parentId: string;
+    parentOptionId?: string;
+    visible: boolean;
 
-    controls: Array<ProfileFormStepControl> = [];
-    tableControls: Array<tableStepControl> = [];
-    selectedOption: ProfileFormStepControlOption;
+    controls: ProfileFormStepControl;
+    selectedOption?: ProfileFormStepControlOption;
 }
 export class ProfileFormStepControl {
     id: string;
     type: string;
-
+    tableControls?: Array<tableStepControl> = [];
     options: Array<ProfileFormStepControlOption> = [];
 
 }
 export class ProfileFormStepControlOption {
-    type: string;
     id: string;
     text: string;
     value: string;
@@ -42,6 +40,7 @@ export class ProfileFormStepControlOption {
 export class tableStepControl {
     tableHeading: string;
     tableHeader: Array<tableHeaderModel> = [];
+    tableData: Array<tableDataModel> = [];
 
 }
 export class tableHeaderModel {
@@ -51,5 +50,10 @@ export class tableHeaderModel {
     value: string;
     class: string;
 }
+export class tableDataModel {
+    text: string;
+    value: string;
+}
+
 
 

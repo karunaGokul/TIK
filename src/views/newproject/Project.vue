@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <v-row v-if="steps && steps.length">
-      <v-col cols="12" md="8">
-        <v-card class="ma-2" color="cyan lighten-4" height="600" elevation="0">
+    <v-row v-if="steps && steps.length" class="ma-2">
+      <v-col cols="8">
+        <v-card class="ma-2 d-flex flex-column" color="cyan lighten-4" min-height="600" elevation="0">
           <v-card-title> {{ data.category }} </v-card-title>
           <v-card-text>
             <v-row>
-              <v-col>
+              <v-col cols="12">
                 <h4 class="text-h6 mb-4">
                   {{ currentStep.stepNumber }}. {{ currentStep.title }}
                 </h4>
@@ -17,14 +16,13 @@
                   />
                 </div>
               </v-col>
-            </v-row>
-            <v-row
-              class="mb-16 pt-16"
-              justify="space-between"
-              style="margin-top: 200px"
-            >
-              <v-col cols="10" md="2"></v-col>
-              <v-col cols="10" md="2" class="mx-2">
+            </v-row>           
+          </v-card-text>
+          <v-spacer></v-spacer>
+          <v-card-actions>
+          <v-row class="ma-2">
+          <v-spacer></v-spacer>
+          <v-col cols="3">
                 <div>Completed</div>
                 <v-progress-linear
                   v-model="progress"
@@ -36,11 +34,24 @@
                   </template>
                 </v-progress-linear>
               </v-col>
-            </v-row>
-          </v-card-text>
+              </v-row>
+          </v-card-actions>
         </v-card>
+        <div class="d-flex justify-end">
+      <v-btn elevation="2" class="px-8 ma-4 text-capitalize" @click="back">
+        Back
+      </v-btn>
+      <v-btn
+        elevation="2"
+        class="px-8 ma-4 text-capitalize white--text"
+        color="#00365C"
+        @click="next"
+      >
+        Next
+      </v-btn>
+    </div>
       </v-col>
-      <v-col cols="12" sm="4">
+      <v-col cols="4">
         <div class="text-h6 ml-2 pt-1">Summary</div>
         <div class="py-2 text-subtitle-1">
           <v-timeline dense align-top clipped>
@@ -63,21 +74,7 @@
           </v-timeline>
         </div>
       </v-col>
-    </v-row>
-    <div class="d-flex justify-end">
-      <v-btn elevation="2" class="px-8 ma-4 text-capitalize" @click="back">
-        Back
-      </v-btn>
-      <v-btn
-        elevation="2"
-        class="px-8 ma-4 text-capitalize white--text"
-        color="#00365C"
-        @click="next"
-      >
-        Next
-      </v-btn>
-    </div>
-  </div>
+    </v-row>    
 </template>
 
 <script lang="ts">
@@ -169,6 +166,9 @@ export default class ProjectFormBuilder extends Vue {
       }
 
       this.stepNumber++;
+    }
+    else {
+      
     }
   }
 

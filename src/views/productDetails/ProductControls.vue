@@ -33,12 +33,17 @@
       </div>
     </template> -->
     <template v-if="control.type === 'simpletable'">
-      <v-row >
-        <v-col cols="12" md="6" v-for="(tableControl, j) in control.tableControls" :key="j">
+      <v-row>
+        <v-col
+          cols="12"
+          md="6"
+          v-for="(tableControl, j) in control.tableControls"
+          :key="j"
+        >
           <v-col></v-col>
           <h3 class="my-4 pa-2 teal lighten-4 text-subtitle-2">
             <v-text class="font-weight-regular">
-              {{ tableControl.tableHeader }}
+              {{ tableControl.tableHeading }}
             </v-text>
           </h3>
           <v-simple-table dense>
@@ -47,32 +52,55 @@
                 <tr>
                   <th
                     class="text-left"
-                    v-for="tableHeading in tableControl.tableHeading"
-                    :key="tableHeading.text"
+                    v-for="(tableHeader, index) in tableControl.tableHeader"
+                    :key="index"
                   >
-                    <v-icon v-if="tableHeading.text == 'plus'">
-                      mdi-plus-circle
+                    <v-icon v-if="tableHeader == 'plus'"
+                      >mdi-plus-circle
                     </v-icon>
-                    <span v-else> {{ tableHeading.text }}</span>
+
+                    <span v-else> {{ tableHeader }}</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in tableControl.tableData" :key="item.name">
-                  <td v-for="tabledata in item" :key="tabledata">
-                    <v-checkbox v-if="tabledata == 'checkbox'"></v-checkbox>
+                <tr v-for="row in tableControl.tableData" :key="row.rowData">
+                  <td v-for="colData in row.rowData" :key="colData">
+                    <v-checkbox
+                      v-if="colData.controls.type === 'checkbox'"
+                    ></v-checkbox>
                     <v-select
-                      v-else-if="tabledata == 'select'"
-                      :items="items"
-                      label="100% cotton"
+                      v-else-if="colData.controls.type === 'dropdown'"
+                      :items="colData.controls.options"
                       dense
                     ></v-select>
-                    <v-text-field
-                      v-else-if="tabledata == 'textbox'"
-                      outlined
-                      dense
-                    ></v-text-field>
-                    <span v-else>{{ tabledata }}</span>
+                    <div
+                      class="d-flex justify-left mx-10"
+                      v-else-if="colData.controls.type === 'textbox'"
+                    >
+                      <v-row>
+                        <v-col
+                          v-for="option in colData.controls.options"
+                          :key="option"
+                          cols="12"
+                          md="3"
+                        >
+                          <h2>
+                            <v-text class="font-weight-regular"
+                              >{{ option.text }}
+                            </v-text>
+                          </h2>
+                          <br />
+                          <v-text-field
+                            v-model="option.value"
+                            outlined
+                            dense
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </div>
+
+                    <span v-else>{{ colData.controls.options.text }}</span>
                   </td>
                 </tr>
               </tbody>
@@ -101,7 +129,11 @@
               </v-text>
             </h2>
             <br />
-            <v-text-field filled rounded dense></v-text-field>
+            <v-text-field
+              v-model="control.options.value"
+              outlined
+              dense
+            ></v-text-field>
           </v-col>
         </v-row>
       </div>

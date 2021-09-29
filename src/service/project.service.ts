@@ -125,7 +125,7 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                     },
                     {
                         "title": "Choose Yarn Type", 
-                        "path": ["opYarn-opSingle-btnYarnContent"],                        
+                        "path": ["opYarn-opSingle-opSpun", "opYarn-opSingle-opFilament"],                        
                         "controls": [
                             {
                                 "id": "btnYarnType",
@@ -162,7 +162,7 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                     },
                     {
                         "title": "Choose Special Yarn Type", 
-                        "path": ["opYarn-opSingle-btnYarnContent-opSpecial"],                   
+                        "path": ["opYarn-opSingle-opSpun-opSpecial", "opYarn-opSingle-opFilament-opSpecial"],                   
                         "controls": [
                             {
                                 "id": "btnSpecialYarnType",
@@ -211,7 +211,7 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                     },
                     {
                         "title": "Choose Quality Type", 
-                        "path": ["opYarn-opSingle-btnYarnContent-opDyed"],                   
+                        "path": ["opYarn-opSingle-opSpun-opDyed", "opYarn-opSingle-opFilament-opDyed"],                   
                         "controls": [
                             {
                                 "id": "drpDyedSingle",
@@ -294,7 +294,7 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                     },
                     {
                         "title": "Choose the type of Melange or Slub", 
-                        "path": ["opYarn-opSingle-btnYarnContent-opMelange"],                   
+                        "path": ["opYarn-opSingle-opSpun-opMelange", "opYarn-opSingle-opFilament-opMelange"],                   
                         "controls": [
                             {
                                 "id": "btnMelangeSlub",
@@ -382,8 +382,8 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                     {
                         "title": "Choose Quality Type", 
                         "path": [
-                            "opYarn-opSingle-btnYarnContent-opRegular",
-                            "opYarn-opSingle-btnYarnContent-opSpecial-btnSpecialYarnType"
+                            "opYarn-opSingle-opSpun-opRegular",
+                            "opYarn-opSingle-opSpun-opSpecial-btnSpecialYarnType"
                         ],
                         "controls": [
                             {
@@ -428,6 +428,58 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                                 "type": "textbox",
                                 "selector": false,
                                 "label": "Enter Your Count"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Quality Type", 
+                        "path": [
+                            "opYarn-opSingle-opFilament-opRegular",
+                            "opYarn-opSingle-opFilament-opSpecial-btnSpecialYarnType"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnYarnQuality",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "options": [
+                                    {
+                                        "id": "opSuperCombed",
+                                        "label": "A",
+                                        "text": "Super Combed RL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opCombedVl",
+                                        "label": "B",
+                                        "text": "Combed VL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opSemiCombedGl",
+                                        "label": "C",
+                                        "text": "Semi Combed GL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opCarded",
+                                        "label": "D",
+                                        "text": "Carded",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opOe",
+                                        "label": "E",
+                                        "text": "OE",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "txtYarnQuality",
+                                "type": "textbox",
+                                "selector": false,
+                                "label": "Enter Your Denier"
                             }
                         ]
                     }

@@ -16,6 +16,4 @@ export class AuthenticationState {
     refreshToken: string = "";
     id: string = "";
     role: string = "";
-    sucess: boolean;
-
 }

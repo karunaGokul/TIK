@@ -8,15 +8,14 @@ const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     id: localStorage.getItem('id') || '',
-    role: localStorage.getItem('role') || '',
-    sucess: false
+    role: localStorage.getItem('role') || ''
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
         return state.accessToken;
     },
     isLoggedIn: state => {
-        return state.sucess;
+        return state.accessToken;
     },
     role: state => {
         return state.role;
@@ -32,13 +31,10 @@ const mutations: MutationTree<AuthenticationState> = {
         state.refreshToken = data.refreshToken;
         state.id = data.id;
         state.role = data.role;
-        state.sucess = true;
-
     },
     onLogout(state) {
         state.accessToken = "";
         state.refreshToken = "";
-        state.sucess = false;
         axios.defaults.headers.common["Authorization"] = "";
     },
 

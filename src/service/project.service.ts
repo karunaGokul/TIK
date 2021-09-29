@@ -19,14 +19,16 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
         return new Promise((resolve, reject) => {
             const json = `{
                 "category": "Mills",
+                "maxSteps": 6,
                 "steps": [
                     {
-                        "stepNumber": 1,
                         "title": "Choose Your Content",
+                        "path": [""],
                         "controls": [
                             {
-                                "id": "btntype",
+                                "id": "btnContent",
                                 "type": "toggle-button",
+                                "selector": true,
                                 "options": [
                                     {
                                         "id": "opYarn",
@@ -45,22 +47,22 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                         ]
                     },
                     {
-                        "stepNumber": 2,
-                        "parentOptionId": "opYarn",
-                        "title": "Choose Yarn Content",
+                        "title": "Choose Yarn Content", 
+                        "path": ["opYarn"],                        
                         "controls": [
                             {
                                 "id": "btnContenttype",
                                 "type": "toggle-button",
+                                "selector": true,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single",
+                                        "id": "opSingle",
                                         "label": "A",
                                         "text": "Single",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Blends",
+                                        "id": "opBlends",
                                         "label": "B",
                                         "text": "Blends",
                                         "selected": false
@@ -70,73 +72,49 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                         ]
                     },
                     {
-                        "stepNumber": 2,
-                        "parentOptionId": "opFabric",
-                        "title": "Choose Fabric Content",
+                        "title": "Choose Single Yarn Content", 
+                        "path": ["opYarn-opSingle"],                 
                         "controls": [
                             {
-                                "id": "btnFabricContent",
-                                "type": "toggle-button",
-                                "options": [
-                                    {
-                                        "id": "opFabric_Single",
-                                        "label": "A",
-                                        "text": "Single",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opFabric_Blends",
-                                        "label": "B",
-                                        "text": "Blends",
-                                        "selected": false
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "stepNumber": 3,
-                        "parentOptionId": "opYarn_Single",
-                        "title": "Choose Single Yarn Content",
-                        "controls": [
-                            {
-                                "id": "drpYarn_Single_Content",
+                                "id": "drpYarnContent",
                                 "type": "dropdown",
+                                "selector": false,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single_Content_1",
+                                        "id": "opYarnContent_1",
                                         "text": "100% Cotton",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Content_2",
+                                        "id": "opYarnContent_2",
                                         "text": "100% Viscose",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Content_3",
+                                        "id": "opYarnContent_3",
                                         "text": "100% Modal",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Content_4",
+                                        "id": "opYarnContent_4",
                                         "text": "100% Polyster",
                                         "selected": false
                                     }
                                 ]
                             },
                             {
-                                "id": "btnYarn_Single_Content",
+                                "id": "btnYarnContent",
                                 "type": "toggle-button",
+                                "selector": true,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single_Content_Spun",
+                                        "id": "opSpun",
                                         "label": "A",
                                         "text": "Spun",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Content_Filament",
+                                        "id": "opFilament",
                                         "label": "B",
                                         "text": "Filament",
                                         "selected": false
@@ -146,34 +124,34 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                         ]
                     },
                     {
-                        "stepNumber": 4,
-                        "parentOptionId": "opYarn_Single",
-                        "title": "Choose Yarn Type",
+                        "title": "Choose Yarn Type", 
+                        "path": ["opYarn-opSingle-btnYarnContent"],                        
                         "controls": [
                             {
-                                "id": "btnYarn_Single_Type",
+                                "id": "btnYarnType",
                                 "type": "toggle-button",
+                                "selector": true,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single_Type_Regular",
+                                        "id": "opRegular",
                                         "label": "A",
                                         "text": "Regular Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Special",
+                                        "id": "opSpecial",
                                         "label": "B",
                                         "text": "Special Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Dyed",
+                                        "id": "opDyed",
                                         "label": "C",
                                         "text": "Dyed Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Melange",
+                                        "id": "opMelange",
                                         "label": "D",
                                         "text": "Melange / Slub Yarn",
                                         "selected": false
@@ -183,42 +161,48 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                         ]
                     },
                     {
-                        "stepNumber": 5,
-                        "parentOptionId": "opYarn_Single_Type_Regular",
-                        "title": "Choose Quality Type",
+                        "title": "Choose Special Yarn Type", 
+                        "path": ["opYarn-opSingle-btnYarnContent-opSpecial"],                   
                         "controls": [
                             {
-                                "id": "btnYarn_Single_Type_Regular",
+                                "id": "btnSpecialYarnType",
                                 "type": "toggle-button",
+                                "selector": true,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single_Type_Regular_SuperCombed",
+                                        "id": "opCompactYarn",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Compact Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Regular_Combed",
+                                        "id": "opOrganicYarn",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Organic Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Regular_SemiCombed",
+                                        "id": "opBci",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "BCI",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Regular_Carded",
+                                        "id": "opSiroClearedYarn",
                                         "label": "D",
-                                        "text": "Carded",
+                                        "text": "Siro Cleared Yarn",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Regular_Oe",
+                                        "id": "opPima",
                                         "label": "E",
-                                        "text": "OE",
+                                        "text": "PIMA",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opCmia",
+                                        "label": "F",
+                                        "text": "CMIA",
                                         "selected": false
                                     }
                                 ]
@@ -226,51 +210,224 @@ export class ProjectService extends BaseService<ProjectFormRequestModel, Project
                         ]
                     },
                     {
-                        "stepNumber": 5,
-                        "parentOptionId": "opYarn_Single_Type_Special",
-                        "title": "Choose Special Yarn Type",
+                        "title": "Choose Quality Type", 
+                        "path": ["opYarn-opSingle-btnYarnContent-opDyed"],                   
                         "controls": [
                             {
-                                "id": "btnYarn_Single_Type_Special",
-                                "type": "toggle-button",
+                                "id": "drpDyedSingle",
+                                "type": "dropdown",
+                                "label": "Choose Single",
+                                "selector": false,
                                 "options": [
                                     {
-                                        "id": "opYarn_Single_Type_Special_Compact",
-                                        "label": "A",
-                                        "text": "Compact Yarn",
+                                        "id": "opDyedSingle_SuperCombed",
+                                        "text": "Super Combed RL",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Special_Organic",
-                                        "label": "B",
-                                        "text": "Organic Yarn",
+                                        "id": "opDyedSingle_CombedRl",
+                                        "text": "Combed VL",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Special_Bci",
-                                        "label": "C",
+                                        "id": "opDyedSingle_SemiCombedGl",
+                                        "text": "Semi Combed GL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opDyedSingle_Carded",
+                                        "text": "Carded",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opDyedSingle_Oe",
+                                        "text": "OE",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "drpDyedSpecial",
+                                "type": "dropdown",
+                                "label": "Special Yarn Type",
+                                "selector": false,
+                                "options": [
+                                    {
+                                        "id": "opDyedSpecial_Compact",
+                                        "text": "Compact",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opDyedSpecial_Organic",
+                                        "text": "Organic",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opDyedSpecial_Bci",
                                         "text": "BCI",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Quality_Siro",
-                                        "label": "D",
-                                        "text": "Siro Cleared Yarn",
+                                        "id": "opDyedSpecial_SiroCleared",
+                                        "text": "Siro Cleared",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Quality_Pima",
-                                        "label": "E",
+                                        "id": "opDyedSpecial_Pima",
                                         "text": "PIMA",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opYarn_Single_Type_Quality_Cmia",
-                                        "label": "F",
+                                        "id": "opDyedSpecial_Cmia",
                                         "text": "CMIA",
                                         "selected": false
                                     }
                                 ]
+                            },
+                            {
+                                "id": "txtYarnQuality",
+                                "type": "textbox",
+                                "selector": false,
+                                "label": "Enter Your Count"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose the type of Melange or Slub", 
+                        "path": ["opYarn-opSingle-btnYarnContent-opMelange"],                   
+                        "controls": [
+                            {
+                                "id": "btnMelangeSlub",
+                                "type": "toggle-button",
+                                "selector": false,
+                                "options": [
+                                    {
+                                        "id": "opMelange",
+                                        "text": "Melange",
+                                        "label": "A",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opSlub",
+                                        "text": "Slub",
+                                        "label": "B",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "drpMelange",
+                                "type": "dropdown",
+                                "label": "Special Melange Type",
+                                "selector": false,
+                                "options": [
+                                    {
+                                        "id": "opMelange_LtGrey",
+                                        "text": "LT Grey Mel",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opMelange_Grey",
+                                        "text": "Grey Mel",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opMelange_Andhra",
+                                        "text": "Andhra Mel",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opMelange_CharGoal",
+                                        "text": "Char Goal Mel",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opMelange_OatMeal",
+                                        "text": "OAT Meal Mel",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "drpSlub",
+                                "type": "dropdown",
+                                "label": "Special Slub Type",
+                                "selector": false,
+                                "options": [
+                                    {
+                                        "id": "opSlub_Sort",
+                                        "text": "Sort Slub",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opSlub_Medium",
+                                        "text": "Medium Slub",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opSlub_Long",
+                                        "text": "Long Slub",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "txtMelangeQuality",
+                                "type": "textbox",
+                                "selector": false,
+                                "label": "Enter Your Count"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Quality Type", 
+                        "path": [
+                            "opYarn-opSingle-btnYarnContent-opRegular",
+                            "opYarn-opSingle-btnYarnContent-opSpecial-btnSpecialYarnType"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnYarnQuality",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "options": [
+                                    {
+                                        "id": "opSuperCombed",
+                                        "label": "A",
+                                        "text": "Super Combed RL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opCombedVl",
+                                        "label": "B",
+                                        "text": "Combed VL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opSemiCombedGl",
+                                        "label": "C",
+                                        "text": "Semi Combed GL",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opCarded",
+                                        "label": "D",
+                                        "text": "Carded",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opOe",
+                                        "label": "E",
+                                        "text": "OE",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "txtYarnQuality",
+                                "type": "textbox",
+                                "selector": false,
+                                "label": "Enter Your Count"
                             }
                         ]
                     }

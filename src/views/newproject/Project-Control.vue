@@ -1,23 +1,41 @@
  <template>
   <div>
-    <template v-if="control.type === 'dropdown'">
-      <v-row>
-        <v-col cols="8">
-          <v-select
-            :items="control.options"
-            v-model="dropdownValue"
-            item-text="text"
-            item-value="id"
-            label="Select"
-            class="pt-3"
-            outlined
-            dense
-          ></v-select>
-        </v-col>
-      </v-row>
-    </template>
-    <template v-else-if="control.type === 'toggle-button'">
-      <v-btn-toggle v-model="buttonValue" group borderless style="display: block">
+    <v-row class="pa-2" v-if="control.type === 'dropdown'">
+      <v-col cols="6">
+        <v-label>{{ control.label }}</v-label>
+        <v-select
+          :items="control.options"
+          v-model="dropdownValue"
+          item-text="text"
+          item-value="id"
+          placeholder="Select"
+          outlined
+          dense
+          hide-details
+          required
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row class="pa-2" v-if="control.type === 'textbox'">
+      <v-col cols="6">
+        <v-label>{{ control.label }}</v-label>
+        <v-text-field
+          outlined
+          dense
+          hide-details
+          required
+          @change="textChanged"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <div class="pa-2" v-else-if="control.type === 'toggle-button'">
+      <v-btn-toggle
+        v-model="buttonValue"
+        group
+        borderless
+        style="display: block"
+        class="pb-4"
+      >
         <v-btn
           class="rounded-lg text-capitalize mr-5"
           elevation="3"
@@ -30,11 +48,11 @@
             <span class="teal lighten-1 rounded-lg px-2 py-1 mr-2">
               {{ option.label }}
             </span>
-            {{ option.text }}</div
-          >
+            {{ option.text }}
+          </div>
         </v-btn>
       </v-btn-toggle>
-    </template>
+    </div>
   </div>
 </template>
 
@@ -53,7 +71,12 @@ export default class ProjectControl extends Vue {
 
     option.selected = true;
 
+    this.control.value = option.text;
     this.$emit("change");
+  }
+
+  textChanged(value: any) {
+    this.control.value = value;
   }
 
   get buttonValue() {
@@ -76,6 +99,7 @@ export default class ProjectControl extends Vue {
 
       option.selected = true;
 
+      this.control.value = option.text;
       this.$emit("change");
     }
   }

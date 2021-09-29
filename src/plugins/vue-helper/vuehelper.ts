@@ -14,6 +14,18 @@ export class VueHelperProvider {
         return `data:image/png;base64, ${blobText}`
     }
 
+    trimChar(str: string, char: string) {
+        while (str.charAt(0) == char) {
+            str = str.substring(1);
+        }
+
+        while (str.charAt(str.length - 1) == char) {
+            str = str.substring(0, str.length - 1);
+        }
+
+        return str;
+    }
+
     private _clone(object: any) {
         const cloned: any = new (<any>object).constructor();
 
@@ -41,7 +53,7 @@ class DateHelper {
             return "";
     }
 
-    getString(date: Date) : any {
+    getString(date: Date): any {
         return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
     }
 }

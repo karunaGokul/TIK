@@ -21,7 +21,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7 pt-15">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form" v-model="valid">
+          <v-form ref="form">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -128,7 +128,6 @@ import { IAuthenticationService } from "@/service";
 export default class Login extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
-  public valid: true;
   snackbar: boolean = false;
   snackbarText: string = "";
   public request = new AuthenticationRequestModel();

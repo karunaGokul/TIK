@@ -29,6 +29,18 @@ export default class App extends DIContainer {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
     this.createAxiosResponseInterceptor();
+
+    this.createFilters();
+  }
+
+  createFilters() {
+
+    Vue.filter("dateDisplay", (value: any, format: string) => {
+      if (!value) return "";
+
+      return this.$vuehelper.date.format(value, format);
+    });
+
   }
 
   createAxiosResponseInterceptor() {

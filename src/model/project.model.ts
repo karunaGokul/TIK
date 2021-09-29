@@ -4,23 +4,26 @@ export class ProjectFormModel {
     category: string;
 
     steps: Array<ProjectFormStep>;
+    maxSteps: number;
 }
 
 export class ProjectFormStep {
-    stepNumber: number;
     title: string;
-    parentOptionId: string;
+    path: Array<string> = [];
 
     controls: Array<ProjectFormStepControl> = [];
-
-    selectedOption: ProjectFormStepControlOption;
+    
+    stepNumber: number = 1;
 }
 
 export class ProjectFormStepControl {
     id: string;
     type: string;
+    selector: boolean;
 
     options: Array<ProjectFormStepControlOption>;
+
+    value: string;
 }
 
 export class ProjectFormStepControlOption {

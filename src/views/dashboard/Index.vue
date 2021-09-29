@@ -36,7 +36,6 @@
         :search="search"
         :item-class="row_classes"
         show-expand
-        :expanded.sync="expanded"
         item-key="EnquiryName"
         class="elevation-1"
       >
@@ -94,7 +93,6 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Dashboard extends Vue {
   search: string = "";
   showDialog: boolean = false;
-  expanded: [];
   request: DashboardRequestModel = new DashboardRequestModel();
   public row_classes(item: any) {
     return item.Status === "Active" ? "white" : "blue lighten-5";

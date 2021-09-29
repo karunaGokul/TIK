@@ -39,20 +39,13 @@ export class ProfileFormStepControlOption {
 }
 export class tableStepControl {
     tableHeading: string;
-    tableHeader: Array<tableHeaderModel> = [];
+    md: number;
+    tableHeader: Array<string> = [];
     tableData: Array<tableDataModel> = [];
 
 }
-export class tableHeaderModel {
-    text: string;
-    align: string;
-    sortable: boolean;
-    value: string;
-    class: string;
-}
 export class tableDataModel {
-    text: string;
-    value: string;
+    rowData: Array<ProfileModel> = [];
 }
 
 

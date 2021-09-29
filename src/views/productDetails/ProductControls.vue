@@ -13,7 +13,7 @@
       </v-tabs>
       <v-divider class="ml-2"></v-divider>
     </template>
-    <template v-if="control.type === 'table'">
+    <!-- <template v-if="control.type === 'table'">
       <div v-for="(tableControl, j) in control.tableControls" :key="j">
         <v-row>
           <v-col cols="12" md="6">
@@ -31,32 +31,83 @@
           </v-col>
         </v-row>
       </div>
-    </template>
+    </template> -->
     <template v-if="control.type === 'simpletable'">
-      <div v-for="(tableControl, j) in control.tableControls" :key="j">
-        <v-row>
-          <v-col cols="12" md="6">
-            <h3 class="my-4 pa-4 teal lighten-4 text-subtitle-2">
-              <v-text class="font-weight-regular">
-                {{ tableControl.tableHeader }}
-              </v-text>
-            </h3>
-            <v-simple-table dense>
-              <template v-slot:default>
-                <tbody>
-                  <tr v-for="item in tableControl.tableData" :key="item.name">
-                    <td>{{ item.item1 }}</td>
-                    <td v-if="item.item2 == 'checkbox'">
-                      <v-checkbox></v-checkbox>
-                    </td>
-                    <td v-else>{{ item.item2 }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-col>
-        </v-row>
-      </div>
+      <v-row>
+        <v-col
+          cols="12"
+          md="6"
+          v-for="(tableControl, j) in control.tableControls"
+          :key="j"
+        >
+          <v-col></v-col>
+          <h3 class="my-4 pa-2 teal lighten-4 text-subtitle-2">
+            <v-text class="font-weight-regular">
+              {{ tableControl.tableHeading }}
+            </v-text>
+          </h3>
+          <v-simple-table dense>
+            <template v-slot:default>
+              <thead class="teal lighten-4 text-subtitle-2">
+                <tr>
+                  <th
+                    class="text-left"
+                    v-for="(tableHeader, index) in tableControl.tableHeader"
+                    :key="index"
+                  >
+                    <v-icon v-if="tableHeader == 'plus'"
+                      >mdi-plus-circle
+                    </v-icon>
+
+                    <span v-else> {{ tableHeader }}</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in tableControl.tableData" :key="row.rowData">
+                  <td v-for="colData in row.rowData" :key="colData">
+                    <v-checkbox
+                      v-if="colData.controls.type === 'checkbox'"
+                    ></v-checkbox>
+                    <v-select
+                      v-else-if="colData.controls.type === 'dropdown'"
+                      :items="colData.controls.options"
+                      dense
+                    ></v-select>
+                    <div
+                      class="d-flex justify-left mx-10"
+                      v-else-if="colData.controls.type === 'textbox'"
+                    >
+                      <v-row>
+                        <v-col
+                          v-for="option in colData.controls.options"
+                          :key="option"
+                          cols="12"
+                          md="3"
+                        >
+                          <h2>
+                            <v-text class="font-weight-regular"
+                              >{{ option.text }}
+                            </v-text>
+                          </h2>
+                          <br />
+                          <v-text-field
+                            v-model="option.value"
+                            outlined
+                            dense
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </div>
+
+                    <span v-else>{{ colData.controls.options.text }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-col>
+      </v-row>
     </template>
 
     <template v-if="control.type === 'label'">
@@ -78,7 +129,11 @@
               </v-text>
             </h2>
             <br />
-            <v-text-field filled rounded dense></v-text-field>
+            <v-text-field
+              v-model="control.options.value"
+              outlined
+              dense
+            ></v-text-field>
           </v-col>
         </v-row>
       </div>

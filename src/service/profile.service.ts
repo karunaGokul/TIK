@@ -139,83 +139,205 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
                         }  
 
             },
-            
             {
-                "visible":true,
+                "visible": true,
                 "parentOptionId": "opRegularYarn",
-				"controls": 
-                         {
-                             "id": "tabletype",
-                            "type": "table",
-							"tableControls": 
-									[
-										{	"tableHeader":"Single Content",                          
-											"tableHeading": [{
-											"text":"Content",
-											"align":"start",
-											"sortable":false,
-											"value":"Content",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Spun",                        
-											 "value":"Spun",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Filaments",                        
-											"value":"Filaments",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"plus",                        
-											"value":" ",
-											"class": "teal lighten-4 subtitle-2"
-											}]
-										},
-										{   "tableHeader":  "Blend Content",                        
-											"tableHeading": [{
-											"text":"Content",
-											"align":"start",
-											"sortable":false,
-											"value":"Content",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 1",                        
-											 "value":"Comb1",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 2",                        
-											"value":"Comb2",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 3",                        
-											"value":"Comb3",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 4",                        
-											"value":"Comb4",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"Comb 5",                        
-											"value":"Comb5",
-											"class": "teal lighten-4 subtitle-2"
-											},
-											{
-											"text":"plus",                        
-											"value":" ",
-											"class": "teal lighten-4 subtitle-2"
-											}]
-										}
-									]
-
-				}
-			},
+                "controls": {
+                    "id": "tabletype",
+                    "type": "simpletable",
+                    "tableControls": [
+                        {
+                            "tableHeading": "Single Content",
+                            "tableHeader": [
+                                "Content",
+                                "Spun",
+                                "Filaments",
+                                "plus"
+                            ],
+                            "tableData": [
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "drpYarn_Single_Content",
+                                                "type": "dropdown",
+                                                "options": [
+                                                    {
+                                                        "id": "opYarn_Single_Content_1",
+                                                        "text": "100% Cotton",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_2",
+                                                        "text": "100% Viscose",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_3",
+                                                        "text": "100% Modal",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_4",
+                                                        "text": "100% Polyster",
+                                                        "selected": false
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxSpum",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxFilaments",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tableHeading": "Blend Content",
+                            "tableHeader": [
+                                "Content",
+                                "Combo 1",
+                                "Combo 2",
+                                "Combo 3",
+                                "Combo 4",
+                                "Combo 5",
+                                "plus"
+                            ],
+                            "tableData": [
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "drpYarn_Single_Content",
+                                                "type": "dropdown",
+                                                "options": [
+                                                    {
+                                                        "id": "opYarn_Single_Content_1",
+                                                        "text": "Cotton Poly",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_2",
+                                                        "text": "Poly Cotton",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_3",
+                                                        "text": "Poly Viscose",
+                                                        "selected": false
+                                                    },
+                                                    {
+                                                        "id": "opYarn_Single_Content_4",
+                                                        "text": "Cotton Viscose",
+                                                        "selected": false
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "textbox",
+                                                "options": [{
+                                                    "id": "opTextboxCombo1C",
+                                                    "text": "C",
+                                                    "selected": false
+                                                },
+                                                {
+                                                    "id": "opTextboxCombo1P",
+                                                    "text": "P",
+                                                    "selected": false
+                                                }]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "textbox",
+                                                "options": [{
+                                                    "id": "opTextboxCombo2C",
+                                                    "text": "C",
+                                                    "selected": false
+                                                },
+                                                {
+                                                    "id": "opTextboxCombo2P",
+                                                    "text": "P",
+                                                    "selected": false
+                                                }]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "textbox",
+                                                "options": [{
+                                                    "id": "opTextboxCombo3C",
+                                                    "text": "C",
+                                                    "selected": false
+                                                },
+                                                {
+                                                    "id": "opTextboxCombo3P",
+                                                    "text": "P",
+                                                    "selected": false
+                                                }]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "textbox",
+                                                "options": [{
+                                                    "id": "opTextboxCombo4C",
+                                                    "text": "C",
+                                                    "selected": false
+                                                },
+                                                {
+                                                    "id": "opTextboxCombo4P",
+                                                    "text": "P",
+                                                    "selected": false
+                                                }]
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "textbox",
+                                                "options": [{
+                                                    "id": "opTextboxCombo5C",
+                                                    "text": "C",
+                                                    "selected": false
+                                                },
+                                                {
+                                                    "id": "opTextboxCombo5P",
+                                                    "text": "P",
+                                                    "selected": false
+                                                }]
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
             {
                 "visible":true,
                 "parentOptionId": "opRegularYarn",
@@ -233,68 +355,175 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
 
             },
             {
-                "visible":true,
+                "visible": true,
                 "parentOptionId": "opRegularYarn",
-				"controls": 
-                         {
-                             "id": "tabletype",
-                            "type": "simpletable",
-							"tableControls": 
-									[
-										{	"tableHeader":"Single Quality",
-                                        "tableData":[
-                                            {
-                                                "item1": "Super Combed (RL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Combed (VL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Semi Combed (GL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Carded",
-                                                "item2":"checkbox"
-                                              },
-                                              {
-                                                "item1": "OE",
-                                                "item2": "checkbox"
-                                              }
-                                        ]                        
-											
-										},
-										{   "tableHeader":  "Blend Quality",
-                                        "tableData":[
-                                            {
-                                                "item1": "Super Combed (RL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Combed (VL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Semi Combed (GL)",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "Carded",
-                                                "item2": "checkbox"
-                                              },
-                                              {
-                                                "item1": "OE",
-                                                "item2": "checkbox"
-                                              }
-                                        ]                           
-											
-										}
-									]
-
-				}
-			},
+                "controls": {
+                    "id": "tabletype",
+                    "type": "simpletable",
+                    "tableControls": [
+                        {
+                            "tableHeading": "Single Quality",
+                            "tableData": [
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelSuperCombed",
+                                                    "text": "Super Combed(RL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxSuperCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelCombed",
+                                                    "text": "Combed (VL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelSemiCombed",
+                                                    "text": "Semi Combed (GL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxSemiCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "tableHeading": "Blend Quality",
+                            "tableData": [
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelSuperCombed",
+                                                    "text": "Super Combed(RL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxSuperCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelCombed",
+                                                    "text": "Combed (VL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "rowData": [
+                                        {
+                                            "controls": {
+                                                "id": "labeltype",
+                                                "type": "label",
+                                                "options": {
+                                                    "id": "oplabelSemiCombed",
+                                                    "text": "Semi Combed (GL)",
+                                                    "selected": false
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "controls": {
+                                                "id": "checkboxtype",
+                                                "type": "checkbox",
+                                                "options": {
+                                                    "id": "opCheckboxSemiCombed",
+                                                    "selected": false
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
             {
                 "visible":true,
                 "parentOptionId": "opRegularYarn",

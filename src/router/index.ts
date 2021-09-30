@@ -43,14 +43,9 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/dashboard/Index.vue')
   },
   {
-    path: '/newproject',
-    name: 'Newproject',
-    component: () => import('../views/newproject/Index.vue')
-  },
-  {
     path: '/project',
     name: 'Project',
-    component: () => import('../views/newproject/Project.vue')
+    component: () => import('../views/project/ProjectBuilder.vue')
   },
   {
     path: '/employee',

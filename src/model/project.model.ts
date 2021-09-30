@@ -1,5 +1,25 @@
 import { BaseModel, DataRequest, ListItem } from './base.model';
 
+export class CreateProjectModel {
+    name: string;
+    noOfKgs: number;
+    price: number;
+    requestPrice: boolean;
+    creditPeriod: number;
+    confirmationDate: Date;
+    deliveryDate: Date;
+
+    controls: Array<CreateProjectControlModel> = [];
+}
+
+export class CreateProjectControlModel {
+    id: string;
+    path: string;
+    value: string;
+}
+
+
+
 export class ProjectFormModel {
     category: string;
 
@@ -23,6 +43,8 @@ export class ProjectFormStepControl {
 
     options: Array<ProjectFormStepControlOption>;
 
+    items: Array<ProjectFormStepControl>
+
     value: string;
 }
 
@@ -35,7 +57,5 @@ export class ProjectFormStepControlOption {
     selected: boolean;
 }
 
-export class ProjectFormRequestModel extends DataRequest {
-    projectName: string;
-    categoryName: string;
+export class ProjectRequestModel extends DataRequest {
 }

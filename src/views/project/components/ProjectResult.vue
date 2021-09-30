@@ -1,61 +1,51 @@
-<template>
-  <div class="px-16">
-    <h1>Mills</h1>
-    <v-row>
-      <v-col cols="2"> <h3>send enquiries by:</h3></v-col>
-      <v-col>
-        <v-select
-          solo
-          label="Selected Units"
-          :items="item"
-          dark
-          dense
-        ></v-select
-      ></v-col>
-      <v-col>
-        <v-select solo label="For All" :items="item" dark dense></v-select>
-      </v-col>
-      <v-col>
-        <v-select solo label="Rating Above" :items="item" dark dense></v-select>
-      </v-col>
-      <v-col>
-        <v-select
-          solo
-          label="Certifications"
-          :items="certificate"
-          dark
-          dense
-        ></v-select>
-      </v-col>
-    </v-row>
+ <template>
+  <div>
     <v-data-table
       :headers="headers"
-      :items="item"
+      :items="items"
+      :search="search"
+      :items-per-page="10"
+      item-key="SNo"
       v-model="selected"
-      item-key="MillName"
       show-select
-      class="elevation-1"
-      
+      class="elevation-1 py-4"
     >
-    </v-data-table
-    ><br /><br />
-
-    <span class="mr-5"> <v-btn dark>back</v-btn></span>
-    <v-btn dark>next</v-btn>
+      <template v-slot:top>
+        <v-toolbar flat dense height="auto" color="transparent">
+          <v-row align="center" class="pb-4">
+            <v-col>
+              
+            </v-col>
+            <v-col>
+                <v-text-field
+                  v-model="search"
+                  append-icon="mdi-magnify"
+                  label="Search"
+                  single-line
+                  hide-details
+                ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-toolbar>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
-export default class ResultScreen extends Vue {
-  selected: [];
-  
+@Component
+export default class ProjectResult extends Vue {
+  search: string = "";
+  selected: Array<any> = [];
+
   headers: any = [
     {
       text: "S.No",
       value: "SNo",
       align: "start",
+      filterable: false
     },
     {
       text: "Mill Name",
@@ -64,29 +54,34 @@ export default class ResultScreen extends Vue {
     {
       text: "Content",
       value: "Content",
+      filterable: false
     },
     {
-      text: "Type",
+      text: "Quality",
       value: "Type",
+      filterable: false
     },
     {
       text: "Count",
       value: "Count",
+      filterable: false
     },
     {
       text: "Credit Period",
       value: "CreditPeriod",
+      filterable: false
     },
     {
       text: "Reviews",
       value: "Reviews",
+      filterable: false
     },
   ];
 
-  item: any = [
+  items: any = [
     {
       SNo: "1",
-      MillName: "apple 1",
+      MillName: "apple mast",
       Content: "100%cotton",
       Type: "combined",
       Count: "30",
@@ -121,6 +116,7 @@ export default class ResultScreen extends Vue {
       Reviews: "",
     },
   ];
+
   certificate: any = [
     "certification one",
     "certification two",
@@ -130,3 +126,4 @@ export default class ResultScreen extends Vue {
   ];
 }
 </script>
+

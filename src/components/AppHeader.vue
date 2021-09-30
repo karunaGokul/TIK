@@ -19,7 +19,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/newproject">
+        <v-list-item link to="/project">
           <v-list-item-action>
             <v-icon class="white--text">mdi-av-timer</v-icon>
           </v-list-item-action>

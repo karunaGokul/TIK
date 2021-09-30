@@ -41,6 +41,10 @@ export default class App extends DIContainer {
       return this.$vuehelper.date.format(value, format);
     });
 
+    Vue.filter("errorMessages", (value: any, name: string) => {
+      return this.$vuehelper.val.messages(value, name);
+    });
+
   }
 
   createAxiosResponseInterceptor() {

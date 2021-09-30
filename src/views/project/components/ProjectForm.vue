@@ -9,7 +9,10 @@
       >
         <v-card-title> {{ data.category }} </v-card-title>
         <v-card-text>
-          <div v-if="lastStep">
+          <div v-if="mode == StepMode.Result">
+            <ProjectResult />
+          </div>
+          <div v-else-if="mode == StepMode.Detail">
             <v-row>
               <v-col cols="6">
                 <v-label>Enquiry Name</v-label>
@@ -18,6 +21,8 @@
                   dense
                   hide-details
                   required
+                  v-model="request.name"
+                  @input="$v.request.name.$touch"
                 ></v-text-field>
               </v-col>
               <v-col cols="6">
@@ -27,6 +32,7 @@
                   dense
                   hide-details
                   required
+                  v-model="request.noOfKgs"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -38,6 +44,8 @@
                   dense
                   hide-details
                   required
+                  v-model="request.price"
+                  :disabled="request.requestPrice"
                 ></v-text-field>
                 <div class="text-left px-4 pt-2">OR</div>
                 <v-checkbox
@@ -45,6 +53,7 @@
                   color="red"
                   dense
                   hide-details
+                  v-model="request.requestPrice"
                 ></v-checkbox>
               </v-col>
               <v-col cols="6">
@@ -54,6 +63,7 @@
                   dense
                   hide-details
                   required
+                  v-model="request.creditPeriod"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -70,7 +80,7 @@
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
-                      :value="confirmationDate | dateDisplay"
+                      :value="request.confirmationDate | dateDisplay"
                       readonly
                       v-on="on"
                       outlined
@@ -80,7 +90,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="confirmationDate"
+                    v-model="request.confirmationDate"
                     no-title
                     @input="confirmationDateControl = false"
                   ></v-date-picker>
@@ -98,7 +108,7 @@
                 >
                   <template v-slot:activator="{ on }">
                     <v-text-field
-                      :value="deliveryDate | dateDisplay"
+                      :value="request.deliveryDate | dateDisplay"
                       readonly
                       v-on="on"
                       outlined
@@ -108,7 +118,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="deliveryDate"
+                    v-model="request.deliveryDate"
                     no-title
                     @input="deliveryDateControl = false"
                   ></v-date-picker>
@@ -127,6 +137,9 @@
               />
             </div>
           </div>
+          <v-alert outlined dense type="error" class="ma-6" v-if="error">
+            Please complete all fields.
+          </v-alert>
         </v-card-text>
         <v-spacer></v-spacer>
         <v-card-actions>
@@ -188,44 +201,56 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Inject } from "vue-property-decorator";
+import { required } from "vuelidate/lib/validators";
 import {
-  ProjectFormRequestModel,
   ProjectFormModel,
   ProjectFormStep,
   ProjectFormStepControl,
+  CreateProjectModel,
 } from "@/model";
 import { IProjectService } from "@/service";
-import ProjectControl from "./Project-Control.vue";
+import ProjectControl from "./ProjectControl.vue";
+import ProjectResult from "./ProjectResult.vue";
+
+const validations: any = {
+  request: {
+    name: { required },
+    noOfKgs: { required },
+    price: { required },
+    creditPeriod: { required },
+    confirmationDate: { required },
+    deliveryDate: { required },
+  },
+};
 
 @Component({
-  components: { ProjectControl },
+  validations: validations,
+  components: { ProjectControl, ProjectResult },
 })
-export default class ProjectFormBuilder extends Vue {
+export default class ProjectForm extends Vue {
   @Inject("ProjectService") ProjectService: IProjectService;
   @Prop() categoryName: string;
   @Prop() projectName: string;
+  StepMode = StepMode;
 
   data: ProjectFormModel = new ProjectFormModel();
 
   steps: Array<ProjectFormStep> = [];
   stepNumber: number = 1;
-  lastStep: boolean = false;
+  mode: StepMode = StepMode.Form;
 
   path: string = "";
+  error: boolean = false;
 
   confirmationDateControl: boolean = false;
-  confirmationDate: Date = null;
-
   deliveryDateControl: boolean = false;
-  deliveryDate: Date = null;
+
+  request: CreateProjectModel = new CreateProjectModel();
 
   created() {
-    const request = new ProjectFormRequestModel();
+    this.request.name = this.projectName;
 
-    request.categoryName = this.categoryName;
-    request.projectName = this.projectName;
-
-    this.ProjectService.newProject(request).then(
+    this.ProjectService.newProject(this.categoryName, this.projectName).then(
       (response: ProjectFormModel) => {
         this.data = response;
 
@@ -241,10 +266,11 @@ export default class ProjectFormBuilder extends Vue {
   }
 
   back() {
-    console.log(this.path);
-    if (this.lastStep) {
-      this.lastStep = false;
-    } else {
+    this.error = false;
+
+    if (this.mode == StepMode.Detail || this.mode == StepMode.Result)
+      this.mode = this.mode - 1;
+    else {
       this.path = this.path.substring(0, this.path.lastIndexOf("-"));
 
       if (this.steps.length > 1) this.steps.pop();
@@ -252,32 +278,70 @@ export default class ProjectFormBuilder extends Vue {
   }
 
   next() {
-    const selector = this.currentStep.controls.find((c) => c.selector);
-    if (!selector) {
-      this.lastStep = true;
-      return false;
+    this.error = false;
+    if (this.mode == StepMode.Result) {
+      this.mode = StepMode.Detail;
+    } else if (this.mode == StepMode.Detail) {
+      this.$v.$touch();
+
+      if (this.$v.$invalid) {
+        this.error = true;
+      } else {
+        this.request.controls = [];
+
+        this.steps.forEach((s) => {
+          s.controls.forEach((c) => {
+            this.request.controls.push({
+              id: c.id,
+              value: c.value,
+              path: s.path[0],
+            });
+          });
+        });
+
+        this.mode = StepMode.Summary;
+        console.log(JSON.stringify(this.request));
+      }
+    } else {
+      let valid = true;
+      this.steps.forEach((s) => {
+        s.controls.forEach((c) => {
+          if (!c.value) valid = false;
+        });
+      });
+
+      if (!valid) {
+        this.error = true;
+        return false;
+      }
+
+      const selector = this.currentStep.controls.find((c) => c.selector);
+      if (!selector) {
+        this.mode = StepMode.Result;
+        return false;
+      }
+
+      const selectedOption = selector.options.find((o) => o.selected);
+      if (!selectedOption) return false;
+
+      let path = this.$vuehelper.trimChar(
+        `${this.path}-${selectedOption.id}`,
+        "-"
+      );
+      if (!this.data.steps.some((s) => s.path.includes(path)))
+        path = this.$vuehelper.trimChar(`${this.path}-${selector.id}`, "-");
+
+      const nextStep = this.data.steps.find((s) => s.path.includes(path));
+      if (nextStep) {
+        this.path = path;
+        nextStep.stepNumber = this.steps.length + 1;
+        this.steps.push(nextStep);
+      } else this.mode = StepMode.Result;
     }
-
-    const selectedOption = selector.options.find((o) => o.selected);
-    if (!selectedOption) return false;
-
-    let path = this.$vuehelper.trimChar(
-      `${this.path}-${selectedOption.id}`,
-      "-"
-    );
-    if (!this.data.steps.some((s) => s.path.includes(path)))
-      path = this.$vuehelper.trimChar(`${this.path}-${selector.id}`, "-");
-
-    const nextStep = this.data.steps.find((s) => s.path.includes(path));
-    if (nextStep) {
-      this.path = path;
-      nextStep.stepNumber = this.steps.length + 1;
-      this.steps.push(nextStep);
-    } else this.lastStep = true;
   }
 
   get progress() {
-    if (this.lastStep) return 90;
+    if (this.mode == StepMode.Result) return 90;
     else
       return this.steps.length > 1
         ? ((this.steps.length - 1) / this.data.maxSteps) * 100
@@ -287,5 +351,12 @@ export default class ProjectFormBuilder extends Vue {
   get currentStep() {
     return this.steps.find((s) => s.path.includes(this.path));
   }
+}
+
+enum StepMode {
+  Form,
+  Result,
+  Detail,
+  Summary,
 }
 </script>

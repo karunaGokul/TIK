@@ -74,6 +74,11 @@ const routes: Array<RouteConfig> = [
     name: 'Product-Details',
     component: () => import('../views/productDetails/Index.vue'),
     meta: { anonymous: true }
+  },
+  {
+    path: '/projectslist',
+    name: 'ProjectsList',
+    component: () => import('../views/dashboard/ProjectsList.vue')
   }
   
 ]

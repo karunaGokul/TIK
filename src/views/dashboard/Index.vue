@@ -35,7 +35,6 @@
         :items="desserts"
         :search="search"
         :item-class="row_classes"
-        show-expand
         item-key="EnquiryName"
         class="elevation-1"
       >
@@ -48,13 +47,19 @@
           <span class="pl-2">{{ item.Status }}</span>
         </template>
 
-        <template v-slot:expanded-item="{ headers }">
-          <!-- <v-data-table
-            :headers="headers1"
-            :items="items1"
-            :colspan="headers.length"
-          >
-          </v-data-table> -->
+        <template v-slot:[`item.action`]>
+          <router-link to="/projectslist" tag="button">
+          <v-btn 
+            class="white--text font-weight-light text-capitalize rounded-0"
+            depressed
+            color="#ff6500" 
+          >View
+          </v-btn>
+          </router-link>
+        </template>
+
+        <!-- <template v-slot:expanded-item="{ headers }">
+         
           <td :colspan="headers.length">
             <v-simple-table>
               <thead>
@@ -80,7 +85,7 @@
               </tbody>
             </v-simple-table>
           </td>
-        </template>
+        </template> -->
       </v-data-table>
     </v-card>
   </div>
@@ -126,7 +131,9 @@ export default class Dashboard extends Vue {
     { text: "Review", value: "Review", class: "teal lighten-4 subtitle-2" },
     {
       text: "Action",
-      value: "data-table-expand",
+      value: "action",
+      sortable: false,
+      align: "center",
       class: "teal lighten-4 subtitle-2",
     },
   ];
@@ -180,43 +187,43 @@ export default class Dashboard extends Vue {
       Status: "Inactive",
     },
   ];
-  headers1: any = [
-    {
-      text: "Approve",
-      align: "start",
-      sortable: false,
-      value: "Approve",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Price",
-      value: "Price",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Your CreditPereiod",
-      value: "Your CreditPereiod",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Your DeliveryPeriod",
-      value: "Your DeliveryPeriod",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Action",
-      value: "Action",
-      class: "teal lighten-4 subtitle-2",
-    },
-  ];
-  items1: any = [
-    {
-      Approve: "masterdamin",
-      Price: "98",
-      YourCreditPereiod: "40",
-      YourDeliveryPeriod: "34s",
-      Action: "Approve",
-    },
-  ];
+  // headers1: any = [
+  //   {
+  //     text: "Approve",
+  //     align: "start",
+  //     sortable: false,
+  //     value: "Approve",
+  //     class: "teal lighten-4 subtitle-2",
+  //   },
+  //   {
+  //     text: "Price",
+  //     value: "Price",
+  //     class: "teal lighten-4 subtitle-2",
+  //   },
+  //   {
+  //     text: "Your CreditPereiod",
+  //     value: "Your CreditPereiod",
+  //     class: "teal lighten-4 subtitle-2",
+  //   },
+  //   {
+  //     text: "Your DeliveryPeriod",
+  //     value: "Your DeliveryPeriod",
+  //     class: "teal lighten-4 subtitle-2",
+  //   },
+  //   {
+  //     text: "Action",
+  //     value: "Action",
+  //     class: "teal lighten-4 subtitle-2",
+  //   },
+  // ];
+  // items1: any = [
+  //   {
+  //     Approve: "masterdamin",
+  //     Price: "98",
+  //     YourCreditPereiod: "40",
+  //     YourDeliveryPeriod: "34s",
+  //     Action: "Approve",
+  //   },
+  // ];
 }
 </script>

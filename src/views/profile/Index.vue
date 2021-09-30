@@ -224,7 +224,7 @@ import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
 import { IProfileService } from "@/service";
 import { ProfileRequestModel, ProfileResponse } from "@/model";
-import axios from "axios";
+
 
 @Component({
   components: { Divider, EditProfile },

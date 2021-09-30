@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" md="6">
         <v-parallax
-          src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+          src="@/assets/login.jpg"
           height="700"
           
         >
@@ -23,7 +23,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7 pt-15">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form">
+          <v-form ref="form" >
             <v-label>Email ID</v-label>
             <v-text-field
               outlined

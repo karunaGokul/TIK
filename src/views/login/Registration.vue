@@ -1,11 +1,8 @@
 <template>
-  <div>
+  <div >
     <v-row>
       <v-col cols="12" md="6">
-        <v-parallax
-          src="@/assets/vbanner.jpg"
-          height="1700"
-        >
+        <v-parallax src="@/assets/signup.jpg" >
           <div class="pl-10">
             <h2>Lets Get</h2>
             <h1 class="font-weight-black py-3">Started</h1>
@@ -17,20 +14,9 @@
             </p>
           </div>
         </v-parallax>
-
-        <!-- <v-parallax
-          src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-          height="600"
-        >
-        </v-parallax>
-        <v-parallax
-          src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-          height="600"
-        >
-        </v-parallax> -->
       </v-col>
 
-      <v-col class="pt-16 pl-6 pr-10">
+      <v-col class="pt-16 pl-6 pr-10" >
         <h2 class="pb-7 pt-15">Sign Up</h2>
 
         <v-form>

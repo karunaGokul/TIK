@@ -1,9 +1,9 @@
 <template>
-  <div style="height: 100%; width: 100%;">
+  <div style="height: 700px; width: 100%; overflow: hidden">
     <v-row>
       <v-col cols="12" md="6">
-        <div class="d-flex" style="height: 100%; width: 100%;">
-          <v-parallax src="@/assets/signup.jpg">
+        <div class="d-flex" style="height: 700px; width: 100%;">
+          <v-parallax src="@/assets/signup.jpg" height="700px">
             <div class="pl-10">
               <h2>Lets Get</h2>
               <h1 class="font-weight-black py-3">Started</h1>
@@ -19,7 +19,7 @@
       </v-col>
 
       <v-col class="pt-16 pl-6 pr-10">
-        <div style="height: 75%; flex: 1; overflow: scroll;">
+        <div style="height: 50%; flex: 1; overflow: scroll;">
           <h2 class="pb-7 pt-15">Sign Up</h2>
           
             <v-form>

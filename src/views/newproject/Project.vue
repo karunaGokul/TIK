@@ -274,59 +274,6 @@ export default class ProjectFormBuilder extends Vue {
       nextStep.stepNumber = this.steps.length + 1;
       this.steps.push(nextStep);
     } else this.lastStep = true;
-
-    // if (
-    //   !this.currentStep.controls.some((c) => c.options.some((o) => o.selected))
-    // ) {
-    //   return false;
-    // }
-
-    // if (this.data.steps.some((s) => s.stepNumber == this.stepNumber + 1)) {
-    //   const nextSteps = this.data.steps.filter(
-    //     (s) => s.stepNumber == this.stepNumber + 1
-    //   );
-
-    //   if (!nextSteps.length) return;
-
-    //   if (nextSteps.some(s => !s.parentOptionId)) {
-    //     if (!this.steps.some((s) => s.stepNumber == this.stepNumber + 1)) {
-    //       this.steps = this.steps.filter(
-    //         (s) => s.stepNumber <= this.stepNumber
-    //       );
-    //       this.steps.push(this.$vuehelper.clone(nextSteps[0]));
-    //     }
-    //   } else {
-    //     const selectedOption = this.currentStep.selectedOption;
-
-    //     if (selectedOption) {
-    //       const nextStep = nextSteps.find(
-    //         (s) => s.parentOptionId == selectedOption.id
-    //       );
-
-    //       console.log(nextSteps)
-    //       console.log(selectedOption.id)
-
-    //       if (
-    //         nextStep &&
-    //         !this.steps.some(
-    //           (s) =>
-    //             s.stepNumber == this.stepNumber + 1 &&
-    //             s.parentOptionId == selectedOption.id
-    //         )
-    //       ) {
-
-    //         this.steps = this.steps.filter(
-    //           (s) => s.stepNumber <= this.stepNumber
-    //         );
-    //         this.steps.push(this.$vuehelper.clone(nextStep));
-    //       }
-    //     } else return;
-    //   }
-
-    //   this.stepNumber++;
-    // } else {
-    //   this.lastStep = true;
-    // }
   }
 
   get progress() {

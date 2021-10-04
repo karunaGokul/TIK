@@ -12,6 +12,7 @@ import {
     IEmployeeService,
     EmployeeService
 } from "@/service";
+import { DashboardService, IDashboardService } from "./service/dashboard.service";
 
 export class DIContainer extends Vue {
     @Provide("authService") authService: IAuthenticationService = new AuthenticationService();
@@ -19,4 +20,5 @@ export class DIContainer extends Vue {
     @Provide("ProjectService") ProjectService: IProjectService = new ProjectService();
     @Provide("ProfileService") ProfileService: IProfileService = new ProfileService();
     @Provide("EmployeeService") EmployeeService: IEmployeeService = new EmployeeService();
+    @Provide("DashboardService") DashboardService: IDashboardService = new DashboardService();
 }

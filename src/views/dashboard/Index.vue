@@ -1,64 +1,69 @@
 <template>
   <div>
-    <v-container fluid class="pa-4">
-      <div class="ma-2">
-        <router-link link to="/" class="text-decoration-none">
-          <v-icon large> mdi-home</v-icon>
-        </router-link>
-        <v-icon large> mdi-chevron-right</v-icon>
-        Dashboard
-      </div>
-    </v-container>
-    <v-card class="ma-3" elevation="8">
-      <v-card-title>
-        <v-select
-          :items="items"
-          :menu-props="{ offsetY: true }"
-          label="Select"
-          class="shrink pt-3"
-          dense
-          hide-details
-        ></v-select>
-        <v-spacer></v-spacer>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          append-icon="mdi-magnify"
-          class="shrink pt-4"
-          outlined
-          dense
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-        :search="search"
-        :item-class="row_classes"
-        item-key="EnquiryName"
-        class="elevation-1"
-      >
-        <template v-slot:[`item.Status`]="{ item }">
-          <span
-            v-if="item.Status === 'Active'"
-            class="green px-2 rounded-circle"
-          ></span>
-          <span v-else class="red px-2 rounded-circle"></span>
-          <span class="pl-2">{{ item.Status }}</span>
-        </template>
-
-        <template v-slot:[`item.action`]>
-          <router-link to="/projectslist" tag="button">
-          <v-btn 
-            class="white--text font-weight-light text-capitalize rounded-0"
-            depressed
-            color="#ff6500" 
-          >View
-          </v-btn>
+    <div v-if="!toggleProjectList">
+      <v-container fluid class="pa-4">
+        <div class="ma-2">
+          <router-link link to="/" class="text-decoration-none">
+            <v-icon large> mdi-home</v-icon>
           </router-link>
-        </template>
+          <v-icon large> mdi-chevron-right</v-icon>
+          Dashboard
+        </div>
+      </v-container>
+      <v-card class="ma-3" elevation="8">
+        <v-card-title>
+          <v-select
+            :items="items"
+            :menu-props="{ offsetY: true }"
+            label="Select"
+            class="shrink pt-3"
+            dense
+            hide-details
+          ></v-select>
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            label="Search"
+            append-icon="mdi-magnify"
+            class="shrink pt-4"
+            outlined
+            dense
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table
+          :headers="headers"
+          :items="response"
+          :search="search"
+          :item-class="row_classes"
+          item-key="EnquiryName"
+          class="elevation-1"
+        >
+          <template v-slot:[`item.Status`]="{ item }">
+            <span
+              v-if="
+                item.InStages === 'Confirmed' || item.InStages === 'Completed'
+              "
+              class="green px-2 rounded-circle"
+            ></span>
+            <span
+              v-else-if="item.InStages === 'Enquiry Sent'"
+              class="orange px-2 rounded-circle"
+            ></span>
+            <span v-else class="red px-2 rounded-circle"></span>
+          </template>
 
-        <!-- <template v-slot:expanded-item="{ headers }">
+          <template v-slot:[`item.action`]="{ item }">
+            <v-btn
+              class="white--text font-weight-light text-capitalize rounded-0"
+              depressed
+              color="#ff6500"
+              @click="viewProject(item)"
+              >View
+            </v-btn>
+          </template>
+
+          <!-- <template v-slot:expanded-item="{ headers }">
          
           <td :colspan="headers.length">
             <v-simple-table>
@@ -86,21 +91,45 @@
             </v-simple-table>
           </td>
         </template> -->
-      </v-data-table>
-    </v-card>
+        </v-data-table>
+      </v-card>
+    </div>
+    <ProjectsList :response="SelectedProject" v-if="toggleProjectList" />
   </div>
 </template>
  
 <script lang="ts">
-import { DashboardRequestModel } from "@/model";
-import { Component, Vue } from "vue-property-decorator";
-@Component
+import { Component, Inject, Vue } from "vue-property-decorator";
+import { DashboardModel, DashboardRequestModel } from "@/model";
+import { IDashboardService } from "@/service/dashboard.service";
+
+import ProjectsList from "./ProjectsList.vue";
+@Component({
+  components: { ProjectsList },
+})
 export default class Dashboard extends Vue {
+  @Inject("DashboardService") DashboardService: IDashboardService;
   search: string = "";
+  toggleProjectList: boolean = false;
   showDialog: boolean = false;
   request: DashboardRequestModel = new DashboardRequestModel();
+  response: Array<DashboardModel> = [];
+  SelectedProject: DashboardModel = new DashboardModel();
+  created() {
+    this.request = this.$store.getters.id;
+    this.DashboardService.getDashboardInfo(this.request).then(
+      (response: Array<DashboardModel>) => {
+        this.response = response;
+      }
+    );
+  }
+  public viewProject(item: DashboardModel) {
+    this.toggleProjectList = true;
+    this.SelectedProject = item;
+  }
   public row_classes(item: any) {
-    return item.Status === "Active" ? "white" : "blue lighten-5";
+    for (let i = 0; i < item.length; i++)
+      return item.Status === "Active" ? "white" : "blue lighten-5";
   }
   items: any = ["New Enquiry", "Conformed Project", "Completed Project"];
   headers: any = [
@@ -144,14 +173,14 @@ export default class Dashboard extends Vue {
       Category: "Mill",
       Subcategory: "Yarn",
       InStages: "Bid Received",
-      Status: "Active",
+      Status: "Inactive",
     },
     {
       EnquiryName: "20",
       Merchandiser: 159,
       Category: "fabric",
       Subcategory: "Yarn",
-      InStages: "Bid Received",
+      InStages: "Enquiry Sent",
       Status: "Active",
     },
     {
@@ -159,7 +188,7 @@ export default class Dashboard extends Vue {
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
-      InStages: "Bid Received",
+      InStages: "Confirmed",
       Status: "Inactive",
     },
     {
@@ -167,7 +196,7 @@ export default class Dashboard extends Vue {
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
-      InStages: "Bid Received",
+      InStages: "Enquiry Sent",
       Status: "Active",
     },
     {
@@ -175,8 +204,8 @@ export default class Dashboard extends Vue {
       Merchandiser: 159,
       Category: "Mill",
       Subcategory: "Yarn",
-      InStages: "Bid Received",
-      Status: "Inactive",
+      InStages: "Completed",
+      Status: "Active",
     },
     {
       EnquiryName: "60",

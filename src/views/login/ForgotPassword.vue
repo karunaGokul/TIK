@@ -17,11 +17,13 @@
               color="#ff6500"
               background-color="white"
               prepend-inner-icon="mdi-email"
+              v-model="request.email"
             ></v-text-field>
             <v-btn
               color="#ff6500"
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
+              @click="forgotPassword()"
               >Send</v-btn
             >
           </v-form>
@@ -38,7 +40,40 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-@Component
-export default class ProjectsList extends Vue {}
+import { Component, Vue, Inject } from "vue-property-decorator";
+
+import { validationMixin } from "vuelidate";
+
+import { ForgotPasswordRequestModel } from "@/model";
+import { IAuthenticationService } from "@/service";
+
+@Component({
+  mixins: [validationMixin],
+})
+
+export default class ForgotPassword extends Vue {
+    @Inject("authService") authService: IAuthenticationService;
+
+    snackbar: boolean = false;
+    snackbarText: string = "";
+
+    public request = new ForgotPasswordRequestModel();
+
+    public forgotPassword () {
+        //  if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+            this.authService.ForgotPassword(this.request).then((response) => {
+            this.snackbarText = response;
+            this.snackbar = true;
+        })
+        // (err) => {
+        //   if (err.response.status == 400) {
+        //     this.snackbarText = err.response.data;
+        //     this.snackbar = true;
+        //   }
+        // }
+         }
+
+    // }
+
+}
 </script>

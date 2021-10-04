@@ -24,21 +24,23 @@
           <v-row> Created By : {{ response.CreatedBy }}</v-row>
           <v-row> Date & Time :{{ response.CreatedDateTime }} </v-row>
         </v-col>
-        <v-col cols="12" md="3" v-if="response.InStages != 'Enquiry Sent'">
+        <v-col cols="12" md="3" v-if="response.InStages === 'Confirmed'">
           <v-row class="mt-4"> </v-row>
-          <v-row> Approve By : {{ response.Approved.ApprovedBy }}</v-row>
-          <v-row> Date & Time :{{ response.Approved.ApprovedDateTime }} </v-row>
+          <v-row> Approve By : {{ response.BitReceived.ApprovedBy }}</v-row>
+          <v-row>
+            Date & Time :{{ response.BitReceived.ApprovedDateTime }}
+          </v-row>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col class="my-5">
           <v-simple-table>
             <template v-slot:default>
               <thead class="teal lighten-4 text-subtitle-2">
                 <tr>
                   <th
                     class="text-left"
-                    v-for="(tableHeader, index) in headers"
+                    v-for="(tableHeader, index) in ProjectRequestheaders"
                     :key="index"
                   >
                     {{ tableHeader }}
@@ -65,7 +67,7 @@
                       "
                       depressed
                       color="#ff6500"
-                      @click="toggleView = true"
+                      @click="toggleSummaryView = true"
                       >View
                     </v-btn>
                   </td>
@@ -73,29 +75,73 @@
               </tbody>
             </template>
           </v-simple-table>
-
-          <ProjectsListView v-if="toggleView" @closeModel="closeModel" />
+          <ProjectsListView :response="response" v-if="toggleSummaryView" @closeModel="closeModel" />
         </v-col>
       </v-row>
+      <div v-if="response.InStages != 'Enquiry Sent'">
+        <v-row
+          class="py-5 mb-10"
+          :class="response.BitReceived.Approved ? 'deep-orange lighten-3 black--text' : ''"
+        >
+       <v-row><v-col class="mx-4" cols="12" md="4"><h4>Confirmed Project</h4></v-col></v-row>
+       <v-row>
+          <v-col  class="mx-4" cols="12" md="1">
+            <v-img src="@/assets/textile3.png" width="50%"></v-img>
+          </v-col>
 
-      <v-row>
-        <v-col>
-          <v-img src="@/assets/textile3.png" width="50%"></v-img>
-        </v-col>
+          <v-col  class="mx-4" cols="12" md="2">
+            <v-row class="mt-4">
+              <h4>{{ response.BitReceived.BitReceivedCompanyName }}</h4>
+            </v-row>
+            <v-row>
+              <v-rating
+                v-model="response.BitReceived.Rating"
+                color="warning"
+                dense
+              ></v-rating>
+            </v-row>
+          </v-col>
 
-        <v-col>
-          <v-row class="mt-4">
-            <h4>Apple</h4>
+          <v-col cols="8">
+            <v-simple-table>
+              <template v-slot:default>
+                <thead 
+                :class="response.BitReceived.Approved ? 'deep-orange lighten-2 black--text' : 'teal lighten-4 text-subtitle-2'">
+                  <tr>
+                    <th
+                      class="text-left"
+                      v-for="(tableHeader, index) in BitReceivedheaders"
+                      :key="index"
+                    >
+                      {{ tableHeader }}
+                    </th>
+                    <th v-if="response.InStages === 'Bid Received'">Action</th>
+                  </tr>
+                </thead>
+                <tbody :class="response.BitReceived.Approved ? 'deep-orange lighten-3 black--text' : ''">
+                  <tr>
+                    <td >{{ response.BitReceived.AuthApprove }}</td>
+                    <td class="blue--text">
+                      Rs.{{ response.BitReceived.BitReceivedRequestedPrice }}
+                    </td>
+                    <td class="red--text">
+                      {{ response.BitReceived.BitReceivedRequestedCredit }} days
+                    </td>
+                    <td class="green--text">
+                      {{ response.BitReceived.BitReceivedRequestedDelivery }}
+                      days
+                    </td>
+                    <td v-if="response.InStages === 'Bid Received'">
+                      Auth for Approval
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-col>
           </v-row>
-          <v-row>
-            <v-icon>mdi-star</v-icon>
-          </v-row>
-        </v-col>
-
-        <v-col cols="8">
-          <v-data-table :headers="headers1" :items="items1"></v-data-table>
-        </v-col>
-      </v-row>
+        </v-row>
+      </div>
     </div>
   </div>
 </template>
@@ -109,12 +155,12 @@ import ProjectsListView from "./ProjectsListView.vue";
 })
 export default class ProjectsList extends Vue {
   @Prop() response: DashboardModel;
-  toggleView: boolean = false;
+  toggleSummaryView: boolean = false;
   public closeModel() {
-    this.toggleView = false;
+    this.toggleSummaryView = false;
   }
 
-  headers: any = [
+  ProjectRequestheaders: any = [
     "Project Name",
     "Category",
     "SubCategory",
@@ -123,36 +169,13 @@ export default class ProjectsList extends Vue {
     "Requested Delivery",
     "Action",
   ];
-  headers1: any = [
-    {
-      text: "Auth Approve",
-      align: "start",
-      sortable: false,
-      value: "AuthApprove",
-      class: "teal lighten-4 subtitle-2",
-    },
-
-    {
-      text: "Requested Price",
-      value: "RequestedPrice",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Requested Credit",
-      value: "RequestedCredit",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Requested Delivery",
-      value: "RequestedDelivery",
-      class: "teal lighten-4 subtitle-2",
-    },
-    {
-      text: "Action",
-      value: "action",
-      class: "teal lighten-4 subtitle-2",
-    },
+  BitReceivedheaders: any = [
+    "Auth Approve",
+    "Requested Price",
+    "Requested Credit",
+    "Requested Delivery",
   ];
+
   items1: any = [
     {
       AuthApprove: "Apple1A1(Sadmin) ",

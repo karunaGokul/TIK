@@ -39,14 +39,16 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                         "OrderConfirmationDate": "19-01-2021",
                         "DeliveryDate": "12-01-2021"
                     },
-                    "Approved": {
-                        "ApprovedCompanyName": "Apple1",
+                    "BitReceived": {
+                        "BitReceivedCompanyName": "Apple1",
                         "Rating": "4",
-                        "ApprovedBy": "Apple1A1(Sadmin)",
-                        "ApprovedDateTime": "2021-04-30 08:19:46",
-                        "ApprovedRequestedPrice": "120",
-                        "ApprovedRequestedCredit": "5",
-                        "ApprovedRequestedDelivery": "22"
+                        "AuthApprove":"Apple1A1(Sadmin) - 2021-04-19 14:51:50",
+                        "Approved":false,                        
+                        "ApprovedBy": "",
+                        "ApprovedDateTime": "",
+                        "BitReceivedRequestedPrice": "120",
+                        "BitReceivedRequestedCredit": "5",
+                        "BitReceivedRequestedDelivery": "22"
                     }
                 },
                 {
@@ -97,14 +99,16 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                         "OrderConfirmationDate": "10-05-2021",
                         "DeliveryDate": "30-04-2021"
                     },
-                    "Approved": {
-                        "ApprovedCompanyName": "cera",
+                    "BitReceived": {
+                        "BitReceivedCompanyName": "cera",
                         "Rating": "5",
+                        "AuthApprove":"ceraA1(Sadmin) - 2021-04-19 14:51:50",
+                        "Approved":true,
                         "ApprovedBy": "ceraA1(Sadmin)",
                         "ApprovedDateTime": " 2021-04-19 14:51:50",
-                        "ApprovedRequestedPrice": "120",
-                        "ApprovedRequestedCredit": "30",
-                        "ApprovedRequestedDelivery": "7"
+                        "BitReceivedRequestedPrice": "120",
+                        "BitReceivedRequestedCredit": "30",
+                        "BitReceivedRequestedDelivery": "7"
                     }
                 }
             ]`;

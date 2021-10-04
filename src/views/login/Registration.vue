@@ -18,8 +18,8 @@
         </div>
       </v-col>
 
-      <v-col class="pt-16 pl-6 pr-10">
-        <div style="height: 50%; flex: 1; overflow: scroll;">
+      <v-col class="pt-16 pl-6">
+        <div style="height: 50%; flex: 1; overflow: scroll;" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
           
             <v-form>

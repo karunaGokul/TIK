@@ -32,6 +32,12 @@ const routes: Array<RouteConfig> = [
     meta: { anonymous: true }
   },
   {
+    path: '/resetpassword',
+    name: 'ResetPassword',
+    component: () => import('../views/login/ResetPassword.vue'),
+    meta: { anonymous: true }
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/profile/Index.vue'),

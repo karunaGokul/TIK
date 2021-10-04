@@ -24,7 +24,9 @@
         </v-btn>
       </template>
     </v-data-table>
-    <ProjectsListView v-if="toggleView" />
+    <ProjectsListView 
+      v-if="toggleView"
+      @closeModel="closeModel" />
     </v-col>
   </v-row>
 
@@ -61,7 +63,11 @@ import ProjectsListView from "./ProjectsListView.vue";
 })
 
 export default class ProjectsList extends Vue {
-   toggleView: boolean = true;
+   toggleView: boolean = false;
+
+   public closeModel() {
+     this.toggleView=false;
+   }
 
   headers: any = [
     {

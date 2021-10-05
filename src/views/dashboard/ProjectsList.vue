@@ -149,6 +149,7 @@
 <script lang="ts">
 import { DashboardModel } from "@/model";
 import { Component, Prop, Vue } from "vue-property-decorator";
+
 import ProjectsListView from "./ProjectsListView.vue";
 @Component({
   components: { ProjectsListView },
@@ -156,6 +157,7 @@ import ProjectsListView from "./ProjectsListView.vue";
 export default class ProjectsList extends Vue {
   @Prop() response: DashboardModel;
   toggleSummaryView: boolean = false;
+  
   public closeModel() {
     this.toggleSummaryView = false;
   }

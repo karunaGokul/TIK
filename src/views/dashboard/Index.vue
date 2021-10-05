@@ -63,34 +63,7 @@
             </v-btn>
           </template>
 
-          <!-- <template v-slot:expanded-item="{ headers }">
-         
-          <td :colspan="headers.length">
-            <v-simple-table>
-              <thead>
-                <tr class="teal lighten-4">
-                  <th>Approve</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>masteradmin</td>
-                  <td>98</td>
-                  <td>
-                    <v-btn
-                      small
-                      color="#ff6500"
-                      class="rounded-0 white--text text-capitalize"
-                      >Approve</v-btn
-                    >
-                  </td>
-                </tr>
-              </tbody>
-            </v-simple-table>
-          </td>
-        </template> -->
+          
         </v-data-table>
       </v-card>
     </div>
@@ -101,7 +74,7 @@
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
 import { DashboardModel, DashboardRequestModel } from "@/model";
-import { IDashboardService } from "@/service/dashboard.service";
+import { IDashboardService } from "@/service";
 
 import ProjectsList from "./ProjectsList.vue";
 @Component({

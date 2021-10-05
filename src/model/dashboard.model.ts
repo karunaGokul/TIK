@@ -18,8 +18,9 @@ export class DashboardModel {
     RequestedPrice: number;
     RequestedCredit: number;
     RequestedDelivery: number;
+    No_Of_Bits: number;
     Summary: SummaryModel;
-    BitReceived?:  Array<BitReceivedModel>=[];
+    BitReceived?: Array<BitReceivedModel> = [];
 }
 export class SummaryModel {
     YarnContent: string;
@@ -40,9 +41,9 @@ export class SummaryModel {
 export class BitReceivedModel {
     BitReceivedCompanyLogo: string;
     BitReceivedCompanyName: string;
-    AuthApprove:string;
+    AuthApprove: string;
     Rating: number;
-    Approved:boolean;
+    Approved: boolean;
     ApprovedBy: string;
     ApprovedDateTime: string;
     BitReceivedRequestedPrice: number;

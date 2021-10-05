@@ -29,6 +29,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                     "RequestedPrice": "100",
                     "RequestedCredit": "10",
                     "RequestedDelivery": "7",
+                    "No_Of_Bits":"1",
                     "Summary": {
                         "YarnContent": "Single",
                         "Content": "100% Cotton (Spun )",
@@ -62,6 +63,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                     "RequestedPrice": "50",
                     "RequestedCredit": "40",
                     "RequestedDelivery": "21",
+                    "No_Of_Bits":"0",
                     "Summary": {
                         "YarnContent": "Single",
                         "Content": "100% Cotton (Spun )",
@@ -84,6 +86,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                     "RequestedPrice": "Request",
                     "RequestedCredit": "25",
                     "RequestedDelivery": "10",
+                    "No_Of_Bits":"1",
                     "Summary": {
                         "YarnContent": "Single",
                         "Content": "100% Cotton (Spun )",
@@ -109,6 +112,29 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                         "BitReceivedRequestedPrice": "120",
                         "BitReceivedRequestedCredit": "30",
                         "BitReceivedRequestedDelivery": "7"
+                    }
+                },
+                {
+                    "EnquiryName": "gfg",
+                    "Merchandiser": "",
+                    "Category": "knitting",
+                    "Subcategory": "Yarn",
+                    "InStages": "Enquiry Sent",
+                    "CreatedBy": "CompanyA(Sadmin)",
+                    "CreatedDateTime": "2021-10-01 17:50:34",
+                    "RequestedPrice": "50",
+                    "RequestedCredit": "40",
+                    "RequestedDelivery": "21",
+                    "No_Of_Bits":"0",
+                    "Summary": {
+                        "YarnContent": "Single",
+                        "Content": "100% Cotton (Spun )",
+                        "YarnType": " Regular  Yarn  ",
+                        "Quality": "Super Combed",
+                        "Count": "50",
+                        "No_Of_kgs": "50",
+                        "OrderConfirmationDate": "12-11-2021",
+                        "DeliveryDate": "22-10-2021"
                     }
                 }
             ]`;

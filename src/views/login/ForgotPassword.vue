@@ -44,7 +44,7 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 
 import { validationMixin } from "vuelidate";
 
-import { ForgotPasswordRequestModel } from "@/model";
+import { ForgotPasswordRequestModel, ForgotPasswordResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({
@@ -59,21 +59,31 @@ export default class ForgotPassword extends Vue {
 
     public request = new ForgotPasswordRequestModel();
 
-    public forgotPassword () {
-        //  if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-            this.authService.ForgotPassword(this.request).then((response) => {
-            this.snackbarText = response;
-            this.snackbar = true;
-        })
-        // (err) => {
-        //   if (err.response.status == 400) {
-        //     this.snackbarText = err.response.data;
-        //     this.snackbar = true;
-        //   }
-        // }
-         }
+//     public forgotPassword() {
 
-    // }
+//     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+
+//       this.authService.ForgotPassword(this.request).then((response: ForgotPasswordResponse) => {
+
+//         this.snackbarText = response.status;
+
+//         this.snackbar = true;
+
+//       })((err: any) => {
+
+//         if (err.response.status == 400) {
+
+//           this.snackbarText = err.response.data;
+
+//           this.snackbar = true;
+
+//         }
+
+//       });
+
+//     }
+
+//   }
 
 }
 </script>

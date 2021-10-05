@@ -85,7 +85,7 @@
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
 import { DashboardModel, DashboardRequestModel } from "@/model";
-import { IDashboardService } from "@/service/dashboard.service";
+import { IDashboardService } from "@/service";
 
 import ProjectsList from "./ProjectsList.vue";
 @Component({

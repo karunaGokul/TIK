@@ -56,16 +56,18 @@ export default class ProjectsList extends Vue {
   public request = new ResetPasswordRequestModel();
 
   public resetPassword() {
-   
-    if (this.$refs.form as Vue && this.request.password == this.request.confirmPassword ) {
-      
-      this.authService.ResetPassword(this.request).then((response: ResetPasswordResponse) => {
-          this.snackbarText = response;
+    if (
+      (this.$refs.form as Vue) &&
+      this.request.newPassword == this.request.confirmPassword
+    ) {
+      this.authService
+        .ResetPassword(this.request)
+        .then((response: ResetPasswordResponse) => {
+          // this.snackbarText = response;
 
           this.snackbar = true;
         })
         .catch((error) => {
-         
           if (error.response.status == 500)
             this.snackbarText = error.response.data;
 

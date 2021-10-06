@@ -155,4 +155,10 @@ export default class Dashboard extends Vue {
 tbody tr:nth-of-type(even) {
   background-color: #e0f2f1;
 }
+tr:nth-of-type(even):hover {
+  background-color: #e0f2f1 !important;
+}
+tr:nth-of-type(odd):hover {
+  background-color: transparent !important;
+}
 </style>

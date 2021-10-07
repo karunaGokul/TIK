@@ -61,7 +61,7 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 
 import { validationMixin } from "vuelidate";
 
-import { ForgotPasswordRequestModel } from "@/model";
+import { ForgotPasswordRequestModel, ForgotPasswordResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({

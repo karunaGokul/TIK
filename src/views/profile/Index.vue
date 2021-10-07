@@ -16,10 +16,10 @@
               max-width="250"
               max-height="250"
             ></v-img>
-            <h2 class="text-align-center pt-5">{{ response.unitName }}</h2>
+            <h3 class="text-align-center pt-5">{{ response.unitName }}</h3>
 
             <v-rating
-              :value="4.5"
+              v-model="response.rating"
               color="#fd7e14"
               dense
               half-increments
@@ -224,7 +224,6 @@ import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
 import { IProfileService } from "@/service";
 import { ProfileRequestModel, ProfileResponse } from "@/model";
-
 
 @Component({
   components: { Divider, EditProfile },

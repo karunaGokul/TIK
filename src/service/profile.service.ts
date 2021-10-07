@@ -25,6 +25,7 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
         const config: AxiosRequestConfig = { headers: { 'Content-Type': 'multipart/form-data' } };
         const data = new FormData();
+
         data.append("image", logo);
 
         for (const k in request) {

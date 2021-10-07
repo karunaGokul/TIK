@@ -4,14 +4,14 @@
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4" lg="4" align="center">
           <h2>Reset Password</h2>
-            <!-- <v-img src="@/assets/forgot-password.png" height="100" width="100" class="mt-5"></v-img> -->
+          <!-- <v-img src="@/assets/forgot-password.png" height="100" width="100" class="mt-5"></v-img> -->
           <v-form class="mt-10">
             <v-text-field
               label="New Password"
               placeholder="New Password"
               outlined
               class="rounded-0"
-              color="#ff6500" 
+              color="#ff6500"
               background-color="white"
               v-model="request.newPassword"
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -38,7 +38,6 @@
               >Reset</v-btn
             >
           </v-form>
-
         </v-col>
       </v-row>
     </v-parallax>
@@ -49,15 +48,24 @@
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
+<<<<<<< HEAD
 import { ResetPasswordRequestModel  } from "@/model";
+=======
+import { ResetPasswordRequestModel, ResetPasswordResponse } from "@/model";
+>>>>>>> d33449faced27bb5cba0f245f5794069fb13b9cc
 import { IAuthenticationService } from "@/service";
 
 @Component({
   mixins: [validationMixin],
 })
+<<<<<<< HEAD
 
 export default class ProjectsList extends Vue {
  @Inject("authService") authService: IAuthenticationService;
+=======
+export default class ProjectsList extends Vue {
+  @Inject("authService") authService: IAuthenticationService;
+>>>>>>> d33449faced27bb5cba0f245f5794069fb13b9cc
 
   snackbar: boolean = false;
   snackbarText: string = "";
@@ -65,6 +73,7 @@ export default class ProjectsList extends Vue {
   public request = new ResetPasswordRequestModel();
 
   public resetPassword() {
+<<<<<<< HEAD
         if((this.$refs.form as Vue & { validate: () => boolean }).validate() && this.request.newPassword == this.request.confirmPassword) {
             this.authService.ResetPassword(this.request).then(response => {
                this.snackbarText = response;
@@ -80,5 +89,26 @@ export default class ProjectsList extends Vue {
         } 
     }
 
+=======
+    if (
+      (this.$refs.form as Vue) &&
+      this.request.newPassword == this.request.confirmPassword
+    ) {
+      this.authService
+        .ResetPassword(this.request)
+        .then((response: ResetPasswordResponse) => {
+          // this.snackbarText = response;
+
+          this.snackbar = true;
+        })
+        .catch((error) => {
+          if (error.response.status == 500)
+            this.snackbarText = error.response.data;
+
+          this.snackbar = true;
+        });
+    }
+  }
+>>>>>>> d33449faced27bb5cba0f245f5794069fb13b9cc
 }
 </script>

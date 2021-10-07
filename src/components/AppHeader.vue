@@ -67,28 +67,30 @@
               <img src="../assets/face4.jpg" alt="profile" />
             </v-avatar>
           </template>
+          <v-hover v-slot:default="{ hover }">
           <v-list v-if="isLoggedIn">
-            <v-list-item link to="/profile" class="text-capitalize">
+            <v-list-item link to="/profile" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>Profile</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/myaccount" class="text-capitalize">
+            <v-list-item link to="/myaccount" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>My Account</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/employee" class="text-capitalize">
+            <v-list-item link to="/employee" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>Employee</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="logout" class="text-capitalize">
+            <v-list-item @click="logout" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>Log Out</v-list-item-title>
             </v-list-item>
           </v-list>
           <v-list v-else>
-            <v-list-item link to="/login" class="text-capitalize">
+            <v-list-item link to="/login" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>Login</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/registration" class="text-capitalize">
+            <v-list-item link to="/registration" class="text-capitalize" :color = "hover?'#ff6500':''">
               <v-list-item-title>Register</v-list-item-title>
             </v-list-item>
           </v-list>
+          </v-hover>
         </v-menu>
         <v-snackbar
           v-model="snackbar"

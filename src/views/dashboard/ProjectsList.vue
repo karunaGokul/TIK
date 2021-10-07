@@ -25,11 +25,15 @@
           <v-row> Date & Time :{{ response.CreatedDateTime }} </v-row>
         </v-col>
         <v-col cols="12" md="5" v-if="response.InStages === 'Confirmed'">
-          <v-row class="mt-4"> </v-row>
-          <v-row> Approve By : {{ response.BitReceived.ApprovedBy }}</v-row>
-          <v-row>
-            Date & Time :{{ response.BitReceived.ApprovedDateTime }}
-          </v-row>
+          <div v-for="row in response.BitReceived" :key="row.Approved">
+            <v-row class="mt-4" v-if="row.Approved"> </v-row>
+            <v-row v-if="row.Approved">
+              Approve By : {{ row.ApprovedBy }}</v-row
+            >
+            <v-row v-if="row.Approved">
+              Date & Time :{{ row.ApprovedDateTime }}
+            </v-row>
+          </div>
         </v-col>
         <v-col v-else cols="12" md="5"> </v-col>
         <v-col cols="12" md="3">
@@ -101,96 +105,84 @@
         </v-col>
       </v-row>
       <div v-if="response.InStages != 'Enquiry Sent'">
-        <v-row
-          class="pa-4 my-5"
-          :class="response.BitReceived.Approved ? 'deep-orange' : ''"
-        >
-          <v-row
-            :class="
-              response.BitReceived.Approved
-                ? 'deep-orange lighten-3 black--text'
-                : ''
-            "
-          >
-            <v-row class="mx-4 mt-4" v-if="response.InStages === 'Confirmed'">
-              <v-col>
-                <h4>Confirmed Project</h4>
-              </v-col>
-            </v-row>
+        <v-row v-for="row in response.BitReceived" :key="row.Approved">
+          <v-row class="pa-4 my-5" :class="row.Approved ? 'deep-orange' : ''">
+            <v-row
+              :class="row.Approved ? 'deep-orange lighten-3 black--text' : ''"
+            >
+              <v-row class="mx-4 mt-4" v-if="row.Approved">
+                <v-col>
+                  <h4>Confirmed Project</h4>
+                </v-col>
+              </v-row>
 
-            <v-row class="mx-4 mb-4">
-              <v-col cols="12" md="1">
-                <v-img src="@/assets/textile3.png" width="70%"></v-img>
-              </v-col>
+              <v-row class="mx-4 mb-4">
+                <v-col cols="12" md="1">
+                  <v-img src="@/assets/textile3.png" width="70%"></v-img>
+                </v-col>
 
-              <v-col class="mx-4" cols="12" md="2">
-                <v-row class="mt-4">
-                  <h4>{{ response.BitReceived.BitReceivedCompanyName }}</h4>
-                </v-row>
-                <v-row>
-                  <v-rating
-                    v-model="response.BitReceived.Rating"
-                    color="warning"
-                    dense
-                  ></v-rating>
-                </v-row>
-              </v-col>
+                <v-col class="mx-4" cols="12" md="2">
+                  <v-row class="mt-4">
+                    <h4>{{ row.BitReceivedCompanyName }}</h4>
+                  </v-row>
+                  <v-row>
+                    <v-rating
+                      v-model="row.Rating"
+                      color="warning"
+                      dense
+                      half-increments
+                    ></v-rating>
+                  </v-row>
+                </v-col>
 
-              <v-col cols="8">
-                <v-simple-table>
-                  <template v-slot:default>
-                    <thead
-                      :class="
-                        response.BitReceived.Approved
-                          ? 'deep-orange lighten-2 black--text'
-                          : 'teal lighten-4 text-subtitle-2'
-                      "
-                    >
-                      <tr>
-                        <th
-                          class="text-left"
-                          v-for="(tableHeader, index) in BitReceivedheaders"
-                          :key="index"
-                        >
-                          {{ tableHeader }}
-                        </th>
-                        <th v-if="response.InStages === 'Bid Received'">
-                          Action
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody
-                      :class="
-                        response.BitReceived.Approved
-                          ? 'deep-orange lighten-3 black--text'
-                          : ''
-                      "
-                    >
-                      <tr>
-                        <td>{{ response.BitReceived.AuthApprove }}</td>
-                        <td class="blue--text">
-                          Rs.{{
-                            response.BitReceived.BitReceivedRequestedPrice
-                          }}
-                        </td>
-                        <td class="red--text">
-                          {{ response.BitReceived.BitReceivedRequestedCredit }}
-                          days
-                        </td>
-                        <td class="green--text">
-                          {{
-                            response.BitReceived.BitReceivedRequestedDelivery
-                          }}
-                          days
-                        </td>
-                        <td v-if="response.InStages === 'Bid Received'">
-                          Auth for Approval
-                        </td>
-                      </tr>
-                    </tbody>
-                  </template>
-                </v-simple-table>
-              </v-col>
+                <v-col cols="8">
+                  <v-simple-table>
+                    <template v-slot:default>
+                      <thead
+                        :class="
+                          row.Approved
+                            ? 'deep-orange lighten-2 black--text'
+                            : 'teal lighten-4 text-subtitle-2'
+                        "
+                      >
+                        <tr>
+                          <th
+                            class="text-left"
+                            v-for="(tableHeader, index) in BitReceivedheaders"
+                            :key="index"
+                          >
+                            {{ tableHeader }}
+                          </th>
+                          <th v-if="!row.Approved">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        :class="
+                          row.Approved
+                            ? 'deep-orange lighten-3 black--text'
+                            : ''
+                        "
+                      >
+                        <tr>
+                          <td>{{ row.AuthApprove }}</td>
+                          <td class="blue--text">
+                            Rs.{{ row.BitReceivedRequestedPrice }}
+                          </td>
+                          <td class="red--text">
+                            {{ row.BitReceivedRequestedCredit }}
+                            days
+                          </td>
+                          <td class="green--text">
+                            {{ row.BitReceivedRequestedDelivery }}
+                            days
+                          </td>
+                          <td v-if="!row.Approved">Auth for Approval</td>
+                        </tr>
+                      </tbody>
+                    </template>
+                  </v-simple-table>
+                </v-col>
+              </v-row>
             </v-row>
           </v-row>
         </v-row>
@@ -210,7 +202,7 @@ import ProjectsListView from "./ProjectsListView.vue";
 export default class ProjectsList extends Vue {
   @Prop() response: DashboardModel;
   toggleSummaryView: boolean = false;
-  
+
   public closeModel() {
     this.toggleSummaryView = false;
   }

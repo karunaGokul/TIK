@@ -19,7 +19,7 @@
             <h3 class="text-align-center pt-5">{{ response.unitName }}</h3>
 
             <v-rating
-              v-model="response.rating"
+              value="4.5"
               color="#fd7e14"
               dense
               half-increments

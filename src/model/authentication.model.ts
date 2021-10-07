@@ -23,6 +23,7 @@ export class ForgotPasswordRequestModel {
 }
 
 export class ForgotPasswordResponse {
+    status: string = "";
 }
 
 export class ResetPasswordRequestModel {

@@ -26,7 +26,7 @@ export class AuthenticationService extends BaseService<any, any> implements IAut
         })
     }
 
-    public ResetPassword(request: ResetPasswordRequestModel): Promise<ResetPasswordResponse> {
+    public ResetPassword(request: ResetPasswordRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
         return this.httpPost('ChangePassword', request).then(response => {
             return response.data

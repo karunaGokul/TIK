@@ -99,6 +99,15 @@
           >
             save
           </v-btn>
+
+  <!-- reset password button  -->
+         <v-spacer></v-spacer>
+         <router-link to="/resetpassword" class="text-decoration-none">
+          <v-btn
+            dark
+            class="text-capitalize red color font-weight-regular"
+          >Reset Password</v-btn>
+          </router-link>
         </v-row>
       </v-card>
     </v-dialog>

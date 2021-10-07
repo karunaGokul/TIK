@@ -2,7 +2,7 @@ import { IBaseService, BaseService } from './base.service';
 import { AuthenticationRequestModel, AuthenticationResponse, ForgotPasswordRequestModel, ForgotPasswordResponse, ResetPasswordRequestModel, ResetPasswordResponse } from '@/model';
 
 export interface IAuthenticationService extends IBaseService<AuthenticationRequestModel, any> {
-    login(request: AuthenticationRequestModel): Promise<any>;
+    login(request: AuthenticationRequestModel): Promise<AuthenticationResponse>;
     ForgotPassword(request: ForgotPasswordRequestModel): Promise<any>;
     ResetPassword(request: ResetPasswordRequestModel): Promise<any>;
 }
@@ -19,9 +19,9 @@ export class AuthenticationService extends BaseService<any, any> implements IAut
         });
     }
 
-    public ForgotPassword(request: ForgotPasswordRequestModel): Promise<ForgotPasswordResponse> {
+    public ForgotPassword(request: ForgotPasswordRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
-        return this.httpPost('ForgetPassword?EmailAddress=', request).then(response => {
+        return this.httpPost('ForgetPassword?EmailAddress=' +request.email,null).then(response => {
             return response.data
         })
     }

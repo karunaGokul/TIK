@@ -13,7 +13,10 @@
               class="rounded-0"
               color="#ff6500" 
               background-color="white"
-              prepend-inner-icon="mdi-lock-reset"
+              v-model="request.newPassword"
+              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value1 = !value1)"
+              :type="value1 ? 'password' : 'text'"
             ></v-text-field>
             <v-text-field
               label="Confirm Password"
@@ -22,12 +25,16 @@
               class="rounded-0"
               color="#ff6500"
               background-color="white"
-              prepend-inner-icon="mdi-lock-reset"
+              v-model="request.confirmPassword"
+              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value1 = !value1)"
+              :type="value1 ? 'password' : 'text'"
             ></v-text-field>
             <v-btn
               color="#ff6500"
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
+              @click="resetPassword"
               >Reset</v-btn
             >
           </v-form>
@@ -39,7 +46,39 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-@Component
-export default class ProjectsList extends Vue {}
+import { Component, Vue, Inject } from "vue-property-decorator";
+import { validationMixin } from "vuelidate";
+
+import { ResetPasswordRequestModel  } from "@/model";
+import { IAuthenticationService } from "@/service";
+
+@Component({
+  mixins: [validationMixin],
+})
+
+export default class ProjectsList extends Vue {
+ @Inject("authService") authService: IAuthenticationService;
+
+  snackbar: boolean = false;
+  snackbarText: string = "";
+
+  public request = new ResetPasswordRequestModel();
+
+  public resetPassword() {
+        if((this.$refs.form as Vue & { validate: () => boolean }).validate() && this.request.newPassword == this.request.confirmPassword) {
+            this.authService.ResetPassword(this.request).then(response => {
+               this.snackbarText = response;
+               this.snackbar = true;
+                this.$router.push('/');
+            }).catch((error) => {
+               console.log(error);
+                if(error.response.status == 500)
+                  this.snackbarText = error.response.data;
+                  this.snackbar = true;
+                    
+            });
+        } 
+    }
+
+}
 </script>

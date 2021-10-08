@@ -17,3 +17,20 @@ export class AuthenticationState {
     id: string = "";
     role: string = "";
 }
+
+export class ForgotPasswordRequestModel {
+    email: string = "";
+}
+
+export class ForgotPasswordResponse {
+    status: string = "";
+}
+
+export class ResetPasswordRequestModel {
+    newPassword: string = "";
+    confirmPassword: string = "";
+    temporaryPassword: string = "";
+}
+
+export class ResetPasswordResponse {
+}

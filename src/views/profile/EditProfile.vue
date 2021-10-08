@@ -24,6 +24,17 @@
                 class="d-flex justify-center"
                 @change="handleimage"
               ></v-file-input>
+              <div class="d-flex mt-2 justify-center" v-if="img">
+                <img :src="img" width="110" height="110" alt="" />
+              </div>
+              <div class="d-flex mt-2 justify-center" v-else>
+                <v-img
+                  :src="`data:image/png;base64,${request.image}`"
+                  max-width="120"
+                  max-height="120"
+                >
+                </v-img>
+              </div>
             </v-card>
           </v-col>
           <v-col>
@@ -99,6 +110,15 @@
           >
             save
           </v-btn>
+
+  <!-- reset password button  -->
+         <v-spacer></v-spacer>
+         <router-link to="/resetpassword" class="text-decoration-none">
+          <v-btn
+            dark
+            class="text-capitalize red color font-weight-regular"
+          >Reset Password</v-btn>
+          </router-link>
         </v-row>
       </v-card>
     </v-dialog>
@@ -114,11 +134,13 @@ import { ProfileResponse } from "@/model";
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
-  
+  img: string = "";
   dialog: boolean = true;
   logo: File;
+
   public handleimage(e: File) {
     this.logo = e;
+    this.img = URL.createObjectURL(e);
   }
   public edit() {
     this.request.id = this.$store.getters.id;

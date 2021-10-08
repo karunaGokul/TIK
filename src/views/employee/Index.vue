@@ -12,21 +12,13 @@
 
     <template>
       <v-card class="mx-3" elevation="8">
-        <v-card-title>
-          <v-btn elevation="2" class="ma-3">Copy</v-btn>
-          <v-btn elevation="2" class="ma-3">CSV</v-btn>
-          <v-btn elevation="2" class="ma-3">Excel</v-btn>
-          <v-btn elevation="2" class="ma-3">PDF</v-btn>
-          <v-btn elevation="2" class="ma-3">Print</v-btn>
-          <v-spacer></v-spacer>
+        <v-card-title class="mx-6">
+          <h5>Employee List</h5>
           <router-link to="/createemployee" tag="button">
-            <v-btn
-              class="indigo darken-4 white--text rounded-0 text-capitalize"
-            >
-              Create
-            </v-btn>
+            <v-icon color="blue darken-4" class="mx-2"> mdi-plus-circle</v-icon>
           </router-link>
           <v-spacer></v-spacer>
+
           <v-text-field
             v-model="search"
             label="Search"
@@ -35,19 +27,25 @@
             outlined
             dense
           ></v-text-field>
+          <v-icon large color="green darken-4" class="ml-4"> mdi-filter</v-icon>
+          <v-icon large color="green darken-4" class="ml-2">
+            mdi-sort-ascending</v-icon
+          >
         </v-card-title>
         <v-data-table
           :headers="headers"
           :items="response"
           :search="search"
           :items-per-page="5"
-          class="elevation-1"
+          class="elevation-1 mx-6"
         >
           <template v-slot:[`item.Action`]="{ item }">
-            <v-icon small class="mr-2" @click="editEmployee(item)">
+            <v-icon small color="blue" class="mr-2" @click="editEmployee(item)">
               mdi-pencil
             </v-icon>
-            <v-icon small @click="deleteEmployee(item)"> mdi-delete </v-icon>
+            <v-icon small color="red" @click="deleteEmployee(item)">
+              mdi-delete
+            </v-icon>
           </template>
         </v-data-table>
       </v-card>
@@ -178,3 +176,8 @@ export default class Employee extends Vue {
   ];
 }
 </script>
+<style>
+tbody tr:nth-of-type(even) {
+  background-color: #e0f2f1;
+}
+</style>

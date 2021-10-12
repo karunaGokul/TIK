@@ -2,19 +2,15 @@
   <div>
     <v-row>
       <v-col cols="12" md="6">
-        <v-parallax
-          src="@/assets/login.jpg"
-          height="700"
-          
-        >
+        <v-parallax src="@/assets/login.jpg" height="700">
           <div class="pl-10 pt-16">
             <h1>Welcome To Textile</h1>
             <h2 class="py-2">Login to continue Access</h2>
-            <p >
+            <p>
               Today we are thinking of all our members across the world and are
-              encouraged by the support our networks bring in times such as these.
-              Use the left test instrument details to attempt a transaction on the
-              staging environment and login.
+              encouraged by the support our networks bring in times such as
+              these. Use the left test instrument details to attempt a
+              transaction on the staging environment and login.
             </p>
           </div>
         </v-parallax>
@@ -23,7 +19,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7 pt-15">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form" >
+          <v-form ref="form">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -54,14 +50,14 @@
                   value="1"
                   label="Remember Me"
                   type="checkbox"
-                  class="mt-n5"
+                  class="mt-0"
                 ></v-checkbox>
               </v-col>
-              
-              <v-col class="mt-n5">
-                <router-link to="/forgotpassword" class="text-decoration-none"
-                  >Forget Password?</router-link
-                >
+
+              <v-col cols="12" sm="4">
+                <router-link to="/forgotpassword" class="text-decoration-none">
+                  Forget Password?
+                </router-link>
               </v-col>
             </v-row>
 

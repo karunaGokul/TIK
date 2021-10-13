@@ -40,7 +40,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                         "OrderConfirmationDate": "19-01-2021",
                         "DeliveryDate": "12-01-2021"
                     },
-                    "BitReceived": {
+                    "BitReceived": [{
                         "BitReceivedCompanyName": "Apple1",
                         "Rating": "4",
                         "AuthApprove":"Apple1A1(Sadmin) - 2021-04-19 14:51:50",
@@ -50,7 +50,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
                         "BitReceivedRequestedPrice": "120",
                         "BitReceivedRequestedCredit": "5",
                         "BitReceivedRequestedDelivery": "22"
-                    }
+                    }]
                 },
                 {
                     "EnquiryName": "aaa",

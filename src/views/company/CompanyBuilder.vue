@@ -17,6 +17,14 @@
                 </v-tab>
                 <v-tab-item>
                   <v-card class="px-2 py-12" flat>
+                    <v-row justify="center" class="py-4">
+                      <h2>
+                        <v-text class="font-weight-regular">
+                          Choose the single & Blend Contents you offer in
+                          regular Yarn
+                        </v-text>
+                      </h2>
+                    </v-row>
                     <v-row>
                       <v-col cols="4">
                         <v-data-table
@@ -28,10 +36,12 @@
                         >
                           <template v-slot:top>
                             <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-                              <v-toolbar-title class="subtitle-1">Single Content</v-toolbar-title>
+                              <v-toolbar-title class="subtitle-1"
+                                >Single Content</v-toolbar-title
+                              >
                             </v-toolbar>
                           </template>
-                          <template v-slot:header.action>
+                          <template v-slot:[`header.action`]>
                             <v-btn
                               icon
                               x-small
@@ -41,24 +51,24 @@
                               <v-icon> mdi-plus</v-icon>
                             </v-btn>
                           </template>
-                          <template v-slot:item.content="{ item }">
+                          <template v-slot:[`item.content`]="{ item }">
                             <v-select
                               v-model="item.content"
                               :items="singleContentOptions"
                               placeholder="Select"
                             ></v-select>
                           </template>
-                          <template v-slot:item.spun="{ item }">
+                          <template v-slot:[`item.spun`]="{ item }">
                             <v-simple-checkbox
                               v-model="item.spun"
                             ></v-simple-checkbox>
                           </template>
-                          <template v-slot:item.filaments="{ item }">
+                          <template v-slot:[`item.filaments`]="{ item }">
                             <v-simple-checkbox
                               v-model="item.filaments"
                             ></v-simple-checkbox>
                           </template>
-                          <template v-slot:item.action="{ item, index }">
+                          <template v-slot:[`item.action`]="{ item, index }">
                             <v-btn
                               icon
                               x-small
@@ -80,10 +90,12 @@
                         >
                           <template v-slot:top>
                             <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-                              <v-toolbar-title class="subtitle-1">Blend Content</v-toolbar-title>
+                              <v-toolbar-title class="subtitle-1"
+                                >Blend Content</v-toolbar-title
+                              >
                             </v-toolbar>
                           </template>
-                          <template v-slot:header.action>
+                          <template v-slot:[`header.action`]>
                             <v-btn
                               icon
                               x-small
@@ -93,14 +105,14 @@
                               <v-icon> mdi-plus</v-icon>
                             </v-btn>
                           </template>
-                          <template v-slot:item.content="{ item }">
+                          <template v-slot:[`item.content`]="{ item }">
                             <v-select
                               v-model="item.content"
                               :items="blendContentOptions"
                               placeholder="Select"
                             ></v-select>
                           </template>
-                          <template v-slot:item.combo1="{ item }">
+                          <template v-slot:[`item.combo1`]="{ item }">
                             <v-row no-gutters>
                               <v-col class="pr-2">
                                 <v-text-field
@@ -119,7 +131,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:item.combo2="{ item }">
+                          <template v-slot:[`item.combo2`]="{ item }">
                             <v-row no-gutters>
                               <v-col class="pr-2">
                                 <v-text-field
@@ -138,7 +150,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:item.combo3="{ item }">
+                          <template v-slot:[`item.combo3`]="{ item }">
                             <v-row no-gutters>
                               <v-col class="pr-2">
                                 <v-text-field
@@ -157,7 +169,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:item.combo4="{ item }">
+                          <template v-slot:[`item.combo4`]="{ item }">
                             <v-row no-gutters>
                               <v-col class="pr-2">
                                 <v-text-field
@@ -176,7 +188,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:item.combo5="{ item }">
+                          <template v-slot:[`item.combo5`]="{ item }">
                             <v-row no-gutters>
                               <v-col class="pr-2">
                                 <v-text-field
@@ -195,7 +207,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:item.action="{ item, index }">
+                          <template v-slot:[`item.action`]="{ item, index }">
                             <v-btn
                               icon
                               x-small
@@ -208,11 +220,21 @@
                         </v-data-table>
                       </v-col>
                     </v-row>
+                    <v-row justify="center" class="py-5">
+                      <h2>
+                        <v-text class="font-weight-regular">
+                          Choose the single & Blend Quality you offer in regular
+                          Yarn
+                        </v-text>
+                      </h2>
+                    </v-row>
                     <v-row>
                       <v-col cols="4">
                         <v-list flat>
                           <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-                            <v-toolbar-title class="subtitle-1">Single Quality</v-toolbar-title>
+                            <v-toolbar-title class="subtitle-1"
+                              >Single Quality</v-toolbar-title
+                            >
                           </v-toolbar>
                           <v-list-item
                             v-for="(item, index) in singleQualities"
@@ -230,7 +252,9 @@
                       <v-col cols="4">
                         <v-list flat>
                           <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-                            <v-toolbar-title class="subtitle-1">Blend Quality</v-toolbar-title>
+                            <v-toolbar-title class="subtitle-1"
+                              >Blend Quality</v-toolbar-title
+                            >
                           </v-toolbar>
                           <v-list-item
                             v-for="(item, index) in blendQualities"
@@ -246,11 +270,21 @@
                         </v-list>
                       </v-col>
                     </v-row>
+                    <v-row justify="center" class="py-5">
+                      <h2>
+                        <v-text class="font-weight-regular">
+                          Choose the count and denier you offer the Regular
+                          Yarns
+                        </v-text>
+                      </h2>
+                    </v-row>
                     <v-row>
                       <v-col cols="3">
-                        <v-label>Counts</v-label>
+                        <v-label>Counts:</v-label>
                         <v-text-field outlined dense></v-text-field>
-                        <v-label>Deniers</v-label>
+                        <v-label>Deniers:</v-label>
+                        <v-text-field outlined dense></v-text-field>
+                        <v-label>Enter AVG Credit time you offer:</v-label>
                         <v-text-field outlined dense></v-text-field>
                       </v-col>
                     </v-row>

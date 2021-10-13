@@ -97,7 +97,7 @@
               </tbody>
             </template>
           </v-simple-table>
-          <ProjectsListView
+          <ProjectSummary
             :response="response"
             v-if="toggleSummaryView"
             @closeModel="closeModel"
@@ -106,7 +106,7 @@
       </v-row>
       <div v-if="response.InStages != 'Enquiry Sent'">
         <v-row v-for="row in response.BitReceived" :key="row.Approved">
-          <v-row class="pa-4 my-5" :class="row.Approved ? 'deep-orange' : ''">
+          <div class="pa-4 my-5" :class="row.Approved ? 'deep-orange' : ''">
             <v-row
               :class="row.Approved ? 'deep-orange lighten-3 black--text' : ''"
             >
@@ -184,7 +184,7 @@
                 </v-col>
               </v-row>
             </v-row>
-          </v-row>
+          </div>
         </v-row>
       </div>
     </div>
@@ -195,9 +195,9 @@
 import { DashboardModel } from "@/model";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-import ProjectsListView from "./ProjectsListView.vue";
+import ProjectSummary from "./ProjectSummary.vue";
 @Component({
-  components: { ProjectsListView },
+  components: { ProjectSummary },
 })
 export default class ProjectsList extends Vue {
   @Prop() response: DashboardModel;

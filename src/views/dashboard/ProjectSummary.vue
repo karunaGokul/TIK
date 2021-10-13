@@ -105,7 +105,7 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row  class="my-n8" v-if="response.InStages === 'Confirmed'">
+              <v-row class="my-n8" v-if="response.InStages === 'Confirmed'">
                 <v-col>
                   <v-label>Guage</v-label>
                   <v-text-field
@@ -154,7 +154,7 @@
                     outlined
                     dense
                     v-model="response.EnquiryName"
-                   class="my-2"
+                    class="my-2"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -219,7 +219,7 @@
 import { DashboardModel } from "@/model";
 import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
-export default class ProjectsListView extends Vue {
+export default class ProjectSummary extends Vue {
   @Prop() response: DashboardModel;
   dialog: boolean = true;
 

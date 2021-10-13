@@ -27,10 +27,9 @@
             outlined
             dense
           ></v-text-field>
-          <v-icon large color="green darken-4" class="ml-4"> mdi-filter</v-icon>
+          <!-- <v-icon large color="green darken-4" class="ml-4"> mdi-filter</v-icon>
           <v-icon large color="green darken-4" class="ml-2">
-            mdi-sort-ascending</v-icon
-          >
+            mdi-sort-ascending</v-icon> -->
         </v-card-title>
         <v-data-table
           :headers="headers"

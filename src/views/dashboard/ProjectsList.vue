@@ -37,26 +37,15 @@
         </v-col>
         <v-col v-else cols="12" md="5"> </v-col>
         <v-col cols="12" md="3">
-          <v-icon large color="green darken-4" class="ml-3 pt-3">
+          <!-- <v-icon large color="green darken-4" class="ml-3 pt-3">
             mdi-filter
           </v-icon>
           <v-icon large color="green darken-4" class="ml-2 pt-3">
             mdi-sort-ascending
-          </v-icon>
-          <span
-            class="
-              orange
-              darken-1
-              white--text
-              font-weight-light
-              pa-3
-              ml-4
-              mt-4
-              rounded
-            "
-          >
+          </v-icon> -->
+          <!-- <span class="orange darken-1 white--text font-weight-light pa-3 ml-4 mt-4 rounded">
             Bids Received :{{ response.No_Of_Bits }}
-          </span>
+          </span> -->
         </v-col>
       </v-row>
       <v-row>

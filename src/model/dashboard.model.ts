@@ -11,16 +11,16 @@ export class DashboardModel {
     Subcategory: string;
     InStages: string;
     Status?: string;
-    Review: number;
-    CreatedCompanyLogo: string;
-    CreatedBy: string;
-    CreatedDateTime: string;
-    RequestedPrice: number;
-    RequestedCredit: number;
-    RequestedDelivery: number;
-    No_Of_Bits: number;
-    Summary: SummaryModel;
-    BitReceived?: Array<BitReceivedModel> = [];
+    // Review: number;
+    // CreatedCompanyLogo: string;
+    // CreatedBy: string;
+    // CreatedDateTime: string;
+    // RequestedPrice: number;
+    // RequestedCredit: number;
+    // RequestedDelivery: number;
+    // No_Of_Bits: number;
+    // Summary: SummaryModel;
+    // BitReceived?: Array<BitReceivedModel> = [];
 }
 export class SummaryModel {
     YarnContent: string;

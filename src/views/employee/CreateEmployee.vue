@@ -134,7 +134,6 @@
             <v-select
               class="pt-2"
               :menu-props="{ offsetY: true }"
-              label="Merchandiser"
               :items="role"
               item-text="employeeRole"
               item-value="id"

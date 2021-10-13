@@ -5,3 +5,4 @@ export * from './project.model';
 export * from './profile.model';
 export * from './dashboard.model';
 export * from './employee.model';
+export * from './millProfile.model';

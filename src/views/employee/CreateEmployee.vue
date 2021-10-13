@@ -71,6 +71,8 @@
               v-model="request.EmailAddress"
               outlined
               dense
+              :rules="emailRules"
+              required
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
@@ -96,6 +98,8 @@
               v-model="request.PhoneNumber"
               outlined
               dense
+              :rules="phoneRules"
+              required
             ></v-text-field>
           </v-col>
         </v-row>
@@ -214,12 +218,23 @@
 
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
+import { validationMixin } from "vuelidate";
 import { EmployeeModel, RoleResponseModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
-@Component
+@Component({
+  mixins: [validationMixin],
+})
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  public emailRules: any = [
+    (v: any) => !!v || "E-mail is required",
+    (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  ];
+  public phoneRules: any = [
+    (v: any) => !!v || "Phone Number is required",
+    (v: any) => /0-9/.test(v) || "Phone Number must be valid",
+  ];
   public request: EmployeeModel = new EmployeeModel();
   public role: Array<RoleResponseModel> = [];
   gender: any = ["male", "female"];

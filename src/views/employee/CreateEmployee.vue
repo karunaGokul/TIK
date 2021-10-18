@@ -117,10 +117,7 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <v-label>
-              Category
-              <span class="red--text">*</span>
-            </v-label>
+            <v-label> Category </v-label>
             <v-select
               class="pt-2"
               :menu-props="{ offsetY: true }"
@@ -138,6 +135,7 @@
             <v-select
               class="pt-2"
               :menu-props="{ offsetY: true }"
+              label="Merchandiser"
               :items="role"
               item-text="employeeRole"
               item-value="id"
@@ -233,7 +231,10 @@ export default class CreateEmployee extends Vue {
   ];
   public phoneRules: any = [
     (v: any) => !!v || "Phone Number is required",
-    (v: any) => /0-9/.test(v) || "Phone Number must be valid",
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+
+    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
   public request: EmployeeModel = new EmployeeModel();
   public role: Array<RoleResponseModel> = [];

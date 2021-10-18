@@ -11,6 +11,11 @@ export class DashboardModel {
     Subcategory: string;
     InStages: string;
     Status?: string;
+    Id: string;
+    CompanyId: string;
+    Action: string
+}
+export class ViewModel {
     // Review: number;
     // CreatedCompanyLogo: string;
     // CreatedBy: string;
@@ -21,6 +26,7 @@ export class DashboardModel {
     // No_Of_Bits: number;
     // Summary: SummaryModel;
     // BitReceived?: Array<BitReceivedModel> = [];
+
 }
 export class SummaryModel {
     YarnContent: string;

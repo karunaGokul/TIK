@@ -30,8 +30,13 @@
             dense
             hide-details
           ></v-text-field>
-          <v-icon color="green darken-4" class="ml-4 pt-3" @click="createProject">
-            mdi-plus-circle</v-icon>
+          <v-icon
+            color="green darken-4"
+            class="ml-4 pt-3"
+            @click="createProject"
+          >
+            mdi-plus-circle</v-icon
+          >
           <!-- <v-icon color="green darken-4" class="ml-3 pt-3"> mdi-filter</v-icon>
           <v-icon color="green darken-4" class="ml-2 pt-3">
             mdi-sort-ascending</v-icon> -->
@@ -40,14 +45,15 @@
           :headers="headers"
           :items="response"
           :search="search"
-          :item-class="row_classes"
           item-key="EnquiryName"
           class="elevation-1 ma-6"
         >
           <template v-slot:[`item.Status`]="{ item }">
             <v-badge
               dot
-              v-if="item.InStages === 'Confirmed' || item.InStages === 'Completed'"
+              v-if="
+                item.InStages === 'Confirmed' || item.InStages === 'Completed'
+              "
               color="green"
               class="ml-4"
             >
@@ -75,20 +81,20 @@
       </v-card>
     </div>
     <v-snackbar
-          v-model="snackbar"
-          :timeout="2000"
-          color="deep-orange lighten-5 pink--text"
-          right
-          top
-        >
-          <v-icon color="pink">mdi-exclamation-thick </v-icon>
-          {{ snackbarText }}
-          <template v-slot:action="{ attrs }">
-            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-              <v-icon> mdi-close-box</v-icon>
-            </v-btn>
-          </template>
-        </v-snackbar>
+      v-model="snackbar"
+      :timeout="2000"
+      color="deep-orange lighten-5 pink--text"
+      right
+      top
+    >
+      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      {{ snackbarText }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
     <ProjectsList :response="SelectedProject" v-if="toggleProjectList" />
   </div>
 </template>
@@ -112,17 +118,12 @@ export default class Dashboard extends Vue {
   snackbarText: string = "";
   snackbar: boolean = false;
   SelectedProject: DashboardModel = new DashboardModel();
-  
+
   created() {
-    // this.request = this.$store.getters.id;
-    // this.DashboardService.getDashboardInfo(this.request).then(
-    //   (response: Array<DashboardModel>) => {
-    //     this.response = response;
-    //   });
     this.getProjectList();
   }
 
-public createProject() {
+  public createProject() {
     this.DashboardService.CreateProject(this.SelectedProject).then(
       (response) => {
         this.$router.push("/dashboard");
@@ -135,7 +136,7 @@ public createProject() {
       }
     );
   }
- public getProjectList() {
+  public getProjectList() {
     this.request.id = this.$store.getters.id;
     this.DashboardService.GetProjectList(this.request).then((response) => {
       this.response = response;
@@ -188,9 +189,9 @@ public createProject() {
   ];
 }
 </script>
-<style scoped>
+<style >
 tbody tr:nth-of-type(even) {
-  background-color: #e0f2f1;
+  background-color: #ecf7f6;
 }
 tr:nth-of-type(even):hover {
   background-color: #e0f2f1 !important;

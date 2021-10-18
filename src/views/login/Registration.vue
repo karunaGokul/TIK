@@ -2,7 +2,7 @@
   <div style="height: 700px; width: 100%; overflow: hidden">
     <v-row>
       <v-col cols="12" md="6">
-        <div class="d-flex" style="height: 700px; width: 100%;">
+        <div class="d-flex" style="height: 700px; width: 100%">
           <v-parallax src="@/assets/signup.jpg" height="700px">
             <div class="pl-10">
               <h2>Lets Get</h2>
@@ -19,262 +19,270 @@
       </v-col>
 
       <v-col class="pt-16 pl-6">
-        <div style="height: 50%; flex: 1; overflow: scroll;" class="pr-10">
+        <div style="height: 50%; flex: 1; overflow: scroll" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
-          
-            <v-form>
-              <v-row>
-                <v-col>
-                  <v-label>First Name</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter First Name"
-                    class="py-2 rounded-0"
-                    v-model="request.FirstName"
-                    required
-                  ></v-text-field>
-                </v-col>
 
-                <v-col>
-                  <v-label>Last Name</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Last Name"
-                    class="py-2 rounded-0"
-                    v-model="request.LastName"
-                    required
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+          <v-form>
+            <v-row>
+              <v-col>
+                <v-label>First Name</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter First Name"
+                  class="py-2 rounded-0"
+                  v-model="request.FirstName"
+                  required
+                ></v-text-field>
+              </v-col>
 
-              <v-row>
-                <v-col>
-                  <v-label>Phone Number</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Phone Number"
-                    class="py-2 rounded-0"
-                    v-model="request.PhoneNumber"
-                  ></v-text-field>
-                </v-col>
+              <v-col>
+                <v-label>Last Name</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Last Name"
+                  class="py-2 rounded-0"
+                  v-model="request.LastName"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-                <v-col>
-                  <v-label>Email ID</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Email ID"
-                    class="py-2 rounded-0"
-                    v-model="request.EmailAddress"
-                    required
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+            <v-row>
+              <v-col>
+                <v-label>Phone Number</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Phone Number"
+                  class="py-2 rounded-0"
+                  v-model="request.PhoneNumber"
+                  :rules="phoneRules"
+                  required
+                ></v-text-field>
+              </v-col>
 
-              <v-row>
-                <v-col>
-                  <v-label>Password</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Password"
-                    class="py-2 rounded-0"
-                    v-model="request.Password"
-                    required
-                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="() => (value = !value)"
-                    :type="value ? 'password' : 'text'"
-                  ></v-text-field>
-                </v-col>
+              <v-col>
+                <v-label>Email ID</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Email ID"
+                  class="py-2 rounded-0"
+                  v-model="request.EmailAddress"
+                  :rules="emailRules"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-                <v-col>
-                  <v-label>Confirm Password</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Re-Enter Password"
-                    v-model="request.ConfirmPassword"
-                    class="py-2 rounded-0"
-                    :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="() => (value1 = !value1)"
-                    :type="value1 ? 'password' : 'text'"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+            <v-row>
+              <v-col>
+                <v-label>Password</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Password"
+                  class="py-2 rounded-0"
+                  v-model="request.Password"
+                  required
+                  :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value = !value)"
+                  :type="value ? 'password' : 'text'"
+                ></v-text-field>
+              </v-col>
 
-              <v-label>Select Your Category</v-label>
-              <v-select
-                outlined
-                dense
-                placeholder="Select Category"
-                v-model="request.Category"
-                :items="category"
-                item-text="categoryName"
-                item-value="id"
-                class="py-2 rounded-0"
-              ></v-select>
+              <v-col>
+                <v-label>Confirm Password</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Re-Enter Password"
+                  v-model="request.ConfirmPassword"
+                  class="py-2 rounded-0"
+                  :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value1 = !value1)"
+                  :type="value1 ? 'password' : 'text'"
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-              <v-row>
-                <v-col sm="8">
-                  <v-label>Enter GST Number</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter GST Number"
-                    class="py-2 rounded-0"
-                    v-model="request.GSTNumber"
-                    required
-                  ></v-text-field>
-                </v-col>
+            <v-label>Select Your Category</v-label>
+            <v-select
+              outlined
+              dense
+              placeholder="Select Category"
+              v-model="request.Category"
+              :items="category"
+              item-text="categoryName"
+              item-value="id"
+              class="py-2 rounded-0"
+            ></v-select>
 
-                <v-col class="pt-13 pl-16 mt-n3">
-                  <v-btn
-                    class="white--text font-weight-light text-capitalize rounded-0"
-                    color="#ff6500"
-                    large
-                    depressed
-                    >Verify</v-btn
-                  >
-                </v-col>
-              </v-row>
+            <v-row>
+              <v-col sm="8">
+                <v-label>Enter GST Number</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter GST Number"
+                  class="py-2 rounded-0"
+                  v-model="request.GSTNumber"
+                  required
+                ></v-text-field>
+              </v-col>
 
-              <v-row>
-                <v-col>
-                  <v-label>Address</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Address"
-                    v-model="request.Address"
-                    class="rounded-0"
-                  ></v-text-field>
-                </v-col>
-
-                <v-col>
-                  <v-label>Appartment</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Appartment, Unit, Office"
-                    v-model="request.ApartmentUnitOffice"
-                    class="rounded-0"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-
-              <v-row>
-                <v-col>
-                  <v-label>Country</v-label>
-                  <v-select
-                    outlined
-                    dense
-                    placeholder="Select Country"
-                    v-model="request.CountryId"
-                    :items="country"
-                    item-text="countryName"
-                    item-value="id"
-                    class="py-2 rounded-0"
-                    @change="getState()"
-                    required
-                  ></v-select>
-                </v-col>
-
-                <v-col>
-                  <v-label>State</v-label>
-                  <v-select
-                    outlined
-                    dense
-                    placeholder="Select State"
-                    v-model="request.StateId"
-                    :items="state"
-                    item-text="stateName"
-                    item-value="id"
-                    class="py-2 rounded-0"
-                    @change="getCity()"
-                    required
-                  ></v-select>
-                </v-col>
-              </v-row>
-
-              <v-row>
-                <v-col>
-                  <v-label>City</v-label>
-                  <v-select
-                    outlined
-                    dense
-                    placeholder="Select City"
-                    v-model="request.CityId"
-                    :items="city"
-                    item-text="cityName"
-                    item-value="id"
-                    class="py-3 rounded-0"
-                    required
-                  ></v-select>
-                </v-col>
-
-                <v-col>
-                  <v-label>Zip Code</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    placeholder="Enter Zip Code"
-                    class="py-3 rounded-0"
-                    required
-                    v-model="request.ZipCode"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-
-              <v-checkbox
-                value="1"
-                label="I Agree to all the Terms & conditions"
-                type="checkbox"
-                required
-                v-model="checkbox"
-                :rules="checkboxRules"
-              ></v-checkbox>
-
-              <v-btn
-                color="#ff6500"
-                class="rounded-0 white--text font-weight-light text-capitalize"
-                depressed
-                block
-                @click="SignUp"
-              >
-                Sign Up
-              </v-btn>
-              <v-snackbar
-                v-model="snackbar"
-                :timeout="2000"
-                color="deep-orange lighten-5 pink--text"
-                right
-                top
-              >
-                <v-icon color="pink">mdi-exclamation-thick </v-icon>
-                {{ snackbarText }}
-                <template v-slot:action="{ attrs }">
-                  <v-btn
-                    color="red"
-                    text
-                    v-bind="attrs"
-                    @click="snackbar = false"
-                  >
-                    <v-icon> mdi-close-box</v-icon>
-                  </v-btn>
-                </template>
-              </v-snackbar>
-
-              <div class="text-caption py-5">
-                Already have an account?
-                <router-link to="/login" class="text-decoration-none"
-                  >sign in</router-link
+              <v-col class="pt-13 pl-16 mt-n3">
+                <v-btn
+                  class="
+                    white--text
+                    font-weight-light
+                    text-capitalize
+                    rounded-0
+                  "
+                  color="#ff6500"
+                  large
+                  depressed
+                  >Verify</v-btn
                 >
-              </div>
-            </v-form>
-         
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <v-label>Address</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Address"
+                  v-model="request.Address"
+                  class="rounded-0"
+                ></v-text-field>
+              </v-col>
+
+              <v-col>
+                <v-label>Appartment</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Appartment, Unit, Office"
+                  v-model="request.ApartmentUnitOffice"
+                  class="rounded-0"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <v-label>Country</v-label>
+                <v-select
+                  outlined
+                  dense
+                  placeholder="Select Country"
+                  v-model="request.CountryId"
+                  :items="country"
+                  item-text="countryName"
+                  item-value="id"
+                  class="py-2 rounded-0"
+                  @change="getState()"
+                  required
+                ></v-select>
+              </v-col>
+
+              <v-col>
+                <v-label>State</v-label>
+                <v-select
+                  outlined
+                  dense
+                  placeholder="Select State"
+                  v-model="request.StateId"
+                  :items="state"
+                  item-text="stateName"
+                  item-value="id"
+                  class="py-2 rounded-0"
+                  @change="getCity()"
+                  required
+                ></v-select>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <v-label>City</v-label>
+                <v-select
+                  outlined
+                  dense
+                  placeholder="Select City"
+                  v-model="request.CityId"
+                  :items="city"
+                  item-text="cityName"
+                  item-value="id"
+                  class="py-3 rounded-0"
+                  required
+                ></v-select>
+              </v-col>
+
+              <v-col>
+                <v-label>Zip Code</v-label>
+                <v-text-field
+                  outlined
+                  dense
+                  placeholder="Enter Zip Code"
+                  class="py-3 rounded-0"
+                  required
+                  v-model="request.ZipCode"
+                  :rules="ZipCodeRules"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+
+            <v-checkbox
+              value="1"
+              label="I Agree to all the Terms & conditions"
+              type="checkbox"
+              required
+              v-model="checkbox"
+              :rules="checkboxRules"
+            ></v-checkbox>
+
+            <v-btn
+              color="#ff6500"
+              class="rounded-0 white--text font-weight-light text-capitalize"
+              depressed
+              block
+              @click="SignUp"
+            >
+              Sign Up
+            </v-btn>
+            <v-snackbar
+              v-model="snackbar"
+              :timeout="2000"
+              color="deep-orange lighten-5 pink--text"
+              right
+              top
+            >
+              <v-icon color="pink">mdi-exclamation-thick </v-icon>
+              {{ snackbarText }}
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  color="red"
+                  text
+                  v-bind="attrs"
+                  @click="snackbar = false"
+                >
+                  <v-icon> mdi-close-box</v-icon>
+                </v-btn>
+              </template>
+            </v-snackbar>
+
+            <div class="text-caption py-5">
+              Already have an account?
+              <router-link to="/login" class="text-decoration-none"
+                >sign in</router-link
+              >
+            </div>
+          </v-form>
         </div>
       </v-col>
     </v-row>
@@ -312,6 +320,21 @@ export default class Registration extends Vue {
   checkbox: boolean = false;
   value: boolean = true;
   value1: boolean = true;
+  public emailRules: any = [
+    (v: any) => !!v || "E-mail is required",
+    (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  ];
+  public phoneRules: any = [
+    (v: any) => !!v || "Phone Number is required",
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+
+    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
+  ];
+  public ZipCodeRules: any = [
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+  ];
   checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
   created() {
     this.getCountry();

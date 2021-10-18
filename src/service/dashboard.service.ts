@@ -16,7 +16,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
 
     public GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpGet('GetProjectList', request).then(response => {
+        return this.httpGet('Dashboard', request).then(response => {
             return response.data;
         });
     }

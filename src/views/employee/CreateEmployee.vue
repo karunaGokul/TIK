@@ -53,6 +53,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Gender"
               :items="gender"
+              v-model="request.Gender"
               outlined
               dense
             ></v-select>
@@ -83,6 +84,10 @@
             <v-text-field
               class="pt-2"
               label="Enter Password"
+               v-model="request.Password"
+               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value = !value)"
+                  :type="value ? 'password' : 'text'"
               outlined
               dense
             ></v-text-field>
@@ -112,6 +117,7 @@
             <v-text-field
               class="pt-2"
               label="Enter Address"
+              v-model="request.Address"
               outlined
               dense
             ></v-text-field>
@@ -134,11 +140,11 @@
             </v-label>
             <v-select
               class="pt-2"
-              :menu-props="{ offsetY: true }"
-              label="Merchandiser"
+              :menu-props="{ offsetY: true }"             
               :items="role"
-              item-text="employeeRole"
-              item-value="id"
+              label="Select Employee Role"
+              item-text="EmployeeRole"
+              item-value="Id"
               v-model="request.EmployeeRole"
               outlined
               dense
@@ -147,7 +153,7 @@
         </v-row>
 
         <v-row class="ml-5">
-          <v-col cols="12" md="3" class="mr-5">
+          <v-col cols="12" md="3" class="mr-5" v-if="!(request.EmployeeRole === '1'|| request.EmployeeRole === '2'|| request.EmployeeRole === ' ' )">
             <v-label>
               Approval Admin
               <span class="red--text">*</span>
@@ -156,12 +162,15 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
-              :items="admin"
+              :items="ApprovalAdmin"
+              item-text="ApprovalAdminEmailId"
+              item-value="Id"
               outlined
+              v-model="request.ApprovalAdminId"
               dense
             ></v-select>
           </v-col>
-          <v-col cols="12" md="3">
+          <v-col cols="12" md="3" v-if="!(request.EmployeeRole === '1'|| request.EmployeeRole === ' ' )">
             <v-label>
               Master Admin
               <span class="red--text">*</span>
@@ -170,7 +179,10 @@
               class="pt-2"
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
-              :items="master"
+              :items="MasterAdmin"
+              item-text="MasterAdminEmailId"
+              item-value="Id"
+              v-model="request.MasterAdminId"
               outlined
               dense
             ></v-select>
@@ -183,7 +195,7 @@
             label="Approval Admin Access"
             type="checkbox"
             required
-            :rules="checkboxRules"
+            v-model="request.ApprovalAdminAccess"            
           ></v-checkbox>
         </v-row>
         <v-row justify="center my-5">
@@ -217,7 +229,7 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import { EmployeeModel, RoleResponseModel } from "@/model";
+import { AdminRequestModel, ApprovalAdminResponseModel, EmployeeModel, MasterAdminResponseModel, RoleResponseModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component({
@@ -236,16 +248,19 @@ export default class CreateEmployee extends Vue {
 
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
+  public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
+  public adminRequest:AdminRequestModel=new AdminRequestModel();
   public role: Array<RoleResponseModel> = [];
-  gender: any = ["male", "female"];
-  category: any = [];
-  admin: any = [];
-  master: any = [];
+  public MasterAdmin: Array<MasterAdminResponseModel>=[];
+  public ApprovalAdmin:Array<ApprovalAdminResponseModel>=[];
+  gender: any = ["Male", "Female"];  
   snackbarText: string = "";
   snackbar: boolean = false;
   created() {
     this.GetRoles();
+    this.GetMasterAdmin();
+    this.GetApprovalAdmin();   
   }
   private GetRoles() {
     this.EmployeeService.GetRoles().then(
@@ -254,7 +269,24 @@ export default class CreateEmployee extends Vue {
       }
     );
   }
+  private GetMasterAdmin() {
+    this.adminRequest.companyId=this.$store.getters.companyId;
+    this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
+      (response: Array<MasterAdminResponseModel>) => {
+        this.MasterAdmin = response;
+      }
+    );
+  }
+  private GetApprovalAdmin() {
+    this.adminRequest.companyId=this.$store.getters.companyId;
+    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+      (response: Array<ApprovalAdminResponseModel>) => {
+        this.ApprovalAdmin= response;
+      }
+    );
+  }
   public createEmployee() {
+    console.log(this.request);
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
         this.$router.push("/employee");

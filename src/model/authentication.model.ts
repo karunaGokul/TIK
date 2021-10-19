@@ -16,6 +16,7 @@ export class AuthenticationState {
     refreshToken: string = "";
     id: string = "";
     role: string = "";
+    companyId:string = "";
 }
 
 export class ForgotPasswordRequestModel {

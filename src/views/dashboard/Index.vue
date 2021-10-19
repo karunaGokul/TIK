@@ -95,7 +95,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <ProjectsList :response="SelectedProject" v-if="toggleProjectList" />
+    <ProjectsList :SelectedProject="SelectedProject" v-if="toggleProjectList" />
   </div>
 </template>
  

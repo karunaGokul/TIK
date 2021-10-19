@@ -38,9 +38,11 @@
               dense
               placeholder="Enter Password"
               class="pt-2 rounded-0"
-              v-model="request.Password"
-              type="password"
+              v-model="request.Password"             
               :rules="passwordRules"
+              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value = !value)"
+                  :type="value ? 'password' : 'text'"
               required
             ></v-text-field>
 
@@ -135,6 +137,7 @@ export default class Login extends Vue {
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
   public passwordRules: any = [(v: any) => !!v || "Password is required"];
+  public value: boolean = true;
 
   //(v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||  "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
 

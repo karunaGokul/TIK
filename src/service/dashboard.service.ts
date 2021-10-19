@@ -1,9 +1,9 @@
 import { IBaseService, BaseService } from './base.service';
 import { DashboardRequestModel, DashboardModel } from '@/model';
 
-export interface IDashboardService extends IBaseService<any, DashboardModel> {
-    // getDashboardInfo(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
+export interface IDashboardService extends IBaseService<any, DashboardModel> {    
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
+    GetProjectEnquiry(request: DashboardRequestModel): Promise<DashboardModel>;
     CreateProject(request: DashboardModel): Promise<any>;
     SearchProject(request: DashboardModel): Promise<Array<DashboardModel>>;
 
@@ -20,7 +20,12 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
             return response.data;
         });
     }
-
+    public GetProjectEnquiry(request: DashboardRequestModel): Promise<DashboardModel>{
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
+        return this.httpGet('GetProjectEnquiry', request).then(response => {
+            return response.data;
+        });
+    }
     public CreateProject(request: DashboardModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
         return this.httpPost('CreateProject', request).then(response => {

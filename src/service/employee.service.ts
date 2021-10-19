@@ -1,9 +1,11 @@
 import { IBaseService, BaseService } from './base.service';
-import { EmployeeRequestModel, EmployeeModel, RoleResponseModel } from '@/model';
+import { EmployeeRequestModel, EmployeeModel, RoleResponseModel, AdminRequestModel, MasterAdminResponseModel, ApprovalAdminResponseModel } from '@/model';
 
 export interface IEmployeeService extends IBaseService<any, EmployeeModel> {
     GetEmployees(request: EmployeeRequestModel): Promise<Array<EmployeeModel>>;
     GetRoles(): Promise<Array<RoleResponseModel>>;
+    GetMasterAdmin(request:AdminRequestModel): Promise<Array<MasterAdminResponseModel>>;
+    GetApprovalAdmin(request:AdminRequestModel): Promise<Array<ApprovalAdminResponseModel>>;
     CreateEmployee(request: EmployeeModel): Promise<any>;
     DeleteEmployee(EmployeeId: string): Promise<any>
     EditEmployee(request: EmployeeModel, EmployeeId: string): Promise<any>;
@@ -21,9 +23,23 @@ export class EmployeeService extends BaseService<any, EmployeeModel> implements 
             return response.data;
         });
     }
+    public GetMasterAdmin(request:AdminRequestModel): Promise<Array<MasterAdminResponseModel>>
+    {
+        this.apiUrl = "https://tikdev-api.azure-api.net/common"
+        return this.httpGet('GetMasterAdmin', request).then(response => {
+            return response.data;
+        });
+    }
+    public GetApprovalAdmin(request:AdminRequestModel): Promise<Array<ApprovalAdminResponseModel>>
+    {
+        this.apiUrl = "https://tikdev-api.azure-api.net/common"
+        return this.httpGet('GetApprovalAdmin', request).then(response => {
+            return response.data;
+        });
+    }
     public GetRoles(): Promise<Array<RoleResponseModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
-        return this.httpGet('roles', null).then(response => {
+        return this.httpGet('GetRoles', null).then(response => {
             return response.data;
         });
     }

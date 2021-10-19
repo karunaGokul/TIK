@@ -8,7 +8,8 @@ const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     id: localStorage.getItem('id') || '',
-    role: localStorage.getItem('role') || ''
+    role: localStorage.getItem('role') || '',
+    companyId:localStorage.getItem('companyId') || '',
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
@@ -22,6 +23,9 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     id: state => {
         return state.id;
+    },
+    companyId: state => {
+        return state.companyId;
     }
 }
 

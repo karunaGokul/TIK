@@ -63,8 +63,50 @@
                 :label="name"
                 v-model="editRequest[name]"
                 outlined
-                v-if="!(name === 'EmployeeId')"
+                v-if="!(name === 'EmployeeId' || name === 'EmployeeRole'|| name === 'MasterAdminId'|| name === 'ApprovalAdminId' )"
               ></v-text-field>
+              <div v-if="name === 'EmployeeRole'">
+              <v-label>
+             Employee Role           
+            </v-label>           
+            <v-select              
+              :menu-props="{ offsetY: true }"             
+              :items="role"             
+              item-text="EmployeeRole"
+              item-value="Id"
+              v-model="editRequest.EmployeeRole"
+              outlined
+              dense
+            ></v-select>
+            </div>
+              <div v-if="name === 'MasterAdminId'">
+              <v-label>
+              Master Admin              
+            </v-label>            
+            <v-select             
+              :menu-props="{ offsetY: true }"             
+              :items="MasterAdmin"
+              item-text="MasterAdminEmailId"
+              item-value="Id"
+              v-model="editRequest.MasterAdminId"
+              outlined
+              dense
+            ></v-select>
+            </div>
+            <div v-if="name === 'ApprovalAdminId'">
+              <v-label>
+              Approval Admin              
+            </v-label>            
+            <v-select              
+              :menu-props="{ offsetY: true }"             
+              :items="ApprovalAdmin"
+              item-text="ApprovalAdminEmailId"
+              item-value="Id"
+              v-model="editRequest.ApprovalAdminId"
+              outlined
+              dense
+            ></v-select>
+            </div>
             </div>
             <div class="d-flex">
               <v-btn class="ml-auto" color="primary" @click="save(editRequest)">
@@ -97,7 +139,7 @@
  
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
-import { EmployeeRequestModel, EmployeeModel } from "@/model";
+import { EmployeeRequestModel, EmployeeModel, AdminRequestModel, MasterAdminResponseModel, ApprovalAdminResponseModel, RoleResponseModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
@@ -106,6 +148,10 @@ export default class Employee extends Vue {
   public response: Array<EmployeeModel> = [];
   editRequest: EmployeeModel = new EmployeeModel();
   request: EmployeeRequestModel = new EmployeeRequestModel();
+   public adminRequest:AdminRequestModel=new AdminRequestModel(); 
+   public role: Array<RoleResponseModel> = [];
+  public MasterAdmin: Array<MasterAdminResponseModel>=[];
+  public ApprovalAdmin:Array<ApprovalAdminResponseModel>=[];
   search: string = "";
   snackbarText: string = "";
   snackbar: boolean = false;
@@ -113,6 +159,32 @@ export default class Employee extends Vue {
   EmployeeId: string = "";
   created() {
     this.getEmployee();
+    this.GetRoles();
+    this.GetMasterAdmin();
+    this.GetApprovalAdmin(); 
+  }   
+  private GetRoles() {
+    this.EmployeeService.GetRoles().then(
+      (response: Array<RoleResponseModel>) => {
+        this.role = response;
+      }
+    );
+  }
+  private GetMasterAdmin() {
+    this.adminRequest.companyId="f3bf1b9c-b5b7-481e-9c32-c91af8a7d2c2";
+    this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
+      (response: Array<MasterAdminResponseModel>) => {
+        this.MasterAdmin = response;
+      }
+    );
+  }
+  private GetApprovalAdmin() {
+    this.adminRequest.companyId="f3bf1b9c-b5b7-481e-9c32-c91af8a7d2c2";
+    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+      (response: Array<ApprovalAdminResponseModel>) => {
+        this.ApprovalAdmin= response;
+      }
+    );
   }
   public getEmployee() {
     this.request.id = this.$store.getters.id;
@@ -133,8 +205,10 @@ export default class Employee extends Vue {
   public editEmployee(item: EmployeeModel) {
     this.showDialog = true;
     this.editRequest = item;
+    
   }
   public save(editRequest: EmployeeModel) {
+    console.log(this.editRequest);
     this.EmployeeService.EditEmployee(
       this.editRequest,
       editRequest.EmployeeId

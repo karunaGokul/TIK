@@ -8,7 +8,6 @@ export class CreateProjectModel {
     creditPeriod: number;
     confirmationDate: Date;
     deliveryDate: Date;
-
     controls: Array<CreateProjectControlModel> = [];
 }
 
@@ -22,7 +21,6 @@ export class CreateProjectControlModel {
 
 export class ProjectFormModel {
     category: string;
-
     steps: Array<ProjectFormStep>;
     maxSteps: number;
 }
@@ -30,9 +28,7 @@ export class ProjectFormModel {
 export class ProjectFormStep {
     title: string;
     path: Array<string> = [];
-
     controls: Array<ProjectFormStepControl> = [];
-    
     stepNumber: number = 1;
 }
 
@@ -40,11 +36,8 @@ export class ProjectFormStepControl {
     id: string;
     type: string;
     selector: boolean;
-
     options: Array<ProjectFormStepControlOption>;
-
     items: Array<ProjectFormStepControl>
-
     value: string;
 }
 
@@ -53,7 +46,6 @@ export class ProjectFormStepControlOption {
     label: string;
     text: string;
     value: string;
-
     selected: boolean;
 }
 

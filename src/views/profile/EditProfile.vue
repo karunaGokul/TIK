@@ -71,6 +71,7 @@
               dense
               outlined
               placeholder="Enter Email"
+              :rules="emailRules"
               v-model="request.email"
             >
             </v-text-field>
@@ -79,6 +80,7 @@
               dense
               outlined
               placeholder="Enter PhoneNumber"
+              :rules="phoneRules"
               v-model="request.phoneNumber1"
             ></v-text-field>
 
@@ -86,6 +88,7 @@
               dense
               outlined
               placeholder="Enter Alternate PhoneNumber"
+              :rules="phoneRules"
               v-model="request.phoneNumber2"
             ></v-text-field>
           </v-col>
@@ -111,13 +114,12 @@
             save
           </v-btn>
 
-  <!-- reset password button  -->
-         <v-spacer></v-spacer>
-         <router-link to="/resetpassword" class="text-decoration-none">
-          <v-btn
-            dark
-            class="text-capitalize red color font-weight-regular"
-          >Reset Password</v-btn>
+          <!-- reset password button  -->
+          <v-spacer></v-spacer>
+          <router-link to="/resetpassword" class="text-decoration-none">
+            <v-btn dark class="text-capitalize red color font-weight-regular"
+              >Reset Password</v-btn
+            >
           </router-link>
         </v-row>
       </v-card>
@@ -127,13 +129,24 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Inject } from "vue-property-decorator";
-
+import { validationMixin } from "vuelidate";
 import { IProfileService } from "@/service";
 import { ProfileResponse } from "@/model";
-@Component
+@Component({
+  mixins: [validationMixin],
+})
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
+  public emailRules: any = [
+    (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+  ];
+  public phoneRules: any = [
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+
+    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
+  ];
   img: string = "";
   dialog: boolean = true;
   logo: File;

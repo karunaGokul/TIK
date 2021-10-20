@@ -8,7 +8,8 @@ const state: AuthenticationState = {
     accessToken: localStorage.getItem('accessToken') || '',
     refreshToken: localStorage.getItem('refreshToken') || '',
     id: localStorage.getItem('id') || '',
-    role: localStorage.getItem('role') || ''
+    role: localStorage.getItem('role') || '',
+    companyId: localStorage.getItem('companyId') || '',
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
@@ -22,6 +23,9 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     id: state => {
         return state.id;
+    },
+    companyId: state => {
+        return state.companyId;
     }
 }
 
@@ -31,6 +35,7 @@ const mutations: MutationTree<AuthenticationState> = {
         state.refreshToken = data.refreshToken;
         state.id = data.id;
         state.role = data.role;
+        state.companyId = data.companyId;
     },
     onLogout(state) {
         state.accessToken = "";
@@ -45,9 +50,10 @@ const actions: ActionTree<AuthenticationState, any> = {
         const service = new AuthenticationService();
         return service.login(request).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
-            localStorage.setItem('refreshToken', response.refreshToken);
+            localStorage.setItem('companyId', response.companyId);
             localStorage.setItem('id', response.id);
-            localStorage.setItem('role', response.id);
+            localStorage.setItem('refreshToken', response.refreshToken);            
+            localStorage.setItem('role', response.role);            
             context.commit('onAuthenticate', response);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
             return response;

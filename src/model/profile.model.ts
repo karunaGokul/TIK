@@ -49,5 +49,3 @@ export class tableDataModel {
     rowData: Array<ProfileModel> = [];
 }
 
-
-

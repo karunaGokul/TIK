@@ -2,19 +2,15 @@
   <div>
     <v-row>
       <v-col cols="12" md="6">
-        <v-parallax
-          src="@/assets/login.jpg"
-          height="700"
-          
-        >
+        <v-parallax src="@/assets/login.jpg" height="700">
           <div class="pl-10 pt-16">
             <h1>Welcome To Textile</h1>
             <h2 class="py-2">Login to continue Access</h2>
-            <p >
+            <p>
               Today we are thinking of all our members across the world and are
-              encouraged by the support our networks bring in times such as these.
-              Use the left test instrument details to attempt a transaction on the
-              staging environment and login.
+              encouraged by the support our networks bring in times such as
+              these. Use the left test instrument details to attempt a
+              transaction on the staging environment and login.
             </p>
           </div>
         </v-parallax>
@@ -23,7 +19,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7 pt-15">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form" >
+          <v-form ref="form">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -42,9 +38,11 @@
               dense
               placeholder="Enter Password"
               class="pt-2 rounded-0"
-              v-model="request.Password"
-              type="password"
+              v-model="request.Password"             
               :rules="passwordRules"
+              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="() => (value = !value)"
+                  :type="value ? 'password' : 'text'"
               required
             ></v-text-field>
 
@@ -54,14 +52,14 @@
                   value="1"
                   label="Remember Me"
                   type="checkbox"
-                  class="mt-n5"
+                  class="mt-0"
                 ></v-checkbox>
               </v-col>
-              
-              <v-col class="mt-n5">
-                <router-link to="/forgotpassword" class="text-decoration-none"
-                  >Forget Password?</router-link
-                >
+
+              <v-col cols="12" sm="4">
+                <router-link to="/forgotpassword" class="text-decoration-none">
+                  Forget Password?
+                </router-link>
               </v-col>
             </v-row>
 
@@ -139,6 +137,7 @@ export default class Login extends Vue {
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
   public passwordRules: any = [(v: any) => !!v || "Password is required"];
+  public value: boolean = true;
 
   //(v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||  "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
 

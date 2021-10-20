@@ -48,14 +48,15 @@
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
-import { ResetPasswordRequestModel, ResetPasswordResponse } from "@/model";
+import { ResetPasswordRequestModel  } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({
   mixins: [validationMixin],
 })
+
 export default class ProjectsList extends Vue {
-  @Inject("authService") authService: IAuthenticationService;
+ @Inject("authService") authService: IAuthenticationService;
 
   snackbar: boolean = false;
   snackbarText: string = "";
@@ -63,24 +64,20 @@ export default class ProjectsList extends Vue {
   public request = new ResetPasswordRequestModel();
 
   public resetPassword() {
-    if (
-      (this.$refs.form as Vue) &&
-      this.request.newPassword == this.request.confirmPassword
-    ) {
-      this.authService
-        .ResetPassword(this.request)
-        .then((response: ResetPasswordResponse) => {
-          // this.snackbarText = response;
-
-          this.snackbar = true;
-        })
-        .catch((error) => {
-          if (error.response.status == 500)
-            this.snackbarText = error.response.data;
-
-          this.snackbar = true;
-        });
+        if((this.$refs.form as Vue & { validate: () => boolean }).validate() && this.request.newPassword == this.request.confirmPassword) {
+            this.authService.ResetPassword(this.request).then(response => {
+               this.snackbarText = response;
+               this.snackbar = true;
+                this.$router.push('/');
+            }).catch((error) => {
+               console.log(error);
+                if(error.response.status == 500)
+                  this.snackbarText = error.response.data;
+                  this.snackbar = true;
+                    
+            });
+        } 
     }
-  }
+
 }
 </script>

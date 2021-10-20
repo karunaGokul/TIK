@@ -27,10 +27,9 @@
             outlined
             dense
           ></v-text-field>
-          <v-icon large color="green darken-4" class="ml-4"> mdi-filter</v-icon>
+          <!-- <v-icon large color="green darken-4" class="ml-4"> mdi-filter</v-icon>
           <v-icon large color="green darken-4" class="ml-2">
-            mdi-sort-ascending</v-icon
-          >
+            mdi-sort-ascending</v-icon> -->
         </v-card-title>
         <v-data-table
           :headers="headers"
@@ -49,32 +48,120 @@
           </template>
         </v-data-table>
       </v-card>
-      <v-dialog v-model="showDialog" max-width="500">
-        <v-card>
-          <v-row class="my-4 px-4">
-            <v-card-title>Employee Details </v-card-title>
-            <v-spacer></v-spacer>
-            <v-btn @click="showDialog = false" icon>
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-row>
-          <v-card-text>
-            <div v-for="(value, name) in editRequest" :key="name">
+      <v-dialog max-width="600px" v-model="showDialog">
+      <v-card>
+        <v-row class="my-4 px-4">
+          <v-card-title>Employee Details </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn @click="showDialog = false" icon>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-row>
+        <v-card-text>
+          <v-row>
+            <div v-if="editRequest.FirstName" class="mx-7">
               <v-text-field
-                :label="name"
-                v-model="editRequest[name]"
+                label="FirstName"
+                v-model="editRequest.FirstName"
                 outlined
-                v-if="!(name === 'EmployeeId')"
               ></v-text-field>
             </div>
-            <div class="d-flex">
+            <div v-if="editRequest.LastName" class="mx-7">
+              <v-text-field
+                label="LastName"
+                v-model="editRequest.LastName"
+                outlined
+              ></v-text-field>
+            </div>
+          </v-row>
+          <v-row>
+            <div v-if="editRequest.Gender" class="mx-7">
+              <v-text-field
+                label="Gender"
+                v-model="editRequest.Gender"
+                outlined
+              ></v-text-field>
+            </div>
+            <div v-if="editRequest.EmailAddress" class="mx-7">
+              <v-text-field
+                label="EmailAddress"
+                v-model="editRequest.EmailAddress"
+                outlined
+              ></v-text-field>
+            </div>
+          </v-row>
+          <v-row>
+            <div v-if="editRequest.Address" class="mx-7">
+              <v-text-field
+                label="Address"
+                v-model="editRequest.Address"
+                outlined
+              ></v-text-field>
+            </div>
+            <div v-if="editRequest.PhoneNumber" class="mx-7">
+              <v-text-field
+                label="PhoneNumber"
+                v-model="editRequest.PhoneNumber"
+                outlined
+              ></v-text-field>
+            </div>
+          </v-row>
+          <v-row>
+            <div v-if="editRequest.EmployeeRole" class="mx-7">
+              <v-label> Employee Role </v-label>
+              <v-select
+                :menu-props="{ offsetY: true }"
+                :items="role"
+                item-text="EmployeeRole"
+                item-value="EmployeeRole"
+                v-model="editRequest.EmployeeRole"
+                outlined
+                dense
+              ></v-select>
+            </div>
+            <div
+              v-if="
+                editRequest.MasterAdminId ||
+                editRequest.EmployeeRole != 'MasterAdmin'
+              " class="mx-7"
+            >
+              <v-label> Master Admin </v-label>
+              <v-select
+                :menu-props="{ offsetY: true }"
+                :items="MasterAdmin"
+                item-text="MasterAdmin"
+                item-value="Id"
+                v-model="editRequest.MasterAdminId"
+                outlined
+                dense
+              ></v-select>
+            </div>
+          </v-row>
+          <v-row>
+            <div v-if="
+                editRequest.ApprovalAdminId ||
+                (editRequest.EmployeeRole != 'MasterAdmin'||editRequest.EmployeeRole != 'Approval Admin')
+              " class="mx-7">
+                <v-label> Approval Admin </v-label>
+                <v-select
+                  :menu-props="{ offsetY: true }"
+                  :items="ApprovalAdmin"
+                  item-text="ApprovalAdmin"
+                  item-value="Id"
+                  v-model="editRequest.ApprovalAdminId"
+                  outlined
+                  dense
+                ></v-select>
+              </div>
+          </v-row>
+          <div class="d-flex">
               <v-btn class="ml-auto" color="primary" @click="save(editRequest)">
                 Save
               </v-btn>
             </div>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"
@@ -98,7 +185,14 @@
  
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
-import { EmployeeRequestModel, EmployeeModel } from "@/model";
+import {
+  EmployeeRequestModel,
+  EmployeeModel,
+  AdminRequestModel,
+  MasterAdminResponseModel,
+  ApprovalAdminResponseModel,
+  RoleResponseModel,
+} from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
@@ -107,13 +201,40 @@ export default class Employee extends Vue {
   public response: Array<EmployeeModel> = [];
   editRequest: EmployeeModel = new EmployeeModel();
   request: EmployeeRequestModel = new EmployeeRequestModel();
+  public adminRequest: AdminRequestModel = new AdminRequestModel();
+  public role: Array<RoleResponseModel> = [];
+  public MasterAdmin: Array<MasterAdminResponseModel> = [];
+  public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
   search: string = "";
   snackbarText: string = "";
   snackbar: boolean = false;
   showDialog: boolean = false;
-  EmployeeId: string = "";
+
   created() {
     this.getEmployee();
+  }
+  private GetRoles() {
+    this.EmployeeService.GetRoles().then(
+      (response: Array<RoleResponseModel>) => {
+        this.role = response;
+      }
+    );
+  }
+  private GetMasterAdmin() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
+      (response: Array<MasterAdminResponseModel>) => {
+        this.MasterAdmin = response;
+      }
+    );
+  }
+  private GetApprovalAdmin() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+      (response: Array<ApprovalAdminResponseModel>) => {
+        this.ApprovalAdmin = response;
+      }
+    );
   }
   public getEmployee() {
     this.request.id = this.$store.getters.id;
@@ -126,16 +247,19 @@ export default class Employee extends Vue {
     this.EmployeeService.DeleteEmployee(item.EmployeeId).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
-      this.EmployeeId = null;
       this.getEmployee();
     });
   }
 
   public editEmployee(item: EmployeeModel) {
+    this.GetRoles();
+    this.GetMasterAdmin();
+    this.GetApprovalAdmin();
     this.showDialog = true;
     this.editRequest = item;
   }
   public save(editRequest: EmployeeModel) {
+    console.log(this.editRequest);
     this.EmployeeService.EditEmployee(
       this.editRequest,
       editRequest.EmployeeId

@@ -10,6 +10,7 @@ export class AuthenticationResponse {
     refreshToken: string;
     id: string;
     role: string;
+    companyId:string;
 }
 export class AuthenticationState {
     accessToken: string = "";

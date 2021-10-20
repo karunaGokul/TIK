@@ -163,7 +163,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Approval Admin"
               :items="ApprovalAdmin"
-              item-text="ApprovalAdminEmailId"
+              item-text="ApprovalAdmin"
               item-value="Id"
               outlined
               v-model="request.ApprovalAdminId"
@@ -180,7 +180,7 @@
               :menu-props="{ offsetY: true }"
               label="Select Master Admin"
               :items="MasterAdmin"
-              item-text="MasterAdminEmailId"
+              item-text="MasterAdmin"
               item-value="Id"
               v-model="request.MasterAdminId"
               outlined
@@ -206,21 +206,22 @@
             >Create</v-btn
           >
         </v-row>
-        <v-snackbar
+       <v-snackbar
           v-model="snackbar"
           :timeout="2000"
           color="deep-orange lighten-5 pink--text"
           right
           top
         >
-          <v-icon color="pink">mdi-exclamation-thick </v-icon>
-          {{ snackbarText }}
-          <template v-slot:action="{ attrs }">
-            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-              <v-icon> mdi-close-box</v-icon>
-            </v-btn>
-          </template>
-        </v-snackbar>
+        <v-icon color="pink">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
       </v-form>
     </v-card>
   </div>
@@ -257,6 +258,7 @@ export default class CreateEmployee extends Vue {
   gender: any = ["Male", "Female"];  
   snackbarText: string = "";
   snackbar: boolean = false;
+  
   created() {
     this.GetRoles();
     this.GetMasterAdmin();
@@ -270,7 +272,7 @@ export default class CreateEmployee extends Vue {
     );
   }
   private GetMasterAdmin() {
-    this.adminRequest.companyId=this.$store.getters.companyId;
+    this.adminRequest.companyId=this.$store.getters.companyId;    
     this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
       (response: Array<MasterAdminResponseModel>) => {
         this.MasterAdmin = response;
@@ -285,11 +287,12 @@ export default class CreateEmployee extends Vue {
       }
     );
   }
-  public createEmployee() {
-    console.log(this.request);
+  public createEmployee() {    
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
-        this.$router.push("/employee");
+       this.snackbarText = response;
+      this.snackbar = true;     
+        this.$router.push("/employee");       
       },
       (err) => {
         if (err.response.status == 400) {
@@ -298,6 +301,7 @@ export default class CreateEmployee extends Vue {
         }
       }
     );
+    
   }
 }
 </script>

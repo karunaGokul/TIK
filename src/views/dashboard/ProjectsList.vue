@@ -20,12 +20,12 @@
             ></v-img>
         </v-col>
 
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="4">
           <v-row class="mt-4">
             <h4>{{ response.EnquiryName }}</h4>
           </v-row>
           <v-row> Created By : {{ response.CreatedBy }}</v-row>
-          <v-row> Date & Time :{{ response.CreatedDateTime }} </v-row>
+          <v-row> Date & Time :{{ response.CreatedDate }} </v-row>
         </v-col>
         <v-col cols="12" md="5" v-if="response.InStages === 'Confirmed'">
           <div v-for="row in response.BitReceived" :key="row.Approved">

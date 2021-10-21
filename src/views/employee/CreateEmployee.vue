@@ -6,14 +6,14 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        Create New Employee
+        {{option}} Employee
       </div>
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
       <v-form>
         <v-row class="pl-12 pt-5">
-          <div class="font-weight-regular">Create New Employee</div>
+          <div class="font-weight-regular">{{option}} Employee</div>
         </v-row>
 
         <v-row class="ml-5">
@@ -21,7 +21,7 @@
             <v-label>
               First Name
               <span class="red--text">*</span>
-            </v-label>
+            </v-label>            
             <v-text-field
               outlined
               dense
@@ -121,30 +121,19 @@
               outlined
               dense
             ></v-text-field>
-          </v-col>
-          <!-- <v-col cols="12" md="3" class="mr-5">
-            <v-label> Category </v-label>
-            <v-select
-              class="pt-2"
-              :menu-props="{ offsetY: true }"
-              label="Select Your Category"
-              :items="category"
-              outlined
-              dense
-            ></v-select>
-          </v-col> -->
+          </v-col>          
           <v-col cols="12" md="3">
             <v-label>
               Role
               <span class="red--text">*</span>
-            </v-label>
+            </v-label>            
             <v-select
               class="pt-2"
               :menu-props="{ offsetY: true }"
               :items="role"
               label="Select Employee Role"
               item-text="EmployeeRole"
-              item-value="Id"
+              item-value="EmployeeRole"
               v-model="request.EmployeeRole"
               outlined
               dense
@@ -157,13 +146,11 @@
             cols="12"
             md="3"
             class="mr-5"
-            v-if="
-              !(
-                request.EmployeeRole === '1' ||
-                request.EmployeeRole === '2' ||
+           v-if="request.ApprovalAdminId ||  !(
+                request.EmployeeRole === 'MasterAdmin' ||
+                request.EmployeeRole === 'Approval Admin' ||
                 request.EmployeeRole === ' '
-              )
-            "
+              )"   
           >
             <v-label>
               Approval Admin
@@ -183,9 +170,9 @@
           </v-col>
           <v-col
             cols="12"
-            md="3"
-            v-if="
-              !(request.EmployeeRole === '1' || request.EmployeeRole === ' ')
+            md="3"            
+            v-if="editRequest.MasterAdminId ||
+              !(request.EmployeeRole === 'MasterAdmin' || request.EmployeeRole === ' ')
             "
           >
             <v-label>
@@ -218,9 +205,9 @@
         <v-row justify="center my-5">
           <v-btn
             x-large
-            class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"
-            @click="createEmployee"
-            >Create</v-btn
+            class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"           
+            @click="option === 'Create' ? createEmployee() : updateEmployee()"
+            >{{option}}</v-btn
           >
         </v-row>
 
@@ -246,7 +233,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
+import { Component, Vue, Inject, Prop } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import {
   AdminRequestModel,
@@ -262,6 +249,8 @@ import { IEmployeeService } from "@/service";
 })
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  @Prop() editRequest:EmployeeModel;
+  @Prop() option:string;
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -273,6 +262,7 @@ export default class CreateEmployee extends Vue {
 
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
+   
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
   public adminRequest: AdminRequestModel = new AdminRequestModel();
@@ -282,8 +272,9 @@ export default class CreateEmployee extends Vue {
   gender: any = ["Male", "Female"];
   snackbarText: string = "";
   snackbar: boolean = false;
-
-  created() {
+  created() { 
+    if (this.option == "Edit" )
+    this.request = this.editRequest;       
     this.GetRoles();
     this.GetMasterAdmin();
     this.GetApprovalAdmin();
@@ -311,13 +302,30 @@ export default class CreateEmployee extends Vue {
       }
     );
   }
-  public createEmployee() {
+  public createEmployee() {    
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
         this.snackbarText = response;
         this.snackbar = true;
         this.$router.push("/employee");
       },
+      (err) => {
+        if (err.response.status == 400) {
+          this.snackbarText = err.response.data;
+          this.snackbar = true;
+        }
+      }
+    );
+  }
+  public updateEmployee() {   
+    this.EmployeeService.EditEmployee(
+      this.editRequest,
+      this.editRequest.EmployeeId
+    ).then((response) => {     
+      this.snackbarText = response;
+      this.snackbar = true;     
+      this.$router.push("/employee");
+    },
       (err) => {
         if (err.response.status == 400) {
           this.snackbarText = err.response.data;

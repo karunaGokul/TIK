@@ -61,6 +61,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/createemployee',
     name: 'CreateEmployee',
+    props: true,
     component: () => import('../views/employee/CreateEmployee.vue')
   },
   {

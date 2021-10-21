@@ -20,10 +20,9 @@ export class DashboardModel {
     logoName?:string;
     logo?: string;
     bidList?: Array<BitReceivedModel> = [];
-    summary?:Array<SummaryModel>=[];
-         
-    // CreatedBy: string;
-    // CreatedDateTime: string;    
+    summary?:Array<SummaryModel>=[];         
+    CreatedBy: string;
+    CreatedDate: string;    
     // No_Of_Bits: number;   
 }
 export class BitReceivedModel {
@@ -36,8 +35,7 @@ export class BitReceivedModel {
     approvedBy: string;
     approvedDate: string;
     status:string;
-    review:string;
-  
+    review:string;  
     // Rating: number;  
 }
 

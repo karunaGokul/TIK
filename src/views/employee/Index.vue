@@ -14,7 +14,7 @@
       <v-card class="mx-3" elevation="8">
         <v-card-title class="mx-6">
           <h5>Employee List</h5>
-          <router-link to="/createemployee" tag="button">
+          <router-link :to="{name: 'CreateEmployee', params: {option:'Create' } }" tag="button">
             <v-icon color="blue darken-4" class="mx-2"> mdi-plus-circle</v-icon>
           </router-link>
           <v-spacer></v-spacer>
@@ -39,161 +39,17 @@
           class="elevation-1 mx-6"
         >
           <template v-slot:[`item.Action`]="{ item }">
-            <v-icon small color="blue" class="mr-2" @click="editEmployee(item)">
+            <router-link :to="{name: 'CreateEmployee', params: { editRequest:item,option:'Edit' } }" tag="button">
+            <v-icon small color="blue" class="mr-2" >
               mdi-pencil
             </v-icon>
+            </router-link>
             <v-icon small color="red" @click="deleteEmployee(item)">
               mdi-delete
             </v-icon>
           </template>
         </v-data-table>
-      </v-card>
-      <v-dialog max-width="800px" v-model="showDialog">
-        <v-card>
-          <v-row class="my-4 px-4">
-            <v-card-title>Employee Details </v-card-title>
-            <v-spacer></v-spacer>
-            <v-btn @click="closeEditEmployee()" icon>
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-row>
-          <v-card-text>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="FirstName"
-                    v-model="editRequest.FirstName"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="LastName"
-                    v-model="editRequest.LastName"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="Gender"
-                    v-model="editRequest.Gender"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="EmailAddress"
-                    v-model="editRequest.EmailAddress"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="Address"
-                    v-model="editRequest.Address"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-text-field
-                    label="PhoneNumber"
-                    v-model="editRequest.PhoneNumber"
-                    outlined
-                  ></v-text-field>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <div class="mx-7">
-                  <v-label> Employee Role </v-label>
-                  <v-select
-                    :menu-props="{ offsetY: true }"
-                    :items="role"
-                    item-text="EmployeeRole"
-                    item-value="EmployeeRole"
-                    v-model="editRequest.EmployeeRole"
-                    outlined
-                    dense
-                  ></v-select>
-                </div>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <div
-                  v-if="
-                    editRequest.MasterAdminId ||
-                    editRequest.EmployeeRole != 'MasterAdmin'
-                  "
-                  class="mx-7"
-                >
-                  <v-label> Master Admin </v-label>
-                  <v-select
-                    :menu-props="{ offsetY: true }"
-                    :items="MasterAdmin"
-                    item-text="MasterAdmin"
-                    item-value="Id"
-                    v-model="editRequest.MasterAdminId"
-                    outlined
-                    dense
-                  ></v-select>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" sm="6">
-                <div
-                  v-if="
-                    editRequest.ApprovalAdminId ||
-                    (editRequest.EmployeeRole != 'MasterAdmin' &&
-                      editRequest.EmployeeRole != 'Approval Admin')
-                  "
-                  class="mx-7"
-                >
-                  <v-label> Approval Admin </v-label>
-                  <v-select
-                    :menu-props="{ offsetY: true }"
-                    :items="ApprovalAdmin"
-                    item-text="ApprovalAdmin"
-                    item-value="Id"
-                    v-model="editRequest.ApprovalAdminId"
-                    outlined
-                    dense
-                  ></v-select>
-                </div>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-checkbox
-                value="1"
-                label="Approval Admin Access"
-                type="checkbox"
-                required
-                v-model="editRequest.ApprovalAdminAccess"
-              ></v-checkbox>
-            </v-row>
-            <div class="d-flex">
-              <v-btn class="ml-auto" color="primary" @click="save(editRequest)">
-                Save
-              </v-btn>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
+      </v-card>     
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"
@@ -229,45 +85,18 @@ import { IEmployeeService } from "@/service";
 
 @Component
 export default class Employee extends Vue {
-  @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  public response: Array<EmployeeModel> = [];
-  editRequest: EmployeeModel = new EmployeeModel();
+  @Inject("EmployeeService") EmployeeService: IEmployeeService; 
+  public response: Array<EmployeeModel> = [];  
   request: EmployeeRequestModel = new EmployeeRequestModel();
-  public adminRequest: AdminRequestModel = new AdminRequestModel();
-  public role: Array<RoleResponseModel> = [];
-  public MasterAdmin: Array<MasterAdminResponseModel> = [];
-  public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
+  
   search: string = "";
   snackbarText: string = "";
-  snackbar: boolean = false;
-  showDialog: boolean = false;
+  snackbar: boolean = false; 
 
   created() {
     this.getEmployee();
   }
-  private GetRoles() {
-    this.EmployeeService.GetRoles().then(
-      (response: Array<RoleResponseModel>) => {
-        this.role = response;
-      }
-    );
-  }
-  private GetMasterAdmin() {
-    this.adminRequest.companyId = this.$store.getters.companyId;
-    this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
-      (response: Array<MasterAdminResponseModel>) => {
-        this.MasterAdmin = response;
-      }
-    );
-  }
-  private GetApprovalAdmin() {
-    this.adminRequest.companyId = this.$store.getters.companyId;
-    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
-      (response: Array<ApprovalAdminResponseModel>) => {
-        this.ApprovalAdmin = response;
-      }
-    );
-  }
+  
   public getEmployee() {
     this.request.id = this.$store.getters.id;
     this.EmployeeService.GetEmployees(this.request).then((response) => {
@@ -281,30 +110,7 @@ export default class Employee extends Vue {
       this.snackbar = true;
       this.getEmployee();
     });
-  }
-
-  public editEmployee(item: EmployeeModel) {
-    this.GetRoles();
-    this.GetMasterAdmin();
-    this.GetApprovalAdmin();
-    this.showDialog = true;
-    this.editRequest = item;
-  }
-  public save(editRequest: EmployeeModel) {
-    this.EmployeeService.EditEmployee(
-      this.editRequest,
-      editRequest.EmployeeId
-    ).then((response) => {
-      this.showDialog = false;
-      this.snackbarText = response;
-      this.snackbar = true;
-      this.getEmployee();
-    });
-  }
-  public closeEditEmployee() {
-    this.showDialog = false;
-    this.getEmployee();
-  }
+  }  
   headers: any = [
     {
       text: "First Name",

@@ -84,10 +84,10 @@
             <v-text-field
               class="pt-2"
               label="Enter Password"
-               v-model="request.Password"
-               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="() => (value = !value)"
-                  :type="value ? 'password' : 'text'"
+              v-model="request.Password"
+              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value = !value)"
+              :type="value ? 'password' : 'text'"
               outlined
               dense
             ></v-text-field>
@@ -122,7 +122,7 @@
               dense
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="3" class="mr-5">
+          <!-- <v-col cols="12" md="3" class="mr-5">
             <v-label> Category </v-label>
             <v-select
               class="pt-2"
@@ -132,7 +132,7 @@
               outlined
               dense
             ></v-select>
-          </v-col>
+          </v-col> -->
           <v-col cols="12" md="3">
             <v-label>
               Role
@@ -140,7 +140,7 @@
             </v-label>
             <v-select
               class="pt-2"
-              :menu-props="{ offsetY: true }"             
+              :menu-props="{ offsetY: true }"
               :items="role"
               label="Select Employee Role"
               item-text="EmployeeRole"
@@ -153,7 +153,18 @@
         </v-row>
 
         <v-row class="ml-5">
-          <v-col cols="12" md="3" class="mr-5" v-if="!(request.EmployeeRole === '1'|| request.EmployeeRole === '2'|| request.EmployeeRole === ' ' )">
+          <v-col
+            cols="12"
+            md="3"
+            class="mr-5"
+            v-if="
+              !(
+                request.EmployeeRole === '1' ||
+                request.EmployeeRole === '2' ||
+                request.EmployeeRole === ' '
+              )
+            "
+          >
             <v-label>
               Approval Admin
               <span class="red--text">*</span>
@@ -170,7 +181,13 @@
               dense
             ></v-select>
           </v-col>
-          <v-col cols="12" md="3" v-if="!(request.EmployeeRole === '1'|| request.EmployeeRole === ' ' )">
+          <v-col
+            cols="12"
+            md="3"
+            v-if="
+              !(request.EmployeeRole === '1' || request.EmployeeRole === ' ')
+            "
+          >
             <v-label>
               Master Admin
               <span class="red--text">*</span>
@@ -195,7 +212,7 @@
             label="Approval Admin Access"
             type="checkbox"
             required
-            v-model="request.ApprovalAdminAccess"            
+            v-model="request.ApprovalAdminAccess"
           ></v-checkbox>
         </v-row>
         <v-row justify="center my-5">
@@ -206,22 +223,23 @@
             >Create</v-btn
           >
         </v-row>
-       <v-snackbar
+
+        <v-snackbar
           v-model="snackbar"
           :timeout="2000"
           color="deep-orange lighten-5 pink--text"
           right
           top
         >
-        <v-icon color="pink">mdi-exclamation-thick </v-icon>
-        {{ snackbarText }}
+          <v-icon color="pink">mdi-exclamation-thick </v-icon>
+          {{ snackbarText }}
 
-        <template v-slot:action="{ attrs }">
-          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-            <v-icon> mdi-close-box</v-icon>
-          </v-btn>
-        </template>
-      </v-snackbar>
+          <template v-slot:action="{ attrs }">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+              <v-icon> mdi-close-box</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
       </v-form>
     </v-card>
   </div>
@@ -230,7 +248,13 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import { AdminRequestModel, ApprovalAdminResponseModel, EmployeeModel, MasterAdminResponseModel, RoleResponseModel } from "@/model";
+import {
+  AdminRequestModel,
+  ApprovalAdminResponseModel,
+  EmployeeModel,
+  MasterAdminResponseModel,
+  RoleResponseModel,
+} from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component({
@@ -251,18 +275,18 @@ export default class CreateEmployee extends Vue {
   ];
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
-  public adminRequest:AdminRequestModel=new AdminRequestModel();
+  public adminRequest: AdminRequestModel = new AdminRequestModel();
   public role: Array<RoleResponseModel> = [];
-  public MasterAdmin: Array<MasterAdminResponseModel>=[];
-  public ApprovalAdmin:Array<ApprovalAdminResponseModel>=[];
-  gender: any = ["Male", "Female"];  
+  public MasterAdmin: Array<MasterAdminResponseModel> = [];
+  public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
+  gender: any = ["Male", "Female"];
   snackbarText: string = "";
   snackbar: boolean = false;
-  
+
   created() {
     this.GetRoles();
     this.GetMasterAdmin();
-    this.GetApprovalAdmin();   
+    this.GetApprovalAdmin();
   }
   private GetRoles() {
     this.EmployeeService.GetRoles().then(
@@ -272,7 +296,7 @@ export default class CreateEmployee extends Vue {
     );
   }
   private GetMasterAdmin() {
-    this.adminRequest.companyId=this.$store.getters.companyId;    
+    this.adminRequest.companyId = this.$store.getters.companyId;
     this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
       (response: Array<MasterAdminResponseModel>) => {
         this.MasterAdmin = response;
@@ -280,19 +304,19 @@ export default class CreateEmployee extends Vue {
     );
   }
   private GetApprovalAdmin() {
-    this.adminRequest.companyId=this.$store.getters.companyId;
+    this.adminRequest.companyId = this.$store.getters.companyId;
     this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
       (response: Array<ApprovalAdminResponseModel>) => {
-        this.ApprovalAdmin= response;
+        this.ApprovalAdmin = response;
       }
     );
   }
-  public createEmployee() {    
+  public createEmployee() {
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
-       this.snackbarText = response;
-      this.snackbar = true;     
-        this.$router.push("/employee");       
+        this.snackbarText = response;
+        this.snackbar = true;
+        this.$router.push("/employee");
       },
       (err) => {
         if (err.response.status == 400) {
@@ -301,7 +325,6 @@ export default class CreateEmployee extends Vue {
         }
       }
     );
-    
   }
 }
 </script>

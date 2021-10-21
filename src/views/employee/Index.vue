@@ -48,120 +48,152 @@
           </template>
         </v-data-table>
       </v-card>
-      <v-dialog max-width="600px" v-model="showDialog">
-      <v-card>
-        <v-row class="my-4 px-4">
-          <v-card-title>Employee Details </v-card-title>
-          <v-spacer></v-spacer>
-          <v-btn @click="showDialog = false" icon>
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </v-row>
-        <v-card-text>
-          <v-row>
-            <div v-if="editRequest.FirstName" class="mx-7">
-              <v-text-field
-                label="FirstName"
-                v-model="editRequest.FirstName"
-                outlined
-              ></v-text-field>
-            </div>
-            <div v-if="editRequest.LastName" class="mx-7">
-              <v-text-field
-                label="LastName"
-                v-model="editRequest.LastName"
-                outlined
-              ></v-text-field>
-            </div>
+      <v-dialog max-width="800px" v-model="showDialog">
+        <v-card>
+          <v-row class="my-4 px-4">
+            <v-card-title>Employee Details </v-card-title>
+            <v-spacer></v-spacer>
+            <v-btn @click="closeEditEmployee()" icon>
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
           </v-row>
-          <v-row>
-            <div v-if="editRequest.Gender" class="mx-7">
-              <v-text-field
-                label="Gender"
-                v-model="editRequest.Gender"
-                outlined
-              ></v-text-field>
-            </div>
-            <div v-if="editRequest.EmailAddress" class="mx-7">
-              <v-text-field
-                label="EmailAddress"
-                v-model="editRequest.EmailAddress"
-                outlined
-              ></v-text-field>
-            </div>
-          </v-row>
-          <v-row>
-            <div v-if="editRequest.Address" class="mx-7">
-              <v-text-field
-                label="Address"
-                v-model="editRequest.Address"
-                outlined
-              ></v-text-field>
-            </div>
-            <div v-if="editRequest.PhoneNumber" class="mx-7">
-              <v-text-field
-                label="PhoneNumber"
-                v-model="editRequest.PhoneNumber"
-                outlined
-              ></v-text-field>
-            </div>
-          </v-row>
-          <v-row>
-            <div v-if="editRequest.EmployeeRole" class="mx-7">
-              <v-label> Employee Role </v-label>
-              <v-select
-                :menu-props="{ offsetY: true }"
-                :items="role"
-                item-text="EmployeeRole"
-                item-value="EmployeeRole"
-                v-model="editRequest.EmployeeRole"
-                outlined
-                dense
-              ></v-select>
-            </div>
-            <div
-              v-if="
-                editRequest.MasterAdminId ||
-                editRequest.EmployeeRole != 'MasterAdmin'
-              " class="mx-7"
-            >
-              <v-label> Master Admin </v-label>
-              <v-select
-                :menu-props="{ offsetY: true }"
-                :items="MasterAdmin"
-                item-text="MasterAdmin"
-                item-value="Id"
-                v-model="editRequest.MasterAdminId"
-                outlined
-                dense
-              ></v-select>
-            </div>
-          </v-row>
-          <v-row>
-            <div v-if="
-                editRequest.ApprovalAdminId ||
-                (editRequest.EmployeeRole != 'MasterAdmin'||editRequest.EmployeeRole != 'Approval Admin')
-              " class="mx-7">
-                <v-label> Approval Admin </v-label>
-                <v-select
-                  :menu-props="{ offsetY: true }"
-                  :items="ApprovalAdmin"
-                  item-text="ApprovalAdmin"
-                  item-value="Id"
-                  v-model="editRequest.ApprovalAdminId"
-                  outlined
-                  dense
-                ></v-select>
-              </div>
-          </v-row>
-          <div class="d-flex">
+          <v-card-text>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="FirstName"
+                    v-model="editRequest.FirstName"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="LastName"
+                    v-model="editRequest.LastName"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="Gender"
+                    v-model="editRequest.Gender"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="EmailAddress"
+                    v-model="editRequest.EmailAddress"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="Address"
+                    v-model="editRequest.Address"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-text-field
+                    label="PhoneNumber"
+                    v-model="editRequest.PhoneNumber"
+                    outlined
+                  ></v-text-field>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div class="mx-7">
+                  <v-label> Employee Role </v-label>
+                  <v-select
+                    :menu-props="{ offsetY: true }"
+                    :items="role"
+                    item-text="EmployeeRole"
+                    item-value="EmployeeRole"
+                    v-model="editRequest.EmployeeRole"
+                    outlined
+                    dense
+                  ></v-select>
+                </div>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <div
+                  v-if="
+                    editRequest.MasterAdminId ||
+                    editRequest.EmployeeRole != 'MasterAdmin'
+                  "
+                  class="mx-7"
+                >
+                  <v-label> Master Admin </v-label>
+                  <v-select
+                    :menu-props="{ offsetY: true }"
+                    :items="MasterAdmin"
+                    item-text="MasterAdmin"
+                    item-value="Id"
+                    v-model="editRequest.MasterAdminId"
+                    outlined
+                    dense
+                  ></v-select>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <div
+                  v-if="
+                    editRequest.ApprovalAdminId ||
+                    (editRequest.EmployeeRole != 'MasterAdmin' &&
+                      editRequest.EmployeeRole != 'Approval Admin')
+                  "
+                  class="mx-7"
+                >
+                  <v-label> Approval Admin </v-label>
+                  <v-select
+                    :menu-props="{ offsetY: true }"
+                    :items="ApprovalAdmin"
+                    item-text="ApprovalAdmin"
+                    item-value="Id"
+                    v-model="editRequest.ApprovalAdminId"
+                    outlined
+                    dense
+                  ></v-select>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-checkbox
+                value="1"
+                label="Approval Admin Access"
+                type="checkbox"
+                required
+                v-model="editRequest.ApprovalAdminAccess"
+              ></v-checkbox>
+            </v-row>
+            <div class="d-flex">
               <v-btn class="ml-auto" color="primary" @click="save(editRequest)">
                 Save
               </v-btn>
             </div>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"
@@ -259,7 +291,6 @@ export default class Employee extends Vue {
     this.editRequest = item;
   }
   public save(editRequest: EmployeeModel) {
-    console.log(this.editRequest);
     this.EmployeeService.EditEmployee(
       this.editRequest,
       editRequest.EmployeeId
@@ -269,6 +300,10 @@ export default class Employee extends Vue {
       this.snackbar = true;
       this.getEmployee();
     });
+  }
+  public closeEditEmployee() {
+    this.showDialog = false;
+    this.getEmployee();
   }
   headers: any = [
     {

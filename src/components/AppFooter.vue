@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-footer dark padless v-if="isLoggedIn">
+    <v-footer dark padless v-if="!isLoggedIn">
       <v-row class="pt-10 px-16">
         <v-col cols="6" md="2" class="text-left">
           <div>

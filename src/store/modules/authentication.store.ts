@@ -59,6 +59,13 @@ const actions: ActionTree<AuthenticationState, any> = {
             return response;
         });
     },
+
+    refreshToken(context) {
+        return new Promise((resolve, reject) => {
+            resolve({ "success": false });
+        });
+    },
+
     logout(context) {
 
         localStorage.removeItem('accessToken');

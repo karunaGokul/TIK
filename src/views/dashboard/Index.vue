@@ -10,8 +10,8 @@
           Dashboard
         </div>
       </v-container>
-      <v-card class="ma-3" elevation="8">
-        <v-card-title class="mx-6">
+      <v-card class="ma-3 pa-6" elevation="8">
+        <v-card-title>
           <v-select
             :items="items"
             :menu-props="{ offsetY: true }"
@@ -30,23 +30,14 @@
             dense
             hide-details
           ></v-text-field>
-          <v-icon
-            color="green darken-4"
-            class="ml-4 pt-3"
-            @click="createProject"
-          >
-            mdi-plus-circle</v-icon
-          >
-          <!-- <v-icon color="green darken-4" class="ml-3 pt-3"> mdi-filter</v-icon>
-          <v-icon color="green darken-4" class="ml-2 pt-3">
-            mdi-sort-ascending</v-icon> -->
         </v-card-title>
         <v-data-table
           :headers="headers"
           :items="response"
           :search="search"
           item-key="EnquiryName"
-          class="elevation-1 ma-6"
+          class="elevation-1"
+          :loading="loading"
         >
           <template v-slot:[`item.Status`]="{ item }">
             <v-badge
@@ -70,9 +61,9 @@
 
           <template v-slot:[`item.action`]="{ item }">
             <v-btn
-              class="white--text font-weight-light text-capitalize rounded-0"
+              class="white--text font-weight-light text-capitalize"
               depressed
-              color="#ff6500"
+              color="primary"
               @click="viewProject(item)"
               >View
             </v-btn>
@@ -118,6 +109,7 @@ export default class Dashboard extends Vue {
   snackbarText: string = "";
   snackbar: boolean = false;
   SelectedProject: DashboardModel = new DashboardModel();
+  loading: boolean = false;
 
   created() {
     this.getProjectList();
@@ -138,7 +130,10 @@ export default class Dashboard extends Vue {
   }
   public getProjectList() {
     this.request.id = this.$store.getters.id;
+
+    this.loading = true;
     this.DashboardService.GetProjectList(this.request).then((response) => {
+      this.loading = false;
       this.response = response;
     });
   }

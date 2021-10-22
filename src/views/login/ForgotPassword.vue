@@ -14,13 +14,13 @@
               placeholder="Enter Email Address"
               outlined
               class="rounded-0"
-              color="#ff6500"
+              color="primary"
               background-color="white"
               prepend-inner-icon="mdi-email"
               v-model="request.email"
             ></v-text-field>
             <v-btn
-              color="#ff6500"
+              color="primary"
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
               @click="forgotPassword"

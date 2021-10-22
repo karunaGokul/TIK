@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-divider class="pb-1" color="#ff6500" width = "50px" />
+        <v-divider class="pb-1" color="primary" width = "50px" />
     </div>
 </template>
 

@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify';
 import Vuelidate from 'vuelidate';
 import VueHelper from './plugins/vue-helper';
 
+import './sass/global.scss';
+
 Vue.use(Vuelidate);
 Vue.use(VueHelper); 
 

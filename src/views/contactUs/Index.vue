@@ -58,7 +58,7 @@
 
                         <v-btn
                             class="text-capitalize rounded-0 white--text font-weight-light"
-                            color="#ff6500" 
+                            color="primary" 
                         >send message</v-btn>
                     </v-form>
                 </v-col>

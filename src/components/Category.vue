@@ -1,27 +1,33 @@
  <template>
-  <div class="my-7 pb-5">
     <v-container>
       <v-row no-gutters>
         <v-col
-          cols="5"
+          cols="4"
           md="2"
           v-for="category in categories"
           :key="category.categoryName"
           class="ma-3"
           align="center"
         >
-          <router-link :to="category.categoryName" tag="button">
+          <a class="ma-2" @click="openCategory(category.categoryName)">
             <v-hover v-slot:default="{ hover }">
-            <v-btn class="ma-2" x-large fab elevation="4" :color = "hover?'#ff6500':''">
-              <v-icon color="green darken-4">{{ category.categoryImage }}</v-icon>
-            </v-btn>
+              <v-avatar
+                size="140"
+                :color="hover ? 'primary' : ''"
+                class="elevation-2"
+              >
+                <img
+                  :src="category.categoryImage"
+                  :alt="category.categoryName"
+                  style="max-width: 50px; max-height: 50px; border-radius: 0"
+                />
+              </v-avatar>
             </v-hover>
-          </router-link>
-          <div>{{ category.categoryName }}</div>
+            <div class="mt-4 black--text">{{ category.categoryName }}</div>
+          </a>
         </v-col>
       </v-row>
     </v-container>
-  </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
@@ -37,46 +43,47 @@ export default class Category extends Vue {
     if (!(this.projectName == "")) this.linkCategory = true;
     this.categoryName = categoryName;
   }
+
   categories: any = [
     {
       categoryName: "Mills",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/mills.png"),
     },
     {
       categoryName: "Knitting",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/knitting.png"),
     },
     {
       categoryName: "Deying",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/dyeing.png"),
     },
     {
       categoryName: "Printing",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/printing.png"),
     },
     {
       categoryName: "Processing",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/engineering.png"),
     },
     {
       categoryName: "Job Work Unit",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/sewing-machine.png"),
     },
     {
       categoryName: "Finishing Fabric",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/stack.png"),
     },
     {
       categoryName: "Second Fabric",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/textiles.png"),
     },
     {
       categoryName: "Second Pieces",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/second-pieces.png"),
     },
     {
       categoryName: "Accessories",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/accessories.png"),
     },
   ];
 }

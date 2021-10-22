@@ -64,7 +64,7 @@
             </v-row>
 
             <v-btn
-              color="#ff6500"
+              color="primary"
               class="
                 py-5
                 rounded-0

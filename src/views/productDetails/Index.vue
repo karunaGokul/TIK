@@ -35,7 +35,7 @@
     </v-card>
     <div justify="center" align="center" class="mt-10 pb-16">
       <v-btn
-        color="#ff6500"
+        color="primary"
         class="white--text font-weight-light text-capitalize rounded-0"
         >save</v-btn
       >

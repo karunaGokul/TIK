@@ -57,7 +57,11 @@ export default class App extends DIContainer {
       (error: AxiosError) => {
         const status = error.response ? error.response.status : null;
 
-        if (status !== 401) {
+        if (status === 400 && error.response.data === "token-expired") {
+          console.log("token-expired");
+        }
+
+        else if (status !== 401) {
           return Promise.reject(error);
         }
 

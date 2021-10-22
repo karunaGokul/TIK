@@ -31,7 +31,7 @@
           quidem.
         </p>
         <v-btn
-          color="#ff6500"
+          color="primary"
           class="py-5 ml-5 rounded-0 white--text font-weight-light text-capitalize"
         >
           contact us

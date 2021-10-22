@@ -21,7 +21,7 @@
           >
             <a class="ma-2" @click="openCategory(category.categoryName)">
               <v-hover v-slot:default="{ hover }">
-                <v-avatar size="140" :color="hover ? '#ff6500' : ''" class="elevation-2">
+                <v-avatar size="140" :color="hover ? 'primary' : ''" class="elevation-2">
                   <img
                     :src="category.categoryImage"
                     :alt="category.categoryName"

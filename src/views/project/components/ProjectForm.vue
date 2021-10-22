@@ -180,7 +180,7 @@
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize white--text"
-          color="#00365C"
+          color="primary"
           @click="next"
           v-if="mode != StepMode.Summary"
         >
@@ -189,7 +189,7 @@
         <v-btn
           elevation="2"
           class="px-8 ma-4 text-capitalize white--text"
-          color="#00365C"
+          color="primary"
            @click="create"
           v-if="mode == StepMode.Summary"
         >

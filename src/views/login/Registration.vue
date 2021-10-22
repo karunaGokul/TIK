@@ -141,7 +141,7 @@
                     text-capitalize
                     rounded-0
                   "
-                  color="#ff6500"
+                  color="primary"
                   large
                   depressed
                   >Verify</v-btn
@@ -247,7 +247,7 @@
             ></v-checkbox>
 
             <v-btn
-              color="#ff6500"
+              color="primary"
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
               block

@@ -11,7 +11,7 @@
               placeholder="New Password"
               outlined
               class="rounded-0"
-              color="#ff6500"
+              color="primary"
               background-color="white"
               v-model="request.newPassword"
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -23,7 +23,7 @@
               placeholder="Confirm Password"
               outlined
               class="rounded-0"
-              color="#ff6500"
+              color="primary"
               background-color="white"
               v-model="request.confirmPassword"
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -31,7 +31,7 @@
               :type="value1 ? 'password' : 'text'"
             ></v-text-field>
             <v-btn
-              color="#ff6500"
+              color="primary"
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
               @click="resetPassword"

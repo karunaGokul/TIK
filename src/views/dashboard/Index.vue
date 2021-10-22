@@ -63,7 +63,7 @@
             <v-btn
               class="white--text font-weight-light text-capitalize"
               depressed
-              color="#ff6500"
+              color="primary"
               @click="viewProject(item)"
               >View
             </v-btn>

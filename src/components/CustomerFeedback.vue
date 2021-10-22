@@ -30,7 +30,7 @@
                       description
                     </div>
                     <v-rating
-                      color="#ff6500"
+                      color="primary"
                       dense
                       :value="4.5"
                       half-increments
@@ -62,7 +62,7 @@
                       description
                     </div>
                     <v-rating
-                      color="#ff6500"
+                      color="primary"
                       dense
                       :value="4.5"
                       half-increments
@@ -102,7 +102,7 @@
         </p>
 
         <v-btn
-          color="#ff6500"
+          color="primary"
           class="font-weight-light text-capitalize rounded-0"
         >
           <router-link

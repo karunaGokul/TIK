@@ -9,42 +9,53 @@
       >
         <v-card-title> {{ data.category }} </v-card-title>
         <v-card-text>
-          <div v-if="mode == StepMode.Result">
-            <ProjectResult />
+          <div v-if="mode == StepMode.Summary">
+            <h4 class="text-h6 mb-4">Summary</h4>
+            <v-row>
+              <v-col cols="6" v-for="(c, i) in request.controls" :key="i">
+                <v-text-field
+                  :value="c.value"
+                  :label="c.label"
+                  outlined
+                  readonly
+                  dense
+                ></v-text-field>
+              </v-col>
+            </v-row>
           </div>
-          <div v-else-if="mode == StepMode.Detail">
+          <div v-if="mode == StepMode.Detail || mode == StepMode.Summary">
             <v-row>
               <v-col cols="6">
-                <v-label>Enquiry Name</v-label>
                 <v-text-field
                   outlined
                   dense
-                  hide-details
                   required
                   v-model="request.name"
+                  label="Enquiry Name"
+                  :readonly="mode == StepMode.Summary"
                   @input="$v.request.name.$touch"
                 ></v-text-field>
               </v-col>
               <v-col cols="6">
-                <v-label>Enter No of Kgs</v-label>
                 <v-text-field
                   outlined
                   dense
-                  hide-details
                   required
                   v-model="request.noOfKgs"
+                  label="Enter No of Kgs"
+                  :readonly="mode == StepMode.Summary"
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="6">
-                <v-label>Your Price</v-label>
                 <v-text-field
                   outlined
                   dense
-                  hide-details
                   required
                   v-model="request.price"
+                  label="Your Price"
+                  :readonly="mode == StepMode.Summary"
                   :disabled="request.requestPrice"
                 ></v-text-field>
                 <div class="text-left px-4 pt-2">OR</div>
@@ -52,24 +63,23 @@
                   label="Request Price"
                   color="red"
                   dense
-                  hide-details
                   v-model="request.requestPrice"
+                  :readonly="mode == StepMode.Summary"
                 ></v-checkbox>
               </v-col>
               <v-col cols="6">
-                <v-label>Your required Credit Period</v-label>
                 <v-text-field
                   outlined
                   dense
-                  hide-details
                   required
                   v-model="request.creditPeriod"
+                  label="Your required Credit Period"
+                  :readonly="mode == StepMode.Summary"
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="6">
-                <v-label>Order Confirmation Date</v-label>
                 <v-menu
                   v-model="confirmationDateControl"
                   :close-on-content-click="false"
@@ -85,19 +95,20 @@
                       v-on="on"
                       outlined
                       dense
-                      hide-details
                       required
+                      hide-details
+                      label="Order Confirmation Date"
                     ></v-text-field>
                   </template>
                   <v-date-picker
                     v-model="request.confirmationDate"
                     no-title
                     @input="confirmationDateControl = false"
+                    v-if="mode != StepMode.Summary"
                   ></v-date-picker>
                 </v-menu>
               </v-col>
               <v-col cols="6">
-                <v-label>Delivery Date</v-label>
                 <v-menu
                   v-model="deliveryDateControl"
                   :close-on-content-click="false"
@@ -113,18 +124,23 @@
                       v-on="on"
                       outlined
                       dense
-                      hide-details
                       required
+                      hide-details
+                      label="Delivery Date"
                     ></v-text-field>
                   </template>
                   <v-date-picker
                     v-model="request.deliveryDate"
                     no-title
                     @input="deliveryDateControl = false"
+                    v-if="mode != StepMode.Summary"
                   ></v-date-picker>
                 </v-menu>
               </v-col>
             </v-row>
+          </div>
+          <div v-else-if="mode == StepMode.Result">
+            <ProjectResult :request="request" />
           </div>
           <div v-else>
             <h4 class="text-h6 mb-4">
@@ -165,8 +181,18 @@
           class="px-8 ma-4 text-capitalize white--text"
           color="#00365C"
           @click="next"
+          v-if="mode != StepMode.Summary"
         >
           Next
+        </v-btn>
+        <v-btn
+          elevation="2"
+          class="px-8 ma-4 text-capitalize white--text"
+          color="#00365C"
+           @click="create"
+          v-if="mode == StepMode.Summary"
+        >
+          Submit
         </v-btn>
       </div>
     </v-col>
@@ -228,7 +254,7 @@ const validations: any = {
   components: { ProjectControl, ProjectResult },
 })
 export default class ProjectForm extends Vue {
-  @Inject("ProjectService") ProjectService: IProjectService;
+  @Inject("ProjectService") service: IProjectService;
   @Prop() categoryName: string;
   @Prop() projectName: string;
   StepMode = StepMode;
@@ -249,26 +275,37 @@ export default class ProjectForm extends Vue {
 
   created() {
     this.request.name = this.projectName;
+    this.request.category = this.categoryName;
 
-    this.ProjectService.newProject(this.categoryName, this.projectName).then(
-      (response: ProjectFormModel) => {
+    this.service
+      .newProject(this.categoryName, this.projectName)
+      .then((response: ProjectFormModel) => {
         this.data = response;
 
         const step = this.$vuehelper.clone(this.data.steps[0]);
         step.stepNumber = 1;
         this.steps.push(step);
-      }
-    );
+      });
   }
 
   controlChanged(control: ProjectFormStepControl) {
     //this.currentStep.selectedOption = control.options.find((o) => o.selected);
   }
 
+  create() {
+    this.service.createProject(this.request).then(response => {
+      this.$router.push("/dashboard");
+    });
+  }
+
   back() {
     this.error = false;
 
-    if (this.mode == StepMode.Detail || this.mode == StepMode.Result)
+    if (
+      this.mode == StepMode.Detail ||
+      this.mode == StepMode.Result ||
+      this.mode == StepMode.Summary
+    )
       this.mode = this.mode - 1;
     else {
       this.path = this.path.substring(0, this.path.lastIndexOf("-"));
@@ -287,18 +324,6 @@ export default class ProjectForm extends Vue {
       if (this.$v.$invalid) {
         this.error = true;
       } else {
-        this.request.controls = [];
-
-        this.steps.forEach((s) => {
-          s.controls.forEach((c) => {
-            this.request.controls.push({
-              id: c.id,
-              value: c.value,
-              path: s.path[0],
-            });
-          });
-        });
-
         this.mode = StepMode.Summary;
         console.log(JSON.stringify(this.request));
       }
@@ -317,7 +342,29 @@ export default class ProjectForm extends Vue {
 
       const selector = this.currentStep.controls.find((c) => c.selector);
       if (!selector) {
+        this.request.controls = [];
+
+        this.steps.forEach((s) => {
+          s.controls.forEach((c) => {
+            let dataId = c.data_id;
+            if (c.options) {
+              const selected = c.options.find((o) => o.selected);
+              if (selected && selected.data_id) dataId = selected.data_id;
+            }
+            this.request.controls.push({
+              id: c.id,
+              value: c.value,
+              path: s.path[0],
+              label: c.label,
+              data_path: c.data_path,
+              data_id: dataId,
+            });
+          });
+        });
+
         this.mode = StepMode.Result;
+
+        console.log(JSON.stringify(this.request));
         return false;
       }
 

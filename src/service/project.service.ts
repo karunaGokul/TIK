@@ -3,11 +3,28 @@ import { ProjectFormModel, ProjectRequestModel } from '@/model';
 
 export interface IProjectService extends IBaseService<ProjectRequestModel, ProjectFormModel> {
     newProject(categoryName: string, projectName: string): Promise<ProjectFormModel>;
+
+    createProject(request: any): Promise<any>;
+    searchProject(request: any): Promise<any>;
 }
 export class ProjectService extends BaseService<ProjectRequestModel, ProjectFormModel> implements IProjectService {
 
     constructor() {
         super('public');
+    }
+
+    searchProject(request: any): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
+        return this.httpPost('SearchProject', request).then(response => {
+            return response.data;
+        });
+    }
+
+    createProject(request: any): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
+        return this.httpPost('CreateProject', request).then(response => {
+            return response.data;
+        });
     }
 
     public newProject(categoryName: string, projectName: string): Promise<ProjectFormModel> {
@@ -27,6 +44,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "btnContent",
+                                "label": "Content Type",
                                 "type": "toggle-button",
                                 "selector": true,
                                 "options": [
@@ -52,6 +70,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "btnYarnType",
+                                "label": "Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
                                 "options": [
@@ -89,6 +108,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "btnContenttype",
+                                "label": "Yarn Content",
                                 "type": "toggle-button",
                                 "selector": true,
                                 "options": [
@@ -114,8 +134,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpSingleContent",
+                                "label": "Single Content",
                                 "type": "dropdown",
                                 "selector": false,
+                                "data_path" : "mil.Yarn.RegularYarn.SingleContents",
+		                        "data_id" : "Content.Name",
                                 "options": [
                                     {
                                         "id": "opSingleContent_1",
@@ -141,17 +164,21 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                             },
                             {
                                 "id": "btnSingleContent",
+                                "label": "Single Content",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path" : "mil.Yarn.RegularYarn.SingleContents",
                                 "options": [
                                     {
                                         "id": "opSpun",
+                                        "data_id" : "Spun",	
                                         "label": "A",
                                         "text": "Spun",
                                         "selected": false
                                     },
                                     {
                                         "id": "opFilament",
+                                        "data_id" : "Filament",	
                                         "label": "B",
                                         "text": "Filament",
                                         "selected": false
@@ -166,6 +193,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpSpecialYarnType",
+                                "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
                                 "options": [
@@ -215,8 +243,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpSpunQuality",
+                                "label": "Spun Quality",
                                 "type": "toggle-button",
                                 "selector": false,
+                                "data_path" : "mil.Yarn.RegularYarn.SingleQualities",
+		                        "data_id" : "Name",
                                 "options": [
                                     {
                                         "id": "opSpunQuality_SuperCombed",
@@ -252,8 +283,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                             },                            
                             {
                                 "id": "txtSpunCount",
+                                "label": "Spun Count",
                                 "type": "textbox",
                                 "selector": false,
+                                "data_path" : "mil.Yarn.RegularYarn.Counts",
+                                "data_id" : "",
                                 "label": "Enter Your Count"
                             }
                         ]
@@ -264,8 +298,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpFilamentQuality",
+                                "label": "Filament Quality",
                                 "type": "toggle-button",
                                 "selector": false,
+                                "data_path" : "mil.Yarn.RegularYarn.SingleQualities",
+		                        "data_id" : "Quality",
                                 "options": [
                                     {
                                         "id": "opFilamentQuality_SuperCombed",
@@ -301,6 +338,9 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                             },                            
                             {
                                 "id": "txtFilamentDenier",
+                                "label": "Filament Denier",
+                                "data_path" : "mil.Yarn.RegularYarn.Deniers",
+                                "data_id" : "",
                                 "type": "textbox",
                                 "selector": false,
                                 "label": "Enter Your Denier"
@@ -313,8 +353,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpBlendContent",
+                                "label": "Blend Content",
                                 "type": "dropdown",
                                 "selector": true,
+                                "data_path" : "mil.Yarn.RegularYarn.BlendContents",
+		                        "data_id" : "Content.Name",
                                 "options": [
                                     {
                                         "id": "opBlendContent_1",
@@ -355,8 +398,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                             },
                             {
                                 "id": "txtBlendContent",
+                                "label": "Blend Content",
                                 "type": "text-group",
                                 "label": "Enter Your Required Blend Combination",
+                                "data_path":"mil.Yarn.RegularYarn.BlendContents",
+		                        "data_id":"Combos",
                                 "selector": false,
                                 "items": [
                                     {
@@ -379,6 +425,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpSpecialYarnType",
+                                "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
                                 "options": [
@@ -410,8 +457,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                         "controls": [
                             {
                                 "id": "drpBlendQuality",
+                                "label": "Blend Quality",
                                 "type": "toggle-button",
                                 "selector": false,
+                                "data_path":"mil.Yarn.RegularYarn.BlendQualities",
+		                        "data_id": "Quality",
                                 "options": [
                                     {
                                         "id": "opBlendQuality_SuperCombed",
@@ -447,8 +497,11 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                             },                            
                             {
                                 "id": "txtBlendCount",
+                                "label": "Blend Count",
                                 "type": "textbox",
                                 "selector": false,
+                                "data_path":"mil.Yarn.RegularYarn.Counts",
+		                        "data_id":"",
                                 "label": "Enter Your Count"
                             }
                         ]

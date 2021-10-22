@@ -3,6 +3,7 @@ import { AuthenticationRequestModel, AuthenticationResponse, ForgotPasswordReque
 
 export interface IAuthenticationService extends IBaseService<AuthenticationRequestModel, any> {
     login(request: AuthenticationRequestModel): Promise<AuthenticationResponse>;
+
     ForgotPassword(request: ForgotPasswordRequestModel): Promise<any>;
     ResetPassword(request: ResetPasswordRequestModel): Promise<any>;
 }

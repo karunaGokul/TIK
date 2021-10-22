@@ -78,9 +78,9 @@
                   </td>
                   <td>
                     <v-btn
-                      class="white--text font-weight-light text-capitalize"
+                      class="white--text font-weight-light text-capitalize rounded-0"
                       depressed
-                      color="orange darken-1"
+                      color="primary"
                       @click="toggleSummaryView == true"
                       > View
                     </v-btn>

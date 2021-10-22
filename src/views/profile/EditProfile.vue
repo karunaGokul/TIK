@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <v-dialog max-width="1200px" v-model="dialog">
+  <div width="500px" height="100%" style="overflow: hidden">
+    <v-dialog  v-model="dialog" style="overflow: hidden">
       <v-card>
-        <v-row class="my-4 px-4">
+        <v-row class="mt-1 px-4">
           <v-card-title> Profile </v-card-title>
           <v-spacer></v-spacer>
           <v-btn @click="close" icon>
@@ -11,10 +11,10 @@
         </v-row>
 
         <v-divider></v-divider>
-        <v-row class="mx-4">
+        <v-row class="mx-2">
           <v-card-title class="blue--text"> Profile </v-card-title>
         </v-row>
-        <v-row class="mx-4">
+        <v-row class="mx-4 mt-n4">
           <v-col class="col-3">
             <v-card elevation="2" class="grey lighten-4 color" height="35%">
               <v-file-input
@@ -24,10 +24,10 @@
                 class="d-flex justify-center"
                 @change="handleimage"
               ></v-file-input>
-              <div class="d-flex mt-2 justify-center" v-if="img">
+              <div class="d-flex justify-center" v-if="img">
                 <img :src="img" width="110" height="110" alt="" />
               </div>
-              <div class="d-flex mt-2 justify-center" v-else>
+              <div class="d-flex justify-center" v-else>
                 <v-img
                   :src="`data:image/png;base64,${request.image}`"
                   max-width="120"
@@ -43,6 +43,7 @@
               outlined
               placeholder="Enter UnitName"
               v-model="request.unitName"
+              class="mb-n2"
             ></v-text-field>
 
             <v-text-field
@@ -50,6 +51,7 @@
               outlined
               placeholder="Enter Title"
               v-model="request.title"
+              class="mb-n2"
             ></v-text-field>
 
             <v-text-field
@@ -57,14 +59,16 @@
               outlined
               placeholder="Enter Description"
               v-model="request.description"
+              class="mb-n3"
             ></v-text-field>
 
-            <div class="text-subtitle-1">Contact Information</div>
+            <div class="text-subtitle-1 mt-n4">Contact Information</div>
             <v-text-field
               dense
               outlined
               placeholder="Enter Address"
               v-model="request.address"
+              class="mb-n2"
             ></v-text-field>
 
             <v-text-field
@@ -73,6 +77,7 @@
               placeholder="Enter Email"
               :rules="emailRules"
               v-model="request.email"
+              class="mb-n2"
             >
             </v-text-field>
 
@@ -82,6 +87,7 @@
               placeholder="Enter PhoneNumber"
               :rules="phoneRules"
               v-model="request.phoneNumber1"
+              class="mb-n2"
             ></v-text-field>
 
             <v-text-field
@@ -105,22 +111,22 @@
           </v-col>
         </v-row>
 
-        <v-row class="mx-4 pb-2">
+        <v-row class="mx-4">
           <v-btn
             dark
-            class="text-capitalize red color font-weight-regular"
+            class="text-capitalize red color font-weight-regular mt-n5"
             @click="edit"
           >
             save
           </v-btn>
 
           <!-- reset password button  -->
-          <v-spacer></v-spacer>
+          <!-- <v-spacer></v-spacer>
           <router-link to="/resetpassword" class="text-decoration-none">
             <v-btn dark class="text-capitalize red color font-weight-regular"
               >Reset Password</v-btn
             >
-          </router-link>
+          </router-link> -->
         </v-row>
       </v-card>
     </v-dialog>

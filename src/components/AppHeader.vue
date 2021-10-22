@@ -4,8 +4,8 @@
       v-model="drawer"
       app
       clipped
-      width="200"
-      class="y-nav-drawer"
+      permanent
+      expand-on-hover
       color="teal"
       v-if="isLoggedIn"
     >
@@ -21,7 +21,7 @@
 
         <v-list-item link to="/project">
           <v-list-item-action>
-            <v-icon class="white--text">mdi-av-timer</v-icon>
+            <v-icon class="white--text">mdi-bag-suitcase</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title class="white--text"
@@ -36,10 +36,10 @@
       <div v-if="isLoggedIn">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </div>
-      <div v-else>
+      <div v-if="!isLoggedIn">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-              <v-app-bar-nav-icon v-bind="attrs" v-on="on"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon v-bind="attrs" v-on="on"></v-app-bar-nav-icon>
           </template>
           <v-list>
             <v-list-item link to="/" class="text-capitalize">
@@ -54,7 +54,14 @@
           </v-list>
         </v-menu>
       </div>
-      <v-toolbar-title class="y-logo text-h5 mx-2">T I K</v-toolbar-title>
+      <v-toolbar-title class="y-logo text-h5 mx-2"
+        ><router-link
+          to="/dashboard"
+          tag="a"
+          class="text-decoration-none black--text"
+          >T I K</router-link
+        ></v-toolbar-title
+      >
 
       <v-spacer></v-spacer>
       <div v-if="isLoggedIn">
@@ -68,28 +75,57 @@
             </v-avatar>
           </template>
           <v-hover v-slot:default="{ hover }">
-          <v-list v-if="isLoggedIn">
-            <v-list-item link to="/profile" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>Profile</v-list-item-title>
-            </v-list-item>
-            <v-list-item link to="/myaccount" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>My Account</v-list-item-title>
-            </v-list-item>
-            <v-list-item link to="/employee" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>Employee</v-list-item-title>
-            </v-list-item>
-            <v-list-item @click="logout" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>Log Out</v-list-item-title>
-            </v-list-item>
-          </v-list>
-          <v-list v-else>
-            <v-list-item link to="/login" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>Login</v-list-item-title>
-            </v-list-item>
-            <v-list-item link to="/registration" class="text-capitalize" :color = "hover?'#ff6500':''">
-              <v-list-item-title>Register</v-list-item-title>
-            </v-list-item>
-          </v-list>
+            <v-list v-if="isLoggedIn">
+              <v-list-item
+                link
+                to="/profile"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>Profile</v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                link
+                to="/myaccount"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>My Account</v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                link
+                to="/employee"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>Employee</v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                @click="logout"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>Log Out</v-list-item-title>
+              </v-list-item>
+            </v-list>
+            <v-list v-else>
+              <v-list-item
+                link
+                to="/login"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>Login</v-list-item-title>
+              </v-list-item>
+              <v-list-item
+                link
+                to="/registration"
+                class="text-capitalize"
+                :color="hover ? '#ff6500' : ''"
+              >
+                <v-list-item-title>Register</v-list-item-title>
+              </v-list-item>
+            </v-list>
           </v-hover>
         </v-menu>
         <v-snackbar
@@ -117,12 +153,11 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class AppHeader extends Vue {
-  drawer:boolean= false;
+  drawer: boolean = false;
   snackbar: boolean = false;
   snackbarText: string = "";
- 
 
-  get isLoggedIn() : boolean {
+  get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
   }
 

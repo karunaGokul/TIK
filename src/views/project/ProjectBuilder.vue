@@ -1,72 +1,62 @@
  <template>
   <div>
-    <div v-if="!toggleCategory">
+    <v-container class="pa-8" v-if="!toggleCategory">
       <v-row>
-        <v-col cols="8" class="ml-5" md="3">
-          <h3 class="my-4">Enter Project Name</h3>
-          <v-text-field
-            label="Enter Project Name"
-            outlined
-            v-model="projectName"
-          ></v-text-field>
+        <v-col cols="8" md="4">
+          <h3 class="mb-2">Enter Enquiry Name</h3>
+          <v-text-field outlined v-model="projectName"></v-text-field>
         </v-col>
       </v-row>
 
-      <div class="ml-5">
-        <h3 class="my-4">Select Category</h3>
-        <div class="my-7 pb-5">
-          <v-container>
-            <v-row no-gutters>
-              <v-col
-                cols="4"
-                md="2"
-                v-for="category in categories"
-                :key="category.categoryName"
-                class="ma-3"
-                align="center"
-                ><v-hover v-slot:default="{ hover }">
-                  <v-btn
-                    class="ma-2"
-                    x-large
-                    fab
-                    elevation="4"
-                    :color="hover ? '#ff6500' : ''"
-                    @click="openCategory(category.categoryName)"
-                  >
-                    <v-icon color="green darken-4">{{
-                      category.categoryImage
-                    }}</v-icon>
-                  </v-btn>
-                </v-hover>
-
-                <div>{{ category.categoryName }}</div>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div>
+      <div>
+        <h3 class="mb-2">Select Category</h3>
+        <v-row no-gutters>
+          <v-col
+            cols="4"
+            md="2"
+            v-for="category in categories"
+            :key="category.categoryName"
+            class="ma-3"
+            align="center"
+          >
+            <a class="ma-2" @click="openCategory(category.categoryName)">
+              <v-hover v-slot:default="{ hover }">
+                <v-avatar size="140" :color="hover ? '#ff6500' : ''" class="elevation-2">
+                  <img
+                    :src="category.categoryImage"
+                    :alt="category.categoryName"
+                    style="max-width: 50px; max-height: 50px; border-radius: 0"
+                  />
+                </v-avatar>
+              </v-hover>
+              <div class="mt-4 black--text">{{ category.categoryName }}</div>
+            </a>
+          </v-col>
+        </v-row>
       </div>
-    </div>
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="2000"
-      color="deep-orange lighten-5 pink--text"
-      absolute
-      right
-      top
-    >
-      <v-icon color="pink">mdi-exclamation-thick </v-icon>
-      {{ snackbarText }}
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="deep-orange lighten-5 pink--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="pink">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-          <v-icon> mdi-close-box</v-icon>
-        </v-btn>
-      </template>
-    </v-snackbar>
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </v-container>
+
     <ProjectForm
       :categoryName="categoryName"
       :projectName="projectName"
-      v-if="toggleCategory"
+      v-else
     />
   </div>
 </template>
@@ -98,45 +88,45 @@ export default class ProjectBuilder extends Vue {
   categories: any = [
     {
       categoryName: "Mills",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/mills.png"),
     },
     {
       categoryName: "Knitting",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/knitting.png"),
     },
     {
       categoryName: "Deying",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/dyeing.png"),
     },
     {
       categoryName: "Printing",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/printing.png"),
     },
     {
       categoryName: "Processing",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/engineering.png"),
     },
     {
       categoryName: "Job Work Unit",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/sewing-machine.png"),
     },
     {
       categoryName: "Finishing Fabric",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/stack.png"),
     },
     {
       categoryName: "Second Fabric",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/textiles.png"),
     },
     {
       categoryName: "Second Pieces",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/second-pieces.png"),
     },
     {
       categoryName: "Accessories",
-      categoryImage: "mdi-account-reactivate-outline",
+      categoryImage: require("@/assets/accessories.png"),
     },
-  ];  
+  ];
 }
 </script>
 

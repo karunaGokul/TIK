@@ -53,6 +53,7 @@
                   outlined
                   dense
                   required
+                  hide-details
                   v-model="request.price"
                   label="Your Price"
                   :readonly="mode == StepMode.Summary"
@@ -388,7 +389,8 @@ export default class ProjectForm extends Vue {
   }
 
   get progress() {
-    if (this.mode == StepMode.Result) return 90;
+    if (this.mode == StepMode.Result || this.mode == StepMode.Detail) return 90;
+    else if (this.mode == StepMode.Summary) return 100;
     else
       return this.steps.length > 1
         ? ((this.steps.length - 1) / this.data.maxSteps) * 100

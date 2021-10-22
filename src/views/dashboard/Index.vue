@@ -10,15 +10,17 @@
           Dashboard
         </div>
       </v-container>
-      <v-card class="ma-3 pa-6" elevation="8">
+      <v-card class="ma-3 px-6" elevation="8">
         <v-card-title>
           <v-select
             :items="items"
+            v-model="stages"
             :menu-props="{ offsetY: true }"
             label="Select"
             class="shrink pt-3"
             dense
             hide-details
+            v-on:change="searchProject()"
           ></v-select>
           <v-spacer></v-spacer>
           <v-text-field
@@ -92,7 +94,7 @@
  
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
-import { DashboardModel, DashboardRequestModel } from "@/model";
+import { DashboardModel, DashboardRequestModel, ProjectSearchModel } from "@/model";
 import { IDashboardService } from "@/service";
 
 import ProjectsList from "./ProjectsList.vue";
@@ -101,15 +103,17 @@ import ProjectsList from "./ProjectsList.vue";
 })
 export default class Dashboard extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
-  search: string = "";
-  toggleProjectList: boolean = false;
-  showDialog: boolean = false;
+  public search: string = "";
+  public stages:string="";
+  public toggleProjectList: boolean = false;
+  public showDialog: boolean = false;
   public request = new DashboardRequestModel();
+  public searchRequest=new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
-  snackbarText: string = "";
-  snackbar: boolean = false;
-  SelectedProject: DashboardModel = new DashboardModel();
-  loading: boolean = false;
+  public snackbarText: string = "";
+  public snackbar: boolean = false;
+  public SelectedProject: DashboardModel = new DashboardModel();
+  public loading: boolean = false;
 
   created() {
     this.getProjectList();
@@ -142,12 +146,18 @@ export default class Dashboard extends Vue {
     this.toggleProjectList = true;
     this.SelectedProject = item;
   }
-
+public searchProject()
+{
+  this.searchRequest.stages=this.stages;
+  this.DashboardService.GetProjectListByFilter(this.searchRequest).then((response) => {     
+      this.response = response;
+    });
+}
   public row_classes(it: any) {
     // return it.Subcategory === "Fabric" ? "white" : "blue lighten-5";
   }
 
-  items: any = ["New Enquiry", "Confirmed Project", "Completed Project"];
+  items: any = ["All","New Enquiry", "Confirmed Projects", "Completed Projects"];
   headers: any = [
     {
       text: "Enquiry Name",

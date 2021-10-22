@@ -40,6 +40,7 @@
           :search="search"
           :items-per-page="5"
           class="elevation-1 mx-6"
+          :loading="loading"
         >
           <template v-slot:[`item.Action`]="{ item }">
             <router-link
@@ -88,7 +89,7 @@ export default class Employee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
   public response: Array<EmployeeModel> = [];  
   request: EmployeeRequestModel = new EmployeeRequestModel();
-
+ loading: boolean = false;
   search: string = "";
   snackbarText: string = "";
   snackbar: boolean = false;
@@ -99,7 +100,9 @@ export default class Employee extends Vue {
 
   public getEmployee() {
     this.request.id = this.$store.getters.id;
+    this.loading = true;
     this.EmployeeService.GetEmployees(this.request).then((response) => {
+      this.loading = false;
       this.response = response;
     });
   }

@@ -13,11 +13,11 @@
 
     <div class="mx-5">
       <v-row>
-        <v-col cols="12" sm="2" md="1" class="pt-6">        
+        <v-col cols="12" sm="2" md="1" class="pt-6">
           <v-img
-              :src="`data:image/png;base64,${response.logo}`"
-              width="80%"
-            ></v-img>
+            :src="`data:image/png;base64,${response.logo}`"
+            width="80%"
+          ></v-img>
         </v-col>
 
         <v-col cols="12" md="4">
@@ -28,27 +28,27 @@
           <v-row> Date & Time :{{ response.CreatedDate }} </v-row>
         </v-col>
         <v-col cols="12" md="5" v-if="response.InStages === 'Confirmed'">
-          <div v-for="row in response.BitReceived" :key="row.Approved">
-            <v-row class="mt-4" v-if="row.Approved"> </v-row>
-            <v-row v-if="row.Approved">
+          <div v-for="row in response.bidList" :key="row.status">
+            <v-row class="mt-4" v-if="row.status === 'Approved'"> </v-row>
+            <v-row v-if="row.status === 'Approved'">
               Approve By : {{ row.ApprovedBy }}</v-row
             >
-            <v-row v-if="row.Approved">
+            <v-row v-if="row.status === 'Approved'">
               Date & Time :{{ row.ApprovedDateTime }}
             </v-row>
           </div>
         </v-col>
         <v-col v-else cols="12" md="5"> </v-col>
-        <v-col cols="12" md="3">
+        <v-col cols="12" md="2">
           <!-- <v-icon large color="green darken-4" class="ml-3 pt-3">
             mdi-filter
           </v-icon>
           <v-icon large color="green darken-4" class="ml-2 pt-3">
             mdi-sort-ascending
           </v-icon> -->
-          <!-- <span class="orange darken-1 white--text font-weight-light pa-3 ml-4 mt-4 rounded">
-            Bids Received :{{ response.No_Of_Bits }}
-          </span> -->
+          <span class="orange darken-1 white--text font-weight-light pa-3 ml-4 mt-4 rounded">
+            Bids Received :{{ response.bidsReceived }}
+          </span>
         </v-col>
       </v-row>
       <v-row>
@@ -73,16 +73,15 @@
                   <td>{{ response.Subcategory }}</td>
                   <td class="blue--text">Rs.{{ response.requestPrice }}</td>
                   <td class="red--text">{{ response.creditPeriod }} days</td>
-                  <td class="green--text">
-                    {{ response.deliveryDate }} days
-                  </td>
+                  <td class="green--text">{{ response.deliveryDate }} days</td>
                   <td>
                     <v-btn
                       class="white--text font-weight-light text-capitalize rounded-0"
                       depressed
                       color="primary"
                       @click="toggleSummaryView == true"
-                      > View
+                    >
+                      View
                     </v-btn>
                   </td>
                 </tr>
@@ -98,31 +97,38 @@
       </v-row>
       <div v-if="response.bidList">
         <v-row v-for="row in response.bidList" :key="row.status">
-          <v-row class="pa-4 my-5" :class="row.status==='Conformed' ? 'deep-orange' : ''">
+          <v-row
+            class="pa-4 ma-2"
+            :class="row.status === 'Approved' ? 'deep-orange' : ''"
+          >
             <v-row
-              :class="row.status==='Conformed' ? 'deep-orange lighten-3 black--text' : ''"
+              :class="
+                row.status === 'Approved'
+                  ? 'deep-orange lighten-3 black--text'
+                  : ''
+              "
             >
-              <v-row class="mx-4 mt-4" v-if="row.status==='Conformed'">
+              <v-row class="ma-1" v-if="row.status === 'Approved'">
                 <v-col>
                   <h4>Confirmed Project</h4>
                 </v-col>
               </v-row>
 
-              <v-row class="mx-4 mb-4">
-                <v-col cols="12" md="1">                  
+              <v-row class="ma-1">
+                <v-col cols="12" sm="1" md="1">
                   <v-img
-              :src="`data:image/png;base64,${row.logo}`"
-              width="70%"
-            ></v-img>
+                    :src="`data:image/png;base64,${row.logo}`"
+                    width="70%"
+                  ></v-img>
                 </v-col>
 
-                <v-col class="mx-4" cols="12" md="2">
-                  <v-row class="mt-4">
+                <v-col class="mx-1" cols="12" sm="2" md="2">
+                  <v-row class="ma-1 ">
                     <h4>{{ row.companyName }}</h4>
                   </v-row>
                   <v-row>
                     <v-rating
-                      v-model="row.Rating"
+                      v-model="row.review"
                       color="warning"
                       dense
                       half-increments
@@ -130,12 +136,12 @@
                   </v-row>
                 </v-col>
 
-                <v-col cols="8">
+                <v-col cols="12" sm="8" md="8">
                   <v-simple-table>
                     <template v-slot:default>
                       <thead
                         :class="
-                          row.status==='Conformed'
+                          row.status === 'Approved'
                             ? 'deep-orange lighten-2 black--text'
                             : 'teal lighten-4 text-subtitle-2'
                         "
@@ -148,21 +154,21 @@
                           >
                             {{ tableHeader }}
                           </th>
-                          <th v-if="row.status!='Conformed'">Action</th>
+                          <th v-if="row.status != 'Approved'">Action</th>
                         </tr>
                       </thead>
                       <tbody
                         :class="
-                          row.status==='Conformed'
+                          row.status === 'Approved'
                             ? 'deep-orange lighten-3 black--text'
                             : ''
                         "
                       >
                         <tr>
-                          <td>{{ row.approvedBy}} <br>{{ row.approvedDate}} </td>
-                          <td class="blue--text">
-                            Rs.{{ row.requestPrice }}
+                          <td>
+                            {{ row.approvedBy }} <br />{{ row.approvedDate }}
                           </td>
+                          <td class="blue--text">Rs.{{ row.requestPrice }}</td>
                           <td class="red--text">
                             {{ row.creditPeriod }}
                             days
@@ -171,7 +177,9 @@
                             {{ row.deliveryDate }}
                             days
                           </td>
-                          <td v-if="row.status!='Conformed'">Auth for Approval</td>
+                          <td v-if="row.status != 'Approved'">
+                            Auth for Approval
+                          </td>
                         </tr>
                       </tbody>
                     </template>
@@ -198,10 +206,10 @@ import ProjectSummary from "./ProjectSummary.vue";
 export default class ProjectsList extends Vue {
   @Prop() SelectedProject: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
-   public request = new DashboardRequestModel();
-  public response= new DashboardModel();
+  public request = new DashboardRequestModel();
+  public response = new DashboardModel();
   toggleSummaryView: boolean = false;
-created() {
+  created() {
     this.GetProjectEnquiry();
   }
   public GetProjectEnquiry() {
@@ -228,6 +236,6 @@ created() {
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",
-  ];  
+  ];
 }
 </script>

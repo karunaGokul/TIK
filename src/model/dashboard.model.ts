@@ -23,7 +23,8 @@ export class DashboardModel {
     summary?:Array<SummaryModel>=[];         
     CreatedBy: string;
     CreatedDate: string;    
-    // No_Of_Bits: number;   
+    bidsReceived:number;
+    
 }
 export class BitReceivedModel {
     logo: string;
@@ -35,8 +36,7 @@ export class BitReceivedModel {
     approvedBy: string;
     approvedDate: string;
     status:string;
-    review:string;  
-    // Rating: number;  
+    review:string;      
 }
 
 export class SummaryModel {
@@ -61,4 +61,7 @@ joinValue:string;
     // LoopLenght: number;
     // OrderConfirmationDate: Date;
     // DeliveryDate: Date;
+}
+export class ProjectSearchModel{
+    stages:string;
 }

@@ -42,18 +42,29 @@
               <h3>About</h3>
 
               <v-spacer></v-spacer>
-              <v-btn
-                class="
-                  white--text
-                  font-weight-regular
-                  text-capitalize
-                  hidden-sm-and-down
-                "
-                color="#fd7e14"
-                @click="toggleEditProfile = true"
-              >
-                Edit Profile
-              </v-btn>
+              <router-link to="/resetpassword" class="text-decoration-none">
+                <v-btn
+                  dark
+                  class="text-capitalize font-weight-regular"
+                  color="#fd7e14"
+                >
+                  Reset Password
+                </v-btn>
+              </router-link>
+              <span class="mx-3">
+                <v-btn
+                  class="
+                    white--text
+                    font-weight-regular
+                    text-capitalize
+                    hidden-sm-and-down
+                  "
+                  color="#fd7e14"
+                  @click="toggleEditProfile = true"
+                >
+                  Edit Profile
+                </v-btn>
+              </span>
               <div align="center">
                 <EditProfile
                   :request="response"

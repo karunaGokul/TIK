@@ -36,78 +36,82 @@
                 </v-img>
               </div>
             </v-card>
+            <div class="my-1 font-weight-light">Logo Image Upload Here</div>
           </v-col>
-          <v-col>
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter UnitName"
-              v-model="request.unitName"
-              class="mb-n2"
-            ></v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter Title"
-              v-model="request.title"
-              class="mb-n2"
-            ></v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter Description"
-              v-model="request.description"
-              class="mb-n3"
-            ></v-text-field>
-
-            <div class="text-subtitle-1 mt-n4">Contact Information</div>
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter Address"
-              v-model="request.address"
-              class="mb-n2"
-            ></v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter Email"
-              :rules="emailRules"
-              v-model="request.email"
-              class="mb-n2"
-            >
-            </v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter PhoneNumber"
-              :rules="phoneRules"
-              v-model="request.phoneNumber1"
-              class="mb-n2"
-            ></v-text-field>
-
-            <v-text-field
-              dense
-              outlined
-              placeholder="Enter Alternate PhoneNumber"
-              :rules="phoneRules"
-              v-model="request.phoneNumber2"
-            ></v-text-field>
+          <v-col cols="12" sm="4" md="5">
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter UnitName"
+                v-model="request.unitName"
+              ></v-text-field>
+            </div>
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter Title"
+                v-model="request.title"
+              ></v-text-field>
+            </div>
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter Description"
+                v-model="request.description"
+              ></v-text-field>
+            </div>
+            <div class="text-subtitle-1 my-n2">
+              Contact Information
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter Address"
+                v-model="request.address"
+              ></v-text-field>
+            </div>
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter Email"
+                :rules="emailRules"
+                v-model="request.email"
+              >
+              </v-text-field>
+            </div>
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter PhoneNumber"
+                :rules="phoneRules"
+                v-model="request.phoneNumber1"
+              ></v-text-field>
+            </div>
+            <div class="my-n2">
+              <v-text-field
+                dense
+                outlined
+                placeholder="Enter Alternate PhoneNumber"
+                :rules="phoneRules"
+                v-model="request.phoneNumber2"
+              ></v-text-field>
+            </div>
           </v-col>
-          <v-col class="col-4">
+          <v-col cols="12" sm="3" md="4">
             <v-card elevation="2" class="grey lighten-4 color" height="35%">
               <v-file-input
                 hide-input
                 accept="image/png, image/jpeg, image/bmp"
-                prepend-icon="mdi-camera"
+                prepend-icon="mdi-cloud-upload-outline"
                 multiple
                 class="d-flex justify-center"
               ></v-file-input>
             </v-card>
+            <div class="my-1 font-weight-light">Slider Images Upload Here</div>
           </v-col>
         </v-row>
 
@@ -118,15 +122,8 @@
             @click="edit"
           >
             save
-          </v-btn>
-
-          <!-- reset password button  -->
-          <!-- <v-spacer></v-spacer>
-          <router-link to="/resetpassword" class="text-decoration-none">
-            <v-btn dark class="text-capitalize red color font-weight-regular"
-              >Reset Password</v-btn
-            >
-          </router-link> -->
+          </v-btn>        
+          
         </v-row>
       </v-card>
     </v-dialog>

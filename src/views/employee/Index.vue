@@ -86,7 +86,7 @@ import { IEmployeeService } from "@/service";
 @Component
 export default class Employee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  public response: Array<EmployeeModel> = [];
+  public response: Array<EmployeeModel> = [];  
   request: EmployeeRequestModel = new EmployeeRequestModel();
 
   search: string = "";

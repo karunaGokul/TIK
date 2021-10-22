@@ -171,8 +171,8 @@
               dense
             >
               <template v-slot:prepend-item v-if="option === 'Edit'">
-                <v-list-item @click="request.ApprovalAdminId = 'null'">
-                  <v-list-item-title> ---- </v-list-item-title>
+                <v-list-item @click="request.ApprovalAdminId = null">
+                  <v-list-item-title> Remove  </v-list-item-title>
                 </v-list-item>
               </template>
             </v-select>
@@ -181,7 +181,7 @@
             cols="12"
             md="3"
             v-if="
-              editRequest.MasterAdminId ||
+              request.MasterAdminId ||
               !(
                 request.EmployeeRole === 'MasterAdmin' ||
                 request.EmployeeRole === ' '
@@ -204,8 +204,8 @@
               dense
             >
               <template v-slot:prepend-item v-if="option === 'Edit'">
-                <v-list-item @click="request.MasterAdminId = 'null'">
-                  <v-list-item-title> ---- </v-list-item-title>
+                <v-list-item @click="request.MasterAdminId = null">
+                  <v-list-item-title>  Remove </v-list-item-title>
                 </v-list-item>
               </template>
             </v-select>

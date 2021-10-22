@@ -14,7 +14,10 @@
       <v-card class="mx-3" elevation="8">
         <v-card-title class="mx-6">
           <h5>Employee List</h5>
-          <router-link :to="{name: 'CreateEmployee', params: {option:'Create' } }" tag="button">
+          <router-link
+            :to="{ name: 'CreateEmployee', params: { option: 'Create' } }"
+            tag="button"
+          >
             <v-icon color="blue darken-4" class="mx-2"> mdi-plus-circle</v-icon>
           </router-link>
           <v-spacer></v-spacer>
@@ -39,17 +42,21 @@
           class="elevation-1 mx-6"
         >
           <template v-slot:[`item.Action`]="{ item }">
-            <router-link :to="{name: 'CreateEmployee', params: { editRequest:item,option:'Edit' } }" tag="button">
-            <v-icon small color="blue" class="mr-2" >
-              mdi-pencil
-            </v-icon>
+            <router-link
+              :to="{
+                name: 'CreateEmployee',
+                params: { editRequest: item, option: 'Edit' },
+              }"
+              tag="button"
+            >
+              <v-icon small color="blue" class="mr-2"> mdi-pencil </v-icon>
             </router-link>
             <v-icon small color="red" @click="deleteEmployee(item)">
               mdi-delete
             </v-icon>
           </template>
         </v-data-table>
-      </v-card>     
+      </v-card>
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"
@@ -73,30 +80,23 @@
  
 <script lang="ts">
 import { Component, Inject, Vue } from "vue-property-decorator";
-import {
-  EmployeeRequestModel,
-  EmployeeModel,
-  AdminRequestModel,
-  MasterAdminResponseModel,
-  ApprovalAdminResponseModel,
-  RoleResponseModel,
-} from "@/model";
+import { EmployeeRequestModel, EmployeeModel } from "@/model";
 import { IEmployeeService } from "@/service";
 
 @Component
 export default class Employee extends Vue {
-  @Inject("EmployeeService") EmployeeService: IEmployeeService; 
-  public response: Array<EmployeeModel> = [];  
+  @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  public response: Array<EmployeeModel> = [];
   request: EmployeeRequestModel = new EmployeeRequestModel();
-  
+
   search: string = "";
   snackbarText: string = "";
-  snackbar: boolean = false; 
+  snackbar: boolean = false;
 
   created() {
     this.getEmployee();
   }
-  
+
   public getEmployee() {
     this.request.id = this.$store.getters.id;
     this.EmployeeService.GetEmployees(this.request).then((response) => {
@@ -110,7 +110,7 @@ export default class Employee extends Vue {
       this.snackbar = true;
       this.getEmployee();
     });
-  }  
+  }
   headers: any = [
     {
       text: "First Name",

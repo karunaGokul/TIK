@@ -40,13 +40,9 @@ export class BitReceivedModel {
 }
 
 export class SummaryModel {
-    id:string;
+    label:string;
     value:string;
-path:string;
-daya_id:string;
-data_path:string;
-joinValue:string;
-    
+
     // YarnContent: string;
     // Content: string;
     // YarnType: string;

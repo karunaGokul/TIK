@@ -16,7 +16,7 @@
         </v-row>
         <v-row class="mx-4 mt-n4">
           <v-col class="col-3">
-            <v-card elevation="2" class="grey lighten-4 color" height="35%">
+            <v-card elevation="2" class="grey lighten-4 color" height="40%">
               <v-file-input
                 hide-input
                 accept="image/png, image/jpeg, image/bmp"

@@ -7,15 +7,11 @@
       />
     </v-card>
 
-    <v-card elevation="4" class="mx-16 mt-n16" height="300" color="#EEEEEE">
+    <v-card elevation="4" class="mx-16 mt-n16" height="325" color="#EEEEEE">
       <v-container>
         <v-row>
           <v-col class="col-2 pt-5">
-            <v-img
-              :src="`data:image/png;base64,${response.image}`"
-              max-width="250"
-              max-height="250"
-            ></v-img>
+            <v-img :src="`data:image/png;base64,${response.image}`"></v-img>
             <h3 class="text-align-center pt-5">{{ response.unitName }}</h3>
 
             <v-rating
@@ -38,7 +34,7 @@
           </v-col>
 
           <v-col class="pt-10 pl-5">
-            <v-row>
+            <v-row class="pl-3">
               <h3>About</h3>
 
               <v-spacer></v-spacer>

@@ -79,7 +79,7 @@
                       class="white--text font-weight-light text-capitalize rounded-0"
                       depressed
                       color="primary"
-                      @click="toggleSummaryView == true"
+                      @click="toggleSummaryView = true"
                     >
                       View
                     </v-btn>

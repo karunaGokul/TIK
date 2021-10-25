@@ -18,151 +18,31 @@
               class="mx-10 px-5 mb-7"
             >
               <v-row>
-                <v-col>
-                  <v-label>Content</v-label>
+                <v-col
+                  col="12"
+                  sm="6"
+                  md="6"
+                  v-for="(SummaryItem, index) in response.summary"
+                  :key="index"
+                >
+                  <v-label  > {{ SummaryItem.label }} </v-label>
                   <v-text-field
                     outlined
                     dense
-                    v-model="response.Subcategory"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>Yarn Content</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.YarnContent"
-                    background-color="orange"
-                    class="my-2"
+                    v-model="SummaryItem.value"
+                    background-color="orange"    
+                    class="my-1"                
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row class="my-n8">
-                <v-col>
-                  <v-label>Content</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Content"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>Yarn Type</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.YarnType"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row class="my-n8">
-                <v-col>
-                  <v-label>Quality</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Quality"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>Count</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Count"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row class="my-n8" v-if="response.InStages === 'Confirmed'">
-                <v-col>
-                  <v-label>Structure</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Structure"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>Lycra Details</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.LycraDetails"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row class="my-n8" v-if="response.InStages === 'Confirmed'">
-                <v-col>
-                  <v-label>Guage</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Guage"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>OPW/TUB</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Opw_Tub"
-                    background-color="orange"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row class="my-n8" v-if="response.InStages === 'Confirmed'">
-                <v-col>
-                  <v-label>GSM</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.Gsm"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>Loop Lenght</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.LoopLenght"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row class="my-n8">
+
+              <v-row>
                 <v-col>
                   <v-label>Enquiry Name</v-label>
                   <v-text-field
                     outlined
                     dense
                     v-model="response.EnquiryName"
-                    class="my-2"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-label>No. of Kg</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    v-model="response.Summary.No_Of_kgs"
                     class="my-2"
                   ></v-text-field>
                 </v-col>
@@ -187,7 +67,7 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row class="my-n8">
+              <!-- <v-row class="my-n8">
                 <v-col>
                   <v-label>Order Confirmation Date</v-label>
                   <v-text-field
@@ -206,7 +86,7 @@
                     class="my-2"
                   ></v-text-field>
                 </v-col>
-              </v-row>
+              </v-row> -->
             </v-card>
           </v-col>
         </v-row>

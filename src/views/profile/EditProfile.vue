@@ -1,7 +1,7 @@
 <template>
-  <div width="500px" height="100%" style="overflow: hidden">
-    <v-dialog  v-model="dialog" style="overflow: hidden">
-      <v-card>
+  <div>
+    <v-dialog max-width="1200px" height="600px" v-model="dialog" class="d-flex" style="overflow: hidden">
+      <v-card > 
         <v-row class="mt-1 px-4">
           <v-card-title> Profile </v-card-title>
           <v-spacer></v-spacer>
@@ -63,7 +63,7 @@
                 v-model="request.description"
               ></v-text-field>
             </div>
-            <div class="text-subtitle-1 my-n2">
+            <div class="text-subtitle-1 my-n3">
               Contact Information
               <v-text-field
                 dense

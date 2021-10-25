@@ -7,7 +7,7 @@
       />
     </v-card>
 
-    <v-card elevation="4" class="mx-16 mt-n16" height="300" color="#EEEEEE">
+    <v-card elevation="4" class="mx-16 mt-n16" height="350" color="#EEEEEE">
       <v-container>
         <v-row>
           <v-col class="col-2 pt-5">

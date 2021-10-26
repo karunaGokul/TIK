@@ -10,6 +10,7 @@ const state: AuthenticationState = {
     id: localStorage.getItem('id') || '',
     role: localStorage.getItem('role') || '',
     companyId: localStorage.getItem('companyId') || '',
+    category:localStorage.getItem('category') || '',
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
@@ -26,6 +27,9 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     companyId: state => {
         return state.companyId;
+    },
+    category:state => {
+        return state.category;
     }
 }
 
@@ -36,10 +40,15 @@ const mutations: MutationTree<AuthenticationState> = {
         state.id = data.id;
         state.role = data.role;
         state.companyId = data.companyId;
+        state.category=data.category;
     },
     onLogout(state) {
         state.accessToken = "";
         state.refreshToken = "";
+        state.id = "";
+        state.role =  "";
+        state.companyId =  "";
+        state.category= "";
         axios.defaults.headers.common["Authorization"] = "";
     },
 
@@ -50,6 +59,7 @@ const actions: ActionTree<AuthenticationState, any> = {
         const service = new AuthenticationService();
         return service.login(request).then(response => {
             localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('category', response.category);
             localStorage.setItem('companyId', response.companyId);
             localStorage.setItem('id', response.id);
             localStorage.setItem('refreshToken', response.refreshToken);            
@@ -70,6 +80,10 @@ const actions: ActionTree<AuthenticationState, any> = {
 
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        localStorage.removeItem('category');
+        localStorage.removeItem('companyId');
+        localStorage.removeItem('id');
+        localStorage.removeItem('role');
         context.commit('onLogout');
         return 'logout Successfully';
 

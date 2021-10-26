@@ -11,6 +11,7 @@ export class AuthenticationResponse {
     id: string;
     role: string;
     companyId:string;
+    category:string;
 }
 export class AuthenticationState {
     accessToken: string = "";
@@ -18,6 +19,7 @@ export class AuthenticationState {
     id: string = "";
     role: string = "";
     companyId:string = "";
+    category:string="";
 }
 
 export class ForgotPasswordRequestModel {

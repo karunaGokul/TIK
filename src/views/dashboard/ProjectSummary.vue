@@ -30,7 +30,7 @@
                     outlined
                     dense
                     v-model="SummaryItem.value"
-                    background-color="orange"    
+                    background-color="primary"  
                     class="my-1"                
                   ></v-text-field>
                 </v-col>

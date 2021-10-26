@@ -63,7 +63,7 @@
 
           <template v-slot:[`item.action`]="{ item }">
             <v-btn
-              class="white--text font-weight-light text-capitalize rounded-0"
+              class="white--text font-weight-light text-capitalize rounded"
               depressed
               color="primary"
               @click="viewProject(item)"

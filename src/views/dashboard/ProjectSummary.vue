@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog max-width="1000px" v-model="dialog">
+    <v-dialog max-width="1000px" style="overflow: hidden" v-model="dialog">
       <v-card>
         <v-row class="my-4 px-4">
           <v-card-title> Summary </v-card-title>
@@ -25,7 +25,7 @@
                   v-for="(SummaryItem, index) in response.summary"
                   :key="index"
                 >
-                  <v-label  > {{ SummaryItem.label }} </v-label>
+                  <v-label> {{ SummaryItem.label }} </v-label>
                   <v-text-field
                     outlined
                     dense

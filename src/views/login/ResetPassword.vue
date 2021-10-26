@@ -14,9 +14,9 @@
               color="primary"
               background-color="white"
               v-model="request.newPassword"
-              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="() => (value1 = !value1)"
-              :type="value1 ? 'password' : 'text'"
+              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value = !value)"
+              :type="value ? 'password' : 'text'"
             ></v-text-field>
             <v-text-field
               label="Confirm Password"
@@ -26,7 +26,7 @@
               color="primary"
               background-color="white"
               v-model="request.confirmPassword"
-              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+             :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
             ></v-text-field>
@@ -60,6 +60,8 @@ export default class ProjectsList extends Vue {
 
   snackbar: boolean = false;
   snackbarText: string = "";
+  public value: boolean = true;
+  public value1: boolean = true;
 
   public request = new ResetPasswordRequestModel();
 

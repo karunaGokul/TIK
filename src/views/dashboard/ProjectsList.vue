@@ -226,11 +226,7 @@
             :class="row.status === 'Approved' ? 'deep-orange' : ''"
           >
             <v-row
-              :class="
-                row.status === 'Approved'
-                  ? 'deep-orange lighten-3 black--text'
-                  : ''
-              "
+              :class="row.status === 'Approved' ? 'deep-orange lighten-3 black--text': ''"
             >
               <v-row class="ma-1" v-if="row.status === 'Approved'">
                 <v-col>
@@ -260,7 +256,7 @@
                   </v-row>
                 </v-col>
 
-                <v-col cols="12" sm="8" md="8">
+                <v-col cols="12" md="6">
                   <v-simple-table>
                     <template v-slot:default>
                       <thead

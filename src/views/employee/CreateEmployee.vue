@@ -28,6 +28,7 @@
               placeholder="Enter First Name"
               v-model="request.FirstName"
               class="pt-2"
+              required
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">

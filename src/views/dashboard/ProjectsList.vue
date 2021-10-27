@@ -161,7 +161,7 @@
                   v-on:change="save()"
                 ></v-select>
               </v-row>
-              <v-row class="pa-3 justify-end" >
+              <v-row class="pa-3 justify-end">
                 <v-btn
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
@@ -181,6 +181,7 @@
                   dense
                   label="Enter Price"
                   class="my-2"
+                  v-model="bidRequest.price"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3">
@@ -190,6 +191,7 @@
                   dense
                   label="Enter Credit Period"
                   class="my-2"
+                  v-model="bidRequest.creditPeriod"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3">
@@ -199,6 +201,7 @@
                   dense
                   label="Enter Delivery Period"
                   class="my-2"
+                  v-model="bidRequest.deliveryPeriod"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3" align="center" class="mt-10">
@@ -206,6 +209,7 @@
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
                   color="primary"
+                  @click="BidProject()"
                 >
                   Submit
                 </v-btn>
@@ -226,7 +230,11 @@
             :class="row.status === 'Approved' ? 'deep-orange' : ''"
           >
             <v-row
-              :class="row.status === 'Approved' ? 'deep-orange lighten-3 black--text': ''"
+              :class="
+                row.status === 'Approved'
+                  ? 'deep-orange lighten-3 black--text'
+                  : ''
+              "
             >
               <v-row class="ma-1" v-if="row.status === 'Approved'">
                 <v-col>
@@ -311,11 +319,31 @@
         </v-row>
       </div>
     </div>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+      color="deep-orange lighten-5 pink--text"
+      right
+      top
+    >
+      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script lang="ts">
-import { DashboardModel, DashboardRequestModel } from "@/model";
+import {
+  BidRequestModel,
+  DashboardModel,
+  DashboardRequestModel,
+} from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 
@@ -327,18 +355,30 @@ export default class ProjectsList extends Vue {
   @Prop() SelectedProject: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
   public request = new DashboardRequestModel();
+  public bidRequest = new BidRequestModel();
   public response = new DashboardModel();
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
-  toggleSummaryView: boolean = false;
+  public toggleSummaryView: boolean = false;
+  public snackbarText: string = "";
+  public snackbar: boolean = false;
   created() {
     this.GetProjectEnquiry();
-    console.log(this.category);
   }
   public GetProjectEnquiry() {
     this.request.id = this.SelectedProject.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
+    });
+  }
+  public BidProject() {
+    this.bidRequest.projectId = this.SelectedProject.Id;
+    this.bidRequest.id = "";
+    this.DashboardService.BidProject(this.bidRequest).then((response) => {
+      this.snackbarText = response;
+      this.snackbar = true;
+      this.toggleBid = false;
+      this.GetProjectEnquiry();
     });
   }
   public closeModel() {

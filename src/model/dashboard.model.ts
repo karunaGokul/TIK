@@ -14,50 +14,42 @@ export class DashboardModel {
     Id: string;
     CompanyId: string;
     Action: string;
-    requestPrice?:number;
+    requestPrice?: number;
     creditPeriod?: number;
     deliveryDate?: number;
-    logoName?:string;
+    logoName?: string;
     logo?: string;
     bidList?: Array<BitReceivedModel> = [];
-    summary?:Array<SummaryModel>=[];         
+    summary?: Array<SummaryModel> = [];
     CreatedBy: string;
-    CreatedDate: string;    
-    bidsReceived:number;
-    
+    CreatedDate: string;
+    bidsReceived: number;
+
 }
 export class BitReceivedModel {
     logo: string;
-    logoName?:string;
+    logoName?: string;
     companyName: string;
     requestPrice: number;
     creditPeriod: number;
     deliveryDate: number;
     approvedBy: string;
     approvedDate: string;
-    status:string;
-    review:string;      
+    status: string;
+    review: string;
 }
 
 export class SummaryModel {
-    label:string;
-    value:string;
-
-    // YarnContent: string;
-    // Content: string;
-    // YarnType: string;
-    // Quality: string;
-    // Count: number;
-    // No_Of_kgs: number;
-    // Structure: string;
-    // LycraDetails: string;
-    // Guage: number;
-    // Opw_Tub: string;
-    // Gsm: number;
-    // LoopLenght: number;
-    // OrderConfirmationDate: Date;
-    // DeliveryDate: Date;
+    label: string;
+    value: string;
 }
-export class ProjectSearchModel{
-    stages:string;
+export class ProjectSearchModel {
+    stages: string;
+}
+export class BidRequestModel {
+    projectId: string;
+    id: string;
+    price: number;
+    creditPeriod: number;
+    deliveryPeriod: number;
 }

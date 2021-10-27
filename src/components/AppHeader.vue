@@ -19,7 +19,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/project">
+        <v-list-item link to="/project" v-if="category==='Company'">
           <v-list-item-action>
             <v-icon class="white--text">mdi-bag-suitcase</v-icon>
           </v-list-item-action>
@@ -151,6 +151,9 @@ export default class AppHeader extends Vue {
 
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
+  }
+   get category(): string {
+    return this.$store.getters.category;
   }
 
   public logout() {

@@ -65,7 +65,7 @@
           </div>
         </v-col>
         <v-col v-else cols="12" sm="2" md="3"> </v-col>
-        <v-col cols="12" sm="2" md="2" v-if="category != 'company'">
+        <v-col cols="12" sm="2" md="2" v-if="category != 'Company'">
           <v-btn
             class="white--text font-weight-light text-capitalize rounded"
             depressed
@@ -81,7 +81,7 @@
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
-            v-if="category != 'company'"
+            v-if="category != 'Company'"
           >
             Cancel
           </v-btn>
@@ -135,33 +135,32 @@
               </tbody>
             </template>
           </v-simple-table>
-          <v-dialog
-            width="500px"
-            height="700px"
-            v-model="toggleCancel"
-            style="overflow: hidden"
-          >
+          <v-dialog v-model="toggleCancel" width="500">
             <v-card class="px-6" elevation="8">
-              <v-row class="my-4 px-4">
-                <v-card-title> Reasons </v-card-title>
+              <v-card-title>
+                Reasons
                 <v-spacer></v-spacer>
                 <v-btn @click="toggleCancel = false" icon>
                   <v-icon id="close-button">mdi-close</v-icon>
                 </v-btn>
-              </v-row>
+              </v-card-title>
+
               <v-divider></v-divider>
-              <v-row class="ma-5">
+
+              <v-card-text>
                 <v-select
                   :items="items"
                   :menu-props="{ offsetY: true }"
                   label="Select Reason"
-                  class="shrink pt-3"
+                  class="shrink py-6"
                   dense
                   hide-details
                   v-on:change="save()"
                 ></v-select>
-              </v-row>
-              <v-row class="pa-3 justify-end" >
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
                 <v-btn
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
@@ -169,36 +168,45 @@
                 >
                   save
                 </v-btn>
-              </v-row>
+              </v-card-actions>
             </v-card>
           </v-dialog>
           <v-card v-if="toggleBid" class="my-8 px-6" elevation="8">
             <v-row>
               <v-col cols="12" sm="2" md="3">
-                <div class="my-3">Price</div>
+                <div class="my-3">Price <span class="red--text">*</span> </div>
                 <v-text-field
                   outlined
                   dense
                   label="Enter Price"
                   class="my-2"
+                  v-model="bidRequest.price"
+                  :rules="Rules"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3">
-                <div class="my-3">Credit Period</div>
+                <div class="my-3">Credit Period <span class="red--text">*</span> </div>
                 <v-text-field
                   outlined
                   dense
                   label="Enter Credit Period"
                   class="my-2"
+                  v-model="bidRequest.creditPeriod"
+                  :rules="Rules"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3">
-                <div class="my-3">Delivery Period</div>
+                <div class="my-3">Delivery Period <span class="red--text">*</span> </div>
                 <v-text-field
                   outlined
                   dense
                   label="Enter Delivery Period"
                   class="my-2"
+                  v-model="bidRequest.deliveryPeriod"
+                  :rules="Rules"
+                  required
                 ></v-text-field>
               </v-col>
               <v-col cols="12" sm="2" md="3" align="center" class="mt-10">
@@ -206,6 +214,7 @@
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
                   color="primary"
+                  @click="BidProject()"
                 >
                   Submit
                 </v-btn>
@@ -226,7 +235,11 @@
             :class="row.status === 'Approved' ? 'deep-orange' : ''"
           >
             <v-row
-              :class="row.status === 'Approved' ? 'deep-orange lighten-3 black--text': ''"
+              :class="
+                row.status === 'Approved'
+                  ? 'deep-orange lighten-3 black--text'
+                  : ''
+              "
             >
               <v-row class="ma-1" v-if="row.status === 'Approved'">
                 <v-col>
@@ -242,7 +255,7 @@
                   ></v-img>
                 </v-col>
 
-                <v-col class="mx-1" cols="12" sm="2" md="2">
+                <v-col class="mx-1" cols="12" sm="2" md="3">
                   <v-row class="ma-1">
                     <h4>{{ row.companyName }}</h4>
                   </v-row>
@@ -256,7 +269,7 @@
                   </v-row>
                 </v-col>
 
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="7">
                   <v-simple-table>
                     <template v-slot:default>
                       <thead
@@ -311,34 +324,70 @@
         </v-row>
       </div>
     </div>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+      color="deep-orange lighten-5 pink--text"
+      right
+      top
+    >
+      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script lang="ts">
-import { DashboardModel, DashboardRequestModel } from "@/model";
+import {
+  BidRequestModel,
+  DashboardModel,
+  DashboardRequestModel,
+} from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
-
+import { validationMixin } from "vuelidate";
 import ProjectSummary from "./ProjectSummary.vue";
 @Component({
+  mixins: [validationMixin],
   components: { ProjectSummary },
 })
 export default class ProjectsList extends Vue {
   @Prop() SelectedProject: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
+  public Rules: any = [
+    (v: any) => !!v || "Enter the Value",    
+  ];
   public request = new DashboardRequestModel();
+  public bidRequest = new BidRequestModel();
   public response = new DashboardModel();
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
-  toggleSummaryView: boolean = false;
+  public toggleSummaryView: boolean = false;
+  public snackbarText: string = "";
+  public snackbar: boolean = false;
   created() {
     this.GetProjectEnquiry();
-    console.log(this.category);
   }
   public GetProjectEnquiry() {
     this.request.id = this.SelectedProject.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
+    });
+  }
+  public BidProject() {
+    this.bidRequest.projectId = this.SelectedProject.Id;
+    this.bidRequest.id = "";
+    this.DashboardService.BidProject(this.bidRequest).then((response) => {
+      this.snackbarText = response;
+      this.snackbar = true;
+      this.toggleBid = false;
+      this.GetProjectEnquiry();
     });
   }
   public closeModel() {

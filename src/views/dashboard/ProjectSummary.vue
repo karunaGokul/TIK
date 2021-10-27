@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-dialog max-width="1000px" style="overflow: hidden" v-model="dialog">
-      <v-card>
+    <v-dialog scrollable style="overscroll-behavior: auto;" v-model="dialog" width="80%" max-height="auto">
+      <v-card style="overflow: hidden;">
         <v-row class="my-4 px-4">
           <v-card-title> Summary </v-card-title>
           <v-spacer></v-spacer>
@@ -15,7 +15,7 @@
             <v-card
               color="teal lighten-4 subtitle-2"
               elevation="5"
-              class="mx-10 px-5 mb-7"
+              class="mx-10 pa-10 mb-7"
             >
               <v-row>
                 <v-col
@@ -31,17 +31,18 @@
                     dense
                     v-model="SummaryItem.value"
                     background-color="primary"  
-                    class="my-1"                
+                    class="my-1 mb-n7"                
                   ></v-text-field>
                 </v-col>
               </v-row>
 
               <v-row>
-                <v-col>
+                <v-col col="12" md="6">
                   <v-label>Enquiry Name</v-label>
                   <v-text-field
                     outlined
                     dense
+                    background-color="white"
                     v-model="response.EnquiryName"
                     class="my-2"
                   ></v-text-field>
@@ -53,6 +54,7 @@
                   <v-text-field
                     outlined
                     dense
+                    background-color="white"
                     v-model="response.RequestedPrice"
                     class="my-2"
                   ></v-text-field>
@@ -62,6 +64,7 @@
                   <v-text-field
                     outlined
                     dense
+                    background-color="white"
                     v-model="response.RequestedCredit"
                     class="my-2"
                   ></v-text-field>

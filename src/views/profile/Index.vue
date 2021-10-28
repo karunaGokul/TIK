@@ -41,8 +41,8 @@
               <router-link to="/resetpassword" class="text-decoration-none">
                 <v-btn
                   dark
-                  class="text-capitalize font-weight-regular"
-                  color="#fd7e14"
+                  class="text-capitalize font-weight-regular rounded-0"
+                  color="primary"
                 >
                   Reset Password
                 </v-btn>
@@ -54,8 +54,9 @@
                     font-weight-regular
                     text-capitalize
                     hidden-sm-and-down
+                    rounded-0
                   "
-                  color="#fd7e14"
+                  color="primary"
                   @click="toggleEditProfile = true"
                 >
                   Edit Profile

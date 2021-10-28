@@ -125,6 +125,24 @@
           </v-btn>        
           
         </v-row>
+
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="2000"
+          color="deep-orange lighten-5 pink--text"
+          right
+          top
+        >
+          <v-icon color="pink">mdi-exclamation-thick </v-icon>
+          {{ snackbarText }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+              <v-icon> mdi-close-box</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
+
       </v-card>
     </v-dialog>
   </div>
@@ -141,6 +159,10 @@ import { ProfileResponse } from "@/model";
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   @Prop() request: ProfileResponse;
+
+  snackbarText: string = "";
+  snackbar: boolean = false;
+
   public emailRules: any = [
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
@@ -162,7 +184,15 @@ export default class EditProfile extends Vue {
     this.request.id = this.$store.getters.id;
     this.ProfileService.editProfile(this.request, this.logo).then(
       (response: any) => {
+        this.snackbarText = response;
+        this.snackbar = true;
         this.$emit("onEditProfileModel");
+      },
+      (err) => {
+        if (err.response.status == 400) {
+          this.snackbarText = err.response.data;
+          this.snackbar = true;
+        }
       }
     );
   }

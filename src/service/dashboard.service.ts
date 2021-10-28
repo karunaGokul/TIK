@@ -1,5 +1,5 @@
 import { IBaseService, BaseService } from './base.service';
-import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel } from '@/model';
+import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel } from '@/model';
 
 export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
@@ -8,6 +8,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     CreateProject(request: DashboardModel): Promise<any>;
     SearchProject(request: DashboardModel): Promise<Array<DashboardModel>>;
     BidProject(request: BidRequestModel): Promise<any>;
+    ApproveBid(request: ApproveRequestModel): Promise<any>;
 
 }
 export class DashboardService extends BaseService<any, DashboardModel> implements IDashboardService {
@@ -52,6 +53,12 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
     public BidProject(request: BidRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
         return this.httpPost('BidProject?projectId=' + request.projectId, request).then(response => {
+            return response.data;
+        });
+    }
+    public ApproveBid(request: ApproveRequestModel): Promise<any>{
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
+        return this.httpPost('ApproveBid?projectId=' + request.projectId+'&bidId='+request.bidId+'&status='+request.status,null).then(response => {
             return response.data;
         });
     }

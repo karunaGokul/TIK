@@ -27,16 +27,15 @@ export class DashboardModel {
 
 }
 export class BitReceivedModel {
-    logo: string;
-    logoName?: string;
-    companyName: string;
+    id: string;
     requestPrice: number;
     creditPeriod: number;
     deliveryDate: number;
     approvedBy: string;
     approvedDate: string;
     status: string;
-    review: string;
+    submittedBy: string;
+    submittedDate: string;
 }
 
 export class SummaryModel {
@@ -52,4 +51,9 @@ export class BidRequestModel {
     price: number;
     creditPeriod: number;
     deliveryPeriod: number;
+}
+export class ApproveRequestModel {
+    projectId: string;
+    bidId: string;
+    status: string;    
 }

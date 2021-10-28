@@ -125,8 +125,8 @@ export default class Dashboard extends Vue {
     if (this.category != "Company")
      { this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
-          o.text = "Approva Admin";
-          o.value = "ApprovaAdmin";
+          o.text = "Approval Admin";
+          o.value = "ApprovalAdmin";
         }
       });
       this.items.push("Submitted Enquirys","cancelled Projects");

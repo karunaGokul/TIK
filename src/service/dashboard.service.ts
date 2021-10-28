@@ -8,6 +8,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     CreateProject(request: DashboardModel): Promise<any>;
     SearchProject(request: DashboardModel): Promise<Array<DashboardModel>>;
     BidProject(request: BidRequestModel): Promise<any>;
+    GetCompany(request: DashboardRequestModel): Promise<any>;
 
 }
 export class DashboardService extends BaseService<any, DashboardModel> implements IDashboardService {
@@ -52,6 +53,13 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
     public BidProject(request: BidRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
         return this.httpPost('BidProject?projectId=' + request.projectId, request).then(response => {
+            return response.data;
+        });
+    }
+
+    public GetCompany(request: DashboardRequestModel): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/common"
+        return this.httpGet('GetCompany?companyId=' + request.id, null).then(response => {
             return response.data;
         });
     }

@@ -15,16 +15,16 @@
       <v-row>
         <v-col cols="12" sm="2" md="1" class="pt-6">
           <v-img
-            :src="`data:image/png;base64,${response.logo}`"
+            :src="`data:image/png;base64,${companyresponse.logo}`"
             width="80%"
           ></v-img>
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <v-row class="mt-4 font-weight-regular">
-            {{ response.Merchandiser }}
+            {{ companyresponse.companyName }}
           </v-row>
           <v-rating
-            value="4.5"
+            v-model="companyresponse.review"
             color="warning"
             dense
             half-increments
@@ -348,6 +348,7 @@ import {
   BidRequestModel,
   DashboardModel,
   DashboardRequestModel,
+  GetCompanyModel
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
@@ -364,6 +365,10 @@ export default class ProjectsList extends Vue {
     (v: any) => !!v || "Enter the Value",    
   ];
   public request = new DashboardRequestModel();
+
+  public companyresponse = new GetCompanyModel();
+  public companyrequest = new DashboardRequestModel();
+
   public bidRequest = new BidRequestModel();
   public response = new DashboardModel();
   public toggleBid: boolean = false;
@@ -372,8 +377,16 @@ export default class ProjectsList extends Vue {
   public snackbarText: string = "";
   public snackbar: boolean = false;
   created() {
+    this.GetCompany();
     this.GetProjectEnquiry();
   }
+  public GetCompany() {
+    this.companyrequest.id = this.SelectedProject.CompanyId;
+    this.DashboardService.GetCompany(this.companyrequest).then((response) => {
+      this.companyresponse = response;
+    });
+  }
+
   public GetProjectEnquiry() {
     this.request.id = this.SelectedProject.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {

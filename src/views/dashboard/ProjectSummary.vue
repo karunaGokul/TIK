@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog scrollable style="overscroll-behavior: auto;" v-model="dialog" width="80%" max-height="auto">
+    <v-dialog style="overscroll-behavior: auto;" v-model="dialog" width="80%" max-height="auto">
       <v-card style="overflow: hidden;">
         <v-row class="my-4 px-4">
           <v-card-title> Summary </v-card-title>

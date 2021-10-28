@@ -52,8 +52,8 @@ export class BidRequestModel {
     creditPeriod: number;
     deliveryPeriod: number;
 }
-export class ApproveRequestModel {
-    projectId: string;
-    bidId: string;
-    status: string;    
+export class GetCompanyModel {
+    logo: string;
+    companyName: string;
+    review: string;
 }

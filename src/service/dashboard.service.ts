@@ -9,6 +9,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     SearchProject(request: DashboardModel): Promise<Array<DashboardModel>>;
     BidProject(request: BidRequestModel): Promise<any>;
     GetCompany(request: DashboardRequestModel): Promise<any>;
+    ApproveBid(request: ApproveRequestModel): Promise<any>;
 
 }
 export class DashboardService extends BaseService<any, DashboardModel> implements IDashboardService {

@@ -47,6 +47,16 @@
                     class="my-2"
                   ></v-text-field>
                 </v-col>
+                <v-col col="12" md="6">
+                  <v-label>No Of KGs</v-label>
+                  <v-text-field
+                    outlined
+                    dense
+                    background-color="white"
+                    v-model="response.noOfKg"
+                    class="my-2"
+                  ></v-text-field>
+                </v-col>
               </v-row>
               <v-row class="my-n8">
                 <v-col>
@@ -55,7 +65,7 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.RequestedPrice"
+                    v-model="response.requestPrice"
                     class="my-2"
                   ></v-text-field>
                 </v-col>
@@ -65,18 +75,19 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.RequestedCredit"
+                    v-model="response.creditPeriod"
                     class="my-2"
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <!-- <v-row class="my-n8">
+              <v-row class="my-n8">
                 <v-col>
                   <v-label>Order Confirmation Date</v-label>
                   <v-text-field
                     outlined
                     dense
-                    v-model="response.Summary.OrderConfirmationDate"
+                    background-color="white"
+                    v-model="response.confirmationDate"
                     class="my-2"
                   ></v-text-field>
                 </v-col>
@@ -85,11 +96,12 @@
                   <v-text-field
                     outlined
                     dense
-                    v-model="response.Summary.DeliveryDate"
+                    background-color="white"
+                    v-model="response.requestedDeliveryDate"
                     class="my-2"
                   ></v-text-field>
                 </v-col>
-              </v-row> -->
+              </v-row>
             </v-card>
           </v-col>
         </v-row>

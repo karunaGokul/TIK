@@ -111,6 +111,8 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                                 "label": "Yarn Content",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path": "",
+                                "data_id": "mil.Yarn.RegularYarn.AVGCreditTime",
                                 "options": [
                                     {
                                         "id": "opSingle",

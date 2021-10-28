@@ -61,7 +61,7 @@ export default class ProjectResult extends Vue {
   headers: any = [
     {
       text: "Mill Name",
-      value: "companyId",
+      value: "Mill Name",
     },
     {
       text: "Credit Period",
@@ -70,7 +70,7 @@ export default class ProjectResult extends Vue {
     },
     {
       text: "Reviews",
-      value: "Reviews",
+      value: "review",
       filterable: false,
     },
   ];

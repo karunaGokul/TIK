@@ -47,20 +47,20 @@
           <div v-for="row in response.bidList" :key="row.status">
             <v-row
               class="mt-4 font-weight-regular"
-              v-if="row.status === 'Approved'"
+              v-if="row.status === 'Confirmed'"
             >
             </v-row>
             <v-row
-              v-if="row.status === 'Approved'"
+              v-if="row.status === 'Confirmed'"
               class="font-weight-regular text-body-2"
             >
-              Approve By : {{ row.ApprovedBy }}</v-row
+              Approve By : {{ row.approvedBy }}</v-row
             >
             <v-row
-              v-if="row.status === 'Approved'"
+              v-if="row.status === 'Confirmed'"
               class="font-weight-regular text-body-2"
             >
-              Date & Time :{{ row.ApprovedDateTime }}
+              Date & Time :{{ row.approvedDate }}
             </v-row>
           </div>
         </v-col>
@@ -129,21 +129,22 @@
                       color="primary"
                       @click="toggleSummaryView = true"
                     >
-                      View                      
+                      View
                     </v-btn>
                     <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                ml-2
-                              "
-                              depressed
-                              color="primary"                              
-                            >
-                              Approve
-                            </v-btn>
+                      class="
+                        white--text
+                        font-weight-light
+                        text-capitalize
+                        rounded
+                        ml-2
+                      "
+                      depressed
+                      color="primary"
+                      v-if="category != 'Company'"
+                    >
+                      Approve
+                    </v-btn>
                   </td>
                 </tr>
               </tbody>
@@ -168,7 +169,7 @@
                   label="Select Reason"
                   class="shrink py-6"
                   dense
-                  hide-details                  
+                  hide-details
                 ></v-select>
               </v-card-text>
 
@@ -246,19 +247,27 @@
         </v-col>
       </v-row>
       <div v-if="response.bidList">
-        <v-row v-for="row in response.bidList" :key="row.status">
+        <v-row v-for="row in response.bidList" :key="row.status" >
           <v-row
             class="pa-4 ma-2"
-            :class="(row.status === 'Approved'&& category === 'Company') ? 'deep-orange' : ''"
+            :class="
+              row.status === 'Confirmed' && category === 'Company'
+                ? 'deep-orange'
+                : ''
+            "
+            v-if="row.requestPrice!=null"
           >
             <v-row
               :class="
-                (row.status === 'Approved'&& category === 'Company')
+                row.status === 'Confirmed' && category === 'Company'
                   ? 'deep-orange lighten-3 black--text'
                   : ''
               "
             >
-              <v-row class="ma-1" v-if="(row.status === 'Approved'&& category === 'Company')">
+              <v-row
+                class="ma-1"
+                v-if="row.status === 'Confirmed' && category === 'Company'"
+              >
                 <v-col>
                   <h4>Confirmed Project</h4>
                 </v-col>
@@ -267,7 +276,7 @@
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
-                    :src="`data:image/png;base64,${row.logo}`"
+                    :src="`data:image/png;base64,${companyresponse.logo}`"
                     width="70%"
                   ></v-img>
                 </v-col>
@@ -281,11 +290,11 @@
                   v-if="category === 'Company'"
                 >
                   <v-row class="ma-1">
-                    <h4>{{ row.companyName }}</h4>
+                    <h4>{{ companyresponse.companyName }}</h4>
                   </v-row>
                   <v-row>
                     <v-rating
-                      v-model="row.review"
+                      v-model="companyresponse.review"
                       color="warning"
                       dense
                       half-increments
@@ -298,7 +307,7 @@
                     <template v-slot:default>
                       <thead
                         :class="
-                          (row.status === 'Approved'&& category === 'Company')
+                          row.status === 'Confirmed' && category === 'Company'
                             ? 'deep-orange lighten-2 black--text'
                             : 'teal lighten-4 text-subtitle-2'
                         "
@@ -323,7 +332,7 @@
                       </thead>
                       <tbody
                         :class="
-                           (row.status === 'Approved'&& category === 'Company')
+                          row.status === 'Confirmed' && category === 'Company'
                             ? 'deep-orange lighten-3 black--text'
                             : ''
                         "
@@ -332,7 +341,7 @@
                           <td>
                             {{ row.submittedBy }} <br />{{ row.submittedDate }}
                           </td>
-                          <td                           
+                          <td
                             v-if="
                               row.status === 'PendingApproval' &&
                               category != 'Company'
@@ -349,7 +358,7 @@
                           <td class="blue--text" v-else>
                             Rs.{{ row.requestPrice }}
                           </td>
-                          <td                           
+                          <td
                             v-if="
                               row.status === 'PendingApproval' &&
                               category != 'Company'
@@ -366,7 +375,7 @@
                             {{ row.creditPeriod }}
                             days
                           </td>
-                          <td                           
+                          <td
                             v-if="
                               row.status === 'PendingApproval' &&
                               category != 'Company'
@@ -425,7 +434,7 @@
                               Approve
                             </v-btn>
                           </td>
-                          <td v-else> Pending</td>
+                          <td v-else-if="category != 'Company'">Pending</td>
                         </tr>
                       </tbody>
                     </template>
@@ -463,7 +472,7 @@ import {
   BitReceivedModel,
   DashboardModel,
   DashboardRequestModel,
-  GetCompanyModel
+  GetCompanyModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
@@ -481,7 +490,7 @@ export default class ProjectsList extends Vue {
 
   public companyresponse = new GetCompanyModel();
   public companyrequest = new DashboardRequestModel();
-
+  public i: number;
   public bidRequest = new BidRequestModel();
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
@@ -491,8 +500,11 @@ export default class ProjectsList extends Vue {
   public snackbarText: string = "";
   public snackbar: boolean = false;
   created() {
-    this.GetCompany();
+    this.GetCompany(this.SelectedProject.CompanyId);
     this.GetProjectEnquiry();
+    // for (this.i = 0; this.i < this.SelectedProject.bidList.length; this.i++) {
+    //   this.GetCompany(this.SelectedProject.bidList[this.i].companyId);
+    // }
     if (this.category != "Company") {
       this.BitReceivedheaders.splice(0, 4);
       this.BitReceivedheaders.push(
@@ -504,8 +516,9 @@ export default class ProjectsList extends Vue {
       );
     }
   }
-  public GetCompany() {
-    this.companyrequest.id = this.SelectedProject.CompanyId;
+  public GetCompany(CompanyId: string) {
+    console.log(CompanyId);
+    this.companyrequest.id = CompanyId;
     this.DashboardService.GetCompany(this.companyrequest).then((response) => {
       this.companyresponse = response;
     });
@@ -519,7 +532,7 @@ export default class ProjectsList extends Vue {
   }
   public BidProject() {
     this.bidRequest.projectId = this.SelectedProject.Id;
-    this.bidRequest.id = this.SelectedProject.bidList[0].id;    
+    this.bidRequest.id = this.SelectedProject.bidList[0].id;
     this.DashboardService.BidProject(this.bidRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
@@ -527,14 +540,14 @@ export default class ProjectsList extends Vue {
       this.GetProjectEnquiry();
     });
   }
-  public ApproveBid(bid:BitReceivedModel){       
-    this.approvelRequest.bidId=bid.id;
-    this.approvelRequest.status='Approved';
-    this.approvelRequest.projectId=this.SelectedProject.Id;
-     console.log(this.SelectedProject.Id);
+  public ApproveBid(bid: BitReceivedModel) {
+    this.approvelRequest.bidId = bid.id;
+    this.approvelRequest.status = "Approved";
+    this.approvelRequest.projectId = this.SelectedProject.Id;
+    console.log(this.SelectedProject.Id);
     this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
       this.snackbarText = response;
-      this.snackbar = true;      
+      this.snackbar = true;
       this.GetProjectEnquiry();
     });
   }

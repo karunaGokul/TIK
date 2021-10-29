@@ -38,15 +38,18 @@
               <h3>About</h3>
 
               <v-spacer></v-spacer>
-              <router-link to="/resetpassword" class="text-decoration-none">
+              
                 <v-btn
                   dark
                   class="text-capitalize font-weight-regular rounded-0"
                   color="primary"
+                  @click="toggleResetPassword = true"
                 >
                   Reset Password
                 </v-btn>
-              </router-link>
+              
+
+              <ResetPassword v-if="toggleResetPassword" />
               <span class="mx-3">
                 <v-btn
                   class="
@@ -137,7 +140,7 @@
 
       <v-card class="d-flex justify-left pl-10 mb-16">
         <router-link to="/company" tag="button">
-          <v-btn flat>Mills</v-btn>
+          <v-btn text>Mills</v-btn>
         </router-link>
         <v-btn>Knitting</v-btn>
         <v-btn>Pieces</v-btn>
@@ -230,11 +233,13 @@ import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 
 import Divider from "@/components/Divider.vue";
 import EditProfile from "./EditProfile.vue";
+import ResetPassword from "@/views/login/ResetPassword.vue";
+
 import { IProfileService } from "@/service";
 import { ProfileRequestModel, ProfileResponse } from "@/model";
 
 @Component({
-  components: { Divider, EditProfile },
+  components: { Divider, EditProfile, ResetPassword },
 })
 export default class Profile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
@@ -242,6 +247,11 @@ export default class Profile extends Vue {
   request: ProfileRequestModel = new ProfileRequestModel();
 
   toggleEditProfile: boolean = false;
+  toggleResetPassword: boolean = false;
+  loading:boolean = false;
+  public value: string;
+  model: "";
+
   created() {
     this.loadprofile();
   }

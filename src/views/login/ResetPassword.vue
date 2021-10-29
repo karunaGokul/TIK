@@ -1,18 +1,37 @@
 <template>
   <div>
-    <v-parallax src="@/assets/login.jpg" height="700">
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="4" lg="4" align="center">
-          <h2>Reset Password</h2>
-          <!-- <v-img src="@/assets/forgot-password.png" height="100" width="100" class="mt-5"></v-img> -->
-          <v-form class="mt-10">
+    <v-dialog v-model="dialog" width="600px">
+      <v-card>
+        <v-row class="px-4">
+          <v-card-title> ForgotPassword </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn @click="dialog = false" icon class="pt-5">
+            <v-icon id="close-button">mdi-close</v-icon>
+          </v-btn>
+        </v-row>
+        <v-divider></v-divider>
+
+        <v-row justify="center">
+          <v-form class="mt-10" ref="form">
+            <v-text-field
+              label="Temporary Password"
+              placeholder="Temporary Password"
+              outlined
+              dense
+              class="rounded-0"
+              color="primary"
+              v-model="request.temporaryPassword"
+              :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="() => (value2 = !value2)"
+              :type="value2 ? 'password' : 'text'"
+            ></v-text-field>
             <v-text-field
               label="New Password"
               placeholder="New Password"
               outlined
+              dense
               class="rounded-0"
               color="primary"
-              background-color="white"
               v-model="request.newPassword"
               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value = !value)"
@@ -22,9 +41,9 @@
               label="Confirm Password"
               placeholder="Confirm Password"
               outlined
+              dense
               class="rounded-0"
               color="primary"
-              background-color="white"
               v-model="request.confirmPassword"
              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
@@ -38,9 +57,26 @@
               >Reset</v-btn
             >
           </v-form>
-        </v-col>
-      </v-row>
-    </v-parallax>
+        </v-row>
+        <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="deep-orange lighten-5 pink--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="pink">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -55,13 +91,16 @@ import { IAuthenticationService } from "@/service";
   mixins: [validationMixin],
 })
 
-export default class ProjectsList extends Vue {
+export default class ResetPassword extends Vue {
  @Inject("authService") authService: IAuthenticationService;
 
   snackbar: boolean = false;
   snackbarText: string = "";
+  public dialog: boolean = true;
+ 
   public value: boolean = true;
   public value1: boolean = true;
+  public value2: boolean = true;
 
   public request = new ResetPasswordRequestModel();
 

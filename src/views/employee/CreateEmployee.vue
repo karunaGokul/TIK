@@ -2,9 +2,11 @@
   <div>
     <v-container fluid class="pa-8">
       <div class="ma-2">
-        <router-link link to="/" class="text-decoration-none">
+        <router-link to="/" class="text-decoration-none">
           <v-icon large> mdi-home</v-icon>
         </router-link>
+        <v-icon large> mdi-chevron-right</v-icon>
+        <router-link to="/employee" class="text-decoration-none black--text">Employee</router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         {{ option }} Employee
       </div>

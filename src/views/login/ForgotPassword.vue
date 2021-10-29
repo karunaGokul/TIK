@@ -1,18 +1,26 @@
 <template>
   <div>
-    <v-parallax src="@/assets/login.jpg" height="700">
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="4" lg="4" align="center">
-          <h2>Forgot Password</h2>
-          <p class="font-weight-bold mt-5">
-            Enter Email-id to receive instructions
-          </p>
+    <v-dialog v-model="dialog" width="600px">
+      <v-card>
+        <v-row class="px-4">
+          <v-card-title> ForgotPassword </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn @click="dialog = false" icon class="pt-5">
+            <v-icon id="close-button">mdi-close</v-icon>
+          </v-btn>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row class="pt-4" justify="center">
+          <v-card-subtitle>Enter Email-id to receive instructions</v-card-subtitle>
+        </v-row>
 
-          <v-form class="mt-5" ref="form">
+        <v-row justify="center">
+          <v-form ref="form">
             <v-text-field
               label="Email"
               placeholder="Enter Email Address"
               outlined
+              dense
               class="rounded-0"
               color="primary"
               background-color="white"
@@ -27,15 +35,16 @@
               >Send</v-btn
             >
           </v-form>
+        </v-row>
+        <v-row justify="center">
+          <v-card-actions>
+            <router-link to="/login" class="text-decoration-none black--text my-2 ">
+              Back To Login 
+              </router-link>
+          </v-card-actions>
+        </v-row>
 
-          <div class="mt-5">
-            <router-link to="/login" class="text-decoration-none white--text"
-              >Back To Login</router-link
-            >
-          </div>
-        </v-col>
-      </v-row>
-      <v-snackbar
+        <v-snackbar
         v-model="snackbar"
         :timeout="2000"
         color="deep-orange lighten-5 pink--text"
@@ -52,7 +61,8 @@
           </v-btn>
         </template>
       </v-snackbar>
-    </v-parallax>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -72,6 +82,7 @@ export default class ForgotPassword extends Vue {
 
   snackbar: boolean = false;
   snackbarText: string = "";
+  dialog: boolean = true;
 
   public request = new ForgotPasswordRequestModel();
 

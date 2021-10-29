@@ -57,12 +57,19 @@
               </v-col>
 
               <v-col cols="12" sm="4">
-                <router-link to="/forgotpassword" class="text-decoration-none">
-                  Forget Password?
-                </router-link>
+                <v-btn
+                  plain
+                  class="text-capitalize"
+                  @click="toggleForgotPassword = true"
+                >
+                  Forgot Password?
+                </v-btn>
               </v-col>
+              
             </v-row>
-
+            
+            <ForgotPassword v-if="toggleForgotPassword" />
+            
             <v-btn
               color="primary"
               class="
@@ -122,14 +129,18 @@ import { validationMixin } from "vuelidate";
 import { AuthenticationRequestModel, AuthenticationResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
+import ForgotPassword  from "./ForgotPassword.vue"
+
 @Component({
   mixins: [validationMixin],
+  components: { ForgotPassword },
 })
 export default class Login extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
   snackbar: boolean = false;
   snackbarText: string = "";
+  toggleForgotPassword: boolean = false;
   public request = new AuthenticationRequestModel();
 
   public emailRules: any = [

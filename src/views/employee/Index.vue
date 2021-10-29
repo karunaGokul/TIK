@@ -6,7 +6,7 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        Employee List
+        Employee 
       </div>
     </v-container>
 

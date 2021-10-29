@@ -24,9 +24,9 @@ export class DashboardModel {
     CreatedBy: string;
     CreatedDate: string;
     bidsReceived: number;
-    confirmationDate:number;
-    requestedDeliveryDate:number;
-    noOfKg:number;
+    confirmationDate: number;
+    requestedDeliveryDate: number;
+    noOfKg: number;
 
 }
 export class BitReceivedModel {
@@ -39,7 +39,10 @@ export class BitReceivedModel {
     status: string;
     submittedBy: string;
     submittedDate: string;
-    companyId:string;
+    companyId: string;
+    companyName: string;
+    companyLogo: string;
+    review:number;
 }
 
 export class SummaryModel {
@@ -64,5 +67,5 @@ export class GetCompanyModel {
 export class ApproveRequestModel {
     projectId: string;
     bidId: string;
-    status: string;  
+    status: string;
 }

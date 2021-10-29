@@ -304,7 +304,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                                 "type": "toggle-button",
                                 "selector": false,
                                 "data_path" : "mil.Yarn.RegularYarn.SingleQualities",
-		                        "data_id" : "Quality",
+		                        "data_id" : "Name",
                                 "options": [
                                     {
                                         "id": "opFilamentQuality_SuperCombed",

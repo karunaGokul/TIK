@@ -78,7 +78,7 @@
                 outlined
                 placeholder="Enter Email"
                 :rules="emailRules"
-                v-model="request.email"
+                v-model="request.emailAddress"
               >
               </v-text-field>
             </div>

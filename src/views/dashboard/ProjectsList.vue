@@ -251,7 +251,7 @@
         </v-col>
       </v-row>
       <div v-if="response.bidList">
-        <v-row v-for="row in response.bidList" :key="row.status" >
+        <v-row v-for="row in response.bidList" :key="row.status">
           <v-row
             class="pa-4 ma-2"
             :class="
@@ -259,7 +259,7 @@
                 ? 'deep-orange'
                 : ''
             "
-            v-if="row.requestPrice!=null"
+            v-if="row.requestPrice != null"
           >
             <v-row
               :class="
@@ -522,8 +522,7 @@ export default class ProjectsList extends Vue {
   }
   public GetCompany(CompanyId: string) {
     console.log(CompanyId);
-    this.companyrequest.id = CompanyId;
-    this.DashboardService.GetCompany(this.companyrequest).then((response) => {
+    this.DashboardService.GetCompany(CompanyId).then((response) => {
       this.companyresponse = response;
     });
   }
@@ -532,9 +531,16 @@ export default class ProjectsList extends Vue {
     this.request.id = this.SelectedProject.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
+      this.response.bidList.forEach((b) => {
+        this.DashboardService.GetCompany(b.companyId).then((c) => {
+          b.companyName = c.companyName;
+          b.companyLogo = c.companyLogo;
+        });
+      });
     });
   }
   public BidProject() {
+    console.log(this.SelectedProject);
     this.bidRequest.projectId = this.SelectedProject.Id;
     this.bidRequest.id = this.SelectedProject.bidList[0].id;
     this.DashboardService.BidProject(this.bidRequest).then((response) => {

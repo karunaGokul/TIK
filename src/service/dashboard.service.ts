@@ -8,7 +8,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     CreateProject(request: DashboardModel): Promise<any>;
     SearchProject(request: DashboardModel): Promise<Array<DashboardModel>>;
     BidProject(request: BidRequestModel): Promise<any>;
-    GetCompany(request: DashboardRequestModel): Promise<any>;
+    GetCompany(companyId: string): Promise<any>;
     ApproveBid(request: ApproveRequestModel): Promise<any>;
 
 }
@@ -57,16 +57,16 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
             return response.data;
         });
     }
-    public ApproveBid(request: ApproveRequestModel): Promise<any>{
+    public ApproveBid(request: ApproveRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpPost('ApproveBid?projectId=' + request.projectId+'&bidId='+request.bidId+'&status='+request.status,null).then(response => {
+        return this.httpPost('ApproveBid?projectId=' + request.projectId + '&bidId=' + request.bidId + '&status=' + request.status, null).then(response => {
             return response.data;
         });
     }
 
-    public GetCompany(request: DashboardRequestModel): Promise<any> {
+    public GetCompany(companyId: string): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
-        return this.httpGet('GetCompany?companyId=' + request.id, null).then(response => {
+        return this.httpGet('GetCompany?companyId=' + companyId, null).then(response => {
             return response.data;
         });
     }

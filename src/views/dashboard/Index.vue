@@ -62,13 +62,20 @@
           </template>
 
           <template v-slot:[`item.action`]="{ item }">
+             <router-link
+              :to="{
+                name: 'ProjectDetail',
+                params: { SelectedProject: item},
+              }"
+              tag="button"
+            >
             <v-btn
               class="white--text font-weight-light text-capitalize rounded"
               depressed
-              color="primary"
-              @click="viewProject(item)"
+              color="primary"             
               >View
             </v-btn>
+             </router-link>
           </template>
         </v-data-table>
       </v-card>
@@ -87,8 +94,7 @@
           <v-icon> mdi-close-box</v-icon>
         </v-btn>
       </template>
-    </v-snackbar>
-    <ProjectsList :SelectedProject="SelectedProject" v-if="toggleProjectList" />
+    </v-snackbar>    
   </div>
 </template>
  
@@ -134,34 +140,16 @@ export default class Dashboard extends Vue {
   }
   get category(): string {
     return this.$store.getters.category;
-  }
-  public createProject() {
-    this.DashboardService.CreateProject(this.SelectedProject).then(
-      (response) => {
-        this.$router.push("/dashboard");
-      },
-      (err) => {
-        if (err.response.status == 400) {
-          this.snackbarText = err.response.data;
-          this.snackbar = true;
-        }
-      }
-    );
-  }
+  }  
   public getProjectList() {
     this.request.id = this.$store.getters.id;
-
     this.loading = true;
     this.DashboardService.GetProjectList(this.request).then((response) => {
       this.loading = false;
       this.response = response;
     });
   }
-
-  public viewProject(item: DashboardModel) {
-    this.toggleProjectList = true;
-    this.SelectedProject = item;
-  }
+  
   public searchProject() {
     this.searchRequest.stages = this.stages;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
@@ -169,11 +157,7 @@ export default class Dashboard extends Vue {
         this.response = response;
       }
     );
-  }
-  public row_classes(it: any) {
-    // return it.Subcategory === "Fabric" ? "white" : "blue lighten-5";
-  }
-
+  } 
   items: any = [
     "All",
     "New Enquiry",

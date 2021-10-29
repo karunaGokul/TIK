@@ -12,7 +12,7 @@ export class ProfileResponse {
     address: string;
     phoneNumber1: string;
     phoneNumber2: string;
-    email: string;
+    emailAddress: string;
     imageName: string;
     image: string;
     rating?: number;

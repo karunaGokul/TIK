@@ -69,7 +69,14 @@
           </div>
         </v-col>
         <v-col v-else cols="12" sm="2" md="3"> </v-col>
-        <v-col cols="12" sm="2" md="2" v-if="category != 'Company'">
+        <v-col
+          cols="12"
+          sm="2"
+          md="2"
+          v-if="
+            category != 'Company' && response.bidList[0].status === 'Initiated'
+          "
+        >
           <v-btn
             class="white--text font-weight-light text-capitalize rounded"
             depressed
@@ -86,12 +93,15 @@
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
-            v-if="category != 'Company'"
+            v-if="
+              category != 'Company' &&
+              response.bidList[0].status === 'Initiated'
+            "
           >
             Cancel
           </v-btn>
           <span
-            v-else
+            v-else-if="category === 'Company'"
             class="primary white--text font-weight-light pa-2 rounded"
           >
             Bids Received :{{ response.bidsReceived }}
@@ -145,7 +155,10 @@
                       "
                       depressed
                       color="primary"
-                      v-if="category != 'Company'"
+                      v-if="
+                        category != 'Company' &&
+                        response.bidList[0].status != 'Initiated'
+                      "
                     >
                       Approve
                     </v-btn>
@@ -189,60 +202,75 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-card v-if="toggleBid" class="my-8 px-6" elevation="8">
-            <v-row>
-              <v-col cols="12" sm="2" md="3">
-                <div class="my-3">Price <span class="red--text">*</span></div>
-                <v-text-field
-                  outlined
-                  dense
-                  label="Enter Price"
-                  class="my-2"
-                  v-model="bidRequest.price"
-                  :rules="Rules"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="2" md="3">
-                <div class="my-3">
-                  Credit Period <span class="red--text">*</span>
-                </div>
-                <v-text-field
-                  outlined
-                  dense
-                  label="Enter Credit Period"
-                  class="my-2"
-                  v-model="bidRequest.creditPeriod"
-                  :rules="Rules"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="2" md="3">
-                <div class="my-3">
-                  Delivery Period <span class="red--text">*</span>
-                </div>
-                <v-text-field
-                  outlined
-                  dense
-                  label="Enter Delivery Period"
-                  class="my-2"
-                  v-model="bidRequest.deliveryPeriod"
-                  :rules="Rules"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="2" md="3" align="center" class="mt-10">
+          <v-dialog v-model="toggleBid" width="500">
+            <v-card class="px-6" elevation="8">
+              <v-card-title>
+                Bid Project
+                <v-spacer></v-spacer>
+                <v-btn @click="toggleBid = false" icon>
+                  <v-icon id="close-button">mdi-close</v-icon>
+                </v-btn>
+              </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text class="mt-4">
+                <v-row>
+                  <v-col>
+                  <div class="mb-2">Price <span class="red--text">*</span></div>
+                  <v-text-field
+                    outlined
+                    dense
+                    label="Enter Price"                   
+                    v-model="bidRequest.price"
+                    :rules="Rules"
+                    required
+                  ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row class="mt-n5">
+                  <v-col>
+                  <div class="mb-2">
+                    Credit Period <span class="red--text">*</span>
+                  </div>
+                  <v-text-field
+                    outlined
+                    dense
+                    label="Enter Credit Period"                    
+                    v-model="bidRequest.creditPeriod"
+                    :rules="Rules"
+                    required
+                  ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row class="mt-n5">
+                  <v-col>
+                  <div class="mb-2">
+                    Delivery Period <span class="red--text">*</span>
+                  </div>
+                  <v-text-field
+                    outlined
+                    dense
+                    label="Enter Delivery Period"                   
+                    v-model="bidRequest.deliveryPeriod"
+                    :rules="Rules"
+                    required
+                  ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+
+              <v-card-actions class="mt-n5">
+                <v-spacer></v-spacer>
                 <v-btn
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
-                  color="primary"
+                  color="primary mb-4"
                   @click="BidProject()"
                 >
                   Submit
                 </v-btn>
-              </v-col>
-            </v-row>
-          </v-card>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
           <ProjectSummary
             :response="response"
             v-if="toggleSummaryView"
@@ -280,7 +308,7 @@
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
-                    :src="`data:image/png;base64,${companyresponse.logo}`"
+                    :src="`data:image/png;base64,${row.companyLogo}`"
                     width="70%"
                   ></v-img>
                 </v-col>
@@ -294,11 +322,11 @@
                   v-if="category === 'Company'"
                 >
                   <v-row class="ma-1">
-                    <h4>{{ companyresponse.companyName }}</h4>
+                    <h4>{{ row.companyName }}</h4>
                   </v-row>
                   <v-row>
                     <v-rating
-                      v-model="companyresponse.review"
+                      v-model="row.review"
                       color="warning"
                       dense
                       half-increments
@@ -493,8 +521,6 @@ export default class ProjectsList extends Vue {
   public request = new DashboardRequestModel();
 
   public companyresponse = new GetCompanyModel();
-  public companyrequest = new DashboardRequestModel();
-  public i: number;
   public bidRequest = new BidRequestModel();
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
@@ -504,11 +530,7 @@ export default class ProjectsList extends Vue {
   public snackbarText: string = "";
   public snackbar: boolean = false;
   created() {
-    this.GetCompany(this.SelectedProject.CompanyId);
     this.GetProjectEnquiry();
-    // for (this.i = 0; this.i < this.SelectedProject.bidList.length; this.i++) {
-    //   this.GetCompany(this.SelectedProject.bidList[this.i].companyId);
-    // }
     if (this.category != "Company") {
       this.BitReceivedheaders.splice(0, 4);
       this.BitReceivedheaders.push(
@@ -518,10 +540,11 @@ export default class ProjectsList extends Vue {
         "Your Delivery Period",
         "Status"
       );
+    } else {
+      this.GetCompany(this.SelectedProject.CompanyId);
     }
   }
   public GetCompany(CompanyId: string) {
-    console.log(CompanyId);
     this.DashboardService.GetCompany(CompanyId).then((response) => {
       this.companyresponse = response;
     });
@@ -531,18 +554,21 @@ export default class ProjectsList extends Vue {
     this.request.id = this.SelectedProject.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
+      if (this.category != "Company") {
+        this.GetCompany(this.response.bidList[0].companyId);
+      }
       this.response.bidList.forEach((b) => {
         this.DashboardService.GetCompany(b.companyId).then((c) => {
           b.companyName = c.companyName;
-          b.companyLogo = c.companyLogo;
+          b.companyLogo = c.logo;
+          b.review = c.review;
         });
       });
     });
   }
   public BidProject() {
-    console.log(this.SelectedProject);
-    this.bidRequest.projectId = this.SelectedProject.Id;
-    this.bidRequest.id = this.SelectedProject.bidList[0].id;
+    this.bidRequest.projectId = this.response.Id;
+    this.bidRequest.id = this.response.bidList[0].id;
     this.DashboardService.BidProject(this.bidRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
@@ -553,8 +579,7 @@ export default class ProjectsList extends Vue {
   public ApproveBid(bid: BitReceivedModel) {
     this.approvelRequest.bidId = bid.id;
     this.approvelRequest.status = "Approved";
-    this.approvelRequest.projectId = this.SelectedProject.Id;
-    console.log(this.SelectedProject.Id);
+    this.approvelRequest.projectId = this.response.Id;
     this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;

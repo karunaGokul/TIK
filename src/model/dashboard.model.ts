@@ -42,6 +42,7 @@ export class BitReceivedModel {
     companyId: string;
     companyName: string;
     companyLogo: string;
+    review:number;
 }
 
 export class SummaryModel {

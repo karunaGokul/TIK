@@ -1,5 +1,5 @@
 import { IBaseService, BaseService } from './base.service';
-import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel } from '@/model';
+import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel, ReviewRequestModel } from '@/model';
 
 export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
@@ -10,6 +10,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     BidProject(request: BidRequestModel): Promise<any>;
     GetCompany(companyId: string): Promise<any>;
     ApproveBid(request: ApproveRequestModel): Promise<any>;
+    Review(request: ReviewRequestModel): Promise<any>;
 
 }
 export class DashboardService extends BaseService<any, DashboardModel> implements IDashboardService {
@@ -69,6 +70,14 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
         return this.httpGet('GetCompany?companyId=' + companyId, null).then(response => {
             return response.data;
         });
+    }
+
+    public Review(request: ReviewRequestModel): Promise<any>
+    {
+        this.apiUrl = "https://tikdev-api.azure-api.net/profile"
+        return this.httpPost('Review', request).then(response => {
+            return response.data;
+        });        
     }
 
 }

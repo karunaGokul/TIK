@@ -42,7 +42,7 @@ export class BitReceivedModel {
     companyId: string;
     companyName: string;
     companyLogo: string;
-    review:number;
+    review: number;
 }
 
 export class SummaryModel {
@@ -68,9 +68,9 @@ export class ApproveRequestModel {
     projectId: string;
     bidId: string;
     status: string;
-    Message?:string="";
+    message?: string = "";
 }
 export class ReviewRequestModel {
-    ReviewRating: string="";
-    Comments: string=" No";    
+    ReviewRating: string = "";
+    Comments: string = " No";
 }

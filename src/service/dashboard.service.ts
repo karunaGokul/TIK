@@ -60,7 +60,7 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
     }
     public ApproveBid(request: ApproveRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpPost('ApproveBid?projectId=' + request.projectId + '&bidId=' + request.bidId + '&status=' + request.status, null).then(response => {
+        return this.httpPost('ApproveBid?projectId=' + request.projectId + '&bidId=' + request.bidId + '&status=' + request.status + '&message=' + request.message, null).then(response => {
             return response.data;
         });
     }
@@ -72,12 +72,11 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
         });
     }
 
-    public Review(request: ReviewRequestModel): Promise<any>
-    {
+    public Review(request: ReviewRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
         return this.httpPost('Review', request).then(response => {
             return response.data;
-        });        
+        });
     }
 
 }

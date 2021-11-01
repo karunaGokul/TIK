@@ -6,7 +6,7 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        Employee 
+        Employee
       </div>
     </v-container>
 
@@ -87,9 +87,9 @@ import { IEmployeeService } from "@/service";
 @Component
 export default class Employee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  public response: Array<EmployeeModel> = [];  
+  public response: Array<EmployeeModel> = [];
   request: EmployeeRequestModel = new EmployeeRequestModel();
- loading: boolean = false;
+  loading: boolean = false;
   search: string = "";
   snackbarText: string = "";
   snackbar: boolean = false;

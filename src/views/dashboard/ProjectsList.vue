@@ -171,7 +171,7 @@
                   class="shrink py-6"
                   dense
                   hide-details
-                  v-model="approvelRequest.Message"
+                  v-model="approvelRequest.message"
                 ></v-select>
               </v-card-text>
 
@@ -181,7 +181,7 @@
                   class="white--text font-weight-light text-capitalize rounded"
                   depressed
                   color="primary"
-                  @click="CancelBid()"
+                  @click="ApproveBid('Rejected')"
                 >
                   save
                 </v-btn>
@@ -418,18 +418,34 @@
                               depressed
                               color="primary"
                               v-if="row.status === 'Approved'"
-                              @click="ApproveBid(row, 'Confirmed')"
+                              @click="ApproveBid('Confirmed')"
                             >
                               Approve
                             </v-btn>
+                            <span v-else-if="row.status === 'Completed'">
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-2
+                                "
+                                depressed
+                                color="primary"
+                                @click="toggleReview = true"
+                              >
+                                review
+                              </v-btn>
+                            </span>
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
                                 row.status === 'Rejected'
                               "
                             >
-                              {{ row.status }}</span
-                            >
+                              {{ row.status }}
+                            </span>
                             <span v-else>Auth for Approval</span>
                           </td>
                           <td v-else-if="category != 'Company'">
@@ -440,6 +456,7 @@
                                 text-capitalize
                                 rounded
                                 mt-2
+                                mr-2
                               "
                               depressed
                               color="primary"
@@ -458,11 +475,16 @@
                               depressed
                               color="primary"
                               v-if="row.status === 'PendingApproval'"
-                              @click="ApproveBid(row, 'Approved')"
+                              @click="ApproveBid('Approved')"
                             >
                               Approve
                             </v-btn>
-                            <span v-else-if="row.status === 'Approved'">
+                            <span
+                              v-else-if="
+                                row.status === 'Approved' ||
+                                row.status === 'Rejected'
+                              "
+                            >
                               {{ row.status }}</span
                             >
                             <div v-else-if="row.status === 'Confirmed'">
@@ -473,6 +495,7 @@
                                   text-capitalize
                                   rounded
                                   mt-2
+                                  mr-2
                                 "
                                 depressed
                                 color="red lighten-1"
@@ -506,7 +529,7 @@
           </v-row>
         </v-row>
       </div>
-       <v-dialog v-model="toggleNoShow" width="500">
+      <v-dialog v-model="toggleNoShow" width="500">
         <v-card class="px-6" elevation="8">
           <v-card-title>
             NoShow
@@ -520,13 +543,14 @@
 
           <v-card-text>
             <v-select
-                  :items="noResponseItems"
-                  :menu-props="{ offsetY: true }"
-                  label="No Response"
-                  class="shrink py-6"
-                  dense
-                  hide-details
-                ></v-select>
+              :items="noResponseItems"
+              :menu-props="{ offsetY: true }"
+              label="No Response"
+              class="shrink py-6"
+              dense
+              hide-details
+              v-model="approvelRequest.message"
+            ></v-select>
           </v-card-text>
 
           <v-card-actions>
@@ -535,7 +559,7 @@
               class="white--text font-weight-light text-capitalize rounded mb-3"
               depressed
               color="primary"
-              @click="review()"
+              @click="ApproveBid('Rejected')"
             >
               save
             </v-btn>
@@ -635,7 +659,7 @@ export default class ProjectsList extends Vue {
   public toggleSummaryView: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
-  
+
   created() {
     this.GetProjectEnquiry();
     if (this.category != "Company") {
@@ -683,24 +707,25 @@ export default class ProjectsList extends Vue {
       this.GetProjectEnquiry();
     });
   }
-  public ApproveBid(bid: BitReceivedModel, status: string) {
-    this.approvelRequest.bidId = bid.id;
+  public ApproveBid(status: string) {
+    this.approvelRequest.bidId = this.response.bidList[0].id;
     this.approvelRequest.status = status;
     this.approvelRequest.projectId = this.response.Id;
     this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
+      this.toggleCancel = false;
+      this.toggleNoShow = false;
       this.GetProjectEnquiry();
     });
   }
 
-  public Review()
-  {this.DashboardService.Review(this.reviewRequest).then((response) => {
+  public Review() {
+    this.DashboardService.Review(this.reviewRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
-      this.toggleReview=false;      
+      this.toggleReview = false;
     });
-
   }
   public closeModel() {
     this.toggleSummaryView = false;
@@ -714,7 +739,7 @@ export default class ProjectsList extends Vue {
     "No Spare Capacity Available",
     "Audi",
   ];
-  noResponseItems:any=["No Response","Not Initiated"];
+  noResponseItems: any = ["No Response", "Not Initiated"];
   ProjectRequestheaders: any = [
     "Project Name",
     "Category",

@@ -68,4 +68,9 @@ export class ApproveRequestModel {
     projectId: string;
     bidId: string;
     status: string;
+    Message?:string="";
+}
+export class ReviewRequestModel {
+    ReviewRating: string="";
+    Comments: string=" No";    
 }

@@ -1,20 +1,22 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" width="600px">
-      <v-card>
-        <v-row class="px-4">
-          <v-card-title> ForgotPassword </v-card-title>
+    <v-dialog v-model="dialog" width="500" height="auto">
+      <v-card class="px-2" elevation="6">
+        <v-card-title>
+          Forgot Password
           <v-spacer></v-spacer>
-          <v-btn @click="dialog = false" icon class="pt-5">
+          <v-btn @click="dialog = false" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
-        </v-row>
-        <v-divider></v-divider>
-        <v-row class="pt-4" justify="center">
-          <v-card-subtitle>Enter Email-id to receive instructions</v-card-subtitle>
-        </v-row>
+        </v-card-title>
 
-        <v-row justify="center">
+        <v-divider></v-divider>
+
+        <v-card-subtitle class="pt-2">
+          Enter Email-id to receive instructions
+        </v-card-subtitle>
+
+        <v-card-text>
           <v-form ref="form">
             <v-text-field
               label="Email"
@@ -27,24 +29,30 @@
               prepend-inner-icon="mdi-email"
               v-model="request.email"
             ></v-text-field>
-            <v-btn
-              color="primary"
-              class="rounded-0 white--text font-weight-light text-capitalize"
-              depressed
-              @click="forgotPassword"
-              >Send</v-btn
-            >
+
+            <v-row justify="center">
+              <v-card-actions>
+                <v-btn
+                  color="primary"
+                  class="rounded-0 white--text font-weight-light text-capitalize"
+                  depressed
+                  @click="forgotPassword"
+                  >Send</v-btn
+                >
+              </v-card-actions>
+            </v-row>
           </v-form>
-        </v-row>
-        <v-row justify="center">
+        </v-card-text>
+        <!-- <v-row justify="center">
           <v-card-actions>
             <router-link to="/login" class="text-decoration-none black--text my-2 ">
               Back To Login 
               </router-link>
           </v-card-actions>
-        </v-row>
+        </v-row> -->
+      </v-card>
 
-        <v-snackbar
+      <v-snackbar
         v-model="snackbar"
         :timeout="2000"
         color="deep-orange lighten-5 pink--text"
@@ -61,7 +69,6 @@
           </v-btn>
         </template>
       </v-snackbar>
-      </v-card>
     </v-dialog>
   </div>
 </template>

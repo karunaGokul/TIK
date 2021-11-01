@@ -34,6 +34,7 @@ export class ResetPasswordRequestModel {
     newPassword: string = "";
     confirmPassword: string = "";
     temporaryPassword: string = "";
+    id: string = "";
 }
 
 export class ResetPasswordResponse {

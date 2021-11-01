@@ -1,18 +1,18 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" width="600px">
-      <v-card>
-        <v-row class="px-4">
-          <v-card-title> ForgotPassword </v-card-title>
+    <v-dialog v-model="dialog" width="500">
+      <v-card class="px-2" elevation="6">
+        <v-card-title>
+          Reset Password
           <v-spacer></v-spacer>
-          <v-btn @click="dialog = false" icon class="pt-5">
+          <v-btn @click="dialog = false" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
-        </v-row>
+        </v-card-title>
         <v-divider></v-divider>
 
-        <v-row justify="center">
-          <v-form class="mt-10" ref="form">
+        <v-card-text>
+          <v-form ref="form" class="mt-5">
             <v-text-field
               label="Temporary Password"
               placeholder="Temporary Password"
@@ -45,20 +45,27 @@
               class="rounded-0"
               color="primary"
               v-model="request.confirmPassword"
-             :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
             ></v-text-field>
-            <v-btn
-              color="primary"
-              class="rounded-0 white--text font-weight-light text-capitalize"
-              depressed
-              @click="resetPassword"
-              >Reset</v-btn
-            >
+
+            <v-row justify="center">
+              <v-card-actions>
+                <v-btn
+                  color="primary"
+                  class="rounded-0 white--text font-weight-light text-capitalize"
+                  depressed
+                  @click="resetPassword"
+                  >Reset</v-btn
+                >
+              </v-card-actions>
+            </v-row>
           </v-form>
-        </v-row>
-        <v-snackbar
+        </v-card-text>
+      </v-card>
+
+      <v-snackbar
         v-model="snackbar"
         :timeout="2000"
         color="deep-orange lighten-5 pink--text"
@@ -75,7 +82,6 @@
           </v-btn>
         </template>
       </v-snackbar>
-      </v-card>
     </v-dialog>
   </div>
 </template>
@@ -84,41 +90,49 @@
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
-import { ResetPasswordRequestModel  } from "@/model";
+import { ResetPasswordRequestModel } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({
   mixins: [validationMixin],
 })
-
 export default class ResetPassword extends Vue {
- @Inject("authService") authService: IAuthenticationService;
+  @Inject("authService") authService: IAuthenticationService;
 
   snackbar: boolean = false;
   snackbarText: string = "";
   public dialog: boolean = true;
- 
+
   public value: boolean = true;
   public value1: boolean = true;
   public value2: boolean = true;
 
   public request = new ResetPasswordRequestModel();
 
-  public resetPassword() {
-        if((this.$refs.form as Vue & { validate: () => boolean }).validate() && this.request.newPassword == this.request.confirmPassword) {
-            this.authService.ResetPassword(this.request).then(response => {
-               this.snackbarText = response;
-               this.snackbar = true;
-                this.$router.push('/');
-            }).catch((error) => {
-               console.log(error);
-                if(error.response.status == 500)
-                  this.snackbarText = error.response.data;
-                  this.snackbar = true;
-                    
-            });
-        } 
-    }
+  get id(): string {
+    return this.$store.getters.id;
+  }
 
+  public resetPassword() {
+    if (
+      (this.$refs.form as Vue & { validate: () => boolean }).validate() &&
+      this.request.newPassword == this.request.confirmPassword
+    ) {
+      this.request.id = this.id;
+      this.authService
+        .ResetPassword(this.request)
+        .then((response) => {
+          this.snackbarText = response;
+          this.snackbar = true;
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.response.status == 500)
+            this.snackbarText = error.response.data;
+          this.snackbar = true;
+        });
+    }
+  }
 }
 </script>

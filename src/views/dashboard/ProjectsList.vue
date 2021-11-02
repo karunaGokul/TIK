@@ -420,7 +420,7 @@
                               v-if="row.status === 'Approved'"
                               @click="ApproveBid('Confirmed')"
                             >
-                              Approve
+                              Accept
                             </v-btn>
                             <span v-else-if="row.status === 'Completed'">
                               <v-btn

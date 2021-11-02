@@ -151,114 +151,17 @@
               </tbody>
             </template>
           </v-simple-table>
-          <v-dialog v-model="toggleCancel" width="500">
-            <v-card class="px-6" elevation="8">
-              <v-card-title>
-                Reasons
-                <v-spacer></v-spacer>
-                <v-btn @click="toggleCancel = false" icon>
-                  <v-icon id="close-button">mdi-close</v-icon>
-                </v-btn>
-              </v-card-title>
-
-              <v-divider></v-divider>
-
-              <v-card-text>
-                <v-select
-                  :items="items"
-                  :menu-props="{ offsetY: true }"
-                  label="Select Reason"
-                  class="shrink py-6"
-                  dense
-                  hide-details
-                  v-model="approvelRequest.message"
-                ></v-select>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  class="white--text font-weight-light text-capitalize rounded"
-                  depressed
-                  color="primary"
-                  @click="ApproveBid('Rejected')"
-                >
-                  save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-          <v-dialog v-model="toggleBid" width="500">
-            <v-card class="px-6" elevation="8">
-              <v-card-title>
-                Bid Project
-                <v-spacer></v-spacer>
-                <v-btn @click="toggleBid = false" icon>
-                  <v-icon id="close-button">mdi-close</v-icon>
-                </v-btn>
-              </v-card-title>
-              <v-divider></v-divider>
-              <v-card-text class="mt-4">
-                <v-row>
-                  <v-col>
-                    <div class="mb-2">
-                      Price <span class="red--text">*</span>
-                    </div>
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Enter Price"
-                      v-model="bidRequest.price"
-                      :rules="Rules"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row class="mt-n5">
-                  <v-col>
-                    <div class="mb-2">
-                      Credit Period <span class="red--text">*</span>
-                    </div>
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Enter Credit Period"
-                      v-model="bidRequest.creditPeriod"
-                      :rules="Rules"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row class="mt-n5">
-                  <v-col>
-                    <div class="mb-2">
-                      Delivery Period <span class="red--text">*</span>
-                    </div>
-                    <v-text-field
-                      outlined
-                      dense
-                      label="Enter Delivery Period"
-                      v-model="bidRequest.deliveryPeriod"
-                      :rules="Rules"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-
-              <v-card-actions class="mt-n5">
-                <v-spacer></v-spacer>
-                <v-btn
-                  class="white--text font-weight-light text-capitalize rounded"
-                  depressed
-                  color="primary mb-4"
-                  @click="BidProject()"
-                >
-                  Submit
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+          <RejectProject
+            :response="response"
+            title="Reasons"
+            v-if="toggleCancel"
+            @closeModel="closeModel"
+          />
+          <BidProject
+            :response="response"
+            v-if="toggleBid"
+            @closeModel="closeModel"
+          />
           <ProjectSummary
             :response="response"
             v-if="toggleSummaryView"
@@ -292,7 +195,15 @@
                   <h4>Confirmed Project</h4>
                 </v-col>
               </v-row>
-
+              <v-row v-else-if="row.status === 'Rejected'&& category === 'Company'" class="mx-1 my-3">
+                <span class="text-subtitle-1 font-weight-bold">Rejected Projects</span>
+                <v-icon large color="green darken-4" class="ml-4">
+                  mdi-filter
+                </v-icon>
+                <v-icon large color="green darken-4" class="ml-2">
+                  mdi-sort-ascending
+                </v-icon>
+              </v-row>
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
@@ -369,7 +280,7 @@
                             ></v-text-field>
                           </td>
 
-                          <td class="blue--text" v-else>
+                          <td v-else class="blue--text">
                             Rs.{{ row.requestPrice }}
                           </td>
                           <td
@@ -385,9 +296,8 @@
                               v-model="row.creditPeriod"
                             ></v-text-field>
                           </td>
-                          <td class="red--text" v-else>
-                            {{ row.creditPeriod }}
-                            days
+                          <td v-else class="red--text">
+                            {{ row.creditPeriod }} days
                           </td>
                           <td
                             v-if="
@@ -402,7 +312,7 @@
                               v-model="row.deliveryDate"
                             ></v-text-field>
                           </td>
-                          <td class="green--text" v-else>
+                          <td v-else class="green--text">
                             {{ row.deliveryDate }}
                             days
                           </td>
@@ -420,24 +330,23 @@
                               v-if="row.status === 'Approved'"
                               @click="ApproveBid('Confirmed')"
                             >
-                              Approve
+                              Accept
                             </v-btn>
-                            <span v-else-if="row.status === 'Completed'">
-                              <v-btn
-                                class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                "
-                                depressed
-                                color="primary"
-                                @click="toggleReview = true"
-                              >
-                                review
-                              </v-btn>
-                            </span>
+                            <v-btn
+                              class="
+                                white--text
+                                font-weight-light
+                                text-capitalize
+                                rounded
+                                mt-2
+                              "
+                              depressed
+                              color="primary"
+                              v-else-if="row.status === 'Completed'"
+                              @click="toggleReview = true"
+                            >
+                              review
+                            </v-btn>
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
@@ -485,8 +394,8 @@
                                 row.status === 'Rejected'
                               "
                             >
-                              {{ row.status }}</span
-                            >
+                              {{ row.status }}
+                            </span>
                             <div v-else-if="row.status === 'Confirmed'">
                               <v-btn
                                 class="
@@ -529,80 +438,18 @@
           </v-row>
         </v-row>
       </div>
-      <v-dialog v-model="toggleNoShow" width="500">
-        <v-card class="px-6" elevation="8">
-          <v-card-title>
-            NoShow
-            <v-spacer></v-spacer>
-            <v-btn @click="toggleNoShow = false" icon>
-              <v-icon id="close-button">mdi-close</v-icon>
-            </v-btn>
-          </v-card-title>
 
-          <v-divider></v-divider>
-
-          <v-card-text>
-            <v-select
-              :items="noResponseItems"
-              :menu-props="{ offsetY: true }"
-              label="No Response"
-              class="shrink py-6"
-              dense
-              hide-details
-              v-model="approvelRequest.message"
-            ></v-select>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="white--text font-weight-light text-capitalize rounded mb-3"
-              depressed
-              color="primary"
-              @click="ApproveBid('Rejected')"
-            >
-              save
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-      <v-dialog v-model="toggleReview" width="500">
-        <v-card class="px-6" elevation="8">
-          <v-card-title>
-            ReView
-            <v-spacer></v-spacer>
-            <v-btn @click="toggleReview = false" icon>
-              <v-icon id="close-button">mdi-close</v-icon>
-            </v-btn>
-          </v-card-title>
-
-          <v-divider></v-divider>
-
-          <v-card-text>
-            <div class="my-4">Review Here</div>
-            <v-rating
-              v-model="reviewRequest.ReviewRating"
-              color="warning"
-              dense
-              half-increments
-              size="30"
-              class="ml-n4"
-            ></v-rating>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="white--text font-weight-light text-capitalize rounded mb-3"
-              depressed
-              color="primary"
-              @click="Review()"
-            >
-              Review Update
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <RejectProject
+        :response="response"
+        title="Noshow"
+        v-if="toggleNoShow"
+        @closeModel="closeModel"
+      />
+      <Review
+        :response="response"
+        v-if="toggleReview"
+        @closeModel="closeModel"
+      />
     </div>
     <v-snackbar
       v-model="snackbar"
@@ -626,32 +473,36 @@
 <script lang="ts">
 import {
   ApproveRequestModel,
-  BidRequestModel,
-  BitReceivedModel,
   DashboardModel,
   DashboardRequestModel,
   GetCompanyModel,
-  ReviewRequestModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import ProjectSummary from "./ProjectSummary.vue";
+import BidProject from "./components/BidProject.vue";
+import RejectProject from "./components/RejectProject.vue";
+import Review from "./components/Review.vue";
+import ProjectSummary from "./components/ProjectSummary.vue";
 @Component({
   mixins: [validationMixin],
-  components: { ProjectSummary },
+  components: {
+    Review,
+    ProjectSummary,
+    BidProject,
+    RejectProject,    
+  },
 })
 export default class ProjectsList extends Vue {
   @Prop() SelectedProject: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
   public Rules: any = [(v: any) => !!v || "Enter the Value"];
-  public request = new DashboardRequestModel();
 
+  public request = new DashboardRequestModel();
   public companyresponse = new GetCompanyModel();
-  public bidRequest = new BidRequestModel();
   public approvelRequest = new ApproveRequestModel();
-  public reviewRequest = new ReviewRequestModel();
   public response = new DashboardModel();
+
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
   public toggleReview: boolean = false;
@@ -697,16 +548,7 @@ export default class ProjectsList extends Vue {
       });
     });
   }
-  public BidProject() {
-    this.bidRequest.projectId = this.response.Id;
-    this.bidRequest.id = this.response.bidList[0].id;
-    this.DashboardService.BidProject(this.bidRequest).then((response) => {
-      this.snackbarText = response;
-      this.snackbar = true;
-      this.toggleBid = false;
-      this.GetProjectEnquiry();
-    });
-  }
+
   public ApproveBid(status: string) {
     this.approvelRequest.bidId = this.response.bidList[0].id;
     this.approvelRequest.status = status;
@@ -714,32 +556,26 @@ export default class ProjectsList extends Vue {
     this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
-      this.toggleCancel = false;
-      this.toggleNoShow = false;
       this.GetProjectEnquiry();
     });
   }
 
-  public Review() {
-    this.DashboardService.Review(this.reviewRequest).then((response) => {
-      this.snackbarText = response;
-      this.snackbar = true;
-      this.toggleReview = false;
-    });
-  }
-  public closeModel() {
+  public closeModel(responseMessage: string) {
     this.toggleSummaryView = false;
+    this.toggleBid = false;
+    this.toggleCancel = false;
+    this.toggleNoShow = false;
+    this.toggleReview = false;
+    if (responseMessage) {
+      this.snackbarText = responseMessage;
+      this.snackbar = true;
+    }
+    this.GetProjectEnquiry();
   }
   get category(): string {
     return this.$store.getters.category;
   }
-  items: any = [
-    "Cannot supply",
-    "Pricing not Workable",
-    "No Spare Capacity Available",
-    "Audi",
-  ];
-  noResponseItems: any = ["No Response", "Not Initiated"];
+
   ProjectRequestheaders: any = [
     "Project Name",
     "Category",

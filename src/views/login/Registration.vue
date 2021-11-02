@@ -31,7 +31,7 @@
                   dense
                   placeholder="Enter First Name"
                   class="py-2 rounded-0"
-                  v-model="request.FirstName"
+                  v-model="request.firstName"
                   required
                 ></v-text-field>
               </v-col>
@@ -43,7 +43,7 @@
                   dense
                   placeholder="Enter Last Name"
                   class="py-2 rounded-0"
-                  v-model="request.LastName"
+                  v-model="request.lastName"
                   required
                 ></v-text-field>
               </v-col>
@@ -57,7 +57,7 @@
                   dense
                   placeholder="Enter Phone Number"
                   class="py-2 rounded-0"
-                  v-model="request.PhoneNumber"
+                  v-model="request.phoneNumber"
                   :rules="phoneRules"
                   required
                 ></v-text-field>
@@ -70,7 +70,7 @@
                   dense
                   placeholder="Enter Email ID"
                   class="py-2 rounded-0"
-                  v-model="request.EmailAddress"
+                  v-model="request.emailAddress"
                   :rules="emailRules"
                   required
                 ></v-text-field>
@@ -85,7 +85,7 @@
                   dense
                   placeholder="Enter Password"
                   class="py-2 rounded-0"
-                  v-model="request.Password"
+                  v-model="request.password"
                   required
                   :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (value = !value)"
@@ -99,7 +99,7 @@
                   outlined
                   dense
                   placeholder="Re-Enter Password"
-                  v-model="request.ConfirmPassword"
+                  v-model="request.confirmPassword"
                   class="py-2 rounded-0"
                   :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (value1 = !value1)"
@@ -113,7 +113,7 @@
               outlined
               dense
               placeholder="Select Category"
-              v-model="request.Category"
+              v-model="request.categoryName"
               :items="category"
               item-text="categoryName"
               item-value="id"
@@ -128,7 +128,7 @@
                   dense
                   placeholder="Enter GST Number"
                   class="py-2 rounded-0"
-                  v-model="request.GSTNumber"
+                  v-model="request.gstNumber"
                   required
                 ></v-text-field>
               </v-col>
@@ -156,7 +156,7 @@
                   outlined
                   dense
                   placeholder="Enter Address"
-                  v-model="request.Address"
+                  v-model="request.address"
                   class="rounded-0"
                 ></v-text-field>
               </v-col>
@@ -167,7 +167,7 @@
                   outlined
                   dense
                   placeholder="Enter Appartment, Unit, Office"
-                  v-model="request.ApartmentUnitOffice"
+                  v-model="request.apartmentUnitOffice"
                   class="rounded-0"
                 ></v-text-field>
               </v-col>
@@ -180,12 +180,12 @@
                   outlined
                   dense
                   placeholder="Select Country"
-                  v-model="request.CountryId"
+                  v-model="request.countryId"
                   :items="country"
                   item-text="countryName"
                   item-value="id"
                   class="py-2 rounded-0"
-                  @change="getState()"
+                  @change="getState"
                   required
                 ></v-select>
               </v-col>
@@ -196,12 +196,12 @@
                   outlined
                   dense
                   placeholder="Select State"
-                  v-model="request.StateId"
+                  v-model="request.stateId"
                   :items="state"
                   item-text="stateName"
                   item-value="id"
                   class="py-2 rounded-0"
-                  @change="getCity()"
+                  @change="getCity"
                   required
                 ></v-select>
               </v-col>
@@ -214,7 +214,7 @@
                   outlined
                   dense
                   placeholder="Select City"
-                  v-model="request.CityId"
+                  v-model="request.cityId"
                   :items="city"
                   item-text="cityName"
                   item-value="id"
@@ -231,7 +231,7 @@
                   placeholder="Enter Zip Code"
                   class="py-3 rounded-0"
                   required
-                  v-model="request.ZipCode"
+                  v-model="request.zipCode"
                   :rules="ZipCodeRules"
                 ></v-text-field>
               </v-col>
@@ -355,7 +355,7 @@ export default class Registration extends Vue {
       });
   }
   private getState() {
-    this.CountryId.CountryId = this.request.CountryId;
+    this.CountryId.countryId = this.request.countryId;
     this.registrationService
       .getState(this.CountryId)
       .then((response: Array<StateResponseModel>) => {
@@ -363,7 +363,7 @@ export default class Registration extends Vue {
       });
   }
   private getCity() {
-    this.StateId.StateId = this.request.StateId;
+    this.StateId.stateId = this.request.stateId;
     this.registrationService
       .getCity(this.StateId)
       .then((response: Array<CityResponseModel>) => {

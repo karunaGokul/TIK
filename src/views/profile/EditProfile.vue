@@ -76,6 +76,7 @@
               <v-text-field
                 dense
                 outlined
+                disabled
                 placeholder="Enter Email"
                 :rules="emailRules"
                 v-model="request.emailAddress"

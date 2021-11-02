@@ -1,20 +1,20 @@
 import { BaseModel, DataRequest } from './base.model';
 
 export class RegistrationRequestModel extends DataRequest {
-    FirstName: string;
-    LastName: string;
-    PhoneNumber: number;
-    EmailAddress: string;
-    Password: string;
-    ConfirmPassword: string;
-    Category: string;
-    GSTNumber: number;
-    Address: string;
-    ApartmentUnitOffice: string;
-    CountryId: number;
-    StateId: number;
-    CityId: number;
-    ZipCode: number;
+    firstName: string;
+    lastName: string;
+    phoneNumber: number;
+    emailAddress: string;
+    password: string;
+    confirmPassword: string;
+    categoryName: string;
+    gstNumber: number;
+    address: string;
+    apartmentUnitOffice: string;
+    countryId: number;
+    stateId: number;
+    cityId: number;
+    zipCode: number;
 }
 export class CategoryResponseModel{
     id: number;
@@ -25,14 +25,14 @@ export class CountryResponseModel{
     countryName: string;
 }
 export class StateRequestModel{
-    CountryId: number;
+    countryId: number;
 }
 export class StateResponseModel{
     id: number;
     stateName: string;
 }
 export class CityRequestModel{
-    StateId: number;
+    stateId: number;
 }
 export class CityResponseModel{
     id: number;

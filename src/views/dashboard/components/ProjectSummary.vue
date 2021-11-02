@@ -116,7 +116,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class ProjectSummary extends Vue {
   @Prop() response: DashboardModel;
-  dialog: boolean = true;
+  public dialog: boolean = true;
 
   public close() {
     this.$emit("closeModel");

@@ -195,14 +195,41 @@
                   <h4>Confirmed Project</h4>
                 </v-col>
               </v-row>
-              <v-row v-else-if="row.status === 'Rejected'&& category === 'Company'" class="mx-1 my-3">
-                <span class="text-subtitle-1 font-weight-bold">Rejected Projects</span>
-                <v-icon large color="green darken-4" class="ml-4">
-                  mdi-filter
-                </v-icon>
-                <v-icon large color="green darken-4" class="ml-2">
-                  mdi-sort-ascending
-                </v-icon>
+              <v-row
+                v-else-if="row.status === 'Rejected' && category === 'Company'"
+                class="mx-1 my-3"
+              >
+                <v-col col="12" md="2">
+                  <span class="text-subtitle-1 font-weight-bold">
+                    Rejected Projects
+                  </span>
+                </v-col>
+                <v-col col="12" md="1">
+                  <v-menu offset-y>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        large
+                        color="green darken-4"
+                        class="ml-4"
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        mdi-filter
+                      </v-icon>
+                    </template>
+                    <v-list>
+                      <v-list-item> Price </v-list-item>
+                      <v-list-item> Credit Period </v-list-item>
+                      <v-list-item> Delivery Period </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
+                <v-col col="12" md="1">
+                  <v-icon large color="green darken-4" class="ml-2">
+                    mdi-sort-ascending
+                  </v-icon>
+                </v-col>
+                <v-col col="12" md="7"></v-col>
               </v-row>
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
@@ -490,7 +517,7 @@ import ProjectSummary from "./components/ProjectSummary.vue";
     Review,
     ProjectSummary,
     BidProject,
-    RejectProject,    
+    RejectProject,
   },
 })
 export default class ProjectsList extends Vue {
@@ -508,6 +535,7 @@ export default class ProjectsList extends Vue {
   public toggleReview: boolean = false;
   public toggleNoShow: boolean = false;
   public toggleSummaryView: boolean = false;
+  public showText:boolean=false;  
   public snackbarText: string = "";
   public snackbar: boolean = false;
 

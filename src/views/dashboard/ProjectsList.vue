@@ -96,7 +96,7 @@
             @click="toggleCancel = 'true'"
             v-if="
               category != 'Company' &&
-              response.bidList[0].status === 'Initiated'
+                response.bidList[0].status === 'Initiated'
             "
           >
             Cancel
@@ -199,13 +199,13 @@
                 v-else-if="row.status === 'Rejected' && category === 'Company'"
                 class="mx-1 my-3"
               >
-                <v-col col="12" md="2">
+                <v-col col="12" md="4">
                   <span class="text-subtitle-1 font-weight-bold">
                     Rejected Projects
                   </span>
                 </v-col>
-                <v-col col="12" md="1">
-                  <v-menu offset-y>
+                <v-col col="12" md="2">
+                  <v-select offset-y  @change="FilterRejectedBids" :items="items" v-model="filterRequest">
                     <template v-slot:activator="{ on, attrs }">
                       <v-icon
                         large
@@ -213,23 +213,24 @@
                         class="ml-4"
                         v-bind="attrs"
                         v-on="on"
+                       
                       >
                         mdi-filter
                       </v-icon>
                     </template>
-                    <v-list>
+                    <!-- <v-list>
                       <v-list-item> Price </v-list-item>
                       <v-list-item> Credit Period </v-list-item>
                       <v-list-item> Delivery Period </v-list-item>
-                    </v-list>
-                  </v-menu>
+                    </v-list> -->
+                  </v-select>
                 </v-col>
                 <v-col col="12" md="1">
                   <v-icon large color="green darken-4" class="ml-2">
                     mdi-sort-ascending
                   </v-icon>
                 </v-col>
-                <v-col col="12" md="7"></v-col>
+                <!-- <v-col col="12" md=""></v-col> -->
               </v-row>
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
@@ -296,7 +297,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -313,7 +314,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -329,7 +330,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -377,7 +378,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                row.status === 'Rejected'
+                                  row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -418,7 +419,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                row.status === 'Rejected'
+                                  row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -503,6 +504,8 @@ import {
   DashboardModel,
   DashboardRequestModel,
   GetCompanyModel,
+  FilterRequestModel,
+  FilterModel
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
@@ -529,13 +532,15 @@ export default class ProjectsList extends Vue {
   public companyresponse = new GetCompanyModel();
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
+  public filterRequest = new FilterRequestModel();
+  public filterResponse = new FilterModel();
 
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
   public toggleReview: boolean = false;
   public toggleNoShow: boolean = false;
   public toggleSummaryView: boolean = false;
-  public showText:boolean=false;  
+  public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
 
@@ -554,6 +559,14 @@ export default class ProjectsList extends Vue {
       this.GetCompany(this.SelectedProject.CompanyId);
     }
   }
+
+  public FilterRejectedBids() {
+    // this.filterRequest.projectId = this.response.Id;
+    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+      (response) => { this.filterResponse = response; }
+    );
+  }
+
   public GetCompany(CompanyId: string) {
     this.DashboardService.GetCompany(CompanyId).then((response) => {
       this.companyresponse = response;
@@ -618,6 +631,12 @@ export default class ProjectsList extends Vue {
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",
+  ];
+
+  items: any = [
+    "Price",
+    "Credit Period",
+    "Delivery Period"
   ];
 }
 </script>

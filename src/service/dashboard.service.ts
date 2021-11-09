@@ -1,5 +1,5 @@
 import { IBaseService, BaseService } from './base.service';
-import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel, ReviewRequestModel } from '@/model';
+import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel, ReviewRequestModel, FilterRequestModel, FilterModel } from '@/model';
 
 export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
@@ -11,9 +11,10 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetCompany(companyId: string): Promise<any>;
     ApproveBid(request: ApproveRequestModel): Promise<any>;
     Review(request: ReviewRequestModel): Promise<any>;
+    FilterRejectedBids(request: FilterRequestModel): Promise<FilterModel>;
 
 }
-export class DashboardService extends BaseService<any, DashboardModel> implements IDashboardService {
+export class DashboardService extends BaseService<any, any> implements IDashboardService {
 
     constructor() {
         super('dashboard');
@@ -75,6 +76,13 @@ export class DashboardService extends BaseService<any, DashboardModel> implement
     public Review(request: ReviewRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/profile"
         return this.httpPost('Review', request).then(response => {
+            return response.data;
+        });
+    }
+
+    public  FilterRejectedBids(request: FilterRequestModel): Promise<FilterModel> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard"
+        return this.httpPost('FilterRejectedBids', request).then(response => {
             return response.data;
         });
     }

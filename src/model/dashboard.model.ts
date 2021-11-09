@@ -29,6 +29,7 @@ export class DashboardModel {
     noOfKg: number;
 
 }
+
 export class BitReceivedModel {
     id: string;
     requestPrice: number;
@@ -73,4 +74,27 @@ export class ApproveRequestModel {
 export class ReviewRequestModel {
     ReviewRating: string = "";
     Comments: string = " No";
+}
+
+export class FilterRequestModel {
+    projectId: string;
+    price?: number = null;
+    deliveryPeriod?: number;
+    creditPeriod?: number;
+}
+
+export class FilterModel {
+    companyId: string;
+    bidStatus: number;
+    deliveryPeriod: number;
+    submittedDate: string;
+    message: string;
+    price: number;
+    creditPeriod: number;
+    creatorId: string;
+    approvedBy: string;
+    approvedDate: string;
+    id: string;
+    createdDate: string;
+    updatedDate: string
 }

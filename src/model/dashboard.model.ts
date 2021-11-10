@@ -78,7 +78,7 @@ export class ReviewRequestModel {
 
 export class FilterRequestModel {
     projectId: string;
-    price?: number = null;
+    price?: number;
     deliveryPeriod?: number;
     creditPeriod?: number;
 }

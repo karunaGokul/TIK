@@ -205,19 +205,24 @@
                   </span>
                 </v-col>
                 <v-col col="12" md="2">
-                  <v-select offset-y  @change="FilterRejectedBids" :items="items" v-model="filterRequest">
-                    <template v-slot:activator="{ on, attrs }">
+                  <v-select 
+                    offset-y  
+                    @change="FilterRejectedBids" 
+                    :items="items" 
+                    v-model="filterRequest.projectId"
+                    color="green darken-4"
+                    prepend-inner-icon="mdi-filter" >
+                    <!-- <template v-slot:activator="{ on, attrs }"> -->
                       <v-icon
                         large
                         color="green darken-4"
                         class="ml-4"
                         v-bind="attrs"
                         v-on="on"
-                       
                       >
                         mdi-filter
                       </v-icon>
-                    </template>
+                    <!-- </template> -->
                     <!-- <v-list>
                       <v-list-item> Price </v-list-item>
                       <v-list-item> Credit Period </v-list-item>
@@ -561,7 +566,7 @@ export default class ProjectsList extends Vue {
   }
 
   public FilterRejectedBids() {
-    // this.filterRequest.projectId = this.response.Id;
+    this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => { this.filterResponse = response; }
     );

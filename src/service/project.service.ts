@@ -1,40 +1,48 @@
-import { IBaseService, BaseService } from './base.service';
-import { ProjectFormModel, ProjectRequestModel } from '@/model';
+import { IBaseService, BaseService } from "./base.service";
+import { ProjectFormModel, ProjectRequestModel } from "@/model";
 
-export interface IProjectService extends IBaseService<ProjectRequestModel, ProjectFormModel> {
-    newProject(categoryName: string, projectName: string): Promise<ProjectFormModel>;
+export interface IProjectService
+  extends IBaseService<ProjectRequestModel, ProjectFormModel> {
+  newProject(
+    categoryName: string,
+    projectName: string
+  ): Promise<ProjectFormModel>;
 
-    createProject(request: any): Promise<any>;
-    searchProject(request: any): Promise<any>;
+  createProject(request: any): Promise<any>;
+  searchProject(request: any): Promise<any>;
 }
-export class ProjectService extends BaseService<ProjectRequestModel, ProjectFormModel> implements IProjectService {
+export class ProjectService
+  extends BaseService<ProjectRequestModel, ProjectFormModel>
+  implements IProjectService {
+  constructor() {
+    super("public");
+  }
 
-    constructor() {
-        super('public');
-    }
+  searchProject(request: any): Promise<any> {
+    this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+    return this.httpPost("SearchProject", request).then((response) => {
+      return response.data;
+    });
+  }
 
-    searchProject(request: any): Promise<any> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpPost('SearchProject', request).then(response => {
-            return response.data;
-        });
-    }
+  createProject(request: any): Promise<any> {
+    this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+    return this.httpPost("CreateProject", request).then((response) => {
+      return response.data;
+    });
+  }
 
-    createProject(request: any): Promise<any> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpPost('CreateProject', request).then(response => {
-            return response.data;
-        });
-    }
+  public newProject(
+    categoryName: string,
+    projectName: string
+  ): Promise<ProjectFormModel> {
+    this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
+    // return this.httpGet('newproject', request).then(response => {
+    //     return response.data;
+    // });
 
-    public newProject(categoryName: string, projectName: string): Promise<ProjectFormModel> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard"
-        // return this.httpGet('newproject', request).then(response => {
-        //     return response.data;
-        // });
-
-        return new Promise((resolve, reject) => {
-            const json = `{
+    return new Promise((resolve, reject) => {
+      const json = `{
                 "category": "Mills",
                 "maxSteps": 6,
                 "steps": [
@@ -1973,7 +1981,7 @@ export class ProjectService extends BaseService<ProjectRequestModel, ProjectForm
                 ]
             }`;
 
-            resolve(JSON.parse(json));
-        });
-    }
+      resolve(JSON.parse(json));
+    });
+  }
 }

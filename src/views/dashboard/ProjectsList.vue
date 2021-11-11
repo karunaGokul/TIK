@@ -205,14 +205,58 @@
                   </span>
                 </v-col>
                 <v-col col="12" md="2">
-                  <v-select 
+                  <v-dialog v-model="dialog" width="500">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-icon
+                        large
+                        color="green darken-4"
+                        v-bind="attrs"
+                        v-on="on"
+                        >mdi-filter</v-icon
+                      >
+                    </template>
+
+                    <v-card elevation="2">
+                      <v-card-title>Filter</v-card-title>
+                       
+                        <v-select
+                          offset-y
+                          outlined
+                          dense
+                          label="Select Filter"
+                          :items="items"
+                          class="mx-5"
+                          v-model="selectValue"
+                          @change="filterValue = true"
+                        >
+                        </v-select>
+                      <v-card-actions>
+                        <v-text-field
+                          v-if="filterValue"
+                          label="Enter a value"
+                          dense
+                          outlined
+                          class="ml-1 mr-5"
+                          v-model="value"
+                        ></v-text-field>
+
+                        <v-btn
+                          color="primary"
+                          class="mt-n6 rounded-0"
+                          @click="FilterRejectedBids"
+                          >filter</v-btn
+                        >
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                  <!-- <v-select 
                     offset-y  
                     @change="FilterRejectedBids" 
                     :items="items" 
                     v-model="filterRequest.projectId"
                     color="green darken-4"
                     prepend-inner-icon="mdi-filter" >
-                    <!-- <template v-slot:activator="{ on, attrs }"> -->
+                    <template v-slot:activator="{ on, attrs }">
                       <v-icon
                         large
                         color="green darken-4"
@@ -222,13 +266,13 @@
                       >
                         mdi-filter
                       </v-icon>
-                    <!-- </template> -->
-                    <!-- <v-list>
+                    </template>
+                    <v-list>
                       <v-list-item> Price </v-list-item>
                       <v-list-item> Credit Period </v-list-item>
                       <v-list-item> Delivery Period </v-list-item>
-                    </v-list> -->
-                  </v-select>
+                    </v-list>
+                  </v-select> -->
                 </v-col>
                 <v-col col="12" md="1">
                   <v-icon large color="green darken-4" class="ml-2">
@@ -510,7 +554,7 @@ import {
   DashboardRequestModel,
   GetCompanyModel,
   FilterRequestModel,
-  FilterModel
+  FilterModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
@@ -548,7 +592,10 @@ export default class ProjectsList extends Vue {
   public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
-
+  public dialog: boolean = false;
+  public filterValue: boolean = false;
+  selectValue:string = "";
+  value: number;
   created() {
     this.GetProjectEnquiry();
     if (this.category != "Company") {
@@ -565,10 +612,23 @@ export default class ProjectsList extends Vue {
     }
   }
 
+
   public FilterRejectedBids() {
+
+    if(this.selectValue === "Price") { 
+        this.filterRequest.price = this.value; 
+    } else if(this.selectValue === "Credit Period") {
+        this.filterRequest.creditPeriod = this.value
+    } else {
+        this.filterRequest.deliveryPeriod = this.value
+    } 
+
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      (response) => { this.filterResponse = response; }
+      (response) => {
+        this.filterResponse = response;
+        this.dialog = false;
+      }
     );
   }
 
@@ -638,10 +698,6 @@ export default class ProjectsList extends Vue {
     "Requested Delivery",
   ];
 
-  items: any = [
-    "Price",
-    "Credit Period",
-    "Delivery Period"
-  ];
+  items: any = ["Price", "Credit Period", "Delivery Period"];
 }
 </script>

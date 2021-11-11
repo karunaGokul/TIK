@@ -2,47 +2,47 @@ import { IBaseService, BaseService } from "./base.service";
 import { ProjectFormModel, ProjectRequestModel } from "@/model";
 
 export interface IProjectService
-  extends IBaseService<ProjectRequestModel, ProjectFormModel> {
-  newProject(
-    categoryName: string,
-    projectName: string
-  ): Promise<ProjectFormModel>;
+    extends IBaseService<ProjectRequestModel, ProjectFormModel> {
+    newProject(
+        categoryName: string,
+        projectName: string
+    ): Promise<ProjectFormModel>;
 
-  createProject(request: any): Promise<any>;
-  searchProject(request: any): Promise<any>;
+    createProject(request: any): Promise<any>;
+    searchProject(request: any): Promise<any>;
 }
 export class ProjectService
-  extends BaseService<ProjectRequestModel, ProjectFormModel>
-  implements IProjectService {
-  constructor() {
-    super("public");
-  }
+    extends BaseService<ProjectRequestModel, ProjectFormModel>
+    implements IProjectService {
+    constructor() {
+        super("public");
+    }
 
-  searchProject(request: any): Promise<any> {
-    this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-    return this.httpPost("SearchProject", request).then((response) => {
-      return response.data;
-    });
-  }
+    searchProject(request: any): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+        return this.httpPost("SearchProject", request).then((response) => {
+            return response.data;
+        });
+    }
 
-  createProject(request: any): Promise<any> {
-    this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-    return this.httpPost("CreateProject", request).then((response) => {
-      return response.data;
-    });
-  }
+    createProject(request: any): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+        return this.httpPost("CreateProject", request).then((response) => {
+            return response.data;
+        });
+    }
 
-  public newProject(
-    categoryName: string,
-    projectName: string
-  ): Promise<ProjectFormModel> {
-    this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
-    // return this.httpGet('newproject', request).then(response => {
-    //     return response.data;
-    // });
+    public newProject(
+        categoryName: string,
+        projectName: string
+    ): Promise<ProjectFormModel> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
+        // return this.httpGet('newproject', request).then(response => {
+        //     return response.data;
+        // });
 
-    return new Promise((resolve, reject) => {
-      const json = `{
+        return new Promise((resolve, reject) => {
+            const json = `{
                 "category": "Mills",
                 "maxSteps": 6,
                 "steps": [
@@ -117,11 +117,7 @@ export class ProjectService
                     {
                         "title": "Choose Yarn Content",
                         "path": [
-                            "opYarn-opRegular",
-                            "opYarn-opSpecial",
-                            "opYarn-opDyed",
-                            "opYarn-opMelangeSlub-opMelange",
-                            "opYarn-opMelangeSlub-opSlub"
+                            "opYarn-opRegular"
                         ],
                         "controls": [
                             {
@@ -131,6 +127,126 @@ export class ProjectService
                                 "selector": true,
                                 "data_path": "",
                                 "data_id": "mil.Yarn.RegularYarn.AVGCreditTime",
+                                "options": [
+                                    {
+                                        "id": "opSingle",
+                                        "label": "A",
+                                        "text": "Single",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opBlend",
+                                        "label": "B",
+                                        "text": "Blends",
+                                        "selected": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Yarn Content",
+                        "path": [
+                            "opYarn-opSpecial"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnContenttype",
+                                "label": "Yarn Content",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "data_path": "",
+                                "data_id": "mil.Yarn.SpecialYarn.AVGCreditTime",
+                                "options": [
+                                    {
+                                        "id": "opSingle",
+                                        "label": "A",
+                                        "text": "Single",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opBlend",
+                                        "label": "B",
+                                        "text": "Blends",
+                                        "selected": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Yarn Content",
+                        "path": [
+                            "opYarn-opDyed"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnContenttype",
+                                "label": "Yarn Content",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "data_path": "",
+                                "data_id": "mil.Yarn.DyedYarn.AVGCreditTime",
+                                "options": [
+                                    {
+                                        "id": "opSingle",
+                                        "label": "A",
+                                        "text": "Single",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opBlend",
+                                        "label": "B",
+                                        "text": "Blends",
+                                        "selected": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Yarn Content",
+                        "path": [
+                            "opYarn-opMelangeSlub-opMelange"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnContenttype",
+                                "label": "Yarn Content",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "data_path": "",
+                                "data_id": "mil.Yarn.MelangeSlubYarn.Melange.AVGCreditTime",
+                                "options": [
+                                    {
+                                        "id": "opSingle",
+                                        "label": "A",
+                                        "text": "Single",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opBlend",
+                                        "label": "B",
+                                        "text": "Blends",
+                                        "selected": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Choose Yarn Content",
+                        "path": [
+                            "opYarn-opMelangeSlub-opSlub"
+                        ],
+                        "controls": [
+                            {
+                                "id": "btnContenttype",
+                                "label": "Yarn Content",
+                                "type": "toggle-button",
+                                "selector": true,
+                                "data_path": "",
+                                "data_id": "mil.Yarn.MelangeSlubYarn.Slub.AVGCreditTime",
                                 "options": [
                                     {
                                         "id": "opSingle",
@@ -220,7 +336,7 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleContents",
+                                "data_path": "mil.Yarn.SpecialYarn.SingleContents",
                                 "data_id": "Content.Name",
                                 "options": [
                                     {
@@ -250,7 +366,7 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "toggle-button",
                                 "selector": true,
-                                "data_path": "mil.Yarn.RegularYarn.SingleContents",
+                                "data_path": "mil.Yarn.SpecialYarn.SingleContents",
                                 "options": [
                                     {
                                         "id": "opSpun",
@@ -281,7 +397,7 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleContents",
+                                "data_path": "mil.Yarn.DyedYarn.SingleContents",
                                 "data_id": "Content.Name",
                                 "options": [
                                     {
@@ -311,7 +427,7 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "toggle-button",
                                 "selector": true,
-                                "data_path": "mil.Yarn.RegularYarn.SingleContents",
+                                "data_path": "mil.Yarn.DyedYarn.SingleContents",
                                 "options": [
                                     {
                                         "id": "opSpun",
@@ -342,6 +458,8 @@ export class ProjectService
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path":"mil.Yarn.SpecialYarn.SingleSpecialDyedTypes",
+                                "data_id":"Name",
                                 "options": [
                                     {
                                         "id": "opSpecialYarnType_Compact",
@@ -394,6 +512,8 @@ export class ProjectService
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path":"mil.Yarn.SpecialYarn.SingleSpecialDyedTypes",
+                                "data_id":"Name",
                                 "options": [
                                     {
                                         "id": "opSpecialYarnType_Compact",
@@ -446,6 +566,8 @@ export class ProjectService
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path":"mil.Yarn.DyedYarn.SingleSpecialDyedTypes",
+                                "data_id":"Name",
                                 "options": [
                                     {
                                         "id": "opSpecialYarnType_Compact",
@@ -498,6 +620,8 @@ export class ProjectService
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path":"mil.Yarn.DyedYarn.SingleSpecialDyedTypes",
+                                "data_id":"Name",
                                 "options": [
                                     {
                                         "id": "opSpecialYarnType_Compact",
@@ -607,7 +731,7 @@ export class ProjectService
                                 "label": "Spun Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleQualities",
+                                "data_path": "mil.Yarn.SpecialYarn.SingleQualities",
                                 "data_id": "Name",
                                 "options": [
                                     {
@@ -664,7 +788,7 @@ export class ProjectService
                                 "label": "Spun Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleQualities",
+                                "data_path": "mil.Yarn.DyedYarn.SingleQualities",
                                 "data_id": "Name",
                                 "options": [
                                     {
@@ -704,7 +828,7 @@ export class ProjectService
                                 "label": "Spun Count",
                                 "type": "textbox",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.Counts",
+                                "data_path": "mil.Yarn.DyedYarn.Counts",
                                 "data_id": "",
                                 "label": "Enter Your Count"
                             }
@@ -778,7 +902,7 @@ export class ProjectService
                                 "label": "Filament Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleQualities",
+                                "data_path": "mil.Yarn.SpecialYarn.SingleQualities",
                                 "data_id": "Name",
                                 "options": [
                                     {
@@ -816,7 +940,7 @@ export class ProjectService
                             {
                                 "id": "txtFilamentDenier",
                                 "label": "Filament Denier",
-                                "data_path": "mil.Yarn.RegularYarn.Deniers",
+                                "data_path": "mil.Yarn.SpecialYarn.Deniers",
                                 "data_id": "",
                                 "type": "textbox",
                                 "selector": false,
@@ -835,7 +959,7 @@ export class ProjectService
                                 "label": "Filament Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.SingleQualities",
+                                "data_path": "mil.Yarn.DyedYarn.SingleQualities",
                                 "data_id": "Name",
                                 "options": [
                                     {
@@ -873,7 +997,7 @@ export class ProjectService
                             {
                                 "id": "txtFilamentDenier",
                                 "label": "Filament Denier",
-                                "data_path": "mil.Yarn.RegularYarn.Deniers",
+                                "data_path": "mil.Yarn.DyedYarn.Deniers",
                                 "data_id": "",
                                 "type": "textbox",
                                 "selector": false,
@@ -966,7 +1090,7 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "mil.Yarn.RegularYarn.BlendContents",
+                                "data_path": "mil.Yarn.SpecialYarn.BlendContents",
                                 "data_id": "Content.Name",
                                 "options": [
                                     {
@@ -1011,7 +1135,7 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "text-group",
                                 "label": "Enter Your Required Blend Combination",
-                                "data_path": "mil.Yarn.RegularYarn.BlendContents",
+                                "data_path": "mil.Yarn.SpecialYarn.BlendContents",
                                 "data_id": "Combos",
                                 "selector": false,
                                 "items": [
@@ -1040,7 +1164,7 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "mil.Yarn.RegularYarn.BlendContents",
+                                "data_path": "mil.Yarn.DyedYarn.BlendContents",
                                 "data_id": "Content.Name",
                                 "options": [
                                     {
@@ -1085,7 +1209,7 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "text-group",
                                 "label": "Enter Your Required Blend Combination",
-                                "data_path": "mil.Yarn.RegularYarn.BlendContents",
+                                "data_path": "mil.Yarn.DyedYarn.BlendContents",
                                 "data_id": "Combos",
                                 "selector": false,
                                 "items": [
@@ -1113,6 +1237,8 @@ export class ProjectService
                                 "id": "drpSpecialYarnType",
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
+                                "data_path": "mil.Yarn.SpecialYarn.BlendSpecialDyedTypes",
+                                "data_id": "Name",
                                 "selector": true,
                                 "options": [
                                     {
@@ -1148,6 +1274,8 @@ export class ProjectService
                                 "label": "Special Yarn Type",
                                 "type": "toggle-button",
                                 "selector": true,
+                                "data_path": "mil.Yarn.DyedYarn.BlendSpecialDyedTypes",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opSpecialYarnType_Compact",
@@ -1239,8 +1367,8 @@ export class ProjectService
                                 "label": "Blend Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.BlendQualities",
-                                "data_id": "Quality",
+                                "data_path": "mil.Yarn.SpecialYarn.BlendQualities",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opBlendQuality_SuperCombed",
@@ -1296,8 +1424,8 @@ export class ProjectService
                                 "label": "Blend Quality",
                                 "type": "toggle-button",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.BlendQualities",
-                                "data_id": "Quality",
+                                "data_path": "mil.Yarn.DyedYarn.BlendQualities",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opBlendQuality_SuperCombed",
@@ -1336,7 +1464,7 @@ export class ProjectService
                                 "label": "Blend Count",
                                 "type": "textbox",
                                 "selector": false,
-                                "data_path": "mil.Yarn.RegularYarn.Counts",
+                                "data_path": "mil.Yarn.DyedYarn.Counts",
                                 "data_id": "",
                                 "label": "Enter Your Count"
                             }
@@ -1354,7 +1482,7 @@ export class ProjectService
                                 "type": "toggle-button",
                                 "selector": true,
                                 "data_path": "",
-                                "data_id": " ",
+                                "data_id": "",
                                 "options": [
                                     {
                                         "id": "opMelange",
@@ -1383,8 +1511,8 @@ export class ProjectService
                                 "label": "Single Colour",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.SingleContents",
+                                "data_id": "MelanSlubType.Name",
                                 "options": [
                                     {
                                         "id": "opSingleColour_1",
@@ -1423,8 +1551,8 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.SingleContents",
+                                "data_id": "Content.Name",
                                 "options": [
                                     {
                                         "id": "opSingleContent_1",
@@ -1461,8 +1589,8 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.BlendContents",
+                                "data_id": "Content.Name",
                                 "options": [
                                     {
                                         "id": "opBlendContent_1",
@@ -1506,8 +1634,8 @@ export class ProjectService
                                 "label": "Blend Colour",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.BlendContents",
+                                "data_id": "MelanSlubType.Name",
                                 "options": [
                                     {
                                         "id": "opBlendColour_1",
@@ -1546,8 +1674,8 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "text-group",
                                 "label": "Enter Your Required Blend Combination",
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.BlendContents",
+                                "data_id": "Combos",
                                 "selector": false,
                                 "items": [
                                     {
@@ -1574,9 +1702,9 @@ export class ProjectService
                                 "id": "btnMelangeType",
                                 "label": "Melange Type",
                                 "type": "toggle-button",
-                                "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "selector": false,
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.MelanSlubTypes",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opMelangeType_LtGreyMel",
@@ -1621,7 +1749,7 @@ export class ProjectService
                                 "label": "Melange Count",
                                 "type": "textbox",
                                 "selector": false,
-                                "data_path": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.Counts",
                                 "data_id": "",
                                 "label": "Enter Your Count"
                             }
@@ -1637,9 +1765,9 @@ export class ProjectService
                                 "id": "btnMelangeType",
                                 "label": "Melange Type",
                                 "type": "toggle-button",
-                                "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "selector": false,
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.MelanSlubTypes",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opMelangeType_LtGreyMel",
@@ -1684,7 +1812,7 @@ export class ProjectService
                                 "label": "Melange Count",
                                 "type": "textbox",
                                 "selector": false,
-                                "data_path": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Melange.Counts",
                                 "data_id": "",
                                 "label": "Enter Your Count"
                             }
@@ -1701,8 +1829,8 @@ export class ProjectService
                                 "label": "Single Content",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.SingleContents",
+                                "data_id": "Content.Name",
                                 "options": [
                                     {
                                         "id": "opSingleContent_1",
@@ -1731,8 +1859,8 @@ export class ProjectService
                                 "label": "Single Type",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.MelanSlubTypes",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opSingleType_1",
@@ -1764,8 +1892,8 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "dropdown",
                                 "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.BlendContents",
+                                "data_id": "Content.Name",
                                 "options": [
                                     {
                                         "id": "opBlendContent_1",
@@ -1809,8 +1937,8 @@ export class ProjectService
                                 "label": "Blend Type",
                                 "type": "dropdown",
                                 "selector": false,
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.SortSlubType",
+                                "data_id": "Name",
                                 "options": [
                                     {
                                         "id": "opBlendType_1",
@@ -1834,8 +1962,8 @@ export class ProjectService
                                 "label": "Blend Content",
                                 "type": "text-group",
                                 "label": "Enter Your Required Blend Combination",
-                                "data_path": "",
-                                "data_id": "",
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.BlendContents",
+                                "data_id": "Combos",
                                 "selector": false,
                                 "items": [
                                     {
@@ -1862,44 +1990,26 @@ export class ProjectService
                                 "id": "btnMelangeType",
                                 "label": "Melange Type",
                                 "type": "toggle-button",
-                                "selector": true,
-                                "data_path": "",
-                                "data_id": "",
+                                "selector": false,
+                                "data_path": "mil.Yarn.MelangeSlubYarn.Slub.SingleContents",
+                                "data_id": "MelanSlubType.Name",
                                 "options": [
                                     {
-                                        "id": "opMelangeType_LtGreyMel",
+                                        "id": "opMelangeType_SortSlub",
                                         "label": "A",
-                                        "text": "LT Grey MEL",
+                                        "text": "SORT SLUB",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opMelangeType_GreyMel",
+                                        "id": "opMelangeType_MediumSlub",
                                         "label": "B",
-                                        "text": "Grey MEL",
+                                        "text": "MEDIUM SLUB",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opMelangeType_AndhraMel",
+                                        "id": "opMelangeType_LongSlub",
                                         "label": "C",
-                                        "text": "Andhra MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_CharGoalMel",
-                                        "label": "D",
-                                        "text": "Char Goal MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_OatMealMel",
-                                        "label": "E",
-                                        "text": "OAT Meal MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_EcruMel",
-                                        "label": "E",
-                                        "text": "ECRU MEL",
+                                        "text": "LONG SLUB",
                                         "selected": false
                                     }
                                 ]
@@ -1925,44 +2035,26 @@ export class ProjectService
                                 "id": "btnMelangeType",
                                 "label": "Melange Type",
                                 "type": "toggle-button",
-                                "selector": true,
+                                "selector": false,
                                 "data_path": "",
                                 "data_id": "",
                                 "options": [
                                     {
-                                        "id": "opMelangeType_LtGreyMel",
+                                        "id": "opMelangeType_SortSlub",
                                         "label": "A",
-                                        "text": "LT Grey MEL",
+                                        "text": "SORT SLUB",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opMelangeType_GreyMel",
+                                        "id": "opMelangeType_MediumSlub",
                                         "label": "B",
-                                        "text": "Grey MEL",
+                                        "text": "MEDIUM SLUB",
                                         "selected": false
                                     },
                                     {
-                                        "id": "opMelangeType_AndhraMel",
+                                        "id": "opMelangeType_LongSlub",
                                         "label": "C",
-                                        "text": "Andhra MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_CharGoalMel",
-                                        "label": "D",
-                                        "text": "Char Goal MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_OatMealMel",
-                                        "label": "E",
-                                        "text": "OAT Meal MEL",
-                                        "selected": false
-                                    },
-                                    {
-                                        "id": "opMelangeType_EcruMel",
-                                        "label": "E",
-                                        "text": "ECRU MEL",
+                                        "text": "LONG SLUB",
                                         "selected": false
                                     }
                                 ]
@@ -3411,7 +3503,7 @@ export class ProjectService
                 ]
             }`;
 
-      resolve(JSON.parse(json));
-    });
-  }
+            resolve(JSON.parse(json));
+        });
+    }
 }

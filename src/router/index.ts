@@ -47,9 +47,9 @@ const routes: Array<RouteConfig> = [
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Index.vue')
-  },  
+  },
   {
-    path: '/projectdetail',
+    path: '/projectdetail/:Id',
     name: 'ProjectDetail',
     props: true,
     component: () => import('../views/dashboard/ProjectsList.vue')
@@ -99,7 +99,7 @@ const routes: Array<RouteConfig> = [
     name: 'ProjectsList',
     component: () => import('../views/dashboard/ProjectsList.vue')
   }
-  
+
 ]
 
 const router = new VueRouter({

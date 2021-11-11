@@ -96,7 +96,7 @@
             @click="toggleCancel = 'true'"
             v-if="
               category != 'Company' &&
-                response.bidList[0].status === 'Initiated'
+              response.bidList[0].status === 'Initiated'
             "
           >
             Cancel
@@ -170,7 +170,7 @@
         </v-col>
       </v-row>
       <div v-if="response.bidList">
-        <v-row v-for="row in response.bidList" :key="row.status">
+        <v-row v-for="(row, index) in response.bidList" :key="row.status">
           <v-row
             class="pa-4 ma-2"
             :class="
@@ -196,7 +196,11 @@
                 </v-col>
               </v-row>
               <v-row
-                v-else-if="row.status === 'Rejected' && category === 'Company'"
+                v-else-if="
+                  row.status === 'Rejected' &&
+                  index === 1 &&
+                  category === 'Company'
+                "
                 class="mx-1 my-3"
               >
                 <v-col col="12" md="4">
@@ -205,23 +209,24 @@
                   </span>
                 </v-col>
                 <v-col col="12" md="2">
-                  <v-select 
-                    offset-y  
-                    @change="FilterRejectedBids" 
-                    :items="items" 
+                  <v-select
+                    offset-y
+                    @change="FilterRejectedBids"
+                    :items="items"
                     v-model="filterRequest.projectId"
                     color="green darken-4"
-                    prepend-inner-icon="mdi-filter" >
+                    prepend-inner-icon="mdi-filter"
+                  >
                     <!-- <template v-slot:activator="{ on, attrs }"> -->
-                      <v-icon
-                        large
-                        color="green darken-4"
-                        class="ml-4"
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        mdi-filter
-                      </v-icon>
+                    <v-icon
+                      large
+                      color="green darken-4"
+                      class="ml-4"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      mdi-filter
+                    </v-icon>
                     <!-- </template> -->
                     <!-- <v-list>
                       <v-list-item> Price </v-list-item>
@@ -302,7 +307,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                                category != 'Company'
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -319,7 +324,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                                category != 'Company'
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -335,7 +340,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                                category != 'Company'
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -361,7 +366,7 @@
                               depressed
                               color="primary"
                               v-if="row.status === 'Approved'"
-                              @click="ApproveBid('Confirmed')"
+                              @click="ApproveBid('Confirmed', row)"
                             >
                               Accept
                             </v-btn>
@@ -383,7 +388,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                  row.status === 'Rejected'
+                                row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -417,14 +422,14 @@
                               depressed
                               color="primary"
                               v-if="row.status === 'PendingApproval'"
-                              @click="ApproveBid('Approved')"
+                              @click="ApproveBid('Approved', row)"
                             >
                               Approve
                             </v-btn>
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                  row.status === 'Rejected'
+                                row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -510,7 +515,8 @@ import {
   DashboardRequestModel,
   GetCompanyModel,
   FilterRequestModel,
-  FilterModel
+  FilterModel,
+  BitReceivedModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
@@ -529,7 +535,6 @@ import ProjectSummary from "./components/ProjectSummary.vue";
   },
 })
 export default class ProjectsList extends Vue {
-  @Prop() SelectedProject: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
   public Rules: any = [(v: any) => !!v || "Enter the Value"];
 
@@ -560,15 +565,15 @@ export default class ProjectsList extends Vue {
         "Your Delivery Period",
         "Status"
       );
-    } else {
-      this.GetCompany(this.SelectedProject.CompanyId);
     }
   }
 
   public FilterRejectedBids() {
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      (response) => { this.filterResponse = response; }
+      (response) => {
+        this.filterResponse = response;
+      }
     );
   }
 
@@ -579,11 +584,13 @@ export default class ProjectsList extends Vue {
   }
 
   public GetProjectEnquiry() {
-    this.request.id = this.SelectedProject.Id;
+    this.request.id = this.$route.params.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
       if (this.category != "Company") {
         this.GetCompany(this.response.bidList[0].companyId);
+      } else {
+        this.GetCompany(this.response.CompanyId);
       }
       this.response.bidList.forEach((b) => {
         this.DashboardService.GetCompany(b.companyId).then((c) => {
@@ -595,8 +602,8 @@ export default class ProjectsList extends Vue {
     });
   }
 
-  public ApproveBid(status: string) {
-    this.approvelRequest.bidId = this.response.bidList[0].id;
+  public ApproveBid(status: string, bid: BitReceivedModel) {
+    this.approvelRequest.bidId = bid.id;
     this.approvelRequest.status = status;
     this.approvelRequest.projectId = this.response.Id;
     this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
@@ -638,10 +645,6 @@ export default class ProjectsList extends Vue {
     "Requested Delivery",
   ];
 
-  items: any = [
-    "Price",
-    "Credit Period",
-    "Delivery Period"
-  ];
+  items: any = ["Price", "Credit Period", "Delivery Period"];
 }
 </script>

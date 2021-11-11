@@ -62,20 +62,20 @@
           </template>
 
           <template v-slot:[`item.action`]="{ item }">
-             <router-link
+            <router-link
               :to="{
                 name: 'ProjectDetail',
-                params: { SelectedProject: item},
+                params: { Id: item.Id },
               }"
               tag="button"
             >
-            <v-btn
-              class="white--text font-weight-light text-capitalize rounded"
-              depressed
-              color="primary"             
-              >View
-            </v-btn>
-             </router-link>
+              <v-btn
+                class="white--text font-weight-light text-capitalize rounded"
+                depressed
+                color="primary"
+                >View
+              </v-btn>
+            </router-link>
           </template>
         </v-data-table>
       </v-card>
@@ -94,7 +94,7 @@
           <v-icon> mdi-close-box</v-icon>
         </v-btn>
       </template>
-    </v-snackbar>    
+    </v-snackbar>
   </div>
 </template>
  
@@ -128,19 +128,19 @@ export default class Dashboard extends Vue {
 
   created() {
     this.getProjectList();
-    if (this.category != "Company")
-     { this.headers.find((o: any) => {
+    if (this.category != "Company") {
+      this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
           o.text = "Approval Admin";
           o.value = "ApprovalAdmin";
         }
       });
-      this.items.push("Submitted Enquirys","cancelled Projects");
-     }
+      this.items.push("Submitted Enquirys", "cancelled Projects");
+    }
   }
   get category(): string {
     return this.$store.getters.category;
-  }  
+  }
   public getProjectList() {
     this.request.id = this.$store.getters.id;
     this.loading = true;
@@ -149,7 +149,7 @@ export default class Dashboard extends Vue {
       this.response = response;
     });
   }
-  
+
   public searchProject() {
     this.searchRequest.stages = this.stages;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
@@ -157,12 +157,12 @@ export default class Dashboard extends Vue {
         this.response = response;
       }
     );
-  } 
+  }
   items: any = [
     "All",
     "New Enquiry",
     "Confirmed Projects",
-    "Completed Projects",   
+    "Completed Projects",
   ];
   headers: any = [
     {

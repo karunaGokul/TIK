@@ -221,8 +221,15 @@
                     </template>
 
                     <v-card elevation="2">
-                      <v-card-title>Filter</v-card-title>
-                       
+                      <v-card-title>Filter
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          icon
+                          @click="dialog=false"
+                        >
+                          <v-icon>mdi-close</v-icon>
+                         </v-btn>
+                        </v-card-title>
                         <v-select
                           offset-y
                           outlined
@@ -248,42 +255,19 @@
                           color="primary"
                           class="mt-n6 rounded-0"
                           @click="FilterRejectedBids"
-                          >filter</v-btn
-                        >
+                          >
+                          filter</v-btn>
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
-                  <!-- <v-select 
-                    offset-y  
-                    @change="FilterRejectedBids" 
-                    :items="items" 
-                    v-model="filterRequest.projectId"
-                    color="green darken-4"
-                    prepend-inner-icon="mdi-filter" >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        large
-                        color="green darken-4"
-                        class="ml-4"
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        mdi-filter
-                      </v-icon>
-                    </template>
-                    <v-list>
-                      <v-list-item> Price </v-list-item>
-                      <v-list-item> Credit Period </v-list-item>
-                      <v-list-item> Delivery Period </v-list-item>
-                    </v-list>
-                  </v-select> -->
                 </v-col>
+
                 <v-col col="12" md="1">
-                  <v-icon large color="green darken-4" class="ml-2">
+                  <v-icon large color="green darken-4" class="">
                     mdi-sort-ascending
                   </v-icon>
                 </v-col>
-                <!-- <v-col col="12" md=""></v-col> -->
+                <v-col col="12" md=""></v-col>
               </v-row>
               <v-row class="ma-1">
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">

@@ -1,14 +1,16 @@
 <template>
   <div>
-    <v-dialog style="overscroll-behavior: auto;" v-model="dialog" width="80%" max-height="auto">
-      <v-card style="overflow: hidden;">
-        <v-row class="my-4 px-4">
-          <v-card-title> Summary </v-card-title>
+    <v-dialog v-model="dialog" width="70%" style="overflow: hidden">
+      <v-card elevation="2" style="overflow: hidden">
+       
+        <v-card-title>
+          Summary
+
           <v-spacer></v-spacer>
           <v-btn @click="close" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
-        </v-row>
+        </v-card-title>
 
         <v-row>
           <v-col>
@@ -30,8 +32,8 @@
                     outlined
                     dense
                     v-model="SummaryItem.value"
-                    background-color="primary"  
-                    class="my-1 mb-n7"                
+                    background-color="primary"
+                    class="my-1 mb-n7"
                   ></v-text-field>
                 </v-col>
               </v-row>

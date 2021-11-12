@@ -3,7 +3,7 @@
      
         <v-card class="px-6" elevation="8">
           <v-card-title>
-            ReView
+            Review
             <v-spacer></v-spacer>
             <v-btn @click="close" icon>
               <v-icon id="close-button">mdi-close</v-icon>

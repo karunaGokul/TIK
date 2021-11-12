@@ -164,7 +164,7 @@
             <v-spacer></v-spacer>
             <v-col cols="3">
               <div>Completed</div>
-              <v-progress-linear v-model="progress" color="#8BBEE7" height="25">
+              <v-progress-linear :value="progress" color="#8BBEE7" height="25">
                 <template v-slot:default="{ value }">
                   <strong>{{ Math.ceil(value) }}%</strong>
                 </template>

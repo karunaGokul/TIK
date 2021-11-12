@@ -83,7 +83,7 @@ export class FilterRequestModel {
     creditPeriod?: number;
 }
 
-export class FilterModel {
+export class FilterResponseModel {
     companyId: string;
     bidStatus: number;
     deliveryPeriod: number;

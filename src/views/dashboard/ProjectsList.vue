@@ -19,16 +19,16 @@
       <v-row>
         <v-col cols="12" sm="2" md="1" class="pt-6">
           <v-img
-            :src="`data:image/png;base64,${companyresponse.logo}`"
+            :src="`data:image/png;base64,${companyResponse.logo}`"
             width="80%"
           ></v-img>
         </v-col>
         <v-col cols="12" sm="1" md="1">
           <v-row class="mt-4 font-weight-regular">
-            {{ companyresponse.companyName }}
+            {{ companyResponse.companyName }}
           </v-row>
           <v-rating
-            v-model="companyresponse.review"
+            v-model="companyResponse.review"
             color="warning"
             dense
             half-increments
@@ -49,27 +49,17 @@
           >
         </v-col>
         <v-col cols="12" sm="2" md="3" v-if="response.InStages === 'Confirmed'">
-          <div v-for="row in response.bidList" :key="row.status">
-            <v-row
-              class="my-5 font-weight-regular"
-              v-if="row.status === 'Confirmed'"
-            >
-            </v-row>
-            <v-row
-              v-if="row.status === 'Confirmed'"
-              class="font-weight-regular text-body-2"
-            >
-              Approve By : {{ row.approvedBy }}</v-row
-            >
-            <v-row
-              v-if="row.status === 'Confirmed'"
-              class="font-weight-regular text-body-2"
-            >
-              Date & Time :{{ row.approvedDate }}
-            </v-row>
+          <div v-for="row in response.bidList" :key="row.status" class="mt-4">
+            <div v-if="row.status === 'Confirmed'">
+              <v-row class="font-weight-regular text-body-2">
+                Approve By : {{ row.approvedBy }}</v-row>
+              <v-row class="font-weight-regular text-body-2">
+                Date & Time :{{ row.approvedDate }}
+              </v-row>
+            </div>
           </div>
         </v-col>
-        <v-col v-else cols="12" sm="2" md="3"> </v-col>
+        <!-- <v-col v-else cols="12" sm="2" md="3"> </v-col> -->
         <v-col
           cols="12"
           sm="2"
@@ -96,7 +86,7 @@
             @click="toggleCancel = 'true'"
             v-if="
               category != 'Company' &&
-              response.bidList[0].status === 'Initiated'
+                response.bidList[0].status === 'Initiated'
             "
           >
             Cancel
@@ -198,8 +188,8 @@
               <v-row
                 v-else-if="
                   row.status === 'Rejected' &&
-                  index === 1 &&
-                  category === 'Company'
+                    index === 1 &&
+                    category === 'Company'
                 "
                 class="mx-1 my-3"
               >
@@ -221,26 +211,24 @@
                     </template>
 
                     <v-card elevation="2">
-                      <v-card-title>Filter
+                      <v-card-title
+                        >Filter
                         <v-spacer></v-spacer>
-                        <v-btn
-                          icon
-                          @click="dialog=false"
-                        >
+                        <v-btn icon @click="dialog = false">
                           <v-icon>mdi-close</v-icon>
-                         </v-btn>
-                        </v-card-title>
-                        <v-select
-                          offset-y
-                          outlined
-                          dense
-                          label="Select Filter"
-                          :items="items"
-                          class="mx-5"
-                          v-model="selectValue"
-                          @change="filterValue = true"
-                        >
-                        </v-select>
+                        </v-btn>
+                      </v-card-title>
+                      <v-select
+                        offset-y
+                        outlined
+                        dense
+                        label="Select Filter"
+                        :items="items"
+                        class="mx-5"
+                        v-model="selectValue"
+                        @change="filterValue = true"
+                      >
+                      </v-select>
                       <v-card-actions>
                         <v-text-field
                           v-if="filterValue"
@@ -255,8 +243,9 @@
                           color="primary"
                           class="mt-n6 rounded-0"
                           @click="FilterRejectedBids"
-                          >
-                          filter</v-btn>
+                        >
+                          filter</v-btn
+                        >
                       </v-card-actions>
                     </v-card>
                   </v-dialog>
@@ -334,7 +323,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -351,7 +340,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -367,7 +356,7 @@
                           <td
                             v-if="
                               row.status === 'PendingApproval' &&
-                              category != 'Company'
+                                category != 'Company'
                             "
                           >
                             <v-text-field
@@ -415,7 +404,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                row.status === 'Rejected'
+                                  row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -456,7 +445,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                row.status === 'Rejected'
+                                  row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -546,7 +535,7 @@ import {
   BitReceivedModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
-import { Component, Inject, Prop, Vue } from "vue-property-decorator";
+import { Component, Inject, Vue } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import BidProject from "./components/BidProject.vue";
 import RejectProject from "./components/RejectProject.vue";
@@ -566,7 +555,7 @@ export default class ProjectsList extends Vue {
   public Rules: any = [(v: any) => !!v || "Enter the Value"];
 
   public request = new DashboardRequestModel();
-  public companyresponse = new GetCompanyModel();
+  public companyResponse = new GetCompanyModel();
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
   public filterRequest = new FilterRequestModel();
@@ -580,10 +569,12 @@ export default class ProjectsList extends Vue {
   public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
+
   public dialog: boolean = false;
   public filterValue: boolean = false;
-  selectValue:string = "";
-  value: number;
+  public selectValue: string = "";
+  public value: number;
+
   created() {
     this.GetProjectEnquiry();
     if (this.category != "Company") {
@@ -598,16 +589,14 @@ export default class ProjectsList extends Vue {
     }
   }
 
-
   public FilterRejectedBids() {
-
-    if(this.selectValue === "Price") { 
-        this.filterRequest.price = this.value; 
-    } else if(this.selectValue === "Credit Period") {
-        this.filterRequest.creditPeriod = this.value
+    if (this.selectValue === "Price") {
+      this.filterRequest.price = this.value;
+    } else if (this.selectValue === "Credit Period") {
+      this.filterRequest.creditPeriod = this.value;
     } else {
-        this.filterRequest.deliveryPeriod = this.value
-    } 
+      this.filterRequest.deliveryPeriod = this.value;
+    }
 
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
@@ -620,7 +609,7 @@ export default class ProjectsList extends Vue {
 
   public GetCompany(CompanyId: string) {
     this.DashboardService.GetCompany(CompanyId).then((response) => {
-      this.companyresponse = response;
+      this.companyResponse = response;
     });
   }
 

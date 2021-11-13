@@ -82,3 +82,12 @@ export class FilterRequestModel {
     deliveryPeriod?: number;
     creditPeriod?: number;
 }
+export class BitAuditmodel{
+    projectId: string;
+    selectedBy: string;
+    confirmedBy: string;
+    approveBy: string;
+    selectedDate: string;
+    confirmedDate: string;
+    approveDate: string;
+}

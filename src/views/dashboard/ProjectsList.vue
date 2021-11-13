@@ -37,29 +37,63 @@
             readonly
           ></v-rating>
         </v-col>
-        <v-col cols="12" sm="2" md="3">
+        <v-col cols="12" sm="2" md="2">
           <v-row class="mt-4 font-weight-regular">
             {{ response.EnquiryName }}
           </v-row>
-          <v-row class="font-weight-regular text-body-2">
+          <v-row class="font-weight-regular text-caption">
             Created By : {{ response.CreatedBy }}
           </v-row>
-          <v-row class="font-weight-regular text-body-2">
+          <v-row class="font-weight-regular text-caption">
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
-        <v-col cols="12" sm="2" md="3" v-if="response.InStages === 'Confirmed'">
-          <div v-for="row in response.bidList" :key="row.status" class="mt-4">
-            <div v-if="row.status === 'Confirmed'">
-              <v-row class="font-weight-regular text-body-2">
-                Approve By : {{ row.approvedBy }}</v-row>
-              <v-row class="font-weight-regular text-body-2">
-                Date & Time :{{ row.approvedDate }}
-              </v-row>
-            </div>
-          </div>
+        <v-col
+          cols="12"
+          sm="2"
+          md="2"
+          v-if="bitAuditResponse.approveBy && category === 'Company'"
+        >
+        
+          <v-row class="font-weight-regular mt-8 text-caption"> 
+            Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
+          </v-row>
+          <v-row class="font-weight-regular text-caption">
+            Date & Time :{{ bitAuditResponse.approveDate }}
+          </v-row>
         </v-col>
-        <!-- <v-col v-else cols="12" sm="2" md="3"> </v-col> -->
+        <v-col v-else cols="12" sm="2" md="2"> </v-col>
+        <v-col
+          cols="12"
+          sm="2"
+          md="2"
+          v-if="bitAuditResponse.selectedBy && category === 'Company'"
+        >
+          
+              <v-row class="font-weight-regular mt-8 text-caption">
+                Select By : {{ bitAuditResponse.selectedBy }}</v-row
+              >
+              <v-row class="font-weight-regular text-caption">
+                Date & Time :{{ bitAuditResponse.selectedDate }}
+              </v-row>
+            
+        </v-col>
+        <v-col v-else cols="12" sm="2" md="2"> </v-col>
+        <v-col
+          cols="12"
+          sm="2"
+          md="2"
+          v-if="bitAuditResponse.confirmedBy && category === 'Company'"
+        >
+          
+              <v-row class="font-weight-regular mt-8 text-caption">
+                confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
+              >
+              <v-row class="font-weight-regular text-caption">
+                Date & Time :{{ bitAuditResponse.confirmedDate }}
+              </v-row>
+            
+        </v-col>
         <v-col
           cols="12"
           sm="2"
@@ -77,7 +111,8 @@
             Bid This Project
           </v-btn>
         </v-col>
-        <v-col v-else cols="12" sm="2" md="2"> </v-col>
+        <v-col v-else-if="category != 'Company'" cols="12" sm="2" md="2">
+        </v-col>
         <v-col cols="12" sm="2" md="2" class="mt-2">
           <v-btn
             class="white--text font-weight-light text-capitalize rounded mt-n2"
@@ -86,7 +121,7 @@
             @click="toggleCancel = 'true'"
             v-if="
               category != 'Company' &&
-                response.bidList[0].status === 'Initiated'
+              response.bidList[0].status === 'Initiated'
             "
           >
             Cancel
@@ -188,7 +223,10 @@
 
               <v-row
                 class="ma-1"
-                v-if="(row.status != 'Rejected' && category === 'Company')||category != 'Company'"
+                v-if="
+                  (row.status != 'Rejected' && category === 'Company') ||
+                  category != 'Company'
+                "
               >
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
@@ -253,8 +291,10 @@
                           </td>
                           <td
                             v-if="
-                              (role==='Approval Admin' || role==='MasterAdmin') && row.status === 'Authenticated' &&
-                              category != 'Company' 
+                              (role === 'Approval Admin' ||
+                                role === 'MasterAdmin') &&
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -270,8 +310,10 @@
                           </td>
                           <td
                             v-if="
-                              (role==='Approval Admin' || role==='MasterAdmin') && row.status === 'Authenticated' &&
-                              category != 'Company' 
+                              (role === 'Approval Admin' ||
+                                role === 'MasterAdmin') &&
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -286,8 +328,10 @@
                           </td>
                           <td
                             v-if="
-                              (role==='Approval Admin' || role==='MasterAdmin') && row.status === 'Authenticated' &&
-                              category != 'Company' 
+                              (role === 'Approval Admin' ||
+                                role === 'MasterAdmin') &&
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -312,7 +356,12 @@
                               "
                               depressed
                               color="primary"
-                              v-if="(role==='Merchandiser' || role==='Quote InCharge' || role==='Approval Admin') && row.status === 'Approved'"
+                              v-if="
+                                (role === 'Merchandiser' ||
+                                  role === 'Quote InCharge' ||
+                                  role === 'Approval Admin') &&
+                                row.status === 'Approved'
+                              "
                               @click="ApproveBid('Selected', row)"
                             >
                               Accept
@@ -327,11 +376,14 @@
                               "
                               depressed
                               color="primary"
-                              v-else-if="role==='Approval Admin' && row.status === 'Selected'"
+                              v-else-if="
+                                role === 'Approval Admin' &&
+                                row.status === 'Selected'
+                              "
                               @click="ApproveBid('BidApproved', row)"
                             >
                               Approve
-                            </v-btn>                            
+                            </v-btn>
                             <v-btn
                               class="
                                 white--text
@@ -342,16 +394,20 @@
                               "
                               depressed
                               color="primary"
-                              v-else-if="role==='MasterAdmin' && row.status === 'BidApproved'"
+                              v-else-if="
+                                role === 'MasterAdmin' &&
+                                row.status === 'BidApproved'
+                              "
                               @click="ApproveBid('Confirmed', row)"
                             >
                               Confirm
-                            </v-btn>                            
-                            
+                            </v-btn>
+
                             <span
                               v-else-if="
-                                role==='MasterAdmin' &&
-                                (row.status === 'Approved'|| row.status === 'Selected')
+                                role === 'MasterAdmin' &&
+                                (row.status === 'Approved' ||
+                                  row.status === 'Selected')
                               "
                             >
                               Not Approved By Approval Admin
@@ -374,7 +430,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                  row.status === 'Rejected'
+                                row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -390,19 +446,22 @@
                               "
                               depressed
                               color="primary"
-                              v-if="role==='MasterAdmin' && row.status === 'BidApproved'"
+                              v-if="
+                                role === 'MasterAdmin' &&
+                                row.status === 'BidApproved'
+                              "
                               @click="ApproveBid('Rejected', row)"
                             >
                               Reject
                             </v-btn>
                             <div
-                              v-if="role==='Approval Admin' &&
-                                (row.status === 'Approved')
+                              v-if="
+                                role === 'Approval Admin' &&
+                                row.status === 'Approved'
                               "
                             >
                               Not Approved By Quote Incharge
                             </div>
-                            
                           </td>
                           <td v-else-if="category != 'Company'">
                             <v-btn
@@ -416,7 +475,11 @@
                               "
                               depressed
                               color="primary"
-                              v-if="(role==='Approval Admin' || role==='MasterAdmin') && row.status === 'Authenticated'"
+                              v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated'
+                              "
                             >
                               Save
                             </v-btn>
@@ -430,7 +493,11 @@
                               "
                               depressed
                               color="primary"
-                              v-if="(role==='Approval Admin' || role==='MasterAdmin') && row.status === 'Authenticated'"
+                              v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated'
+                              "
                               @click="ApproveBid('Approved', row)"
                             >
                               Approve
@@ -438,7 +505,8 @@
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                  row.status === 'Rejected'||row.status === 'Authenticated'
+                                row.status === 'Rejected' ||
+                                row.status === 'Authenticated'
                               "
                             >
                               {{ row.status }}
@@ -474,7 +542,6 @@
                                 review
                               </v-btn>
                             </div>
-                            
                           </td>
                         </tr>
                       </tbody>
@@ -485,7 +552,7 @@
             </v-row>
           </v-row>
         </v-row>
-        <RejectedProject :response="response" v-if="category === 'Company'"/>
+        <RejectedProject :response="response" v-if="category === 'Company'" />
       </div>
 
       <RejectProject
@@ -526,6 +593,7 @@ import {
   DashboardRequestModel,
   GetCompanyModel,
   BitReceivedModel,
+  BitAuditmodel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -553,6 +621,7 @@ export default class ProjectsList extends Vue {
   public companyResponse = new GetCompanyModel();
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
+  public bitAuditResponse = new BitAuditmodel();
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
   public toggleReview: boolean = false;
@@ -598,9 +667,15 @@ export default class ProjectsList extends Vue {
           b.review = c.review;
         });
       });
+      this.GetBidAudit();
     });
   }
 
+  public GetBidAudit() {
+    this.DashboardService.GetBidAudit(this.response.Id).then((response) => {
+      this.bitAuditResponse = response;
+    });
+  }
   public ApproveBid(status: string, bid: BitReceivedModel) {
     this.approvelRequest.bidId = bid.id;
     this.approvelRequest.status = status;
@@ -627,9 +702,9 @@ export default class ProjectsList extends Vue {
   get category(): string {
     return this.$store.getters.category;
   }
-get role(): string{
-  return this.$store.getters.role;
-}
+  get role(): string {
+    return this.$store.getters.role;
+  }
   ProjectRequestheaders: any = [
     "Project Name",
     "Category",

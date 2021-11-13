@@ -1,6 +1,6 @@
 import { IBaseService, BaseService } from './base.service';
 import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel,
-     ReviewRequestModel, FilterRequestModel, BitReceivedModel } from '@/model';
+     ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel } from '@/model';
 
 export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
@@ -13,6 +13,7 @@ export interface IDashboardService extends IBaseService<any, DashboardModel> {
     ApproveBid(request: ApproveRequestModel): Promise<any>;
     Review(request: ReviewRequestModel): Promise<any>;
     FilterRejectedBids(request: FilterRequestModel): Promise<Array<BitReceivedModel>>;
+    GetBidAudit(projectId:string):Promise<BitAuditmodel>;
 
 }
 export class DashboardService extends BaseService<any, any> implements IDashboardService {
@@ -84,6 +85,13 @@ export class DashboardService extends BaseService<any, any> implements IDashboar
     public  FilterRejectedBids(request: FilterRequestModel): Promise<Array<BitReceivedModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard"
         return this.httpPost('FilterRejectedBids', request).then(response => {
+            return response.data;
+        });
+    }
+
+    public GetBidAudit(projectId:string):Promise<BitAuditmodel>{
+        this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard"
+        return this.httpPost('GetBidAudit?projectId='+projectId, null).then(response => {
             return response.data;
         });
     }

@@ -82,19 +82,3 @@ export class FilterRequestModel {
     deliveryPeriod?: number;
     creditPeriod?: number;
 }
-
-export class FilterResponseModel {
-    companyId: string;
-    bidStatus: number;
-    deliveryPeriod: number;
-    submittedDate: string;
-    message: string;
-    price: number;
-    creditPeriod: number;
-    creatorId: string;
-    approvedBy: string;
-    approvedDate: string;
-    id: string;
-    createdDate: string;
-    updatedDate: string
-}

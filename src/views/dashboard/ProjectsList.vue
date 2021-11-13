@@ -162,13 +162,13 @@
       <div v-if="response.bidList">
         <v-row v-for="row in response.bidList" :key="row.status">
           <v-row
-            class="pa-4 ma-2"
+            class="pa-4 ma-1"
             :class="
               row.status === 'Confirmed' && category === 'Company'
                 ? 'deep-orange'
                 : ''
             "
-            v-if="row.requestPrice != null"
+            v-if="row.status != 'Initiated'"
           >
             <v-row
               :class="
@@ -188,7 +188,7 @@
 
               <v-row
                 class="ma-1"
-                v-if="row.status != 'Rejected' && category === 'Company'"
+                v-if="(row.status != 'Rejected' && category === 'Company')||category != 'Company'"
               >
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
@@ -327,7 +327,7 @@
                               "
                               depressed
                               color="primary"
-                              v-if="role==='Approval Admin' && row.status === 'Selected'"
+                              v-else-if="role==='Approval Admin' && row.status === 'Selected'"
                               @click="ApproveBid('BidApproved', row)"
                             >
                               Approve
@@ -338,34 +338,20 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ml-2
+                                ma-2
                               "
                               depressed
                               color="primary"
-                              v-if="role==='MasterAdmin' && row.status === 'BidApproved'"
+                              v-else-if="role==='MasterAdmin' && row.status === 'BidApproved'"
                               @click="ApproveBid('Confirmed', row)"
                             >
                               Confirm
                             </v-btn>                            
-                            <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                ml-2
-                              "
-                              depressed
-                              color="primary"
-                              v-if="role==='MasterAdmin' && row.status === 'BidApproved'"
-                              @click="ApproveBid('Rejected', row)"
-                            >
-                              Reject
-                            </v-btn>
+                            
                             <span
                               v-else-if="
                                 role==='MasterAdmin' &&
-                                (row.status === 'Approved'|| row.status === 'Submitted')
+                                (row.status === 'Approved'|| row.status === 'Selected')
                               "
                             >
                               Not Approved By Approval Admin
@@ -394,6 +380,29 @@
                               {{ row.status }}
                             </span>
                             <span v-else>Auth for Approval</span>
+                            <v-btn
+                              class="
+                                white--text
+                                font-weight-light
+                                text-capitalize
+                                rounded
+                                ml-2
+                              "
+                              depressed
+                              color="primary"
+                              v-if="role==='MasterAdmin' && row.status === 'BidApproved'"
+                              @click="ApproveBid('Rejected', row)"
+                            >
+                              Reject
+                            </v-btn>
+                            <div
+                              v-if="role==='Approval Admin' &&
+                                (row.status === 'Approved')
+                              "
+                            >
+                              Not Approved By Quote Incharge
+                            </div>
+                            
                           </td>
                           <td v-else-if="category != 'Company'">
                             <v-btn
@@ -429,7 +438,7 @@
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                  row.status === 'Rejected'
+                                  row.status === 'Rejected'||row.status === 'Authenticated'
                               "
                             >
                               {{ row.status }}
@@ -465,6 +474,7 @@
                                 review
                               </v-btn>
                             </div>
+                            
                           </td>
                         </tr>
                       </tbody>
@@ -475,7 +485,7 @@
             </v-row>
           </v-row>
         </v-row>
-        <RejectedProject :response="response" />
+        <RejectedProject :response="response" v-if="category === 'Company'"/>
       </div>
 
       <RejectProject

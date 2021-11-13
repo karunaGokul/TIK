@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-row>
+      <v-row >
         <span class="text-subtitle-1 font-weight-bold mr-4">
           Rejected Projects
         </span>
@@ -60,7 +60,7 @@
         <v-row v-for="row in rejectedProjects" :key="row.status">
           <v-row
             class="ma-1"
-            v-if="row.status === 'Rejected' && category === 'Company'"
+            v-if="row.status === 'Rejected'"
           >
             <v-col cols="12" sm="1" md="1">
               <v-img
@@ -130,8 +130,7 @@
 import {
   BitReceivedModel,
   DashboardModel,
-  FilterRequestModel,
-  FilterResponseModel,
+  FilterRequestModel
 } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
@@ -141,15 +140,14 @@ export default class RejectedProject extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
 
   public rejectedProjects: Array<BitReceivedModel>;
-  public filterRequest = new FilterRequestModel();
-  public filterResponse: Array<FilterResponseModel> = [];
+    public filterRequest = new FilterRequestModel(); 
 
   public dialog: boolean = false;
   public filterValue: boolean = false;
   public selectValue: string = "";
   public value: number;
   created() {
-    this.rejectedProjects = this.response.bidList;
+    this.rejectedProjects = this.response.bidList;     
   }
   public FilterRejectedBids() {
     if (this.selectValue === "Price") {
@@ -163,8 +161,15 @@ export default class RejectedProject extends Vue {
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
-        this.filterResponse = response;
-        this.dialog = false;
+        this.rejectedProjects = response;
+        this.rejectedProjects.forEach((b) => {
+        this.DashboardService.GetCompany(b.companyId).then((c) => {
+          b.companyName = c.companyName;
+          b.companyLogo = c.logo;
+          b.review = c.review;
+        });
+      });
+        this.dialog = false;        
       }
     );
   }

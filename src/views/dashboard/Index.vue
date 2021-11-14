@@ -20,7 +20,7 @@
             class="shrink pt-3"
             dense
             hide-details
-            v-on:change="searchProject()"
+            @change="searchProject"
           ></v-select>
           <v-spacer></v-spacer>
           <v-text-field
@@ -44,9 +44,7 @@
           <template v-slot:[`item.Status`]="{ item }">
             <v-badge
               dot
-              v-if="
-                item.InStages === 'Confirmed' || item.InStages === 'Completed'
-              "
+              v-if=" item.InStages === 'Confirmed' || item.InStages === 'Completed' "
               color="green"
               class="ml-4"
             >
@@ -61,7 +59,7 @@
             <v-badge dot v-else color="red" class="ml-4"> </v-badge>
           </template>
 
-          <template v-slot:[`item.action`]="{ item }">
+          <template v-slot:[`item.Action`]="{ item }">
             <router-link
               :to="{
                 name: 'ProjectDetail',
@@ -89,7 +87,7 @@
     >
       <v-icon color="pink">mdi-exclamation-thick </v-icon>
       {{ snackbarText }}
-      <template v-slot:action="{ attrs }">
+      <template v-slot:Action="{ attrs }">
         <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
           <v-icon> mdi-close-box</v-icon>
         </v-btn>
@@ -108,7 +106,7 @@ import {
 import { IDashboardService } from "@/service";
 
 import ProjectsList from "./ProjectsList.vue";
-import Category from "@/components/Category.vue";
+// import Category from "@/components/Category.vue";
 @Component({
   components: { ProjectsList },
 })
@@ -135,7 +133,7 @@ export default class Dashboard extends Vue {
           o.value = "ApprovalAdmin";
         }
       });
-      this.items.push("Submitted Enquirys", "cancelled Projects");
+      this.items.push("Submitted Enquirys", "Cancelled Projects");
     }
   }
   get category(): string {
@@ -192,7 +190,7 @@ export default class Dashboard extends Vue {
 
     {
       text: "Action",
-      value: "action",
+      value: "Action",
       sortable: false,
       align: "center",
       class: "teal lighten-3 subtitle-2",

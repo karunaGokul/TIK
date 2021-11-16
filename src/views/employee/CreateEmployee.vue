@@ -221,7 +221,8 @@
           class="ml-7 mb-2"
           v-if="
             request.EmployeeRole != 'Approval Admin' &&
-            request.EmployeeRole != 'MasterAdmin'
+            request.EmployeeRole != 'MasterAdmin' &&
+            request.EmployeeRole != ' '
           "
         >
           <v-checkbox

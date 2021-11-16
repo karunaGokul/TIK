@@ -500,11 +500,13 @@
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||
-                                row.status === 'Rejected' ||
-                                row.status === 'Authenticated'
+                                row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
+                            </span>
+                            <span v-else-if="row.status === 'Authenticated'">
+                              Waiting for Approval
                             </span>
                             <div v-else-if="row.status === 'Confirmed'">
                               <v-btn

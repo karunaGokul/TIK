@@ -6,7 +6,9 @@
           <v-icon large> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        <router-link to="/employee" class="text-decoration-none black--text">Employee</router-link>
+        <router-link to="/employee" class="text-decoration-none black--text"
+          >Employee</router-link
+        >
         <v-icon large> mdi-chevron-right</v-icon>
         {{ option }} Employee
       </div>
@@ -175,7 +177,7 @@
             >
               <template v-slot:prepend-item v-if="option === 'Edit'">
                 <v-list-item @click="request.ApprovalAdminId = null">
-                  <v-list-item-title> Remove  </v-list-item-title>
+                  <v-list-item-title> Remove </v-list-item-title>
                 </v-list-item>
               </template>
             </v-select>
@@ -208,14 +210,20 @@
             >
               <template v-slot:prepend-item v-if="option === 'Edit'">
                 <v-list-item @click="request.MasterAdminId = null">
-                  <v-list-item-title>  Remove </v-list-item-title>
+                  <v-list-item-title> Remove </v-list-item-title>
                 </v-list-item>
               </template>
             </v-select>
           </v-col>
         </v-row>
 
-        <v-row class="ml-7 mb-2">
+        <v-row
+          class="ml-7 mb-2"
+          v-if="
+            request.EmployeeRole != 'Approval Admin' &&
+            request.EmployeeRole != 'MasterAdmin'
+          "
+        >
           <v-checkbox
             false-value="0"
             true-value="1"

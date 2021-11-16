@@ -54,8 +54,7 @@
           md="2"
           v-if="bitAuditResponse.approveBy && category === 'Company'"
         >
-        
-          <v-row class="font-weight-regular mt-8 text-caption"> 
+          <v-row class="font-weight-regular mt-8 text-caption">
             Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
           </v-row>
           <v-row class="font-weight-regular text-caption">
@@ -69,14 +68,12 @@
           md="2"
           v-if="bitAuditResponse.selectedBy && category === 'Company'"
         >
-          
-              <v-row class="font-weight-regular mt-8 text-caption">
-                Select By : {{ bitAuditResponse.selectedBy }}</v-row
-              >
-              <v-row class="font-weight-regular text-caption">
-                Date & Time :{{ bitAuditResponse.selectedDate }}
-              </v-row>
-            
+          <v-row class="font-weight-regular mt-8 text-caption">
+            Select By : {{ bitAuditResponse.selectedBy }}</v-row
+          >
+          <v-row class="font-weight-regular text-caption">
+            Date & Time :{{ bitAuditResponse.selectedDate }}
+          </v-row>
         </v-col>
         <v-col v-else cols="12" sm="2" md="2"> </v-col>
         <v-col
@@ -85,14 +82,12 @@
           md="2"
           v-if="bitAuditResponse.confirmedBy && category === 'Company'"
         >
-          
-              <v-row class="font-weight-regular mt-8 text-caption">
-                confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
-              >
-              <v-row class="font-weight-regular text-caption">
-                Date & Time :{{ bitAuditResponse.confirmedDate }}
-              </v-row>
-            
+          <v-row class="font-weight-regular mt-8 text-caption">
+            confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
+          >
+          <v-row class="font-weight-regular text-caption">
+            Date & Time :{{ bitAuditResponse.confirmedDate }}
+          </v-row>
         </v-col>
         <v-col
           cols="12"
@@ -552,7 +547,11 @@
             </v-row>
           </v-row>
         </v-row>
-        <RejectedProject :response="response" v-if="category === 'Company'" />
+        <RejectedProject
+          :response="response.bidList"
+          :projectId="response.Id"
+          v-if="category === 'Company'"
+        />
       </div>
 
       <RejectProject

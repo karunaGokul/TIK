@@ -48,9 +48,9 @@
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
+      
         <v-col
           cols="12"
-          sm="2"
           md="2"
           v-if="bitAuditResponse.approveBy && category === 'Company'"
         >
@@ -64,7 +64,6 @@
         <v-col v-else cols="12" sm="2" md="2"> </v-col>
         <v-col
           cols="12"
-          sm="2"
           md="2"
           v-if="bitAuditResponse.selectedBy && category === 'Company'"
         >
@@ -78,7 +77,6 @@
         <v-col v-else cols="12" sm="2" md="2"> </v-col>
         <v-col
           cols="12"
-          sm="2"
           md="2"
           v-if="bitAuditResponse.confirmedBy && category === 'Company'"
         >

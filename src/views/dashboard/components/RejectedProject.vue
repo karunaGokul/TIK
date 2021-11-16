@@ -51,7 +51,7 @@
         </v-card>
       </v-dialog>
 
-      <v-icon large color="green darken-4" class="ml-4">
+      <v-icon large color="green darken-4" class="ml-4" @click="sort(response.submittedDate)">
         mdi-sort-ascending
       </v-icon>
     </v-row>
@@ -132,6 +132,19 @@ export default class RejectedProject extends Vue {
   public filterValue: boolean = false;
   public selectValue: string = "";
   public value: number;
+  public sortedValue: any;
+
+  // public sort(date: any) {
+  //   this.sortedValue = this.sort((a,b) => a[date] < b[date] ? -1 : 1);
+  //   // this.sortedValue = this.sort(date);
+  //   console.log(this.sortedValue);
+  // }
+
+  // public sort() {
+  //   this.sortedValue = this.response.sort();
+  //   console.log(this.sortedValue);
+  // }
+
 
   public FilterRejectedBids() {
     if (this.selectValue === "Price") {

@@ -10,7 +10,8 @@ const state: AuthenticationState = {
     id: localStorage.getItem('id') || '',
     role: localStorage.getItem('role') || '',
     companyId: localStorage.getItem('companyId') || '',
-    category:localStorage.getItem('category') || '',
+    category: localStorage.getItem('category') || '',
+    approvalAdminAccess: localStorage.getItem('approvalAdminAccess') || '',
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
@@ -28,8 +29,11 @@ const getters: GetterTree<AuthenticationState, any> = {
     companyId: state => {
         return state.companyId;
     },
-    category:state => {
+    category: state => {
         return state.category;
+    },
+    approvalAdminAccess: state => {
+        return state.approvalAdminAccess;
     }
 }
 
@@ -40,15 +44,18 @@ const mutations: MutationTree<AuthenticationState> = {
         state.id = data.id;
         state.role = data.role;
         state.companyId = data.companyId;
-        state.category=data.category;
+        state.category = data.category;
+        state.approvalAdminAccess = data.approvalAdminAccess;
+
     },
     onLogout(state) {
         state.accessToken = "";
         state.refreshToken = "";
         state.id = "";
-        state.role =  "";
-        state.companyId =  "";
-        state.category= "";
+        state.role = "";
+        state.companyId = "";
+        state.category = "";
+        state.approvalAdminAccess = "";
         axios.defaults.headers.common["Authorization"] = "";
     },
 
@@ -62,8 +69,9 @@ const actions: ActionTree<AuthenticationState, any> = {
             localStorage.setItem('category', response.category);
             localStorage.setItem('companyId', response.companyId);
             localStorage.setItem('id', response.id);
-            localStorage.setItem('refreshToken', response.refreshToken);            
-            localStorage.setItem('role', response.role);            
+            localStorage.setItem('refreshToken', response.refreshToken);
+            localStorage.setItem('role', response.role);
+            localStorage.setItem('approvalAdminAccess', response.approvalAdminAccess);
             context.commit('onAuthenticate', response);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
             return response;
@@ -84,6 +92,7 @@ const actions: ActionTree<AuthenticationState, any> = {
         localStorage.removeItem('companyId');
         localStorage.removeItem('id');
         localStorage.removeItem('role');
+        localStorage.removeItem('approvalAdminAccess');
         context.commit('onLogout');
         return 'logout Successfully';
 

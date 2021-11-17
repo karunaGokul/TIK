@@ -48,7 +48,7 @@
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
-      
+
         <v-col
           cols="12"
           md="2"
@@ -223,7 +223,7 @@
               >
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
-                    :src="`data:image/png;base64,${row.companyLogo}`"
+                    :src="`data:image/png;base64,${row.logo}`"
                     width="70%"
                   ></v-img>
                 </v-col>
@@ -345,7 +345,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ml-2
+                                ma-2
                               "
                               depressed
                               color="primary"
@@ -365,12 +365,13 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ml-2
+                                ma-2
                               "
                               depressed
                               color="primary"
                               v-else-if="
-                                role === 'Approval Admin' &&
+                                (role === 'Merchandiser' ||
+                                  role === 'Approval Admin') &&
                                 row.status === 'Selected'
                               "
                               @click="ApproveBid('BidApproved', row)"
@@ -388,7 +389,10 @@
                               depressed
                               color="primary"
                               v-else-if="
-                                role === 'MasterAdmin' &&
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin' ||
+                                  (role === 'Merchandiser' &&
+                                    approvalAdminAccess === '1')) &&
                                 row.status === 'BidApproved'
                               "
                               @click="ApproveBid('Confirmed', row)"
@@ -396,15 +400,16 @@
                               Confirm
                             </v-btn>
 
-                            <span
+                            <div
                               v-else-if="
                                 role === 'MasterAdmin' &&
                                 (row.status === 'Approved' ||
                                   row.status === 'Selected')
                               "
+                              class="my-1"
                             >
                               Not Approved By Approval Admin
-                            </span>
+                            </div>
                             <v-btn
                               class="
                                 white--text
@@ -420,38 +425,42 @@
                             >
                               review
                             </v-btn>
-                            <span
+                            <div
                               v-else-if="
                                 row.status === 'Confirmed' ||
                                 row.status === 'Rejected'
                               "
+                              class="my-1"
                             >
                               {{ row.status }}
-                            </span>
-                            <span v-else>Auth for Approval</span>
-                            <v-btn
+                            </div>
+                            <div v-else>Auth for Approval</div>
+                            <!-- <v-btn
                               class="
                                 white--text
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ml-2
+                                my-1
                               "
                               depressed
                               color="primary"
                               v-if="
-                                role === 'MasterAdmin' &&
+                                (role === 'MasterAdmin' ||
+                                  role === 'Approval Admin' ||
+                                  role === 'Merchandiser') &&
                                 row.status === 'BidApproved'
                               "
                               @click="ApproveBid('Rejected', row)"
                             >
                               Reject
-                            </v-btn>
+                            </v-btn> -->
                             <div
                               v-if="
-                                role === 'Approval Admin' &&
+                                role === 'Merchandiser' &&
                                 row.status === 'Approved'
                               "
+                              class="my-1"
                             >
                               Not Approved By Quote Incharge
                             </div>
@@ -659,13 +668,6 @@ export default class ProjectsList extends Vue {
       } else {
         this.GetCompany(this.response.CompanyId);
       }
-      this.response.bidList.forEach((b) => {
-        this.DashboardService.GetCompany(b.companyId).then((c) => {
-          b.companyName = c.companyName;
-          b.companyLogo = c.logo;
-          b.review = c.review;
-        });
-      });
       this.GetBidAudit();
     });
   }
@@ -698,12 +700,19 @@ export default class ProjectsList extends Vue {
     }
     this.GetProjectEnquiry();
   }
+
   get category(): string {
     return this.$store.getters.category;
   }
+
   get role(): string {
     return this.$store.getters.role;
   }
+
+  get approvalAdminAccess(): string {
+    return this.$store.getters.approvalAdminAccess;
+  }
+
   ProjectRequestheaders: any = [
     "Project Name",
     "Category",

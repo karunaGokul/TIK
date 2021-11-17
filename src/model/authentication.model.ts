@@ -10,16 +10,18 @@ export class AuthenticationResponse {
     refreshToken: string;
     id: string;
     role: string;
-    companyId:string;
-    category:string;
+    companyId: string;
+    category: string;
+    approvalAdminAccess: string;
 }
 export class AuthenticationState {
     accessToken: string = "";
     refreshToken: string = "";
     id: string = "";
     role: string = "";
-    companyId:string = "";
-    category:string="";
+    companyId: string = "";
+    category: string = "";
+    approvalAdminAccess: string = "";
 }
 
 export class ForgotPasswordRequestModel {

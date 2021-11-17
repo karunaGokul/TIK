@@ -217,14 +217,7 @@
           </v-col>
         </v-row>
 
-        <v-row
-          class="ml-7 mb-2"
-          v-if="
-            request.EmployeeRole != 'Approval Admin' &&
-            request.EmployeeRole != 'MasterAdmin' &&
-            request.EmployeeRole != ' '
-          "
-        >
+        <v-row class="ml-7 mb-2" v-if="request.EmployeeRole === 'Merchandiser'">
           <v-checkbox
             false-value="0"
             true-value="1"

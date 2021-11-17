@@ -50,18 +50,22 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-
-      <v-icon large color="green darken-4" class="ml-4" @click="sort(response.submittedDate)">
+      <v-icon large color="green darken-4" class="ml-4" @click="reset()">
+        mdi-lock-reset
+      </v-icon>
+      <v-icon
+        large
+        color="green darken-4"
+        class="ml-4"
+        @click="sort(response.submittedDate)"
+      >
         mdi-sort-ascending
       </v-icon>
     </v-row>
     <v-row v-for="row in response" :key="row.status">
       <v-row class="ma-1" v-if="row.status === 'Rejected'">
         <v-col cols="12" sm="1" md="1">
-          <v-img
-            :src="`data:image/png;base64,${row.companyLogo}`"
-            width="70%"
-          ></v-img>
+          <v-img :src="`data:image/png;base64,${row.logo}`" width="70%"></v-img>
         </v-col>
         <v-col class="mx-1" cols="12" sm="2" md="3">
           <v-row class="ma-1">
@@ -131,7 +135,7 @@ export default class RejectedProject extends Vue {
   public dialog: boolean = false;
   public filterValue: boolean = false;
   public selectValue: string = "";
-  public value: number;
+  public value: string;
   public sortedValue: any;
 
   // public sort(date: any) {
@@ -144,8 +148,17 @@ export default class RejectedProject extends Vue {
     this.sortedValue = this.response.sort();
     console.log(this.sortedValue);
   }
-
-
+  public reset() {
+    this.filterRequest.projectId = this.projectId;
+    this.filterRequest.price = null;
+    this.filterRequest.creditPeriod = null;
+    this.filterRequest.deliveryPeriod = null;
+    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+      (response) => {
+        this.response = response;
+      }
+    );
+  }
   public FilterRejectedBids() {
     if (this.selectValue === "Price") {
       this.filterRequest.price = this.value;
@@ -159,13 +172,6 @@ export default class RejectedProject extends Vue {
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response = response;
-        this.response.forEach((b) => {
-          this.DashboardService.GetCompany(b.companyId).then((c) => {
-            b.companyName = c.companyName;
-            b.companyLogo = c.logo;
-            b.review = c.review;
-          });
-        });
         this.dialog = false;
       }
     );

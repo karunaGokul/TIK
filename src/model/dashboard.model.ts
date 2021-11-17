@@ -27,7 +27,6 @@ export class DashboardModel {
     confirmationDate: number;
     requestedDeliveryDate: number;
     noOfKg: number;
-    // companyName: string;
 
 }
 
@@ -43,7 +42,7 @@ export class BitReceivedModel {
     submittedDate: string;
     companyId: string;
     companyName: string;
-    companyLogo: string;
+    logo: string;
     review: number;
 }
 
@@ -79,11 +78,11 @@ export class ReviewRequestModel {
 
 export class FilterRequestModel {
     projectId: string;
-    price?: number;
-    deliveryPeriod?: number;
-    creditPeriod?: number;
+    price?: string;
+    deliveryPeriod?: string;
+    creditPeriod?: string;
 }
-export class BitAuditmodel{
+export class BitAuditmodel {
     projectId: string;
     selectedBy: string;
     confirmedBy: string;

@@ -57,7 +57,7 @@
         large
         color="green darken-4"
         class="ml-4"
-        @click="sort(response.submittedDate)"
+        @click="sort"
       >
         mdi-sort-ascending
       </v-icon>
@@ -137,17 +137,13 @@ export default class RejectedProject extends Vue {
   public selectValue: string = "";
   public value: string;
   public sortedValue: any;
-
-  // public sort(date: any) {
-  //   this.sortedValue = this.sort((a,b) => a[date] < b[date] ? -1 : 1);
-  //   // this.sortedValue = this.sort(date);
-  //   console.log(this.sortedValue);
-  // }
-
+  public a: any;
+  
   public sort() {
     this.sortedValue = this.response.sort();
     console.log(this.sortedValue);
   }
+
   public reset() {
     this.filterRequest.projectId = this.projectId;
     this.filterRequest.price = null;

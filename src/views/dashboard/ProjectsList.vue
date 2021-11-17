@@ -96,7 +96,7 @@
           "
         >
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded"
+            class="white--text font-weight-light text-capitalize rounded mt-7"
             depressed
             color="primary"
             @click="toggleBid = 'true'"
@@ -106,9 +106,9 @@
         </v-col>
         <v-col v-else-if="category != 'Company'" cols="12" sm="2" md="2">
         </v-col>
-        <v-col cols="12" sm="2" md="2" class="mt-9">
+        <v-col cols="12" sm="2" md="2">
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-n2"
+            class="white--text font-weight-light text-capitalize rounded mt-7"
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
@@ -466,6 +466,11 @@
                             </div>
                           </td>
                           <td v-else-if="category != 'Company'">
+                            <span  v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated'
+                              ">
                             <v-btn
                               class="
                                 white--text
@@ -473,15 +478,10 @@
                                 text-capitalize
                                 rounded
                                 mt-2
-                                mr-2
+                                ml-3
                               "
                               depressed
                               color="primary"
-                              v-if="
-                                (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
-                                row.status === 'Authenticated'
-                              "
                             >
                               Save
                             </v-btn>
@@ -495,15 +495,11 @@
                               "
                               depressed
                               color="primary"
-                              v-if="
-                                (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
-                                row.status === 'Authenticated'
-                              "
                               @click="ApproveBid('Approved', row)"
                             >
                               Approve
                             </v-btn>
+                            </span>
                             <span
                               v-else-if="
                                 row.status === 'Approved' ||

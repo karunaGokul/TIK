@@ -15,12 +15,12 @@
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
-      <v-form>
-        <v-row class="pl-12 pt-5">
+      <v-form  class="ml-8">
+        <v-row class="pl-3 pt-5">
           <div class="font-weight-regular">{{ option }} Employee</div>
         </v-row>
 
-        <v-row class="ml-5">
+        <v-row>
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
               First Name
@@ -65,7 +65,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="ml-5">
+        <v-row class="my-n8">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
               Email Id
@@ -113,7 +113,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row class="ml-5">
+        <v-row class="my-n8">
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
               Address
@@ -146,7 +146,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="ml-5">
+        <v-row class="mt-n8 mb-2">
           <v-col
             cols="12"
             md="3"
@@ -217,7 +217,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="ml-7 mb-2" v-if="request.EmployeeRole === 'Merchandiser'">
+        <v-row class="ml-2 mb-2 mt-n2" v-if="request.EmployeeRole === 'Merchandiser'">
           <v-checkbox
             false-value="0"
             true-value="1"
@@ -227,13 +227,12 @@
             v-model="request.ApprovalAdminAccess"
           ></v-checkbox>
         </v-row>
-        <v-row justify="center my-5">
+        <v-row justify="center">
           <v-btn
-            x-large
-            class="mb-7 indigo darken-4 white--text rounded-0 text-capitalize"
-            @click="option === 'Create' ? createEmployee() : updateEmployee()"
-            >{{ option }}</v-btn
-          >
+            large
+            class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
+            @click="option === 'Create' ? createEmployee : updateEmployee"
+            >{{ option }}</v-btn>
         </v-row>
 
         <v-snackbar

@@ -231,7 +231,7 @@
           <v-btn
             large
             class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
-            @click="option === 'Create' ? createEmployee : updateEmployee"
+            @click="option === 'Create' ? createEmployee() : updateEmployee()"
             >{{ option }}</v-btn>
         </v-row>
 

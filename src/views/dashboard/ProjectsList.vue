@@ -482,6 +482,7 @@
                               "
                               depressed
                               color="primary"
+                              @click="Save(row)"
                             >
                               Save
                             </v-btn>
@@ -598,6 +599,7 @@ import {
   GetCompanyModel,
   BitReceivedModel,
   BitAuditmodel,
+  BidRequestModel,
 } from "@/model";
 import { IDashboardService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -626,6 +628,7 @@ export default class ProjectsList extends Vue {
   public approvelRequest = new ApproveRequestModel();
   public response = new DashboardModel();
   public bitAuditResponse = new BitAuditmodel();
+  public bidRequest = new BidRequestModel();
   public toggleBid: boolean = false;
   public toggleCancel: boolean = false;
   public toggleReview: boolean = false;
@@ -681,6 +684,19 @@ export default class ProjectsList extends Vue {
       this.snackbarText = response;
       this.snackbar = true;
       this.GetProjectEnquiry();
+    });
+  }
+
+  public Save(bid: BitReceivedModel) {
+    this.bidRequest.projectId = this.response.Id;
+    this.bidRequest.id = bid.id;
+    this.bidRequest.price=bid.requestPrice;
+    this.bidRequest.creditPeriod=bid.creditPeriod;
+    this.bidRequest.deliveryPeriod=bid.deliveryDate;
+    this.DashboardService.BidProject(this.bidRequest).then((response) => {
+      this.snackbarText = response;  
+      this.snackbar = true;
+      
     });
   }
 

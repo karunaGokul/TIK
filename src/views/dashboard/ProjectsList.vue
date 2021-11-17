@@ -106,7 +106,7 @@
         </v-col>
         <v-col v-else-if="category != 'Company'" cols="12" sm="2" md="2">
         </v-col>
-        <v-col cols="12" sm="2" md="2" class="mt-2">
+        <v-col cols="12" sm="2" md="2" class="mt-9">
           <v-btn
             class="white--text font-weight-light text-capitalize rounded mt-n2"
             depressed
@@ -123,7 +123,7 @@
             v-else-if="category === 'Company'"
             class="primary white--text font-weight-light pa-2 rounded"
           >
-            Bids Received :{{ response.bidsReceived }}
+            Bids Received : {{ response.bidsReceived }}
           </span>
         </v-col>
       </v-row>

@@ -18,7 +18,7 @@ export class DashboardModel {
     creditPeriod?: number;
     deliveryDate?: number;
     logoName?: string;
-    logo?: string;
+    logo: string;
     bidList?: Array<BitReceivedModel> = [];
     summary?: Array<SummaryModel> = [];
     CreatedBy: string;
@@ -27,6 +27,7 @@ export class DashboardModel {
     confirmationDate: number;
     requestedDeliveryDate: number;
     noOfKg: number;
+    // companyName: string;
 
 }
 

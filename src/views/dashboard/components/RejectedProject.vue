@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-4">
+  <div class="ml-4 mt-6">
     <v-row>
-      <span class="text-subtitle-1 font-weight-bold mr-4">
+      <span class="text-subtitle-1 font-weight-bold mr-4 mt-2">
         Rejected Projects
       </span>
 
@@ -140,10 +140,10 @@ export default class RejectedProject extends Vue {
   //   console.log(this.sortedValue);
   // }
 
-  // public sort() {
-  //   this.sortedValue = this.response.sort();
-  //   console.log(this.sortedValue);
-  // }
+  public sort() {
+    this.sortedValue = this.response.sort();
+    console.log(this.sortedValue);
+  }
 
 
   public FilterRejectedBids() {

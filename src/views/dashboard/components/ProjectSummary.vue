@@ -2,7 +2,6 @@
   <div>
     <v-dialog v-model="dialog" width="70%" style="overflow: hidden">
       <v-card elevation="2" style="overflow: hidden">
-       
         <v-card-title>
           Summary
           <v-spacer></v-spacer>
@@ -27,6 +26,9 @@
                   :key="index"
                 >
                   <v-label> {{ SummaryItem.label }} </v-label>
+                  <!-- <div class="primary black--text pa-2">
+                    {{ SummaryItem.value }}
+                  </div> -->
                   <v-text-field
                     outlined
                     dense
@@ -60,10 +62,18 @@
                     class="my-2"
                     disabled
                   ></v-text-field>
+                  
                 </v-col>
+                <!-- <v-col col="12" md="6">
+                  <v-label>No Of KGs</v-label>
+
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.noOfKg }}
+                  </div>
+                </v-col> -->
               </v-row>
-              <v-row class="my-n8">
-                <v-col>
+              <v-row class="mt-n8">
+                <v-col col="12" md="6">
                   <v-label>Price</v-label>
                   <v-text-field
                     outlined
@@ -87,7 +97,7 @@
                 </v-col>
               </v-row>
               <v-row class="my-n8">
-                <v-col>
+                <v-col col="12" md="6">
                   <v-label>Order Confirmation Date</v-label>
                   <v-text-field
                     outlined

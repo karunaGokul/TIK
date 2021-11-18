@@ -55,7 +55,7 @@
                   required
                   hide-details
                   v-model="request.price"
-                  label="Your Price"
+                  label="Your Price per KG"
                   :readonly="mode == StepMode.Summary"
                   :disabled="request.requestPrice"
                 ></v-text-field>
@@ -190,7 +190,7 @@
           elevation="2"
           class="px-8 ma-4 text-capitalize white--text"
           color="primary"
-           @click="create"
+          @click="create"
           v-if="mode == StepMode.Summary"
         >
           Submit
@@ -294,7 +294,7 @@ export default class ProjectForm extends Vue {
   }
 
   create() {
-    this.service.createProject(this.request).then(response => {
+    this.service.createProject(this.request).then((response) => {
       this.$router.push("/dashboard");
     });
   }

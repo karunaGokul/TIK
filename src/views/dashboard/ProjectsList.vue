@@ -406,7 +406,7 @@
                                 (row.status === 'Approved' ||
                                   row.status === 'Selected')
                               "
-                              class="my-1"
+                              class="my-2"
                             >
                               Pending Approval from Approval Admin
                             </div>
@@ -462,54 +462,62 @@
                               "
                               class="my-1"
                             >
-                              Not Approved By Quote Incharge
+                              Pending Approval from Quote Incharge
+                            </div>
+                            <div
+                              v-if="
+                                role === 'Approval Admin' &&
+                                row.status === 'Approved'
+                              "
+                              class="my-1"
+                            >
+                              Pending Approval from Merchandiser
                             </div>
                           </td>
                           <td v-else-if="category != 'Company'">
-                            <span  v-if="
+                            <span
+                              v-if="
                                 (role === 'Approval Admin' ||
                                   role === 'MasterAdmin') &&
                                 row.status === 'Authenticated'
-                              ">
-                            <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                mt-2
-                                ml-3
                               "
-                              depressed
-                              color="primary"
-                              @click="Save(row)"
                             >
-                              Save
-                            </v-btn>
-                            <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                mt-2
-                              "
-                              depressed
-                              color="primary"
-                              @click="ApproveBid('Approved', row)"
-                            >
-                              Approve
-                            </v-btn>
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-2
+                                  ml-3
+                                "
+                                depressed
+                                color="primary"
+                                @click="Save(row)"
+                              >
+                                Save
+                              </v-btn>
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-2
+                                "
+                                depressed
+                                color="primary"
+                                @click="ApproveBid('Approved', row)"
+                              >
+                                Approve
+                              </v-btn>
                             </span>
                             <span
                               v-else-if="
-                                row.status === 'Approved' ||
-                                row.status === 'Rejected'
+                                role === 'Quote Incharge' &&
+                                row.status === 'Authenticated'
                               "
                             >
-                              {{ row.status }}
-                            </span>
-                            <span v-else-if="row.status === 'Authenticated'">
                               Waiting for Approval
                             </span>
                             <div v-else-if="row.status === 'Confirmed'">
@@ -543,6 +551,9 @@
                                 review
                               </v-btn>
                             </div>
+                            <span v-else>
+                              {{ row.status }}
+                            </span>
                           </td>
                         </tr>
                       </tbody>
@@ -637,6 +648,7 @@ export default class ProjectsList extends Vue {
   public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
+  // public rejected: boolean = false;
 
   created() {
     this.GetProjectEnquiry();
@@ -662,11 +674,24 @@ export default class ProjectsList extends Vue {
     this.request.id = this.$route.params.Id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
-      if (this.category != "Company") {
-        this.GetCompany(this.response.bidList[0].companyId);
-      } else {
-        this.GetCompany(this.response.CompanyId);
-      }
+      this.GetCompany(this.response.CompanyId);
+      // this.response.bidList.forEach((b) => {
+      //   if ((b.status = "Rejected")) {
+      //     this.rejected = true;
+      //   }
+      // });
+      // if (this.category != "Company") {
+      //   this.GetCompany(this.response.bidList[0].companyId);
+      // } else {
+      //   this.GetCompany(this.response.CompanyId);
+      // }
+      //       this.response.bidList.forEach((b) => {
+      //        this.DashboardService.GetCompany(b.companyId).then((c) => {
+      //          b.companyName = c.companyName;
+      //          b.companyLogo = c.logo;
+      //          b.review = c.review;
+      //        });
+      //      });
       this.GetBidAudit();
     });
   }
@@ -690,13 +715,12 @@ export default class ProjectsList extends Vue {
   public Save(bid: BitReceivedModel) {
     this.bidRequest.projectId = this.response.Id;
     this.bidRequest.id = bid.id;
-    this.bidRequest.price=bid.requestPrice;
-    this.bidRequest.creditPeriod=bid.creditPeriod;
-    this.bidRequest.deliveryPeriod=bid.deliveryDate;
+    this.bidRequest.price = bid.requestPrice;
+    this.bidRequest.creditPeriod = bid.creditPeriod;
+    this.bidRequest.deliveryPeriod = bid.deliveryDate;
     this.DashboardService.BidProject(this.bidRequest).then((response) => {
-      this.snackbarText = response;  
+      this.snackbarText = response;
       this.snackbar = true;
-      
     });
   }
 

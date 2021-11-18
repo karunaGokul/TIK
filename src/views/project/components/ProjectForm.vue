@@ -55,7 +55,7 @@
                   required
                   hide-details
                   v-model="request.price"
-                  label="Your Price"
+                  label="Your Price per KG"
                   :readonly="mode == StepMode.Summary"
                   :disabled="request.requestPrice"
                 ></v-text-field>
@@ -74,7 +74,7 @@
                   dense
                   required
                   v-model="request.creditPeriod"
-                  label="Your required Credit Period"
+                  label="Your required Credit Period in Days"
                   :readonly="mode == StepMode.Summary"
                 ></v-text-field>
               </v-col>
@@ -127,7 +127,7 @@
                       dense
                       required
                       hide-details
-                      label="Delivery Date"
+                      label="Expected Delivery Date"
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -190,7 +190,7 @@
           elevation="2"
           class="px-8 ma-4 text-capitalize white--text"
           color="primary"
-           @click="create"
+          @click="create"
           v-if="mode == StepMode.Summary"
         >
           Submit
@@ -294,7 +294,7 @@ export default class ProjectForm extends Vue {
   }
 
   create() {
-    this.service.createProject(this.request).then(response => {
+    this.service.createProject(this.request).then((response) => {
       this.$router.push("/dashboard");
     });
   }

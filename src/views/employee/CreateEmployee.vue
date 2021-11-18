@@ -15,7 +15,7 @@
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
-      <v-form  class="ml-8">
+      <v-form class="ml-8">
         <v-row class="pl-3 pt-5">
           <div class="font-weight-regular">{{ option }} Employee</div>
         </v-row>
@@ -217,7 +217,14 @@
           </v-col>
         </v-row>
 
-        <v-row class="ml-2 mb-2 mt-n2" v-if="request.EmployeeRole === 'Merchandiser'">
+        <v-row
+          class="ml-2 mb-2 mt-n2"
+          v-if="
+            (category === 'Company' &&
+              request.EmployeeRole === 'Merchandiser') ||
+            (category != 'Company' && request.EmployeeRole === 'Quote InCharge')
+          "
+        >
           <v-checkbox
             false-value="0"
             true-value="1"
@@ -232,7 +239,8 @@
             large
             class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
             @click="option === 'Create' ? createEmployee() : updateEmployee()"
-            >{{ option }}</v-btn>
+            >{{ option }}</v-btn
+          >
         </v-row>
 
         <v-snackbar
@@ -357,6 +365,10 @@ export default class CreateEmployee extends Vue {
         }
       }
     );
+  }
+
+  get category(): string {
+    return this.$store.getters.category;
   }
 }
 </script>

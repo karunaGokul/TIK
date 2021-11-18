@@ -2,7 +2,6 @@
   <div>
     <v-dialog v-model="dialog" width="70%" style="overflow: hidden">
       <v-card elevation="2" style="overflow: hidden">
-       
         <v-card-title>
           Summary
 
@@ -28,80 +27,60 @@
                   :key="index"
                 >
                   <v-label> {{ SummaryItem.label }} </v-label>
-                  <v-text-field
+                  <div class="primary black--text pa-2">
+                    {{ SummaryItem.value }}
+                  </div>
+                  <!-- <v-text-field
                     outlined
                     dense
                     v-model="SummaryItem.value"
                     background-color="primary"
                     class="my-1 mb-n7"
-                  ></v-text-field>
+                  ></v-text-field> -->
                 </v-col>
               </v-row>
 
-              <v-row>
+              <v-row class="my-n4">
                 <v-col col="12" md="6">
                   <v-label>Enquiry Name</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.EnquiryName"
-                    class="my-2"
-                  ></v-text-field>
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.EnquiryName }}
+                  </div>
                 </v-col>
                 <v-col col="12" md="6">
                   <v-label>No Of KGs</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.noOfKg"
-                    class="my-2"
-                  ></v-text-field>
+
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.noOfKg }}
+                  </div>
                 </v-col>
               </v-row>
-              <v-row class="my-n8">
-                <v-col>
+              <v-row class="my-n4">
+                <v-col col="12" md="6">
                   <v-label>Price</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.requestPrice"
-                    class="my-2"
-                  ></v-text-field>
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.requestPrice }}
+                  </div>
                 </v-col>
-                <v-col>
+                <v-col col="12" md="6">
                   <v-label>required Credit Period</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.creditPeriod"
-                    class="my-2"
-                  ></v-text-field>
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.creditPeriod }}
+                  </div>
                 </v-col>
               </v-row>
-              <v-row class="my-n8">
-                <v-col>
+              <v-row class="my-n4">
+                <v-col col="12" md="6">
                   <v-label>Order Confirmation Date</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.confirmationDate"
-                    class="my-2"
-                  ></v-text-field>
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.confirmationDate }}
+                  </div>
                 </v-col>
-                <v-col>
+                <v-col col="12" md="6">
                   <v-label>Delivery Date</v-label>
-                  <v-text-field
-                    outlined
-                    dense
-                    background-color="white"
-                    v-model="response.requestedDeliveryDate"
-                    class="my-2"
-                  ></v-text-field>
+                  <div class="white black--text my-2 pa-2">
+                    {{ response.requestedDeliveryDate }}
+                  </div>
                 </v-col>
               </v-row>
             </v-card>

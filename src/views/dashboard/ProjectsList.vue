@@ -408,7 +408,7 @@
                               "
                               class="my-1"
                             >
-                              Not Approved By Approval Admin
+                              Pending Approval from Approval Admin
                             </div>
                             <v-btn
                               class="
@@ -575,11 +575,11 @@
     <v-snackbar
       v-model="snackbar"
       :timeout="2000"
-      color="deep-orange lighten-5 pink--text"
+      color="green lighten-5 green--text"
       right
       top
     >
-      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      <v-icon color="green">mdi-exclamation-thick </v-icon>
       {{ snackbarText }}
 
       <template v-slot:action="{ attrs }">

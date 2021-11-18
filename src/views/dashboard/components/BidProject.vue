@@ -33,7 +33,7 @@
                     <v-text-field
                       outlined
                       dense
-                      label="Enter Credit Period"
+                      label="Enter Credit Period in Days"
                       v-model="bidRequest.creditPeriod"
                       :rules="Rules"
                       required
@@ -48,7 +48,7 @@
                     <v-text-field
                       outlined
                       dense
-                      label="Enter Delivery Period"
+                      label="Enter Delivery Period in Days"
                       v-model="bidRequest.deliveryPeriod"
                       :rules="Rules"
                       required

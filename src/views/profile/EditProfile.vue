@@ -173,9 +173,9 @@ export default class EditProfile extends Vue {
 
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
-  img: string = "";
-  dialog: boolean = true;
-  logo: File;
+  public img: string = "";
+  public dialog: boolean = true;
+  public logo: File;
 
   public handleimage(e: File) {
     this.logo = e;

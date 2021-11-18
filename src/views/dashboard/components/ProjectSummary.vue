@@ -5,7 +5,6 @@
        
         <v-card-title>
           Summary
-
           <v-spacer></v-spacer>
           <v-btn @click="close" icon>
             <v-icon id="close-button">mdi-close</v-icon>
@@ -34,6 +33,7 @@
                     v-model="SummaryItem.value"
                     background-color="primary"
                     class="my-1 mb-n7"
+                    disabled
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -47,6 +47,7 @@
                     background-color="white"
                     v-model="response.EnquiryName"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col col="12" md="6">
@@ -57,6 +58,7 @@
                     background-color="white"
                     v-model="response.noOfKg"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -69,16 +71,18 @@
                     background-color="white"
                     v-model="response.requestPrice"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col>
-                  <v-label>required Credit Period</v-label>
+                  <v-label>Required Credit Period in Days</v-label>
                   <v-text-field
                     outlined
                     dense
                     background-color="white"
                     v-model="response.creditPeriod"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -91,16 +95,18 @@
                     background-color="white"
                     v-model="response.confirmationDate"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col>
-                  <v-label>Delivery Date</v-label>
+                  <v-label>Expected Delivery Date</v-label>
                   <v-text-field
                     outlined
                     dense
                     background-color="white"
                     v-model="response.requestedDeliveryDate"
                     class="my-2"
+                    disabled
                   ></v-text-field>
                 </v-col>
               </v-row>

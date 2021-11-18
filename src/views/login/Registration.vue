@@ -33,6 +33,7 @@
                   class="py-2 rounded-0"
                   v-model="request.firstName"
                   required
+                  :rules="nameRules"
                 ></v-text-field>
               </v-col>
 
@@ -45,6 +46,7 @@
                   class="py-2 rounded-0"
                   v-model="request.lastName"
                   required
+                  :rules="nameRules"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -90,6 +92,7 @@
                   :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (value = !value)"
                   :type="value ? 'password' : 'text'"
+                  :rules="passwordRules"
                 ></v-text-field>
               </v-col>
 
@@ -104,6 +107,7 @@
                   :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (value1 = !value1)"
                   :type="value1 ? 'password' : 'text'"
+                  :rules="passwordRules"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -130,6 +134,7 @@
                   class="py-2 rounded-0"
                   v-model="request.gstNumber"
                   required
+                  :rules="gstRules"
                 ></v-text-field>
               </v-col>
 
@@ -158,6 +163,7 @@
                   placeholder="Enter Address"
                   v-model="request.address"
                   class="rounded-0"
+                  :rules="addressRules"
                 ></v-text-field>
               </v-col>
 
@@ -169,6 +175,7 @@
                   placeholder="Enter Appartment, Unit, Office"
                   v-model="request.apartmentUnitOffice"
                   class="rounded-0"
+                  :rules="appartmentRules"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -320,6 +327,20 @@ export default class Registration extends Vue {
   checkbox: boolean = false;
   value: boolean = true;
   value1: boolean = true;
+
+  public nameRules: any = [
+    (v: any) => !!v || 'Name is required',
+    (v: any) => (v && v.length <= 10) || 'Name must be less than 10 characters',
+  ];
+  public gstRules: any = [
+    (v: any) => !!v || 'GST is required',
+  ];
+  public addressRules: any = [
+    (v: any) => !!v || 'Address is required',
+  ];  
+  public appartmentRules: any = [
+    (v: any) => !!v || 'Appartment is required',
+  ];
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -333,9 +354,10 @@ export default class Registration extends Vue {
   ];
   public ZipCodeRules: any = [
     (v: any) =>
-      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+      (!isNaN(parseInt(v)) && v >= 0) || "Zipcode must be Valid Number",
   ];
-  checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
+  public checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
+  public passwordRules: any = [(v: any) => !!v || "Password is required"];
   created() {
     this.getCountry();
     this.getCategory();
@@ -373,8 +395,6 @@ export default class Registration extends Vue {
   public SignUp() {
     this.registrationService.registration(this.request).then(
       (response) => {
-        /*this.snackbarText = response;
-        this.snackbar = true;*/
         this.$router.push("/");
       },
       (err) => {

@@ -33,6 +33,7 @@
               v-model="request.FirstName"
               class="pt-2"
               required
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
@@ -46,6 +47,7 @@
               placeholder="Enter Last Name"
               v-model="request.LastName"
               class="pt-2"
+              :rules="nameRules"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -61,6 +63,7 @@
               v-model="request.Gender"
               outlined
               dense
+              :rules="genderRules"
             ></v-select>
           </v-col>
         </v-row>
@@ -95,6 +98,7 @@
               :type="value ? 'password' : 'text'"
               outlined
               dense
+              :rules="passwordRules"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -125,6 +129,7 @@
               v-model="request.Address"
               outlined
               dense
+              :rules="addressRules"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -142,6 +147,7 @@
               v-model="request.EmployeeRole"
               outlined
               dense
+              :rules="roleRules"
             ></v-select>
           </v-col>
         </v-row>
@@ -275,10 +281,29 @@ export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
   @Prop() editRequest: EmployeeModel;
   @Prop() option: string;
+
+  public nameRules: any = [
+    (v: any) => !!v || 'Name is required',
+    (v: any) => (v && v.length <= 10) || 'Name must be less than 10 characters',
+  ];
+
+  public genderRules: any = [
+    (v: any) => !!v || 'Gender is required',
+  ];
+
+  public addressRules: any = [
+    (v: any) => !!v || 'Address is required',
+  ];
+  public roleRules: any = [
+    (v: any) => !!v || 'Role is required',
+  ];
+  
+
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
+
   public phoneRules: any = [
     (v: any) => !!v || "Phone Number is required",
     (v: any) =>
@@ -287,15 +312,18 @@ export default class CreateEmployee extends Vue {
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
 
+  public passwordRules: any = [(v: any) => !!v || "Password is required"];
+
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public role: Array<RoleResponseModel> = [];
   public MasterAdmin: Array<MasterAdminResponseModel> = [];
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
-  gender: any = ["Male", "Female"];
-  snackbarText: string = "";
-  snackbar: boolean = false;
+  public gender: any = ["Male", "Female"];
+  public snackbarText: string = "";
+  public snackbar: boolean = false;
+
   created() {
     if (this.option == "Edit") this.request = this.editRequest;
     this.GetRoles();

@@ -48,20 +48,7 @@
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
-
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.approveBy && category === 'Company'"
-        >
-          <v-row class="font-weight-regular mt-8 text-caption">
-            Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
-          </v-row>
-          <v-row class="font-weight-regular text-caption">
-            Date & Time :{{ bitAuditResponse.approveDate }}
-          </v-row>
-        </v-col>
-        <v-col v-else cols="12" sm="2" md="2"> </v-col>
+<!-- <div v-if="bitAuditResponse.approveBy && category === 'Company'"></div> -->
         <v-col
           cols="12"
           md="2"
@@ -74,7 +61,19 @@
             Date & Time :{{ bitAuditResponse.selectedDate }}
           </v-row>
         </v-col>
-        <v-col v-else cols="12" sm="2" md="2"> </v-col>
+        <v-col
+          cols="12"
+          md="2"
+          v-if="bitAuditResponse.approveBy && category === 'Company'"
+        >
+          <v-row class="font-weight-regular mt-8 text-caption">
+            Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
+          </v-row>
+          <v-row class="font-weight-regular text-caption">
+            Date & Time :{{ bitAuditResponse.approveDate }}
+          </v-row>
+        </v-col>
+        
         <v-col
           cols="12"
           md="2"
@@ -119,12 +118,13 @@
           >
             Cancel
           </v-btn>
-          <span
+          <v-btn
             v-else-if="category === 'Company'"
-            class="primary white--text font-weight-light pa-2 rounded"
+            depressed
+            class="primary white--text font-weight-light text-capitalize rounded mt-7"
           >
             Bids Received : {{ response.bidsReceived }}
-          </span>
+          </v-btn>
         </v-col>
       </v-row>
       <v-row>

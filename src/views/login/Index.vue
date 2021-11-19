@@ -1,5 +1,12 @@
 <template>
   <div>
+    <!-- <v-row>
+      <v-progress-linear
+        v-if="loading"
+        indeterminate
+        color="primary"
+      ></v-progress-linear>
+    </v-row> -->
     <v-row>
       <v-col cols="12" md="6">
         <v-parallax src="@/assets/login.jpg" height="700">
@@ -15,7 +22,12 @@
           </div>
         </v-parallax>
       </v-col>
-
+      <!-- <v-progress-circular
+        v-if="loading"
+        indeterminate
+        size="64"
+        color="purple"
+      ></v-progress-circular> -->
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7 pt-15">Sign in</h2>
         <v-container class="fluid">
@@ -38,11 +50,11 @@
               dense
               placeholder="Enter Password"
               class="pt-2 rounded-0"
-              v-model="request.Password"             
+              v-model="request.Password"
               :rules="passwordRules"
               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="() => (value = !value)"
-                  :type="value ? 'password' : 'text'"
+              @click:append="() => (value = !value)"
+              :type="value ? 'password' : 'text'"
               required
             ></v-text-field>
 
@@ -65,11 +77,10 @@
                   Forgot Password?
                 </v-btn>
               </v-col>
-              
             </v-row>
-            
+
             <ForgotPassword v-if="toggleForgotPassword" />
-            
+
             <v-btn
               color="primary"
               class="
@@ -129,7 +140,7 @@ import { validationMixin } from "vuelidate";
 import { AuthenticationRequestModel, AuthenticationResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
-import ForgotPassword  from "./ForgotPassword.vue"
+import ForgotPassword from "./ForgotPassword.vue";
 
 @Component({
   mixins: [validationMixin],
@@ -141,6 +152,7 @@ export default class Login extends Vue {
   snackbar: boolean = false;
   snackbarText: string = "";
   toggleForgotPassword: boolean = false;
+  loading: boolean = false;
   public request = new AuthenticationRequestModel();
 
   public emailRules: any = [
@@ -154,13 +166,16 @@ export default class Login extends Vue {
 
   public signIn() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.loading = true;
       this.$store.dispatch("login", this.request).then(
         (response: AuthenticationResponse) => {
+          this.loading = false;
           if (this.$store.getters.isLoggedIn) {
             this.$router.push("/dashboard");
           }
         },
         (err) => {
+          this.loading = false;
           if (err.response.status == 400) {
             this.snackbarText = err.response.data;
             this.snackbar = true;

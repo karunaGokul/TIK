@@ -87,7 +87,7 @@
           <v-col cols="12" md="3" class="mr-5">
             <v-label>
               Password
-              <span class="red--text">*</span>
+              <span class="red--text" v-if="option === 'Create'">*</span>
             </v-label>
             <v-text-field
               class="pt-2"
@@ -149,6 +149,38 @@
               dense
               :rules="roleRules"
             ></v-select>
+          </v-col>
+          <v-col
+            cols="12"
+            md="3"
+            class="ml-4"
+            v-if="
+              request.MerchandiserId ||
+              request.EmployeeRole === 'Quote InCharge' ||
+              request.EmployeeRole != ' '
+            "
+          >
+            <v-label>
+              Merchandiser
+              <span class="red--text">*</span>
+            </v-label>
+            <v-select
+              class="pt-2"
+              :menu-props="{ offsetY: true }"
+              label="Select Merchandiser"
+              :items="Merchandiser"
+              item-text="Merchandiser"
+              item-value="Id"
+              outlined
+              v-model="request.MerchandiserId"
+              dense
+            >
+              <template v-slot:prepend-item v-if="option === 'Edit'">
+                <v-list-item @click="request.MerchandiserId = null">
+                  <v-list-item-title> Remove </v-list-item-title>
+                </v-list-item>
+              </template>
+            </v-select>
           </v-col>
         </v-row>
 
@@ -278,6 +310,7 @@ import {
   ApprovalAdminResponseModel,
   EmployeeModel,
   MasterAdminResponseModel,
+  MerchandiserResponseModel,
   RoleResponseModel,
 } from "@/model";
 import { IEmployeeService } from "@/service";
@@ -288,24 +321,16 @@ import { IEmployeeService } from "@/service";
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
   @Prop() editRequest: EmployeeModel;
-  @Prop() option: string;
 
   public nameRules: any = [
-    (v: any) => !!v || 'Name is required',
-    (v: any) => (v && v.length <= 10) || 'Name must be less than 10 characters',
+    (v: any) => !!v || "Name is required",
+    (v: any) => (v && v.length <= 10) || "Name must be less than 10 characters",
   ];
 
-  public genderRules: any = [
-    (v: any) => !!v || 'Gender is required',
-  ];
+  public genderRules: any = [(v: any) => !!v || "Gender is required"];
 
-  public addressRules: any = [
-    (v: any) => !!v || 'Address is required',
-  ];
-  public roleRules: any = [
-    (v: any) => !!v || 'Role is required',
-  ];
-  
+  public addressRules: any = [(v: any) => !!v || "Address is required"];
+  public roleRules: any = [(v: any) => !!v || "Role is required"];
 
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
@@ -326,15 +351,19 @@ export default class CreateEmployee extends Vue {
   public request: EmployeeModel = new EmployeeModel();
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public role: Array<RoleResponseModel> = [];
+  public Merchandiser: Array<MerchandiserResponseModel> = [];
   public MasterAdmin: Array<MasterAdminResponseModel> = [];
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
   public gender: any = ["Male", "Female"];
+  public option: string = "";
   public snackbarText: string = "";
   public snackbar: boolean = false;
 
   created() {
+    this.option = this.$route.params.option;
     if (this.option == "Edit") this.request = this.editRequest;
     this.GetRoles();
+    this.GetMerchandiser();
     this.GetMasterAdmin();
     this.GetApprovalAdmin();
   }
@@ -345,6 +374,15 @@ export default class CreateEmployee extends Vue {
       }
     );
   }
+  private GetMerchandiser() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetMerchandiser(this.adminRequest).then(
+      (response: Array<MerchandiserResponseModel>) => {
+        this.Merchandiser = response;
+      }
+    );
+  }
+
   private GetMasterAdmin() {
     this.adminRequest.companyId = this.$store.getters.companyId;
     this.EmployeeService.GetMasterAdmin(this.adminRequest).then(

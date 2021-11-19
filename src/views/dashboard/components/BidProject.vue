@@ -16,7 +16,7 @@
             <v-text-field
               outlined
               dense
-              label="Enter Price"
+              label="Enter Price per KG"
               v-model="bidRequest.price"
               :rules="Rules"
               required
@@ -26,7 +26,7 @@
         <v-row class="mt-n5">
           <v-col>
             <div class="mb-2">
-              Credit Period in Days<span class="red--text">*</span>
+              Credit Period<span class="red--text">*</span>
             </div>
             <v-text-field
               outlined
@@ -41,7 +41,7 @@
         <v-row class="mt-n5">
           <v-col>
             <div class="mb-2">
-              Delivery Period in Days <span class="red--text">*</span>
+              Delivery Period <span class="red--text">*</span>
             </div>
             <v-text-field
               outlined

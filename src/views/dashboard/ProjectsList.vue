@@ -48,11 +48,12 @@
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
-<!-- <div v-if="bitAuditResponse.approveBy && category === 'Company'"></div> -->
+
         <v-col
           cols="12"
           md="2"
           v-if="bitAuditResponse.selectedBy && category === 'Company'"
+          class="ml-n7 mr-n16"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
             Select By : {{ bitAuditResponse.selectedBy }}</v-row
@@ -61,10 +62,12 @@
             Date & Time :{{ bitAuditResponse.selectedDate }}
           </v-row>
         </v-col>
+        <v-col cols="12" md="1" else></v-col>
         <v-col
           cols="12"
           md="2"
           v-if="bitAuditResponse.approveBy && category === 'Company'"
+          class="ml-n16 mr-n16"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
             Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
@@ -73,11 +76,12 @@
             Date & Time :{{ bitAuditResponse.approveDate }}
           </v-row>
         </v-col>
-        
+        <v-col cols="12" md="1" else></v-col>
         <v-col
           cols="12"
           md="2"
           v-if="bitAuditResponse.confirmedBy && category === 'Company'"
+          class="ml-n10"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
             confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
@@ -118,6 +122,7 @@
           >
             Cancel
           </v-btn>
+          
           <v-btn
             v-else-if="category === 'Company'"
             depressed
@@ -157,6 +162,7 @@
                         font-weight-light
                         text-capitalize
                         rounded
+                        ml-n4
                       "
                       depressed
                       color="primary"
@@ -298,7 +304,7 @@
                             ></v-text-field>
                           </td>
 
-                          <td v-else class="blue--text">
+                          <td v-else class="blue--text" vertical-align: middle>
                             Rs.{{ row.requestPrice }}
                           </td>
                           <td
@@ -345,7 +351,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ma-2
+                                ml-n5
                               "
                               depressed
                               color="primary"
@@ -365,7 +371,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ma-2
+                                ml-n6
                               "
                               depressed
                               color="primary"
@@ -384,7 +390,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ma-2
+                                ml-n6
                               "
                               depressed
                               color="primary"
@@ -460,7 +466,8 @@
                                 role === 'Merchandiser' &&
                                 row.status === 'Approved'
                               "
-                              class="my-1"
+                              class="ml-n5"
+                             
                             >
                               Pending Approval from Quote Incharge
                             </div>
@@ -504,6 +511,7 @@
                                   text-capitalize
                                   rounded
                                   mt-2
+                                 
                                 "
                                 depressed
                                 color="primary"

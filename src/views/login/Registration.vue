@@ -122,6 +122,8 @@
               item-text="categoryName"
               item-value="id"
               class="py-2 rounded-0"
+              required
+              :rules="[(v) => !!v || 'Category is required']"
             ></v-select>
 
             <v-row>
@@ -134,7 +136,7 @@
                   class="py-2 rounded-0"
                   v-model="request.gstNumber"
                   required
-                  :rules="gstRules"
+                  :rules="[(v) => !!v || 'GST is required']"
                 ></v-text-field>
               </v-col>
 
@@ -163,7 +165,7 @@
                   placeholder="Enter Address"
                   v-model="request.address"
                   class="rounded-0"
-                  :rules="addressRules"
+                  :rules="[(v) => !!v || 'Address is required']"
                 ></v-text-field>
               </v-col>
 
@@ -175,7 +177,7 @@
                   placeholder="Enter Appartment, Unit, Office"
                   v-model="request.apartmentUnitOffice"
                   class="rounded-0"
-                  :rules="appartmentRules"
+                  :rules="[(v) => !!v || 'Appartment is required']"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -194,6 +196,7 @@
                   class="py-2 rounded-0"
                   @change="getState"
                   required
+                  :rules="[(v) => !!v || 'Country is required']"
                 ></v-select>
               </v-col>
 
@@ -210,6 +213,7 @@
                   class="py-2 rounded-0"
                   @change="getCity"
                   required
+                  :rules="[(v) => !!v || 'State is required']"
                 ></v-select>
               </v-col>
             </v-row>
@@ -227,6 +231,7 @@
                   item-value="id"
                   class="py-3 rounded-0"
                   required
+                  :rules="[(v) => !!v || 'City is required']"
                 ></v-select>
               </v-col>
 
@@ -250,7 +255,7 @@
               type="checkbox"
               required
               v-model="checkbox"
-              :rules="checkboxRules"
+              :rules="[(v) => !!v || 'You must agree to continue!']"
             ></v-checkbox>
 
             <v-btn
@@ -332,19 +337,12 @@ export default class Registration extends Vue {
     (v: any) => !!v || 'Name is required',
     (v: any) => (v && v.length <= 10) || 'Name must be less than 10 characters',
   ];
-  public gstRules: any = [
-    (v: any) => !!v || 'GST is required',
-  ];
-  public addressRules: any = [
-    (v: any) => !!v || 'Address is required',
-  ];  
-  public appartmentRules: any = [
-    (v: any) => !!v || 'Appartment is required',
-  ];
+   
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
+
   public phoneRules: any = [
     (v: any) => !!v || "Phone Number is required",
     (v: any) =>
@@ -352,12 +350,17 @@ export default class Registration extends Vue {
 
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
+
   public ZipCodeRules: any = [
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Zipcode must be Valid Number",
   ];
-  public checkboxRules: any = [(v: any) => !!v || "You must agree to continue!"];
-  public passwordRules: any = [(v: any) => !!v || "Password is required"];
+  
+  public passwordRules: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+  ];
+
   created() {
     this.getCountry();
     this.getCategory();

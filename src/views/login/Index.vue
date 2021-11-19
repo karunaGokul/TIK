@@ -149,21 +149,23 @@ import ForgotPassword from "./ForgotPassword.vue";
 export default class Login extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
-  snackbar: boolean = false;
-  snackbarText: string = "";
-  toggleForgotPassword: boolean = false;
-  loading: boolean = false;
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
+  public toggleForgotPassword: boolean = false;
+  public loading: boolean = false;
+  public value: boolean = true;
   public request = new AuthenticationRequestModel();
 
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
-  public passwordRules: any = [(v: any) => !!v || "Password is required"];
-  public value: boolean = true;
 
-  //(v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/.test(v) ||  "Password must contain at least lowercase letter, one number, a special character and one uppercase letter",
-
+  public passwordRules: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+  ];
+  
   public signIn() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.loading = true;

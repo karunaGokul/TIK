@@ -15,7 +15,7 @@
     </v-container>
 
     <v-card class="mx-3 mb-5" elevation="8">
-      <v-form class="ml-8">
+      <v-form class="ml-8" ref="form">
         <v-row class="pl-3 pt-5">
           <div class="font-weight-regular">{{ option }} Employee</div>
         </v-row>
@@ -63,7 +63,7 @@
               v-model="request.Gender"
               outlined
               dense
-              :rules="genderRules"
+              :rules="[(v) => !!v || 'Gender is required']"
             ></v-select>
           </v-col>
         </v-row>
@@ -129,7 +129,7 @@
               v-model="request.Address"
               outlined
               dense
-              :rules="addressRules"
+              :rules="[(v) => !!v || 'Address is required']"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -147,7 +147,7 @@
               v-model="request.EmployeeRole"
               outlined
               dense
-              :rules="roleRules"
+              :rules="[(v) => !!v || 'Role is required']"
             ></v-select>
           </v-col>
           <v-col
@@ -327,11 +327,6 @@ export default class CreateEmployee extends Vue {
     (v: any) => (v && v.length <= 10) || "Name must be less than 10 characters",
   ];
 
-  public genderRules: any = [(v: any) => !!v || "Gender is required"];
-
-  public addressRules: any = [(v: any) => !!v || "Address is required"];
-  public roleRules: any = [(v: any) => !!v || "Role is required"];
-
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -341,11 +336,13 @@ export default class CreateEmployee extends Vue {
     (v: any) => !!v || "Phone Number is required",
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
-
-    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
+      (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
 
-  public passwordRules: any = [(v: any) => !!v || "Password is required"];
+  public passwordRules: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+    ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
@@ -400,6 +397,7 @@ export default class CreateEmployee extends Vue {
     );
   }
   public createEmployee() {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.EmployeeService.CreateEmployee(this.request).then(
       (response) => {
         this.snackbarText = response;
@@ -413,8 +411,10 @@ export default class CreateEmployee extends Vue {
         }
       }
     );
+    }
   }
   public updateEmployee() {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.EmployeeService.EditEmployee(
       this.request,
       this.request.EmployeeId
@@ -431,6 +431,7 @@ export default class CreateEmployee extends Vue {
         }
       }
     );
+    }
   }
 
   get category(): string {

@@ -1,72 +1,75 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-card class="px-6" elevation="8">
-      <v-card-title>
-        Bid Project
-        <v-spacer></v-spacer>
-        <v-btn @click="close()" icon>
-          <v-icon id="close-button">mdi-close</v-icon>
-        </v-btn>
-      </v-card-title>
-      <v-divider></v-divider>
-      <v-card-text class="mt-4">
-        <v-row>
-          <v-col>
-            <div class="mb-2">Price <span class="red--text">*</span></div>
-            <v-text-field
-              outlined
-              dense
-              label="Enter Price per KG"
-              v-model="bidRequest.price"
-              :rules="Rules"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="mt-n5">
-          <v-col>
-            <div class="mb-2">
-              Credit Period<span class="red--text">*</span>
-            </div>
-            <v-text-field
-              outlined
-              dense
-              label="Enter Credit Period in Days"
-              v-model="bidRequest.creditPeriod"
-              :rules="Rules"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="mt-n5">
-          <v-col>
-            <div class="mb-2">
-              Delivery Period <span class="red--text">*</span>
-            </div>
-            <v-text-field
-              outlined
-              dense
-              label="Enter Delivery Period in Days"
-              v-model="bidRequest.deliveryPeriod"
-              :rules="Rules"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-card-text>
+    <v-form v-model="isValid" ref="form">
+      <v-card class="px-6" elevation="8">
+        <v-card-title>
+          Bid Project
+          <v-spacer></v-spacer>
+          <v-btn @click="close()" icon>
+            <v-icon id="close-button">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text class="mt-4">
+          <v-row>
+            <v-col>
+              <div class="mb-2">Price <span class="red--text">*</span></div>
+              <v-text-field
+                outlined
+                dense
+                label="Enter Price per KG"
+                v-model="bidRequest.price"
+                :rules="[(v) => !!v || 'Price is required']"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mt-n5">
+            <v-col>
+              <div class="mb-2">
+                Credit Period<span class="red--text">*</span>
+              </div>
+              <v-text-field
+                outlined
+                dense
+                label="Enter Credit Period in Days"
+                v-model="bidRequest.creditPeriod"
+                :rules="[(v) => !!v || 'Credit Period is required']"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row class="mt-n5">
+            <v-col>
+              <div class="mb-2">
+                Delivery Period <span class="red--text">*</span>
+              </div>
+              <v-text-field
+                outlined
+                dense
+                label="Enter Delivery Period in Days"
+                v-model="bidRequest.deliveryPeriod"
+                :rules="[(v) => !!v || 'Delivery Period is required']"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
 
-      <v-card-actions class="mt-n5">
-        <v-spacer></v-spacer>
-        <v-btn
-          class="white--text font-weight-light text-capitalize rounded"
-          depressed
-          color="primary mb-4"
-          @click="BidProject"
-        >
-          Submit
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+        <v-card-actions class="mt-n5">
+          <v-spacer></v-spacer>
+          <v-btn
+            class="white--text font-weight-light text-capitalize rounded"
+            depressed
+            color="primary mb-4"
+            @click="BidProject"
+            :disabled="!isValid"
+          >
+            Submit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
   </v-dialog>
 </template>
 
@@ -74,7 +77,11 @@
 import { BidRequestModel, DashboardModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
-@Component
+import { validationMixin } from "vuelidate";
+
+@Component({
+  mixins: [validationMixin],
+})
 export default class BidProject extends Vue {
   @Prop() response: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
@@ -82,14 +89,17 @@ export default class BidProject extends Vue {
   public bidRequest = new BidRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
+  public isValid: boolean = true;
 
   public BidProject() {
-    this.bidRequest.projectId = this.response.Id;
-    this.bidRequest.id = this.response.bidList[0].id;
-    this.DashboardService.BidProject(this.bidRequest).then((response) => {
-      this.snackbarText = response;
-      this.close();
-    });
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.bidRequest.projectId = this.response.Id;
+      this.bidRequest.id = this.response.bidList[0].id;
+      this.DashboardService.BidProject(this.bidRequest).then((response) => {
+        this.snackbarText = response;
+        this.close();
+      });
+    }
   }
 
   public close() {

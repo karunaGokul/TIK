@@ -62,15 +62,7 @@
                     class="my-2"
                     disabled
                   ></v-text-field>
-                  
                 </v-col>
-                <!-- <v-col col="12" md="6">
-                  <v-label>No Of KGs</v-label>
-
-                  <div class="white black--text my-2 pa-2">
-                    {{ response.noOfKg }}
-                  </div>
-                </v-col> -->
               </v-row>
               <v-row class="mt-n8">
                 <v-col col="12" md="6">

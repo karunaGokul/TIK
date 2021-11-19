@@ -8,28 +8,34 @@ export class RoleResponseModel {
     EmployeeRole: string;
 }
 export class AdminRequestModel {
-    companyId: string;   
+    companyId: string;
+}
+
+export class MerchandiserResponseModel {
+    Id: string;
+    Merchandiser: string;
 }
 export class MasterAdminResponseModel {
     Id: string;
-    MasterAdminEmailId: string;
+    MasterAdmin: string;
 }
 export class ApprovalAdminResponseModel {
     Id: string;
-    ApprovalAdminEmailId: string;
+    ApprovalAdmin: string;
 }
 export class EmployeeModel {
     id: string;
     FirstName: string;
     LastName: string;
-    Gender:string;
+    Gender: string;
     EmailAddress: string;
-    Password:string;
+    Password: string;
     PhoneNumber: number;
-    Address:string;
-    EmployeeRole: string=" ";
-    MasterAdminId:string;
+    Address: string;
+    EmployeeRole: string = " ";
+    MerchandiserId: string;
+    MasterAdminId: string;
     ApprovalAdminId: string;
-    ApprovalAdminAccess:string="0"; 
-    EmployeeId: string;   
+    ApprovalAdminAccess: string = "0";
+    EmployeeId: string;
 }

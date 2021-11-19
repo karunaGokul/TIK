@@ -48,7 +48,7 @@
             Date & Time :{{ response.CreatedDate }}</v-row
           >
         </v-col>
-
+        <!-- <div v-if="bitAuditResponse.approveBy && category === 'Company'"></div> -->
         <v-col
           cols="12"
           md="2"
@@ -126,7 +126,14 @@
           <v-btn
             v-else-if="category === 'Company'"
             depressed
-            class="primary white--text font-weight-light text-capitalize rounded mt-7"
+            class="
+              primary
+              white--text
+              font-weight-light
+              text-capitalize
+              rounded
+              mt-7
+            "
           >
             Bids Received : {{ response.bidsReceived }}
           </v-btn>
@@ -469,7 +476,7 @@
                               class="ml-n5"
                              
                             >
-                              Pending Approval from Quote Incharge
+                              Waiting Authentication from Quote Incharge
                             </div>
                             <div
                               v-if="
@@ -478,7 +485,44 @@
                               "
                               class="my-1"
                             >
-                              Pending Approval from Merchandiser
+                              Waiting Authentication from Merchandiser
+                            </div>
+                            <div
+                              v-if="
+                                row.status === 'Confirmed' &&
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin')
+                              "
+                            >
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-2
+                                  mr-2
+                                "
+                                depressed
+                                color="red lighten-1"
+                                @click="toggleNoShow = true"
+                              >
+                                No Show
+                              </v-btn>
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-2
+                                "
+                                depressed
+                                color="primary"
+                                @click="toggleReview = true"
+                              >
+                                review
+                              </v-btn>
                             </div>
                           </td>
                           <td v-else-if="category != 'Company'">
@@ -528,7 +572,13 @@
                             >
                               Waiting for Approval
                             </span>
-                            <div v-else-if="row.status === 'Confirmed'">
+                            <div
+                              v-else-if="
+                                row.status === 'Confirmed' &&
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin')
+                              "
+                            >
                               <v-btn
                                 class="
                                   white--text

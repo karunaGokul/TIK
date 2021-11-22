@@ -98,6 +98,7 @@
                 outlined
                 placeholder="Enter Alternate PhoneNumber"
                 :rules="phoneRules"
+                required
                 v-model="request.phoneNumber2"
               ></v-text-field>
             </div>
@@ -168,6 +169,7 @@ export default class EditProfile extends Vue {
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
   public phoneRules: any = [
+    (v: any) => !!v || "Phone Number is required",
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
 

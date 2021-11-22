@@ -128,9 +128,8 @@
             </v-snackbar>
             <div class="text-caption py-5">
               Don't have an account yet?
-              <router-link to="/registration" class="text-decoration-none"
-                >sign up</router-link
-              >
+              <router-link to="/registration" class="text-decoration-none">
+              sign up</router-link>
             </div>
           </v-form>
         </v-container>

@@ -7,8 +7,7 @@
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         <router-link to="/employee" class="text-decoration-none black--text"
-          >Employee</router-link
-        >
+          >Employee</router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         {{ option }} Employee
       </div>

@@ -121,9 +121,8 @@
             </v-snackbar>
             <div class="text-caption py-5">
               Don't have an account yet?
-              <router-link to="/registration" class="text-decoration-none"
-                >sign up</router-link
-              >
+              <router-link to="/registration" class="text-decoration-none">
+              sign up</router-link>
             </div>
           </v-form>
         </v-container>
@@ -163,7 +162,7 @@ export default class Login extends Vue {
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+    // (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
   ];
   
   public signIn() {

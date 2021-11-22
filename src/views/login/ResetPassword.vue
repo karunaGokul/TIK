@@ -99,8 +99,8 @@ import { IAuthenticationService } from "@/service";
 export default class ResetPassword extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
-  snackbar: boolean = false;
-  snackbarText: string = "";
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
   public dialog: boolean = true;
 
   public value: boolean = true;

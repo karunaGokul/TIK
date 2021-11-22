@@ -24,7 +24,7 @@ export class EmployeeService extends BaseService<any, EmployeeModel> implements 
             return response.data;
         });
     }
-    GetMerchandiser(request: AdminRequestModel): Promise<Array<MerchandiserResponseModel>> {
+    public GetMerchandiser(request: AdminRequestModel): Promise<Array<MerchandiserResponseModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"
         return this.httpGet('GetMerchandiser', request).then(response => {
             return response.data;

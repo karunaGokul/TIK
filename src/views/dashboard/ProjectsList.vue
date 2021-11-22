@@ -706,7 +706,7 @@ export default class ProjectsList extends Vue {
   public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
-  // public rejected: boolean = false;
+  // public rejectedStatus: BitReceivedModel["status"];
 
   created() {
     this.GetProjectEnquiry();

@@ -13,7 +13,7 @@
         <v-divider></v-divider>
 
         <v-card-subtitle class="pt-2">
-          Enter Email-id to receive instructions
+          Enter Email-id to receive temporary password
         </v-card-subtitle>
 
         <v-card-text>
@@ -99,14 +99,13 @@ export default class ForgotPassword extends Vue {
       this.authService.ForgotPassword(this.request).then(
         (response) => {
           this.snackbarText = response;
-
           this.snackbar = true;
+          this.dialog = false;
         },
         (err) => {
-          console.log(err);
+          // console.log(err);
           if (err.response.status == 400) {
             this.snackbarText = err.response.data;
-
             this.snackbar = true;
           }
         }

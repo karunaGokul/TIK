@@ -7,8 +7,7 @@
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         <router-link to="/employee" class="text-decoration-none black--text"
-          >Employee</router-link
-        >
+          >Employee</router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         {{ option }} Employee
       </div>
@@ -341,7 +340,7 @@ export default class CreateEmployee extends Vue {
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+    // (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
     ];
 
   public value: boolean = true;

@@ -4,6 +4,7 @@ import { DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestMo
 
 export interface IDashboardService extends IBaseService<any, DashboardModel> {
     GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
+    GetMyProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>>;
     GetProjectEnquiry(request: DashboardRequestModel): Promise<DashboardModel>;
     GetProjectListByFilter(request: ProjectSearchModel): Promise<Array<DashboardModel>>;
     CreateProject(request: DashboardModel): Promise<any>;
@@ -25,6 +26,12 @@ export class DashboardService extends BaseService<any, any> implements IDashboar
     public GetProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
         return this.httpGet('Dashboard', request).then(response => {
+            return response.data;
+        });
+    }
+    public GetMyProjectList(request: DashboardRequestModel): Promise<Array<DashboardModel>> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
+        return this.httpGet('GetMyProjectList', request).then(response => {
             return response.data;
         });
     }

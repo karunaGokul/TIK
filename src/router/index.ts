@@ -65,7 +65,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/employee/Index.vue')
   },
   {
-    path: '/createemployee/:option',
+    path: '/createemployee/:Id',
     name: 'CreateEmployee',
     props: true,
     component: () => import('../views/employee/CreateEmployee.vue')

@@ -320,7 +320,6 @@ import { IEmployeeService } from "@/service";
 })
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
-  @Prop() editRequest: EmployeeModel;
 
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
@@ -336,13 +335,15 @@ export default class CreateEmployee extends Vue {
     (v: any) => !!v || "Phone Number is required",
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
-      (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
+    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
-    ];
+    (v: any) =>
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+  ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
@@ -352,18 +353,30 @@ export default class CreateEmployee extends Vue {
   public MasterAdmin: Array<MasterAdminResponseModel> = [];
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
   public gender: any = ["Male", "Female"];
+  public EmployeeId: string = "";
   public option: string = "";
   public snackbarText: string = "";
   public snackbar: boolean = false;
 
   created() {
-    this.option = this.$route.params.option;
-    if (this.option == "Edit") this.request = this.editRequest;
+    if (this.$route.params.Id!='Create') {
+      this.option = "Edit";
+      this.GetEmployee();
+    }else{
+      this.option = "Create";
+    }
+
     this.GetRoles();
     this.GetMerchandiser();
     this.GetMasterAdmin();
     this.GetApprovalAdmin();
   }
+  public GetEmployee() {
+    this.EmployeeService.GetEmployee(this.$route.params.Id).then((response) => {
+      this.request = response;
+    });
+  }
+
   private GetRoles() {
     this.EmployeeService.GetRoles().then(
       (response: Array<RoleResponseModel>) => {
@@ -398,39 +411,39 @@ export default class CreateEmployee extends Vue {
   }
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-    this.EmployeeService.CreateEmployee(this.request).then(
-      (response) => {
-        this.snackbarText = response;
-        this.snackbar = true;
-        this.$router.push("/employee");
-      },
-      (err) => {
-        if (err.response.status == 400) {
-          this.snackbarText = err.response.data;
+      this.EmployeeService.CreateEmployee(this.request).then(
+        (response) => {
+          this.snackbarText = response;
           this.snackbar = true;
+          this.$router.push("/employee");
+        },
+        (err) => {
+          if (err.response.status == 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;
+          }
         }
-      }
-    );
+      );
     }
   }
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-    this.EmployeeService.EditEmployee(
-      this.request,
-      this.request.EmployeeId
-    ).then(
-      (response) => {
-        this.snackbarText = response;
-        this.snackbar = true;
-        this.$router.push("/employee");
-      },
-      (err) => {
-        if (err.response.status == 400) {
-          this.snackbarText = err.response.data;
+      this.EmployeeService.EditEmployee(
+        this.request,
+        this.request.EmployeeId
+      ).then(
+        (response) => {
+          this.snackbarText = response;
           this.snackbar = true;
+          this.$router.push("/employee");
+        },
+        (err) => {
+          if (err.response.status == 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;
+          }
         }
-      }
-    );
+      );
     }
   }
 

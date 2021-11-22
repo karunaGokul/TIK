@@ -11,71 +11,174 @@
         </div>
       </v-container>
       <v-card class="ma-3 px-6" elevation="8">
-        <v-card-title>
-          <v-select
-            :items="items"
-            v-model="stages"
-            :menu-props="{ offsetY: true }"
-            label="Select"
-            class="shrink pt-3"
-            dense
-            hide-details
-            @change="searchProject"
-          ></v-select>
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            label="Search"
-            append-icon="mdi-magnify"
-            class="shrink pt-4"
-            outlined
-            dense
-            hide-details
-          ></v-text-field>
-        </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="response"
-          :search="search"
-          item-key="EnquiryName"
-          class="elevation-1"
-          :loading="loading"
-        >
-          <template v-slot:[`item.Status`]="{ item }">
-            <v-badge
-              dot
-              v-if=" item.InStages === 'Confirmed' || item.InStages === 'Completed' "
-              color="green"
-              class="ml-4"
-            >
-            </v-badge>
-            <v-badge
-              dot
-              v-else-if="item.InStages === 'Enquiry Sent'"
-              color="orange"
-              class="ml-4"
-            >
-            </v-badge>
-            <v-badge dot v-else color="red" class="ml-4"> </v-badge>
-          </template>
+        <v-tabs v-model="tab">
+          <v-tab
+            v-if="
+              category === 'Company' &&
+              (role === 'Merchandiser' || role === 'Quote InCharge')
+            "
+            @click="getMyProjectList()"
+          >
+            My Projects
+          </v-tab>
+          <v-tab @click="getProjectList()">All Projects</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="tab">
+          <v-tab-item>
+            <v-card-title>
+              <v-select
+                :items="items"
+                v-model="stages"
+                :menu-props="{ offsetY: true }"
+                label="Select"
+                class="shrink ma-1"
+                dense
+                hide-details
+                @change="searchProject"
+              ></v-select>
 
-          <template v-slot:[`item.Action`]="{ item }">
-            <router-link
-              :to="{
-                name: 'ProjectDetail',
-                params: { Id: item.Id },
-              }"
-              tag="button"
+              <v-spacer></v-spacer>
+
+              <v-text-field
+                v-model="search"
+                label="Search"
+                append-icon="mdi-magnify"
+                class="shrink ma-1 pl-2"
+                outlined
+                dense
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="response"
+              :search="search"
+              item-key="EnquiryName"
+              class="elevation-1"
+              :loading="loading"
             >
-              <v-btn
-                class="white--text font-weight-light text-capitalize rounded"
-                depressed
-                color="primary"
-                >View
-              </v-btn>
-            </router-link>
-          </template>
-        </v-data-table>
+              <template v-slot:[`item.Status`]="{ item }">
+                <v-badge
+                  dot
+                  v-if="
+                    item.InStages === 'Confirmed' ||
+                    item.InStages === 'Completed'
+                  "
+                  color="green"
+                  class="ml-4"
+                >
+                </v-badge>
+                <v-badge
+                  dot
+                  v-else-if="item.InStages === 'Enquiry Sent'"
+                  color="orange"
+                  class="ml-4"
+                >
+                </v-badge>
+                <v-badge dot v-else color="red" class="ml-4"> </v-badge>
+              </template>
+
+              <template v-slot:[`item.Action`]="{ item }">
+                <router-link
+                  :to="{
+                    name: 'ProjectDetail',
+                    params: { Id: item.Id },
+                  }"
+                  tag="button"
+                >
+                  <v-btn
+                    class="
+                      white--text
+                      font-weight-light
+                      text-capitalize
+                      rounded
+                    "
+                    depressed
+                    color="primary"
+                    >View
+                  </v-btn>
+                </router-link>
+              </template>
+            </v-data-table>
+          </v-tab-item>
+          <v-tab-item
+            ><v-card-title>
+              <v-select
+                :items="items"
+                v-model="stages"
+                :menu-props="{ offsetY: true }"
+                label="Select"
+                class="shrink ma-1"
+                dense
+                hide-details
+                @change="searchProject"
+              ></v-select>
+
+              <v-spacer></v-spacer>
+
+              <v-text-field
+                v-model="search"
+                label="Search"
+                append-icon="mdi-magnify"
+                class="shrink ma-1 pl-2"
+                outlined
+                dense
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="response"
+              :search="search"
+              item-key="EnquiryName"
+              class="elevation-1"
+              :loading="loading"
+            >
+              <template v-slot:[`item.Status`]="{ item }">
+                <v-badge
+                  dot
+                  v-if="
+                    item.InStages === 'Confirmed' ||
+                    item.InStages === 'Completed'
+                  "
+                  color="green"
+                  class="ml-4"
+                >
+                </v-badge>
+                <v-badge
+                  dot
+                  v-else-if="item.InStages === 'Enquiry Sent'"
+                  color="orange"
+                  class="ml-4"
+                >
+                </v-badge>
+                <v-badge dot v-else color="red" class="ml-4"> </v-badge>
+              </template>
+
+              <template v-slot:[`item.Action`]="{ item }">
+                <router-link
+                  :to="{
+                    name: 'ProjectDetail',
+                    params: { Id: item.Id },
+                  }"
+                  tag="button"
+                >
+                  <v-btn
+                    class="
+                      white--text
+                      font-weight-light
+                      text-capitalize
+                      rounded
+                    "
+                    depressed
+                    color="primary"
+                    >View
+                  </v-btn>
+                </router-link>
+              </template>
+            </v-data-table>
+          </v-tab-item>
+        </v-tabs-items>
       </v-card>
     </div>
     <v-snackbar
@@ -114,18 +217,20 @@ export default class Dashboard extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   public search: string = "";
   public stages: string = "";
+  public tab: string = "";
   public toggleProjectList: boolean = false;
   public showDialog: boolean = false;
   public request = new DashboardRequestModel();
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
+  public myProjectResponse: Array<DashboardModel> = [];
   public snackbarText: string = "";
   public snackbar: boolean = false;
   public SelectedProject: DashboardModel = new DashboardModel();
   public loading: boolean = false;
 
   created() {
-    this.getProjectList();
+    this.getMyProjectList();
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -143,6 +248,14 @@ export default class Dashboard extends Vue {
     this.request.id = this.$store.getters.id;
     this.loading = true;
     this.DashboardService.GetProjectList(this.request).then((response) => {
+      this.loading = false;
+      this.response = response;
+    });
+  }
+  public getMyProjectList() {
+    this.request.id = this.$store.getters.id;
+    this.loading = true;
+    this.DashboardService.GetMyProjectList(this.request).then((response) => {
       this.loading = false;
       this.response = response;
     });

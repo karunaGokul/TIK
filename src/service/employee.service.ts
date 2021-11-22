@@ -3,6 +3,7 @@ import { EmployeeRequestModel, EmployeeModel, RoleResponseModel, AdminRequestMod
 
 export interface IEmployeeService extends IBaseService<any, EmployeeModel> {
     GetEmployees(request: EmployeeRequestModel): Promise<Array<EmployeeModel>>;
+    GetEmployee(EmployeeId:string): Promise<EmployeeModel>;
     GetRoles(): Promise<Array<RoleResponseModel>>;
     GetMerchandiser(request: AdminRequestModel): Promise<Array<MerchandiserResponseModel>>;
     GetMasterAdmin(request: AdminRequestModel): Promise<Array<MasterAdminResponseModel>>;
@@ -23,6 +24,13 @@ export class EmployeeService extends BaseService<any, EmployeeModel> implements 
         return this.httpGet('GetEmployees', request).then(response => {
             return response.data;
         });
+    }
+    GetEmployee(EmployeeId:string): Promise<EmployeeModel>
+    {this.apiUrl = "https://tikdev-api.azure-api.net/employee"
+        return this.httpGet('GetEmployee?employeeId='+ EmployeeId, null).then(response => {
+            return response.data;
+        });
+
     }
     GetMerchandiser(request: AdminRequestModel): Promise<Array<MerchandiserResponseModel>> {
         this.apiUrl = "https://tikdev-api.azure-api.net/common"

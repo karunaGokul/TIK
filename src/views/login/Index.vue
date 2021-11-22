@@ -4,9 +4,16 @@
       <v-progress-linear
         v-if="loading"
         indeterminate
-        color="primary"
+        color="red"
       ></v-progress-linear>
     </v-row> -->
+    <v-row justify="center">
+      <v-progress-circular
+        v-if="loading"
+        indeterminate
+        color="primary"
+      ></v-progress-circular>
+    </v-row>
     <v-row>
       <v-col cols="12" md="6">
         <v-parallax src="@/assets/login.jpg" height="700">
@@ -163,27 +170,29 @@ export default class Login extends Vue {
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+    (v: any) =>
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
   ];
-  
+
   public signIn() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      this.loading = true;
-      this.$store.dispatch("login", this.request).then(
-        (response: AuthenticationResponse) => {
-          this.loading = false;
-          if (this.$store.getters.isLoggedIn) {
-            this.$router.push("/dashboard");
-          }
-        },
-        (err) => {
-          this.loading = false;
-          if (err.response.status == 400) {
-            this.snackbarText = err.response.data;
-            this.snackbar = true;
-          }
+    this.loading = true;
+    this.$store.dispatch("login", this.request).then(
+      (response: AuthenticationResponse) => {
+        this.loading = false;
+        if (this.$store.getters.isLoggedIn) {
+          this.$router.push("/dashboard");
         }
-      );
+      },
+      (err) => {
+        this.loading = false;
+        if (err.response.status == 400) {
+          this.snackbarText = err.response.data;
+          this.snackbar = true;
+        }
+      }
+    );
     }
   }
 }

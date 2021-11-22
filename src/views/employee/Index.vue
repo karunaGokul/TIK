@@ -15,7 +15,7 @@
         <v-card-title class="mx-6">
           <h5>Employee List</h5>
           <router-link
-            :to="{ name: 'CreateEmployee', params: { option: 'Create' } }"
+            :to="{ name: 'CreateEmployee', params: { Id: 'Create' }}"
             tag="button"
           >
             <v-icon color="blue darken-4" class="mx-2"> mdi-plus-circle</v-icon>
@@ -46,7 +46,7 @@
             <router-link
               :to="{
                 name: 'CreateEmployee',
-                params: { editRequest: item, option: 'Edit' },
+                params: { Id: item.EmployeeId},
               }"
               tag="button"
             >
@@ -95,10 +95,10 @@ export default class Employee extends Vue {
   snackbar: boolean = false;
 
   created() {
-    this.getEmployee();
+    this.getEmployees();
   }
 
-  public getEmployee() {
+  public getEmployees() {
     this.request.id = this.$store.getters.id;
     this.loading = true;
     this.EmployeeService.GetEmployees(this.request).then((response) => {
@@ -111,7 +111,7 @@ export default class Employee extends Vue {
     this.EmployeeService.DeleteEmployee(item.EmployeeId).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
-      this.getEmployee();
+      this.getEmployees();
     });
   }
   headers: any = [

@@ -358,7 +358,7 @@ export default class Registration extends Vue {
   
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    // (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
   created() {

@@ -36,6 +36,7 @@
               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value = !value)"
               :type="value ? 'password' : 'text'"
+              :rules="passwordRules"
             ></v-text-field>
             <v-text-field
               label="Confirm Password"
@@ -48,6 +49,7 @@
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
+              :rules="passwordRules"
             ></v-text-field>
 
             <v-row justify="center">
@@ -109,13 +111,17 @@ export default class ResetPassword extends Vue {
 
   public request = new ResetPasswordRequestModel();
 
+  public passwordRules: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+  ];
+
   get id(): string {
     return this.$store.getters.id;
   }
 
   public resetPassword() {
-    if (
-      (this.$refs.form as Vue & { validate: () => boolean }).validate() &&
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate() &&
       this.request.newPassword == this.request.confirmPassword
     ) {
       this.request.id = this.id;

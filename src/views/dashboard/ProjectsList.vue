@@ -56,7 +56,7 @@
           class="ml-n7 mr-n16"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
-            Select By : {{ bitAuditResponse.selectedBy }}</v-row
+            Selected By : {{ bitAuditResponse.selectedBy }}</v-row
           >
           <v-row class="font-weight-regular text-caption">
             Date & Time :{{ bitAuditResponse.selectedDate }}
@@ -70,7 +70,7 @@
           class="ml-n16 mr-n16"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
-            Approve &Authenticate By : {{ bitAuditResponse.approveBy }}
+            Approve & Authenticate By : {{ bitAuditResponse.approveBy }}
           </v-row>
           <v-row class="font-weight-regular text-caption">
             Date & Time :{{ bitAuditResponse.approveDate }}
@@ -84,7 +84,7 @@
           class="ml-n10"
         >
           <v-row class="font-weight-regular mt-8 text-caption">
-            confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
+            Confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
           >
           <v-row class="font-weight-regular text-caption">
             Date & Time :{{ bitAuditResponse.confirmedDate }}
@@ -707,6 +707,7 @@ export default class ProjectsList extends Vue {
   public snackbarText: string = "";
   public snackbar: boolean = false;
   // public rejectedStatus: BitReceivedModel["status"];
+  public rejectedResponse = new BitReceivedModel();
 
   created() {
     this.GetProjectEnquiry();
@@ -721,6 +722,13 @@ export default class ProjectsList extends Vue {
       );
     }
   }
+  // public rejectedBids() {
+  //   for(let i = 0; i < this.response; i++) {
+  //     if(this.rejectedResponse.status === 'Rejected') {
+
+  //     }
+  //   }
+  // }
 
   public GetCompany(CompanyId: string) {
     this.DashboardService.GetCompany(CompanyId).then((response) => {

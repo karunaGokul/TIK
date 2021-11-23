@@ -35,30 +35,28 @@
             <div class="my-1 font-weight-light">Logo Image Upload Here</div>
           </v-col>
           <v-col cols="12" sm="4" md="5" class="mt-6">
-            <div class="my-n2">
+            <v-form ref="form">
               <v-text-field
                 dense
                 outlined
+                class="my-n2"
                 placeholder="Enter UnitName"
                 v-model="request.unitName"
               ></v-text-field>
-            </div>
-            <div class="my-n2">
               <v-text-field
                 dense
                 outlined
+                class="my-n2"
                 placeholder="Enter Title"
                 v-model="request.title"
               ></v-text-field>
-            </div>
-            <div class="my-n2">
               <v-text-field
                 dense
                 outlined
+                class="my-n2"
                 placeholder="Enter Description"
                 v-model="request.description"
               ></v-text-field>
-            </div>
             <div class="text-subtitle-1 my-n3">
               Contact Information
               <v-text-field
@@ -68,36 +66,34 @@
                 v-model="request.address"
               ></v-text-field>
             </div>
-            <div class="my-n2">
               <v-text-field
                 dense
                 outlined
                 disabled
+                class="my-n2"
                 placeholder="Enter Email"
                 :rules="emailRules"
                 v-model="request.emailAddress"
               >
               </v-text-field>
-            </div>
-            <div class="my-n2">
               <v-text-field
                 dense
                 outlined
+                class="my-n2"
                 placeholder="Enter PhoneNumber"
                 :rules="phoneRules"
                 v-model="request.phoneNumber1"
               ></v-text-field>
-            </div>
-            <div class="my-n2">
               <v-text-field
                 dense
                 outlined
+                class="my-n2"
                 placeholder="Enter Alternate PhoneNumber"
                 :rules="phoneRules"
-                required
+                
                 v-model="request.phoneNumber2"
               ></v-text-field>
-            </div>
+            </v-form>
           </v-col>
           <v-col cols="12" sm="3" md="4" class="mt-3">
             <v-card elevation="2" class="grey lighten-4 color" height="35%">
@@ -180,6 +176,7 @@ export default class EditProfile extends Vue {
     this.img = URL.createObjectURL(e);
   }
   public edit() {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.request.id = this.$store.getters.id;
     this.ProfileService.editProfile(this.request, this.logo).then(
       (response: any) => {
@@ -194,6 +191,7 @@ export default class EditProfile extends Vue {
         }
       }
     );
+    }
   }
   public close() {
     this.$emit("closeModel");

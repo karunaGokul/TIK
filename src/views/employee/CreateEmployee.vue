@@ -386,15 +386,15 @@ export default class CreateEmployee extends Vue {
     (v: any) => !!v || "Password is required",
     (v: any) =>
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Password must be atleast 8 charcters length and contain atleast 1 lowercase letter, 1 uppercase letter, one number and a special character",
+      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  public passwordRules1: any = [
-    // (v: any) => !!v || "Password is required",
-    (v: any) =>
-      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Password must be atleast 8 charcters length and contain atleast 1 lowercase letter, 1 uppercase letter, one number and a special character",
-  ];
+  // public passwordRules1: any = [
+  //   // (v: any) => !!v || "Password is required",
+  //   (v: any) =>
+  //     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+  //     "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+  // ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();

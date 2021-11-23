@@ -93,6 +93,7 @@
                 link
                 to="/employee"
                 class="text-capitalize"
+                v-if="(role === 'MasterAdmin')"
               >
                 <v-list-item-title>Employee</v-list-item-title>
               </v-list-item>
@@ -152,8 +153,12 @@ export default class AppHeader extends Vue {
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
   }
-   get category(): string {
+  get category(): string {
     return this.$store.getters.category;
+  }
+
+  get role(): string {
+    return this.$store.getters.role;
   }
 
   public logout() {

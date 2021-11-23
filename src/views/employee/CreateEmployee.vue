@@ -302,9 +302,17 @@
         <v-row justify="center">
           <v-btn
             large
+            v-if="(option === 'Create')"
             class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
-            @click="option === 'Create' ? createEmployee() : updateEmployee()"
+            @click= createEmployee() 
             >{{ option }}</v-btn
+          >
+          <v-btn
+            large
+            v-else
+            class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
+            @click= updateEmployee()
+            > Update </v-btn
           >
         </v-row>
 

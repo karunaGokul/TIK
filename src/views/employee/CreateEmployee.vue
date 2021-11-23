@@ -7,7 +7,8 @@
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         <router-link to="/employee" class="text-decoration-none black--text"
-          >Employee</router-link>
+          >Employee</router-link
+        >
         <v-icon large> mdi-chevron-right</v-icon>
         {{ option }} Employee
       </div>
@@ -155,10 +156,16 @@
             class="ml-4"
             v-if="
               request.MerchandiserId ||
-              request.EmployeeRole === 'Quote InCharge' ||
-              request.EmployeeRole != ' '
+              !(
+                request.EmployeeRole === 'Merchandiser' ||
+                request.EmployeeRole === 'MasterAdmin' ||
+                request.EmployeeRole === 'Approval Admin' ||
+                request.EmployeeRole === ' '
+              )
             "
           >
+            <!-- request.EmployeeRole === 'Quote InCharge' ||
+              request.EmployeeRole != ' ' -->
             <v-label>
               Merchandiser
               <span class="red--text">*</span>
@@ -358,10 +365,10 @@ export default class CreateEmployee extends Vue {
   public snackbar: boolean = false;
 
   created() {
-    if (this.$route.params.Id!='Create') {
+    if (this.$route.params.Id != "Create") {
       this.option = "Edit";
       this.GetEmployee();
-    }else{
+    } else {
       this.option = "Create";
     }
 

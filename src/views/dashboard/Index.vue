@@ -132,7 +132,7 @@
               :search="search"
               item-key="EnquiryName"
               class="elevation-1"
-              :loading="loading"
+              :loading="loading"              
             >
               <template v-slot:[`item.Status`]="{ item }">
                 <v-badge
@@ -176,6 +176,9 @@
                   </v-btn>
                 </router-link>
               </template>
+              <!-- <template v-slot:headers.Merchandiser="{ header }">
+  <v-icon small>plus-circle-outline</v-icon>{{ header.text }}
+</template> -->
             </v-data-table>
           </v-tab-item>
         </v-tabs-items>
@@ -230,7 +233,14 @@ export default class Dashboard extends Vue {
   public loading: boolean = false;
 
   created() {
-    this.getMyProjectList();
+    if (
+      this.category === "Company" &&
+      (this.role === "Merchandiser" || this.role === "Quote InCharge")
+    ) {
+      this.getMyProjectList();
+    } else {
+      this.getProjectList();
+    }
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -243,6 +253,10 @@ export default class Dashboard extends Vue {
   }
   get category(): string {
     return this.$store.getters.category;
+  }
+
+  get role(): string {
+    return this.$store.getters.role;
   }
   public getProjectList() {
     this.request.id = this.$store.getters.id;
@@ -282,11 +296,13 @@ export default class Dashboard extends Vue {
       sortable: false,
       value: "EnquiryName",
       class: "teal lighten-3 subtitle-2",
+       
     },
     {
       text: "Merchandiser",
       value: "Merchandiser",
       class: "teal lighten-3 subtitle-2",
+     
     },
     { text: "Category", value: "Category", class: "teal lighten-3 subtitle-2" },
     {

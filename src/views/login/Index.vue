@@ -175,7 +175,7 @@ export default class Login extends Vue {
   ];
 
   public signIn() {
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+    // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.loading = true;
     this.$store.dispatch("login", this.request).then(
       (response: AuthenticationResponse) => {
@@ -193,6 +193,6 @@ export default class Login extends Vue {
       }
     );
     }
-  }
+  // }
 }
 </script>

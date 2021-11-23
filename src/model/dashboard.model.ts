@@ -52,6 +52,7 @@ export class SummaryModel {
 }
 export class ProjectSearchModel {
     stages: string;
+    myproject:boolean;
 }
 export class BidRequestModel {
     projectId: string;

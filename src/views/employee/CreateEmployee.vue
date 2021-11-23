@@ -481,6 +481,7 @@ export default class CreateEmployee extends Vue {
   }
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.request.EmployeeId=this.$route.params.Id;
       this.EmployeeService.EditEmployee(
         this.request,
         this.request.EmployeeId

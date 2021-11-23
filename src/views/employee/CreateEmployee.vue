@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container fluid class="pa-8">
+    <v-container fluid class="pa-4">
       <div class="ma-2">
         <router-link to="/" class="text-decoration-none">
           <v-icon large> mdi-home</v-icon>
@@ -14,8 +14,8 @@
       </div>
     </v-container>
 
-    <v-card class="mx-3 mb-5" elevation="8">
-      <v-form class="ml-8" ref="form">
+    <v-card class="mx-5 mb-5 pt-4" elevation="8">
+      <v-form class="ml-10" ref="form">
         <v-row class="pl-3 pt-5">
           <div class="font-weight-regular">{{ option }} Employee</div>
         </v-row>
@@ -29,7 +29,7 @@
             <v-text-field
               outlined
               dense
-              placeholder="Enter First Name"
+              label="Enter First Name"
               v-model="request.FirstName"
               class="pt-2"
               required
@@ -44,7 +44,7 @@
             <v-text-field
               outlined
               dense
-              placeholder="Enter Last Name"
+              label="Enter Last Name"
               v-model="request.LastName"
               class="pt-2"
               :rules="nameRules"
@@ -85,22 +85,41 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <v-label>
-              Password
-              <span class="red--text" v-if="option === 'Create'">*</span>
-            </v-label>
-            <v-text-field
-              class="pt-2"
-              label="Enter Password"
-              v-model="request.Password"
-              :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-              @click:append="() => (value = !value)"
-              :type="value ? 'password' : 'text'"
-              outlined
-              dense
-              :rules="passwordRules"
-            ></v-text-field>
+            <div v-if="option === 'Create'">
+              <v-label>
+                Password
+                <span class="red--text">*</span>
+              </v-label>
+              <v-text-field
+                class="pt-2"
+                label="Enter Password"
+                v-model="request.Password"
+                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="() => (value = !value)"
+                :type="value ? 'password' : 'text'"
+                outlined
+                dense
+                :rules="passwordRules"
+              ></v-text-field>
+            </div>
+            <div v-else>
+              <v-label>
+                Password
+              </v-label>
+              <v-text-field
+                class="pt-2"
+                label="Enter Password"
+                v-model="request.Password"
+                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="() => (value = !value)"
+                :type="value ? 'password' : 'text'"
+                outlined
+                dense
+                :rules="passwordRules1"
+              ></v-text-field>
+            </div>
           </v-col>
+
           <v-col cols="12" md="3">
             <v-label>
               Phone
@@ -155,13 +174,14 @@
             md="3"
             class="ml-4"
             v-if="
-              request.MerchandiserId ||
-              !(
-                request.EmployeeRole === 'Merchandiser' ||
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === 'Approval Admin' ||
-                request.EmployeeRole === ' '
-              )
+              (request.MerchandiserId ||
+                !(
+                  request.EmployeeRole === 'Merchandiser' ||
+                  request.EmployeeRole === 'MasterAdmin' ||
+                  request.EmployeeRole === 'Approval Admin' ||
+                  request.EmployeeRole === ' '
+                )) &&
+                category === 'Company'
             "
           >
             <!-- request.EmployeeRole === 'Quote InCharge' ||
@@ -197,11 +217,11 @@
             class="mr-5"
             v-if="
               request.ApprovalAdminId ||
-              !(
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === 'Approval Admin' ||
-                request.EmployeeRole === ' '
-              )
+                !(
+                  request.EmployeeRole === 'MasterAdmin' ||
+                  request.EmployeeRole === 'Approval Admin' ||
+                  request.EmployeeRole === ' '
+                )
             "
           >
             <v-label>
@@ -231,10 +251,10 @@
             md="3"
             v-if="
               request.MasterAdminId ||
-              !(
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === ' '
-              )
+                !(
+                  request.EmployeeRole === 'MasterAdmin' ||
+                  request.EmployeeRole === ' '
+                )
             "
           >
             <v-label>
@@ -266,7 +286,8 @@
           v-if="
             (category === 'Company' &&
               request.EmployeeRole === 'Merchandiser') ||
-            (category != 'Company' && request.EmployeeRole === 'Quote InCharge')
+              (category != 'Company' &&
+                request.EmployeeRole === 'Quote InCharge')
           "
         >
           <v-checkbox
@@ -290,15 +311,32 @@
         <v-snackbar
           v-model="snackbar"
           :timeout="2000"
+          color="green lighten-5 green--text"
+          right
+          top
+        >
+          <v-icon color="green">mdi-exclamation-thick </v-icon>
+          {{ snackbarText }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+              <v-icon> mdi-close-box</v-icon>
+            </v-btn>
+          </template>
+        </v-snackbar>
+
+        <v-snackbar
+          v-model="snackbar1"
+          :timeout="2000"
           color="deep-orange lighten-5 pink--text"
           right
           top
         >
           <v-icon color="pink">mdi-exclamation-thick </v-icon>
-          {{ snackbarText }}
+          {{ snackbarText1 }}
 
           <template v-slot:action="{ attrs }">
-            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-btn color="red" text v-bind="attrs" @click="snackbar1 = false">
               <v-icon> mdi-close-box</v-icon>
             </v-btn>
           </template>
@@ -329,7 +367,7 @@ export default class CreateEmployee extends Vue {
 
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
-    (v: any) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
   ];
 
   public emailRules: any = [
@@ -348,7 +386,14 @@ export default class CreateEmployee extends Vue {
     (v: any) => !!v || "Password is required",
     (v: any) =>
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
+      "Password must be atleast 8 charcters length and contain atleast 1 lowercase letter, 1 uppercase letter, one number and a special character",
+  ];
+
+  public passwordRules1: any = [
+    // (v: any) => !!v || "Password is required",
+    (v: any) =>
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Password must be atleast 8 charcters length and contain atleast 1 lowercase letter, 1 uppercase letter, one number and a special character",
   ];
 
   public value: boolean = true;
@@ -363,6 +408,8 @@ export default class CreateEmployee extends Vue {
   public option: string = "";
   public snackbarText: string = "";
   public snackbar: boolean = false;
+  public snackbarText1: string = "";
+  public snackbar1: boolean = false;
 
   created() {
     if (this.$route.params.Id != "Create") {
@@ -425,8 +472,8 @@ export default class CreateEmployee extends Vue {
         },
         (err) => {
           if (err.response.status == 400) {
-            this.snackbarText = err.response.data;
-            this.snackbar = true;
+            this.snackbarText1 = err.response.data;
+            this.snackbar1 = true;
           }
         }
       );
@@ -445,8 +492,8 @@ export default class CreateEmployee extends Vue {
         },
         (err) => {
           if (err.response.status == 400) {
-            this.snackbarText = err.response.data;
-            this.snackbar = true;
+            this.snackbarText1 = err.response.data;
+            this.snackbar1 = true;
           }
         }
       );

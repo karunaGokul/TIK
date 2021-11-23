@@ -1,21 +1,17 @@
 <template>
   <div>
-    <v-dialog max-width="1200px" height="600px" v-model="dialog" class="d-flex" style="overflow: hidden">
+    <v-dialog max-width="1200px" v-model="dialog" class="d-flex" style="overflow: hidden">
       <v-card > 
         <v-row class="mt-1 px-4">
-          <v-card-title> Profile </v-card-title>
+          <v-card-title class="ml-3"> Profile </v-card-title>
           <v-spacer></v-spacer>
           <v-btn @click="close" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
         </v-row>
-
         <v-divider></v-divider>
-        <v-row class="mx-2">
-          <v-card-title class="blue--text"> Profile </v-card-title>
-        </v-row>
-        <v-row class="mx-4 mt-n4">
-          <v-col class="col-3">
+        <v-row class="mx-4">
+          <v-col class="col-3 mt-3">
             <v-card elevation="2" class="grey lighten-4 color" height="40%">
               <v-file-input
                 hide-input
@@ -38,7 +34,7 @@
             </v-card>
             <div class="my-1 font-weight-light">Logo Image Upload Here</div>
           </v-col>
-          <v-col cols="12" sm="4" md="5">
+          <v-col cols="12" sm="4" md="5" class="mt-6">
             <div class="my-n2">
               <v-text-field
                 dense
@@ -103,7 +99,7 @@
               ></v-text-field>
             </div>
           </v-col>
-          <v-col cols="12" sm="3" md="4">
+          <v-col cols="12" sm="3" md="4" class="mt-3">
             <v-card elevation="2" class="grey lighten-4 color" height="35%">
               <v-file-input
                 hide-input
@@ -117,7 +113,7 @@
           </v-col>
         </v-row>
 
-        <v-row class="mx-4">
+        <v-row class="mr-10 mt-n12 pb-10 d-flex justify-end">
           <v-btn
             dark
             class="text-capitalize red color font-weight-regular mt-n5"

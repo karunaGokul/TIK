@@ -7,17 +7,17 @@
         color="red"
       ></v-progress-linear>
     </v-row> -->
-    <v-row justify="center">
+    <!-- <v-row justify="center">
       <v-progress-circular
         v-if="loading"
         indeterminate
         color="primary"
       ></v-progress-circular>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col cols="12" md="6">
-        <v-parallax src="@/assets/login.jpg" height="700">
-          <div class="pl-10 pt-16">
+        <v-parallax src="@/assets/login.jpg" height="650">
+          <div class="pl-10">
             <h1>Welcome To Textile</h1>
             <h2 class="py-2">Login to continue Access</h2>
             <p>
@@ -36,9 +36,9 @@
         color="purple"
       ></v-progress-circular> -->
       <v-col class="pt-16 px-16 mx-5">
-        <h2 class="pb-7 pt-15">Sign in</h2>
+        <h2 class="pb-7">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form">
+          <v-form ref="form" class="mt-n4 ml-n2">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -101,6 +101,7 @@
               depressed
               block
               @click="signIn"
+              :loading="loading"
             >
               Sign In
             </v-btn>
@@ -169,13 +170,10 @@ export default class Login extends Vue {
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) =>
-      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Password must contain at least one lowercase letter, one number, a special character and one uppercase letter",
   ];
 
   public signIn() {
-    // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.loading = true;
     this.$store.dispatch("login", this.request).then(
       (response: AuthenticationResponse) => {
@@ -193,6 +191,6 @@ export default class Login extends Vue {
       }
     );
     }
-  // }
+  }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 700px; width: 100%; overflow: hidden">
+  <div style="height: 650px; width: 100%; overflow: hidden">
     <v-row>
       <v-col cols="12" md="6">
         <div class="d-flex" style="height: 700px; width: 100%">
@@ -18,8 +18,8 @@
         </div>
       </v-col>
 
-      <v-col class="pt-16 pl-6">
-        <div style="height: 50%; flex: 1; overflow: scroll" class="pr-10">
+      <v-col class="pt-4 pl-6">
+        <div style="height: 63%; flex: 1; overflow: scroll" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
 
           <v-form>
@@ -30,7 +30,7 @@
                   outlined
                   dense
                   placeholder="Enter First Name"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.firstName"
                   required
                   :rules="nameRules"
@@ -43,7 +43,7 @@
                   outlined
                   dense
                   placeholder="Enter Last Name"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.lastName"
                   required
                   :rules="nameRules"
@@ -51,14 +51,14 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mt-n5">
               <v-col>
                 <v-label>Phone Number</v-label>
                 <v-text-field
                   outlined
                   dense
                   placeholder="Enter Phone Number"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.phoneNumber"
                   :rules="phoneRules"
                   required
@@ -71,7 +71,7 @@
                   outlined
                   dense
                   placeholder="Enter Email ID"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.emailAddress"
                   :rules="emailRules"
                   required
@@ -79,14 +79,14 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mt-n5">
               <v-col>
                 <v-label>Password</v-label>
                 <v-text-field
                   outlined
                   dense
                   placeholder="Enter Password"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.password"
                   required
                   :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
@@ -103,7 +103,7 @@
                   dense
                   placeholder="Re-Enter Password"
                   v-model="request.confirmPassword"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
                   @click:append="() => (value1 = !value1)"
                   :type="value1 ? 'password' : 'text'"
@@ -121,7 +121,7 @@
               :items="category"
               item-text="categoryName"
               item-value="id"
-              class="py-2 rounded-0"
+              class="rounded-0"
               required
               :rules="[(v) => !!v || 'Category is required']"
             ></v-select>
@@ -133,14 +133,14 @@
                   outlined
                   dense
                   placeholder="Enter GST Number"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   v-model="request.gstNumber"
                   required
                   :rules="[(v) => !!v || 'GST is required']"
                 ></v-text-field>
               </v-col>
 
-              <v-col class="pt-13 pl-16 mt-n3">
+              <v-col class="pt-13 pl-16 mt-n5">
                 <v-btn
                   class="
                     white--text
@@ -156,7 +156,7 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mt-n5">
               <v-col>
                 <v-label>Address</v-label>
                 <v-text-field
@@ -182,7 +182,7 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mt-n5">
               <v-col>
                 <v-label>Country</v-label>
                 <v-select
@@ -193,7 +193,7 @@
                   :items="country"
                   item-text="countryName"
                   item-value="id"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   @change="getState"
                   required
                   :rules="[(v) => !!v || 'Country is required']"
@@ -210,7 +210,7 @@
                   :items="state"
                   item-text="stateName"
                   item-value="id"
-                  class="py-2 rounded-0"
+                  class="rounded-0"
                   @change="getCity"
                   required
                   :rules="[(v) => !!v || 'State is required']"
@@ -218,7 +218,7 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row class="mt-n5">
               <v-col>
                 <v-label>City</v-label>
                 <v-select
@@ -229,7 +229,7 @@
                   :items="city"
                   item-text="cityName"
                   item-value="id"
-                  class="py-3 rounded-0"
+                  class="rounded-0"
                   required
                   :rules="[(v) => !!v || 'City is required']"
                 ></v-select>
@@ -241,7 +241,7 @@
                   outlined
                   dense
                   placeholder="Enter Zip Code"
-                  class="py-3 rounded-0"
+                  class="rounded-0"
                   required
                   v-model="request.zipCode"
                   :rules="ZipCodeRules"

@@ -9,7 +9,7 @@
         class="shrink my-4"
         dense
         hide-details
-        @change="searchProject(myproject)"
+        @change="searchProject()"
       ></v-select>
 
       <v-spacer></v-spacer>
@@ -36,7 +36,7 @@
         >
           <template v-slot:[`header.Merchandiser`]="{ header }">
             {{ header.text }}
-            <v-icon small @click="test()"> mdi-filter </v-icon>
+            <v-icon small @click="autocomplete = true"> mdi-filter </v-icon>
           </template>
 
           <template v-slot:[`item.Status`]="{ item }">
@@ -76,6 +76,19 @@
             </router-link>
           </template>
         </v-data-table>
+        <!-- <v-card>
+          <v-autocomplete
+            v-if="autocomplete"
+            v-model="values"
+            :items="items"
+            outlined
+            dense
+            chips
+            small-chips
+            label="Outlined"
+            multiple
+          ></v-autocomplete>
+        </v-card> -->
       </v-col>
     </v-row>
   </div>
@@ -92,11 +105,13 @@ import { DashboardModel, ProjectSearchModel } from "@/model";
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   @Prop() response: Array<DashboardModel> = [];
-  @Prop() myproject:boolean;
+  @Prop() myproject: boolean;
   public searchRequest = new ProjectSearchModel();
   public search: string = "";
   public stages: string = "";
+  public values: string = "";
   public loading: boolean = false;
+  public autocomplete: boolean = false;
 
   created() {
     if (this.category != "Company") {
@@ -116,9 +131,9 @@ export default class DashboardProjectList extends Vue {
   get role(): string {
     return this.$store.getters.role;
   }
-  public searchProject(myproject:boolean) {
+  public searchProject() {
+    this.searchRequest.myproject = this.myproject;
     this.searchRequest.stages = this.stages;
-    this.searchRequest.myproject=myproject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.response = response;

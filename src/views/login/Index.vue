@@ -1,19 +1,5 @@
 <template>
   <div>
-    <!-- <v-row>
-      <v-progress-linear
-        v-if="loading"
-        indeterminate
-        color="red"
-      ></v-progress-linear>
-    </v-row> -->
-    <!-- <v-row justify="center">
-      <v-progress-circular
-        v-if="loading"
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
-    </v-row> -->
     <v-row>
       <v-col cols="12" md="6">
         <v-parallax src="@/assets/login.jpg" height="650">
@@ -29,12 +15,6 @@
           </div>
         </v-parallax>
       </v-col>
-      <!-- <v-progress-circular
-        v-if="loading"
-        indeterminate
-        size="64"
-        color="purple"
-      ></v-progress-circular> -->
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7">Sign in</h2>
         <v-container class="fluid">
@@ -131,7 +111,8 @@
             <div class="text-caption py-5">
               Don't have an account yet?
               <router-link to="/registration" class="text-decoration-none">
-              sign up</router-link>
+                sign up</router-link
+              >
             </div>
           </v-form>
         </v-container>
@@ -146,7 +127,7 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 
 import { validationMixin } from "vuelidate";
 
-import { AuthenticationRequestModel, AuthenticationResponse, } from "@/model";
+import { AuthenticationRequestModel, AuthenticationResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 import ForgotPassword from "./ForgotPassword.vue";
@@ -173,32 +154,29 @@ export default class Login extends Vue {
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
   ];
 
-  public passwordRules: any = [
-    (v: any) => !!v || "Password is required",
-  ];
+  public passwordRules: any = [(v: any) => !!v || "Password is required"];
 
   public signIn() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-    this.loading = true;
-    this.$store.dispatch("login", this.request).then(
-      (response: AuthenticationResponse) => {
-        this.loading = false;
-        if (this.$store.getters.isLoggedIn) {
-          this.$router.push("/dashboard");
+      this.loading = true;
+      this.$store.dispatch("login", this.request).then(
+        (response: AuthenticationResponse) => {
+          this.loading = false;
+          if (this.$store.getters.isLoggedIn) {
+            this.$router.push("/dashboard");
+          } else {
+            this.resetPassword = true;
+            //  this.$router.push("/")
+          }
+        },
+        (err) => {
+          this.loading = false;
+          if (err.response.status === 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;
+          }
         }
-        else  {
-          this.resetPassword = true;
-        //  this.$router.push("/")
-        }
-      },
-      (err) => {
-        this.loading = false;
-        if (err.response.status === 400) {
-          this.snackbarText = err.response.data;
-          this.snackbar = true;
-        }
-      }
-    );
+      );
     }
   }
 }

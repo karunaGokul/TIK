@@ -38,10 +38,8 @@
           ></v-rating>
         </v-col>
         <v-col cols="12" sm="2" md="2">
-          <v-row class="mt-4 font-weight-regular">
-            {{ response.EnquiryName }}
-          </v-row>
-          <v-row class="font-weight-regular text-caption">
+          
+          <v-row class="font-weight-regular mt-4 text-caption">
             Created By : {{ response.CreatedBy }}
           </v-row>
           <v-row class="font-weight-regular text-caption">
@@ -55,7 +53,7 @@
           v-if="bitAuditResponse.selectedBy && category === 'Company'"
           class="ml-n7 mr-n16"
         >
-          <v-row class="font-weight-regular mt-8 text-caption">
+          <v-row class="font-weight-regular mt-4 text-caption">
             Selected By : {{ bitAuditResponse.selectedBy }}</v-row
           >
           <v-row class="font-weight-regular text-caption">
@@ -69,7 +67,7 @@
           v-if="bitAuditResponse.approveBy && category === 'Company'"
           class="ml-n16 mr-n16"
         >
-          <v-row class="font-weight-regular mt-8 text-caption">
+          <v-row class="font-weight-regular mt-4 text-caption">
             Approve & Authenticate By : {{ bitAuditResponse.approveBy }}
           </v-row>
           <v-row class="font-weight-regular text-caption">
@@ -83,7 +81,7 @@
           v-if="bitAuditResponse.confirmedBy && category === 'Company'"
           class="ml-n10"
         >
-          <v-row class="font-weight-regular mt-8 text-caption">
+          <v-row class="font-weight-regular mt-4 text-caption">
             Confirm By : {{ bitAuditResponse.confirmedBy }}</v-row
           >
           <v-row class="font-weight-regular text-caption">

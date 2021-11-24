@@ -72,6 +72,7 @@
                   label="Remember Me"
                   type="checkbox"
                   class="mt-0"
+                  v-model="rememberValue"
                 ></v-checkbox>
               </v-col>
 
@@ -136,6 +137,7 @@
         </v-container>
       </v-col>
     </v-row>
+    <ResetPassword v-if="resetPassword" />
   </div>
 </template>
 
@@ -144,14 +146,15 @@ import { Component, Vue, Inject } from "vue-property-decorator";
 
 import { validationMixin } from "vuelidate";
 
-import { AuthenticationRequestModel, AuthenticationResponse } from "@/model";
+import { AuthenticationRequestModel, AuthenticationResponse, } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 import ForgotPassword from "./ForgotPassword.vue";
+import ResetPassword from "./ResetPassword.vue";
 
 @Component({
   mixins: [validationMixin],
-  components: { ForgotPassword },
+  components: { ForgotPassword, ResetPassword },
 })
 export default class Login extends Vue {
   @Inject("authService") authService: IAuthenticationService;
@@ -162,6 +165,8 @@ export default class Login extends Vue {
   public loading: boolean = false;
   public value: boolean = true;
   public request = new AuthenticationRequestModel();
+  public rememberValue: boolean = false;
+  public resetPassword: boolean = false;
 
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
@@ -181,10 +186,14 @@ export default class Login extends Vue {
         if (this.$store.getters.isLoggedIn) {
           this.$router.push("/dashboard");
         }
+        else  {
+          this.resetPassword = true;
+        //  this.$router.push("/")
+        }
       },
       (err) => {
         this.loading = false;
-        if (err.response.status == 400) {
+        if (err.response.status === 400) {
           this.snackbarText = err.response.data;
           this.snackbar = true;
         }

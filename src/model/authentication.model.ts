@@ -14,6 +14,7 @@ export class AuthenticationResponse {
     category: string;
     approvalAdminAccess: string;
 }
+
 export class AuthenticationState {
     accessToken: string = "";
     refreshToken: string = "";

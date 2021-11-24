@@ -70,16 +70,33 @@
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"
+        color="green lighten-5 green--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="green">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <v-snackbar
+        v-model="snackbar1"
+        :timeout="2000"
         color="deep-orange lighten-5 pink--text"
         absolute
         right
         top
       >
         <v-icon color="pink">mdi-exclamation-thick </v-icon>
-        {{ snackbarText }}
+        {{ snackbarText1 }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar1 = false">
             <v-icon> mdi-close-box</v-icon>
           </v-btn>
         </template>
@@ -103,6 +120,8 @@ export default class ResetPassword extends Vue {
 
   public snackbar: boolean = false;
   public snackbarText: string = "";
+  public snackbar1: boolean = false;
+  public snackbarText1: string = "";
   public dialog: boolean = true;
 
   public value: boolean = true;
@@ -113,32 +132,33 @@ export default class ResetPassword extends Vue {
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
-    (v: any) => /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||  "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+    (v: any) =>
+      /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  get id(): string {
-    return this.$store.getters.id;
-  }
+  // get id(): string {
+  //   return this.$store.getters.id;
+  // }
 
   public resetPassword() {
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate() &&
-      this.request.newPassword == this.request.confirmPassword
-    ) {
-      this.request.id = this.id;
-      this.authService
-        .ResetPassword(this.request)
-        .then((response) => {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate())
+    {
+      this.request.id = this.$store.getters.id;
+      this.request.newPassword === this.request.confirmPassword;
+      this.authService.ResetPassword(this.request).then(
+        (response) => {
           this.snackbarText = response;
           this.snackbar = true;
           this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error);
-          if (error.response.status == 500)
-            this.snackbarText = error.response.data;
-          this.snackbar = true;
+        },
+        (err) => {
+        if (err.response.status === 400)
+            this.snackbarText1 = err.response.data;
+          this.snackbar1 = true;
         });
-    }
+      }
   }
+
 }
 </script>

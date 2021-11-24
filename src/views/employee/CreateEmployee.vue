@@ -15,7 +15,7 @@
     </v-container>
 
     <v-card class="mx-5 mb-5 pt-4" elevation="8">
-      <v-form class="ml-10" ref="form">
+      <v-form class="ml-10" ref="form" autocomplete="off">
         <v-row class="pl-3 pt-5">
           <div class="font-weight-regular">{{ option }} Employee</div>
         </v-row>
@@ -82,10 +82,11 @@
               dense
               :rules="emailRules"
               required
+              autocomplete="false"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <div v-if="option === 'Create'">
+            <div v-if="(option === 'Create')">
               <v-label>
                 Password
                 <span class="red--text">*</span>
@@ -99,7 +100,9 @@
                 :type="value ? 'password' : 'text'"
                 outlined
                 dense
+                required
                 :rules="passwordRules"
+                autocomplete="false"
               ></v-text-field>
             </div>
             <div v-else>
@@ -116,6 +119,7 @@
                 outlined
                 dense
                 :rules="passwordRules1"
+                autocomplete="false"
               ></v-text-field>
             </div>
           </v-col>
@@ -201,11 +205,11 @@
               v-model="request.MerchandiserId"
               dense
             >
-              <template v-slot:prepend-item v-if="option === 'Edit'">
+              <!-- <template v-slot:prepend-item v-if="option === 'Edit'">
                 <v-list-item @click="request.MerchandiserId = null">
                   <v-list-item-title> Remove </v-list-item-title>
                 </v-list-item>
-              </template>
+              </template> -->
             </v-select>
           </v-col>
         </v-row>
@@ -216,12 +220,17 @@
             md="3"
             class="mr-5"
             v-if="
-              request.ApprovalAdminId ||
+              ((request.ApprovalAdminId || 
                 !(
                   request.EmployeeRole === 'MasterAdmin' ||
                   request.EmployeeRole === 'Approval Admin' ||
                   request.EmployeeRole === ' '
-                )
+                ) ) && option === 'Create') || 
+                (option === 'Edit') && (!(
+                  request.EmployeeRole === 'MasterAdmin' ||
+                  request.EmployeeRole === 'Approval Admin' ||
+                  request.EmployeeRole === ' '
+                ))
             "
           >
             <v-label>
@@ -239,22 +248,29 @@
               v-model="request.ApprovalAdminId"
               dense
             >
-              <template v-slot:prepend-item v-if="option === 'Edit'">
+              <!-- <template v-slot:prepend-item v-if="(option === 'Edit')">
                 <v-list-item @click="request.ApprovalAdminId = null">
                   <v-list-item-title> Remove </v-list-item-title>
                 </v-list-item>
-              </template>
+              </template> -->
             </v-select>
           </v-col>
+          
           <v-col
             cols="12"
             md="3"
             v-if="
-              request.MasterAdminId ||
+              ((request.MasterAdminId ||
                 !(
                   request.EmployeeRole === 'MasterAdmin' ||
                   request.EmployeeRole === ' '
-                )
+                )) &&
+                option === 'Create') ||
+                (option === 'Edit' &&
+                !(
+                  request.EmployeeRole === 'MasterAdmin' ||
+                  request.EmployeeRole === ' '
+                ))
             "
           >
             <v-label>
@@ -272,13 +288,14 @@
               outlined
               dense
             >
-              <template v-slot:prepend-item v-if="option === 'Edit'">
+              <!-- <template v-slot:prepend-item v-if="option === 'Edit'">
                 <v-list-item @click="request.MasterAdminId = null">
                   <v-list-item-title> Remove </v-list-item-title>
                 </v-list-item>
-              </template>
+              </template> -->
             </v-select>
           </v-col>
+          
         </v-row>
 
         <v-row
@@ -302,18 +319,19 @@
         <v-row justify="center">
           <v-btn
             large
-            v-if="(option === 'Create')"
+            v-if="option === 'Create'"
             class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
-            @click= createEmployee() 
+            @click="createEmployee()"
             >{{ option }}</v-btn
           >
           <v-btn
             large
             v-else
             class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
-            @click= updateEmployee()
-            > Update </v-btn
+            @click="updateEmployee()"
           >
+            Update
+          </v-btn>
         </v-row>
 
         <v-snackbar
@@ -393,16 +411,16 @@ export default class CreateEmployee extends Vue {
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
     (v: any) =>
-      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  // public passwordRules1: any = [
-  //   // (v: any) => !!v || "Password is required",
-  //   (v: any) =>
-  //     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-  //     "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
-  // ];
+  public passwordRules1: any = [
+      // (v: any) => !!v || "Password is required",
+      (v: any) =>
+      /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+  ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
@@ -489,7 +507,7 @@ export default class CreateEmployee extends Vue {
   }
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      this.request.EmployeeId=this.$route.params.Id;
+      this.request.EmployeeId = this.$route.params.Id;
       this.EmployeeService.EditEmployee(
         this.request,
         this.request.EmployeeId

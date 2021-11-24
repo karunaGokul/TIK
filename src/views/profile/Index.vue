@@ -246,11 +246,11 @@ export default class Profile extends Vue {
   response: ProfileResponse = new ProfileResponse();
   request: ProfileRequestModel = new ProfileRequestModel();
 
-  toggleEditProfile: boolean = false;
-  toggleResetPassword: boolean = false;
-  loading:boolean = false;
+  public toggleEditProfile: boolean = false;
+  public toggleResetPassword: boolean = false;
+  public loading:boolean = false;
   public value: string;
-  model: "";
+  public model: "";
 
   created() {
     this.loadprofile();

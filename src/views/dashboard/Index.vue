@@ -17,13 +17,13 @@
         </v-tabs>
         <v-tabs-items v-model="tabValue" v-if="tab">
           <v-tab-item>
-            <DashboardProjectList :response="response" :myproject="tab"/>
+            <DashboardProjectList :response="response" :myproject="tab" />
           </v-tab-item>
           <v-tab-item>
-            <DashboardProjectList :response="response" :myproject="tab"/>
+            <DashboardProjectList :response="response" :myproject="tab" />
           </v-tab-item>
         </v-tabs-items>
-        <DashboardProjectList :response="response" :myproject="tab" v-if="tab===false"/>
+        <DashboardProjectList :response="response" :myproject="tab" v-if="(tab === false)" />
       </v-card>
     </div>
     <v-snackbar

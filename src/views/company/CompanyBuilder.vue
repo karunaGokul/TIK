@@ -68,7 +68,7 @@
                               v-model="item.filaments"
                             ></v-simple-checkbox>
                           </template>
-                          <template v-slot:[`item.action`]="{ item, index }">
+                          <template v-slot:[`item.action`]="{ index }">
                             <v-btn
                               icon
                               x-small
@@ -207,7 +207,7 @@
                               </v-col>
                             </v-row>
                           </template>
-                          <template v-slot:[`item.action`]="{ item, index }">
+                          <template v-slot:[`item.action`]="{ index }">
                             <v-btn
                               icon
                               x-small
@@ -340,10 +340,15 @@ export default class CompanyBuilder extends Vue {
 
   singleContents: Array<any> = [
     {
-      content: "",
+      content: [1],
       spun: false,
       filaments: false,
     },
+    {
+      content: "2",
+      spun: false,
+      filaments: false,
+    }
   ];
 
   singleContentOptions: any = [

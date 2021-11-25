@@ -22,7 +22,7 @@
         <div style="height: 63%; flex: 1; overflow: scroll" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
 
-          <v-form>
+          <v-form ref="form">
             <v-row>
               <v-col>
                 <v-label>First Name</v-label>
@@ -82,18 +82,29 @@
             <v-row class="mt-n5">
               <v-col>
                 <v-label>Password</v-label>
-                <v-text-field
-                  outlined
-                  dense
-                  placeholder="Enter Password"
-                  class="rounded-0"
-                  v-model="request.password"
-                  required
-                  :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="() => (value = !value)"
-                  :type="value ? 'password' : 'text'"
-                  :rules="passwordRules"
-                ></v-text-field>
+                <v-tooltip right>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      outlined
+                      dense
+                      placeholder="Enter Password"
+                      class="rounded-0"
+                      v-model="request.password"
+                      required
+                      v-bind="attrs"
+                      v-on="on"
+                      :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                      @click:append="() => (value = !value)"
+                      :type="value ? 'password' : 'text'"
+                      :rules="passwordRules"
+                    ></v-text-field>
+                  </template>
+                  <span
+                    >Your password must be at least 8 characters long,
+                    <br />with 1 uppercase & 1 lowercase character, 1 number<br />
+                    and a special character.</span
+                  >
+                </v-tooltip>
               </v-col>
 
               <v-col>
@@ -263,6 +274,7 @@
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
               block
+              :loading="loading"
               @click="SignUp"
             >
               Sign Up
@@ -327,17 +339,18 @@ export default class Registration extends Vue {
   public city: Array<CityResponseModel> = [];
   public CountryId = new StateRequestModel();
   public StateId = new CityRequestModel();
-  snackbar: boolean = false;
-  snackbarText: string = "";
-  checkbox: boolean = false;
-  value: boolean = true;
-  value1: boolean = true;
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
+  public checkbox: boolean = false;
+  public value: boolean = true;
+  public value1: boolean = true;
+  public loading: boolean = false;
 
   public nameRules: any = [
-    (v: any) => !!v || 'Name is required',
-    (v: any) => (v && v.length <= 10) || 'Name must be less than 10 characters',
+    (v: any) => !!v || "Name is required",
+    (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
   ];
-   
+
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -355,7 +368,7 @@ export default class Registration extends Vue {
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Zipcode must be Valid Number",
   ];
-  
+
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
     (v: any) =>
@@ -398,17 +411,22 @@ export default class Registration extends Vue {
       });
   }
   public SignUp() {
-    this.registrationService.registration(this.request).then(
-      (response) => {
-        this.$router.push("/");
-      },
-      (err) => {
-        if (err.response.status == 400) {
-          this.snackbarText = err.response.data;
-          this.snackbar = true;
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.loading = true;
+      this.registrationService.registration(this.request).then(
+        (response) => {
+          this.loading = false;
+          this.$router.push("/");
+        },
+        (err) => {
+          this.loading = false;
+          if (err.response.status == 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;
+          }
         }
-      }
-    );
+      );
+    }
   }
 }
 </script>

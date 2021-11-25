@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
+import { Component, Vue, Inject, Prop } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
 import { ResetPasswordRequestModel } from "@/model";
@@ -117,6 +117,7 @@ import { IAuthenticationService } from "@/service";
 })
 export default class ResetPassword extends Vue {
   @Inject("authService") authService: IAuthenticationService;
+  @Prop() resetId: any;
 
   public snackbar: boolean = false;
   public snackbarText: string = "";
@@ -142,10 +143,10 @@ export default class ResetPassword extends Vue {
   // }
 
   public resetPassword() {
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate())
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate() && (this.request.newPassword === this.request.confirmPassword))
     {
-      this.request.id = this.$store.getters.id;
-      this.request.newPassword === this.request.confirmPassword;
+      this.request.id = this.resetId;
+      // this.request.newPassword === this.request.confirmPassword;
       this.authService.ResetPassword(this.request).then(
         (response) => {
           this.snackbarText = response;

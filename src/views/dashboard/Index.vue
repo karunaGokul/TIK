@@ -23,7 +23,7 @@
             <DashboardProjectList :response="response" myproject="false"/>
           </v-tab-item>
         </v-tabs-items>
-        <DashboardProjectList :response="response" myproject="false" v-if="tab===false"/>
+        <DashboardProjectList :response="response" myproject="false" v-if="tab===false" :loading="loading" />
       </v-card>
     </div>
     <v-snackbar

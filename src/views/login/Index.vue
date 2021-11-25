@@ -118,7 +118,7 @@
         </v-container>
       </v-col>
     </v-row>
-    <ResetPassword v-if="resetPassword" />
+    <ResetPassword v-if="resetPassword" :resetId="resetId" />
   </div>
 </template>
 
@@ -148,6 +148,7 @@ export default class Login extends Vue {
   public request = new AuthenticationRequestModel();
   public rememberValue: boolean = false;
   public resetPassword: boolean = false;
+  public resetId: any = "";
 
   public emailRules: any = [
     (v: any) => !!v || "E-mail is required",
@@ -166,7 +167,7 @@ export default class Login extends Vue {
             this.$router.push("/dashboard");
           } else {
             this.resetPassword = true;
-            //  this.$router.push("/")
+            this.resetId = response;
           }
         },
         (err) => {

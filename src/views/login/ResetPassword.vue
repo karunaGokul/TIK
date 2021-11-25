@@ -20,7 +20,7 @@
               dense
               class="rounded-0"
               color="primary"
-              v-model="request.temporaryPassword"
+              v-model.trim="request.temporaryPassword"
               :append-icon="value2 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value2 = !value2)"
               :type="value2 ? 'password' : 'text'"
@@ -32,7 +32,7 @@
               dense
               class="rounded-0"
               color="primary"
-              v-model="request.newPassword"
+              v-model.trim="request.newPassword"
               :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value = !value)"
               :type="value ? 'password' : 'text'"
@@ -45,7 +45,7 @@
               dense
               class="rounded-0"
               color="primary"
-              v-model="request.confirmPassword"
+              v-model.trim="request.confirmPassword"
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
@@ -59,6 +59,7 @@
                   class="rounded-0 white--text font-weight-light text-capitalize"
                   depressed
                   @click="resetPassword"
+                  :loading="loading"
                   >Reset</v-btn
                 >
               </v-card-actions>
@@ -109,7 +110,7 @@
 import { Component, Vue, Inject, Prop } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 
-import { ResetPasswordRequestModel } from "@/model";
+import { ResetPasswordRequestModel, AuthenticationResponse } from "@/model";
 import { IAuthenticationService } from "@/service";
 
 @Component({
@@ -117,7 +118,7 @@ import { IAuthenticationService } from "@/service";
 })
 export default class ResetPassword extends Vue {
   @Inject("authService") authService: IAuthenticationService;
-  @Prop() resetId: any;
+  @Prop() resetId: AuthenticationResponse;
 
   public snackbar: boolean = false;
   public snackbarText: string = "";
@@ -128,6 +129,7 @@ export default class ResetPassword extends Vue {
   public value: boolean = true;
   public value1: boolean = true;
   public value2: boolean = true;
+  public loading: boolean = false;
 
   public request = new ResetPasswordRequestModel();
 
@@ -138,28 +140,30 @@ export default class ResetPassword extends Vue {
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  // get id(): string {
-  //   return this.$store.getters.id;
-  // }
 
   public resetPassword() {
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate() && (this.request.newPassword === this.request.confirmPassword))
-    {
-      this.request.id = this.resetId;
-      // this.request.newPassword === this.request.confirmPassword;
+    if (
+      (this.$refs.form as Vue & { validate: () => boolean }).validate() &&
+      this.request.newPassword === this.request.confirmPassword
+    ) {
+      this.loading = true;
+      this.request.id = this.resetId.userId;
+      console.log(this.request.confirmPassword);
       this.authService.ResetPassword(this.request).then(
         (response) => {
+          this.loading = false;
           this.snackbarText = response;
           this.snackbar = true;
           this.$router.push("/");
         },
         (err) => {
-        if (err.response.status === 400)
+          this.loading = false;
+          if (err.response.status === 400)
             this.snackbarText1 = err.response.data;
-          this.snackbar1 = true;
-        });
-      }
+            this.snackbar1 = true;
+        }
+      );
+    }
   }
-
 }
 </script>

@@ -149,12 +149,6 @@ export default class RejectedProject extends Vue {
   public sortedValue: any;
   public a: any;
 
-  // public sort() {
-  //   this.response.sort();
-  //   console.log(this.response);
-  //   return this.response;
-  // }
-
   public sort() {
     this.response.sort((a, b) => {
       var x = a.companyName.toLowerCase();

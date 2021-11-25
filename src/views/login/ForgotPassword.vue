@@ -38,6 +38,7 @@
               class="rounded-0 white--text font-weight-light text-capitalize"
               depressed
               @click="forgotPassword"
+              :loading="loading"
               >Send</v-btn>
             </v-card-actions>
             </v-row>
@@ -88,22 +89,24 @@ import { IAuthenticationService } from "@/service";
 export default class ForgotPassword extends Vue {
   @Inject("authService") authService: IAuthenticationService;
 
-  snackbar: boolean = false;
-  snackbarText: string = "";
-  dialog: boolean = true;
-
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
+  public dialog: boolean = true;
+  public loading: boolean = false;
   public request = new ForgotPasswordRequestModel();
 
   public forgotPassword() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.loading = true;
       this.authService.ForgotPassword(this.request).then(
         (response) => {
+          this.loading = false;
           this.snackbarText = response;
           this.snackbar = true;
           this.dialog = false;
         },
         (err) => {
-          // console.log(err);
+          this.loading = false;
           if (err.response.status == 400) {
             this.snackbarText = err.response.data;
             this.snackbar = true;

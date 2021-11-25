@@ -39,7 +39,7 @@
 
               <v-spacer></v-spacer>
               
-                <v-btn
+                <!-- <v-btn
                   dark
                   class="text-capitalize font-weight-regular rounded-0"
                   color="primary"
@@ -47,9 +47,7 @@
                 >
                   Reset Password
                 </v-btn>
-              
-
-              <ResetPassword v-if="toggleResetPassword" />
+              <ResetPassword v-if="toggleResetPassword" /> -->
               <span class="mx-3">
                 <v-btn
                   class="

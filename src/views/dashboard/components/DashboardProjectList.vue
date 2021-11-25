@@ -33,6 +33,7 @@
           item-key="EnquiryName"
           class="elevation-1 mb-5"
           :loading="loading"
+          loading-text="Loading... Please wait"
         >
           <!-- <template v-slot:[`header.Merchandiser`]="{ header }">
             {{ header.text }}
@@ -106,11 +107,12 @@ export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   @Prop() response: Array<DashboardModel> = [];
   @Prop() myproject: boolean;
+  @Prop() loading: boolean;
   public searchRequest = new ProjectSearchModel();
   public search: string = "";
   public stages: string = "";
   public values: string = "";
-  public loading: boolean = false;
+  // public loading: boolean = false;
   public autocomplete: boolean = false;
 
   created() {

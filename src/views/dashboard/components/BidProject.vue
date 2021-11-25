@@ -19,7 +19,7 @@
                 dense
                 label="Enter Price per KG"
                 v-model="bidRequest.price"
-                :rules="[(v) => !!v || 'Price is required']"
+                :rules="priceRules"
                 required
               ></v-text-field>
             </v-col>
@@ -101,6 +101,13 @@ export default class BidProject extends Vue {
       });
     }
   }
+
+  public priceRules: any = [
+    (v: any) => !!v || 'Price is required',
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+    
+  ];
 
   public close() {
     this.$emit("closeModel", this.snackbarText);

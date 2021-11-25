@@ -13,6 +13,7 @@ export class AuthenticationResponse {
     companyId: string;
     category: string;
     approvalAdminAccess: string;
+    userId?: string;
 }
 
 export class AuthenticationState {

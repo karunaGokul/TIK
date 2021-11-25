@@ -29,6 +29,7 @@
             <v-text-field
               outlined
               dense
+              autofocus
               label="Enter First Name"
               v-model="request.FirstName"
               class="pt-2"
@@ -86,11 +87,13 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <div v-if="(option === 'Create')">
+            <div v-if="option === 'Create'">
               <v-label>
                 Password
                 <span class="red--text">*</span>
               </v-label>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 class="pt-2"
                 label="Enter Password"
@@ -101,26 +104,38 @@
                 outlined
                 dense
                 required
+                v-bind="attrs"
+                v-on="on"
                 :rules="passwordRules"
                 autocomplete="false"
               ></v-text-field>
+                </template>
+                <span>Your password must be at least 8 characters long,<br/> with 1 uppercase & 1 lowercase character, 1 number <br/>and a special character.</span>
+              </v-tooltip>
             </div>
             <div v-else>
               <v-label>
                 Password
               </v-label>
-              <v-text-field
-                class="pt-2"
-                label="Enter Password"
-                v-model="request.Password"
-                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="() => (value = !value)"
-                :type="value ? 'password' : 'text'"
-                outlined
-                dense
-                :rules="passwordRules1"
-                autocomplete="false"
-              ></v-text-field>
+              <v-tooltip right>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    class="pt-2"
+                    label="Enter Password"
+                    v-model="request.Password"
+                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="() => (value = !value)"
+                    :type="value ? 'password' : 'text'"
+                    outlined
+                    dense
+                    v-bind="attrs"
+                    v-on="on"
+                    :rules="passwordRules1"
+                    autocomplete="false"
+                  ></v-text-field>
+                </template>
+                <span>Your password must be at least 8 characters long, <br/>with 1 uppercase & 1 lowercase character, 1 number<br/> and a special character.</span>
+              </v-tooltip>
             </div>
           </v-col>
 
@@ -178,18 +193,17 @@
             md="3"
             class="ml-4"
             v-if="
-              (request.MerchandiserId ||
+              category === 'Company' &&
                 !(
                   request.EmployeeRole === 'Merchandiser' ||
                   request.EmployeeRole === 'MasterAdmin' ||
                   request.EmployeeRole === 'Approval Admin' ||
                   request.EmployeeRole === ' '
-                )) &&
-                category === 'Company'
+                ) &&
+                  (option === 'Edit' || option === 'Create')
             "
           >
-            <!-- request.EmployeeRole === 'Quote InCharge' ||
-              request.EmployeeRole != ' ' -->
+            <!-- request.MerchandiserId || -->
             <v-label>
               Merchandiser
               <span class="red--text">*</span>
@@ -205,11 +219,6 @@
               v-model="request.MerchandiserId"
               dense
             >
-              <!-- <template v-slot:prepend-item v-if="option === 'Edit'">
-                <v-list-item @click="request.MerchandiserId = null">
-                  <v-list-item-title> Remove </v-list-item-title>
-                </v-list-item>
-              </template> -->
             </v-select>
           </v-col>
         </v-row>
@@ -220,19 +229,15 @@
             md="3"
             class="mr-5"
             v-if="
-              ((request.ApprovalAdminId || 
-                !(
-                  request.EmployeeRole === 'MasterAdmin' ||
-                  request.EmployeeRole === 'Approval Admin' ||
-                  request.EmployeeRole === ' '
-                ) ) && option === 'Create') || 
-                (option === 'Edit') && (!(
-                  request.EmployeeRole === 'MasterAdmin' ||
-                  request.EmployeeRole === 'Approval Admin' ||
-                  request.EmployeeRole === ' '
-                ))
+              !(
+                request.EmployeeRole === 'MasterAdmin' ||
+                request.EmployeeRole === 'Approval Admin' ||
+                request.EmployeeRole === ' '
+              ) &&
+                (option === 'Edit' || option === 'Create')
             "
           >
+            <!-- request.ApprovalAdminId || -->
             <v-label>
               Approval Admin
               <span class="red--text">*</span>
@@ -248,31 +253,20 @@
               v-model="request.ApprovalAdminId"
               dense
             >
-              <!-- <template v-slot:prepend-item v-if="(option === 'Edit')">
-                <v-list-item @click="request.ApprovalAdminId = null">
-                  <v-list-item-title> Remove </v-list-item-title>
-                </v-list-item>
-              </template> -->
             </v-select>
           </v-col>
-          
           <v-col
             cols="12"
             md="3"
             v-if="
-              ((request.MasterAdminId ||
-                !(
-                  request.EmployeeRole === 'MasterAdmin' ||
-                  request.EmployeeRole === ' '
-                )) &&
-                option === 'Create') ||
-                (option === 'Edit' &&
-                !(
-                  request.EmployeeRole === 'MasterAdmin' ||
-                  request.EmployeeRole === ' '
-                ))
+              !(
+                request.EmployeeRole === 'MasterAdmin' ||
+                request.EmployeeRole === ' '
+              ) &&
+                (option === 'Edit' || option === 'Create')
             "
           >
+            <!-- request.MasterAdminId || -->
             <v-label>
               Master Admin
               <span class="red--text">*</span>
@@ -288,14 +282,8 @@
               outlined
               dense
             >
-              <!-- <template v-slot:prepend-item v-if="option === 'Edit'">
-                <v-list-item @click="request.MasterAdminId = null">
-                  <v-list-item-title> Remove </v-list-item-title>
-                </v-list-item>
-              </template> -->
             </v-select>
           </v-col>
-          
         </v-row>
 
         <v-row
@@ -373,7 +361,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject, Prop } from "vue-property-decorator";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import {
   AdminRequestModel,
@@ -415,12 +403,12 @@ export default class CreateEmployee extends Vue {
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  public passwordRules1: any = [
-      // (v: any) => !!v || "Password is required",
-      (v: any) =>
-      /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
-  ];
+  // public passwordRules1: any = [
+  //     // (v: any) => !!v || "Password is required",
+  //     (v: any) =>
+  //     /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+  //     "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+  // ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();

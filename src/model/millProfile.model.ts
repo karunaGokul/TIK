@@ -21,7 +21,7 @@ export class fabricModel {
 }
 export class ProductDetailModel {
     melangeSlubTypes?: Array<contentModel>;
-    contentLabelcontentLable:string;
+    contentLabel:string;
     qualityLable:string;
     countLable:string;
     singleContents: Array<contentDetailModel> = [];
@@ -35,8 +35,8 @@ export class ProductDetailModel {
     avgCreditTime: string;
 }
 export class contentDetailModel {
+    contents: number;
     contentOptions: Array<contentModel>;
-    contents: Array<contentModel>;
     filament?: string;
     spun?: string;
     combos?: Array<combosModel> = [];

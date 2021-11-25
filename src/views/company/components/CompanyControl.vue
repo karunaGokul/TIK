@@ -42,7 +42,7 @@
               <v-simple-checkbox v-model="item.spun"></v-simple-checkbox>
             </template>
             <template v-slot:[`item.filaments`]="{ item }">
-              <v-simple-checkbox v-model="item.filaments"></v-simple-checkbox>
+              <v-simple-checkbox v-model="item.filament"></v-simple-checkbox>
             </template>
             <template v-slot:[`item.action`]="{ index }">
               <v-btn
@@ -77,13 +77,18 @@
               </v-btn>
             </template>
             <template v-slot:[`item.content`]="{ item }">
+              <v-row no-gutters>
+                <v-col col="12" md="12">
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
                 item-text="name"
                 item-value="id"
                 placeholder="Select"
+                class="text-caption"
               ></v-select>
+                </v-col>
+              </v-row>
             </template>
             <template v-slot:[`item.combo1`]="{ item }">
               <v-row no-gutters>
@@ -239,7 +244,7 @@
               >
             </v-toolbar>
             <v-list-item v-for="item in response.blendQualities" :key="item">
-              <v-list-item-content>{{ item.text }}</v-list-item-content>
+              <v-list-item-content>{{ item.name}}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox v-model="item.isSelected"></v-checkbox>
               </v-list-item-action>
@@ -301,18 +306,25 @@ export default class CompanyControl extends Vue {
   public tab1: string = null;
   public tab2: string = null;
 
-  public save() {    
+  public save() {        
+    this.response.singleQualities = this.response.singleQualities.filter(item => item.isSelected ===true);
+   this.response.blendQualities = this.response.blendQualities.filter(item => item.isSelected ===true);  
+    this.response.singleContents.forEach((b) => delete b.contentOptions);
+    this.response.blendContents.forEach((b) => delete b.contentOptions);
+   delete this.response.availableCounts;
+   delete this.response.availableDeniers;
+   delete this.response.countLable;
+   delete this.response.contentLabel;
+   delete this.response.qualityLable;  
     this.$emit("save",this.response);
   }
-  addSingleContent() {
+  addSingleContent() {       
     this.response.singleContents.push({ ...this.response.singleContents[0] });
     this.response.singleContents[0].spun = null;
     this.response.singleContents[0].filament=null;
-    this.response.singleContents[0].contents=null;
-    
+    this.response.singleContents[0].contents=null; 
 
   }
-
   removeSingleContent(index: number) {
     this.response.singleContents.splice(index, 1);
   }

@@ -346,11 +346,9 @@ export default class CompanyBuilder extends Vue {
       this.response = response;      
     });
   }
-  public save(filledResponse: ProductDetailModel)
+  public save(millData: ProductDetailModel)
   {
-    this.response.yarn.regularYarn=filledResponse;
-   filledResponse.singleQualities = filledResponse.singleQualities.filter(item => item.isSelected ===true);
-   filledResponse.blendQualities = filledResponse.blendQualities.filter(item => item.isSelected ===true);
+    this.response.yarn.regularYarn=millData;   
    console.log(this.response);
     this.ProjectService.AddMills(this.response).then((response: any) => {
       this.snackbarText= response;  

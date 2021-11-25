@@ -83,12 +83,6 @@ const routes: Array<RouteConfig> = [
     meta: { anonymous: true }
   },
   {
-    path: '/productDetails',
-    name: 'Product-Details',
-    component: () => import('../views/productDetails/Index.vue'),
-    meta: { anonymous: true }
-  },
-  {
     path: '/company',
     name: 'CompnayDetails',
     component: () => import('../views/company/CompanyBuilder.vue'),

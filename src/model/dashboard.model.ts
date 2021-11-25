@@ -80,6 +80,7 @@ export class ReviewRequestModel {
 export class FilterRequestModel {
     projectId: string;
     price?: string;
+    review?:string;
     deliveryPeriod?: string;
     creditPeriod?: string;
 }

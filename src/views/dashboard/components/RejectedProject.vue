@@ -38,9 +38,20 @@
               dense
               outlined
               class="ml-1 mr-5"
+              v-if="selectValue!='Review'"
               v-model="value"
             ></v-text-field>
-
+            <v-select
+              offset-y
+              outlined
+              dense
+              label="Select Filter"
+              :items="reviweItems"
+              class="mx-5"
+              v-model="value"
+              v-else-if="selectValue==='Review'"              
+            >
+            </v-select>
             <v-btn
               color="primary"
               class="mt-n6 rounded-0"
@@ -150,7 +161,7 @@ export default class RejectedProject extends Vue {
       var y = b.companyName.toLowerCase();
       //Descending order
       // return x < y ? 1 : x > y ? -1 : 0;
-      
+
       //Ascending order
       return x < y ? -1 : x > y ? 1 : 0;
     });
@@ -160,6 +171,7 @@ export default class RejectedProject extends Vue {
   public reset() {
     this.filterRequest.projectId = this.projectId;
     this.filterRequest.price = null;
+    this.filterRequest.review = null;
     this.filterRequest.creditPeriod = null;
     this.filterRequest.deliveryPeriod = null;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
@@ -173,6 +185,8 @@ export default class RejectedProject extends Vue {
       this.filterRequest.price = this.value;
     } else if (this.selectValue === "Credit Period") {
       this.filterRequest.creditPeriod = this.value;
+    } else if (this.selectValue === "Review") {
+      this.filterRequest.review = this.value;
     } else {
       this.filterRequest.deliveryPeriod = this.value;
     }
@@ -188,7 +202,8 @@ export default class RejectedProject extends Vue {
   get category(): string {
     return this.$store.getters.category;
   }
-  items: any = ["Price", "Credit Period", "Delivery Period"];
+  items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
+  reviweItems:any=[1,2,3,4,5];
   BitReceivedheaders: any = [
     "Bit Submit & Approve",
     "Price",

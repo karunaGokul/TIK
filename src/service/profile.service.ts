@@ -1,11 +1,12 @@
 import { IBaseService, BaseService } from './base.service';
-import { ProfileModel, ProfileRequestModel, ProfileResponse } from '@/model';
+import { CompanyProfileModel, ProfileRequestModel, ProfileResponse } from '@/model';
 import { AxiosRequestConfig } from 'axios';
 
 export interface IProfileService extends IBaseService<any, ProfileResponse> {
     getProfile(request: ProfileRequestModel): Promise<ProfileResponse>;
     editProfile(request: ProfileResponse, logo: File): Promise<any>;
-    profileSetup(): Promise<Array<ProfileModel>>;
+    CreateMills(): Promise<CompanyProfileModel>;
+    AddMills(request:CompanyProfileModel):Promise<any>;
 }
 
 export class ProfileService extends BaseService<any, ProfileResponse> implements IProfileService {
@@ -36,562 +37,377 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
             return response.data;
         });
     }
-    public profileSetup(): Promise<Array<ProfileModel>> {
+    AddMills(request:CompanyProfileModel):Promise<any>
+    {this.apiUrl = "https://tikdev-api.azure-api.net/ProfileMills"
+    return this.httpPost('AddMills', request).then(response => {
+        return response.data;
+    });
+
+    }
+    CreateMills(): Promise<CompanyProfileModel> {
         this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard"
         // return this.httpGet('profile', request).then(response => {
         //     return response.data;
         // });
 
         return new Promise((resolve, reject) => {
-            const json = `[{
-                "visible":true,
-                "controls":
-                    {                      
-                        "id": "btntype",
-                        "type": "toggle-button",
-                        "options": [
-                               {
-                                    "id": "opYarn",
-                                    "text": "Yarn",
-                                    "selected":true
-                                },
-                                {
-                                    "id": "opFabric",                                   
-                                    "text": "Fabric",
-                                    "selected": false
-                                }
-                            ]
-                        
-                    }
-                
-            },
-            {                   
-                "parentOptionId": "opYarn",
-                "visible":true,
-                "controls": 
-                    {
-                        "id": "tabstype",
-                        "type": "tabs",
-                        "options": [
+            const json = `{
+                "yarn": {
+                    "regularYarn": {
+                        "contentLable": "Choose the single & Blend Contents you offer in regular Yarn",
+                        "qualityLable": "Choose the single & Blend Quality you offer in regular Yarn",
+                        "countLable": "Choose the count and denier you offer the Regular Yarn",
+                        "singleContents": [
                             {
-                                "id": "opRegularYarn",                                   
-                                "text": "RegularYarn",
-                                "selected": false
-                            },
-                            {
-                                "id": "opSlubYarn",                                    
-                                "text": "Melange/Slub Yarn",
-                                "selected": false
-                            },
-                            {
-                                "id": "opSPLYarn",                                    
-                                "text": "SPL Yarn",
-                                "selected": false
-                            }, 
-                            {
-                                "id": "opDyedYarn",                                    
-                                "text": "Dyed Yarn",
-                                "selected": false
+                                "contentOptions": [
+                                    {
+                                        "id": "1",
+                                        "name": "100% Cotton",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "2",
+                                        "name": "100% Viscose",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "3",
+                                        "name": "100% Modal",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "4",
+                                        "name": "100% Polyster",
+                                        "isSelected": false
+                                    }
+                                ],
+                                "contents": null,
+                                "filament": null,
+                                "spun": null
                             }
-                        ]
-                    }
-                
-            },
-            {
-                   
-                "parentOptionId": "opFabric",
-                "visible":false,
-                "controls": 
-                    {
-                        "id": "tabstype",
-                        "type": "tabs",
-                        "options": [
+                        ],
+                        "blendContents": [
                             {
-                                "id": "opRegularFabric",                                   
-                                "text": "RegularFabric",
-                                "selected": false
-                            },
-                            {
-                                "id": "opSlubFabric",                                    
-                                "text": "Melange/Slub Fabric",
-                                "selected": false
-                            },
-                            {
-                                "id": "opSPLFabric",                                    
-                                "text": "SPL Fabric",
-                                "selected": false
+                                "contentOptions": [
+                                    {
+                                        "id": "5",
+                                        "name": "Cotton Poly",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "6",
+                                        "name": "Poly Cotton",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "7",
+                                        "name": "Cotton Modal",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "8",
+                                        "name": "Poly Viscose",
+                                        "isSelected": false
+                                    },
+                                    {
+                                        "id": "9",
+                                        "name": "Cotton Viscose",
+                                        "isSelected": false
+                                    }
+                                ],
+                                "contents": null,
+                                "combos": [
+                                    {
+                                        "combinationOne": 0,
+                                        "combinationTwo": 0
+                                    },
+                                    {
+                                        "combinationOne": 0,
+                                        "combinationTwo": 0
+                                    },
+                                    {
+                                        "combinationOne": 0,
+                                        "combinationTwo": 0
+                                    },
+                                    {
+                                        "combinationOne": 0,
+                                        "combinationTwo": 0
+                                    },
+                                    {
+                                        "combinationOne": 0,
+                                        "combinationTwo": 0
+                                    }
+                                ]
                             }
-                        ]
-                    }                
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "labeltype",
-                            "type": "label",
-                            "options": 
-                                      {
-                                            "id": "oplabelContentsYarn",                                   
-                                            "text": "Choose the single & Blend Contents you offer in regular Yarn"                       
-                                      }   
-                                       
-                        }  
-
-            },
-            {
-                "visible": true,
-                "parentOptionId": "opRegularYarn",
-                "controls": {
-                    "id": "tabletype",
-                    "type": "simpletable",
-                    "tableControls": [
-                        {
-                            "tableHeading": "Single Content",
-                            "tableHeader": [
-                                "Content",
-                                "Spun",
-                                "Filaments",
-                                "plus"
-                            ],
-                            "tableData": [
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "drpYarn_Single_Content",
-                                                "type": "dropdown",
-                                                "options": [
-                                                    {
-                                                        "id": "opYarn_Single_Content_1",
-                                                        "text": "100% Cotton",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_2",
-                                                        "text": "100% Viscose",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_3",
-                                                        "text": "100% Modal",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_4",
-                                                        "text": "100% Polyster",
-                                                        "selected": false
-                                                    }
-                                                ]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxSpum",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxFilaments",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "tableHeading": "Blend Content",
-                            "tableHeader": [
-                                "Content",
-                                "Combo 1",
-                                "Combo 2",
-                                "Combo 3",
-                                "Combo 4",
-                                "Combo 5",
-                                "plus"
-                            ],
-                            "tableData": [
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "drpYarn_Single_Content",
-                                                "type": "dropdown",
-                                                "options": [
-                                                    {
-                                                        "id": "opYarn_Single_Content_1",
-                                                        "text": "Cotton Poly",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_2",
-                                                        "text": "Poly Cotton",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_3",
-                                                        "text": "Poly Viscose",
-                                                        "selected": false
-                                                    },
-                                                    {
-                                                        "id": "opYarn_Single_Content_4",
-                                                        "text": "Cotton Viscose",
-                                                        "selected": false
-                                                    }
-                                                ]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "textbox",
-                                                "options": [{
-                                                    "id": "opTextboxCombo1C",
-                                                    "text": "C",
-                                                    "selected": false
-                                                },
-                                                {
-                                                    "id": "opTextboxCombo1P",
-                                                    "text": "P",
-                                                    "selected": false
-                                                }]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "textbox",
-                                                "options": [{
-                                                    "id": "opTextboxCombo2C",
-                                                    "text": "C",
-                                                    "selected": false
-                                                },
-                                                {
-                                                    "id": "opTextboxCombo2P",
-                                                    "text": "P",
-                                                    "selected": false
-                                                }]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "textbox",
-                                                "options": [{
-                                                    "id": "opTextboxCombo3C",
-                                                    "text": "C",
-                                                    "selected": false
-                                                },
-                                                {
-                                                    "id": "opTextboxCombo3P",
-                                                    "text": "P",
-                                                    "selected": false
-                                                }]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "textbox",
-                                                "options": [{
-                                                    "id": "opTextboxCombo4C",
-                                                    "text": "C",
-                                                    "selected": false
-                                                },
-                                                {
-                                                    "id": "opTextboxCombo4P",
-                                                    "text": "P",
-                                                    "selected": false
-                                                }]
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "textbox",
-                                                "options": [{
-                                                    "id": "opTextboxCombo5C",
-                                                    "text": "C",
-                                                    "selected": false
-                                                },
-                                                {
-                                                    "id": "opTextboxCombo5P",
-                                                    "text": "P",
-                                                    "selected": false
-                                                }]
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "labeltype",
-                            "type": "label",
-                            "options": 
-                                      {
-                                            "id": "oplabelQualityYarn",                                   
-                                            "text": "Choose the single & Blend Quality you offer in regular Yarn"                       
-                                      }   
-                                       
-                        }  
-
-            },
-            {
-                "visible": true,
-                "parentOptionId": "opRegularYarn",
-                "controls": {
-                    "id": "tabletype",
-                    "type": "simpletable",
-                    "tableControls": [
-                        {
-                            "tableHeading": "Single Quality",
-                            "tableData": [
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelSuperCombed",
-                                                    "text": "Super Combed(RL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxSuperCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelCombed",
-                                                    "text": "Combed (VL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelSemiCombed",
-                                                    "text": "Semi Combed (GL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxSemiCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "tableHeading": "Blend Quality",
-                            "tableData": [
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelSuperCombed",
-                                                    "text": "Super Combed(RL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxSuperCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelCombed",
-                                                    "text": "Combed (VL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "rowData": [
-                                        {
-                                            "controls": {
-                                                "id": "labeltype",
-                                                "type": "label",
-                                                "options": {
-                                                    "id": "oplabelSemiCombed",
-                                                    "text": "Semi Combed (GL)",
-                                                    "selected": false
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "controls": {
-                                                "id": "checkboxtype",
-                                                "type": "checkbox",
-                                                "options": {
-                                                    "id": "opCheckboxSemiCombed",
-                                                    "selected": false
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "labeltype",
-                            "type": "label",
-                            "options": 
-                                      {
-                                            "id": "oplabelcountYarn",                                   
-                                            "text": "Choose the count and denier you offer the Regular Yarns"                       
-                                      }   
-                                       
-                        }  
-
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "texttype",
-                            "type": "text",
-                            "options": 
-                                      {
-                                            "id": "optextcountYarn",                                   
-                                            "text": "Counts:"                       
-                                      }   
-                                       
-                        }  
-
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "texttype",
-                            "type": "text",
-                            "options": 
-                                      {
-                                            "id": "optextDeniersYarn",                                   
-                                            "text": "Deniers:"                       
-                                      }   
-                                       
-                        }  
-
-            },
-            {
-                "visible":true,
-                "parentOptionId": "opRegularYarn",
-                 "controls": 
-                         {
-                             "id": "texttype",
-                            "type": "text",
-                            "options": 
-                                      {
-                                            "id": "optextCreditYarn",                                   
-                                            "text": "Enter AVG Credit time you offer:"                       
-                                      }   
-                                       
-                        }  
-
-            }
-            
-            
-           ]`;
+                        ],
+                        "singleQualities": [
+                            {
+                                "name": "Super Combed (RL)",
+                                "id": "2",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Combed (VL)",
+                                "id": "4",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Semi Combed (GL)",
+                                "id": "6",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Carded",
+                                "id": "8",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "OE",
+                                "id": "10",
+                                "isSelected": false
+                            }
+                        ],
+                        "blendQualities": [
+                            {
+                                "name": "Super Combed (RL)",
+                                "id": "1",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Combed (VL)",
+                                "id": "3",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Semi Combed (GL)",
+                                "id": "5",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "Carded",
+                                "id": "7",
+                                "isSelected": false
+                            },
+                            {
+                                "name": "OE",
+                                "id": "9",
+                                "isSelected": false
+                            }
+                        ],
+                        "counts": null,
+                        "availableCounts": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9,
+                            10,
+                            11,
+                            12,
+                            13,
+                            14,
+                            15,
+                            16,
+                            17,
+                            18,
+                            19,
+                            20,
+                            21,
+                            22,
+                            23,
+                            24,
+                            25,
+                            26,
+                            27,
+                            28,
+                            29,
+                            30,
+                            31,
+                            32,
+                            33,
+                            34,
+                            35,
+                            36,
+                            37,
+                            38,
+                            39,
+                            40,
+                            41,
+                            42,
+                            43,
+                            44,
+                            45,
+                            46,
+                            47,
+                            48,
+                            49,
+                            50,
+                            51,
+                            52,
+                            53,
+                            54,
+                            55,
+                            56,
+                            57,
+                            58,
+                            59,
+                            60,
+                            61,
+                            62,
+                            63,
+                            64,
+                            65,
+                            66,
+                            67,
+                            68,
+                            69,
+                            70,
+                            71,
+                            72,
+                            73,
+                            74,
+                            75,
+                            76,
+                            77,
+                            78,
+                            79,
+                            80,
+                            81,
+                            82,
+                            83,
+                            84,
+                            85,
+                            86,
+                            87,
+                            88,
+                            89,
+                            90,
+                            91,
+                            92,
+                            93,
+                            94,
+                            95,
+                            96,
+                            97,
+                            98,
+                            99,
+                            100
+                        ],
+                        "deniers": null,
+                        "availableDeniers": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9,
+                            10,
+                            11,
+                            12,
+                            13,
+                            14,
+                            15,
+                            16,
+                            17,
+                            18,
+                            19,
+                            20,
+                            21,
+                            22,
+                            23,
+                            24,
+                            25,
+                            26,
+                            27,
+                            28,
+                            29,
+                            30,
+                            31,
+                            32,
+                            33,
+                            34,
+                            35,
+                            36,
+                            37,
+                            38,
+                            39,
+                            40,
+                            41,
+                            42,
+                            43,
+                            44,
+                            45,
+                            46,
+                            47,
+                            48,
+                            49,
+                            50,
+                            51,
+                            52,
+                            53,
+                            54,
+                            55,
+                            56,
+                            57,
+                            58,
+                            59,
+                            60,
+                            61,
+                            62,
+                            63,
+                            64,
+                            65,
+                            66,
+                            67,
+                            68,
+                            69,
+                            70,
+                            71,
+                            72,
+                            73,
+                            74,
+                            75,
+                            76,
+                            77,
+                            78,
+                            79,
+                            80,
+                            81,
+                            82,
+                            83,
+                            84,
+                            85,
+                            86,
+                            87,
+                            88,
+                            89,
+                            90,
+                            91,
+                            92,
+                            93,
+                            94,
+                            95,
+                            96,
+                            97,
+                            98,
+                            99,
+                            100
+                        ],
+                        "avgCreditTime": null
+                    },
+                    "melangeSlubYarn": null,
+                    "specialYarn": null,
+                    "dyedYarn": null
+                },
+                "fabric": null
+            }`;
 
 
             resolve(JSON.parse(json));

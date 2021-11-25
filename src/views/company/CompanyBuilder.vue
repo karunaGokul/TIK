@@ -16,7 +16,7 @@
                   {{ item.tab }}
                 </v-tab>
                 <v-tab-item>
-                  <v-card class="px-2 py-12" flat>
+                  <!-- <v-card class="px-2 py-12" flat>
                     <v-row justify="center" class="py-4">
                       <h2>
                         <v-text class="font-weight-regular">
@@ -288,7 +288,9 @@
                         <v-text-field outlined dense></v-text-field>
                       </v-col>
                     </v-row>
-                  </v-card>
+                  </v-card> -->
+                  <CompanyControl :response="response.yarn.regularYarn"
+                  @save="save"/>
                 </v-tab-item>
               </v-tabs>
             </v-tab-item>
@@ -299,22 +301,62 @@
             </v-tab-item>
           </v-tabs-items>
         </v-card-text>
-        <v-card-actions>
+        <!-- <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn elevation="2" color="primary"> Save </v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
       </v-card>
     </div>
+    <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        color="green lighten-5 green--text"
+        absolute
+        right
+        top
+      >
+        <v-icon color="green">mdi-exclamation-thick </v-icon>
+        {{ snackbarText }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+            <v-icon> mdi-close-box</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { CompanyProfileModel, ProductDetailModel} from "@/model";
+import { IProfileService } from "@/service";
+import { Component, Inject, Vue } from "vue-property-decorator";
+import CompanyControl from "./components/CompanyControl.vue";
 
 @Component({
-  components: {},
+  components: {CompanyControl},
 })
 export default class CompanyBuilder extends Vue {
+  @Inject("ProfileService") ProjectService: IProfileService;
+   public response = new CompanyProfileModel();
+   public snackbarText: string = "";
+  public snackbar: boolean = false;
+  created() {
+    this.ProjectService.CreateMills().then((response: CompanyProfileModel) => {
+      this.response = response;      
+    });
+  }
+  public save(filledResponse: ProductDetailModel)
+  {
+    this.response.yarn.regularYarn=filledResponse;
+   filledResponse.singleQualities = filledResponse.singleQualities.filter(item => item.isSelected ===true);
+   filledResponse.blendQualities = filledResponse.blendQualities.filter(item => item.isSelected ===true);
+   console.log(this.response);
+    this.ProjectService.AddMills(this.response).then((response: any) => {
+      this.snackbarText= response;  
+      this.snackbar=true;    
+    });
+  }
   tab1: any = null;
 
   tab1Items: any = [
@@ -329,128 +371,8 @@ export default class CompanyBuilder extends Vue {
     { tab: "Special Yarn", content: "Tab 2 Content" },
     { tab: "Dyed Yarn", content: "Tab 2 Content" },
     { tab: "Melange/Slub Yarn", content: "Tab 2 Content" },
-  ];
+  ];  
 
-  singleContentHeaders: any = [
-    { text: "Content", value: "content" },
-    { text: "Spun", value: "spun", align: "center" },
-    { text: "Filaments", value: "filaments", align: "center" },
-    { text: "", value: "action" },
-  ];
-
-  singleContents: Array<any> = [
-    {
-      content: [1],
-      spun: false,
-      filaments: false,
-    },
-    {
-      content: "2",
-      spun: false,
-      filaments: false,
-    }
-  ];
-
-  singleContentOptions: any = [
-    "100% Cotton",
-    "100% Viscose",
-    "100% Modal",
-    "100% Polyster",
-  ];
-
-  addSingleContent() {
-    this.singleContents.push({ ...this.singleContents[0] });
-
-    this.singleContents[0].spun = false;
-  }
-
-  removeSingleContent(index: number) {
-    this.singleContents.splice(index, 1);
-  }
-
-  blendContentHeaders: any = [
-    { text: "Content", value: "content" },
-    { text: "Combo 1", value: "combo1", align: "center" },
-    { text: "Combo 2", value: "combo2", align: "center" },
-    { text: "Combo 3", value: "combo3", align: "center" },
-    { text: "Combo 4", value: "combo4", align: "center" },
-    { text: "Combo 5", value: "combo5", align: "center" },
-    { text: "", value: "action" },
-  ];
-
-  blendContents: Array<any> = [
-    {
-      content: "",
-      spun: false,
-      filaments: false,
-    },
-  ];
-
-  blendContentOptions: any = [
-    "Cotton Poly",
-    "Poly Cotton",
-    "Cotton Modal",
-    "Poly Viscose",
-    "Cotton Viscose",
-    "CottonPoly Viscose",
-    "Lenzing Viscose",
-  ];
-
-  addBlendContent() {
-    this.blendContents.push({ ...this.blendContents[0] });
-
-    this.blendContents[0].spun = false;
-  }
-
-  removeBlendContent(index: number) {
-    this.blendContents.splice(index, 1);
-  }
-
-  singleQualities: Array<any> = [
-    {
-      text: "Super Combed RL",
-      selected: false,
-    },
-    {
-      text: "Combed VL",
-      selected: false,
-    },
-    {
-      text: "Semi Combed GL",
-      selected: false,
-    },
-    {
-      text: "Carded",
-      selected: false,
-    },
-    {
-      text: "OE",
-      selected: false,
-    },
-  ];
-
-  blendQualities: Array<any> = [
-    {
-      text: "Super Combed RL",
-      selected: false,
-    },
-    {
-      text: "Combed VL",
-      selected: false,
-    },
-    {
-      text: "Semi Combed GL",
-      selected: false,
-    },
-    {
-      text: "Carded",
-      selected: false,
-    },
-    {
-      text: "OE",
-      selected: false,
-    },
-  ];
 }
 </script>
 

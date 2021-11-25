@@ -34,10 +34,10 @@
           class="elevation-1 mb-5"
           :loading="loading"
         >
-          <template v-slot:[`header.Merchandiser`]="{ header }">
+          <!-- <template v-slot:[`header.Merchandiser`]="{ header }">
             {{ header.text }}
-            <v-icon small @click="autocomplete = true"> mdi-filter </v-icon>
-          </template>
+            <v-icon small> mdi-filter </v-icon>
+          </template> -->
 
           <template v-slot:[`item.Status`]="{ item }">
             <v-badge

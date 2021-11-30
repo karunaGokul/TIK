@@ -19,11 +19,14 @@ export class fabricModel {
     Melange_SlubFabric: ProductDetailModel;
     specialFabric: ProductDetailModel;
 }
-export class ProductDetailModel {
-    melangeSlubTypes?: Array<contentModel>;
-    contentLabel:string;
+export class ProductDetailModel {    
+    contentLable:string;
     qualityLable:string;
     countLable:string;
+    typeLable:string;
+    melanSlubTypes:Array<contentModel> = [];   
+    singleSpecialDyedTypes:Array<contentModel> = [];
+    blendSpecialDyedTypes:Array<contentModel> = [];
     singleContents: Array<contentDetailModel> = [];
     blendContents: Array<contentDetailModel> = [];
     singleQualities: Array<contentModel> = [];
@@ -35,16 +38,18 @@ export class ProductDetailModel {
     avgCreditTime: string;
 }
 export class contentDetailModel {
-    contents: number;
+    content:contentModel;
     contentOptions: Array<contentModel>;
     filament?: string;
     spun?: string;
     combos?: Array<combosModel> = [];
+    melanSlubType:contentModel;
+    melanSlubOptions:Array<contentModel>[];
 }
 
 export class contentModel {
-    id: number;
-    name: string;
+    id: string;
+    name: string;   
     isSelected?: boolean;
 }
 export class combosModel {

@@ -1,10 +1,55 @@
 <template>
   <div>
     <v-card class="px-2 py-12" flat>
+      <v-row justify="center" class="py-5" v-if="option != 'RegularYarn'">
+        <h2>
+          <v-text class="font-weight-regular">
+            {{ response.typeLable }}
+          </v-text>
+        </h2>
+      </v-row>
+      <v-row v-if="option != 'RegularYarn'">
+        <v-col cols="4">
+          <v-list flat>
+            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+              <v-toolbar-title class="subtitle-1" v-if="option==='SpecialYarn'">
+                 single SPL Yarns Type
+              </v-toolbar-title>              
+              <v-toolbar-title class="subtitle-1" v-else-if="option==='DyedYarn'">
+               single Dyed Yarns Type 
+              </v-toolbar-title>
+            </v-toolbar>
+            <v-list-item v-for="item in response.singleSpecialDyedTypes" :key="item">
+              <v-list-item-content>{{ item.name }}</v-list-item-content>
+              <v-list-item-action>
+                <v-checkbox v-model="item.isSelected"></v-checkbox>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-col>
+        <v-col cols="4">
+          <v-list flat>
+            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+              <v-toolbar-title class="subtitle-1" v-if="option==='SpecialYarn'">
+                 Blend SPL Yarns Type
+              </v-toolbar-title>              
+              <v-toolbar-title class="subtitle-1" v-else-if="option==='DyedYarn'">
+               Blend Dyed Yarns Type 
+              </v-toolbar-title>
+            </v-toolbar>
+            <v-list-item v-for="item in response.blendSpecialDyedTypes" :key="item">
+              <v-list-item-content>{{ item.name }}</v-list-item-content>
+              <v-list-item-action>
+                <v-checkbox v-model="item.isSelected"></v-checkbox>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-col>
+      </v-row>
       <v-row justify="center" class="py-4">
         <h2>
           <v-text class="font-weight-regular">
-            {{response.contentLable}}
+            {{ response.contentLable }}
           </v-text>
         </h2>
       </v-row>
@@ -15,7 +60,7 @@
             :items="response.singleContents"
             class="elevation-1 table-striped"
             hide-default-footer
-            disable-sort
+            disable-sort            
           >
             <template v-slot:top>
               <v-toolbar flat color="#c2e2e2" dense class="mb-2">
@@ -31,18 +76,27 @@
             </template>
             <template v-slot:[`item.content`]="{ item }">
               <v-select
-                v-model="item.contents"
+                v-model="item.content"
                 :items="item.contentOptions"
                 item-text="name"
                 item-value="id"
+                return-object
+                class="mx-n2 mr-n6 text-caption mt-3"
                 placeholder="Select"
+                 solo
               ></v-select>
             </template>
             <template v-slot:[`item.spun`]="{ item }">
-              <v-simple-checkbox v-model="item.spun"></v-simple-checkbox>
+              <v-simple-checkbox
+                v-model="item.spun"
+                class="mx-n2"
+              ></v-simple-checkbox>
             </template>
             <template v-slot:[`item.filaments`]="{ item }">
-              <v-simple-checkbox v-model="item.filament"></v-simple-checkbox>
+              <v-simple-checkbox
+                v-model="item.filament"
+                class="mx-n6"
+              ></v-simple-checkbox>
             </template>
             <template v-slot:[`item.action`]="{ index }">
               <v-btn
@@ -62,7 +116,7 @@
             :items="response.blendContents"
             class="elevation-1 table-striped"
             hide-default-footer
-            disable-sort
+            disable-sort           
           >
             <template v-slot:top>
               <v-toolbar flat color="#c2e2e2" dense class="mb-2">
@@ -77,44 +131,45 @@
               </v-btn>
             </template>
             <template v-slot:[`item.content`]="{ item }">
-              <v-row no-gutters>
-                <v-col col="12" md="12">
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
                 item-text="name"
                 item-value="id"
+                return-object
                 placeholder="Select"
-                class="text-caption"
+                class="text-caption mt-3"
+                 solo
               ></v-select>
-                </v-col>
-              </v-row>
             </template>
             <template v-slot:[`item.combo1`]="{ item }">
               <v-row no-gutters>
-                <v-col class="mr-1">
+                <v-col class="mr-2 ml-n2">
+                  <!-- <v-label v-if="item.contents.name === 'Poly Cotton'">P</v-label>  
+                  <v-label v-else>C</v-label>                             -->                  
                   <v-text-field
                     outlined
                     dense
                     v-model="item.combos[0].combinationOne"
                     hide-details
                     class="text-caption"
+                    @change="test(item.content.name)"
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col class="mr-n2">
                   <v-text-field
                     outlined
                     dense
                     v-model="item.combos[0].combinationTwo"
                     hide-details
-                    class="text-caption"                    
+                    class="text-caption"
                   ></v-text-field>
                 </v-col>
               </v-row>
             </template>
             <template v-slot:[`item.combo2`]="{ item }">
               <v-row no-gutters>
-                <v-col class="mr-1">
+                <v-col class="mr-2 ml-n2">
                   <v-text-field
                     outlined
                     dense
@@ -123,7 +178,7 @@
                     class="text-caption"
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col class="mr-n2">
                   <v-text-field
                     outlined
                     dense
@@ -136,7 +191,7 @@
             </template>
             <template v-slot:[`item.combo3`]="{ item }">
               <v-row no-gutters>
-                <v-col class="mr-1">
+                <v-col class="mr-2 ml-n2">
                   <v-text-field
                     outlined
                     dense
@@ -145,7 +200,7 @@
                     class="text-caption"
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col class="mr-n2">
                   <v-text-field
                     outlined
                     dense
@@ -158,7 +213,7 @@
             </template>
             <template v-slot:[`item.combo4`]="{ item }">
               <v-row no-gutters>
-                <v-col class="mr-1">
+                <v-col class="mr-2 ml-n2">
                   <v-text-field
                     outlined
                     dense
@@ -167,7 +222,7 @@
                     class="text-caption"
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col class="mr-n2">
                   <v-text-field
                     outlined
                     dense
@@ -180,7 +235,7 @@
             </template>
             <template v-slot:[`item.combo5`]="{ item }">
               <v-row no-gutters>
-                <v-col class="mr-1">
+                <v-col class="mr-2 ml-n2">
                   <v-text-field
                     outlined
                     dense
@@ -189,7 +244,7 @@
                     class="text-caption"
                   ></v-text-field>
                 </v-col>
-                <v-col>
+                <v-col class="mr-n2">
                   <v-text-field
                     outlined
                     dense
@@ -216,7 +271,7 @@
       <v-row justify="center" class="py-5">
         <h2>
           <v-text class="font-weight-regular">
-            {{response.qualityLable}}
+            {{ response.qualityLable }}
           </v-text>
         </h2>
       </v-row>
@@ -244,7 +299,7 @@
               >
             </v-toolbar>
             <v-list-item v-for="item in response.blendQualities" :key="item">
-              <v-list-item-content>{{ item.name}}</v-list-item-content>
+              <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox v-model="item.isSelected"></v-checkbox>
               </v-list-item-action>
@@ -255,7 +310,7 @@
       <v-row justify="center" class="py-5">
         <h2>
           <v-text class="font-weight-regular">
-            {{response.countLable}}
+            {{ response.countLable }}
           </v-text>
         </h2>
       </v-row>
@@ -268,9 +323,9 @@
             outlined
             dense
             chips
-            small-chips            
+            small-chips
             multiple
-          ></v-autocomplete>          
+          ></v-autocomplete>
           <v-label>Deniers:</v-label>
           <v-autocomplete
             v-model="response.deniers"
@@ -278,60 +333,54 @@
             outlined
             dense
             chips
-            small-chips            
+            small-chips
             multiple
-          ></v-autocomplete>          
+          ></v-autocomplete>
           <v-label>Enter AVG Credit time you offer:</v-label>
-          <v-text-field outlined dense v-model="response.avgCreditTime"></v-text-field>
+          <v-text-field
+            outlined
+            dense
+            v-model="response.avgCreditTime"
+          ></v-text-field>
         </v-col>
       </v-row>
-    </v-card>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
-    </v-card-actions>
+    </v-card>    
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
-
 import { ProductDetailModel } from "@/model";
-import { IProfileService } from "@/service";
 
 @Component
-export default class CompanyControl extends Vue {
-  @Inject("ProfileService") ProjectService: IProfileService;
+export default class CompanyControl extends Vue {  
   @Prop() response: ProductDetailModel;
-  public tab1: string = null;
-  public tab2: string = null;
-
-  public save() {        
-    this.response.singleQualities = this.response.singleQualities.filter(item => item.isSelected ===true);
-   this.response.blendQualities = this.response.blendQualities.filter(item => item.isSelected ===true);  
-    this.response.singleContents.forEach((b) => delete b.contentOptions);
-    this.response.blendContents.forEach((b) => delete b.contentOptions);
-   delete this.response.availableCounts;
-   delete this.response.availableDeniers;
-   delete this.response.countLable;
-   delete this.response.contentLabel;
-   delete this.response.qualityLable;  
-    this.$emit("save",this.response);
-  }
-  addSingleContent() {       
-    this.response.singleContents.push({ ...this.response.singleContents[0] });
-    this.response.singleContents[0].spun = null;
-    this.response.singleContents[0].filament=null;
-    this.response.singleContents[0].contents=null; 
-
+  @Prop() option: string;
+   test(value:any){
+     console.log(value);
+   }
+  addSingleContent() {
+    this.response.singleContents.push({
+      ...JSON.parse(JSON.stringify(this.response.singleContents[0])),
+    });
+    const length = this.response.singleContents.length;
+    this.response.singleContents[length - 1].spun = null;
+    this.response.singleContents[length - 1].filament = null;
+    this.response.singleContents[length - 1].content = null;
   }
   removeSingleContent(index: number) {
     this.response.singleContents.splice(index, 1);
   }
   addBlendContent() {
-    this.response.blendContents.push({ ...this.response.blendContents[0] });
-
-    this.response.blendContents[0].contents = null;
+    this.response.blendContents.push({
+      ...JSON.parse(JSON.stringify(this.response.blendContents[0])),
+    });
+    const length = this.response.blendContents.length;
+    this.response.blendContents[length - 1].combos.forEach((b) => {
+      b.combinationOne = 0;
+      b.combinationTwo = 0;
+    });
+    this.response.blendContents[length - 1].content = null;
   }
 
   removeBlendContent(index: number) {
@@ -339,30 +388,19 @@ export default class CompanyControl extends Vue {
   }
 
   blendContentHeaders: any = [
-    { text: "Content", value: "content" },
-    { text: "Combo 1", value: "combo1", align: "center" },
-    { text: "Combo 2", value: "combo2", align: "center" },
-    { text: "Combo 3", value: "combo3", align: "center" },
-    { text: "Combo 4", value: "combo4", align: "center" },
-    { text: "Combo 5", value: "combo5", align: "center" },
-    { text: "", value: "action" },
+    { text: "Content", value: "content", divider: true, width: "2%" },
+    { text: "Combo 1", value: "combo1", align: "center", divider: true },
+    { text: "Combo 2", value: "combo2", align: "center", divider: true },
+    { text: "Combo 3", value: "combo3", align: "center", divider: true },
+    { text: "Combo 4", value: "combo4", align: "center", divider: true },
+    { text: "Combo 5", value: "combo5", align: "center", divider: true },
+    { text: "", value: "action", width: "2%" },
   ];
-
-  tab1Items: any = [
-    { tab: "Yarn", content: "Tab 1 Content" },
-    { tab: "Fabric", content: "Tab 2 Content" },
-  ];
-
-  tab2Items: any = [
-    { tab: "Regular Yarn", content: "Tab 1 Content" },
-    { tab: "Special Yarn", content: "Tab 2 Content" },
-    { tab: "Dyed Yarn", content: "Tab 2 Content" },
-    { tab: "Melange/Slub Yarn", content: "Tab 2 Content" },
-  ];
+  
   singleContentHeaders: any = [
-    { text: "Content", value: "content" },
-    { text: "Spun", value: "spun", align: "center" },
-    { text: "Filaments", value: "filaments", align: "center" },
+    { text: "Content", value: "content", divider: true },
+    { text: "Spun", value: "spun", align: "center", divider: true },
+    { text: "Filaments", value: "filaments", align: "center", divider: true },
     { text: "", value: "action" },
   ];
 }

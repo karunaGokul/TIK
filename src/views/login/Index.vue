@@ -18,7 +18,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form" class="mt-n4 ml-n2">
+          <v-form ref="form" class="mt-n4 ml-n2" autocomplete="off">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -28,6 +28,7 @@
               v-model="request.EmailAddress"
               :rules="emailRules"
               required
+              autocomplete="off"
             >
             </v-text-field>
 
@@ -43,6 +44,7 @@
               @click:append="() => (value = !value)"
               :type="value ? 'password' : 'text'"
               required
+              autocomplete="off"
             ></v-text-field>
 
             <v-row>

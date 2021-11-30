@@ -83,34 +83,38 @@
               dense
               :rules="emailRules"
               required
-              autocomplete="false"
+              autocomplete="off"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <div v-if="option === 'Create'">
+            <div v-if="(option === 'Create')">
               <v-label>
                 Password
                 <span class="red--text">*</span>
               </v-label>
               <v-tooltip right>
                 <template v-slot:activator="{ on, attrs }">
-              <v-text-field
-                class="pt-2"
-                label="Enter Password"
-                v-model="request.Password"
-                :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="() => (value = !value)"
-                :type="value ? 'password' : 'text'"
-                outlined
-                dense
-                required
-                v-bind="attrs"
-                v-on="on"
-                :rules="passwordRules"
-                autocomplete="false"
-              ></v-text-field>
+                  <v-text-field
+                    class="pt-2"
+                    label="Enter Password"
+                    v-model="request.Password"
+                    :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="() => (value = !value)"
+                    :type="value ? 'password' : 'text'"
+                    outlined
+                    dense
+                    required
+                    v-bind="attrs"
+                    v-on="on"
+                    autocomplete="off"
+                    :rules="passwordRules"
+                  ></v-text-field>
                 </template>
-                <span>Your password must be at least 8 characters long,<br/> with 1 uppercase & 1 lowercase character, 1 number <br/>and a special character.</span>
+                <span
+                  >Your password must be at least 8 characters long,<br />
+                  with 1 uppercase & 1 lowercase character, 1 number <br />and a
+                  special character.</span
+                >
               </v-tooltip>
             </div>
             <div v-else>
@@ -130,11 +134,15 @@
                     dense
                     v-bind="attrs"
                     v-on="on"
-                    :rules="passwordRules1"
-                    autocomplete="false"
+                    :rules="request.Password ? passwordRules1 : ''"
+                    autocomplete="off"
                   ></v-text-field>
                 </template>
-                <span>Your password must be at least 8 characters long, <br/>with 1 uppercase & 1 lowercase character, 1 number<br/> and a special character.</span>
+                <span
+                  >Your password must be at least 8 characters long, <br />with
+                  1 uppercase & 1 lowercase character, 1 number<br />
+                  and a special character.</span
+                >
               </v-tooltip>
             </div>
           </v-col>
@@ -185,8 +193,10 @@
               v-model="request.EmployeeRole"
               outlined
               dense
-              :rules="[(v) => !!v || 'Role is required']"
-            ></v-select>
+              :rules="roleRules"
+            >
+            </v-select>
+            
           </v-col>
           <v-col
             cols="12"
@@ -200,7 +210,7 @@
                   request.EmployeeRole === 'Approval Admin' ||
                   request.EmployeeRole === ' '
                 ) &&
-                  (option === 'Edit' || option === 'Create')
+                (option === 'Edit' || option === 'Create')
             "
           >
             <!-- request.MerchandiserId || -->
@@ -403,12 +413,16 @@ export default class CreateEmployee extends Vue {
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  // public passwordRules1: any = [
-  //     // (v: any) => !!v || "Password is required",
-  //     (v: any) =>
-  //     /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-  //     "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
-  // ];
+  public passwordRules1: any = [
+      (v: any) =>
+      /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
+      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+  ];
+
+  public roleRules: any = [
+    (v: any) => !!v || 'Role is required',
+    (v: any) => v.length > 0 || 'Role is required'
+  ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();

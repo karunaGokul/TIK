@@ -46,11 +46,10 @@
             <template v-slot:[`item.type`]="{ item }">
               <v-select
                 v-model="item.melanSlubType"
-                :items="item.melanSluboptions"
-                item-text="name"
-                item-value="id"
+                :items="item.melanSlubTypeOptions"
+                item-text="name"                
                 return-object
-                class="mx-n2 mr-n6 text-caption mt-3"
+                class="mr-n6 mb-n3 text-caption mt-3"
                 placeholder="Select"
                 solo
               ></v-select>
@@ -59,10 +58,9 @@
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
-                item-text="name"
-                item-value="id"
+                item-text="name"               
                 return-object
-                class="mx-n2 mr-n6 text-caption mt-3"
+                class="mr-n6 mb-n3 text-caption mt-3"
                 placeholder="Select"
                 solo
               ></v-select>
@@ -112,9 +110,8 @@
         <template v-slot:[`item.type`]="{ item }">
           <v-select
             v-model="item.melanSlubType"
-            :items="item.melanSlubOptions"
-            item-text="name"
-            item-value="id"
+            :items="item.melanSlubTypeOptions"
+            item-text="name"          
             return-object
             placeholder="Select"
             class="text-caption mt-3"
@@ -125,18 +122,17 @@
           <v-select
             v-model="item.content"
             :items="item.contentOptions"
-            item-text="name"
-            item-value="id"
+            item-text="name"           
             return-object
-            placeholder="Select mt-3"
-            class="text-caption"
+            placeholder="Select"
+            class="text-caption  mt-3"
              solo
           ></v-select>
         </template>
         <template v-slot:[`item.combo1`]="{ item }">
           <v-row no-gutters>
             <v-col class="mr-2 ml-n2">
-              <!-- <v-label v-if="item.contents.name === 'Poly Cotton'">P</v-label>  
+              <!-- <v-label v-if="item.content.name === 'Poly Cotton'">P</v-label>  
                   <v-label v-else>C</v-label>                             -->
               <v-text-field
                 outlined

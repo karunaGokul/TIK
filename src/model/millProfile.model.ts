@@ -44,7 +44,7 @@ export class contentDetailModel {
     spun?: string;
     combos?: Array<combosModel> = [];
     melanSlubType:contentModel;
-    melanSlubOptions:Array<contentModel>[];
+    melanSlubTypeOptions:Array<contentModel>[];
 }
 
 export class contentModel {

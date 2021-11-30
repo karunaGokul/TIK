@@ -78,8 +78,7 @@
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
-                item-text="name"
-                item-value="id"
+                item-text="name"               
                 return-object
                 class="mx-n2 mr-n6 text-caption mt-3"
                 placeholder="Select"
@@ -134,8 +133,7 @@
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
-                item-text="name"
-                item-value="id"
+                item-text="name"               
                 return-object
                 placeholder="Select"
                 class="text-caption mt-3"
@@ -145,8 +143,8 @@
             <template v-slot:[`item.combo1`]="{ item }">
               <v-row no-gutters>
                 <v-col class="mr-2 ml-n2">
-                  <!-- <v-label v-if="item.contents.name === 'Poly Cotton'">P</v-label>  
-                  <v-label v-else>C</v-label>                             -->                  
+                  <!-- <v-label v-if="item.content.name === 'Poly Cotton'">P</v-label>  
+                  <v-label v-else>C</v-label>                                       -->
                   <v-text-field
                     outlined
                     dense

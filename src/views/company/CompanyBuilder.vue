@@ -144,8 +144,8 @@ export default class CompanyBuilder extends Vue {
       data.melanSlubTypes = data.melanSlubTypes.filter(
         (item) => item.isSelected === true
       );
-      data.singleContents.forEach((b) => delete b.melanSlubOptions);
-      data.blendContents.forEach((b) => delete b.melanSlubOptions);
+      data.singleContents.forEach((b) => delete b.melanSlubTypeOptions);
+      data.blendContents.forEach((b) => delete b.melanSlubTypeOptions);
     }
     if (option != "Melange" && option != "Slub") {
       data.singleContents.forEach((b) => {

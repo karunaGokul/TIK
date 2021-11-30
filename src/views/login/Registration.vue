@@ -22,13 +22,14 @@
         <div style="height: 63%; flex: 1; overflow: scroll" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
 
-          <v-form ref="form">
+          <v-form ref="form" autocomplete="off">
             <v-row>
               <v-col>
                 <v-label>First Name</v-label>
                 <v-text-field
                   outlined
                   dense
+                  autofocus
                   placeholder="Enter First Name"
                   class="rounded-0"
                   v-model="request.firstName"
@@ -75,6 +76,7 @@
                   v-model="request.emailAddress"
                   :rules="emailRules"
                   required
+                  autocomplete="off"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -97,6 +99,7 @@
                       @click:append="() => (value = !value)"
                       :type="value ? 'password' : 'text'"
                       :rules="passwordRules"
+                      autocomplete="off"
                     ></v-text-field>
                   </template>
                   <span
@@ -119,6 +122,7 @@
                   @click:append="() => (value1 = !value1)"
                   :type="value1 ? 'password' : 'text'"
                   :rules="passwordRules"
+                  autocomplete="off"
                 ></v-text-field>
               </v-col>
             </v-row>

@@ -87,7 +87,7 @@
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
-            <div v-if="(option === 'Create')">
+            <div v-if="option === 'Create'">
               <v-label>
                 Password
                 <span class="red--text">*</span>
@@ -118,9 +118,7 @@
               </v-tooltip>
             </div>
             <div v-else>
-              <v-label>
-                Password
-              </v-label>
+              <v-label> Password </v-label>
               <v-tooltip right>
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
@@ -193,10 +191,9 @@
               v-model="request.EmployeeRole"
               outlined
               dense
-              :rules="roleRules"
+              :rules="[(v) => !!v || 'Role is required']"
             >
             </v-select>
-            
           </v-col>
           <v-col
             cols="12"
@@ -204,16 +201,14 @@
             class="ml-4"
             v-if="
               category === 'Company' &&
-                !(
-                  request.EmployeeRole === 'Merchandiser' ||
-                  request.EmployeeRole === 'MasterAdmin' ||
-                  request.EmployeeRole === 'Approval Admin' ||
-                  request.EmployeeRole === ' '
-                ) &&
-                (option === 'Edit' || option === 'Create')
+              !(
+                request.EmployeeRole === 'Merchandiser' ||
+                request.EmployeeRole === 'MasterAdmin' ||
+                request.EmployeeRole === 'Approval Admin' ||
+                request.EmployeeRole === null
+              )
             "
           >
-            <!-- request.MerchandiserId || -->
             <v-label>
               Merchandiser
               <span class="red--text">*</span>
@@ -228,6 +223,7 @@
               outlined
               v-model="request.MerchandiserId"
               dense
+               :rules="[(v) => !!v || 'Merchandiser role is required']"
             >
             </v-select>
           </v-col>
@@ -242,12 +238,10 @@
               !(
                 request.EmployeeRole === 'MasterAdmin' ||
                 request.EmployeeRole === 'Approval Admin' ||
-                request.EmployeeRole === ' '
-              ) &&
-                (option === 'Edit' || option === 'Create')
+                request.EmployeeRole === null
+              )
             "
           >
-            <!-- request.ApprovalAdminId || -->
             <v-label>
               Approval Admin
               <span class="red--text">*</span>
@@ -262,6 +256,7 @@
               outlined
               v-model="request.ApprovalAdminId"
               dense
+              :rules="[(v) => !!v || 'Approval Admin role is required']"
             >
             </v-select>
           </v-col>
@@ -271,12 +266,10 @@
             v-if="
               !(
                 request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === ' '
-              ) &&
-                (option === 'Edit' || option === 'Create')
+                request.EmployeeRole === null
+              )
             "
           >
-            <!-- request.MasterAdminId || -->
             <v-label>
               Master Admin
               <span class="red--text">*</span>
@@ -291,6 +284,7 @@
               v-model="request.MasterAdminId"
               outlined
               dense
+               :rules="[(v) => !!v || 'Master Admin role is required']"
             >
             </v-select>
           </v-col>
@@ -301,8 +295,7 @@
           v-if="
             (category === 'Company' &&
               request.EmployeeRole === 'Merchandiser') ||
-              (category != 'Company' &&
-                request.EmployeeRole === 'Quote InCharge')
+            (category != 'Company' && request.EmployeeRole === 'Quote InCharge')
           "
         >
           <v-checkbox
@@ -414,15 +407,15 @@ export default class CreateEmployee extends Vue {
   ];
 
   public passwordRules1: any = [
-      (v: any) =>
+    (v: any) =>
       /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  public roleRules: any = [
-    (v: any) => !!v || 'Role is required',
-    (v: any) => v.length > 0 || 'Role is required'
-  ];
+  // public roleRules: any = [
+  //   (v: any) => !!v || "Role is required",
+  //   (v: any) => v.length > 0 || "Role is required",
+  // ];
 
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
@@ -510,6 +503,18 @@ export default class CreateEmployee extends Vue {
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.request.EmployeeId = this.$route.params.Id;
+      if (this.request.EmployeeRole === "Merchandiser") {
+        this.request.MerchandiserId = null;
+      }
+      if (this.request.EmployeeRole === "Approval Admin") {
+        this.request.MerchandiserId = null;
+        this.request.ApprovalAdminId = null;
+      }
+      if (this.request.EmployeeRole === "MasterAdmin") {
+        this.request.MerchandiserId = null;
+        this.request.ApprovalAdminId = null;
+        this.request.MasterAdminId = null;
+      }
       this.EmployeeService.EditEmployee(
         this.request,
         this.request.EmployeeId

@@ -32,7 +32,7 @@ export class EmployeeModel {
     Password: string;
     PhoneNumber: number;
     Address: string;
-    EmployeeRole: string = " ";
+    EmployeeRole: string = null;
     MerchandiserId: string;
     MasterAdminId: string;
     ApprovalAdminId: string;

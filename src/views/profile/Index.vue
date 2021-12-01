@@ -148,22 +148,63 @@
       </v-card>
 
       <v-row>
-        <v-col v-for="image in companyImages" :key="image.title" class="mx-1">
+        <v-col class="mx-1" v-if="this.category != 'Company'">
           <v-card width="250px">
             <v-img
-              :src="image.src"
-              :alt="image.title"
+              src="@/assets/mill/yarn.png"
+              alt="Yarn (or) Fabric Update"
               class="white--text align-end"
               width="250"
               height="250"
             >
               <Divider />
               <router-link to="/company">
-                <v-card-title
-                  v-text="image.title"
-                  class="white--text"
-                ></v-card-title>
+                <v-card-title class="white--text"
+                  >Yarn (or) Fabric Update</v-card-title
+                >
               </router-link>
+            </v-img>
+          </v-card>
+        </v-col>
+        <v-col class="mx-1">
+          <v-card width="250px">
+            <v-img
+              src="@/assets/mill/fabric.png"
+              alt="Brochures"
+              class="white--text align-end"
+              width="250"
+              height="250"
+            >
+              <Divider />
+              <v-card-title class="white--text"> Brochures </v-card-title>
+            </v-img>
+          </v-card>
+        </v-col>
+        <v-col class="mx-1">
+          <v-card width="250px">
+            <v-img
+              src="@/assets/mill/textile-machine.png"
+              alt="Machineries"
+              class="white--text align-end"
+              width="250"
+              height="250"
+            >
+              <Divider />
+              <v-card-title class="white--text">Machineries </v-card-title>
+            </v-img>
+          </v-card>
+        </v-col>
+        <v-col class="mx-1">
+          <v-card width="250px">
+            <v-img
+              src="@/assets/mill/certificate.png"
+              alt="Certificates"
+              class="white--text align-end"
+              width="250"
+              height="250"
+            >
+              <Divider />
+              <v-card-title class="white--text">Certificates </v-card-title>
             </v-img>
           </v-card>
         </v-col>
@@ -253,6 +294,10 @@ export default class Profile extends Vue {
   public model: "";
 
   created() {
+    if (this.category === "Company") {
+      this.categorys.splice(0, 9);
+      this.categorys.push("Company");
+    }
     this.loadprofile();
   }
   public loadprofile() {
@@ -267,6 +312,10 @@ export default class Profile extends Vue {
   public onCloseEditProfileModel() {
     this.toggleEditProfile = false;
     this.loadprofile();
+  }
+
+  get category(): string {
+    return this.$store.getters.category;
   }
   get role(): string {
     return this.$store.getters.role;
@@ -289,15 +338,15 @@ export default class Profile extends Vue {
       img: require("@/assets/gallery/gallery5.png"),
     },
   ];
-  companyImages: any = [
-    {
-      title: "Yarn (or) Fabric Update",
-      src: require("@/assets/mill/yarn.png"),
-    },
-    { title: "Brochures", src: require("@/assets/mill/fabric.png") },
-    { title: "Machineries", src: require("@/assets/mill/textile-machine.png") },
-    { title: "Certificates", src: require("@/assets/mill/certificate.png") },
-  ];
+  // companyImages: any = [
+  //   {
+  //     title: "Yarn (or) Fabric Update",
+  //     src: require("@/assets/mill/yarn.png"),
+  //   },
+  //   { title: "Brochures", src: require("@/assets/mill/fabric.png") },
+  //   { title: "Machineries", src: require("@/assets/mill/textile-machine.png") },
+  //   { title: "Certificates", src: require("@/assets/mill/certificate.png") },
+  // ];
   categorys: any = [
     "Mills",
     "Knitting",

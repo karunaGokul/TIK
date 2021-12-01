@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-model="drawer"
       app
       clipped
       permanent
@@ -19,7 +18,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/project" v-if="category==='Company'">
+        <v-list-item link to="/project" v-if="category === 'Company'">
           <v-list-item-action>
             <v-icon class="white--text">mdi-bag-suitcase</v-icon>
           </v-list-item-action>
@@ -33,10 +32,10 @@
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left class="y-app-header">
-      <div v-if="isLoggedIn">
+      <!-- <div v-if="isLoggedIn">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      </div>
-      <div v-if="!isLoggedIn">
+      </div> -->
+      <div>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-app-bar-nav-icon v-bind="attrs" v-on="on"></v-app-bar-nav-icon>
@@ -74,52 +73,33 @@
               <img src="../assets/face4.jpg" alt="profile" />
             </v-avatar>
           </template>
-            <v-list v-if="isLoggedIn">
-              <v-list-item
-                link
-                to="/profile"
-                class="text-capitalize"
-              >
-                <v-list-item-title>Profile</v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                link
-                to="/myaccount"
-                class="text-capitalize"
-              >
-                <v-list-item-title>My Account</v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                link
-                to="/employee"
-                class="text-capitalize"
-                v-if="(role === 'MasterAdmin')"
-              >
-                <v-list-item-title>Employee</v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                @click="logout"
-                class="text-capitalize"
-              >
-                <v-list-item-title>Log Out</v-list-item-title>
-              </v-list-item>
-            </v-list>
-            <v-list v-else>
-              <v-list-item
-                link
-                to="/login"
-                class="text-capitalize"
-              >
-                <v-list-item-title>Login</v-list-item-title>
-              </v-list-item>
-              <v-list-item
-                link
-                to="/registration"
-                class="text-capitalize"
-              >
-                <v-list-item-title>Register</v-list-item-title>
-              </v-list-item>
-            </v-list>
+          <v-list v-if="isLoggedIn">
+            <v-list-item link to="/profile" class="text-capitalize">
+              <v-list-item-title>Profile</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/myaccount" class="text-capitalize">
+              <v-list-item-title>My Account</v-list-item-title>
+            </v-list-item>
+            <v-list-item
+              link
+              to="/employee"
+              class="text-capitalize"
+              v-if="role === 'MasterAdmin'"
+            >
+              <v-list-item-title>Employee</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="logout" class="text-capitalize">
+              <v-list-item-title>Log Out</v-list-item-title>
+            </v-list-item>
+          </v-list>
+          <v-list v-else>
+            <v-list-item link to="/login" class="text-capitalize">
+              <v-list-item-title>Login</v-list-item-title>
+            </v-list-item>
+            <v-list-item link to="/registration" class="text-capitalize">
+              <v-list-item-title>Register</v-list-item-title>
+            </v-list-item>
+          </v-list>
         </v-menu>
         <v-snackbar
           v-model="snackbar"

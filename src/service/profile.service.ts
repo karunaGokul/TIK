@@ -5,7 +5,7 @@ import { AxiosRequestConfig } from 'axios';
 export interface IProfileService extends IBaseService<any, ProfileResponse> {
     getProfile(request: ProfileRequestModel): Promise<ProfileResponse>;
     editProfile(request: ProfileResponse, logo: File): Promise<any>;
-    CreateMills(): Promise<CompanyProfileModel>;
+    CreateMills(companyId: string): Promise<CompanyProfileModel>;
     AddMills(request: CompanyProfileModel): Promise<any>;
 }
 
@@ -44,9 +44,9 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
         });
 
     }
-    CreateMills(): Promise<CompanyProfileModel> {
+    CreateMills(companyId: string): Promise<CompanyProfileModel> {
         this.apiUrl = "https://tikdev-api.azure-api.net/ProfileMills"
-        return this.httpGet('CreateMills', null).then(response => {
+        return this.httpGet('CreateMills?companyId=' + companyId, null).then(response => {
             return response.data;
         });
     }

@@ -128,9 +128,11 @@ export default class CompanyBuilder extends Vue {
   public snackbar: boolean = false;
 
   created() {
-    this.ProfileService.CreateMills().then((response: CompanyProfileModel) => {
-      this.response = response;
-    });
+    this.ProfileService.CreateMills(this.companyId).then(
+      (response: CompanyProfileModel) => {
+        this.response = response;
+      }
+    );
   }
   public save() {
     this.millData = JSON.parse(JSON.stringify(this.response));

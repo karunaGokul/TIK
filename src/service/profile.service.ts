@@ -6,7 +6,7 @@ export interface IProfileService extends IBaseService<any, ProfileResponse> {
     getProfile(request: ProfileRequestModel): Promise<ProfileResponse>;
     editProfile(request: ProfileResponse, logo: File): Promise<any>;
     CreateMills(): Promise<CompanyProfileModel>;
-    AddMills(request:CompanyProfileModel):Promise<any>;
+    AddMills(request: CompanyProfileModel): Promise<any>;
 }
 
 export class ProfileService extends BaseService<any, ProfileResponse> implements IProfileService {
@@ -37,18 +37,18 @@ export class ProfileService extends BaseService<any, ProfileResponse> implements
             return response.data;
         });
     }
-    AddMills(request:CompanyProfileModel):Promise<any>
-    {this.apiUrl = "https://tikdev-api.azure-api.net/ProfileMills"
-    return this.httpPost('AddMills', request).then(response => {
-        return response.data;
-    });
+    AddMills(request: CompanyProfileModel): Promise<any> {
+        this.apiUrl = "https://tikdev-api.azure-api.net/ProfileMills"
+        return this.httpPost('AddMills', request).then(response => {
+            return response.data;
+        });
 
     }
     CreateMills(): Promise<CompanyProfileModel> {
         this.apiUrl = "https://tikdev-api.azure-api.net/ProfileMills"
         return this.httpGet('CreateMills', null).then(response => {
             return response.data;
-        });       
+        });
     }
 
 }

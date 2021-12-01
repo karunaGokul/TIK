@@ -186,6 +186,12 @@ export default class CompanyBuilder extends Vue {
 
     data.singleContents.forEach((b) => delete b.contentOptions);
     data.blendContents.forEach((b) => delete b.contentOptions);
+    data.blendContents.forEach((b) => {
+      b.combos.forEach((c) => {
+        if (c.combinationOne === null) c.combinationOne = 0;
+        if (c.combinationTwo === null) c.combinationTwo = 0;
+      });
+    });
     delete data.availableCounts;
     delete data.countLable;
     delete data.contentLable;

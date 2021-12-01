@@ -48,7 +48,7 @@
                   Reset Password
                 </v-btn>
               <ResetPassword v-if="toggleResetPassword" /> -->
-              <span class="mx-3">
+              <span class="mx-3" v-if="role === 'MasterAdmin'">
                 <v-btn
                   class="
                     white--text
@@ -268,6 +268,10 @@ export default class Profile extends Vue {
     this.toggleEditProfile = false;
     this.loadprofile();
   }
+  get role(): string {
+    return this.$store.getters.role;
+  }
+
   galleryImages: any = [
     {
       img: require("@/assets/gallery/gallery1.png"),

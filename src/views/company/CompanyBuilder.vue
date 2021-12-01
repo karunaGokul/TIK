@@ -12,7 +12,7 @@
       Yarn
     </div>
     <div align="right" v-if="role === 'MasterAdmin' && category != 'Company'">
-      <v-icon large color="primary" class="mr-10" @click="edit = true">
+      <v-icon large color="primary" class="mr-10" @click="edit = !edit">
         mdi-pencil-box-multiple
       </v-icon>
     </div>

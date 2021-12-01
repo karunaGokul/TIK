@@ -395,6 +395,14 @@ export default class CompanyControl extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
+  created() {
+    this.response.blendContents.forEach((b) => {
+      b.combos.forEach((c) => {
+        if (c.combinationOne === 0) c.combinationOne = null;
+        if (c.combinationTwo === 0) c.combinationTwo = null;
+      });
+    });
+  }
 
   addSingleContent() {
     this.response.singleContents.push({

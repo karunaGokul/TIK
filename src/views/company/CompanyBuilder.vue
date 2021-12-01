@@ -1,5 +1,21 @@
  <template>
   <div>
+    <div class="ma-2">
+      <router-link to="/" class="text-decoration-none">
+        <v-icon large> mdi-home</v-icon>
+      </router-link>
+      <v-icon large> mdi-chevron-right</v-icon>
+      <router-link to="/profile" class="text-decoration-none black--text"
+        >Product Details
+      </router-link>
+      <v-icon large> mdi-chevron-right</v-icon>
+      Yarn
+    </div>
+    <div align="right" v-if="role === 'MasterAdmin' && category != 'Company'">
+      <v-icon large color="primary" class="mr-10" @click="edit = true">
+        mdi-pencil-box-multiple
+      </v-icon>
+    </div>
     <div class="pa-6">
       <v-tabs v-model="tab1" color="#16594a">
         <v-tab v-for="item in tab1Items" :key="item.tab">
@@ -19,18 +35,21 @@
                   <CompanyControl
                     :response="response.yarn.regularYarn"
                     option="RegularYarn"
+                    :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
                   <CompanyControl
                     :response="response.yarn.specialYarn"
                     option="SpecialYarn"
+                    :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
                   <CompanyControl
                     :response="response.yarn.dyedYarn"
                     option="DyedYarn"
+                    :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
@@ -42,12 +61,14 @@
                       <MelangeSlub
                         :response="response.yarn.melangeSlubYarn.melange"
                         option="Melange"
+                        :edit="edit"
                       />
                     </v-tab-item>
                     <v-tab-item>
                       <MelangeSlub
                         :response="response.yarn.melangeSlubYarn.slub"
                         option="Slub"
+                        :edit="edit"
                       />
                     </v-tab-item>
                   </v-tabs>
@@ -61,7 +82,7 @@
             </v-tab-item>
           </v-tabs-items>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions v-if="edit">
           <v-spacer></v-spacer>
           <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
         </v-card-actions>
@@ -101,9 +122,11 @@ export default class CompanyBuilder extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   public response = new CompanyProfileModel();
   public millData = new CompanyProfileModel();
+  public edit: boolean = false;
   public option: string = "";
   public snackbarText: string = "";
   public snackbar: boolean = false;
+
   created() {
     this.ProfileService.CreateMills().then((response: CompanyProfileModel) => {
       this.response = response;
@@ -173,9 +196,19 @@ export default class CompanyBuilder extends Vue {
   get employeeId(): string {
     return this.$store.getters.id;
   }
+
   get companyId(): string {
     return this.$store.getters.companyId;
   }
+
+  get role(): string {
+    return this.$store.getters.role;
+  }
+
+  get category(): string {
+    return this.$store.getters.category;
+  }
+
   tab1: any = null;
 
   tab1Items: any = [

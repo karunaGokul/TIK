@@ -33,9 +33,10 @@ export class EmployeeModel {
     PhoneNumber: number;
     Address: string;
     EmployeeRole: string = null;
-    MerchandiserId: string;
-    MasterAdminId: string;
-    ApprovalAdminId: string;
+    MerchandiserId?: string;
+    MasterAdminId?: string;
+    CategoryId: string;
+    ApprovalAdminId?: string;
     ApprovalAdminAccess: string = "0";
     EmployeeId: string;
 }

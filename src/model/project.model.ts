@@ -3,6 +3,7 @@ import { BaseModel, DataRequest, ListItem } from './base.model';
 export class CreateProjectModel {
     name: string;
     category: string;
+    merchandiserId: string;
     noOfKgs: number;
     price: number;
     requestPrice: boolean;

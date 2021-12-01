@@ -195,7 +195,27 @@
             >
             </v-select>
           </v-col>
-          <v-col
+          <v-col cols="12" md="3" class="ml-4">
+            <v-label>
+              Category
+              <span class="red--text">*</span>
+            </v-label>
+            <v-select
+              class="pt-2"
+              :menu-props="{ offsetY: true }"
+              label="Select Category"
+              :items="CategoryResponse"
+              item-text="categoryName"
+              item-value="id"
+              outlined
+              v-model="request.CategoryId"
+              dense
+              :rules="[(v) => !!v || 'Category is required']"
+            >
+            </v-select>
+          </v-col>
+        </v-row>
+        <!-- <v-col
             cols="12"
             md="3"
             class="ml-4"
@@ -226,9 +246,9 @@
                :rules="[(v) => !!v || 'Merchandiser role is required']"
             >
             </v-select>
-          </v-col>
-        </v-row>
+          </v-col> -->
 
+        <!-- 
         <v-row class="mt-n8 mb-2">
           <v-col
             cols="12"
@@ -288,7 +308,7 @@
             >
             </v-select>
           </v-col>
-        </v-row>
+        </v-row> -->
 
         <v-row
           class="ml-2 mb-2 mt-n2"
@@ -311,14 +331,14 @@
           <v-btn
             large
             v-if="option === 'Create'"
-            class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
+            class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
             @click="createEmployee()"
             >{{ option }}</v-btn
           >
           <v-btn
             large
             v-else
-            class="indigo darken-4 white--text rounded-0 text-capitalize mb-5"
+            class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
             @click="updateEmployee()"
           >
             Update
@@ -369,18 +389,20 @@ import { validationMixin } from "vuelidate";
 import {
   AdminRequestModel,
   ApprovalAdminResponseModel,
+  CategoryResponseModel,
   EmployeeModel,
   MasterAdminResponseModel,
   MerchandiserResponseModel,
   RoleResponseModel,
 } from "@/model";
-import { IEmployeeService } from "@/service";
+import { IEmployeeService, IRegistrationService } from "@/service";
 
 @Component({
   mixins: [validationMixin],
 })
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
+  @Inject("registrationService") registrationService: IRegistrationService;
 
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
@@ -412,17 +434,13 @@ export default class CreateEmployee extends Vue {
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
-  // public roleRules: any = [
-  //   (v: any) => !!v || "Role is required",
-  //   (v: any) => v.length > 0 || "Role is required",
-  // ];
-
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public role: Array<RoleResponseModel> = [];
   public Merchandiser: Array<MerchandiserResponseModel> = [];
   public MasterAdmin: Array<MasterAdminResponseModel> = [];
+  public CategoryResponse: Array<CategoryResponseModel> = [];
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
   public gender: any = ["Male", "Female"];
   public EmployeeId: string = "";
@@ -439,50 +457,58 @@ export default class CreateEmployee extends Vue {
     } else {
       this.option = "Create";
     }
-
     this.GetRoles();
-    this.GetMerchandiser();
-    this.GetMasterAdmin();
-    this.GetApprovalAdmin();
+    // this.GetMerchandiser();
+    // this.GetMasterAdmin();
+    // this.GetApprovalAdmin();
+    this.getCategory();
   }
+  public getCategory() {
+    this.registrationService
+      .getCategory()
+      .then((response: Array<CategoryResponseModel>) => {
+        this.CategoryResponse = response;
+      });
+  }
+
   public GetEmployee() {
     this.EmployeeService.GetEmployee(this.$route.params.Id).then((response) => {
       this.request = response;
     });
   }
 
-  private GetRoles() {
+  public GetRoles() {
     this.EmployeeService.GetRoles().then(
       (response: Array<RoleResponseModel>) => {
         this.role = response;
       }
     );
   }
-  private GetMerchandiser() {
-    this.adminRequest.companyId = this.$store.getters.companyId;
-    this.EmployeeService.GetMerchandiser(this.adminRequest).then(
-      (response: Array<MerchandiserResponseModel>) => {
-        this.Merchandiser = response;
-      }
-    );
-  }
+  // public GetMerchandiser() {
+  //   this.adminRequest.companyId = this.$store.getters.companyId;
+  //   this.EmployeeService.GetMerchandiser(this.adminRequest).then(
+  //     (response: Array<MerchandiserResponseModel>) => {
+  //       this.Merchandiser = response;
+  //     }
+  //   );
+  // }
 
-  private GetMasterAdmin() {
-    this.adminRequest.companyId = this.$store.getters.companyId;
-    this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
-      (response: Array<MasterAdminResponseModel>) => {
-        this.MasterAdmin = response;
-      }
-    );
-  }
-  private GetApprovalAdmin() {
-    this.adminRequest.companyId = this.$store.getters.companyId;
-    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
-      (response: Array<ApprovalAdminResponseModel>) => {
-        this.ApprovalAdmin = response;
-      }
-    );
-  }
+  // public GetMasterAdmin() {
+  //   this.adminRequest.companyId = this.$store.getters.companyId;
+  //   this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
+  //     (response: Array<MasterAdminResponseModel>) => {
+  //       this.MasterAdmin = response;
+  //     }
+  //   );
+  // }
+  // public GetApprovalAdmin() {
+  //   this.adminRequest.companyId = this.$store.getters.companyId;
+  //   this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+  //     (response: Array<ApprovalAdminResponseModel>) => {
+  //       this.ApprovalAdmin = response;
+  //     }
+  //   );
+  // }
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.EmployeeService.CreateEmployee(this.request).then(
@@ -503,18 +529,18 @@ export default class CreateEmployee extends Vue {
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.request.EmployeeId = this.$route.params.Id;
-      if (this.request.EmployeeRole === "Merchandiser") {
-        this.request.MerchandiserId = null;
-      }
-      if (this.request.EmployeeRole === "Approval Admin") {
-        this.request.MerchandiserId = null;
-        this.request.ApprovalAdminId = null;
-      }
-      if (this.request.EmployeeRole === "MasterAdmin") {
-        this.request.MerchandiserId = null;
-        this.request.ApprovalAdminId = null;
-        this.request.MasterAdminId = null;
-      }
+      // if (this.request.EmployeeRole === "Merchandiser") {
+      //   this.request.MerchandiserId = null;
+      // }
+      // if (this.request.EmployeeRole === "Approval Admin") {
+      //   this.request.MerchandiserId = null;
+      //   this.request.ApprovalAdminId = null;
+      // }
+      // if (this.request.EmployeeRole === "MasterAdmin") {
+      //   this.request.MerchandiserId = null;
+      //   this.request.ApprovalAdminId = null;
+      //   this.request.MasterAdminId = null;
+      // }
       this.EmployeeService.EditEmployee(
         this.request,
         this.request.EmployeeId

@@ -258,6 +258,8 @@ export default class ProjectForm extends Vue {
   @Inject("ProjectService") service: IProjectService;
   @Prop() categoryName: string;
   @Prop() projectName: string;
+  @Prop() merchandiser: string;
+
   StepMode = StepMode;
 
   data: ProjectFormModel = new ProjectFormModel();
@@ -277,6 +279,7 @@ export default class ProjectForm extends Vue {
   created() {
     this.request.name = this.projectName;
     this.request.category = this.categoryName;
+    this.request.merchandiserId = this.merchandiser;
 
     this.service
       .newProject(this.categoryName, this.projectName)
@@ -326,7 +329,7 @@ export default class ProjectForm extends Vue {
         this.error = true;
       } else {
         this.mode = StepMode.Summary;
-        console.log(JSON.stringify(this.request));
+        // console.log(JSON.stringify(this.request));
       }
     } else {
       let valid = true;
@@ -365,7 +368,7 @@ export default class ProjectForm extends Vue {
 
         this.mode = StepMode.Result;
 
-        console.log(JSON.stringify(this.request));
+        // console.log(JSON.stringify(this.request));
         return false;
       }
 

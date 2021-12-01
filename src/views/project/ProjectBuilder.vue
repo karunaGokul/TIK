@@ -3,8 +3,26 @@
     <v-container class="pa-8" v-if="!toggleCategory">
       <v-row>
         <v-col cols="8" md="4">
-          <h3 class="mb-2">Enter Enquiry Name</h3>
+          <h3 class="mb-2">
+            Enter Enquiry Name <span class="red--text">*</span>
+          </h3>
           <v-text-field outlined v-model="projectName"></v-text-field>
+        </v-col>
+        <v-col cols="8" md="4" class="ml-10">
+          <h3 class="mb-2">
+            Select Merchandiser <span class="red--text">*</span>
+          </h3>
+
+          <v-select
+            :menu-props="{ offsetY: true }"
+            label="Select Merchandiser"
+            :items="merchandiserResponse"
+            item-text="Merchandiser"
+            item-value="Id"
+            outlined
+            v-model="merchandiser"
+          >
+          </v-select>
         </v-col>
       </v-row>
 
@@ -21,7 +39,11 @@
           >
             <a class="ma-2" @click="openCategory(category.categoryName)">
               <v-hover v-slot:default="{ hover }">
-                <v-avatar size="140" :color="hover ? 'primary' : ''" class="elevation-2">
+                <v-avatar
+                  size="140"
+                  :color="hover ? 'primary' : ''"
+                  class="elevation-2"
+                >
                   <img
                     :src="category.categoryImage"
                     :alt="category.categoryName"
@@ -56,28 +78,51 @@
     <ProjectForm
       :categoryName="categoryName"
       :projectName="projectName"
+      :merchandiser="merchandiser"
       v-else
     />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { AdminRequestModel, MerchandiserResponseModel } from "@/model";
+import { IEmployeeService } from "@/service";
+import { Component, Inject, Vue } from "vue-property-decorator";
 import ProjectForm from "./components/ProjectForm.vue";
 
 @Component({
   components: { ProjectForm },
 })
 export default class ProjectBuilder extends Vue {
-  projectName: any = "";
-  toggleCategory: any = false;
-  categoryName: any = "";
-  snackbar: any = false;
-  snackbarText: string = "";
+  @Inject("EmployeeService") EmployeeService: IEmployeeService;
 
-  openCategory(categoryName: any) {
-    if (this.projectName == "") {
+  public merchandiserResponse: Array<MerchandiserResponseModel> = [];
+  public adminRequest: AdminRequestModel = new AdminRequestModel();
+  projectName: string = "";
+  merchandiser: string = "";
+  toggleCategory: boolean = false;
+  categoryName: string = "";
+  snackbar: boolean = false;
+  snackbarText: string = "";
+  created() {
+    this.GetMerchandiser();
+  }
+
+  public GetMerchandiser() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetMerchandiser(this.adminRequest).then(
+      (response: Array<MerchandiserResponseModel>) => {
+        this.merchandiserResponse = response;
+      }
+    );
+  }
+
+  public openCategory(categoryName: any) {
+    if (this.projectName === "") {
       this.snackbarText = "Please Enter Project Name";
+      this.snackbar = true;
+    } else if (this.merchandiser === "") {
+      this.snackbarText = "Please Select Merchandiser";
       this.snackbar = true;
     } else {
       this.toggleCategory = true;

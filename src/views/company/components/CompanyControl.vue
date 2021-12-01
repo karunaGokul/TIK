@@ -12,14 +12,23 @@
         <v-col cols="4">
           <v-list flat>
             <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1" v-if="option==='SpecialYarn'">
-                 single SPL Yarns Type
-              </v-toolbar-title>              
-              <v-toolbar-title class="subtitle-1" v-else-if="option==='DyedYarn'">
-               single Dyed Yarns Type 
+              <v-toolbar-title
+                class="subtitle-1"
+                v-if="option === 'SpecialYarn'"
+              >
+                single SPL Yarns Type
+              </v-toolbar-title>
+              <v-toolbar-title
+                class="subtitle-1"
+                v-else-if="option === 'DyedYarn'"
+              >
+                single Dyed Yarns Type
               </v-toolbar-title>
             </v-toolbar>
-            <v-list-item v-for="item in response.singleSpecialDyedTypes" :key="item">
+            <v-list-item
+              v-for="item in response.singleSpecialDyedTypes"
+              :key="item"
+            >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox v-model="item.isSelected"></v-checkbox>
@@ -30,14 +39,23 @@
         <v-col cols="4">
           <v-list flat>
             <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1" v-if="option==='SpecialYarn'">
-                 Blend SPL Yarns Type
-              </v-toolbar-title>              
-              <v-toolbar-title class="subtitle-1" v-else-if="option==='DyedYarn'">
-               Blend Dyed Yarns Type 
+              <v-toolbar-title
+                class="subtitle-1"
+                v-if="option === 'SpecialYarn'"
+              >
+                Blend SPL Yarns Type
+              </v-toolbar-title>
+              <v-toolbar-title
+                class="subtitle-1"
+                v-else-if="option === 'DyedYarn'"
+              >
+                Blend Dyed Yarns Type
               </v-toolbar-title>
             </v-toolbar>
-            <v-list-item v-for="item in response.blendSpecialDyedTypes" :key="item">
+            <v-list-item
+              v-for="item in response.blendSpecialDyedTypes"
+              :key="item"
+            >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox v-model="item.isSelected"></v-checkbox>
@@ -60,7 +78,7 @@
             :items="response.singleContents"
             class="elevation-1 table-striped"
             hide-default-footer
-            disable-sort            
+            disable-sort
           >
             <template v-slot:top>
               <v-toolbar flat color="#c2e2e2" dense class="mb-2">
@@ -78,23 +96,26 @@
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
-                item-text="name"               
+                item-text="name"
                 return-object
                 class="mx-n2 mr-n6 text-caption mt-3"
                 placeholder="Select"
-                 solo
+                solo
+                :disabled="edit === false"
               ></v-select>
             </template>
             <template v-slot:[`item.spun`]="{ item }">
               <v-simple-checkbox
                 v-model="item.spun"
                 class="mx-n2"
+                :disabled="edit === false"
               ></v-simple-checkbox>
             </template>
             <template v-slot:[`item.filaments`]="{ item }">
               <v-simple-checkbox
                 v-model="item.filament"
                 class="mx-n6"
+                :disabled="edit === false"
               ></v-simple-checkbox>
             </template>
             <template v-slot:[`item.action`]="{ index }">
@@ -115,7 +136,7 @@
             :items="response.blendContents"
             class="elevation-1 table-striped"
             hide-default-footer
-            disable-sort           
+            disable-sort
           >
             <template v-slot:top>
               <v-toolbar flat color="#c2e2e2" dense class="mb-2">
@@ -133,11 +154,12 @@
               <v-select
                 v-model="item.content"
                 :items="item.contentOptions"
-                item-text="name"               
+                item-text="name"
                 return-object
                 placeholder="Select"
                 class="text-caption mt-3"
-                 solo
+                solo
+                :disabled="edit === false"
               ></v-select>
             </template>
             <template v-slot:[`item.combo1`]="{ item }">
@@ -151,7 +173,7 @@
                     v-model="item.combos[0].combinationOne"
                     hide-details
                     class="text-caption"
-                    @change="test(item.content.name)"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
                 <v-col class="mr-n2">
@@ -161,6 +183,7 @@
                     v-model="item.combos[0].combinationTwo"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -174,6 +197,7 @@
                     v-model="item.combos[1].combinationOne"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
                 <v-col class="mr-n2">
@@ -183,6 +207,7 @@
                     v-model="item.combos[1].combinationTwo"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -196,6 +221,7 @@
                     v-model="item.combos[2].combinationOne"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
                 <v-col class="mr-n2">
@@ -205,6 +231,7 @@
                     v-model="item.combos[2].combinationTwo"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -218,6 +245,7 @@
                     v-model="item.combos[3].combinationOne"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
                 <v-col class="mr-n2">
@@ -227,6 +255,7 @@
                     v-model="item.combos[3].combinationTwo"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -240,6 +269,7 @@
                     v-model="item.combos[4].combinationOne"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
                 <v-col class="mr-n2">
@@ -249,6 +279,7 @@
                     v-model="item.combos[4].combinationTwo"
                     hide-details
                     class="text-caption"
+                    :disabled="edit === false"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -284,7 +315,10 @@
             <v-list-item v-for="item in response.singleQualities" :key="item">
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected"></v-checkbox>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -299,7 +333,10 @@
             <v-list-item v-for="item in response.blendQualities" :key="item">
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected"></v-checkbox>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -323,6 +360,7 @@
             chips
             small-chips
             multiple
+            :disabled="edit === false"
           ></v-autocomplete>
           <v-label>Deniers:</v-label>
           <v-autocomplete
@@ -333,16 +371,18 @@
             chips
             small-chips
             multiple
+            :disabled="edit === false"
           ></v-autocomplete>
           <v-label>Enter AVG Credit time you offer:</v-label>
           <v-text-field
             outlined
             dense
             v-model="response.avgCreditTime"
+            :disabled="edit === false"
           ></v-text-field>
         </v-col>
       </v-row>
-    </v-card>    
+    </v-card>
   </div>
 </template>
 
@@ -351,12 +391,11 @@ import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { ProductDetailModel } from "@/model";
 
 @Component
-export default class CompanyControl extends Vue {  
+export default class CompanyControl extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
-   test(value:any){
-     console.log(value);
-   }
+  @Prop() edit: boolean;
+
   addSingleContent() {
     this.response.singleContents.push({
       ...JSON.parse(JSON.stringify(this.response.singleContents[0])),
@@ -394,7 +433,7 @@ export default class CompanyControl extends Vue {
     { text: "Combo 5", value: "combo5", align: "center", divider: true },
     { text: "", value: "action", width: "2%" },
   ];
-  
+
   singleContentHeaders: any = [
     { text: "Content", value: "content", divider: true },
     { text: "Spun", value: "spun", align: "center", divider: true },

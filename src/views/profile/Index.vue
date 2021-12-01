@@ -38,8 +38,8 @@
               <h3>About</h3>
 
               <v-spacer></v-spacer>
-              
-                <!-- <v-btn
+
+              <!-- <v-btn
                   dark
                   class="text-capitalize font-weight-regular rounded-0"
                   color="primary"
@@ -114,7 +114,7 @@
       <Divider />
     </div>
 
-    <v-sheet class="mx-auto" max-width="1500">
+    <v-sheet class="mx-auto" max-width="1450">
       <v-slide-group
         v-model="model"
         class="pa-4"
@@ -123,8 +123,9 @@
       >
         <v-slide-item v-for="n in 10" :key="n">
           <v-row class="fill-height ma-1" align="center" justify="center">
-            <v-img src="@/assets/Gallery/gallery1.jpg" height="300" width="260">
-            </v-img>
+            <span v-for="image in galleryImages" :key="image.img" class="mx-1">
+              <v-img :src="image.img" height="300" width="260"> </v-img>
+            </span>
           </v-row>
         </v-slide-item>
       </v-slide-group>
@@ -136,28 +137,33 @@
         <Divider />
       </div>
 
-      <v-card class="d-flex justify-left pl-10 mb-16">
-        <router-link to="/company" tag="button">
-          <v-btn text>Mills</v-btn>
-        </router-link>
-        <v-btn>Knitting</v-btn>
-        <v-btn>Pieces</v-btn>
-        <v-btn>Dying</v-btn>
-        <v-btn>Job Work</v-btn>
-        <v-btn>Printing</v-btn>
+      <v-card class="d-flex justify-left mb-16 px-4" color="#EEEEEE">
+        <v-btn
+          color="primary"
+          class="mx-1 my-4"
+          v-for="(category, index) in categorys"
+          :key="index"
+          >{{ category }}</v-btn
+        >
       </v-card>
 
       <v-row>
-        <v-col v-for="image in images" :key="image.title">
-          <v-card>
+        <v-col v-for="image in companyImages" :key="image.title" class="mx-1">
+          <v-card width="250px">
             <v-img
-              src="@/assets/Gallery/gallery1.jpg"
+              :src="image.src"
+              :alt="image.title"
               class="white--text align-end"
               width="250"
               height="250"
             >
               <Divider />
-              <v-card-title v-text="image.title"></v-card-title>
+              <router-link to="/company">
+                <v-card-title
+                  v-text="image.title"
+                  class="white--text"
+                ></v-card-title>
+              </router-link>
             </v-img>
           </v-card>
         </v-col>
@@ -181,13 +187,9 @@
       </div>
 
       <v-row>
-        <v-col v-for="image in images" :key="image.title">
-          <v-card :loading="loading" class="mx-auto my-12" max-width="250">
-            <v-img
-              height="250"
-              src="@/assets/Gallery/gallery1.jpg"
-              alt="gallery"
-            ></v-img>
+        <v-col v-for="image in galleryImages" :key="image.img">
+          <v-card :loading="loading" class="mx-0 my-12" max-width="200">
+            <v-img height="250" :src="image.img" alt="gallery"></v-img>
 
             <v-card-title>{{ image.title }}</v-card-title>
 
@@ -246,7 +248,7 @@ export default class Profile extends Vue {
 
   public toggleEditProfile: boolean = false;
   public toggleResetPassword: boolean = false;
-  public loading:boolean = false;
+  public loading: boolean = false;
   public value: string;
   public model: "";
 
@@ -266,13 +268,33 @@ export default class Profile extends Vue {
     this.toggleEditProfile = false;
     this.loadprofile();
   }
-  images: any = [
-    { title: "Yarn", src: "@/assets/Gallery/gallery1.jpg" },
-    { title: "Brochures", src: "@/assets/Gallery/gallery2.jpg" },
-    { title: "Machineries", src: "@/assets/Gallery/gallery3.jpg" },
-    { title: "Certificates", src: "@/assets/Gallery/gallery4.jpg" },
+  galleryImages: any = [
+    {
+      img: require("@/assets/gallery/gallery1.png"),
+    },
+    {
+      img: require("@/assets/gallery/gallery2.png"),
+    },
+    {
+      img: require("@/assets/gallery/gallery3.png"),
+    },
+    {
+      img: require("@/assets/gallery/gallery4.png"),
+    },
+    {
+      img: require("@/assets/gallery/gallery5.png"),
+    },
   ];
-  category: any = [
+  companyImages: any = [
+    {
+      title: "Yarn (or) Fabric Update",
+      src: require("@/assets/mill/yarn.png"),
+    },
+    { title: "Brochures", src: require("@/assets/mill/fabric.png") },
+    { title: "Machineries", src: require("@/assets/mill/textile-machine.png") },
+    { title: "Certificates", src: require("@/assets/mill/certificate.png") },
+  ];
+  categorys: any = [
     "Mills",
     "Knitting",
     "Dyeing",

@@ -1,16 +1,14 @@
 <template>
   <div>
     <div class="my-15" justify="center" align="center">
-      <h1 class="text-capitalize">
-        about us
-      </h1>
+      <h1 class="text-capitalize">about us</h1>
       <Divider />
     </div>
 
     <v-row>
       <v-col cols="12" sm="4">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           height="250"
           class="ml-16 mr-10 mb-16"
         ></v-img>
@@ -32,7 +30,14 @@
         </p>
         <v-btn
           color="primary"
-          class="py-5 ml-5 rounded-0 white--text font-weight-light text-capitalize"
+          class="
+            py-5
+            ml-5
+            rounded-0
+            white--text
+            font-weight-light
+            text-capitalize
+          "
         >
           contact us
         </v-btn>
@@ -40,9 +45,7 @@
     </v-row>
 
     <div class="my-15" justify="center" align="center">
-      <h1 class="text-capitalize">
-        what we do
-      </h1>
+      <h1 class="text-capitalize">what we do</h1>
 
       <Divider />
     </div>
@@ -77,7 +80,7 @@
     <v-row class="grey lighten-4 color px-16 my-10" height="250px" no-gutters>
       <v-col cols="12" sm="2">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           alt="gallery1"
           height="100px"
         />
@@ -85,7 +88,7 @@
 
       <v-col cols="12" sm="2">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           alt="gallery1"
           height="100"
           class="mx-5"
@@ -94,7 +97,7 @@
 
       <v-col cols="12" sm="2">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           alt="gallery1"
           height="100"
           class="mx-2"
@@ -103,7 +106,7 @@
 
       <v-col cols="12" sm="2">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           alt="gallery1"
           height="100"
           class="mx-5"
@@ -112,7 +115,7 @@
 
       <v-col cols="12" sm="2">
         <v-img
-          src="@/assets/Gallery/gallery1.jpg"
+          src="@/assets/gallery/gallery1.png"
           alt="gallery1"
           height="100"
         />
@@ -122,9 +125,7 @@
     <div class="white--text teal darken-4 color rounded-0 pb-10 pt-6">
       <v-row>
         <v-col class="pl-16" cols="12" sm="4">
-          <subtitle-1>
-            Gain a Success with Us
-          </subtitle-1>
+          <subtitle-1> Gain a Success with Us </subtitle-1>
 
           <h1>Get to know us better!</h1>
 
@@ -135,27 +136,21 @@
 
           <Divider />
 
-          <subtitle-1>
-            happy clients
-          </subtitle-1>
+          <subtitle-1> happy clients </subtitle-1>
         </v-col>
         <v-col class="text-capitalize">
           <h1>1240+</h1>
 
           <Divider />
 
-          <subtitle-1>
-            projects finished
-          </subtitle-1>
+          <subtitle-1> projects finished </subtitle-1>
         </v-col>
         <v-col class="text-capitalize">
           <h1>1380+</h1>
 
           <Divider />
 
-          <subtitle-1>
-            business solutions
-          </subtitle-1>
+          <subtitle-1> business solutions </subtitle-1>
         </v-col>
       </v-row>
     </div>

@@ -2,47 +2,47 @@ import { IBaseService, BaseService } from "./base.service";
 import { ProjectFormModel, ProjectRequestModel } from "@/model";
 
 export interface IProjectService
-    extends IBaseService<ProjectRequestModel, ProjectFormModel> {
-    newProject(
-        categoryName: string,
-        projectName: string
-    ): Promise<ProjectFormModel>;
+	extends IBaseService<ProjectRequestModel, ProjectFormModel> {
+	newProject(
+		categoryName: string,
+		projectName: string
+	): Promise<ProjectFormModel>;
 
-    createProject(request: any): Promise<any>;
-    searchProject(request: any): Promise<any>;
+	createProject(request: any): Promise<any>;
+	searchProject(request: any): Promise<any>;
 }
 export class ProjectService
-    extends BaseService<ProjectRequestModel, ProjectFormModel>
-    implements IProjectService {
-    constructor() {
-        super("public");
-    }
+	extends BaseService<ProjectRequestModel, ProjectFormModel>
+	implements IProjectService {
+	constructor() {
+		super("public");
+	}
 
-    searchProject(request: any): Promise<any> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-        return this.httpPost("SearchProject", request).then((response) => {
-            return response.data;
-        });
-    }
+	searchProject(request: any): Promise<any> {
+		this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+		return this.httpPost("SearchProject", request).then((response) => {
+			return response.data;
+		});
+	}
 
-    createProject(request: any): Promise<any> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-        return this.httpPost("CreateProject", request).then((response) => {
-            return response.data;
-        });
-    }
+	createProject(request: any): Promise<any> {
+		this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
+		return this.httpPost("CreateProject", request).then((response) => {
+			return response.data;
+		});
+	}
 
-    public newProject(
-        categoryName: string,
-        projectName: string
-    ): Promise<ProjectFormModel> {
-        this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
-        // return this.httpGet('newproject', request).then(response => {
-        //     return response.data;
-        // });
+	public newProject(
+		categoryName: string,
+		projectName: string
+	): Promise<ProjectFormModel> {
+		this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
+		// return this.httpGet('newproject', request).then(response => {
+		//     return response.data;
+		// });
 
-        return new Promise((resolve, reject) => {
-            const json = `{
+		return new Promise((resolve, reject) => {
+			const json = `{
                 "category": "Mills",
 	"maxSteps": 6,
 	"steps": [
@@ -680,19 +680,19 @@ export class ProjectService
 						{
 							"id": "opSpunQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -737,19 +737,19 @@ export class ProjectService
 						{
 							"id": "opSpunQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -794,19 +794,19 @@ export class ProjectService
 						{
 							"id": "opSpunQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opSpunQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -851,19 +851,19 @@ export class ProjectService
 						{
 							"id": "opFilamentQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -908,19 +908,19 @@ export class ProjectService
 						{
 							"id": "opFilamentQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -965,19 +965,19 @@ export class ProjectService
 						{
 							"id": "opFilamentQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opFilamentQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -1316,19 +1316,19 @@ export class ProjectService
 						{
 							"id": "opBlendQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -1373,19 +1373,19 @@ export class ProjectService
 						{
 							"id": "opBlendQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -1430,19 +1430,19 @@ export class ProjectService
 						{
 							"id": "opBlendQuality_SuperCombed",
 							"label": "A",
-							"text": "Super Combed RL",
+							"text": "Super Combed (RL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_CombedRl",
 							"label": "B",
-							"text": "Combed VL",
+							"text": "Combed (VL)",
 							"selected": false
 						},
 						{
 							"id": "opBlendQuality_SemiCombedGl",
 							"label": "C",
-							"text": "Semi Combed GL",
+							"text": "Semi Combed (GL)",
 							"selected": false
 						},
 						{
@@ -2393,19 +2393,19 @@ export class ProjectService
                                     {
                                         "id": "opSpunQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSpunQuality_CombedVl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSpunQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -2450,19 +2450,19 @@ export class ProjectService
                                     {
                                         "id": "opFilamentQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opFilamentQuality_CombedRl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opFilamentQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -2581,19 +2581,19 @@ export class ProjectService
                                     {
                                         "id": "opBlendQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendQuality_CombedRl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -2742,19 +2742,19 @@ export class ProjectService
                                     {
                                         "id": "opSpunQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSpunQuality_CombedRl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSpunQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -2799,19 +2799,19 @@ export class ProjectService
                                     {
                                         "id": "opFilamentQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opFilamentQuality_CombedRl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opFilamentQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -2890,19 +2890,19 @@ export class ProjectService
                                     {
                                         "id": "opBlendQuality_SuperCombed",
                                         "label": "A",
-                                        "text": "Super Combed RL",
+                                        "text": "Super Combed (RL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendQuality_CombedRl",
                                         "label": "B",
-                                        "text": "Combed VL",
+                                        "text": "Combed (VL)",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendQuality_SemiCombedGl",
                                         "label": "C",
-                                        "text": "Semi Combed GL",
+                                        "text": "Semi Combed (GL)",
                                         "selected": false
                                     },
                                     {
@@ -3503,7 +3503,7 @@ export class ProjectService
                 ]
             }`;
 
-            resolve(JSON.parse(json));
-        });
-    }
+			resolve(JSON.parse(json));
+		});
+	}
 }

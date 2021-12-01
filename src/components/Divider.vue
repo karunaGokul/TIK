@@ -1,17 +1,12 @@
 <template>
-    <div>
-        <v-divider class="pb-1" color="primary" width = "50px" />
-    </div>
+  <div>
+    <v-divider class="pb-1" color="primary" width="50px" />
+  </div>
 </template>
 
 <script lang="ts">
-    import Vue from 'vue'
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-    export default Vue.extend({
-        name: "Divider"
-    })
+@Component
+export default class Divider extends Vue {}
 </script>
-
-<style scoped>
-
-</style>

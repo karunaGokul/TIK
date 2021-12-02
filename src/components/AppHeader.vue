@@ -18,7 +18,14 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/project" v-if="category === 'Company'">
+        <v-list-item
+          link
+          to="/project"
+          v-if="
+            category === 'Company' &&
+            (role === 'Quote InCharge' || role === 'MasterAdmin')
+          "
+        >
           <v-list-item-action>
             <v-icon class="white--text">mdi-bag-suitcase</v-icon>
           </v-list-item-action>
@@ -123,8 +130,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Snackbar from "./Snackbar.vue";
 
-@Component
+@Component({
+  components: { Snackbar},
+})
 export default class AppHeader extends Vue {
   drawer: boolean = false;
   snackbar: boolean = false;

@@ -340,8 +340,8 @@ export default class MelangeSlub extends Vue {
     });
     const length = this.response.blendContents.length;
     this.response.blendContents[length - 1].combos.forEach((b) => {
-      b.combinationOne = 0;
-      b.combinationTwo = 0;
+      b.combinationOne = null;
+      b.combinationTwo = null;
     });
     this.response.blendContents[length - 1].content = null;
     this.response.blendContents[length - 1].melanSlubType = null;

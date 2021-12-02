@@ -31,7 +31,7 @@
             >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected"></v-checkbox>
+                <v-checkbox v-model="item.isSelected" :disabled="edit === false"></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -58,7 +58,7 @@
             >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected"></v-checkbox>
+                <v-checkbox v-model="item.isSelected" :disabled="edit === false"></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -424,8 +424,8 @@ export default class CompanyControl extends Vue {
     });
     const length = this.response.blendContents.length;
     this.response.blendContents[length - 1].combos.forEach((b) => {
-      b.combinationOne = 0;
-      b.combinationTwo = 0;
+      b.combinationOne = null;
+      b.combinationTwo = null;
     });
     this.response.blendContents[length - 1].content = null;
   }

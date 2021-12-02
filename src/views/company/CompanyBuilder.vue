@@ -178,8 +178,16 @@ export default class CompanyBuilder extends Vue {
     }
     if (option != "Melange" && option != "Slub") {
       data.singleContents.forEach((b) => {
-        if (b.spun) b.spun = "Spun";
-        if (b.filament) b.filament = "Filament";
+        if (b.spun) {
+          b.spun = "Spun";
+        } else {
+          b.spun = null;
+        }
+        if (b.filament) {
+          b.filament = "Filament";
+        } else {
+          b.filament = null;
+        }
       });
       data.singleQualities = data.singleQualities.filter(
         (item) => item.isSelected === true

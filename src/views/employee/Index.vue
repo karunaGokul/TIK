@@ -18,7 +18,16 @@
             :to="{ name: 'CreateEmployee', params: { Id: 'Create' }}"
             tag="button"
           >
-            <v-icon color="blue darken-4" class="mx-2"> mdi-plus-circle</v-icon>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon color="blue darken-4" 
+                v-bind="attrs"
+                v-on="on" 
+                class="mx-2"
+              > mdi-plus-circle</v-icon>
+            </template>
+            <span>Create Employee</span>
+          </v-tooltip>
           </router-link>
           <v-spacer></v-spacer>
 

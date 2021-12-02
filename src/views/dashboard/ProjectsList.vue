@@ -38,7 +38,6 @@
           ></v-rating>
         </v-col>
         <v-col cols="12" sm="2" md="2">
-          
           <v-row class="font-weight-regular mt-4 text-caption">
             Created By : {{ response.CreatedBy }}
           </v-row>
@@ -120,7 +119,7 @@
           >
             Cancel
           </v-btn>
-          
+
           <v-btn
             v-else-if="category === 'Company'"
             depressed
@@ -361,15 +360,14 @@
                               depressed
                               color="primary"
                               v-if="
-                                (role === 'Merchandiser' ||
-                                  role === 'Quote InCharge' ||
-                                  role === 'Approval Admin') &&
+                                role === 'Quote InCharge' &&
                                 row.status === 'Approved'
                               "
                               @click="ApproveBid('Selected', row)"
                             >
                               Accept
                             </v-btn>
+
                             <v-btn
                               class="
                                 white--text
@@ -381,14 +379,14 @@
                               depressed
                               color="primary"
                               v-else-if="
-                                (role === 'Merchandiser' ||
-                                  role === 'Approval Admin') &&
+                                role === 'Merchandiser' &&
                                 row.status === 'Selected'
                               "
                               @click="ApproveBid('BidApproved', row)"
                             >
                               Approve
                             </v-btn>
+
                             <v-btn
                               class="
                                 white--text
@@ -401,7 +399,6 @@
                               color="primary"
                               v-else-if="
                                 (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin' ||
                                   (role === 'Merchandiser' &&
                                     approvalAdminAccess === '1')) &&
                                 row.status === 'BidApproved'
@@ -445,7 +442,33 @@
                             >
                               {{ row.status }}
                             </div>
+                            <div
+                              v-else-if="
+                                role === 'Merchandiser' &&
+                                row.status === 'Approved'
+                              "
+                            >
+                              Pending Approval from Quote InCharge
+                            </div>
                             <div v-else>Auth for Approval</div>
+                            <div
+                              class="ml-n7 mt-2"
+                              v-if="
+                                role === 'Merchandiser' &&
+                                row.status === 'Selected'
+                              "
+                            >
+                              <v-select
+                                :menu-props="{ offsetY: true }"
+                                label="Select Approval Admin"
+                                :items="ApprovalAdmin"
+                                item-text="ApprovalAdmin"
+                                item-value="Id"
+                                outlined
+                                v-model="bidRequest.approvalAdminId"
+                                dense
+                              ></v-select>
+                            </div>
                             <!-- <v-btn
                               class="
                                 white--text
@@ -472,7 +495,6 @@
                                 row.status === 'Approved'
                               "
                               class="ml-n5"
-                             
                             >
                               Waiting Authentication from Quote Incharge
                             </div>
@@ -561,17 +583,6 @@
                               >
                                 Approve
                               </v-btn>
-                              <div class="ml-n7 mt-2">
-                              <v-select
-                                :menu-props="{ offsetY: true }"
-                                label="Select Approval Admin"
-                                :items="ApprovalAdmin"
-                                item-text="ApprovalAdmin"
-                                item-value="Id"
-                                outlined
-                                v-model="bidRequest.ApprovalAdminId"
-                                dense
-                              ></v-select></div>
                             </span>
                             <span
                               v-else-if="
@@ -634,7 +645,7 @@
         <RejectedProject
           :response="response.bidList"
           :projectId="response.Id"
-          v-if="(category === 'Company') && (rejected == true)"
+          v-if="category === 'Company' && rejected == true"
         />
       </div>
 
@@ -679,7 +690,7 @@ import {
   BitAuditmodel,
   BidRequestModel,
   ApprovalAdminResponseModel,
-  AdminRequestModel
+  AdminRequestModel,
 } from "@/model";
 import { IDashboardService, EmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -702,7 +713,7 @@ import RejectedProject from "./components/RejectedProject.vue";
 export default class ProjectsList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   @Inject("EmployeeService") EmployeeService: EmployeeService;
-  
+
   public Rules: any = [(v: any) => !!v || "Enter the Value"];
 
   public request = new DashboardRequestModel();
@@ -759,7 +770,7 @@ export default class ProjectsList extends Vue {
       this.response = response;
       this.GetCompany(this.response.CompanyId);
       this.response.bidList.forEach((b) => {
-        if ((b.status == "Rejected")) {
+        if (b.status == "Rejected") {
           this.rejected = true;
         }
       });

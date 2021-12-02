@@ -52,7 +52,7 @@ export class SummaryModel {
 }
 export class ProjectSearchModel {
     stages: string;
-    myproject:boolean;
+    myproject: boolean;
 }
 export class BidRequestModel {
     projectId: string;
@@ -60,7 +60,7 @@ export class BidRequestModel {
     price: number;
     creditPeriod: number;
     deliveryPeriod: number;
-    ApprovalAdminId: string;
+    approvalAdminId?: string;
 }
 export class GetCompanyModel {
     logo: string;
@@ -81,7 +81,7 @@ export class ReviewRequestModel {
 export class FilterRequestModel {
     projectId: string;
     price?: string;
-    review?:string;
+    review?: string;
     deliveryPeriod?: string;
     creditPeriod?: string;
 }

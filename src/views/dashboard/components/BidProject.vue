@@ -66,7 +66,7 @@
                 item-text="ApprovalAdmin"
                 item-value="Id"
                 outlined
-                v-model="bidRequest.ApprovalAdminId"
+                v-model="bidRequest.approvalAdminId"
                 dense
                 :rules="[(v) => !!v || 'Approval Admin role is required']"
               >
@@ -82,7 +82,6 @@
             depressed
             color="primary mb-4"
             @click="BidProject"
-            :disabled="!isValid"
           >
             Submit
           </v-btn>
@@ -93,7 +92,12 @@
 </template>
 
 <script lang="ts">
-import { BidRequestModel, DashboardModel, AdminRequestModel, ApprovalAdminResponseModel} from "@/model";
+import {
+  BidRequestModel,
+  DashboardModel,
+  AdminRequestModel,
+  ApprovalAdminResponseModel,
+} from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService, EmployeeService } from "@/service";
 import { validationMixin } from "vuelidate";
@@ -138,9 +142,8 @@ export default class BidProject extends Vue {
   }
 
   public priceRules: any = [
-    (v: any) => !!v || 'Price is required',
-    (v: any) =>
-      (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+    (v: any) => !!v || "Price is required",
+    (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
   ];
 
   public close() {

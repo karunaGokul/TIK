@@ -35,7 +35,7 @@ export class EmployeeModel {
     EmployeeRole: string = null;
     MerchandiserId?: string;
     MasterAdminId?: string;
-    CategoryId: string;
+    Category: string;
     ApprovalAdminId?: string;
     ApprovalAdminAccess: string = "0";
     EmployeeId: string;

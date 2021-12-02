@@ -6,7 +6,7 @@
           <h3 class="mb-2">
             Enter Enquiry Name <span class="red--text">*</span>
           </h3>
-          <v-text-field outlined v-model="projectName"></v-text-field>
+          <v-text-field outlined dense v-model="projectName"></v-text-field>
         </v-col>
         <v-col cols="8" md="4" class="ml-10">
           <h3 class="mb-2">
@@ -20,6 +20,7 @@
             item-text="Merchandiser"
             item-value="Id"
             outlined
+            dense
             v-model="merchandiser"
           >
           </v-select>

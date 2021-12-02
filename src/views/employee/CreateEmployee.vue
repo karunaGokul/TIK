@@ -206,9 +206,9 @@
               label="Select Category"
               :items="CategoryResponse"
               item-text="categoryName"
-              item-value="id"
+              item-value="categoryName"
               outlined
-              v-model="request.CategoryId"
+              v-model="request.Category"
               dense
               :rules="[(v) => !!v || 'Category is required']"
             >

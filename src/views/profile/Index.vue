@@ -158,7 +158,7 @@
               height="250"
             >
               <Divider />
-              <router-link to="/company">
+              <router-link to="/company" class="text-decoration-none">
                 <v-card-title class="white--text"
                   >Yarn (or) Fabric Update</v-card-title
                 >

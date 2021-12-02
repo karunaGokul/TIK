@@ -553,7 +553,7 @@
                                   text-capitalize
                                   rounded
                                   mt-2
-                                 
+                                  ml-2
                                 "
                                 depressed
                                 color="primary"
@@ -561,6 +561,17 @@
                               >
                                 Approve
                               </v-btn>
+                              <div class="ml-n7 mt-2">
+                              <v-select
+                                :menu-props="{ offsetY: true }"
+                                label="Select Approval Admin"
+                                :items="ApprovalAdmin"
+                                item-text="ApprovalAdmin"
+                                item-value="Id"
+                                outlined
+                                v-model="bidRequest.ApprovalAdminId"
+                                dense
+                              ></v-select></div>
                             </span>
                             <span
                               v-else-if="
@@ -667,8 +678,10 @@ import {
   BitReceivedModel,
   BitAuditmodel,
   BidRequestModel,
+  ApprovalAdminResponseModel,
+  AdminRequestModel
 } from "@/model";
-import { IDashboardService } from "@/service";
+import { IDashboardService, EmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import BidProject from "./components/BidProject.vue";
@@ -688,6 +701,8 @@ import RejectedProject from "./components/RejectedProject.vue";
 })
 export default class ProjectsList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
+  @Inject("EmployeeService") EmployeeService: EmployeeService;
+  
   public Rules: any = [(v: any) => !!v || "Enter the Value"];
 
   public request = new DashboardRequestModel();
@@ -705,6 +720,8 @@ export default class ProjectsList extends Vue {
   public snackbarText: string = "";
   public snackbar: boolean = false;
   public rejected: boolean = false;
+  public adminRequest: AdminRequestModel = new AdminRequestModel();
+  public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
 
   created() {
     this.GetProjectEnquiry();
@@ -718,6 +735,16 @@ export default class ProjectsList extends Vue {
         "Status"
       );
     }
+    this.GetApprovalAdmin();
+  }
+
+  public GetApprovalAdmin() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+      (response: Array<ApprovalAdminResponseModel>) => {
+        this.ApprovalAdmin = response;
+      }
+    );
   }
 
   public GetCompany(CompanyId: string) {

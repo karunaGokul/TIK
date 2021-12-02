@@ -60,6 +60,7 @@ export class BidRequestModel {
     price: number;
     creditPeriod: number;
     deliveryPeriod: number;
+    ApprovalAdminId: string;
 }
 export class GetCompanyModel {
     logo: string;

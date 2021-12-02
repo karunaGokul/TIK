@@ -92,7 +92,6 @@
       v-model="snackbar"
       :timeout="2000"
       color="green lighten-5 green--text"
-      absolute
       right
       top
     >

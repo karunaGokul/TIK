@@ -54,6 +54,25 @@
               ></v-text-field>
             </v-col>
           </v-row>
+          <v-row class="mt-n5">
+            <v-col>
+              <div class="mb-2">
+                Approval Admin <span class="red--text">*</span>
+              </div>
+              <v-select
+                :menu-props="{ offsetY: true }"
+                label="Select Approval Admin"
+                :items="ApprovalAdmin"
+                item-text="ApprovalAdmin"
+                item-value="Id"
+                outlined
+                v-model="bidRequest.ApprovalAdminId"
+                dense
+                :rules="[(v) => !!v || 'Approval Admin role is required']"
+              >
+              </v-select>
+            </v-col>
+          </v-row>
         </v-card-text>
 
         <v-card-actions class="mt-n5">
@@ -74,9 +93,9 @@
 </template>
 
 <script lang="ts">
-import { BidRequestModel, DashboardModel } from "@/model";
+import { BidRequestModel, DashboardModel, AdminRequestModel, ApprovalAdminResponseModel} from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
-import { IDashboardService } from "@/service";
+import { IDashboardService, EmployeeService } from "@/service";
 import { validationMixin } from "vuelidate";
 
 @Component({
@@ -85,11 +104,18 @@ import { validationMixin } from "vuelidate";
 export default class BidProject extends Vue {
   @Prop() response: DashboardModel;
   @Inject("DashboardService") DashboardService: IDashboardService;
+  @Inject("EmployeeService") EmployeeService: EmployeeService;
 
   public bidRequest = new BidRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
   public isValid: boolean = true;
+  public adminRequest: AdminRequestModel = new AdminRequestModel();
+  public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
+
+  created() {
+    this.GetApprovalAdmin();
+  }
 
   public BidProject() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
@@ -102,11 +128,19 @@ export default class BidProject extends Vue {
     }
   }
 
+  public GetApprovalAdmin() {
+    this.adminRequest.companyId = this.$store.getters.companyId;
+    this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
+      (response: Array<ApprovalAdminResponseModel>) => {
+        this.ApprovalAdmin = response;
+      }
+    );
+  }
+
   public priceRules: any = [
     (v: any) => !!v || 'Price is required',
     (v: any) =>
       (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
-    
   ];
 
   public close() {

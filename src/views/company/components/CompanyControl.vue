@@ -87,8 +87,8 @@
                 >
               </v-toolbar>
             </template>
-            <template v-slot:[`header.action`]>
-              <v-btn icon x-small outlined @click="addSingleContent">
+            <template v-slot:[`header.action`] >
+              <v-btn icon x-small outlined @click="addSingleContent" :disabled="edit === false">
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -122,6 +122,7 @@
               <v-btn
                 icon
                 x-small
+                :disabled="edit === false"
                 @click="removeSingleContent(index)"
                 v-if="index > 0"
               >
@@ -146,7 +147,7 @@
               </v-toolbar>
             </template>
             <template v-slot:[`header.action`]>
-              <v-btn icon x-small outlined @click="addBlendContent">
+              <v-btn icon x-small outlined @click="addBlendContent" :disabled="edit === false">
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -290,6 +291,7 @@
                 x-small
                 @click="removeBlendContent(index)"
                 v-if="index > 0"
+                :disabled="edit === false"
               >
                 <v-icon> mdi-close</v-icon>
               </v-btn>

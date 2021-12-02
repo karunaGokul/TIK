@@ -127,6 +127,10 @@ export default class CompanyBuilder extends Vue {
   public snackbar: boolean = false;
 
   created() {
+    this.createMill();
+  }
+  public createMill() {
+    this.edit = false;
     this.ProfileService.CreateMills(this.companyId).then(
       (response: CompanyProfileModel) => {
         this.response = response;
@@ -151,6 +155,7 @@ export default class CompanyBuilder extends Vue {
     this.ProfileService.AddMills(this.millData).then((response: any) => {
       this.snackbarText = response;
       this.snackbar = true;
+      this.createMill();
     });
   }
 

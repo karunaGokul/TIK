@@ -360,7 +360,7 @@
                               depressed
                               color="primary"
                               v-if="
-                                role === 'Quote InCharge' &&
+                                (role === 'Quote InCharge'|| role === 'MasterAdmin')&&
                                 row.status === 'Approved'
                               "
                               @click="ApproveBid('Selected', row)"
@@ -413,7 +413,7 @@
                               v-else-if="
                                 (role === 'Approval Admin' ||
                                   (role === 'Merchandiser' &&
-                                    approvalAdminAccess === '1')) &&
+                                    approvalAdminAccess === '1')|| role === 'MasterAdmin') &&
                                 row.status === 'BidApproved'
                               "
                               @click="ApproveBid('Confirmed', row)"
@@ -441,7 +441,7 @@
                               "
                               depressed
                               color="primary"
-                              v-else-if="row.status === 'Completed'"
+                              v-else-if="role === 'MasterAdmin'&& row.status === 'Completed'"
                               @click="toggleReview = true"
                             >
                               review

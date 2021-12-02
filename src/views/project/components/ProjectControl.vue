@@ -31,8 +31,7 @@
     <div class="pa-3" v-if="control.type === 'text-group'">
       <v-label>{{ control.label }}</v-label>
       <v-row>
-        <v-col v-for="(item, index) in control.items" :key="index">
-          <v-label>{{ item.label }}</v-label>
+        <v-col v-for="(item, index) in control.items" :key="index">          
           <v-text-field
             outlined
             dense

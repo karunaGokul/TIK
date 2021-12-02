@@ -81,7 +81,7 @@
             class="white--text font-weight-light text-capitalize rounded"
             depressed
             color="primary mb-4"
-            @click="BidProject"
+            @click="BidProject"            
           >
             Submit
           </v-btn>

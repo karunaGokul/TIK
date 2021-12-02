@@ -4,7 +4,7 @@
       <v-card
         class="ma-2 d-flex flex-column"
         color="cyan lighten-4"
-        min-height="600"
+        min-height="500"
         elevation="0"
       >
         <v-card-title> {{ data.category }} </v-card-title>
@@ -174,7 +174,7 @@
         </v-card-actions>
       </v-card>
       <div class="d-flex justify-end">
-        <v-btn elevation="2" class="px-8 ma-4 text-capitalize" @click="back">
+        <v-btn elevation="2" color="primary" class="px-8 ma-4 text-capitalize" @click="back">
           Back
         </v-btn>
         <v-btn

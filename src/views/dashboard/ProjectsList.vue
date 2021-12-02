@@ -465,8 +465,9 @@
                                 item-text="ApprovalAdmin"
                                 item-value="Id"
                                 outlined
-                                v-model="bidRequest.approvalAdminId"
+                                v-model="approvalRequest.approvalAdminId"
                                 dense
+                                :rules="[(v) => !!v || 'Approval Admin role is required']"
                               ></v-select>
                             </div>
                             <!-- <v-btn
@@ -575,7 +576,6 @@
                                   text-capitalize
                                   rounded
                                   mt-2
-                                  ml-2
                                 "
                                 depressed
                                 color="primary"
@@ -718,7 +718,7 @@ export default class ProjectsList extends Vue {
 
   public request = new DashboardRequestModel();
   public companyResponse = new GetCompanyModel();
-  public approvelRequest = new ApproveRequestModel();
+  public approvalRequest = new ApproveRequestModel();
   public response = new DashboardModel();
   public bitAuditResponse = new BitAuditmodel();
   public bidRequest = new BidRequestModel();
@@ -796,10 +796,10 @@ export default class ProjectsList extends Vue {
     });
   }
   public ApproveBid(status: string, bid: BitReceivedModel) {
-    this.approvelRequest.bidId = bid.id;
-    this.approvelRequest.status = status;
-    this.approvelRequest.projectId = this.response.Id;
-    this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
+    this.approvalRequest.bidId = bid.id;
+    this.approvalRequest.status = status;
+    this.approvalRequest.projectId = this.response.Id;
+    this.DashboardService.ApproveBid(this.approvalRequest).then((response) => {
       this.snackbarText = response;
       this.snackbar = true;
       this.GetProjectEnquiry();

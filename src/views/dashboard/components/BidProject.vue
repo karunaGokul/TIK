@@ -82,6 +82,7 @@
             depressed
             color="primary mb-4"
             @click="BidProject"
+            :disabled="!isValid"
           >
             Submit
           </v-btn>

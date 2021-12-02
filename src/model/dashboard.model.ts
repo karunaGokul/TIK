@@ -72,6 +72,7 @@ export class ApproveRequestModel {
     bidId: string;
     status: string;
     message?: string = "";
+    approvalAdminId?: string;
 }
 export class ReviewRequestModel {
     ReviewRating: string = "";

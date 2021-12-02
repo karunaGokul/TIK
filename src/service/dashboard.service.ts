@@ -70,7 +70,7 @@ export class DashboardService extends BaseService<any, any> implements IDashboar
     }
     public ApproveBid(request: ApproveRequestModel): Promise<any> {
         this.apiUrl = "https://tikdev-api.azure-api.net/dashboard"
-        return this.httpPost('ApproveBid?projectId=' + request.projectId + '&bidId=' + request.bidId + '&status=' + request.status + '&message=' + request.message, null).then(response => {
+        return this.httpPost('ApproveBid?projectId=' + request.projectId + '&bidId=' + request.bidId + '&status=' + request.status + '&message=' + request.message + '&approvalAdminId=' + request.approvalAdminId, null).then(response => {
             return response.data;
         });
     }

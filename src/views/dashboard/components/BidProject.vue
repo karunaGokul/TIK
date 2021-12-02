@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-form v-model="isValid" ref="form">
+    <v-form ref="form">
       <v-card class="px-6" elevation="8">
         <v-card-title>
           Bid Project
@@ -82,7 +82,6 @@
             depressed
             color="primary mb-4"
             @click="BidProject"
-            :disabled="!isValid"
           >
             Submit
           </v-btn>
@@ -114,7 +113,7 @@ export default class BidProject extends Vue {
   public bidRequest = new BidRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
-  public isValid: boolean = true;
+  // public isValid: boolean = true;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
 

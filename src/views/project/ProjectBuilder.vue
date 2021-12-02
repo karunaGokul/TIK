@@ -6,7 +6,11 @@
           <h3 class="mb-2">
             Enter Enquiry Name <span class="red--text">*</span>
           </h3>
-          <v-text-field outlined dense v-model="projectName"></v-text-field>
+          <v-text-field 
+            outlined 
+            dense 
+            v-model="projectName">
+          </v-text-field>
         </v-col>
         <v-col cols="8" md="4" class="ml-10">
           <h3 class="mb-2">
@@ -22,6 +26,7 @@
             outlined
             dense
             v-model="merchandiser"
+            :rules="[(v) => !!v || 'Merchandiser role is required']"
           >
           </v-select>
         </v-col>
@@ -99,12 +104,13 @@ export default class ProjectBuilder extends Vue {
 
   public merchandiserResponse: Array<MerchandiserResponseModel> = [];
   public adminRequest: AdminRequestModel = new AdminRequestModel();
-  projectName: string = "";
-  merchandiser: string = "";
-  toggleCategory: boolean = false;
-  categoryName: string = "";
-  snackbar: boolean = false;
-  snackbarText: string = "";
+  public projectName: string = "";
+  public merchandiser: string = "";
+  public toggleCategory: boolean = false;
+  public categoryName: string = "";
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
+  
   created() {
     this.GetMerchandiser();
   }

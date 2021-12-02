@@ -367,26 +367,39 @@
                             >
                               Accept
                             </v-btn>
-
-                            <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                ml-n6
-                              "
-                              depressed
-                              color="primary"
-                              v-else-if="
+                          <span  v-else-if="
                                 role === 'Merchandiser' &&
                                 row.status === 'Selected'
-                              "
-                              @click="ApproveBid('BidApproved', row)"
-                            >
-                              Approve
-                            </v-btn>
-
+                              ">
+                              <v-form ref="form">
+                                <v-btn
+                                  class="
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    ml-n6
+                                  "
+                                  depressed
+                                  color="primary"
+                                
+                                  @click="ApproveBid('BidApproved', row)"
+                                >
+                                  Authenticate
+                                </v-btn>
+                                <v-select
+                                    :menu-props="{ offsetY: true }"
+                                    label="Select Approval Admin"
+                                    :items="ApprovalAdmin"
+                                    item-text="ApprovalAdmin"
+                                    item-value="Id"
+                                    outlined
+                                    v-model="approvalRequest.approvalAdminId"
+                                    dense
+                                    :rules="[(v) => !!v || 'Approval Admin role is required']"
+                                  ></v-select>
+                              </v-form>
+                          </span>
                             <v-btn
                               class="
                                 white--text
@@ -458,17 +471,7 @@
                                 row.status === 'Selected'
                               "
                             >
-                              <v-select
-                                :menu-props="{ offsetY: true }"
-                                label="Select Approval Admin"
-                                :items="ApprovalAdmin"
-                                item-text="ApprovalAdmin"
-                                item-value="Id"
-                                outlined
-                                v-model="approvalRequest.approvalAdminId"
-                                dense
-                                :rules="[(v) => !!v || 'Approval Admin role is required']"
-                              ></v-select>
+                              
                             </div>
                             <!-- <v-btn
                               class="
@@ -733,7 +736,7 @@ export default class ProjectsList extends Vue {
   public rejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
-
+ 
   created() {
     this.GetProjectEnquiry();
     if (this.category != "Company") {
@@ -796,6 +799,7 @@ export default class ProjectsList extends Vue {
     });
   }
   public ApproveBid(status: string, bid: BitReceivedModel) {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
     this.approvalRequest.bidId = bid.id;
     this.approvalRequest.status = status;
     this.approvalRequest.projectId = this.response.Id;
@@ -804,6 +808,7 @@ export default class ProjectsList extends Vue {
       this.snackbar = true;
       this.GetProjectEnquiry();
     });
+    }
   }
 
   public Save(bid: BitReceivedModel) {

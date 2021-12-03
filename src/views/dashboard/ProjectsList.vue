@@ -360,46 +360,52 @@
                               depressed
                               color="primary"
                               v-if="
-                                (role === 'Quote InCharge'|| role === 'MasterAdmin')&&
+                                (role === 'Quote InCharge' ||
+                                  role === 'MasterAdmin') &&
                                 row.status === 'Approved'
                               "
                               @click="ApproveBid('Selected', row)"
                             >
                               Accept
                             </v-btn>
-                          <span  v-else-if="
-                                role === 'Merchandiser' &&
+                            <span
+                              v-else-if="
+                                (role === 'Merchandiser' ||
+                                  role === 'MasterAdmin') &&
                                 row.status === 'Selected'
-                              ">
-                              <v-form ref="form">
-                                <v-btn
-                                  class="
-                                    white--text
-                                    font-weight-light
-                                    text-capitalize
-                                    rounded
-                                    ml-n6
-                                  "
-                                  depressed
-                                  color="primary"
-                                
-                                  @click="ApproveBid('BidApproved', row)"
-                                >
-                                  Authenticate
-                                </v-btn>
-                                <v-select
-                                    :menu-props="{ offsetY: true }"
-                                    label="Select Approval Admin"
-                                    :items="ApprovalAdmin"
-                                    item-text="ApprovalAdmin"
-                                    item-value="Id"
-                                    outlined
-                                    v-model="approvalRequest.approvalAdminId"
-                                    dense
-                                    :rules="[(v) => !!v || 'Approval Admin role is required']"
-                                  ></v-select>
-                              </v-form>
-                          </span>
+                              "
+                            >
+                              <v-select
+                                :menu-props="{ offsetY: true }"
+                                label="Select Approval Admin"
+                                :items="ApprovalAdmin"
+                                item-text="ApprovalAdmin"
+                                item-value="Id"
+                                outlined
+                                v-model="approvalRequest.approvalAdminId"
+                                dense
+                                class="my-3"
+                                :rules="[
+                                  (v) =>
+                                    !!v || 'Approval Admin role is required',
+                                ]"
+                              >
+                              </v-select>
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-n7
+                                "
+                                depressed
+                                color="primary"
+                                @click="ApproveBid('BidApproved', row)"
+                              >
+                                Authenticate
+                              </v-btn>
+                            </span>
                             <v-btn
                               class="
                                 white--text
@@ -413,7 +419,8 @@
                               v-else-if="
                                 (role === 'Approval Admin' ||
                                   (role === 'Merchandiser' &&
-                                    approvalAdminAccess === '1')|| role === 'MasterAdmin') &&
+                                    approvalAdminAccess === '1') ||
+                                  role === 'MasterAdmin') &&
                                 row.status === 'BidApproved'
                               "
                               @click="ApproveBid('Confirmed', row)"
@@ -441,7 +448,10 @@
                               "
                               depressed
                               color="primary"
-                              v-else-if="role === 'MasterAdmin'&& row.status === 'Completed'"
+                              v-else-if="
+                                role === 'MasterAdmin' &&
+                                row.status === 'Completed'
+                              "
                               @click="toggleReview = true"
                             >
                               review
@@ -464,15 +474,7 @@
                               Pending Approval from Quote InCharge
                             </div>
                             <div v-else>Auth for Approval</div>
-                            <div
-                              class="ml-n7 mt-2"
-                              v-if="
-                                role === 'Merchandiser' &&
-                                row.status === 'Selected'
-                              "
-                            >
-                              
-                            </div>
+
                             <!-- <v-btn
                               class="
                                 white--text
@@ -736,7 +738,7 @@ export default class ProjectsList extends Vue {
   public rejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
- 
+
   created() {
     this.GetProjectEnquiry();
     if (this.category != "Company") {
@@ -799,15 +801,24 @@ export default class ProjectsList extends Vue {
     });
   }
   public ApproveBid(status: string, bid: BitReceivedModel) {
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-    this.approvalRequest.bidId = bid.id;
-    this.approvalRequest.status = status;
-    this.approvalRequest.projectId = this.response.Id;
-    this.DashboardService.ApproveBid(this.approvalRequest).then((response) => {
-      this.snackbarText = response;
+    if (
+      (this.role === "Merchandiser" || this.role === "MasterAdmin") &&
+      bid.status === "Selected" &&
+      this.approvalRequest.approvalAdminId === null
+    ) {
+      this.snackbarText = "Please select Approval Admin";
       this.snackbar = true;
-      this.GetProjectEnquiry();
-    });
+    } else {
+      this.approvalRequest.bidId = bid.id;
+      this.approvalRequest.status = status;
+      this.approvalRequest.projectId = this.response.Id;
+      this.DashboardService.ApproveBid(this.approvalRequest).then(
+        (response) => {
+          this.snackbarText = response;
+          this.snackbar = true;
+          this.GetProjectEnquiry();
+        }
+      );
     }
   }
 

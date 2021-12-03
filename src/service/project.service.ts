@@ -1516,32 +1516,32 @@ export class ProjectService
 					"options": [
 						{
 							"id": "opSingleColour_1",
-							"text": "LT Grey",
+							"text": "LT Grey MEL", 
 							"selected": false
 						},
 						{
 							"id": "opSingleColour_2",
-							"text": "Grey",
+							"text": "Grey MEL",
 							"selected": false
 						},
 						{
 							"id": "opSingleColour_3",
-							"text": "Andhra",
+							"text": "Andhra MEL",
 							"selected": false
 						},
 						{
 							"id": "opSingleColour_4",
-							"text": "Char Goal",
+							"text": "Char Goal MEL",
 							"selected": false
 						},
 						{
 							"id": "opSingleColour_5",
-							"text": "OAT Meal",
+							"text": "OAT Meal MEL",
 							"selected": false
 						},
 						{
 							"id": "opSingleColour_6",
-							"text": "ECRU",
+							"text": "ECRU MEL",
 							"selected": false
 						}
 					]
@@ -1639,32 +1639,32 @@ export class ProjectService
 					"options": [
 						{
 							"id": "opBlendColour_1",
-							"text": "LT Grey",
+							"text": "LT Grey MEL",
 							"selected": false
 						},
 						{
 							"id": "opBlendColour_2",
-							"text": "Grey",
+							"text": "Grey MEL",
 							"selected": false
 						},
 						{
 							"id": "opBlendColour_3",
-							"text": "Andhra",
+							"text": "Andhra MEL",
 							"selected": false
 						},
 						{
 							"id": "opBlendColour_4",
-							"text": "Char Goal",
+							"text": "Char Goal MEL",
 							"selected": false
 						},
 						{
 							"id": "opBlendColour_5",
-							"text": "OAT Meal",
+							"text": "OAT Meal MEL",
 							"selected": false
 						},
 						{
 							"id": "opBlendColour_6",
-							"text": "ECRU",
+							"text": "ECRU MEL",
 							"selected": false
 						}
 					]
@@ -2946,32 +2946,32 @@ export class ProjectService
                                 "options": [
                                     {
                                         "id": "opSingleColour_1",
-                                        "text": "LT Grey",
+                                        "text": "LT Grey MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSingleColour_2",
-                                        "text": "Grey",
+                                        "text": "Grey MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSingleColour_3",
-                                        "text": "Andhra",
+                                        "text": "Andhra MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSingleColour_4",
-                                        "text": "Char Goal",
+                                        "text": "Char Goal MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSingleColour_5",
-                                        "text": "OAT Meal",
+                                        "text": "OAT Meal MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opSingleColour_6",
-                                        "text": "ECRU",
+                                        "text": "ECRU MEL",
                                         "selected": false
                                     }
                                 ]
@@ -3069,32 +3069,32 @@ export class ProjectService
                                 "options": [
                                     {
                                         "id": "opBlendColour_1",
-                                        "text": "LT Grey",
+                                        "text": "LT Grey MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendColour_2",
-                                        "text": "Grey",
+                                        "text": "Grey MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendColour_3",
-                                        "text": "Andhra",
+                                        "text": "Andhra MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendColour_4",
-                                        "text": "Char Goal",
+                                        "text": "Char Goal MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendColour_5",
-                                        "text": "OAT Meal",
+                                        "text": "OAT Meal MEL",
                                         "selected": false
                                     },
                                     {
                                         "id": "opBlendColour_6",
-                                        "text": "ECRU",
+                                        "text": "ECRU MEL",
                                         "selected": false
                                     }
                                 ]

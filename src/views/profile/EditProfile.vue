@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-dialog max-width="1200px" v-model="dialog" class="d-flex" style="overflow: hidden">
-      <v-card > 
+    <v-dialog max-width="1200px" v-model="dialog" class="d-flex">
+      <v-card style="overflow: hidden"> 
         <v-row class="mt-1 px-4">
           <v-card-title class="ml-3"> Profile </v-card-title>
           <v-spacer></v-spacer>
@@ -114,6 +114,7 @@
             dark
             class="text-capitalize red color font-weight-regular mt-n5"
             @click="edit"
+            type="submit"
           >
             save
           </v-btn>        

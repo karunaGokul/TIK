@@ -60,7 +60,7 @@ export class BidRequestModel {
     price: number;
     creditPeriod: number;
     deliveryPeriod: number;
-    approvalAdminId: string=null;
+    approvalAdminId: string = null;
 }
 export class GetCompanyModel {
     logo: string;
@@ -72,7 +72,7 @@ export class ApproveRequestModel {
     bidId: string;
     status: string;
     message: string = null;
-    approvalAdminId: string=null;
+    approvalAdminId: string = null;
 }
 export class ReviewRequestModel {
     ReviewRating: string = "";

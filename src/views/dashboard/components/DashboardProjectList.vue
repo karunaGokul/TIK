@@ -123,7 +123,8 @@ export default class DashboardProjectList extends Vue {
           o.value = "ApprovalAdmin";
         }
       });
-      this.items.push("Submitted Enquirys", "Cancelled Projects");
+      this.items.splice(1,3);
+      this.items.push("Initiated", "Awaiting Approval", "Approved" , "Confirmed", "Rejected");
     }
   }
   get category(): string {

@@ -135,9 +135,9 @@ import Snackbar from "./Snackbar.vue";
   components: { Snackbar},
 })
 export default class AppHeader extends Vue {
-  drawer: boolean = false;
-  snackbar: boolean = false;
-  snackbarText: string = "";
+  public drawer: boolean = false;
+  public snackbar: boolean = false;
+  public snackbarText: string = "";
 
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;

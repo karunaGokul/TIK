@@ -85,6 +85,7 @@
               block
               @click="signIn"
               :loading="loading"
+              type="submit"
             >
               Sign In
             </v-btn>

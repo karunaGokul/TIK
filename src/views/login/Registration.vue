@@ -298,6 +298,7 @@
                   text
                   v-bind="attrs"
                   @click="snackbar = false"
+                  type="submit"
                 >
                   <v-icon> mdi-close-box</v-icon>
                 </v-btn>

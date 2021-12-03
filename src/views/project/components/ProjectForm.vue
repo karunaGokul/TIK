@@ -174,12 +174,15 @@
         </v-card-actions>
       </v-card>
       <div class="d-flex justify-end">
+        <!-- <v-btn elevation="2" color="primary" class="px-8 ma-4 text-capitalize">
+          Reset
+        </v-btn> -->
         <v-btn elevation="2" color="primary" class="px-8 ma-4 text-capitalize" @click="back">
           Back
         </v-btn>
         <v-btn
           elevation="2"
-          class="px-8 ma-4 text-capitalize white--text"
+          class="px-8 ma-4 text-capitalize"
           color="primary"
           @click="next"
           v-if="mode != StepMode.Summary"
@@ -188,7 +191,7 @@
         </v-btn>
         <v-btn
           elevation="2"
-          class="px-8 ma-4 text-capitalize white--text"
+          class="px-8 ma-4 text-capitalize"
           color="primary"
           @click="create"
           v-if="mode == StepMode.Summary"

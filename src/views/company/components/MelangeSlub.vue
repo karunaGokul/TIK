@@ -6,7 +6,7 @@
           <v-list flat>
             <v-toolbar flat color="#c2e2e2" dense class="mb-2">
               <v-toolbar-title class="subtitle-1" v-if="option === 'Melange'">
-                Choose the type of melanes you offer
+                Choose the type of Melanges you offer
               </v-toolbar-title>
               <v-toolbar-title class="subtitle-1" v-else-if="option === 'Slub'">
                 Choose the type of Slubs you offer

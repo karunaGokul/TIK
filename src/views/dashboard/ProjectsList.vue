@@ -662,6 +662,7 @@
       />
       <Review
         :response="response"
+        :approveId="approvalRequest"
         v-if="toggleReview"
         @closeModel="closeModel"
       />

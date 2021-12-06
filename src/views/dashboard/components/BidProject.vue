@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <v-form ref="form">
-      <v-card class="px-6" elevation="8">
+      <v-card class="px-6" elevation="8" style="overflow: hidden">
         <v-card-title>
           Bid Project
           <v-spacer></v-spacer>
@@ -10,7 +10,7 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-        <v-card-text class="mt-4">
+        <v-card-text class="mt-1">
           <v-row>
             <v-col>
               <div class="mb-2">Price <span class="red--text">*</span></div>
@@ -24,7 +24,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="mt-n5">
+          <v-row class="mt-n7">
             <v-col>
               <div class="mb-2">
                 Credit Period<span class="red--text">*</span>
@@ -39,7 +39,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="mt-n5">
+          <v-row class="mt-n7">
             <v-col>
               <div class="mb-2">
                 Delivery Period <span class="red--text">*</span>
@@ -54,7 +54,7 @@
               ></v-text-field>
             </v-col>
           </v-row>
-          <v-row class="mt-n5">
+          <v-row class="mt-n7">
             <v-col>
               <div class="mb-2">
                 Approval Admin <span class="red--text">*</span>

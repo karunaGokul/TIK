@@ -15,7 +15,7 @@
           <v-card-text>
             <div class="my-4">Review Here</div>
             <v-rating
-              v-model="reviewRequest.ReviewRating"
+              v-model="reviewRequest.reviewRating"
               color="warning"
               dense
               half-increments
@@ -42,27 +42,30 @@
 </template>
 
 <script lang="ts">
-import { DashboardModel, ReviewRequestModel } from "@/model";
+import { DashboardModel, ReviewRequestModel, ApproveRequestModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator"
 import { IDashboardService } from "@/service";
 @Component
 export default class Review extends Vue {
 
-     @Prop() response: DashboardModel;       
-     @Inject("DashboardService") DashboardService: IDashboardService;
+    @Prop() response: DashboardModel;  
+    @Prop() approveId: ApproveRequestModel;
+    @Inject("DashboardService") DashboardService: IDashboardService;
 
   public reviewRequest = new ReviewRequestModel();
-public dialog: boolean = true;
-public snackbarText: string = "";
+  public dialog: boolean = true;
+  public snackbarText: string = "";
  
- public Review() {
+  public Review() {
+    this.reviewRequest.projectId = this.approveId.projectId;
+    this.reviewRequest.biddingId = this.approveId.bidId;
     this.DashboardService.Review(this.reviewRequest).then((response) => {
       this.snackbarText = response;
      this.close();      
     });
   }
   
-public close() {
+  public close() {
     this.$emit("closeModel",this.snackbarText);
   }
 

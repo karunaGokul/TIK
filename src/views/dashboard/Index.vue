@@ -12,18 +12,18 @@
       </v-container>
       <v-card class="ma-3 px-6" elevation="8">
         <v-tabs v-model="tabValue" v-if="tab">
-          <v-tab @click="getMyProjectList()"> My Projects </v-tab>
-          <v-tab @click="getProjectList()">All Projects</v-tab>
+          <v-tab @click="myproject=true"> My Projects </v-tab>
+          <v-tab @click="myproject=false">All Projects</v-tab>
         </v-tabs>
         <v-tabs-items v-model="tabValue" v-if="tab">
           <v-tab-item>
-            <DashboardProjectList :response="response" myproject="true" :loading="loading" />
+            <DashboardProjectList  :myproject="myproject"  />
           </v-tab-item>
           <v-tab-item>
-            <DashboardProjectList :response="response" myproject="false" :loading="loading" />
+            <DashboardProjectList  :myproject="myproject"  />
           </v-tab-item>
         </v-tabs-items>
-        <DashboardProjectList :response="response" myproject="false" v-if="(tab === false)" :loading="loading" />
+        <DashboardProjectList :myproject="myproject" v-if="(tab === false)"  />
       </v-card>
     </div>
     <v-snackbar
@@ -79,9 +79,9 @@ export default class Dashboard extends Vue {
   created() {
     if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
       this.tab = true;
-      this.getMyProjectList();
-    } else {
-      this.getProjectList();
+      this.myproject=true ;     
+    } else {      
+      this.myproject=false;
     }
   }
   get category(): string {
@@ -91,22 +91,24 @@ export default class Dashboard extends Vue {
   get role(): string {
     return this.$store.getters.role;
   }
-  public getProjectList() {
-    this.request.id = this.$store.getters.id;
-    this.loading = true;
-    this.DashboardService.GetProjectList(this.request).then((response) => {
-      this.loading = false;
-      this.response = response;
-    });
-  }
-  public getMyProjectList() {
-    this.request.id = this.$store.getters.id;
-    this.loading = true;
-    this.DashboardService.GetMyProjectList(this.request).then((response) => {
-      this.loading = false;
-      this.response = response;
-    });
-  }
+  // public getProjectList() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.loading = true;
+  //   this.DashboardService.GetProjectList(this.request).then((response) => {
+  //     this.loading = false;
+  //     this.myproject=false;
+  //     this.response = response;
+  //   });
+  // }
+  // public getMyProjectList() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.loading = true;
+  //   this.DashboardService.GetMyProjectList(this.request).then((response) => {
+  //     this.loading = false;
+  //     this.myproject=true;
+  //     this.response = response;
+  //   });
+  // }
 }
 </script>
 <style >

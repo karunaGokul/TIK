@@ -129,11 +129,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Snackbar from "./Snackbar.vue";
 
-@Component({
-  components: { Snackbar},
-})
+@Component
 export default class AppHeader extends Vue {
   public drawer: boolean = false;
   public snackbar: boolean = false;

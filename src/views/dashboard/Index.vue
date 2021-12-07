@@ -55,7 +55,6 @@ import { IDashboardService } from "@/service";
 
 import ProjectsList from "./ProjectsList.vue";
 import DashboardProjectList from "./components/DashboardProjectList.vue";
-// import Category from "@/components/Category.vue";
 @Component({
   components: { ProjectsList, DashboardProjectList },
 })

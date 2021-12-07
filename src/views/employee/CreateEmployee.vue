@@ -83,7 +83,7 @@
               dense
               :rules="emailRules"
               required
-              autocomplete="chrome-off"
+              autocomplete="new-password"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
@@ -106,7 +106,7 @@
                     required
                     v-bind="attrs"
                     v-on="on"
-                    autocomplete="chrome-off"
+                    autocomplete="new-password"
                     :rules="passwordRules"
                   ></v-text-field>
                 </template>

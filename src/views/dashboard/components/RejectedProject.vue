@@ -37,7 +37,7 @@
               dense
               outlined
               class="ml-1 mr-5"
-              v-if="selectValue!='Review'"
+              v-if="selectValue != 'Review'"
               v-model="value"
             ></v-text-field>
             <v-select
@@ -48,7 +48,7 @@
               :items="reviweItems"
               class="mx-5"
               v-model="value"
-              v-else-if="selectValue==='Review'"              
+              v-else-if="selectValue === 'Review'"
             >
             </v-select>
             <v-btn
@@ -146,16 +146,21 @@ export default class RejectedProject extends Vue {
   public selectValue: string = "";
   public value: string;
   public sortedValue: any;
+  public temp: boolean = false;
 
   public sort() {
     this.response.sort((a, b) => {
       var x = a.companyName.toLowerCase();
       var y = b.companyName.toLowerCase();
-      //Descending order
-      // return x < y ? 1 : x > y ? -1 : 0;
-
-      //Ascending order
-      return x < y ? -1 : x > y ? 1 : 0;
+      if (this.temp === false) {
+        //Ascending order
+        this.temp = true;
+        return x < y ? -1 : x > y ? 1 : 0;
+      } else if (this.temp === true) {
+        //Descending order
+        this.temp = false;
+        return x < y ? 1 : x > y ? -1 : 0;
+      }
     });
     console.log(this.response);
   }
@@ -197,7 +202,7 @@ export default class RejectedProject extends Vue {
     return this.$store.getters.category;
   }
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
-  reviweItems:any=[1,2,3,4,5];
+  reviweItems: any = [1, 2, 3, 4, 5];
   BitReceivedheaders: any = [
     "Bit Submit & Approve",
     "Price",

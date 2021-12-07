@@ -76,7 +76,7 @@
                   v-model="request.emailAddress"
                   :rules="emailRules"
                   required
-                  autocomplete="chrome-off"
+                  autocomplete="new-password"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -99,7 +99,7 @@
                       @click:append="() => (value = !value)"
                       :type="value ? 'password' : 'text'"
                       :rules="passwordRules"
-                      autocomplete="chrome-off"
+                      autocomplete="new-password"
                     ></v-text-field>
                   </template>
                   <span
@@ -122,7 +122,7 @@
                   @click:append="() => (value1 = !value1)"
                   :type="value1 ? 'password' : 'text'"
                   :rules="passwordRules"
-                  autocomplete="chrome-off"
+                  autocomplete="new-password"
                 ></v-text-field>
               </v-col>
             </v-row>

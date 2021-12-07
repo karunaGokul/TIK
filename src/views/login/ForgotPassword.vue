@@ -39,6 +39,7 @@
               depressed
               @click="forgotPassword"
               :loading="loading"
+              type="submit"
               >Send</v-btn>
             </v-card-actions>
             </v-row>

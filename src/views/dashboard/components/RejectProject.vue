@@ -41,6 +41,7 @@
           depressed
           color="primary"
           @click="ApproveBid('Rejected')"
+          type="submit"
         >
           save
         </v-btn>

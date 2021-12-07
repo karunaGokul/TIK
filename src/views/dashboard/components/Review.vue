@@ -31,6 +31,7 @@
               depressed
               color="primary"
               @click="Review()"
+              type="submit"
             >
               Review Update
             </v-btn>

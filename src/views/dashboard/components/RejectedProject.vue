@@ -1,6 +1,5 @@
 <template>
   <div class="ml-4 mt-6">
-    <!-- <div v-if="status === 'Rejected'"> -->
     <v-row>
       <span class="text-subtitle-1 font-weight-bold mr-4 mt-2">
         Rejected Projects
@@ -56,6 +55,7 @@
               color="primary"
               class="mt-n6 rounded-0"
               @click="FilterRejectedBids"
+              type="submit"
             >
               filter
             </v-btn>
@@ -126,7 +126,6 @@
         </v-col>
       </v-row>
     </v-row>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -147,7 +146,6 @@ export default class RejectedProject extends Vue {
   public selectValue: string = "";
   public value: string;
   public sortedValue: any;
-  public a: any;
 
   public sort() {
     this.response.sort((a, b) => {
@@ -190,6 +188,8 @@ export default class RejectedProject extends Vue {
       (response) => {
         this.response = response;
         this.dialog = false;
+        this.selectValue = "";
+        this.filterValue = false;
       }
     );
   }

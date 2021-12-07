@@ -112,7 +112,6 @@ export default class DashboardProjectList extends Vue {
   public search: string = "";
   public stages: string = "";
   public values: string = "";
-  // public loading: boolean = false;
   public autocomplete: boolean = false;
 
   created() {

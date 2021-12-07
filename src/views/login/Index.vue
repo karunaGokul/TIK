@@ -28,7 +28,7 @@
               v-model="request.EmailAddress"
               :rules="emailRules"
               required
-              autocomplete="off"
+              autocomplete="chrome-off"
             >
             </v-text-field>
 
@@ -44,7 +44,7 @@
               @click:append="() => (value = !value)"
               :type="value ? 'password' : 'text'"
               required
-              autocomplete="off"
+              autocomplete="chrome-off"
             ></v-text-field>
 
             <v-row>

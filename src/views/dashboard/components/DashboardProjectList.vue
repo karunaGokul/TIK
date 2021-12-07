@@ -41,19 +41,12 @@
           </template> -->
 
           <template v-slot:[`item.Status`]="{ item }">
-            <v-badge
-              dot
-              v-if="
-                item.InStages === 'Confirmed' || item.InStages === 'Completed'
-              "
-              color="green"
-              class="ml-4"
-            >
+            <v-badge dot v-if="item.Status === '1'" color="green" class="ml-4">
             </v-badge>
             <v-badge
               dot
-              v-else-if="item.InStages === 'Enquiry Sent'"
-              color="orange"
+              v-else-if="item.Status === '2'"
+              color="yellow"
               class="ml-4"
             >
             </v-badge>
@@ -99,23 +92,34 @@
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
 import ProjectsList from "../ProjectsList.vue";
-import { DashboardModel, ProjectSearchModel } from "@/model";
+import {
+  DashboardModel,
+  DashboardRequestModel,
+  ProjectSearchModel,
+} from "@/model";
 @Component({
   components: { ProjectsList },
 })
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
-  @Prop() response: Array<DashboardModel> = [];
+  // @Prop() response: Array<DashboardModel> = [];
   @Prop() myproject: boolean;
-  @Prop() loading: boolean;
+  // @Prop() loading: boolean;
   public searchRequest = new ProjectSearchModel();
   public search: string = "";
   public stages: string = "";
   public values: string = "";
-  // public loading: boolean = false;
+  public loading: boolean = false;
   public autocomplete: boolean = false;
+  public request = new DashboardRequestModel();
+  public response: Array<DashboardModel> = [];
 
   created() {
+    if (this.myproject) {
+      this.getMyProjectList();
+    } else {
+      this.getProjectList();
+    }
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -123,9 +127,34 @@ export default class DashboardProjectList extends Vue {
           o.value = "ApprovalAdmin";
         }
       });
-      this.items.splice(1,3);
-      this.items.push("Initiated", "Awaiting Approval", "Approved" , "Confirmed", "Rejected");
+      this.items.splice(1, 3);
+      this.items.push(
+        "Initiated",
+        "Awaiting Approval",
+        "Approved",
+        "Confirmed",
+        "Rejected"
+      );
     }
+  }
+
+  public getProjectList() {
+    this.request.id = this.$store.getters.id;
+    this.loading = true;
+    this.DashboardService.GetProjectList(this.request).then((response) => {
+      this.loading = false;
+      this.myproject = false;
+      this.response = response;
+    });
+  }
+  public getMyProjectList() {
+    this.request.id = this.$store.getters.id;
+    this.loading = true;
+    this.DashboardService.GetMyProjectList(this.request).then((response) => {
+      this.loading = false;
+      this.myproject = true;
+      this.response = response;
+    });
   }
   get category(): string {
     return this.$store.getters.category;
@@ -134,6 +163,7 @@ export default class DashboardProjectList extends Vue {
   get role(): string {
     return this.$store.getters.role;
   }
+
   public searchProject() {
     this.searchRequest.myproject = this.myproject;
     this.searchRequest.stages = this.stages;
@@ -143,6 +173,7 @@ export default class DashboardProjectList extends Vue {
       }
     );
   }
+
   items: any = [
     "All",
     "New Enquiry",

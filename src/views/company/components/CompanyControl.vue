@@ -2,10 +2,8 @@
   <div>
     <v-card class="px-2 py-12" flat>
       <v-row justify="center" class="py-5" v-if="option != 'RegularYarn'">
-        <h2>
-          <v-text class="font-weight-regular">
-            {{ response.typeLable }}
-          </v-text>
+        <h2 class="font-weight-regular">
+          {{ response.typeLable }}
         </h2>
       </v-row>
       <v-row v-if="option != 'RegularYarn'">
@@ -26,12 +24,15 @@
               </v-toolbar-title>
             </v-toolbar>
             <v-list-item
-              v-for="item in response.singleSpecialDyedTypes"
-              :key="item"
+              v-for="(item, index) in response.singleSpecialDyedTypes"
+              :key="index"
             >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected" :disabled="edit === false"></v-checkbox>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
@@ -53,22 +54,23 @@
               </v-toolbar-title>
             </v-toolbar>
             <v-list-item
-              v-for="item in response.blendSpecialDyedTypes"
-              :key="item"
+              v-for="(item, index) in response.blendSpecialDyedTypes"
+              :key="index"
             >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
-                <v-checkbox v-model="item.isSelected" :disabled="edit === false"></v-checkbox>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
           </v-list>
         </v-col>
       </v-row>
       <v-row justify="center" class="py-4">
-        <h2>
-          <v-text class="font-weight-regular">
-            {{ response.contentLable }}
-          </v-text>
+        <h2 class="font-weight-regular">
+          {{ response.contentLable }}
         </h2>
       </v-row>
       <v-row>
@@ -87,8 +89,14 @@
                 >
               </v-toolbar>
             </template>
-            <template v-slot:[`header.action`] >
-              <v-btn icon x-small outlined @click="addSingleContent" :disabled="edit === false">
+            <template v-slot:[`header.action`]>
+              <v-btn
+                icon
+                x-small
+                outlined
+                @click="addSingleContent"
+                :disabled="edit === false"
+              >
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -147,7 +155,13 @@
               </v-toolbar>
             </template>
             <template v-slot:[`header.action`]>
-              <v-btn icon x-small outlined @click="addBlendContent" :disabled="edit === false">
+              <v-btn
+                icon
+                x-small
+                outlined
+                @click="addBlendContent"
+                :disabled="edit === false"
+              >
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -300,10 +314,10 @@
         </v-col>
       </v-row>
       <v-row justify="center" class="py-5">
-        <h2>
-          <v-text class="font-weight-regular">
+        <h2 class="font-weight-regular">
+          
             {{ response.qualityLable }}
-          </v-text>
+       
         </h2>
       </v-row>
       <v-row>
@@ -314,7 +328,10 @@
                 >Single Quality</v-toolbar-title
               >
             </v-toolbar>
-            <v-list-item v-for="item in response.singleQualities" :key="item">
+            <v-list-item
+              v-for="(item, index) in response.singleQualities"
+              :key="index"
+            >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox
@@ -332,7 +349,10 @@
                 >Blend Quality</v-toolbar-title
               >
             </v-toolbar>
-            <v-list-item v-for="item in response.blendQualities" :key="item">
+            <v-list-item
+              v-for="(item, index) in response.blendQualities"
+              :key="index"
+            >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox
@@ -345,10 +365,10 @@
         </v-col>
       </v-row>
       <v-row justify="center" class="py-5">
-        <h2>
-          <v-text class="font-weight-regular">
+        <h2 class="font-weight-regular">
+          
             {{ response.countLable }}
-          </v-text>
+        
         </h2>
       </v-row>
       <v-row>
@@ -398,6 +418,12 @@ export default class CompanyControl extends Vue {
   @Prop() option: string;
   @Prop() edit: boolean;
   created() {
+    this.intializeBlendContents();
+  }
+  updated() {
+    this.intializeBlendContents();
+  }
+  intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {
         if (c.combinationOne === 0) c.combinationOne = null;
@@ -405,7 +431,6 @@ export default class CompanyControl extends Vue {
       });
     });
   }
-
   addSingleContent() {
     this.response.singleContents.push({
       ...JSON.parse(JSON.stringify(this.response.singleContents[0])),

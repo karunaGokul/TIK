@@ -138,13 +138,19 @@
       </div>
 
       <v-card class="d-flex justify-left mb-16 px-4" color="#EEEEEE">
-        <v-btn
-          color="primary"
-          class="mx-1 my-4"
-          v-for="(category, index) in categorys"
-          :key="index"
-          >{{ category }}</v-btn
+        <span v-if="category === 'Company'">
+          <v-btn color="primary" class="mx-1 my-4"> Company </v-btn></span
         >
+        <span v-else>
+          <v-btn
+            color="primary"
+            class="mx-1 my-4"
+            v-for="(category, index) in categorys"
+            :key="index"
+          >
+            {{ category }}
+          </v-btn>
+        </span>
       </v-card>
 
       <v-row>
@@ -215,17 +221,20 @@
         <Divider />
       </div>
 
-      <div width="50px">
-        <v-select
-          filled
-          dense
-          solo
-          label="Select Your Category"
-          :items="category"
-          class=""
-        >
-        </v-select>
-      </div>
+      <v-row>
+        <v-col col="6" md="3">
+          <v-select
+            filled
+            dense
+            solo
+            label="Select Your Category"
+            :items="categorys"
+            color="primary"
+          >
+          </v-select>
+        </v-col>
+        <v-col col="6" md="9"></v-col>
+      </v-row>
 
       <v-row>
         <v-col v-for="image in galleryImages" :key="image.img">
@@ -294,10 +303,10 @@ export default class Profile extends Vue {
   public model: "";
 
   created() {
-    if (this.category === "Company") {
-      this.categorys.splice(0, 9);
-      this.categorys.push("Company");
-    }
+    // if (this.category === "Company") {
+    //   this.categorys.splice(0, 9);
+    //   this.categorys.push('Company');
+    // }
     this.loadprofile();
   }
   public loadprofile() {

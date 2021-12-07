@@ -12,12 +12,16 @@
                 Choose the type of Slubs you offer
               </v-toolbar-title>
             </v-toolbar>
-            <v-list-item v-for="item in response.melanSlubTypes" :key="item">
+            <v-list-item
+              v-for="(item, index) in response.melanSlubTypes"
+              :key="index"
+            >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
               <v-list-item-action>
                 <v-checkbox
                   v-model="item.isSelected"
                   :disabled="edit === false"
+                  @change="filterMelanSlubTypes()"
                 ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
@@ -45,14 +49,20 @@
               </v-toolbar>
             </template>
             <template v-slot:[`header.action`]>
-              <v-btn icon x-small outlined @click="addSingleContent" :disabled="edit === false">
+              <v-btn
+                icon
+                x-small
+                outlined
+                @click="addSingleContent"
+                :disabled="edit === false"
+              >
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
             <template v-slot:[`item.type`]="{ item }">
               <v-select
                 v-model="item.melanSlubType"
-                :items="item.melanSlubTypeOptions"
+                :items="melanSlubTypesOptions"
                 item-text="name"
                 return-object
                 class="mr-n6 mb-n3 text-caption mt-3"
@@ -88,13 +98,11 @@
         </v-col>
       </v-row>
       <v-row justify="center" class="py-4">
-        <h2>
-          <v-text class="font-weight-regular" v-if="option === 'Melange'">
-            Choose the blend content Yarns you offer in Melange
-          </v-text>
-          <v-text class="font-weight-regular" v-else-if="option === 'Slub'">
-            Choose the blend content Yarns you offer in Slub
-          </v-text>
+        <h2 class="font-weight-regular" v-if="option === 'Melange'">
+          Choose the blend content Yarns you offer in Melange
+        </h2>
+        <h2 class="font-weight-regular" v-else-if="option === 'Slub'">
+          Choose the blend content Yarns you offer in Slub
         </h2>
       </v-row>
       <v-row>
@@ -114,7 +122,13 @@
               </v-toolbar>
             </template>
             <template v-slot:[`header.action`]>
-              <v-btn icon x-small outlined @click="addBlendContent" :disabled="edit === false">
+              <v-btn
+                icon
+                x-small
+                outlined
+                @click="addBlendContent"
+                :disabled="edit === false"
+              >
                 <v-icon> mdi-plus</v-icon>
               </v-btn>
             </template>
@@ -305,13 +319,15 @@
 </template>
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
-import { ProductDetailModel } from "@/model";
+import { contentModel, ProductDetailModel } from "@/model";
 
 @Component
 export default class MelangeSlub extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
+
+  public melanSlubTypesOptions: Array<contentModel> = [];
 
   created() {
     this.response.blendContents.forEach((b) => {
@@ -320,6 +336,7 @@ export default class MelangeSlub extends Vue {
         if (c.combinationTwo === 0) c.combinationTwo = null;
       });
     });
+    this.filterMelanSlubTypes();
   }
 
   addSingleContent() {
@@ -350,6 +367,13 @@ export default class MelangeSlub extends Vue {
   removeBlendContent(index: number) {
     this.response.blendContents.splice(index, 1);
   }
+
+  filterMelanSlubTypes() {
+    this.melanSlubTypesOptions = this.response.melanSlubTypes.filter(
+      (item) => item.isSelected === true
+    );
+  }
+
   singleContentHeaders: any = [
     { text: "Colour Type", value: "type", align: "center", divider: true },
     { text: "Content", value: "content", divider: true },

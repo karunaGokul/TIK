@@ -14,13 +14,13 @@
                 class="subtitle-1"
                 v-if="option === 'SpecialYarn'"
               >
-                single SPL Yarns Type
+                Single SPL Yarns Type
               </v-toolbar-title>
               <v-toolbar-title
                 class="subtitle-1"
                 v-else-if="option === 'DyedYarn'"
               >
-                single Dyed Yarns Type
+                Single Dyed Yarns Type
               </v-toolbar-title>
             </v-toolbar>
             <v-list-item

@@ -60,7 +60,6 @@
                   depressed
                   @click="resetPassword"
                   :loading="loading"
-                  type="submit"
                   >Reset</v-btn
                 >
               </v-card-actions>

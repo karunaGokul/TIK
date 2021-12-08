@@ -41,12 +41,12 @@
           </template> -->
 
           <template v-slot:[`item.Status`]="{ item }">
-            <v-badge dot v-if="item.Status === '1'" color="green" class="ml-4">
+            <v-badge dot v-if="item.Status === 'Green'" color="green" class="ml-4">
             </v-badge>
             <v-badge
               dot
-              v-else-if="item.Status === '2'"
-              color="yellow"
+              v-else-if="item.Status === 'Orange'"
+              color="orange"
               class="ml-4"
             >
             </v-badge>
@@ -177,6 +177,7 @@ export default class DashboardProjectList extends Vue {
   items: any = [
     "All",
     "New Enquiry",
+    "Submitted Enquirys",
     "Confirmed Projects",
     "Completed Projects",
   ];

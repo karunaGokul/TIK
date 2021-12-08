@@ -333,7 +333,6 @@
             v-if="option === 'Create'"
             class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
             @click="createEmployee()"
-            type="submit"
             >{{ option }}</v-btn
           >
           <v-btn
@@ -341,7 +340,6 @@
             v-else
             class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
             @click="updateEmployee()"
-            type="submit"
           >
             Update
           </v-btn>

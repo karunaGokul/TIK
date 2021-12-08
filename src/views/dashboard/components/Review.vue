@@ -31,7 +31,6 @@
               depressed
               color="primary"
               @click="Review()"
-              type="submit"
             >
               Review Update
             </v-btn>
@@ -43,26 +42,27 @@
 </template>
 
 <script lang="ts">
-import { DashboardModel, ReviewRequestModel, ApproveRequestModel } from "@/model";
+import { DashboardModel, ReviewRequestModel, BitReceivedModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator"
 import { IDashboardService } from "@/service";
 @Component
 export default class Review extends Vue {
 
     @Prop() response: DashboardModel;  
-    @Prop() approveId: ApproveRequestModel;
     @Inject("DashboardService") DashboardService: IDashboardService;
 
   public reviewRequest = new ReviewRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
+  public bid = new BitReceivedModel();
+ 
  
   public Review() {
-    this.reviewRequest.projectId = this.approveId.projectId;
-    this.reviewRequest.biddingId = this.approveId.bidId;
+    this.reviewRequest.projectId = this.response.Id;
+    this.reviewRequest.biddingId = this.bid.id;
     this.DashboardService.Review(this.reviewRequest).then((response) => {
-      this.snackbarText = response;
-     this.close();      
+    this.snackbarText = response;
+    this.close();      
     });
   }
   

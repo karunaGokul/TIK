@@ -1,7 +1,7 @@
 <template>
-  <div class="ml-4 mt-6">
+  <div class="ml-4 mt-n8">
     <v-row>
-      <span class="text-subtitle-1 font-weight-bold mr-4 mt-2">
+      <span class="text-subtitle-1 font-weight-bold mr-4">
         Rejected Projects
       </span>
 
@@ -55,7 +55,6 @@
               color="primary"
               class="mt-n6 rounded-0"
               @click="FilterRejectedBids"
-              type="submit"
             >
               filter
             </v-btn>
@@ -195,10 +194,6 @@ export default class RejectedProject extends Vue {
         this.dialog = false;
         this.selectValue = "";
         this.filterValue = false;
-        this.filterRequest.price = null;
-        this.filterRequest.review = null;
-        this.filterRequest.creditPeriod = null;
-        this.filterRequest.deliveryPeriod = null;
       }
     );
   }

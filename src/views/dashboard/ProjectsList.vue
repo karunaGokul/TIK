@@ -129,7 +129,7 @@
           </v-btn>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="mb-n10">
         <v-col class="my-5">
           <v-simple-table>
             <template v-slot:default>
@@ -493,7 +493,6 @@
                                 role === 'Merchandiser' &&
                                   row.status === 'Approved'
                               "
-                              class="ml-n5"
                             >
                               Waiting Authentication from Quote Incharge
                             </div>
@@ -655,7 +654,6 @@
       />
       <Review
         :response="response"
-        :approveId="approvalRequest"
         v-if="toggleReview"
         @closeModel="closeModel"
       />

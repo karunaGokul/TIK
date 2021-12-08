@@ -38,16 +38,6 @@
               <h3>About</h3>
 
               <v-spacer></v-spacer>
-
-              <!-- <v-btn
-                  dark
-                  class="text-capitalize font-weight-regular rounded-0"
-                  color="primary"
-                  @click="toggleResetPassword = true"
-                >
-                  Reset Password
-                </v-btn>
-              <ResetPassword v-if="toggleResetPassword" /> -->
               <span class="mx-3" v-if="role === 'MasterAdmin'">
                 <v-btn
                   class="
@@ -227,9 +217,13 @@
             filled
             dense
             solo
+            dark
             label="Select Your Category"
             :items="categorys"
-            color="primary"
+            background-color="primary"
+            item-color="primary"
+            :menu-props="{ class: purple }"
+            class="bg-color"
           >
           </v-select>
         </v-col>
@@ -369,3 +363,9 @@ export default class Profile extends Vue {
   ];
 }
 </script>
+
+<style>
+  .bg-color {
+    background-color: primary;
+  }
+</style>

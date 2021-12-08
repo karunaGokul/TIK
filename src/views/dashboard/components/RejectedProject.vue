@@ -28,7 +28,7 @@
             :items="items"
             class="mx-5"
             v-model="selectValue"
-            @change="filterValue = true"
+            @change="(filterValue = true) && (value = null)"
           >
           </v-select>
           <v-card-actions v-if="filterValue">
@@ -195,6 +195,10 @@ export default class RejectedProject extends Vue {
         this.dialog = false;
         this.selectValue = "";
         this.filterValue = false;
+        this.filterRequest.price = null;
+        this.filterRequest.review = null;
+        this.filterRequest.creditPeriod = null;
+        this.filterRequest.deliveryPeriod = null;
       }
     );
   }

@@ -1,6 +1,7 @@
 <template>
-  <v-dialog v-model="dialog" width="500">
-     
+  <div>
+    <v-dialog v-model="dialog" width="500">
+      <v-row v-for="row in response.bidList" :key="row.status">
         <v-card class="px-6" elevation="8">
           <v-card-title>
             Review
@@ -30,48 +31,86 @@
               class="white--text font-weight-light text-capitalize rounded mb-3"
               depressed
               color="primary"
-              @click="Review()"
+              @click="Review('Confirmed', row)"
             >
               Review Update
             </v-btn>
           </v-card-actions>
         </v-card>
-     
-      
-  </v-dialog>
+      </v-row>
+    </v-dialog>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+      color="green lighten-5 green--text"
+      right
+      top
+    >
+      <v-icon color="green">mdi-exclamation-thick </v-icon>
+      {{ snackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <v-snackbar
+      v-model="snackbar1"
+      :timeout="2000"
+      color="deep-orange lighten-5 pink--text"
+      right
+      top
+    >
+      <v-icon color="pink">mdi-exclamation-thick </v-icon>
+      {{ snackbarText1 }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
+          <v-icon> mdi-close-box</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </div>
 </template>
 
 <script lang="ts">
 import { DashboardModel, ReviewRequestModel, BitReceivedModel } from "@/model";
-import { Component, Inject, Prop, Vue } from "vue-property-decorator"
+import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
 @Component
 export default class Review extends Vue {
-
-    @Prop() response: DashboardModel;  
-    @Inject("DashboardService") DashboardService: IDashboardService;
+  @Prop() response: DashboardModel;
+  @Inject("DashboardService") DashboardService: IDashboardService;
 
   public reviewRequest = new ReviewRequestModel();
   public dialog: boolean = true;
+  public snackbar: boolean;
   public snackbarText: string = "";
+  public snackbar1: boolean;
+  public snackbarText1: string = "";
   public bid = new BitReceivedModel();
- 
- 
-  public Review() {
-    this.reviewRequest.projectId = this.response.Id;
-    this.reviewRequest.biddingId = this.bid.id;
-    this.DashboardService.Review(this.reviewRequest).then((response) => {
-    this.snackbarText = response;
-    this.close();      
-    });
+
+  public Review(status: string, bid: BitReceivedModel) {
+    if (status === "Confirmed") {
+      this.reviewRequest.projectId = this.response.Id;
+      this.reviewRequest.biddingId = bid.id;
+      this.DashboardService.Review(this.reviewRequest).then((response) => {
+        this.snackbarText = response;
+        this.snackbar = true;
+        this.close();
+      });
+      (err) => {
+          if (err.response.status == 400) {
+            this.snackbarText1 = err.response.data;
+            this.snackbar1 = true;
+          }
+        }
+    }
   }
-  
+
   public close() {
-    this.$emit("closeModel",this.snackbarText);
+    this.$emit("closeModel", this.snackbarText);
   }
-
- 
-
 }
- 
 </script>

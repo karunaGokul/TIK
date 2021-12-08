@@ -430,7 +430,7 @@
                             >
                               Pending Approval from Approval Admin
                             </div>
-                            <!-- <v-btn
+                            <v-btn
                               class="
                                 white--text
                                 font-weight-light
@@ -447,7 +447,7 @@
                               @click="toggleReview = true"
                             >
                               review
-                            </v-btn> -->
+                            </v-btn>
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' ||

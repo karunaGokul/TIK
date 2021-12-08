@@ -379,8 +379,7 @@
                                 dense
                                 class="my-3"
                                 :rules="
-                                  (v) =>
-                                    !!v || 'Approval Admin role is required'
+                                  (v) => !!v || 'Approval Admin role is required'
                                 "
                               >
                               </v-select>
@@ -431,7 +430,7 @@
                             >
                               Pending Approval from Approval Admin
                             </div>
-                            <v-btn
+                            <!-- <v-btn
                               class="
                                 white--text
                                 font-weight-light
@@ -448,7 +447,7 @@
                               @click="toggleReview = true"
                             >
                               review
-                            </v-btn>
+                            </v-btn> -->
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' ||

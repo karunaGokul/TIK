@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" width="500">
-      <v-row v-for="row in response.bidList" :key="row.status">
+    <v-row v-for="row in response.bidList" :key="row.status">
+      <v-dialog v-model="dialog" width="500">
         <v-card class="px-6" elevation="8">
           <v-card-title>
             Review
@@ -37,8 +37,8 @@
             </v-btn>
           </v-card-actions>
         </v-card>
-      </v-row>
-    </v-dialog>
+      </v-dialog>
+    </v-row>
     <v-snackbar
       v-model="snackbar"
       :timeout="2000"
@@ -100,12 +100,12 @@ export default class Review extends Vue {
         this.snackbar = true;
         this.close();
       });
-      (err) => {
-          if (err.response.status == 400) {
-            this.snackbarText1 = err.response.data;
-            this.snackbar1 = true;
-          }
-        }
+      // (err) => {
+      //     if (err.response.status == 400) {
+      //       this.snackbarText1 = err.response.data;
+      //       this.snackbar1 = true;
+      //     }
+      //   }
     }
   }
 

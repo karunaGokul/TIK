@@ -18,7 +18,7 @@
       <v-col class="pt-16 px-16 mx-5">
         <h2 class="pb-7">Sign in</h2>
         <v-container class="fluid">
-          <v-form ref="form" class="mt-n4 ml-n2" autocomplete="off">
+          <v-form ref="form" class="mt-n4 ml-n2" autocomplete="off" @submit="signIn">
             <v-label>Email ID</v-label>
             <v-text-field
               outlined
@@ -83,8 +83,9 @@
               width="30%"
               depressed
               block
-              @click="signIn"
+              @click.prevent="signIn"
               :loading="loading"
+              type="submit"
             >
               Sign In
             </v-btn>

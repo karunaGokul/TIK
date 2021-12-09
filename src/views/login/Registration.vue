@@ -22,7 +22,7 @@
         <div style="height: 63%; flex: 1; overflow: scroll" class="pr-10">
           <h2 class="pb-7 pt-15">Sign Up</h2>
 
-          <v-form ref="form" autocomplete="off">
+          <v-form ref="form" autocomplete="off" @submit="signUp">
             <v-row>
               <v-col>
                 <v-label>First Name</v-label>
@@ -279,7 +279,8 @@
               depressed
               block
               :loading="loading"
-              @click="SignUp"
+              @click.prevent="signUp"
+              type="submit"
             >
               Sign Up
             </v-btn>
@@ -414,7 +415,7 @@ export default class Registration extends Vue {
         this.city = response;
       });
   }
-  public SignUp() {
+  public signUp() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.loading = true;
       this.registrationService.registration(this.request).then(

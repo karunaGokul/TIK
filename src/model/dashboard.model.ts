@@ -44,6 +44,7 @@ export class BitReceivedModel {
     companyName: string;
     logo: string;
     review: number;
+    // ratings: number;
 }
 
 export class SummaryModel {

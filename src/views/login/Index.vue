@@ -29,6 +29,7 @@
               :rules="emailRules"
               required
               autocomplete="new-password"
+              autofocus
             >
             </v-text-field>
 

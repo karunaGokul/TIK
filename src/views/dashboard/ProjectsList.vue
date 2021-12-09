@@ -190,7 +190,7 @@
           />
         </v-col>
       </v-row>
-      <div v-if="response.bidList">
+      <div v-if="response.bidList" class="mt-5">
         <v-row v-for="row in response.bidList" :key="row.status">
           <v-row
             class="pa-4 ma-1"
@@ -428,9 +428,9 @@
                               "
                               class="my-2"
                             >
-                              Pending Approval from Approval Admin
+                              Pending Approval from <br />Approval Admin
                             </div>
-                            <v-btn
+                            <!-- <v-btn
                               class="
                                 white--text
                                 font-weight-light
@@ -447,25 +447,27 @@
                               @click="toggleReview = true"
                             >
                               review
-                            </v-btn>
+                            </v-btn> -->
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                  row.status === 'Rejected'
+                                  row.status === 'Rejected' || 
+                                  row.status === 'Reviewed'
                               "
                               class="my-1"
                             >
                               {{ row.status }}
                             </div>
+                            
                             <div
                               v-else-if="
                                 role === 'Merchandiser' &&
                                   row.status === 'Approved'
                               "
                             >
-                              Pending Approval from Quote InCharge
+                              Pending Approval from <br />Quote InCharge
                             </div>
-                            <div v-else>Auth for Approval</div>
+                            <div v-else-if=" role === 'Merchandiser' || role === 'Quote InCharge'">Auth for Approval</div>
 
                             <!-- <v-btn
                               class="
@@ -487,14 +489,14 @@
                             >
                               Reject
                             </v-btn> -->
-                            <div
+                            <!-- <div
                               v-if="
                                 role === 'Merchandiser' &&
                                   row.status === 'Approved'
                               "
                             >
                               Waiting Authentication from Quote Incharge
-                            </div>
+                            </div> -->
                             <div
                               v-if="
                                 role === 'Approval Admin' &&
@@ -502,11 +504,11 @@
                               "
                               class="my-1"
                             >
-                              Waiting Authentication from Merchandiser
+                              Pending Approval from <br />Quote InCharge
                             </div>
                             <div
                               v-if="
-                                row.status === 'Confirmed' &&
+                                row.status === 'Confirmed' && 
                                   (role === 'Approval Admin' ||
                                     role === 'MasterAdmin')
                               "
@@ -540,6 +542,9 @@
                               >
                                 review
                               </v-btn>
+                            </div>
+                            <div v-else-if="(row.status === 'Reviewed')" class="text-wrap">
+                              Mill {{ bidResponse.companyName }} has reviewed and provided ratings - {{ }} for the project {{ response.EnquiryName }}
                             </div>
                           </td>
                           <td v-else-if="category != 'Company'">
@@ -590,7 +595,7 @@
                             </span>
                             <div
                               v-else-if="
-                                row.status === 'Confirmed' &&
+                                row.status === 'Confirmed' && 
                                   (role === 'Approval Admin' ||
                                     role === 'MasterAdmin')
                               "
@@ -624,6 +629,9 @@
                               >
                                 review
                               </v-btn>
+                            </div>
+                            <div v-else-if="(row.status === 'Reviewed')" class="text-wrap">
+                              Company {{ bidResponse.companyName }} has reviewed and provided ratings - {{ }} for the project {{ response.EnquiryName }}
                             </div>
                             <span v-else>
                               {{ row.status }}
@@ -729,6 +737,7 @@ export default class ProjectsList extends Vue {
   public rejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
+  public bidResponse = new BitReceivedModel();
 
   created() {
     this.GetProjectEnquiry();

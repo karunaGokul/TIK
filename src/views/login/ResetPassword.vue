@@ -49,7 +49,7 @@
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
-              :rules="passwordRules"
+              :rules="matchingPassword"
             ></v-text-field>
 
             <v-row justify="center">
@@ -132,6 +132,11 @@ export default class ResetPassword extends Vue {
   public loading: boolean = false;
 
   public request = new ResetPasswordRequestModel();
+
+  public matchingPassword: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => v === this.request.newPassword || "Password Confirmation doesn't match"
+  ]
 
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",

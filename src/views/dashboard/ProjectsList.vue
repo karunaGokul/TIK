@@ -481,14 +481,14 @@
                             >
                               Reject
                             </v-btn> -->
-                            <!-- <div
+                            <div
                               v-if="
                                 role === 'Quote InCharge' &&
-                                  row.status === 'Approved'
+                                  row.status === 'Selected'
                               "
                             >
                               Waiting Authentication from Merchandiser
-                            </div> -->
+                            </div>
                             <div
                               v-if="
                                   row.status === 'Approved' && role === ('Approval Admin')

@@ -491,6 +491,14 @@
                             </div>
                             <div
                               v-if="
+                                role === 'Quote InCharge' &&
+                                  row.status === 'BidApproved'
+                              "
+                            >
+                              Waiting Approval from ApprovalAdmin
+                            </div>
+                            <div
+                              v-if="
                                   row.status === 'Approved' && ((role === 'Approval Admin') || (role === 'Merchandiser'))
                               "
                               class="my-1 ml-n9"

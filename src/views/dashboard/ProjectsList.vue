@@ -491,7 +491,7 @@
                             </div>
                             <div
                               v-if="
-                                  row.status === 'Approved' && role === ('Approval Admin')
+                                  row.status === 'Approved' && ((role === 'Approval Admin') || (role === 'Merchandiser'))
                               "
                               class="my-1 ml-n9"
                             >

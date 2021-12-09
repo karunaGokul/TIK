@@ -15,7 +15,7 @@
             <h3 class="text-align-center pt-5">{{ response.unitName }}</h3>
 
             <v-rating
-              value="4.5"
+              v-model="response.review"
               color="#fd7e14"
               dense
               half-increments
@@ -222,8 +222,6 @@
             :items="categorys"
             background-color="primary"
             item-color="primary"
-            :menu-props="{ class: purple }"
-            class="bg-color"
           >
           </v-select>
         </v-col>
@@ -364,8 +362,4 @@ export default class Profile extends Vue {
 }
 </script>
 
-<style>
-  .bg-color {
-    background-color: primary;
-  }
-</style>
+

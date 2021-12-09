@@ -143,9 +143,8 @@ export default class ResetPassword extends Vue {
 
   public resetPassword() {
     if (
-      (this.$refs.form as Vue & { validate: () => boolean }).validate() &&
-      this.request.newPassword === this.request.confirmPassword
-    ) {
+      (this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+        if (this.request.newPassword === this.request.confirmPassword) {
       this.loading = true;
       this.request.id = this.resetId.userId;
       console.log(this.request.confirmPassword);
@@ -163,6 +162,7 @@ export default class ResetPassword extends Vue {
             this.snackbar1 = true;
         }
       );
+      }
     }
   }
 }

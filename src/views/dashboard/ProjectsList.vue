@@ -428,7 +428,7 @@
                               "
                               class="my-2"
                             >
-                              Pending Approval from <br />Approval Admin
+                              Pending  for Approval 
                             </div>
                             <!-- <v-btn
                               class="
@@ -482,20 +482,22 @@
                               Reject
                             </v-btn> -->
                             <div
+                            class="ml-n7"
                               v-if="
                                 role === 'Quote InCharge' &&
                                   row.status === 'Selected'
                               "
                             >
-                              Waiting Authentication from Merchandiser
+                              Waiting for Authentication 
                             </div>
                             <div
+                            class="ml-n7"
                               v-if="
                                 role === 'Quote InCharge' &&
                                   row.status === 'BidApproved'
                               "
                             >
-                              Waiting Approval from ApprovalAdmin
+                              Waiting for Approval  
                             </div>
                             <div
                               v-if="

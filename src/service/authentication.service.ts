@@ -11,7 +11,7 @@ export interface IAuthenticationService  {
 export class AuthenticationService extends ServiceHelper implements IAuthenticationService {
 
     public login(request: AuthenticationRequestModel): Promise<AuthenticationResponse> {
-        return axios.post("https://tiklogin20210806073346.azurewebsites.net/api/authenticate", request).then(response => {
+        return this.httpPost("login/authenticate", request).then(response => {
             return response.data;
         });
     }

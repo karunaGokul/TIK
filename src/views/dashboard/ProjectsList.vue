@@ -667,7 +667,7 @@
                             <div
                               v-if="
                                 row.status === 'Confirmed' &&
-                                  role === 'ApprovalAdmin'
+                                  (role === 'Approval Admin' || role === 'Quote InCharge')
                               "
                             >
                               Waiting for review
@@ -691,6 +691,9 @@
                                   role === 'Quote InCharge') || (row.status === 'Approved')
                               "
                             >
+                              {{ row.status }}
+                            </span>
+                            <span v-else>
                               {{ row.status }}
                             </span>
                           </td>

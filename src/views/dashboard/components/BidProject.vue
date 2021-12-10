@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" width="500">
     <v-form ref="form">
       <v-card class="px-6" elevation="8" style="overflow: hidden">
-        <v-card-title>
+        <v-card-title class="mb-n2">
           Bid Project
           <v-spacer></v-spacer>
           <v-btn @click="close()" icon>
@@ -75,13 +75,13 @@
           </v-row>
         </v-card-text>
 
-        <v-card-actions class="mt-n5">
+        <v-card-actions class="mt-n9">
           <v-spacer></v-spacer>
           <v-btn
             class="white--text font-weight-light text-capitalize rounded"
             depressed
-            color="primary mb-4"
-            @click="BidProject"            
+            color="primary mb-2"
+            @click="BidProject"
           >
             Submit
           </v-btn>

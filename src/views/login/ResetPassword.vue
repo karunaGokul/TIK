@@ -49,7 +49,7 @@
               :append-icon="value1 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="() => (value1 = !value1)"
               :type="value1 ? 'password' : 'text'"
-              :rules="passwordRules"
+              :rules="matchingPassword"
             ></v-text-field>
 
             <v-row justify="center">
@@ -133,6 +133,11 @@ export default class ResetPassword extends Vue {
 
   public request = new ResetPasswordRequestModel();
 
+  public matchingPassword: any = [
+    (v: any) => !!v || "Password is required",
+    (v: any) => v === this.request.newPassword || "Password Confirmation doesn't match"
+  ]
+
   public passwordRules: any = [
     (v: any) => !!v || "Password is required",
     (v: any) =>
@@ -143,9 +148,8 @@ export default class ResetPassword extends Vue {
 
   public resetPassword() {
     if (
-      (this.$refs.form as Vue & { validate: () => boolean }).validate() &&
-      this.request.newPassword === this.request.confirmPassword
-    ) {
+      (this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+        if (this.request.newPassword === this.request.confirmPassword) {
       this.loading = true;
       this.request.id = this.resetId.userId;
       console.log(this.request.confirmPassword);
@@ -163,6 +167,7 @@ export default class ResetPassword extends Vue {
             this.snackbar1 = true;
         }
       );
+      }
     }
   }
 }

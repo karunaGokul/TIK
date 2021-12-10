@@ -24,6 +24,7 @@
           dense
           hide-details
           required
+          v-model="control.value"
           @change="textChanged"
         ></v-text-field>
       </v-col>
@@ -37,7 +38,8 @@
             dense
             hide-details
             required
-            @change="textChanged"
+            v-model="item.value"
+            @change="textGroupChanged"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -92,6 +94,10 @@ export default class ProjectControl extends Vue {
 
   textChanged(value: any) {
     this.control.value = value;
+  }
+
+  textGroupChanged() {
+    this.control.value = this.control.items.map(i => i.value).join(",");
   }
 
   get buttonValue() {

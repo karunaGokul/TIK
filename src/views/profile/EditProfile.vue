@@ -114,7 +114,6 @@
             dark
             class="text-capitalize red color font-weight-regular mt-n5"
             @click="edit"
-            type="submit"
           >
             save
           </v-btn>        

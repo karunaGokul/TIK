@@ -1,42 +1,27 @@
-import { IBaseService, BaseService } from "./base.service";
+import { ServiceHelper } from "./base.service";
 import { ProjectFormModel, ProjectRequestModel } from "@/model";
 
-export interface IProjectService
-	extends IBaseService<ProjectRequestModel, ProjectFormModel> {
-	newProject(
-		categoryName: string,
-		projectName: string
-	): Promise<ProjectFormModel>;
+export interface IProjectService {
+	newProject(categoryName: string, projectName: string): Promise<ProjectFormModel>;
 
 	createProject(request: any): Promise<any>;
 	searchProject(request: any): Promise<any>;
 }
-export class ProjectService
-	extends BaseService<ProjectRequestModel, ProjectFormModel>
-	implements IProjectService {
-	constructor() {
-		super("public");
-	}
+export class ProjectService extends ServiceHelper implements IProjectService {
 
 	searchProject(request: any): Promise<any> {
-		this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-		return this.httpPost("SearchProject", request).then((response) => {
+		return this.httpPost("dashboard/SearchProject", request).then((response) => {
 			return response.data;
 		});
 	}
 
 	createProject(request: any): Promise<any> {
-		this.apiUrl = "https://tikdev-api.azure-api.net/dashboard";
-		return this.httpPost("CreateProject", request).then((response) => {
+		return this.httpPost("dashboard/CreateProject", request).then((response) => {
 			return response.data;
 		});
 	}
 
-	public newProject(
-		categoryName: string,
-		projectName: string
-	): Promise<ProjectFormModel> {
-		this.apiUrl = "https://tikdev-api.azure-api.net/Dashboard";
+	public newProject(categoryName: string, projectName: string): Promise<ProjectFormModel> {
 		// return this.httpGet('newproject', request).then(response => {
 		//     return response.data;
 		// });

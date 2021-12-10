@@ -15,7 +15,7 @@ export class ProfileResponse {
     emailAddress: string;
     imageName: string;
     image: string;
-    rating?: number;
+    review?: number;
 }
 export class ProfileModel {
     parentOptionId?: string;

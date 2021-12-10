@@ -15,7 +15,7 @@
             <h3 class="text-align-center pt-5">{{ response.unitName }}</h3>
 
             <v-rating
-              value="4.5"
+              v-model="response.review"
               color="#fd7e14"
               dense
               half-increments
@@ -38,16 +38,6 @@
               <h3>About</h3>
 
               <v-spacer></v-spacer>
-
-              <!-- <v-btn
-                  dark
-                  class="text-capitalize font-weight-regular rounded-0"
-                  color="primary"
-                  @click="toggleResetPassword = true"
-                >
-                  Reset Password
-                </v-btn>
-              <ResetPassword v-if="toggleResetPassword" /> -->
               <span class="mx-3" v-if="role === 'MasterAdmin'">
                 <v-btn
                   class="
@@ -227,9 +217,11 @@
             filled
             dense
             solo
+            dark
             label="Select Your Category"
             :items="categorys"
-            color="primary"
+            background-color="primary"
+            item-color="primary"
           >
           </v-select>
         </v-col>
@@ -369,3 +361,5 @@ export default class Profile extends Vue {
   ];
 }
 </script>
+
+

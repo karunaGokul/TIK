@@ -173,32 +173,46 @@
           </v-row>
         </v-card-actions>
       </v-card>
-      <div class="d-flex justify-end">
-        <!-- <v-btn elevation="2" color="primary" class="px-8 ma-4 text-capitalize">
-          Reset
-        </v-btn> -->
-        <v-btn elevation="2" color="primary" class="px-8 ma-4 text-capitalize" @click="back">
-          Back
-        </v-btn>
-        <v-btn
-          elevation="2"
-          class="px-8 ma-4 text-capitalize"
-          color="primary"
-          @click="next"
-          v-if="mode != StepMode.Summary"
-        >
-          Next
-        </v-btn>
-        <v-btn
-          elevation="2"
-          class="px-8 ma-4 text-capitalize"
-          color="primary"
-          @click="create"
-          v-if="mode == StepMode.Summary"
-        >
-          Submit
-        </v-btn>
-      </div>
+      <v-row>
+        <v-col cols="auto" class="mr-auto">
+          <v-btn
+            elevation="2"
+            class="px-8 ma-4 text-capitalize"
+            @click="reset"
+          >
+            Reset
+          </v-btn>
+        </v-col>
+        <v-col cols="auto">
+          <v-btn
+            elevation="2"
+            color="primary"
+            class="px-8 ma-4 text-capitalize"
+            @click="back"
+            v-if="steps.length > 1"
+          >
+            Back
+          </v-btn>
+          <v-btn
+            elevation="2"
+            class="px-8 ma-4 text-capitalize"
+            color="primary"
+            @click="next"
+            v-if="mode != StepMode.Summary"
+          >
+            Next
+          </v-btn>
+          <v-btn
+            elevation="2"
+            class="px-8 ma-4 text-capitalize"
+            color="primary"
+            @click="create"
+            v-if="mode == StepMode.Summary"
+          >
+            Submit
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-col>
     <v-col cols="4">
       <div class="text-h6 ml-2 pt-1">Summary</div>
@@ -280,15 +294,22 @@ export default class ProjectForm extends Vue {
   request: CreateProjectModel = new CreateProjectModel();
 
   created() {
+    this.buildForm();
+  }
+
+  buildForm() {
     this.request.name = this.projectName;
     this.request.category = this.categoryName;
     this.request.merchandiserId = this.merchandiser;
+
+    this.steps = [];
+    this.mode = StepMode.Form;
+    this.path = "";
 
     this.service
       .newProject(this.categoryName, this.projectName)
       .then((response: ProjectFormModel) => {
         this.data = response;
-
         const step = this.$vuehelper.clone(this.data.steps[0]);
         step.stepNumber = 1;
         this.steps.push(step);
@@ -303,6 +324,10 @@ export default class ProjectForm extends Vue {
     this.service.createProject(this.request).then((response) => {
       this.$router.push("/dashboard");
     });
+  }
+
+  reset() {
+    this.buildForm();
   }
 
   back() {
@@ -324,7 +349,7 @@ export default class ProjectForm extends Vue {
   next() {
     this.error = false;
     if (this.mode == StepMode.Result) {
-      this.mode = StepMode.Detail;
+      if (this.request.bids.length > 0) this.mode = StepMode.Detail;
     } else if (this.mode == StepMode.Detail) {
       this.$v.$touch();
 

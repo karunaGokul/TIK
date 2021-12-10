@@ -83,7 +83,7 @@
               dense
               :rules="emailRules"
               required
-              autocomplete="off"
+              autocomplete="new-password"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3" class="mr-5">
@@ -106,7 +106,7 @@
                     required
                     v-bind="attrs"
                     v-on="on"
-                    autocomplete="off"
+                    autocomplete="new-password"
                     :rules="passwordRules"
                   ></v-text-field>
                 </template>
@@ -133,7 +133,7 @@
                     v-bind="attrs"
                     v-on="on"
                     :rules="request.Password ? passwordRules1 : ''"
-                    autocomplete="off"
+                    autocomplete="new-password"
                   ></v-text-field>
                 </template>
                 <span
@@ -332,7 +332,7 @@
             large
             v-if="option === 'Create'"
             class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
-            @click="createEmployee()"
+            @click.prevent="createEmployee()"
             type="submit"
             >{{ option }}</v-btn
           >
@@ -340,7 +340,7 @@
             large
             v-else
             class="indigo darken-4 white--text rounded-0 text-capitalize my-5"
-            @click="updateEmployee()"
+            @click.prevent="updateEmployee()"
             type="submit"
           >
             Update

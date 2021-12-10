@@ -650,7 +650,7 @@
         <RejectedProject
           :response="response.bidList"
           :projectId="response.Id"
-          v-if="category === 'Company' && rejected == true"
+          v-if="category === 'Company' && isRejected === true"
         />
       </div>
 
@@ -736,7 +736,7 @@ export default class ProjectsList extends Vue {
   public showText: boolean = false;
   public snackbarText: string = "";
   public snackbar: boolean = false;
-  public rejected: boolean = false;
+  public isRejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
 
@@ -776,8 +776,8 @@ export default class ProjectsList extends Vue {
       this.response = response;
       this.GetCompany(this.response.CompanyId);
       this.response.bidList.forEach((b) => {
-        if (b.status == "Rejected") {
-          this.rejected = true;
+        if (b.status == 'Rejected') {
+          this.isRejected = true;
         }
       });
       // if (this.category != "Company") {

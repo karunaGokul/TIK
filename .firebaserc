@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "tik-development"
-  }
+    "default": "tik-development",
+    "uat": "tik-uat"
+  },
+  "targets": {}
 }

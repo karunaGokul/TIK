@@ -75,44 +75,6 @@ export default class ProjectResult extends Vue {
     },
   ];
 
-  // items: any = [
-  //   {
-  //     SNo: "1",
-  //     MillName: "apple mast",
-  //     Content: "100%cotton",
-  //     Type: "combined",
-  //     Count: "30",
-  //     CreditPeriod: "10-15 days",
-  //     Reviews: "",
-  //   },
-  //   {
-  //     SNo: "2",
-  //     MillName: "apple 2",
-  //     Content: "100%cotton",
-  //     Type: "combined",
-  //     Count: "40",
-  //     CreditPeriod: "10-15 days",
-  //     Reviews: "",
-  //   },
-  //   {
-  //     SNo: "3",
-  //     MillName: "apple 3",
-  //     Content: "100%cotton",
-  //     Type: "combined",
-  //     Count: "20",
-  //     CreditPeriod: "10-15 days",
-  //     Reviews: "",
-  //   },
-  //   {
-  //     SNo: "4",
-  //     MillName: "apple 4",
-  //     Content: "100%cotton",
-  //     Type: "combined",
-  //     Count: "30",
-  //     CreditPeriod: "10-15 days",
-  //     Reviews: "",
-  //   },
-  // ];
 
   certificate: any = [
     "certification one",

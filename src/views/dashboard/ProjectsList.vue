@@ -195,7 +195,7 @@
           <v-row
             class="pa-4 ma-1"
             :class="
-              ((row.status === 'Confirmed') || ( row.status === 'Reviewed' )) && category === 'Company'
+              ((row.status === 'Confirmed') || ( row.status === 'Completed' )) && category === 'Company'
                 ? 'deep-orange'
                 : ''
             "
@@ -203,14 +203,14 @@
           >
             <v-row
               :class="
-                ((row.status === 'Confirmed') || ( row.status === 'Reviewed' )) && category === 'Company'
+                ((row.status === 'Confirmed') || ( row.status === 'Completed' )) && category === 'Company'
                   ? 'deep-orange lighten-3 black--text'
                   : ''
               "
             >
               <v-row
                 class="ma-1"
-                v-if="((row.status === 'Confirmed') || ( row.status === 'Reviewed' )) && category === 'Company'"
+                v-if="((row.status === 'Confirmed') || ( row.status === 'Completed' )) && category === 'Company'"
               >
                 <v-col>
                   <h4>Confirmed Project</h4>
@@ -258,7 +258,7 @@
                     <template v-slot:default>
                       <thead
                         :class="
-                          ((row.status === 'Confirmed') || ( row.status === 'Reviewed' )) && category === 'Company'
+                          ((row.status === 'Confirmed') || ( row.status === 'Completed' )) && category === 'Company'
                             ? 'deep-orange lighten-2 black--text'
                             : 'teal lighten-4 text-subtitle-2'
                         "
@@ -276,7 +276,7 @@
                       </thead>
                       <tbody
                         :class="
-                          ((row.status === 'Confirmed') || ( row.status === 'Reviewed' )) && category === 'Company'
+                          ((row.status === 'Confirmed') || ( row.status === 'Completed' )) && category === 'Company'
                             ? 'deep-orange lighten-3 black--text'
                             : ''
                         "
@@ -451,13 +451,13 @@
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' ||
-                                  row.status === 'Rejected' ||
-                                  row.status === 'Reviewed'
+                                  row.status === 'Rejected'
                               "
                               class="my-1"
                             >
                               {{ row.status }}
                             </div>
+                            
                             <div v-else-if="row.status === 'BidApproved' &&
                             role === 'Merchandiser' ">Auth for Approval</div>
 
@@ -510,8 +510,7 @@
                             <div
                               v-if="
                                 row.status === 'Confirmed' && 
-                                  (role === 'Approval Admin' ||
-                                    role === 'MasterAdmin') && row.ratings === null
+                                    role === 'MasterAdmin'
                               "
                             >
                               <v-btn
@@ -543,9 +542,14 @@
                               >
                                 review
                               </v-btn>
-                             
                             </div>
-                            <div v-else-if=" row.status === 'Reviewed'" class="text-wrap">
+                            <div v-if="
+                                row.status === 'Confirmed' && 
+                                    role === 'ApprovalAdmin'
+                              ">
+                                Waiting for review
+                            </div>
+                            <div v-else-if=" row.status === 'Completed'" class="text-wrap">
                               Mill {{ row.companyName }} has reviewed and provided ratings - {{ row.ratings }} for the project {{ response.EnquiryName }}
                             </div>
                           </td>
@@ -598,8 +602,7 @@
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' && 
-                                  (role === 'Approval Admin' ||
-                                    role === 'MasterAdmin')
+                                    role === 'MasterAdmin'
                               "
                             >
                               <v-btn
@@ -632,7 +635,13 @@
                                 review
                               </v-btn>
                             </div>
-                            <div v-else-if="(row.status === 'Reviewed')" class="text-wrap">
+                            <div v-if="
+                                row.status === 'Confirmed' && 
+                                    role === 'ApprovalAdmin'
+                              ">
+                                Waiting for review
+                            </div>
+                            <div v-else-if="(row.status === 'Completed')" class="text-wrap">
                               Company {{ row.companyName }} has reviewed and provided ratings - {{ row.ratings }} for the project {{ response.EnquiryName }}
                             </div>
                             <span v-else>

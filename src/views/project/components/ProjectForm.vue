@@ -179,6 +179,7 @@
             elevation="2"
             class="px-8 ma-4 text-capitalize"
             @click="reset"
+            color="primary"
           >
             Reset
           </v-btn>

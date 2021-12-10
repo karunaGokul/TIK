@@ -1296,7 +1296,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 					"type": "toggle-button",
 					"selector": false,
 					"data_path": "mil.Yarn.RegularYarn.BlendQualities",
-					"data_id": "Quality",
+					"data_id": "Name",
 					"options": [
 						{
 							"id": "opBlendQuality_SuperCombed",

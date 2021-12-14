@@ -24,6 +24,7 @@ export class ProductDetailModel {
     qualityLable:string;
     countLable:string;
     typeLable:string;
+    structureLable:string;
     melanSlubTypes:Array<contentModel> = [];   
     singleSpecialDyedTypes:Array<contentModel> = [];
     blendSpecialDyedTypes:Array<contentModel> = [];
@@ -31,6 +32,7 @@ export class ProductDetailModel {
     blendContents: Array<contentDetailModel> = [];
     singleQualities: Array<contentModel> = [];
     blendQualities: Array<contentModel> = [];
+    fabricStructure:fabricStructureModel;
     counts: Array<number> = [];
     availableCounts: Array<number> = [];
     deniers: Array<number> = [];
@@ -59,4 +61,19 @@ export class combosModel {
 export class melangeSlubYarnModel {
     melange: ProductDetailModel;
     slub: ProductDetailModel;
+}
+
+export class fabricStructureModel {
+    singleJersey: Array<contentModel> = [];
+    interlock: Array<contentModel> = [];
+    rib:Array<contentModel> = [];
+    tubular:tubularModel;
+    openWidth:tubularModel;
+}
+
+export class tubularModel {
+    gg: number;
+    dia: number;
+    allFeeder:boolean;
+    alternateFeeder:boolean;
 }

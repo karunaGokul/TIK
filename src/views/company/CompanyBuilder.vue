@@ -58,16 +58,16 @@
                       {{ item.tab }}
                     </v-tab>
                     <v-tab-item>
-                      <MelangeSlub
+                      <CompanyControl
                         :response="response.yarn.melangeSlubYarn.melange"
-                        option="Melange"
+                        option="MelangeYarn"
                         :edit="edit"
                       />
                     </v-tab-item>
                     <v-tab-item>
-                      <MelangeSlub
+                      <CompanyControl
                         :response="response.yarn.melangeSlubYarn.slub"
-                        option="Slub"
+                        option="SlubYarn"
                         :edit="edit"
                       />
                     </v-tab-item>
@@ -76,9 +76,50 @@
               </v-tabs>
             </v-tab-item>
             <v-tab-item>
-              <v-card>
-                <v-card-text>Test 1</v-card-text>
-              </v-card>
+              <v-tabs v-model="tab4">
+                <v-tab v-for="item in tab4Items" :key="item.tab">
+                  {{ item.tab }}
+                </v-tab>
+                <v-tab-item>
+                  <CompanyControl
+                    :response="response.fabric.regularFabric"
+                    option="RegularFabric"
+                    :edit="edit"
+                  />
+                </v-tab-item>
+                <v-tab-item>
+                  <!-- <CompanyControl
+                    :response="response.fabric.specialFabric"
+                    option="SpecialFabric"
+                    :edit="edit"
+                  /> -->
+                  specialFabric
+                </v-tab-item>
+
+                <v-tab-item>
+                  <v-tabs v-model="tab3">
+                    <v-tab v-for="item in tab3Items" :key="item.tab">
+                      {{ item.tab }}
+                    </v-tab>
+                    <v-tab-item>
+                      <!-- <MelangeSlub
+                        :response="response.fabric.melangeSlubFabric.melange"
+                        option="MelangeFabric"
+                        :edit="edit"
+                      /> -->
+                      melangeFabric-melange
+                    </v-tab-item>
+                    <v-tab-item>
+                      <!-- <MelangeSlub
+                        :response="response.fabric.melangeSlubFabric.slub"
+                        option="SlubFabric"
+                        :edit="edit"
+                      /> -->
+                      melangeFabric-slub
+                    </v-tab-item>
+                  </v-tabs>
+                </v-tab-item>
+              </v-tabs>
             </v-tab-item>
           </v-tabs-items>
         </v-card-text>
@@ -129,6 +170,7 @@ export default class CompanyBuilder extends Vue {
   created() {
     this.createMill();
   }
+
   public createMill() {
     this.edit = false;
     this.ProfileService.CreateMills(this.companyId).then(
@@ -137,6 +179,7 @@ export default class CompanyBuilder extends Vue {
       }
     );
   }
+
   public save() {
     this.millData = JSON.parse(JSON.stringify(this.response));
 
@@ -148,9 +191,10 @@ export default class CompanyBuilder extends Vue {
     this.removeOtherOption(this.millData.yarn.dyedYarn, "DyedYarn");
     this.removeOtherOption(
       this.millData.yarn.melangeSlubYarn.melange,
-      "Melange"
+      "MelangeYarn"
     );
-    this.removeOtherOption(this.millData.yarn.melangeSlubYarn.slub, "Slub");
+    this.removeOtherOption(this.millData.yarn.melangeSlubYarn.slub, "SlubYarn");
+    this.removeOtherOption(this.millData.fabric.regularFabric, "RegularFabric");
 
     this.ProfileService.AddMills(this.millData).then((response: any) => {
       this.snackbarText = response;
@@ -169,14 +213,14 @@ export default class CompanyBuilder extends Vue {
       );
     }
 
-    if (option === "Melange" || option === "Slub") {
+    if (option === "MelangeYarn" || option === "SlubYarn") {
       data.melanSlubTypes = data.melanSlubTypes.filter(
         (item) => item.isSelected === true
       );
       data.singleContents.forEach((b) => delete b.melanSlubTypeOptions);
       data.blendContents.forEach((b) => delete b.melanSlubTypeOptions);
     }
-    if (option != "Melange" && option != "Slub") {
+    if (option != "MelangeYarn" && option != "SlubYarn") {
       data.singleContents.forEach((b) => {
         if (b.spun) {
           b.spun = "Spun";
@@ -197,7 +241,22 @@ export default class CompanyBuilder extends Vue {
       );
       delete data.availableDeniers;
     }
-
+    if (
+      option === "RegularFabric" ||
+      option === "SpecialFabric" ||
+      option === "MelangeFabric" ||
+      option === "SlubFabric"
+    ) {
+      data.fabricStructure.singleJersey = data.fabricStructure.singleJersey.filter(
+        (item) => item.isSelected === true
+      );
+      data.fabricStructure.interlock = data.fabricStructure.interlock.filter(
+        (item) => item.isSelected === true
+      );
+      data.fabricStructure.rib = data.fabricStructure.rib.filter(
+        (item) => item.isSelected === true
+      );
+    }
     data.singleContents.forEach((b) => delete b.contentOptions);
     data.blendContents.forEach((b) => delete b.contentOptions);
     data.blendContents.forEach((b) => {
@@ -211,6 +270,7 @@ export default class CompanyBuilder extends Vue {
     delete data.contentLable;
     delete data.qualityLable;
     delete data.typeLable;
+    delete data.structureLable;
   }
 
   get employeeId(): string {
@@ -241,14 +301,21 @@ export default class CompanyBuilder extends Vue {
   tab2Items: any = [
     { tab: "Regular Yarn", content: "Tab 1 Content" },
     { tab: "Special Yarn", content: "Tab 2 Content" },
-    { tab: "Dyed Yarn", content: "Tab 2 Content" },
-    { tab: "Melange/Slub Yarn", content: "Tab 2 Content" },
+    { tab: "Dyed Yarn", content: "Tab 3 Content" },
+    { tab: "Melange/Slub Yarn", content: "Tab 4 Content" },
   ];
   tab3: any = null;
 
   tab3Items: any = [
     { tab: "Melange", content: "Tab 1 Content" },
     { tab: "Slub", content: "Tab 2 Content" },
+  ];
+  tab4: any = null;
+
+  tab4Items: any = [
+    { tab: "Regular Fabric", content: "Tab 1 Content" },
+    { tab: "Special Fabric", content: "Tab 2 Content" },
+    { tab: "Melange/Slub Fabric", content: "Tab 3 Content" },
   ];
 }
 </script>

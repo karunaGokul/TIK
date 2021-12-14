@@ -17,6 +17,7 @@ export interface IDashboardService {
     Review(request: ReviewRequestModel): Promise<any>;
     FilterRejectedBids(request: FilterRequestModel): Promise<Array<BitReceivedModel>>;
     GetBidAudit(projectId: string): Promise<BitAuditmodel>;
+    PendingReview(request: any): Promise<DashboardModel>;
 
 }
 export class DashboardService extends ServiceHelper implements IDashboardService {
@@ -85,6 +86,12 @@ export class DashboardService extends ServiceHelper implements IDashboardService
 
     public GetBidAudit(projectId: string): Promise<BitAuditmodel> {
         return this.httpPost('dashboard/GetBidAudit?projectId=' + projectId, null).then(response => {
+            return response.data;
+        });
+    }
+
+    public PendingReview(): Promise<DashboardModel> {
+        return this.httpPost('Dashboard/PendingReview', Request).then(response => {
             return response.data;
         });
     }

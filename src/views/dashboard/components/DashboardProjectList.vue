@@ -12,7 +12,7 @@
         @change="searchProject()"
       ></v-select>
 
-      <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer>
 
       <v-text-field
         v-model="search"
@@ -22,7 +22,7 @@
         outlined
         dense
         hide-details
-      ></v-text-field>
+      ></v-text-field> -->
     </v-row>
     <v-row>
       <v-col col="12" md="12">
@@ -31,7 +31,7 @@
           :items="response"
           :search="search"
           item-key="EnquiryName"
-          class="elevation-1 mb-5"
+          class="elevation-1 mb-16"
           :loading="loading"
           loading-text="Loading... Please wait"
         >
@@ -102,24 +102,24 @@ import {
 })
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
-  // @Prop() response: Array<DashboardModel> = [];
   @Prop() myproject: boolean;
-  // @Prop() loading: boolean;
+  @Prop() response: Array<DashboardModel>;
+  @Prop() search: string;
   public searchRequest = new ProjectSearchModel();
-  public search: string = "";
+  // public search: string = "";
   public stages: string = "";
   public loading: boolean = false;
   public values: string = "";
   public autocomplete: boolean = false;
   public request = new DashboardRequestModel();
-  public response: Array<DashboardModel> = [];
+  // public response: Array<DashboardModel> = [];
 
   created() {
-    if (this.myproject) {
-      this.getMyProjectList();
-    } else {
-      this.getProjectList();
-    }
+    // if (this.myproject) {
+    //   this.getMyProjectList();
+    // } else {
+    //   this.getProjectList();
+    // }
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -139,24 +139,24 @@ export default class DashboardProjectList extends Vue {
     }
   }
 
-  public getProjectList() {
-    this.request.id = this.$store.getters.id;
-    this.loading = true;
-    this.DashboardService.GetProjectList(this.request).then((response) => {
-      this.loading = false;
-      this.myproject = false;
-      this.response = response;
-    });
-  }
-  public getMyProjectList() {
-    this.request.id = this.$store.getters.id;
-    this.loading = true;
-    this.DashboardService.GetMyProjectList(this.request).then((response) => {
-      this.loading = false;
-      this.myproject = true;
-      this.response = response;
-    });
-  }
+  // public getProjectList() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.loading = true;
+  //   this.DashboardService.GetProjectList(this.request).then((response) => {
+  //     this.loading = false;
+  //     this.myproject = false;
+  //     this.response = response;
+  //   });
+  // }
+  // public getMyProjectList() {
+  //   this.request.id = this.$store.getters.id;
+  //   this.loading = true;
+  //   this.DashboardService.GetMyProjectList(this.request).then((response) => {
+  //     this.loading = false;
+  //     this.myproject = true;
+  //     this.response = response;
+  //   });
+  // }
   get category(): string {
     return this.$store.getters.category;
   }

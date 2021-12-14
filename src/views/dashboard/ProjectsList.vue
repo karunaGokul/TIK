@@ -688,7 +688,7 @@
                               class="ml-n3"
                               v-else-if="
                                 (row.status === 'Authenticated' &&
-                                  role === 'Quote InCharge') || (row.status === 'Approved')
+                                  (role === 'Approval Admin') || (role === 'Quote InCharge')) || (row.status === 'Approved') || (row.status !== 'Confirmed')
                               "
                             >
                               {{ row.status }}

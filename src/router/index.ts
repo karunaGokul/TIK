@@ -25,18 +25,6 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/login/Registration.vue'),
     meta: { anonymous: true }
   },
-  // {
-  //   path: '/forgotpassword',
-  //   name: 'ForgotPassword',
-  //   component: () => import('../views/login/ForgotPassword.vue'),
-  //   meta: { anonymous: true }
-  // },
-  // {
-  //   path: '/resetpassword',
-  //   name: 'ResetPassword',
-  //   component: () => import('../views/login/ResetPassword.vue'),
-  //   meta: { anonymous: true }
-  // },
   {
     path: '/profile',
     name: 'Profile',

@@ -27,6 +27,8 @@ export class DashboardModel {
     confirmationDate: number;
     requestedDeliveryDate: number;
     noOfKg: number;
+    // merchandiserId?: string;
+    // CreatorId?: string;
 
 }
 

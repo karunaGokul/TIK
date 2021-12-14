@@ -38,7 +38,7 @@
       <v-container class="mb-16 mt-10">
         <div v-if="dashboard">
           <v-row class="mb-5">
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
                 dark
@@ -50,7 +50,19 @@
                 new projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Initiated')"
+                >mdi-clipboard-minus-outline</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                new projects
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
                 dark
@@ -62,12 +74,36 @@
                 bids received
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Approved')"
+                >mdi-human-dolly</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                approved bids
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
                 dark
                 class="teal"
                 @click="searchProject('Approval Pending')"
+                >mdi-clock-alert-outline</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                approval pending
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Awaiting Approval')"
                 >mdi-clock-alert-outline</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -116,6 +152,7 @@
             </v-col>
             <v-col cols="12" sm="4" md="2">
               <v-icon x-large dark class="teal"
+                @click="pendingReview()"
                 >mdi-card-account-details-star</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -178,9 +215,12 @@ export default class Dashboard extends Vue {
   public search: string = "";
   public stagesRequest: string = "";
   public dataTable: boolean = false;
+  // public dataTable1: boolean = false;
   public dashboard: boolean = true;
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
+  public reviewResponse: Array<DashboardModel> = [];
+  
 
   //   items: any = [
   //     "New Enquiry",
@@ -197,11 +237,25 @@ export default class Dashboard extends Vue {
   //     "Contact TIK Support"
   //  ];
 
+  get category(): string {
+    return this.$store.getters.category;
+  }
+
   public searchProject(stages: string) {
     // this.searchRequest.myproject = this.myproject;
     this.stagesRequest = stages;
     this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
+      (response) => {
+        this.response = response;
+        this.dashboard = false;
+        this.dataTable = true;
+      }
+    );
+  }
+
+  public pendingReview() {
+    this.DashboardService.PendingReview().then(
       (response) => {
         this.response = response;
         this.dashboard = false;

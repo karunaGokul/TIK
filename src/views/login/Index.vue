@@ -16,7 +16,7 @@
         </v-parallax>
       </v-col>
       <v-col class="pt-16 px-16 mx-5">
-        <h2 class="pb-7">Sign in</h2>
+        <h2 class="pb-7 text-capitalize">sign in</h2>
         <v-container class="fluid">
           <v-form ref="form" class="mt-n4 ml-n2" autocomplete="off" @submit="signIn">
             <v-label>Email ID</v-label>
@@ -65,7 +65,7 @@
                   class="text-capitalize"
                   @click="toggleForgotPassword = true"
                 >
-                  Forgot Password?
+                  forgot password?
                 </v-btn>
               </v-col>
             </v-row>
@@ -114,7 +114,7 @@
             </v-snackbar>
             <div class="text-caption py-5">
               Don't have an account yet?
-              <router-link to="/registration" class="text-decoration-none">
+              <router-link to="/registration" class="text-decoration-none text-capitalize">
                 sign up</router-link
               >
             </div>

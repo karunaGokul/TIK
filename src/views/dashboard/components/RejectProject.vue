@@ -40,7 +40,17 @@
           class="white--text font-weight-light text-capitalize rounded"
           depressed
           color="primary"
-          @click="ApproveBid('Rejected')"
+          v-if="title === 'Reasons'"
+          @click="ApproveBid('Cancelled')"
+        >
+          save
+        </v-btn>
+        <v-btn
+          class="white--text font-weight-light text-capitalize rounded"
+          depressed
+          color="primary"
+          v-else-if="title === 'Noshow'"
+          @click="ApproveBid('NoShow')"
         >
           save
         </v-btn>

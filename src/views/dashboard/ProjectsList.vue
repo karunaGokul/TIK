@@ -583,7 +583,7 @@
                             </div>
                           </td>
                           <td v-else-if="category != 'Company'">
-                            <span
+                            <div
                               v-if="
                                 (role === 'Approval Admin' ||
                                   role === 'MasterAdmin') &&
@@ -619,15 +619,25 @@
                               >
                                 Approve
                               </v-btn>
-                            </span>
+                            </div>
                             <span
+                              class="ml-n3"
+                              v-else-if="
+                                (row.status === 'Authenticated' &&
+                                  role === 'Quote InCharge') || (row.status === 'Approved') || (row.status === 'Rejected')
+                              "
+                            >
+                              {{ row.status }}
+                            </span>
+                            <!-- <div
                               v-else-if="
                                 role === 'Quote Incharge' &&
                                   row.status === 'Authenticated'
                               "
                             >
                               Waiting for Approval
-                            </span>
+                              {{ row.status }}
+                            </div> -->
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' &&
@@ -684,18 +694,17 @@
                                 readonly
                               ></v-rating>
                             </div>
-                            <span
+                            <!-- <span
                               class="ml-n3"
                               v-else-if="
-                                (row.status === 'Authenticated' &&
-                                  role === 'Quote InCharge') || (row.status === 'Approved')
+                                (row.status === 'Approved') || (row.status != 'Confirmed')
                               "
                             >
                               {{ row.status }}
-                            </span>
-                            <span v-else>
+                            </span> -->
+                            <!-- <span v-else>
                               {{ row.status }}
-                            </span>
+                            </span> -->
                           </td>
                         </tr>
                       </tbody>

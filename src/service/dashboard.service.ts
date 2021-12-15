@@ -91,7 +91,7 @@ export class DashboardService extends ServiceHelper implements IDashboardService
     }
 
     public PendingReview(): Promise<Array<DashboardModel>> {
-        return this.httpPost('Dashboard/PendingReview',null).then(response => {
+        return this.httpGet('Dashboard/PendingReview',null).then(response => {
             return response.data;
         });
     }

@@ -215,34 +215,16 @@ export default class Dashboard extends Vue {
   public search: string = "";
   public stagesRequest: string = "";
   public dataTable: boolean = false;
-  // public dataTable1: boolean = false;
   public dashboard: boolean = true;
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
   public reviewResponse: Array<DashboardModel> = [];
   
-
-  //   items: any = [
-  //     "New Enquiry",
-  //     "Bids Received",
-  //     "Approval Pending",
-  //     "No Response Projects",
-  //     "No Show Projects",
-  //     "Completed Projects",
-  //     "Communication Received",
-  //     "Project Reviews",
-  //     "Company Profile",
-  //     "Advertise in TIK",
-  //     "Create Users",
-  //     "Contact TIK Support"
-  //  ];
-
   get category(): string {
     return this.$store.getters.category;
   }
 
   public searchProject(stages: string) {
-    // this.searchRequest.myproject = this.myproject;
     this.stagesRequest = stages;
     this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(

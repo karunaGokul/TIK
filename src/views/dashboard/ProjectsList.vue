@@ -459,13 +459,14 @@
                               review
                             </v-btn> -->
                             <div
-                              v-else-if="
-                                row.status === 'Confirmed' ||
-                                  row.status === 'Rejected'
-                              "
+                              v-else-if="row.status === 'Rejected'"
                               class="my-1"
                             >
                               {{ row.status }}
+                            </div>
+                            <div v-else-if="row.status === 'NoShow'">
+                              {{ row.status }}
+                              {{ row.message }}
                             </div>
 
                             <div
@@ -500,7 +501,8 @@
                             <div
                               class="ml-n7"
                               v-if="
-                                (role === 'Quote InCharge' || role === 'Approval Admin') &&
+                                (role === 'Quote InCharge' ||
+                                  role === 'Approval Admin') &&
                                   row.status === 'Selected'
                               "
                             >
@@ -531,8 +533,9 @@
                                   role === 'MasterAdmin'
                               "
                             >
-                              <v-btn
-                                class="
+                              <div v-if="row.ratings === null">
+                                <v-btn
+                                  class="
                                   white--text
                                   font-weight-light
                                   text-capitalize
@@ -540,26 +543,27 @@
                                   mt-2
                                   mr-2
                                 "
-                                depressed
-                                color="red lighten-1"
-                                @click="toggleNoShow = true"
-                              >
-                                No Show
-                              </v-btn>
-                              <v-btn
-                                class="
+                                  depressed
+                                  color="red lighten-1"
+                                  @click="toggleNoShow = true"
+                                >
+                                  No Show
+                                </v-btn>
+                                <v-btn
+                                  class="
                                   white--text
                                   font-weight-light
                                   text-capitalize
                                   rounded
                                   mt-2
                                 "
-                                depressed
-                                color="primary"
-                                @click="toggleReview = true"
-                              >
-                                review
-                              </v-btn>
+                                  depressed
+                                  color="primary"
+                                  @click="toggleReview = true"
+                                >
+                                  review
+                                </v-btn>
+                              </div>
                             </div>
                             <div
                               v-if="
@@ -570,7 +574,11 @@
                               Waiting for review
                             </div>
                             <div
-                              v-else-if="row.status === 'Completed'"
+                              v-else-if="
+                                (row.status === 'Confirmed' &&
+                                  row.ratings !== null) ||
+                                  row.status === 'Completed'
+                              "
                               class="text-wrap ml-n7"
                             >
                               <v-rating
@@ -624,10 +632,19 @@
                               class="ml-n3"
                               v-else-if="
                                 (row.status === 'Authenticated' &&
-                                  role === 'Quote InCharge') || (row.status === 'Approved') || (row.status === 'Rejected')
+                                  role === 'Quote InCharge') ||
+                                  row.status === 'Approved' ||
+                                  row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
+                            </span>
+                            <span
+                              class="ml-n3"
+                              v-else-if="row.status === 'NoShow'"
+                            >
+                              {{ row.status }}
+                              {{ row.message }}
                             </span>
                             <!-- <div
                               v-else-if="
@@ -644,8 +661,9 @@
                                   role === 'MasterAdmin'
                               "
                             >
-                              <v-btn
-                                class="
+                              <div v-if="row.ratings === null">
+                                <v-btn
+                                  class="
                                   white--text
                                   font-weight-light
                                   text-capitalize
@@ -653,37 +671,42 @@
                                   mt-2
                                   mr-2
                                 "
-                                depressed
-                                color="red lighten-1"
-                                @click="toggleNoShow = true"
-                              >
-                                No Show
-                              </v-btn>
-                              <v-btn
-                                class="
+                                  depressed
+                                  color="red lighten-1"
+                                  @click="toggleNoShow = true"
+                                >
+                                  No Show
+                                </v-btn>
+                                <v-btn
+                                  class="
                                   white--text
                                   font-weight-light
                                   text-capitalize
                                   rounded
                                   mt-2
                                 "
-                                depressed
-                                color="primary"
-                                @click="toggleReview = true"
-                              >
-                                review
-                              </v-btn>
+                                  depressed
+                                  color="primary"
+                                  @click="toggleReview = true"
+                                >
+                                  review
+                                </v-btn>
+                              </div>
                             </div>
                             <div
                               v-if="
                                 row.status === 'Confirmed' &&
-                                  (role === 'Approval Admin' || role === 'Quote InCharge')
+                                  (role === 'Approval Admin' ||
+                                    role === 'Quote InCharge')
                               "
                             >
                               Waiting for review
                             </div>
                             <div
-                              v-else-if="row.status === 'Completed'"
+                              v-else-if="
+                                row.status === 'Confirmed' &&
+                                  row.ratings !== null
+                              "
                               class="text-wrap ml-n7"
                             >
                               <v-rating
@@ -843,7 +866,7 @@ export default class ProjectsList extends Vue {
       this.response = response;
       this.GetCompany(this.response.CompanyId);
       this.response.bidList.forEach((b) => {
-        if (b.status == 'Rejected') {
+        if (b.status == "Rejected") {
           this.isRejected = true;
         }
       });

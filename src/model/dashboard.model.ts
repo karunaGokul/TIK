@@ -44,6 +44,7 @@ export class BitReceivedModel {
     logo: string;
     review: number;
     ratings: number;
+    message?: string;
 }
 
 export class SummaryModel {
@@ -96,4 +97,10 @@ export class BitAuditmodel {
     selectedDate: string;
     confirmedDate: string;
     approveDate: string;
+}
+
+export class UserInfomodel {
+    fullName: string;
+    currentDate: number;
+    currentDay: string;
 }

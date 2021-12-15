@@ -94,7 +94,7 @@ export default class Review extends Vue {
   public Review() {
     this.reviewRequest.projectId = this.response.Id;
     this.response.bidList.forEach((b) => {
-      if (b.status === "Confirmed") {
+      if (b.status === "Confirmed" && b.ratings === null) {
         this.reviewRequest.biddingId = b.id;
         this.DashboardService.Review(this.reviewRequest).then(
           (response) => {

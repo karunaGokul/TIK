@@ -10,8 +10,8 @@
           Dashboard
         </v-col>
         <v-col md="2" offset-md="6">
-          <div class="d-flex justify-end">19-11-2021</div>
-          <div class="d-flex justify-end">Friday</div>
+          <div class="d-flex justify-end">{{ userResponse.currentDate }}</div>
+          <div class="d-flex justify-end">{{ userResponse.currentDay }}</div>
         </v-col>
       </v-row>
     </v-container>
@@ -20,7 +20,7 @@
       <v-row>
         <v-col md="4">
           <v-card-subtitle class="font-weight-black mt-4"
-            >Hi Sudharshan</v-card-subtitle
+            >Hi {{ userResponse.fullName }}</v-card-subtitle
           >
         </v-col>
         <v-col md="3" offset-md="5">
@@ -129,12 +129,24 @@
                 no show projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
                 dark
                 class="teal"
                 @click="searchProject('Completed Projects')"
+                >mdi-clipboard-check-outline</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                completed <br />projects
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Completed')"
                 >mdi-clipboard-check-outline</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -204,7 +216,7 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
-import { ProjectSearchModel, DashboardModel } from "@/model";
+import { ProjectSearchModel, DashboardModel, UserInfomodel } from "@/model";
 import DashboardProjectList from "./components/DashboardProjectList.vue";
 @Component({
   components: { DashboardProjectList },
@@ -218,8 +230,11 @@ export default class Dashboard extends Vue {
   public dashboard: boolean = true;
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
-  public reviewResponse: Array<DashboardModel> = [];
+  public userResponse = new UserInfomodel();
   
+  created() {
+    this.userInfo();
+  }
   get category(): string {
     return this.$store.getters.category;
   }
@@ -242,6 +257,16 @@ export default class Dashboard extends Vue {
         this.response = response;
         this.dashboard = false;
         this.dataTable = true;
+      }
+    );
+  }
+
+  public userInfo() {
+    this.DashboardService.GetUserFullName().then(
+      (response) => {
+        this.userResponse = response;
+        // this.dashboard = false;
+        // this.dataTable = true;
       }
     );
   }

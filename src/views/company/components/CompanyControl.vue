@@ -36,6 +36,12 @@
               >
                 Single Dyed Yarns Type
               </v-toolbar-title>
+              <v-toolbar-title
+                class="subtitle-1"
+                v-else-if="option === 'SpecialFabric'"
+              >
+                Single SPL Fabrics Type
+              </v-toolbar-title>
             </v-toolbar>
             <v-list-item
               v-for="(item, index) in response.singleSpecialDyedTypes"
@@ -65,6 +71,12 @@
                 v-else-if="option === 'DyedYarn'"
               >
                 Blend Dyed Yarns Type
+              </v-toolbar-title>
+              <v-toolbar-title
+                class="subtitle-1"
+                v-else-if="option === 'SpecialFabric'"
+              >
+                Blend SPL Fabrics Type
               </v-toolbar-title>
             </v-toolbar>
             <v-list-item

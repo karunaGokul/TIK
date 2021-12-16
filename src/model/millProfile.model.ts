@@ -9,14 +9,14 @@ export class CompanyProfileModel {
 }
 export class yarnModel {
     regularYarn: ProductDetailModel;
-    melangeSlubYarn: melangeSlubYarnModel;
+    melangeSlubYarn: melangeSlubModel;
     specialYarn: ProductDetailModel;
     dyedYarn: ProductDetailModel;
 
 }
 export class fabricModel {
     regularFabric: ProductDetailModel;
-    Melange_SlubFabric: ProductDetailModel;
+    melangeSlubFabric: melangeSlubModel;
     specialFabric: ProductDetailModel;
 }
 export class ProductDetailModel {    
@@ -58,7 +58,7 @@ export class combosModel {
     combinationOne: number;
     combinationTwo: number;
 }
-export class melangeSlubYarnModel {
+export class melangeSlubModel {
     melange: ProductDetailModel;
     slub: ProductDetailModel;
 }

@@ -88,12 +88,11 @@
                   />
                 </v-tab-item>
                 <v-tab-item>
-                  <!-- <CompanyControl
+                  <CompanyControl
                     :response="response.fabric.specialFabric"
                     option="SpecialFabric"
                     :edit="edit"
-                  /> -->
-                  specialFabric
+                  />
                 </v-tab-item>
 
                 <v-tab-item>
@@ -102,20 +101,18 @@
                       {{ item.tab }}
                     </v-tab>
                     <v-tab-item>
-                      <!-- <MelangeSlub
+                      <CompanyControl
                         :response="response.fabric.melangeSlubFabric.melange"
                         option="MelangeFabric"
                         :edit="edit"
-                      /> -->
-                      melangeFabric-melange
+                      />
                     </v-tab-item>
                     <v-tab-item>
-                      <!-- <MelangeSlub
+                      <CompanyControl
                         :response="response.fabric.melangeSlubFabric.slub"
                         option="SlubFabric"
                         :edit="edit"
-                      /> -->
-                      melangeFabric-slub
+                      />
                     </v-tab-item>
                   </v-tabs>
                 </v-tab-item>
@@ -153,10 +150,9 @@ import { CompanyProfileModel, ProductDetailModel } from "@/model";
 import { IProfileService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
 import CompanyControl from "./components/CompanyControl.vue";
-import MelangeSlub from "./components/MelangeSlub.vue";
 
 @Component({
-  components: { CompanyControl, MelangeSlub },
+  components: { CompanyControl },
 })
 export default class CompanyBuilder extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
@@ -195,6 +191,12 @@ export default class CompanyBuilder extends Vue {
     );
     this.removeOtherOption(this.millData.yarn.melangeSlubYarn.slub, "SlubYarn");
     this.removeOtherOption(this.millData.fabric.regularFabric, "RegularFabric");
+    this.removeOtherOption(this.millData.fabric.specialFabric, "SpecialFabric");
+    this.removeOtherOption(
+      this.millData.fabric.melangeSlubFabric.melange,
+      "MelangeFabric"
+    );
+    this.removeOtherOption(this.millData.fabric.melangeSlubFabric.slub, "SlubFabric");
 
     this.ProfileService.AddMills(this.millData).then((response: any) => {
       this.snackbarText = response;
@@ -213,7 +215,12 @@ export default class CompanyBuilder extends Vue {
       );
     }
 
-    if (option === "MelangeYarn" || option === "SlubYarn") {
+    if (
+      option === "MelangeYarn" ||
+      option === "SlubYarn" ||
+      option === "MelangeFabric" ||
+      option === "SlubFabric"
+    ) {
       data.melanSlubTypes = data.melanSlubTypes.filter(
         (item) => item.isSelected === true
       );
@@ -247,15 +254,17 @@ export default class CompanyBuilder extends Vue {
       option === "MelangeFabric" ||
       option === "SlubFabric"
     ) {
-      data.fabricStructure.singleJersey = data.fabricStructure.singleJersey.filter(
-        (item) => item.isSelected === true
-      );
+      data.fabricStructure.singleJersey =
+        data.fabricStructure.singleJersey.filter(
+          (item) => item.isSelected === true
+        );
       data.fabricStructure.interlock = data.fabricStructure.interlock.filter(
         (item) => item.isSelected === true
       );
       data.fabricStructure.rib = data.fabricStructure.rib.filter(
         (item) => item.isSelected === true
       );
+       delete data.structureLable;
     }
     data.singleContents.forEach((b) => delete b.contentOptions);
     data.blendContents.forEach((b) => delete b.contentOptions);
@@ -270,7 +279,7 @@ export default class CompanyBuilder extends Vue {
     delete data.contentLable;
     delete data.qualityLable;
     delete data.typeLable;
-    delete data.structureLable;
+   
   }
 
   get employeeId(): string {

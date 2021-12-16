@@ -25,7 +25,12 @@
       </template>
       <template
         v-slot:[`item.type`]="{ item }"
-        v-if="option === 'MelangeYarn' || option === 'SlubYarn'"
+        v-if="
+          option === 'MelangeYarn' ||
+          option === 'SlubYarn' ||
+          option === 'MelangeFabric' ||
+          option === 'SlubFabric'
+        "
       >
         <v-select
           v-model="item.melanSlubType"
@@ -198,13 +203,12 @@ export default class BlendContents extends Vue {
   @Prop() edit: boolean;
   created() {
     if (
-      this.option != 'MelangeYarn' &&
-              this.option != 'SlubYarn'  &&
-              this.option != 'MelangeFabric'  &&
-              this.option != 'SlubFabric'
-    ) 
+      this.option != "MelangeYarn" &&
+      this.option != "SlubYarn" &&
+      this.option != "MelangeFabric" &&
+      this.option != "SlubFabric"
+    )
       this.blendContentHeaders.splice(0, 1);
-    
   }
   addBlendContent() {
     this.response.blendContents.push({
@@ -225,7 +229,7 @@ export default class BlendContents extends Vue {
       this.response.blendContents[length - 1].melanSlubType = null;
   }
 
-   removeBlendContent(index: number) {
+  removeBlendContent(index: number) {
     this.response.blendContents.splice(index, 1);
   }
 

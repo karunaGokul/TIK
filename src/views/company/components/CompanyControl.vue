@@ -415,31 +415,26 @@
             multiple
             :disabled="edit === false"
           ></v-autocomplete>
-          <v-label
+          <div
             v-if="
               option != 'MelangeYarn' &&
               option != 'SlubYarn' &&
               option != 'MelangeFabric' &&
               option != 'SlubFabric'
             "
-            >Deniers:</v-label
           >
-          <v-autocomplete
-            v-model="response.deniers"
-            :items="response.availableDeniers"
-            outlined
-            dense
-            chips
-            small-chips
-            multiple
-            :disabled="edit === false"
-            v-if="
-              option != 'MelangeYarn' &&
-              option != 'SlubYarn' &&
-              option != 'MelangeFabric' &&
-              option != 'SlubFabric'
-            "
-          ></v-autocomplete>
+            <v-label> Deniers: </v-label>
+            <v-autocomplete
+              v-model="response.deniers"
+              :items="response.availableDeniers"
+              outlined
+              dense
+              chips
+              small-chips
+              multiple
+              :disabled="edit === false"
+            ></v-autocomplete>
+          </div>
           <v-label>Enter AVG Credit time you offer:</v-label>
           <v-text-field
             outlined
@@ -449,9 +444,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-row
-        justify="center"
-        class="py-5"
+      <div
         v-if="
           option === 'RegularFabric' ||
           option === 'SpecialFabric' ||
@@ -459,78 +452,75 @@
           option === 'SlubFabric'
         "
       >
-        <h2 class="font-weight-regular">
-          {{ response.structureLable }}
-        </h2>
-      </v-row>
-      <v-row
-        v-if="
-          option === 'RegularFabric' ||
-          option === 'SpecialFabric' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
-        "
-      >
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1">
-                Single Jersey
-              </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.fabricStructure.singleJersey"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1"> Interlock </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.fabricStructure.interlock"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1"> RIB </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.fabricStructure.rib"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-      </v-row>
+        <v-row justify="center" class="py-5">
+          <h2 class="font-weight-regular">
+            {{ response.structureLable }}
+          </h2>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title class="subtitle-1">
+                  Single Jersey
+                </v-toolbar-title>
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.fabricStructure.singleJersey"
+                :key="index"
+              >
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title class="subtitle-1">
+                  Interlock
+                </v-toolbar-title>
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.fabricStructure.interlock"
+                :key="index"
+              >
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title class="subtitle-1"> RIB </v-toolbar-title>
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.fabricStructure.rib"
+                :key="index"
+              >
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
+      </div>
       <v-row
         class="mt-12"
         v-if="
@@ -661,13 +651,14 @@ export default class CompanyControl extends Vue {
       this.option === "SlubYarn" ||
       this.option === "MelangeFabric" ||
       this.option === "SlubFabric"
-    )
-      {this.singleContentHeaders.splice(0, 0, {
+    ) {
+      this.singleContentHeaders.splice(0, 0, {
         text: "Colour Type",
-       value: "type",
+        value: "type",
         divider: true,
       });
-    this.singleContentHeaders.splice(2, 2);}
+      this.singleContentHeaders.splice(2, 2);
+    }
 
     this.intializeBlendContents();
     this.filterMelanSlubTypes();
@@ -704,7 +695,7 @@ export default class CompanyControl extends Vue {
   removeSingleContent(index: number) {
     this.response.singleContents.splice(index, 1);
   }
- 
+
   enableRadioGroup(option: string) {
     if (option === "tubular") {
       this.width = false;
@@ -725,7 +716,7 @@ export default class CompanyControl extends Vue {
     this.melanSlubTypesOptions = this.response.melanSlubTypes.filter(
       (item) => item.isSelected === true
     );
-  }  
+  }
 
   singleContentHeaders: any = [
     { text: "Content", value: "content", divider: true },

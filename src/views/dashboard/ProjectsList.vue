@@ -465,7 +465,7 @@
                               {{ row.status }}
                             </div>
                             <div v-else-if="row.status === 'NoShow'">
-                              {{ row.status }}
+                              {{ row.status }} <br />
                               {{ row.message }}
                             </div>
 
@@ -565,10 +565,11 @@
                                 </v-btn>
                               </div>
                             </div>
+
                             <div
                               v-if="
-                                row.status === 'Confirmed' &&
-                                  role === 'ApprovalAdmin'
+                                row.status === 'Confirmed' && (row.ratings === null) &&
+                                  (role === 'Approval Admin' || role === 'Quote InCharge' || role === 'Merchandiser')
                               "
                             >
                               Waiting for review
@@ -577,7 +578,7 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  row.status === 'Completed'
+                                  row.status === 'Completed' 
                               "
                               class="text-wrap ml-n7"
                             >
@@ -643,7 +644,7 @@
                               class="ml-n3"
                               v-else-if="row.status === 'NoShow'"
                             >
-                              {{ row.status }}
+                              {{ row.status }}<br />
                               {{ row.message }}
                             </span>
                             <!-- <div
@@ -695,7 +696,7 @@
                             </div>
                             <div
                               v-if="
-                                row.status === 'Confirmed' &&
+                                row.status === 'Confirmed' && (row.ratings === null) &&
                                   (role === 'Approval Admin' ||
                                     role === 'Quote InCharge')
                               "
@@ -704,8 +705,9 @@
                             </div>
                             <div
                               v-else-if="
-                                row.status === 'Confirmed' &&
-                                  row.ratings !== null
+                                (row.status === 'Confirmed' &&
+                                  row.ratings !== null) ||
+                                  row.status === 'Completed'
                               "
                               class="text-wrap ml-n7"
                             >

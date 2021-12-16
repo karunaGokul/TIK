@@ -19,11 +19,23 @@
     <v-card class="mx-7 mt-n3 px-6" elevation="8">
       <v-row>
         <v-col md="4">
-          <v-card-subtitle class="font-weight-black mt-4"
+          <v-card-subtitle class="font-weight-black mt-3 ml-5"
             >Hi {{ userResponse.fullName }}</v-card-subtitle
           >
         </v-col>
         <v-col md="3" offset-md="5">
+          <!-- <v-autocomplete
+            solo
+            dense
+            v-model="select"
+            :loading="loading"
+            :items="stages"
+            :search-input.sync="search"
+            label="Search"
+            cache-items
+            hide-no-data
+            hide-details
+          ></v-autocomplete> -->
           <v-text-field
             v-model="search"
             label="Search"
@@ -32,6 +44,7 @@
             outlined
             dense
             hide-details
+            v-if="searchToggle"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -117,12 +130,24 @@
                 projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
                 dark
                 class="teal"
                 @click="searchProject('Cancelled Projects')"
+                >mdi-close-network</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                no show projects
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('NoShow')"
                 >mdi-close-network</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -228,16 +253,18 @@ export default class Dashboard extends Vue {
   public stagesRequest: string = "";
   public dataTable: boolean = false;
   public dashboard: boolean = true;
+  public searchToggle: boolean = false;
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
-  
+ 
   created() {
     this.userInfo();
   }
   get category(): string {
     return this.$store.getters.category;
   }
+
 
   public searchProject(stages: string) {
     this.stagesRequest = stages;
@@ -247,6 +274,7 @@ export default class Dashboard extends Vue {
         this.response = response;
         this.dashboard = false;
         this.dataTable = true;
+        this.searchToggle = true;
       }
     );
   }
@@ -265,8 +293,6 @@ export default class Dashboard extends Vue {
     this.DashboardService.GetUserFullName().then(
       (response) => {
         this.userResponse = response;
-        // this.dashboard = false;
-        // this.dataTable = true;
       }
     );
   }

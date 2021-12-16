@@ -1,7 +1,7 @@
 <template>
   <div class="ml-4 mt-6">
     <v-row>
-      <v-select
+      <!-- <v-select
         :items="items"
         v-model="stages"
         :menu-props="{ offsetY: true }"
@@ -10,7 +10,7 @@
         dense
         hide-details
         @change="searchProject()"
-      ></v-select>
+      ></v-select> -->
 
       <!-- <v-spacer></v-spacer>
 

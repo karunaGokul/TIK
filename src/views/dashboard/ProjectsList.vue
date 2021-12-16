@@ -572,7 +572,7 @@
                                   (role === 'Approval Admin' || role === 'Quote InCharge' || role === 'Merchandiser')
                               "
                             >
-                              Waiting for review
+                              {{ row.status }}
                             </div>
                             <div
                               v-else-if="
@@ -701,7 +701,7 @@
                                     role === 'Quote InCharge')
                               "
                             >
-                              Waiting for review
+                              {{ row.status }}
                             </div>
                             <div
                               v-else-if="

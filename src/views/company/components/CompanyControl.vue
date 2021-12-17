@@ -1,190 +1,177 @@
 <template>
   <div>
     <v-card class="px-2 py-12" flat>
-      <v-row
-        justify="center"
-        class="py-5"
+      <div
         v-if="
           option === 'SpecialYarn' ||
           option === 'DyedYarn' ||
           option === 'SpecialFabric'
         "
       >
-        <h2 class="font-weight-regular">
-          {{ response.typeLable }}
-        </h2>
-      </v-row>
-      <v-row
-        v-if="
-          option === 'SpecialYarn' ||
-          option === 'DyedYarn' ||
-          option === 'SpecialFabric'
-        "
-      >
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title
-                class="subtitle-1"
-                v-if="option === 'SpecialYarn'"
-              >
-                Single SPL Yarns Type
-              </v-toolbar-title>
-              <v-toolbar-title
-                class="subtitle-1"
-                v-else-if="option === 'DyedYarn'"
-              >
-                Single Dyed Yarns Type
-              </v-toolbar-title>
-              <v-toolbar-title
-                class="subtitle-1"
-                v-else-if="option === 'SpecialFabric'"
-              >
-                Single SPL Fabrics Type
-              </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.singleSpecialDyedTypes"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title
-                class="subtitle-1"
-                v-if="option === 'SpecialYarn'"
-              >
-                Blend SPL Yarns Type
-              </v-toolbar-title>
-              <v-toolbar-title
-                class="subtitle-1"
-                v-else-if="option === 'DyedYarn'"
-              >
-                Blend Dyed Yarns Type
-              </v-toolbar-title>
-              <v-toolbar-title
-                class="subtitle-1"
-                v-else-if="option === 'SpecialFabric'"
-              >
-                Blend SPL Fabrics Type
-              </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.blendSpecialDyedTypes"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-      </v-row>
-      <v-row
-        justify="center"
-        class="py-4"
-        v-if="
-          option != 'MelangeYarn' &&
-          option != 'SlubYarn' &&
-          option != 'MelangeFabric' &&
-          option != 'SlubFabric'
-        "
-      >
-        <h2 class="font-weight-regular">
-          {{ response.contentLable }}
-        </h2>
-      </v-row>
-      <v-row
-        v-if="
-          option != 'MelangeYarn' &&
-          option != 'SlubYarn' &&
-          option != 'MelangeFabric' &&
-          option != 'SlubFabric'
-        "
-      >
-        <v-col cols="4">
-          <v-data-table
-            :headers="singleContentHeaders"
-            :items="response.singleContents"
-            class="elevation-1 table-striped"
-            hide-default-footer
-            disable-sort
-          >
-            <template v-slot:top>
+        <v-row justify="center" class="py-5">
+          <h2 class="font-weight-regular">
+            {{ response.typeLable }}
+          </h2>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-list flat>
               <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-                <v-toolbar-title class="subtitle-1"
-                  >Single Content</v-toolbar-title
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-if="option === 'SpecialYarn'"
                 >
+                  Single SPL Yarns Type
+                </v-toolbar-title>
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-else-if="option === 'DyedYarn'"
+                >
+                  Single Dyed Yarns Type
+                </v-toolbar-title>
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-else-if="option === 'SpecialFabric'"
+                >
+                  Single SPL Fabrics Type
+                </v-toolbar-title>
               </v-toolbar>
-            </template>
-            <template v-slot:[`header.action`]>
-              <v-btn
-                icon
-                x-small
-                outlined
-                @click="addSingleContent"
-                :disabled="edit === false"
+              <v-list-item
+                v-for="(item, index) in response.singleSpecialDyedTypes"
+                :key="index"
               >
-                <v-icon> mdi-plus</v-icon>
-              </v-btn>
-            </template>
-            <template v-slot:[`item.content`]="{ item }">
-              <v-select
-                v-model="item.content"
-                :items="item.contentOptions"
-                item-text="name"
-                return-object
-                class="mx-n2 mr-n6 text-caption mt-3"
-                placeholder="Select"
-                solo
-                :disabled="edit === false"
-              ></v-select>
-            </template>
-            <template v-slot:[`item.spun`]="{ item }">
-              <v-simple-checkbox
-                v-model="item.spun"
-                class="mx-n2"
-                :disabled="edit === false"
-              ></v-simple-checkbox>
-            </template>
-            <template v-slot:[`item.filaments`]="{ item }">
-              <v-simple-checkbox
-                v-model="item.filament"
-                class="mx-n6"
-                :disabled="edit === false"
-              ></v-simple-checkbox>
-            </template>
-            <template v-slot:[`item.action`]="{ index }">
-              <v-btn
-                icon
-                x-small
-                :disabled="edit === false"
-                @click="removeSingleContent(index)"
-                v-if="index > 0"
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-if="option === 'SpecialYarn'"
+                >
+                  Blend SPL Yarns Type
+                </v-toolbar-title>
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-else-if="option === 'DyedYarn'"
+                >
+                  Blend Dyed Yarns Type
+                </v-toolbar-title>
+                <v-toolbar-title
+                  class="subtitle-1"
+                  v-else-if="option === 'SpecialFabric'"
+                >
+                  Blend SPL Fabrics Type
+                </v-toolbar-title>
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.blendSpecialDyedTypes"
+                :key="index"
               >
-                <v-icon> mdi-close</v-icon>
-              </v-btn>
-            </template>
-          </v-data-table>
-        </v-col>
-        <v-col cols="8">
-          <BlendContents :response="response" :option="option" :edit="edit" />
-        </v-col>
-      </v-row>
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
+      </div>
+      <div
+        v-if="
+          option != 'MelangeYarn' &&
+          option != 'SlubYarn' &&
+          option != 'MelangeFabric' &&
+          option != 'SlubFabric'
+        "
+      >
+        <v-row justify="center" class="py-4">
+          <h2 class="font-weight-regular">
+            {{ response.contentLable }}
+          </h2>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-data-table
+              :headers="singleContentHeaders"
+              :items="response.singleContents"
+              class="elevation-1 table-striped"
+              hide-default-footer
+              disable-sort
+            >
+              <template v-slot:top>
+                <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                  <v-toolbar-title class="subtitle-1"
+                    >Single Content</v-toolbar-title
+                  >
+                </v-toolbar>
+              </template>
+              <template v-slot:[`header.action`]>
+                <v-btn
+                  icon
+                  x-small
+                  outlined
+                  @click="addSingleContent"
+                  :disabled="edit === false"
+                >
+                  <v-icon> mdi-plus</v-icon>
+                </v-btn>
+              </template>
+              <template v-slot:[`item.content`]="{ item }">
+                <v-select
+                  v-model="item.content"
+                  :items="item.contentOptions"
+                  item-text="name"
+                  return-object
+                  class="mx-n2 mr-n6 text-caption mt-3"
+                  placeholder="Select"
+                  solo
+                  :disabled="edit === false"
+                ></v-select>
+              </template>
+              <template v-slot:[`item.spun`]="{ item }">
+                <v-simple-checkbox
+                  v-model="item.spun"
+                  class="mx-n2"
+                  :disabled="edit === false"
+                ></v-simple-checkbox>
+              </template>
+              <template v-slot:[`item.filaments`]="{ item }">
+                <v-simple-checkbox
+                  v-model="item.filament"
+                  class="mx-n6"
+                  :disabled="edit === false"
+                ></v-simple-checkbox>
+              </template>
+              <template v-slot:[`item.action`]="{ index }">
+                <v-btn
+                  icon
+                  x-small
+                  :disabled="edit === false"
+                  @click="removeSingleContent(index)"
+                  v-if="index > 0"
+                >
+                  <v-icon> mdi-close</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
+          </v-col>
+          <v-col cols="8">
+            <BlendContents :response="response" :option="option" :edit="edit" />
+          </v-col>
+        </v-row>
+      </div>
       <v-row
         v-if="
           option === 'MelangeYarn' ||
@@ -297,9 +284,7 @@
           </v-data-table>
         </v-col>
       </v-row>
-      <v-row
-        justify="center"
-        class="py-4"
+      <div
         v-if="
           option === 'MelangeYarn' ||
           option === 'SlubYarn' ||
@@ -307,34 +292,32 @@
           option === 'SlubFabric'
         "
       >
-        <h2
-          class="font-weight-regular"
-          v-if="option === 'MelangeYarn' || option === 'MelangeFabric'"
-        >
-          Choose the blend content Yarns you offer in Melange
-        </h2>
-        <h2
-          class="font-weight-regular"
-          v-else-if="option === 'SlubYarn' || option === 'SlubFabric'"
-        >
-          Choose the blend content Yarns you offer in Slub
-        </h2>
-      </v-row>
-      <v-row
-        v-if="
-          option === 'MelangeYarn' ||
-          option === 'SlubYarn' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
-        "
-      >
-        <v-col cols="12">
-          <BlendContents :response="response" :option="option" :edit="edit" />
-        </v-col>
-      </v-row>
-      <v-row
-        justify="center"
-        class="py-5"
+        <v-row justify="center" class="py-4">
+          <h2
+            class="font-weight-regular"
+            v-if="option === 'MelangeYarn' || option === 'MelangeFabric'"
+          >
+            Choose the blend content Yarns you offer in Melange
+          </h2>
+          <h2
+            class="font-weight-regular"
+            v-else-if="option === 'SlubYarn' || option === 'SlubFabric'"
+          >
+            Choose the blend content Yarns you offer in Slub
+          </h2>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <BlendContents
+              :response="response"
+              :melanSlubTypesOptions="melanSlubTypesOptions"
+              :option="option"
+              :edit="edit"
+            />
+          </v-col>
+        </v-row>
+      </div>
+      <div
         v-if="
           option != 'MelangeYarn' &&
           option != 'SlubYarn' &&
@@ -342,61 +325,56 @@
           option != 'SlubFabric'
         "
       >
-        <h2 class="font-weight-regular">
-          {{ response.qualityLable }}
-        </h2>
-      </v-row>
-      <v-row
-        v-if="
-          option != 'MelangeYarn' &&
-          option != 'SlubYarn' &&
-          option != 'MelangeFabric' &&
-          option != 'SlubFabric'
-        "
-      >
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1">
-                Single Quality
-              </v-toolbar-title>
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.singleQualities"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="4">
-          <v-list flat>
-            <v-toolbar flat color="#c2e2e2" dense class="mb-2">
-              <v-toolbar-title class="subtitle-1"
-                >Blend Quality</v-toolbar-title
+        <v-row justify="center" class="py-5">
+          <h2 class="font-weight-regular">
+            {{ response.qualityLable }}
+          </h2>
+        </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title class="subtitle-1">
+                  Single Quality
+                </v-toolbar-title>
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.singleQualities"
+                :key="index"
               >
-            </v-toolbar>
-            <v-list-item
-              v-for="(item, index) in response.blendQualities"
-              :key="index"
-            >
-              <v-list-item-content>{{ item.name }}</v-list-item-content>
-              <v-list-item-action>
-                <v-checkbox
-                  v-model="item.isSelected"
-                  :disabled="edit === false"
-                ></v-checkbox>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-col>
-      </v-row>
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+          <v-col cols="4">
+            <v-list flat>
+              <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+                <v-toolbar-title class="subtitle-1"
+                  >Blend Quality</v-toolbar-title
+                >
+              </v-toolbar>
+              <v-list-item
+                v-for="(item, index) in response.blendQualities"
+                :key="index"
+              >
+                <v-list-item-content>{{ item.name }}</v-list-item-content>
+                <v-list-item-action>
+                  <v-checkbox
+                    v-model="item.isSelected"
+                    :disabled="edit === false"
+                  ></v-checkbox>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
+      </div>
       <v-row justify="center" class="py-5">
         <h2 class="font-weight-regular">
           {{ response.countLable }}
@@ -642,8 +620,8 @@ export default class CompanyControl extends Vue {
   @Prop() option: string;
   @Prop() edit: boolean;
   public melanSlubTypesOptions: Array<contentModel> = [];
-  public tubular: boolean = false;
-  public width: boolean = false;
+  public tubular: boolean=false ;
+  public width: boolean=false;
 
   created() {
     if (
@@ -659,12 +637,13 @@ export default class CompanyControl extends Vue {
       });
       this.singleContentHeaders.splice(2, 2);
     }
-
     this.intializeBlendContents();
     this.filterMelanSlubTypes();
+    // this.initializetubular();
   }
   updated() {
     this.intializeBlendContents();
+    // this.initializetubular();
   }
   intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
@@ -674,6 +653,22 @@ export default class CompanyControl extends Vue {
       });
     });
   }
+  // initializetubular() {
+  //   if (
+  //     this.response.fabricStructure.openWidth.gg ||
+  //     this.response.fabricStructure.openWidth.dia ||
+  //     this.response.fabricStructure.openWidth.allFeeder ||
+  //     this.response.fabricStructure.openWidth.alternateFeeder
+  //   )this.width = true;
+      
+  //   if (
+  //     this.response.fabricStructure.tubular.gg ||
+  //     this.response.fabricStructure.tubular.dia ||
+  //     this.response.fabricStructure.tubular.allFeeder ||
+  //     this.response.fabricStructure.tubular.alternateFeeder
+  //   )
+  //     this.tubular = true;
+  // }
   addSingleContent() {
     this.response.singleContents.push({
       ...JSON.parse(JSON.stringify(this.response.singleContents[0])),
@@ -697,6 +692,7 @@ export default class CompanyControl extends Vue {
   }
 
   enableRadioGroup(option: string) {
+
     if (option === "tubular") {
       this.width = false;
       this.response.fabricStructure.openWidth.gg = null;

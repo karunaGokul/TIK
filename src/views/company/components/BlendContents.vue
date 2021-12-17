@@ -34,7 +34,7 @@
       >
         <v-select
           v-model="item.melanSlubType"
-          :items="item.melanSlubTypeOptions"
+          :items="melanSlubTypesOptions"
           item-text="name"
           return-object
           placeholder="Select"
@@ -193,7 +193,7 @@
 </template>
 
 <script lang="ts">
-import { ProductDetailModel } from "@/model";
+import { contentModel, ProductDetailModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -201,6 +201,7 @@ export default class BlendContents extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
+  @Prop() melanSlubTypesOptions:Array<contentModel> = [];
   created() {
     if (
       this.option != "MelangeYarn" &&

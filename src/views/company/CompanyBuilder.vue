@@ -9,7 +9,7 @@
         >Product Details
       </router-link>
       <v-icon large> mdi-chevron-right</v-icon>
-      Yarn
+      Yarn (or) Fabric
     </div>
     <div align="right" v-if="role === 'MasterAdmin' && category != 'Company'">
       <v-icon large color="primary" class="mr-10" @click="edit = !edit">
@@ -206,7 +206,7 @@ export default class CompanyBuilder extends Vue {
   }
 
   public removeOtherOption(data: ProductDetailModel, option: string) {
-    if (option === "SpecialYarn" || option === "DyedYarn") {
+    if (option === "SpecialYarn" || option === "DyedYarn"||option === "SpecialFabric") {
       data.singleSpecialDyedTypes = data.singleSpecialDyedTypes.filter(
         (item) => item.isSelected === true
       );

@@ -193,7 +193,7 @@
                 advertise in tik
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="role === 'Master Admin'">
+            <v-col cols="12" sm="4" md="2" v-if="role === 'MasterAdmin'">
               <router-link
                 :to="{ name: 'CreateEmployee', params: { Id: 'Create' } }"
                 tag="button"

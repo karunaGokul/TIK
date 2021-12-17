@@ -12,9 +12,9 @@
         @change="searchProject()"
       ></v-select> -->
 
-      <!-- <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer> -->
 
-      <v-text-field
+      <!-- <v-text-field
         v-model="search"
         label="Search"
         append-icon="mdi-magnify"
@@ -24,12 +24,13 @@
         hide-details
       ></v-text-field> -->
     </v-row>
-    <!-- <v-row>
-      <v-tabs class="">
-        <v-tab>my project</v-tab>
-        <v-tab>all project</v-tab>
+    <v-row>
+      <v-tabs v-if="tabValue">
+        <v-tab @click="searchProject('false')">all project</v-tab>
+        <v-tab @click="searchProject('true')">my project</v-tab>
+        
       </v-tabs>
-    </v-row> -->
+    </v-row>
     <v-row>
       <v-col col="12" md="12">
         <v-data-table
@@ -108,24 +109,20 @@ import {
 })
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
-  @Prop() myproject: boolean;
   @Prop() response: Array<DashboardModel>;
   @Prop() search: string;
+  @Prop() stagesMyProject: string;
+  @Prop() stagesRequest: string;
+  @Prop () tabValue: boolean;
+
   public searchRequest = new ProjectSearchModel();
-  // public search: string = "";
   public stages: string = "";
   public loading: boolean = false;
   public values: string = "";
   public autocomplete: boolean = false;
   public request = new DashboardRequestModel();
-  // public response: Array<DashboardModel> = [];
 
   created() {
-    // if (this.myproject) {
-    //   this.getMyProjectList();
-    // } else {
-    //   this.getProjectList();
-    // }
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -171,11 +168,13 @@ export default class DashboardProjectList extends Vue {
     return this.$store.getters.role;
   }
 
-  public searchProject() {
-    this.searchRequest.myproject = this.myproject;
-    this.searchRequest.stages = this.stages;
+  public searchProject(myproject: boolean) {
+    // this.searchRequest.myproject = this.myproject;
+    this.searchRequest.myproject = myproject;
+      this.searchRequest.stages = this.stagesMyProject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
+        this.loading = false;
         this.response = response;
       }
     );

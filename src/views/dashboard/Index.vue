@@ -24,18 +24,6 @@
           >
         </v-col>
         <v-col md="3" offset-md="5">
-          <!-- <v-autocomplete
-            solo
-            dense
-            v-model="select"
-            :loading="loading"
-            :items="stages"
-            :search-input.sync="search"
-            label="Search"
-            cache-items
-            hide-no-data
-            hide-details
-          ></v-autocomplete> -->
           <v-text-field
             v-model="search"
             label="Search"
@@ -143,11 +131,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('NoShow')"
+              <v-icon x-large dark class="teal" @click="searchProject('NoShow')"
                 >mdi-close-network</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -188,8 +172,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal"
-                @click="pendingReview()"
+              <v-icon x-large dark class="teal" @click="pendingReview()"
                 >mdi-card-account-details-star</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -232,7 +215,14 @@
             </v-col>
           </v-row>
         </div>
-        <DashboardProjectList v-if="dataTable" :response="response" :search="search" />
+        <DashboardProjectList
+          v-if="dataTable"
+          :response="response"
+          :search="search"
+          :stagesRequest="stagesRequest"
+          :stagesMyProject="stagesMyProject"
+          :tabValue="tabValue"
+        />
       </v-container>
     </v-card>
   </div>
@@ -257,7 +247,9 @@ export default class Dashboard extends Vue {
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
- 
+  public stagesMyProject: string = "";
+  public tabValue: boolean;
+
   created() {
     this.userInfo();
   }
@@ -271,7 +263,13 @@ export default class Dashboard extends Vue {
   }
 
   public searchProject(stages: string) {
+    if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
+      this.tabValue = true;
+    } else {      
+      this.tabValue = false;
+    }
     this.stagesRequest = stages;
+    this.stagesMyProject = stages;
     this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
@@ -284,21 +282,18 @@ export default class Dashboard extends Vue {
   }
 
   public pendingReview() {
-    this.DashboardService.PendingReview().then(
-      (response) => {
-        this.response = response;
-        this.dashboard = false;
-        this.dataTable = true;
-      }
-    );
+    this.tabValue = false;
+    this.DashboardService.PendingReview().then((response) => {
+      this.response = response;
+      this.dashboard = false;
+      this.dataTable = true;
+    });
   }
 
   public userInfo() {
-    this.DashboardService.GetUserFullName().then(
-      (response) => {
-        this.userResponse = response;
-      }
-    );
+    this.DashboardService.GetUserFullName().then((response) => {
+      this.userResponse = response;
+    });
   }
 }
 </script>

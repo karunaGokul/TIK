@@ -641,7 +641,6 @@
                               {{ row.status }}
                             </span>
                             <span
-                              class="ml-n3"
                               v-else-if="row.status === 'NoShow'"
                             >
                               {{ row.status }}<br />

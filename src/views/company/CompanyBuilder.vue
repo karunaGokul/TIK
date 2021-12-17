@@ -227,7 +227,8 @@ export default class CompanyBuilder extends Vue {
       data.singleContents.forEach((b) => delete b.melanSlubTypeOptions);
       data.blendContents.forEach((b) => delete b.melanSlubTypeOptions);
     }
-    if (option != "MelangeYarn" && option != "SlubYarn") {
+    if (option != "MelangeYarn" && option != "SlubYarn"&& option != "MelangeFabric" &&
+      option != "SlubFabric") {
       data.singleContents.forEach((b) => {
         if (b.spun) {
           b.spun = "Spun";
@@ -279,6 +280,7 @@ export default class CompanyBuilder extends Vue {
     delete data.contentLable;
     delete data.qualityLable;
     delete data.typeLable;
+
    
   }
 

@@ -210,7 +210,7 @@
                 advertise in tik
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2">
+            <v-col cols="12" sm="4" md="2" v-if="role === 'Master Admin'">
               <router-link
                 :to="{ name: 'CreateEmployee', params: { Id: 'Create' } }"
                 tag="button"
@@ -261,10 +261,14 @@ export default class Dashboard extends Vue {
   created() {
     this.userInfo();
   }
+
   get category(): string {
     return this.$store.getters.category;
   }
 
+  get role(): string {
+    return this.$store.getters.role;
+  }
 
   public searchProject(stages: string) {
     this.stagesRequest = stages;

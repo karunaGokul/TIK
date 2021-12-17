@@ -24,6 +24,12 @@
         hide-details
       ></v-text-field> -->
     </v-row>
+    <!-- <v-row>
+      <v-tabs class="">
+        <v-tab>my project</v-tab>
+        <v-tab>all project</v-tab>
+      </v-tabs>
+    </v-row> -->
     <v-row>
       <v-col col="12" md="12">
         <v-data-table
@@ -217,3 +223,15 @@ export default class DashboardProjectList extends Vue {
   ];
 }
 </script>
+
+<style >
+tbody tr:nth-of-type(even) {
+  background-color: #ecf7f6;
+}
+tr:nth-of-type(even):hover {
+  background-color: #e0f2f1 !important;
+}
+tr:nth-of-type(odd):hover {
+  background-color: transparent !important;
+}
+</style>

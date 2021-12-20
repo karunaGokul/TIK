@@ -154,7 +154,7 @@
               height="250"
             >
               <Divider />
-              <router-link to="/company" class="text-decoration-none">
+              <router-link to="/mill" class="text-decoration-none">
                 <v-card-title class="white--text"
                   >Yarn (or) Fabric Update</v-card-title
                 >
@@ -172,7 +172,9 @@
               height="250"
             >
               <Divider />
-              <v-card-title class="white--text"> Brochures </v-card-title>
+              <router-link to="/knitting" class="text-decoration-none">
+                <v-card-title class="white--text"> Brochures </v-card-title>
+              </router-link>
             </v-img>
           </v-card>
         </v-col>

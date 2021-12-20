@@ -201,7 +201,8 @@ export default class BlendContents extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
-  @Prop() melanSlubTypesOptions:Array<contentModel> = [];
+  @Prop() melanSlubTypesOptions:Array<contentModel> ;
+  
   created() {
     if (
       this.option != "MelangeYarn" &&
@@ -210,6 +211,7 @@ export default class BlendContents extends Vue {
       this.option != "SlubFabric"
     )
       this.blendContentHeaders.splice(0, 1);
+
   }
   addBlendContent() {
     this.response.blendContents.push({

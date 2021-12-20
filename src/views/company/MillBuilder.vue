@@ -32,21 +32,21 @@
                   {{ item.tab }}
                 </v-tab>
                 <v-tab-item>
-                  <CompanyControl
+                  <MillControl
                     :response="response.yarn.regularYarn"
                     option="RegularYarn"
                     :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
-                  <CompanyControl
+                  <MillControl
                     :response="response.yarn.specialYarn"
                     option="SpecialYarn"
                     :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
-                  <CompanyControl
+                  <MillControl
                     :response="response.yarn.dyedYarn"
                     option="DyedYarn"
                     :edit="edit"
@@ -58,14 +58,14 @@
                       {{ item.tab }}
                     </v-tab>
                     <v-tab-item>
-                      <CompanyControl
+                      <MillControl
                         :response="response.yarn.melangeSlubYarn.melange"
                         option="MelangeYarn"
                         :edit="edit"
                       />
                     </v-tab-item>
                     <v-tab-item>
-                      <CompanyControl
+                      <MillControl
                         :response="response.yarn.melangeSlubYarn.slub"
                         option="SlubYarn"
                         :edit="edit"
@@ -81,14 +81,14 @@
                   {{ item.tab }}
                 </v-tab>
                 <v-tab-item>
-                  <CompanyControl
+                  <MillControl
                     :response="response.fabric.regularFabric"
                     option="RegularFabric"
                     :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
-                  <CompanyControl
+                  <MillControl
                     :response="response.fabric.specialFabric"
                     option="SpecialFabric"
                     :edit="edit"
@@ -101,14 +101,14 @@
                       {{ item.tab }}
                     </v-tab>
                     <v-tab-item>
-                      <CompanyControl
+                      <MillControl
                         :response="response.fabric.melangeSlubFabric.melange"
                         option="MelangeFabric"
                         :edit="edit"
                       />
                     </v-tab-item>
                     <v-tab-item>
-                      <CompanyControl
+                      <MillControl
                         :response="response.fabric.melangeSlubFabric.slub"
                         option="SlubFabric"
                         :edit="edit"
@@ -149,12 +149,12 @@
 import { CompanyProfileModel, ProductDetailModel } from "@/model";
 import { IProfileService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
-import CompanyControl from "./components/CompanyControl.vue";
+import MillControl from "./components/MillControl.vue";
 
 @Component({
-  components: { CompanyControl },
+  components: { MillControl },
 })
-export default class CompanyBuilder extends Vue {
+export default class MillBuilder extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
   public response = new CompanyProfileModel();
   public millData = new CompanyProfileModel();

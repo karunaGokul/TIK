@@ -105,6 +105,7 @@
           <v-col cols="4">
             <SingleContents
               :response="response"
+              :melanSlubTypesOptions="melanSlubTypesOptions"
               :option="option"
               :edit="edit"
             />
@@ -159,7 +160,12 @@
           </v-list>
         </v-col>
         <v-col cols="6">
-          <SingleContents :response="response" :option="option" :edit="edit" />
+          <SingleContents
+            :response="response"
+            :melanSlubTypesOptions="melanSlubTypesOptions"
+            :option="option"
+            :edit="edit"
+          />
         </v-col>
       </v-row>
       <div
@@ -465,10 +471,13 @@ export default class MillControl extends Vue {
     this.filterMelanSlubTypes();
     this.initializetubular();
   }
+
   updated() {
     this.intializeBlendContents();
     this.initializetubular();
+    this.filterMelanSlubTypes();
   }
+
   intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {
@@ -501,7 +510,7 @@ export default class MillControl extends Vue {
       this.response.fabricStructure.openWidth.dia = null;
       this.response.fabricStructure.openWidth.allFeeder = false;
       this.response.fabricStructure.openWidth.alternateFeeder = false;
-      this.width = false;      
+      this.width = false;
     } else if (option === "width") {
       this.response.fabricStructure.tubular.gg = null;
       this.response.fabricStructure.tubular.dia = null;

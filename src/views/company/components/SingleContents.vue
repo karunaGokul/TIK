@@ -99,12 +99,13 @@
 </template>
 
 <script lang="ts">
-import { ProductDetailModel } from "@/model";
+import { contentModel, ProductDetailModel } from "@/model";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class SingleContents extends Vue {
   @Prop() response: ProductDetailModel;
+  @Prop() melanSlubTypesOptions:Array<contentModel> ;
   @Prop() option: string;
   @Prop() edit: boolean;
 

@@ -87,6 +87,18 @@
                 approved bids
               </v-card-subtitle>
             </v-col>
+            <!-- <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Awaiting Authentication')"
+                >mdi-clock-alert-outline</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                pending authentication
+              </v-card-subtitle>
+            </v-col> -->
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-icon
                 x-large
@@ -211,6 +223,20 @@
               </router-link>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 contact tik support
+              </v-card-subtitle>
+            </v-col>
+          </v-row>
+          <v-row class="mt-n5" v-if="category === 'Company'">
+            <v-col cols="12" sm="4" md="2" >
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Awaiting Authentication')"
+                >mdi-clock-alert-outline</v-icon
+              >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                pending<br /> authentication
               </v-card-subtitle>
             </v-col>
           </v-row>

@@ -26,9 +26,8 @@
     </v-row>
     <v-row>
       <v-tabs v-if="tabValue">
-        <v-tab @click="searchProject('false')">all project</v-tab>
         <v-tab @click="searchProject('true')">my project</v-tab>
-        
+        <v-tab @click="searchProject('false')">all project</v-tab>
       </v-tabs>
     </v-row>
     <v-row>
@@ -77,19 +76,6 @@
             </router-link>
           </template>
         </v-data-table>
-        <!-- <v-card>
-          <v-autocomplete
-            v-if="autocomplete"
-            v-model="values"
-            :items="items"
-            outlined
-            dense
-            chips
-            small-chips
-            label="Outlined"
-            multiple
-          ></v-autocomplete>
-        </v-card> -->
       </v-col>
     </v-row>
   </div>
@@ -123,6 +109,10 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
+    if(this.role !== 'MasterAdmin') {
+      this.searchProject(true);
+    }
+    
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {

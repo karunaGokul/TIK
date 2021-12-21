@@ -40,136 +40,150 @@
         <div v-if="dashboard">
           <v-row class="mb-5">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('New Projects')"
-                >mdi-clipboard-minus-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('New Projects')"
+                  >mdi-clipboard-minus-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 new projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Initiated')"
-                >mdi-clipboard-minus-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Initiated')"
+                  >mdi-clipboard-minus-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 new projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Bid Received')"
-                >mdi-human-dolly</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Bid Received')"
+                  >mdi-human-dolly</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 bids received
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Approved')"
-                >mdi-human-dolly</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Approved')"
+                  >mdi-human-dolly</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 approved bids
               </v-card-subtitle>
             </v-col>
-            <!-- <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Awaiting Authentication')"
-                >mdi-clock-alert-outline</v-icon
-              >
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                pending authentication
-              </v-card-subtitle>
-            </v-col> -->
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Approval Pending')"
-                >mdi-clock-alert-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Approval Pending')"
+                  >mdi-clock-alert-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 approval pending
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Awaiting Approval')"
-                >mdi-clock-alert-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Awaiting Approval')"
+                  >mdi-clock-alert-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 approval pending
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal">mdi-clipboard-remove</v-icon>
+              <v-badge>
+                <v-icon x-large dark class="teal">mdi-clipboard-remove</v-icon>
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no response<br />
                 projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Cancelled Projects')"
-                >mdi-close-network</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Cancelled Projects')"
+                  >mdi-close-network</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no show projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon x-large dark class="teal" @click="searchProject('NoShow')"
-                >mdi-close-network</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('NoShow')"
+                  >mdi-close-network</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no show projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Completed Projects')"
-                >mdi-clipboard-check-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Completed Projects')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Completed')"
-                >mdi-clipboard-check-outline</v-icon
-              >
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Completed')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 completed <br />projects
               </v-card-subtitle>
@@ -177,16 +191,20 @@
           </v-row>
           <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
+              <v-badge>
+                <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 communication<br />
                 received
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal" @click="pendingReview()"
-                >mdi-card-account-details-star</v-icon
-              >
+              <v-badge>
+                <v-icon x-large dark class="teal" @click="pendingReview()"
+                  >mdi-card-account-details-star</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 project reviews
               </v-card-subtitle>
@@ -227,16 +245,19 @@
             </v-col>
           </v-row>
           <v-row class="mt-n5" v-if="category === 'Company'">
-            <v-col cols="12" sm="4" md="2" >
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Awaiting Authentication')"
-                >mdi-clock-alert-outline</v-icon
-              >
+            <v-col cols="12" sm="4" md="2">
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Awaiting Authentication')"
+                  >mdi-clock-alert-outline</v-icon
+                >
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                pending<br /> authentication
+                pending<br />
+                authentication
               </v-card-subtitle>
             </v-col>
           </v-row>
@@ -274,10 +295,16 @@ export default class Dashboard extends Vue {
   public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
   public stagesMyProject: string = "";
-  public tabValue: boolean;
+  public tabValue: boolean = false;
 
   created() {
     this.userInfo();
+
+    if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
+      this.tabValue = true;
+    } else {
+      this.tabValue = false;
+    }
   }
 
   get category(): string {
@@ -289,14 +316,10 @@ export default class Dashboard extends Vue {
   }
 
   public searchProject(stages: string) {
-    if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
-      this.tabValue = true;
-    } else {      
-      this.tabValue = false;
-    }
     this.stagesRequest = stages;
     this.stagesMyProject = stages;
     this.searchRequest.stages = this.stagesRequest;
+    // this.searchRequest.myproject = this.myproject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.response = response;

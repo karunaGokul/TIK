@@ -322,7 +322,10 @@ export default class Dashboard extends Vue {
     // this.searchRequest.myproject = this.myproject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
-        this.response = response;
+        if (this.role === "MasterAdmin") {
+          this.response = response;
+        }
+
         this.dashboard = false;
         this.dataTable = true;
         this.searchToggle = true;

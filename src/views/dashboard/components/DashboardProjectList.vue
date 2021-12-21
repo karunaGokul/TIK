@@ -47,7 +47,12 @@
           </template> -->
 
           <template v-slot:[`item.Status`]="{ item }">
-            <v-badge dot v-if="item.Status === 'Green'" color="green" class="ml-4">
+            <v-badge
+              dot
+              v-if="item.Status === 'Green'"
+              color="green"
+              class="ml-4"
+            >
             </v-badge>
             <v-badge
               dot
@@ -99,7 +104,7 @@ export default class DashboardProjectList extends Vue {
   @Prop() search: string;
   @Prop() stagesMyProject: string;
   @Prop() stagesRequest: string;
-  @Prop () tabValue: boolean;
+  @Prop() tabValue: boolean;
 
   public searchRequest = new ProjectSearchModel();
   public stages: string = "";
@@ -109,10 +114,10 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-    if(this.role !== 'MasterAdmin') {
+    if (this.role !== "MasterAdmin") {
       this.searchProject(true);
     }
-    
+
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -161,7 +166,7 @@ export default class DashboardProjectList extends Vue {
   public searchProject(myproject: boolean) {
     // this.searchRequest.myproject = this.myproject;
     this.searchRequest.myproject = myproject;
-      this.searchRequest.stages = this.stagesMyProject;
+    this.searchRequest.stages = this.stagesMyProject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.loading = false;
@@ -213,7 +218,7 @@ export default class DashboardProjectList extends Vue {
 }
 </script>
 
-<style >
+<style>
 tbody tr:nth-of-type(even) {
   background-color: #ecf7f6;
 }

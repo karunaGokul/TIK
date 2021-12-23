@@ -101,6 +101,21 @@
                   x-large
                   dark
                   class="teal"
+                  @click="searchProject('Awaiting Authentication')"
+                  >mdi-clock-alert-outline</v-icon
+                >
+              </v-badge>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                pending<br />
+                authentication
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
                   @click="searchProject('Approval Pending')"
                   >mdi-clock-alert-outline</v-icon
                 >
@@ -160,6 +175,8 @@
                 no show projects
               </v-card-subtitle>
             </v-col>
+          </v-row>
+          <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-badge>
                 <v-icon
@@ -188,8 +205,6 @@
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
-          </v-row>
-          <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2">
               <v-badge>
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
@@ -223,6 +238,14 @@
                 advertise in tik
               </v-card-subtitle>
             </v-col>
+            <v-col cols="12" sm="4" md="2">
+              <router-link to="/contactUs" class="text-decoration-none">
+                <v-icon x-large dark class="teal">mdi-phone-check</v-icon>
+              </router-link>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                contact tik support
+              </v-card-subtitle>
+            </v-col>
             <v-col cols="12" sm="4" md="2" v-if="role === 'MasterAdmin'">
               <router-link
                 :to="{ name: 'CreateEmployee', params: { Id: 'Create' } }"
@@ -233,31 +256,6 @@
               </router-link>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 create users
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <router-link to="/contactUs" class="text-decoration-none">
-                <v-icon x-large dark class="teal">mdi-phone-check</v-icon>
-              </router-link>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                contact tik support
-              </v-card-subtitle>
-            </v-col>
-          </v-row>
-          <v-row class="mt-n5" v-if="category === 'Company'">
-            <v-col cols="12" sm="4" md="2">
-              <v-badge>
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Awaiting Authentication')"
-                  >mdi-clock-alert-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                pending<br />
-                authentication
               </v-card-subtitle>
             </v-col>
           </v-row>
@@ -325,7 +323,6 @@ export default class Dashboard extends Vue {
         if (this.role === "MasterAdmin") {
           this.response = response;
         }
-
         this.dashboard = false;
         this.dataTable = true;
         this.searchToggle = true;

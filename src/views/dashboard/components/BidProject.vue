@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-form ref="form">
+    <v-form ref="form" name="forms" onsubmit="return validation()">
       <v-card class="px-6" elevation="8" style="overflow: hidden">
         <v-card-title class="mb-n2">
           Bid Project
@@ -17,6 +17,7 @@
               <v-text-field
                 outlined
                 dense
+                name="numbers"
                 label="Enter Price per KG"
                 v-model="bidRequest.price"
                 :rules="priceRules"
@@ -113,13 +114,26 @@ export default class BidProject extends Vue {
   public bidRequest = new BidRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
-  // public isValid: boolean = true;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
 
   created() {
     this.GetApprovalAdmin();
   }
+
+  // public validation() {
+  //   var n = document.forms.numbers.value;
+  //   if (isNaN(n)) {
+  //     // document.getElementById("numberText").innerHTML =
+  //     //   "Please enter Numeric value";
+  //     console.log("enter number alone")
+  //     return false;
+  //   } else {
+  //     // document.getElementById("numberText").innerHTML =
+  //     //   "Numeric value is: " + n;
+  //     return true;
+  //   }
+  // }
 
   public BidProject() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {

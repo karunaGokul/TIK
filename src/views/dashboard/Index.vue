@@ -175,6 +175,20 @@
                 no show projects
               </v-card-subtitle>
             </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
+              <v-badge>
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Completed')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              </v-badge>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                completed <br />projects
+              </v-card-subtitle>
+            </v-col>
           </v-row>
           <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
@@ -191,20 +205,7 @@
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge>
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Completed')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                completed <br />projects
-              </v-card-subtitle>
-            </v-col>
+            
             <v-col cols="12" sm="4" md="2">
               <v-badge>
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>

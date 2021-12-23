@@ -153,7 +153,7 @@
                 <v-checkbox
                   v-model="item.isSelected"
                   :disabled="edit === false"
-                  @change="filterMelanSlubTypes()"
+                  @change="updateMelanSlubTypes()"
                 ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
@@ -341,16 +341,15 @@
             />
             <v-label> Tubular </v-label>
           </v-row>
-          <!-- <div>
+          <div>
             <Feeder
               :response="response.fabricStructure.tubular"
               :option="option"
-              :tubular="tubular"
-               :width="width"
+              :enable="tubular"
               :edit="edit"
             />
-          </div> -->
-          <v-row class="pt-6">
+          </div>
+          <!-- <v-row class="pt-6">
             <v-label>GG:</v-label>
             <v-text-field
               class="mx-2"
@@ -384,7 +383,7 @@
               :disabled="edit === false || tubular === false"
             ></v-checkbox>
             <v-label>Alternate Feeder</v-label>
-          </v-row>
+          </v-row> -->
         </v-col>
         <v-col cols="4" class="mx-3">
           <v-row>
@@ -397,16 +396,15 @@
             />
             <v-label>OpenWidth</v-label>
           </v-row>
-          <!-- <div>
+          <div>
             <Feeder
               :response="response.fabricStructure.openWidth"
               :option="option"
-              :tubular="tubular"
-              :width="width"
+              :enable="width"
               :edit="edit"
             />
-          </div> -->
-          <v-row class="pt-6">
+          </div>
+          <!-- <v-row class="pt-6">
             <v-label>GG:</v-label>
             <v-text-field
               class="mx-2"
@@ -440,7 +438,7 @@
               :disabled="edit === false || width === false"
             ></v-checkbox>
             <v-label>Alternate Feeder</v-label>
-          </v-row>
+          </v-row> -->
         </v-col>
       </v-row>
     </v-card>
@@ -467,15 +465,25 @@ export default class MillControl extends Vue {
   public width: boolean = false;
 
   created() {
+    if (
+      this.option === "MelangeYarn" ||
+      this.option === "SlubYarn" ||
+      this.option === "MelangeFabric" ||
+      this.option === "SlubFabric"
+    )
+      this.updateMelanSlubTypes();
+    if (
+      this.option === "RegularFabric" ||
+      this.option === "SpecialFabric" ||
+      this.option === "MelangeFabric" ||
+      this.option === "SlubFabric"
+    )
+      this.initializetubular();
     this.intializeBlendContents();
-    this.filterMelanSlubTypes();
-    this.initializetubular();
   }
 
   updated() {
     this.intializeBlendContents();
-    this.initializetubular();
-    this.filterMelanSlubTypes();
   }
 
   intializeBlendContents() {
@@ -488,16 +496,15 @@ export default class MillControl extends Vue {
   }
   initializetubular() {
     if (
-      this.response.fabricStructure.openWidth.gg ||
-      this.response.fabricStructure.openWidth.dia ||
+      this.response.fabricStructure.openWidth.gg != null ||
+      this.response.fabricStructure.openWidth.dia != null ||
       this.response.fabricStructure.openWidth.allFeeder ||
       this.response.fabricStructure.openWidth.alternateFeeder
     )
       this.width = null;
-
-    if (
-      this.response.fabricStructure.tubular.gg ||
-      this.response.fabricStructure.tubular.dia ||
+    else if (
+      this.response.fabricStructure.tubular.gg != null ||
+      this.response.fabricStructure.tubular.dia != null ||
       this.response.fabricStructure.tubular.allFeeder ||
       this.response.fabricStructure.tubular.alternateFeeder
     )
@@ -520,7 +527,7 @@ export default class MillControl extends Vue {
     }
   }
 
-  filterMelanSlubTypes() {
+  updateMelanSlubTypes() {
     this.melanSlubTypesOptions = this.response.melanSlubTypes.filter(
       (item) => item.isSelected === true
     );

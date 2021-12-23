@@ -106,7 +106,7 @@
 
     <v-sheet class="mx-auto" max-width="1450">
       <v-slide-group
-        v-model="model"
+       
         class="pa-4"
         active-class="success"
         show-arrows
@@ -294,7 +294,7 @@ export default class Profile extends Vue {
   public toggleResetPassword: boolean = false;
   public loading: boolean = false;
   public value: string;
-  public model: "";
+ 
 
   created() {
     // if (this.category === "Company") {

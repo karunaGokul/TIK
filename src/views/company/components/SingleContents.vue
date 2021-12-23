@@ -37,19 +37,7 @@
           <v-icon> mdi-plus</v-icon>
         </v-btn>
       </template>
-      <template v-slot:[`item.content`]="{ item }">
-        <v-select
-          v-model="item.content"
-          :items="item.contentOptions"
-          item-text="name"
-          return-object
-          class="mx-n2 mr-n6 text-caption mt-3"
-          placeholder="Select"
-          solo
-          :disabled="edit === false"
-        ></v-select>
-      </template>
-      <template
+       <template
         v-slot:[`item.type`]="{ item }"
         v-if="
           option === 'MelangeYarn' ||
@@ -69,6 +57,19 @@
           :disabled="edit === false"
         ></v-select>
       </template>
+      <template v-slot:[`item.content`]="{ item }">
+        <v-select
+          v-model="item.content"
+          :items="item.contentOptions"
+          item-text="name"
+          return-object
+          class="mx-n2 mr-n6 text-caption mt-3"
+          placeholder="Select"
+          solo
+          :disabled="edit === false"
+        ></v-select>
+      </template>
+     
       <template v-slot:[`item.spun`]="{ item }">
         <v-simple-checkbox
           v-model="item.spun"
@@ -105,9 +106,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class SingleContents extends Vue {
   @Prop() response: ProductDetailModel;
-  @Prop() melanSlubTypesOptions:Array<contentModel> ;
   @Prop() option: string;
   @Prop() edit: boolean;
+  @Prop() melanSlubTypesOptions: Array<contentModel>;
 
   created() {
     if (
@@ -115,13 +116,10 @@ export default class SingleContents extends Vue {
       this.option === "SlubYarn" ||
       this.option === "MelangeFabric" ||
       this.option === "SlubFabric"
-    ) {
-      this.singleContentHeaders.splice(0, 0, {
-        text: "Colour Type",
-        value: "type",
-        divider: true,
-      });
+    ) {      
       this.singleContentHeaders.splice(2, 2);
+    }else{
+      this.singleContentHeaders.splice(0, 1);
     }
   }
 
@@ -148,6 +146,7 @@ export default class SingleContents extends Vue {
   }
 
   singleContentHeaders: any = [
+    { text: "Colour Type", value: "type", divider: true },
     { text: "Content", value: "content", divider: true },
     { text: "Spun", value: "spun", align: "center", divider: true },
     { text: "Filaments", value: "filaments", align: "center", divider: true },

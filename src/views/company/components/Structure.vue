@@ -8,6 +8,19 @@
               Single Jersey
             </v-toolbar-title>
           </v-toolbar>
+          <!-- <v-autocomplete
+            v-model="response.fabricStructure.interlock"
+            :items="response.fabricStructure.singleJersey"
+            filled
+            chips
+            color="blue-grey lighten-2"
+            label="Select"
+            item-text="name"
+            item-value="name"
+            return-object
+            multiple
+          >
+          </v-autocomplete> -->
           <v-list-item
             v-for="(item, index) in response.fabricStructure.singleJersey"
             :key="index"

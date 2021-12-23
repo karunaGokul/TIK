@@ -7,17 +7,19 @@
         outlined
         dense
         v-model="response.gg"
-        v-if="tubular === null"
-        :disabled="edit === false || tubular === false"
+        :disabled="edit === false || enable === false"
       ></v-text-field>
-      <v-text-field
+      <!-- <v-autocomplete
+        v-model="response.gg"
+        :items="values"
         class="mx-2"
         outlined
         dense
-        v-model="response.gg"
-       v-if="width === null"
-        :disabled="edit === false || width === false"
-      ></v-text-field>
+        chips
+        small-chips
+        multiple
+        :disabled="edit === false || enable === false"
+      ></v-autocomplete> -->
     </v-row>
     <v-row>
       <v-label>DIA:</v-label>
@@ -26,45 +28,35 @@
         outlined
         dense
         v-model="response.dia"
-        v-if="tubular === null"
-        :disabled="edit === false || tubular === false"
+        :disabled="edit === false || enable === false"
       ></v-text-field>
-      <v-text-field
+      <!-- <v-autocomplete
+        v-model="response.gg"
+        :items="values"
         class="mx-2"
         outlined
         dense
-        v-model="response.dia"
-         v-if="width === null"
-        :disabled="edit === false || width === false"
-      ></v-text-field>
+        chips
+        small-chips
+        multiple
+        :disabled="edit === false || enable === false"
+      ></v-autocomplete> -->
     </v-row>
     <v-row>
       <v-label>Lycra:</v-label>
       <v-checkbox
         class="mt-n2 ml-4"
         v-model="response.allFeeder"
-        v-if="tubular === null"
-        :disabled="edit === false || tubular === false"
+        :disabled="edit === false || enable === false"
       ></v-checkbox>
-      <v-checkbox
-        class="mt-n2 ml-4"
-        v-model="response.allFeeder"
-         v-if="width === null"
-        :disabled="edit === false || width === false"
-      ></v-checkbox>
+
       <v-label>All Feeder</v-label>
       <v-checkbox
         class="mt-n2 ml-4"
         v-model="response.alternateFeeder"
-        v-if="tubular === null"
-        :disabled="edit === false || tubular === false"
+        :disabled="edit === false || enable === false"
       ></v-checkbox>
-      <v-checkbox
-        class="mt-n2 ml-4"
-        v-model="response.alternateFeeder"
-        v-if="width === null"
-        :disabled="edit === false || width === false"
-      ></v-checkbox>
+
       <v-label>Alternate Feeder</v-label>
     </v-row>
   </div>
@@ -79,7 +71,8 @@ export default class Feeder extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
-  @Prop() tubular: boolean;
-  @Prop() width: boolean;
+  @Prop() enable: boolean;
+
+  values: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 }
 </script>

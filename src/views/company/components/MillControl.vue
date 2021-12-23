@@ -460,18 +460,30 @@ export default class MillControl extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
-  melanSlubTypesOptions: Array<contentModel> = [];
+  public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
 
   created() {
-    this.initializetubular();
+    if (
+      this.option === "MelangeYarn" ||
+      this.option === "SlubYarn" ||
+      this.option === "MelangeFabric" ||
+      this.option === "SlubFabric"
+    )
+      this.updateMelanSlubTypes();
+    if (
+      this.option === "RegularFabric" ||
+      this.option === "SpecialFabric" ||
+      this.option === "MelangeFabric" ||
+      this.option === "SlubFabric"
+    )
+      this.initializetubular();
     this.intializeBlendContents();
-    this.updateMelanSlubTypes();
   }
 
   updated() {
-    this.intializeBlendContents();    
+    this.intializeBlendContents();
   }
 
   intializeBlendContents() {

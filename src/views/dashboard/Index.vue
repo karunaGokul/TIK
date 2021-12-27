@@ -40,7 +40,7 @@
         <div v-if="dashboard">
           <v-row class="mb-5">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="newProjectCount">
+              <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -54,7 +54,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="newProjectCount">
+              <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -68,7 +68,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="bidReceivedCount">
+              <v-badge :content="bidReceivedCount" :value="bidReceivedCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -82,7 +82,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="approvedBidsCount">
+              <v-badge :content="approvedBidsCount" :value="approvedBidsCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -96,7 +96,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="pendingAuthenticationCount">
+              <v-badge :content="pendingAuthenticationCount" :value="pendingAuthenticationCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -111,7 +111,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="approvalPendingCount">
+              <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -125,7 +125,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="approvalPendingCount">
+              <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -148,7 +148,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="noShowCount">
+              <v-badge :content="noShowCount" :value="noShowCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -162,7 +162,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="noShowCount">
+              <v-badge :content="noShowCount" :value="noShowCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -176,7 +176,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
-              <v-badge :content="confirmedCount">
+              <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -192,7 +192,7 @@
           </v-row>
           <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="confirmedCount">
+              <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -206,7 +206,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="completedCount">
+              <v-badge :content="completedCount" :value="completedCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -220,7 +220,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="completedCount">
+              <v-badge :content="completedCount" :value="completedCount !== 0">
                 <v-icon
                   x-large
                   dark
@@ -243,7 +243,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge :content="projectReviewCount">
+              <v-badge :content="projectReviewCount" :value="projectReviewCount !== 0">
                 <v-icon x-large dark class="teal" @click="pendingReview()"
                   >mdi-card-account-details-star</v-icon
                 >

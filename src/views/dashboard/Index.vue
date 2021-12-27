@@ -40,7 +40,7 @@
         <div v-if="dashboard">
           <v-row class="mb-5">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="newProjectCount">
                 <v-icon
                   x-large
                   dark
@@ -54,7 +54,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge>
+              <v-badge :content="newProjectCount">
                 <v-icon
                   x-large
                   dark
@@ -68,7 +68,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="bidReceivedCount">
                 <v-icon
                   x-large
                   dark
@@ -82,7 +82,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge>
+              <v-badge :content="approvedBidsCount">
                 <v-icon
                   x-large
                   dark
@@ -96,7 +96,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="pendingAuthenticationCount">
                 <v-icon
                   x-large
                   dark
@@ -111,7 +111,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="approvalPendingCount">
                 <v-icon
                   x-large
                   dark
@@ -125,7 +125,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge>
+              <v-badge :content="approvalPendingCount">
                 <v-icon
                   x-large
                   dark
@@ -148,7 +148,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="noShowCount">
                 <v-icon
                   x-large
                   dark
@@ -162,7 +162,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge>
+              <v-badge :content="noShowCount">
                 <v-icon
                   x-large
                   dark
@@ -176,23 +176,37 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
-              <v-badge>
+              <v-badge :content="confirmedCount">
                 <v-icon
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Completed')"
+                  @click="searchProject('Confirmed')"
                   >mdi-clipboard-check-outline</v-icon
                 >
               </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                completed <br />projects
+                confirmed <br />projects
               </v-card-subtitle>
             </v-col>
           </v-row>
           <v-row class="mb-5 pb-6">
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge>
+              <v-badge :content="confirmedCount">
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Confirmed Projects')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              </v-badge>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                confirmed <br />projects
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+              <v-badge :content="completedCount">
                 <v-icon
                   x-large
                   dark
@@ -205,7 +219,20 @@
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
-            
+            <v-col cols="12" sm="4" md="2" v-else>
+              <v-badge :content="completedCount">
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Completed')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              </v-badge>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                completed <br />projects
+              </v-card-subtitle>
+            </v-col>
             <v-col cols="12" sm="4" md="2">
               <v-badge>
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
@@ -216,7 +243,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge>
+              <v-badge :content="projectReviewCount">
                 <v-icon x-large dark class="teal" @click="pendingReview()"
                   >mdi-card-account-details-star</v-icon
                 >
@@ -277,7 +304,12 @@
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
-import { ProjectSearchModel, DashboardModel, UserInfomodel } from "@/model";
+import {
+  ProjectSearchModel,
+  DashboardModel,
+  UserInfomodel,
+  NotificationModel,
+} from "@/model";
 import DashboardProjectList from "./components/DashboardProjectList.vue";
 @Component({
   components: { DashboardProjectList },
@@ -293,11 +325,23 @@ export default class Dashboard extends Vue {
   public searchRequest = new ProjectSearchModel();
   public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
+  public notificationResponse = new NotificationModel();
   public stagesMyProject: string = "";
   public tabValue: boolean = false;
+  // public a:number = 0;
+  public newProjectCount: number = 0;
+  public bidReceivedCount: number = 0;
+  public pendingAuthenticationCount: number = 0;
+  public approvalPendingCount: number = 0;
+  public approvedBidsCount: number = 0;
+  public noShowCount: number = 0;
+  public confirmedCount: number = 0;
+  public completedCount: number = 0;
+  public projectReviewCount: number = 0;
 
   created() {
     this.userInfo();
+    this.notification();
 
     if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
       this.tabValue = true;
@@ -343,6 +387,21 @@ export default class Dashboard extends Vue {
   public userInfo() {
     this.DashboardService.GetUserFullName().then((response) => {
       this.userResponse = response;
+    });
+  }
+
+  public notification() {
+    this.DashboardService.GetNotification().then((response) => {
+      this.notificationResponse = response;
+      this.newProjectCount = this.notificationResponse.newProjectCount;
+      this.bidReceivedCount = this.notificationResponse.bidReceivedCount;
+      this.pendingAuthenticationCount = this.notificationResponse.pendingAuthenticationCount;
+      this.approvalPendingCount = this.notificationResponse.approvalPendingCount;
+      this.approvedBidsCount = this.notificationResponse.approvedBidsCount;
+      this.noShowCount = this.notificationResponse.noShowCount;
+      this.confirmedCount = this.notificationResponse.confirmedCount;
+      this.completedCount = this.notificationResponse.completedCount;
+      this.projectReviewCount = this.notificationResponse.projectReviewCount;
     });
   }
 }

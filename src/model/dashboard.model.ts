@@ -104,3 +104,15 @@ export class UserInfomodel {
     currentDate: number;
     currentDay: string;
 }
+
+export class NotificationModel {
+    newProjectCount: number;
+    bidReceivedCount: number;
+    pendingAuthenticationCount: number;
+    approvalPendingCount: number;
+    approvedBidsCount: number;
+    noShowCount: number;
+    confirmedCount: number;
+    completedCount: number;
+    projectReviewCount: number;
+}

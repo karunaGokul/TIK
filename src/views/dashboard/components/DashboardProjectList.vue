@@ -26,10 +26,25 @@
     </v-row>
     <v-row>
       <v-tabs v-if="tabValue">
-        <v-tab @click="searchProject('true')">my project</v-tab>
-        <v-tab @click="searchProject('false')">all project</v-tab>
+        <v-tab
+          @click="searchProject('true')"
+          v-if="
+            category === 'Company' ||
+              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+          "
+          >my project</v-tab
+        >
+        <v-tab
+          @click="searchProject('false')"
+          v-if="
+            category === 'Company' ||
+              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+          "
+          >all project</v-tab
+        >
       </v-tabs>
     </v-row>
+    <!-- (category !== 'Company' && searchRequest.stages !== 'Initiated') -->
     <v-row>
       <v-col col="12" md="12">
         <v-data-table
@@ -114,8 +129,11 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-    if (this.role !== "MasterAdmin" && this.role !== "Approval Admin") {
+    if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
       this.searchProject(true);
+    } 
+    if (this.category !== 'Company' && this.searchRequest.stages === 'Initiated') {
+      this.searchProject(false);
     }
 
     if (this.category != "Company") {

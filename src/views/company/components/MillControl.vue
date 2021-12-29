@@ -271,9 +271,7 @@
             v-model="response.counts"
             :items="response.availableCounts"
             outlined
-            dense
-            chips
-            small-chips
+            dense           
             multiple
             :disabled="edit === false"
           ></v-autocomplete>
@@ -290,9 +288,7 @@
               v-model="response.deniers"
               :items="response.availableDeniers"
               outlined
-              dense
-              chips
-              small-chips
+              dense              
               multiple
               :disabled="edit === false"
             ></v-autocomplete>
@@ -303,6 +299,8 @@
             dense
             v-model="response.avgCreditTime"
             :disabled="edit === false"
+            :rules="creditTimeRules"
+            @update="update()"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -460,9 +458,15 @@ export default class MillControl extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
+  
   public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
+  public creditTimeRules: any = [
+    (v: any) => !!v || "Price is required",
+    (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+  ];
+
 
   created() {
     if (
@@ -486,6 +490,10 @@ export default class MillControl extends Vue {
     this.intializeBlendContents();
   }
 
+update()
+{
+   this.$emit("validateRules", this.$v);
+}
   intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {

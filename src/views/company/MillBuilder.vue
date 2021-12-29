@@ -35,7 +35,7 @@
                   <MillControl
                     :response="response.yarn.regularYarn"
                     option="RegularYarn"
-                    :edit="edit"
+                    :edit="edit"                   
                   />
                 </v-tab-item>
                 <v-tab-item>
@@ -255,16 +255,19 @@ export default class MillBuilder extends Vue {
       option === "MelangeFabric" ||
       option === "SlubFabric"
     ) {
-      data.fabricStructure.singleJersey =
-        data.fabricStructure.singleJersey.filter(
-          (item) => item.isSelected === true
-        );
-      data.fabricStructure.interlock = data.fabricStructure.interlock.filter(
-        (item) => item.isSelected === true
-      );
-      data.fabricStructure.rib = data.fabricStructure.rib.filter(
-        (item) => item.isSelected === true
-      );
+      // data.fabricStructure.singleJersey =
+      //   data.fabricStructure.singleJersey.filter(
+      //     (item) => item.isSelected === true
+      //   );
+      // data.fabricStructure.interlock = data.fabricStructure.interlock.filter(
+      //   (item) => item.isSelected === true
+      // );
+      // data.fabricStructure.rib = data.fabricStructure.rib.filter(
+      //   (item) => item.isSelected === true
+      // );
+      delete data.fabricStructure.availableSingleJersey;
+      delete data.fabricStructure.availableInterlock;
+      delete data.fabricStructure.availableRib;
        delete data.structureLable;
     }
     data.singleContents.forEach((b) => delete b.contentOptions);

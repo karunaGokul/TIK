@@ -65,15 +65,18 @@ export class melangeSlubModel {
 
 export class fabricStructureModel {
     singleJersey: Array<contentModel> = [];
-    interlock: Array<contentModel> = [];
+    availableInterlock: Array<contentModel> = [];
+    interlock: Array<contentModel> = [];    
+    availableSingleJersey: Array<contentModel> = [];
     rib:Array<contentModel> = [];
+    availableRib: Array<contentModel> = [];
     tubular:tubularModel;
     openWidth:tubularModel;
 }
 
 export class tubularModel {
-    gg: number;
-    dia: number;
+    gg: Array<string> = [];
+    dia: Array<string> = [];
     allFeeder:boolean;
     alternateFeeder:boolean;
 }

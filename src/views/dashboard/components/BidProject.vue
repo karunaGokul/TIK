@@ -17,7 +17,6 @@
               <v-text-field
                 outlined
                 dense
-                name="numbers"
                 label="Enter Price per KG"
                 v-model="bidRequest.price"
                 :rules="priceRules"

@@ -135,8 +135,10 @@ export default class DashboardProjectList extends Vue {
     if (this.role === "Merchandiser") {
       this.searchProject(true);
     }
-    if (
-      this.role === "Quote InCharge" &&
+    if(this.category === "Company" && this.role === "Quote InCharge") {
+      this.searchProject(true);
+    }
+    if (this.category !== "Company" && this.role === "Quote InCharge" &&
       (this.stagesRequest === "Approved" ||
         this.stagesRequest === "Awaiting Approval" ||
         this.stagesRequest === "NoShow" ||

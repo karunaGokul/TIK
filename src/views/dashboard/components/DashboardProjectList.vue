@@ -129,10 +129,28 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-    if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
+    // if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
+    //   this.searchProject(true);
+    // }
+    if (this.role === "Merchandiser") {
       this.searchProject(true);
-    } 
-    if (this.category !== 'Company' && this.searchRequest.stages === 'Initiated') {
+    }
+    if(this.category === "Company" && this.role === "Quote InCharge") {
+      this.searchProject(true);
+    }
+    if (this.category !== "Company" && this.role === "Quote InCharge" &&
+      (this.stagesRequest === "Approved" ||
+        this.stagesRequest === "Awaiting Approval" ||
+        this.stagesRequest === "NoShow" ||
+        this.stagesRequest === "Confirmed" ||
+        this.stagesRequest === "Completed")
+    ) {
+      this.searchProject(true);
+    }
+    if (
+      this.category !== "Company" &&
+      this.stagesRequest === "Initiated"
+    ) {
       this.searchProject(false);
     }
 

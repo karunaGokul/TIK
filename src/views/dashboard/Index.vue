@@ -139,9 +139,9 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge>
+              <!-- <v-badge> -->
                 <v-icon x-large dark class="teal">mdi-clipboard-remove</v-icon>
-              </v-badge>
+              <!-- </v-badge> -->
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no response<br />
                 projects
@@ -234,9 +234,9 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge>
+              <!-- <v-badge> -->
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
-              </v-badge>
+              <!-- </v-badge> -->
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 communication<br />
                 received

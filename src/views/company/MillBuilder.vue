@@ -35,7 +35,7 @@
                   <MillControl
                     :response="response.yarn.regularYarn"
                     option="RegularYarn"
-                    :edit="edit"                   
+                    :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
@@ -196,7 +196,10 @@ export default class MillBuilder extends Vue {
       this.millData.fabric.melangeSlubFabric.melange,
       "MelangeFabric"
     );
-    this.removeOtherOption(this.millData.fabric.melangeSlubFabric.slub, "SlubFabric");
+    this.removeOtherOption(
+      this.millData.fabric.melangeSlubFabric.slub,
+      "SlubFabric"
+    );
 
     this.ProfileService.AddMills(this.millData).then((response: any) => {
       this.snackbarText = response;
@@ -206,7 +209,11 @@ export default class MillBuilder extends Vue {
   }
 
   public removeOtherOption(data: ProductDetailModel, option: string) {
-    if (option === "SpecialYarn" || option === "DyedYarn"||option === "SpecialFabric") {
+    if (
+      option === "SpecialYarn" ||
+      option === "DyedYarn" ||
+      option === "SpecialFabric"
+    ) {
       data.singleSpecialDyedTypes = data.singleSpecialDyedTypes.filter(
         (item) => item.isSelected === true
       );
@@ -227,8 +234,12 @@ export default class MillBuilder extends Vue {
       data.singleContents.forEach((b) => delete b.melanSlubTypeOptions);
       data.blendContents.forEach((b) => delete b.melanSlubTypeOptions);
     }
-    if (option != "MelangeYarn" && option != "SlubYarn"&& option != "MelangeFabric" &&
-      option != "SlubFabric") {
+    if (
+      option != "MelangeYarn" &&
+      option != "SlubYarn" &&
+      option != "MelangeFabric" &&
+      option != "SlubFabric"
+    ) {
       data.singleContents.forEach((b) => {
         if (b.spun) {
           b.spun = "Spun";
@@ -268,7 +279,7 @@ export default class MillBuilder extends Vue {
       delete data.fabricStructure.availableSingleJersey;
       delete data.fabricStructure.availableInterlock;
       delete data.fabricStructure.availableRib;
-       delete data.structureLable;
+      delete data.structureLable;
     }
     data.singleContents.forEach((b) => delete b.contentOptions);
     data.blendContents.forEach((b) => delete b.contentOptions);
@@ -283,8 +294,6 @@ export default class MillBuilder extends Vue {
     delete data.contentLable;
     delete data.qualityLable;
     delete data.typeLable;
-
-   
   }
 
   get employeeId(): string {

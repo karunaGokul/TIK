@@ -21,6 +21,7 @@
                 v-model="bidRequest.price"
                 :rules="priceRules"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -36,6 +37,7 @@
                 v-model="bidRequest.creditPeriod"
                 :rules="[(v) => !!v || 'Credit Period is required']"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -51,6 +53,7 @@
                 v-model="bidRequest.deliveryPeriod"
                 :rules="[(v) => !!v || 'Delivery Period is required']"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -120,6 +123,13 @@ export default class BidProject extends Vue {
     this.GetApprovalAdmin();
   }
 
+// onlyNumber ($event) {
+//    //console.log($event.keyCode); //keyCodes value
+//    let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
+//    if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
+//       $event.preventDefault();
+//    }
+// }
   // public validation() {
   //   var n = document.forms.numbers.value;
   //   if (isNaN(n)) {

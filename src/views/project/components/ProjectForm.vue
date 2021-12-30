@@ -44,6 +44,7 @@
                   v-model="request.noOfKgs"
                   label="Enter No of Kgs"
                   :readonly="mode == StepMode.Summary"
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -58,6 +59,7 @@
                   label="Your Price per KG"
                   :readonly="mode == StepMode.Summary"
                   :disabled="request.requestPrice"
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
                 <div class="text-left px-4 pt-2">OR</div>
                 <v-checkbox
@@ -76,6 +78,7 @@
                   v-model="request.creditPeriod"
                   label="Your required Credit Period in Days"
                   :readonly="mode == StepMode.Summary"
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
             </v-row>

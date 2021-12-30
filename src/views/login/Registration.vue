@@ -224,7 +224,7 @@
                   v-model="request.stateId"
                   :items="state"
                   item-text="stateName"
-                  item-value="id"
+                  item-value="stateId"
                   class="rounded-0"
                   @change="getCity"
                   required

@@ -29,6 +29,7 @@ export class StateRequestModel{
 }
 export class StateResponseModel{
     id: number;
+    stateId: number;
     stateName: string;
 }
 export class CityRequestModel{
@@ -36,5 +37,6 @@ export class CityRequestModel{
 }
 export class CityResponseModel{
     id: number;
+    stateId: number;
     cityName: string;
 }

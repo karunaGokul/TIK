@@ -467,11 +467,7 @@ export default class MillControl extends Vue {
   public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
-  public creditTimeRules: any = [
-    (v: any) => !!v || "Price is required",
-    (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
-  ];
-
+ 
   created() {
     if (
       this.option === "MelangeYarn" ||
@@ -494,10 +490,7 @@ export default class MillControl extends Vue {
     this.intializeBlendContents();
   }
 
-  update() {
-    this.$emit("validateRules", this.$v);
-  }
-  intializeBlendContents() {
+    intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {
         if (c.combinationOne === 0) c.combinationOne = null;

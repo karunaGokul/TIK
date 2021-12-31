@@ -471,6 +471,7 @@ export default class MillControl extends Vue {
   public tubular: boolean = false;
   public width: boolean = false;
   
+ 
   created() {
     if (
       this.option === "MelangeYarn" ||
@@ -493,10 +494,7 @@ export default class MillControl extends Vue {
     this.intializeBlendContents();
   }
 
-  update() {
-    this.$emit("validateRules", this.$v);
-  }
-  intializeBlendContents() {
+    intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {
         if (c.combinationOne === 0) c.combinationOne = null;

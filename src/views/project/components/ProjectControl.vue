@@ -26,6 +26,7 @@
           required
           v-model="control.value"
           @change="textChanged"
+          onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -40,6 +41,7 @@
             required
             v-model="item.value"
             @change="textGroupChanged"
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
           ></v-text-field>
         </v-col>
       </v-row>

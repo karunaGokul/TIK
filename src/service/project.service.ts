@@ -695,8 +695,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 					]
 				},
 				{
-					"id": "txtSpunCount",
-					"label": "Spun Count",
+					"id": "txtSpunCount",					
 					"type": "textbox",
 					"selector": false,
 					"data_path": "mil.Yarn.RegularYarn.Counts",

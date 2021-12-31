@@ -260,6 +260,7 @@
                   required
                   v-model="request.zipCode"
                   :rules="ZipCodeRules"
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
             </v-row>

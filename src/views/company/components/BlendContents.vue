@@ -67,6 +67,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -77,6 +78,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -91,6 +93,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -101,6 +104,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -115,6 +119,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -125,6 +130,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -139,6 +145,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -149,6 +156,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -163,6 +171,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -173,6 +182,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>

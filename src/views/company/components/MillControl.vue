@@ -274,6 +274,7 @@
             dense
             multiple
             :disabled="edit === false"
+            :rules="[(v) => !!v || 'Counts is required']"
           ></v-autocomplete>
           <div
             v-if="
@@ -291,14 +292,18 @@
               dense
               multiple
               :disabled="edit === false"
+              :rules="[(v) => !!v || 'Deniers is required']"
             ></v-autocomplete>
           </div>
           <v-label>Enter AVG Credit time you offer:</v-label>
           <v-text-field
             outlined
             dense
+            required
             v-model="response.avgCreditTime"
-            :disabled="edit === false"            
+            :disabled="edit === false"  
+            :rules="[(v) => !!v || 'AVG Credit time is required']"  
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"        
           ></v-text-field>
         </v-col>
       </v-row>
@@ -442,7 +447,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Inject, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { validationMixin } from "vuelidate";
 import { contentModel, ProductDetailModel } from "@/model";
 import BlendContents from "./BlendContents.vue";
 import SingleContents from "./SingleContents.vue";
@@ -450,6 +456,7 @@ import Structure from "./Structure.vue";
 import Feeder from "./Feeder.vue";
 
 @Component({
+  mixins: [validationMixin],
   components: { BlendContents, SingleContents, Structure, Feeder },
 })
 export default class MillControl extends Vue {

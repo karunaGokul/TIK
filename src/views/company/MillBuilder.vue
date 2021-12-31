@@ -1,4 +1,4 @@
- <template>
+<template>
   <div>
     <div class="ma-2">
       <router-link to="/" class="text-decoration-none">
@@ -16,116 +16,119 @@
         mdi-pencil-box-multiple
       </v-icon>
     </div>
-    <div class="pa-6">
-      <v-tabs v-model="tab1" color="#16594a">
-        <v-tab v-for="item in tab1Items" :key="item.tab">
-          {{ item.tab }}
-        </v-tab>
-      </v-tabs>
+    <v-form ref="form">
+      <div class="pa-6">
+        <v-tabs v-model="tab1" color="#16594a">
+          <v-tab v-for="item in tab1Items" :key="item.tab">
+            {{ item.tab }}
+          </v-tab>
+        </v-tabs>
 
-      <v-card elevation="2" tile class="mt-2 pa-6">
-        <v-card-text>
-          <v-tabs-items v-model="tab1">
-            <v-tab-item>
-              <v-tabs v-model="tab2">
-                <v-tab v-for="item in tab2Items" :key="item.tab">
-                  {{ item.tab }}
-                </v-tab>
-                <v-tab-item>
-                  <MillControl
-                    :response="response.yarn.regularYarn"
-                    option="RegularYarn"
-                    :edit="edit"
-                  />
-                </v-tab-item>
-                <v-tab-item>
-                  <MillControl
-                    :response="response.yarn.specialYarn"
-                    option="SpecialYarn"
-                    :edit="edit"
-                  />
-                </v-tab-item>
-                <v-tab-item>
-                  <MillControl
-                    :response="response.yarn.dyedYarn"
-                    option="DyedYarn"
-                    :edit="edit"
-                  />
-                </v-tab-item>
-                <v-tab-item>
-                  <v-tabs v-model="tab3">
-                    <v-tab v-for="item in tab3Items" :key="item.tab">
-                      {{ item.tab }}
-                    </v-tab>
-                    <v-tab-item>
-                      <MillControl
-                        :response="response.yarn.melangeSlubYarn.melange"
-                        option="MelangeYarn"
-                        :edit="edit"
-                      />
-                    </v-tab-item>
-                    <v-tab-item>
-                      <MillControl
-                        :response="response.yarn.melangeSlubYarn.slub"
-                        option="SlubYarn"
-                        :edit="edit"
-                      />
-                    </v-tab-item>
-                  </v-tabs>
-                </v-tab-item>
-              </v-tabs>
-            </v-tab-item>
-            <v-tab-item>
-              <v-tabs v-model="tab4">
-                <v-tab v-for="item in tab4Items" :key="item.tab">
-                  {{ item.tab }}
-                </v-tab>
-                <v-tab-item>
-                  <MillControl
-                    :response="response.fabric.regularFabric"
-                    option="RegularFabric"
-                    :edit="edit"
-                  />
-                </v-tab-item>
-                <v-tab-item>
-                  <MillControl
-                    :response="response.fabric.specialFabric"
-                    option="SpecialFabric"
-                    :edit="edit"
-                  />
-                </v-tab-item>
+        <v-card elevation="2" tile class="mt-2 pa-6">
+          <v-card-text>
+            <v-tabs-items v-model="tab1">
+              <v-tab-item>
+                <v-tabs v-model="tab2">
+                  <v-tab v-for="item in tab2Items" :key="item.tab">
+                    {{ item.tab }}
+                  </v-tab>
 
-                <v-tab-item>
-                  <v-tabs v-model="tab3">
-                    <v-tab v-for="item in tab3Items" :key="item.tab">
-                      {{ item.tab }}
-                    </v-tab>
-                    <v-tab-item>
-                      <MillControl
-                        :response="response.fabric.melangeSlubFabric.melange"
-                        option="MelangeFabric"
-                        :edit="edit"
-                      />
-                    </v-tab-item>
-                    <v-tab-item>
-                      <MillControl
-                        :response="response.fabric.melangeSlubFabric.slub"
-                        option="SlubFabric"
-                        :edit="edit"
-                      />
-                    </v-tab-item>
-                  </v-tabs>
-                </v-tab-item>
-              </v-tabs>
-            </v-tab-item>
-          </v-tabs-items>
-        </v-card-text>
-        <v-card-actions v-if="edit">
-          <v-spacer></v-spacer>
-          <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
-        </v-card-actions>
-      </v-card>
-    </div>
+                  <v-tab-item>
+                    <MillControl
+                      :response="response.yarn.regularYarn"
+                      option="RegularYarn"
+                      :edit="edit"
+                    />
+                  </v-tab-item>
+                  <v-tab-item>
+                    <MillControl
+                      :response="response.yarn.specialYarn"
+                      option="SpecialYarn"
+                      :edit="edit"
+                    />
+                  </v-tab-item>
+                  <v-tab-item>
+                    <MillControl
+                      :response="response.yarn.dyedYarn"
+                      option="DyedYarn"
+                      :edit="edit"
+                    />
+                  </v-tab-item>
+                  <v-tab-item>
+                    <v-tabs v-model="tab3">
+                      <v-tab v-for="item in tab3Items" :key="item.tab">
+                        {{ item.tab }}
+                      </v-tab>
+                      <v-tab-item>
+                        <MillControl
+                          :response="response.yarn.melangeSlubYarn.melange"
+                          option="MelangeYarn"
+                          :edit="edit"
+                        />
+                      </v-tab-item>
+                      <v-tab-item>
+                        <MillControl
+                          :response="response.yarn.melangeSlubYarn.slub"
+                          option="SlubYarn"
+                          :edit="edit"
+                        />
+                      </v-tab-item>
+                    </v-tabs>
+                  </v-tab-item>
+                </v-tabs>
+              </v-tab-item>
+              <v-tab-item>
+                <v-tabs v-model="tab4">
+                  <v-tab v-for="item in tab4Items" :key="item.tab">
+                    {{ item.tab }}
+                  </v-tab>
+                  <v-tab-item>
+                    <MillControl
+                      :response="response.fabric.regularFabric"
+                      option="RegularFabric"
+                      :edit="edit"
+                    />
+                  </v-tab-item>
+                  <v-tab-item>
+                    <MillControl
+                      :response="response.fabric.specialFabric"
+                      option="SpecialFabric"
+                      :edit="edit"
+                    />
+                  </v-tab-item>
+
+                  <v-tab-item>
+                    <v-tabs v-model="tab3">
+                      <v-tab v-for="item in tab3Items" :key="item.tab">
+                        {{ item.tab }}
+                      </v-tab>
+                      <v-tab-item>
+                        <MillControl
+                          :response="response.fabric.melangeSlubFabric.melange"
+                          option="MelangeFabric"
+                          :edit="edit"
+                        />
+                      </v-tab-item>
+                      <v-tab-item>
+                        <MillControl
+                          :response="response.fabric.melangeSlubFabric.slub"
+                          option="SlubFabric"
+                          :edit="edit"
+                        />
+                      </v-tab-item>
+                    </v-tabs>
+                  </v-tab-item>
+                </v-tabs>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-card-text>
+          <v-card-actions v-if="edit">
+            <v-spacer></v-spacer>
+            <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
+          </v-card-actions>
+        </v-card>
+      </div>
+    </v-form>
     <v-snackbar
       v-model="snackbar"
       :timeout="2000"
@@ -147,11 +150,13 @@
 
 <script lang="ts">
 import { CompanyProfileModel, ProductDetailModel } from "@/model";
+import { validationMixin } from "vuelidate";
 import { IProfileService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
 import MillControl from "./components/MillControl.vue";
 
 @Component({
+  mixins: [validationMixin],
   components: { MillControl },
 })
 export default class MillBuilder extends Vue {
@@ -200,12 +205,13 @@ export default class MillBuilder extends Vue {
       this.millData.fabric.melangeSlubFabric.slub,
       "SlubFabric"
     );
-
-    this.ProfileService.AddMills(this.millData).then((response: any) => {
-      this.snackbarText = response;
-      this.snackbar = true;
-      this.createMill();
-    });
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.ProfileService.AddMills(this.millData).then((response: any) => {
+        this.snackbarText = response;
+        this.snackbar = true;
+        this.createMill();
+      });
+    }
   }
 
   public removeOtherOption(data: ProductDetailModel, option: string) {
@@ -342,8 +348,3 @@ export default class MillBuilder extends Vue {
   ];
 }
 </script>
-
-
-  
-
-

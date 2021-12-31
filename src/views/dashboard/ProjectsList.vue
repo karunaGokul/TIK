@@ -307,6 +307,7 @@
                               dense
                               class="mt-4"
                               v-model="row.requestPrice"
+                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
 
@@ -326,6 +327,7 @@
                               dense
                               class="mt-4"
                               v-model="row.creditPeriod"
+                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
                           <td v-else class="red--text">
@@ -344,6 +346,7 @@
                               dense
                               class="mt-4"
                               v-model="row.deliveryDate"
+                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
                           <td v-else class="green--text">

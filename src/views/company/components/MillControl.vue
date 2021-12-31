@@ -273,7 +273,7 @@
             outlined
             dense
             :filter="customFilter"
-            :multiple="true"
+            multiple
             :disabled="edit === false"
             :rules="[(v) => !!(v && v.length) || 'Counts is required']"
             onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
@@ -292,7 +292,7 @@
               :items="response.availableDeniers"
               outlined
               dense
-              :multiple="true"
+              multiple
               :disabled="edit === false"
               :rules="[(v) => !!(v && v.length) || 'Deniers is required']"
               onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 

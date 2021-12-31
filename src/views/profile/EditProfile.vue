@@ -83,6 +83,7 @@
                 placeholder="Enter PhoneNumber"
                 :rules="phoneRules"
                 v-model="request.phoneNumber1"
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
               <v-text-field
                 dense
@@ -90,7 +91,7 @@
                 class="my-n2"
                 placeholder="Enter Alternate PhoneNumber"
                 :rules="phoneRules"
-                
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 v-model="request.phoneNumber2"
               ></v-text-field>
             </v-form>

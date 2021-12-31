@@ -272,9 +272,11 @@
             :items="response.availableCounts"
             outlined
             dense
-            multiple
+            :filter="customFilter"
+            :multiple="true"
             :disabled="edit === false"
-            :rules="[(v) => !!v || 'Counts is required']"
+            :rules="[(v) => !!(v && v.length) || 'Counts is required']"
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
           ></v-autocomplete>
           <div
             v-if="
@@ -290,9 +292,10 @@
               :items="response.availableDeniers"
               outlined
               dense
-              multiple
+              :multiple="true"
               :disabled="edit === false"
-              :rules="[(v) => !!v || 'Deniers is required']"
+              :rules="[(v) => !!(v && v.length) || 'Deniers is required']"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
             ></v-autocomplete>
           </div>
           <v-label>Enter AVG Credit time you offer:</v-label>
@@ -467,11 +470,7 @@ export default class MillControl extends Vue {
   public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
-  public creditTimeRules: any = [
-    (v: any) => !!v || "Price is required",
-    (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
-  ];
-
+  
   created() {
     if (
       this.option === "MelangeYarn" ||

@@ -63,6 +63,7 @@
                   v-model="request.phoneNumber"
                   :rules="phoneRules"
                   required
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
 

@@ -123,27 +123,6 @@ export default class BidProject extends Vue {
     this.GetApprovalAdmin();
   }
 
-// onlyNumber ($event) {
-//    //console.log($event.keyCode); //keyCodes value
-//    let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
-//    if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) { // 46 is dot
-//       $event.preventDefault();
-//    }
-// }
-  // public validation() {
-  //   var n = document.forms.numbers.value;
-  //   if (isNaN(n)) {
-  //     // document.getElementById("numberText").innerHTML =
-  //     //   "Please enter Numeric value";
-  //     console.log("enter number alone")
-  //     return false;
-  //   } else {
-  //     // document.getElementById("numberText").innerHTML =
-  //     //   "Numeric value is: " + n;
-  //     return true;
-  //   }
-  // }
-
   public BidProject() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.bidRequest.projectId = this.response.Id;

@@ -109,6 +109,7 @@
                     no-title
                     @input="confirmationDateControl = false"
                     v-if="mode != StepMode.Summary"
+                    :min="new Date().toISOString().substr(0, 10)"
                   ></v-date-picker>
                 </v-menu>
               </v-col>
@@ -138,6 +139,7 @@
                     no-title
                     @input="deliveryDateControl = false"
                     v-if="mode != StepMode.Summary"
+                    :min="new Date().toISOString().substr(0, 10)"
                   ></v-date-picker>
                 </v-menu>
               </v-col>

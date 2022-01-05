@@ -1,7 +1,7 @@
 import { ServiceHelper } from './base.service';
 import {
     DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel,
-    ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel
+    ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel, UserInfomodel, NotificationModel
 } from '@/model';
 
 export interface IDashboardService {
@@ -18,6 +18,8 @@ export interface IDashboardService {
     FilterRejectedBids(request: FilterRequestModel): Promise<Array<BitReceivedModel>>;
     GetBidAudit(projectId: string): Promise<BitAuditmodel>;
     PendingReview(): Promise<Array<DashboardModel>>;
+    GetUserFullName(): Promise<UserInfomodel>;
+    GetNotification(): Promise<NotificationModel>;
 
 }
 export class DashboardService extends ServiceHelper implements IDashboardService {
@@ -91,9 +93,20 @@ export class DashboardService extends ServiceHelper implements IDashboardService
     }
 
     public PendingReview(): Promise<Array<DashboardModel>> {
-        return this.httpPost('Dashboard/PendingReview',null).then(response => {
+        return this.httpGet('Dashboard/PendingReview',null).then(response => {
             return response.data;
         });
     }
 
-}
+    public GetUserFullName(): Promise<UserInfomodel> {
+        return this.httpGet('Dashboard/GetUserFullName',null).then(response => {
+            return response.data;
+        });
+    }
+
+    public GetNotification(): Promise<NotificationModel> {
+        return this.httpGet('Dashboard/GetNotificationCount',null).then(response => {
+            return response.data;
+        });
+    }
+} 

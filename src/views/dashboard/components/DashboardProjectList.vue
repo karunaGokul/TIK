@@ -1,7 +1,7 @@
 <template>
   <div class="ml-4 mt-6">
     <v-row>
-      <v-select
+      <!-- <v-select
         :items="items"
         v-model="stages"
         :menu-props="{ offsetY: true }"
@@ -10,11 +10,11 @@
         dense
         hide-details
         @change="searchProject()"
-      ></v-select>
+      ></v-select> -->
 
-      <!-- <v-spacer></v-spacer>
+      <!-- <v-spacer></v-spacer> -->
 
-      <v-text-field
+      <!-- <v-text-field
         v-model="search"
         label="Search"
         append-icon="mdi-magnify"
@@ -24,6 +24,27 @@
         hide-details
       ></v-text-field> -->
     </v-row>
+    <v-row>
+      <v-tabs v-if="tabValue">
+        <v-tab
+          @click="searchProject('true')"
+          v-if="
+            category === 'Company' ||
+              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+          "
+          >my project</v-tab
+        >
+        <v-tab
+          @click="searchProject('false')"
+          v-if="
+            category === 'Company' ||
+              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+          "
+          >all project</v-tab
+        >
+      </v-tabs>
+    </v-row>
+    <!-- (category !== 'Company' && searchRequest.stages !== 'Initiated') -->
     <v-row>
       <v-col col="12" md="12">
         <v-data-table
@@ -41,7 +62,12 @@
           </template> -->
 
           <template v-slot:[`item.Status`]="{ item }">
-            <v-badge dot v-if="item.Status === 'Green'" color="green" class="ml-4">
+            <v-badge
+              dot
+              v-if="item.Status === 'Green'"
+              color="green"
+              class="ml-4"
+            >
             </v-badge>
             <v-badge
               dot
@@ -70,19 +96,6 @@
             </router-link>
           </template>
         </v-data-table>
-        <!-- <v-card>
-          <v-autocomplete
-            v-if="autocomplete"
-            v-model="values"
-            :items="items"
-            outlined
-            dense
-            chips
-            small-chips
-            label="Outlined"
-            multiple
-          ></v-autocomplete>
-        </v-card> -->
       </v-col>
     </v-row>
   </div>
@@ -102,24 +115,56 @@ import {
 })
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
-  @Prop() myproject: boolean;
   @Prop() response: Array<DashboardModel>;
   @Prop() search: string;
+  @Prop() stagesMyProject: string;
+  @Prop() stagesRequest: string;
+  @Prop() tabValue: boolean;
+
   public searchRequest = new ProjectSearchModel();
-  // public search: string = "";
   public stages: string = "";
   public loading: boolean = false;
   public values: string = "";
   public autocomplete: boolean = false;
   public request = new DashboardRequestModel();
-  // public response: Array<DashboardModel> = [];
 
   created() {
-    // if (this.myproject) {
-    //   this.getMyProjectList();
-    // } else {
-    //   this.getProjectList();
+    // if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
+    //   this.searchProject(true);
     // }
+    // if (this.role === "Merchandiser") {
+    //   this.searchProject(true);
+    // }
+
+    if(this.category === "Company" && (this.role === "Quote InCharge" || this.role === "Merchandiser" )&&
+      (this.stagesRequest === "New Projects" ||
+      this.stagesRequest === "Bid Received" ||
+      this.stagesRequest === "Awaiting Authentication" ||
+        this.stagesRequest === "Approval Pending" ||
+        this.stagesRequest === "Cancelled Projects" ||
+        this.stagesRequest === "Confirmed Projects" ||
+        this.stagesRequest === "Completed Projects")
+    ) {
+      this.searchProject(true);
+    }
+   
+    if (this.category !== "Company" && this.role === "Quote InCharge" &&
+      (this.stagesRequest === "Approved" ||
+        this.stagesRequest === "Awaiting Approval" ||
+        this.stagesRequest === "NoShow" ||
+        this.stagesRequest === "Confirmed" ||
+        this.stagesRequest === "Completed")
+    ) {
+      this.searchProject(true);
+    }
+
+    if (
+      this.category !== "Company" &&
+      this.stagesRequest === "Initiated"
+    ) {
+      this.searchProject(false);
+    }
+
     if (this.category != "Company") {
       this.headers.find((o: any) => {
         if (o.text === "Merchandiser") {
@@ -165,11 +210,13 @@ export default class DashboardProjectList extends Vue {
     return this.$store.getters.role;
   }
 
-  public searchProject() {
-    this.searchRequest.myproject = this.myproject;
-    this.searchRequest.stages = this.stages;
+  public searchProject(myproject: boolean) {
+    // this.searchRequest.myproject = this.myproject;
+    this.searchRequest.myproject = myproject;
+    this.searchRequest.stages = this.stagesMyProject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
+        this.loading = false;
         this.response = response;
       }
     );
@@ -217,3 +264,15 @@ export default class DashboardProjectList extends Vue {
   ];
 }
 </script>
+
+<style>
+tbody tr:nth-of-type(even) {
+  background-color: #ecf7f6;
+}
+tr:nth-of-type(even):hover {
+  background-color: #e0f2f1 !important;
+}
+tr:nth-of-type(odd):hover {
+  background-color: transparent !important;
+}
+</style>

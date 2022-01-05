@@ -91,10 +91,10 @@ export default class Review extends Vue {
   public snackbarText1: string = "";
   public bid = new BitReceivedModel();
 
-  public Review(status: string, bid: BitReceivedModel) {
+  public Review() {
     this.reviewRequest.projectId = this.response.Id;
     this.response.bidList.forEach((b) => {
-      if (b.status === "Confirmed") {
+      if (b.status === "Confirmed" && b.ratings === null) {
         this.reviewRequest.biddingId = b.id;
         this.DashboardService.Review(this.reviewRequest).then(
           (response) => {
@@ -102,39 +102,17 @@ export default class Review extends Vue {
             this.snackbar = true;
             this.close();
           },
-          // (err) => {
-          //   if (err.response.status === 400) {
-          //     this.snackbarText1 = err.response.data;
-          //     this.snackbar1 = true;
-          //     this.close();
-          //   }
-          // }
+          (err) => {
+            if (err.response.status === 400) {
+              this.snackbarText1 = err.response.data;
+              this.snackbar1 = true;
+              this.close();
+            }
+          }
         );
       }
     });
   }
-
-  // public Review(status: string, bid: BitReceivedModel) {
-  //   this.reviewRequest.projectId = this.response.Id;
-  //   this.reviewRequest.biddingId = bid.id;
-  //   // if (status === "Confirmed") {
-  //     // this.reviewRequest.projectId = this.response.Id;
-  //     // this.reviewRequest.biddingId = bid.id;
-  //     this.DashboardService.Review(this.reviewRequest).then((response) => {
-  //       this.snackbarText = response;
-  //       this.snackbar = true;
-  //       this.close();
-  //     },
-  //     (err) => {
-  //         if (err.response.status === 400) {
-  //           this.snackbarText1 = err.response.data;
-  //           this.snackbar1 = true;
-  //           this.close();
-  //         }
-  //       }
-  //     );
-  //   // }
-  // }
 
   public close() {
     this.$emit("closeModel", this.snackbarText);

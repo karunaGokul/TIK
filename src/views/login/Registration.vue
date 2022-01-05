@@ -20,12 +20,12 @@
 
       <v-col class="pt-4 pl-6">
         <div style="height: 63%; flex: 1; overflow: scroll" class="pr-10">
-          <h2 class="pb-7 pt-15">Sign Up</h2>
+          <h2 class="pb-7 pt-15 text-capitalize">sign up</h2>
 
-          <v-form ref="form" autocomplete="off" @submit="signUp">
+          <v-form ref="form" autocomplete="off" @submit="signUp" class="text-capitalize">
             <v-row>
               <v-col>
-                <v-label>First Name</v-label>
+                <v-label>first name</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -39,7 +39,7 @@
               </v-col>
 
               <v-col>
-                <v-label>Last Name</v-label>
+                <v-label>last name</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -54,7 +54,7 @@
 
             <v-row class="mt-n5">
               <v-col>
-                <v-label>Phone Number</v-label>
+                <v-label>phone number</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -63,11 +63,12 @@
                   v-model="request.phoneNumber"
                   :rules="phoneRules"
                   required
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
 
               <v-col>
-                <v-label>Email ID</v-label>
+                <v-label>email id</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -83,7 +84,7 @@
 
             <v-row class="mt-n5">
               <v-col>
-                <v-label>Password</v-label>
+                <v-label>password</v-label>
                 <v-tooltip right>
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
@@ -111,7 +112,7 @@
               </v-col>
 
               <v-col>
-                <v-label>Confirm Password</v-label>
+                <v-label>confirm password</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -127,7 +128,7 @@
               </v-col>
             </v-row>
 
-            <v-label>Select Your Category</v-label>
+            <v-label>select your category</v-label>
             <v-select
               outlined
               dense
@@ -143,7 +144,7 @@
 
             <v-row>
               <v-col sm="8">
-                <v-label>Enter GST Number</v-label>
+                <v-label>enter GST number</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -173,7 +174,7 @@
 
             <v-row class="mt-n5">
               <v-col>
-                <v-label>Address</v-label>
+                <v-label>address</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -185,7 +186,7 @@
               </v-col>
 
               <v-col>
-                <v-label>Appartment</v-label>
+                <v-label>appartment</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -199,7 +200,7 @@
 
             <v-row class="mt-n5">
               <v-col>
-                <v-label>Country</v-label>
+                <v-label>country</v-label>
                 <v-select
                   outlined
                   dense
@@ -216,7 +217,7 @@
               </v-col>
 
               <v-col>
-                <v-label>State</v-label>
+                <v-label>state</v-label>
                 <v-select
                   outlined
                   dense
@@ -224,7 +225,7 @@
                   v-model="request.stateId"
                   :items="state"
                   item-text="stateName"
-                  item-value="id"
+                  item-value="stateId"
                   class="rounded-0"
                   @change="getCity"
                   required
@@ -235,7 +236,7 @@
 
             <v-row class="mt-n5">
               <v-col>
-                <v-label>City</v-label>
+                <v-label>city</v-label>
                 <v-select
                   outlined
                   dense
@@ -251,7 +252,7 @@
               </v-col>
 
               <v-col>
-                <v-label>Zip Code</v-label>
+                <v-label>zip code</v-label>
                 <v-text-field
                   outlined
                   dense
@@ -260,6 +261,7 @@
                   required
                   v-model="request.zipCode"
                   :rules="ZipCodeRules"
+                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -307,7 +309,9 @@
 
             <div class="text-caption py-5">
               Already have an account?
-              <router-link to="/login" class="text-decoration-none"
+              <router-link
+                to="/login"
+                class="text-decoration-none"
                 >sign in</router-link
               >
             </div>

@@ -9,14 +9,14 @@ export class CompanyProfileModel {
 }
 export class yarnModel {
     regularYarn: ProductDetailModel;
-    melangeSlubYarn: melangeSlubYarnModel;
+    melangeSlubYarn: melangeSlubModel;
     specialYarn: ProductDetailModel;
     dyedYarn: ProductDetailModel;
 
 }
 export class fabricModel {
     regularFabric: ProductDetailModel;
-    Melange_SlubFabric: ProductDetailModel;
+    melangeSlubFabric: melangeSlubModel;
     specialFabric: ProductDetailModel;
 }
 export class ProductDetailModel {    
@@ -58,22 +58,25 @@ export class combosModel {
     combinationOne: number;
     combinationTwo: number;
 }
-export class melangeSlubYarnModel {
+export class melangeSlubModel {
     melange: ProductDetailModel;
     slub: ProductDetailModel;
 }
 
 export class fabricStructureModel {
     singleJersey: Array<contentModel> = [];
-    interlock: Array<contentModel> = [];
+    availableInterlock: Array<contentModel> = [];
+    interlock: Array<contentModel> = [];    
+    availableSingleJersey: Array<contentModel> = [];
     rib:Array<contentModel> = [];
+    availableRib: Array<contentModel> = [];
     tubular:tubularModel;
     openWidth:tubularModel;
 }
 
 export class tubularModel {
-    gg: number;
-    dia: number;
+    gg: Array<string> = [];
+    dia: Array<string> = [];
     allFeeder:boolean;
     alternateFeeder:boolean;
 }

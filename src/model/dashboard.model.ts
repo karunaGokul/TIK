@@ -27,9 +27,6 @@ export class DashboardModel {
     confirmationDate: number;
     requestedDeliveryDate: number;
     noOfKg: number;
-    // merchandiserId?: string;
-    // CreatorId?: string;
-
 }
 
 export class BitReceivedModel {
@@ -47,6 +44,7 @@ export class BitReceivedModel {
     logo: string;
     review: number;
     ratings: number;
+    message?: string;
 }
 
 export class SummaryModel {
@@ -99,4 +97,22 @@ export class BitAuditmodel {
     selectedDate: string;
     confirmedDate: string;
     approveDate: string;
+}
+
+export class UserInfomodel {
+    fullName: string;
+    currentDate: number;
+    currentDay: string;
+}
+
+export class NotificationModel {
+    newProjectCount: number;
+    bidReceivedCount: number;
+    pendingAuthenticationCount: number;
+    approvalPendingCount: number;
+    approvedBidsCount: number;
+    noShowCount: number;
+    confirmedCount: number;
+    completedCount: number;
+    projectReviewCount: number;
 }

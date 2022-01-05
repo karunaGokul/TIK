@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-form ref="form">
+    <v-form ref="form" name="forms" onsubmit="return validation()">
       <v-card class="px-6" elevation="8" style="overflow: hidden">
         <v-card-title class="mb-n2">
           Bid Project
@@ -21,6 +21,7 @@
                 v-model="bidRequest.price"
                 :rules="priceRules"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -36,6 +37,7 @@
                 v-model="bidRequest.creditPeriod"
                 :rules="[(v) => !!v || 'Credit Period is required']"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -51,6 +53,7 @@
                 v-model="bidRequest.deliveryPeriod"
                 :rules="[(v) => !!v || 'Delivery Period is required']"
                 required
+                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -113,7 +116,6 @@ export default class BidProject extends Vue {
   public bidRequest = new BidRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
-  // public isValid: boolean = true;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
 

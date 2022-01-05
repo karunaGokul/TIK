@@ -25,11 +25,16 @@
       </template>
       <template
         v-slot:[`item.type`]="{ item }"
-        v-if="option === 'MelangeYarn' || option === 'SlubYarn'"
+        v-if="
+          option === 'MelangeYarn' ||
+          option === 'SlubYarn' ||
+          option === 'MelangeFabric' ||
+          option === 'SlubFabric'
+        "
       >
         <v-select
           v-model="item.melanSlubType"
-          :items="item.melanSlubTypeOptions"
+          :items="melanSlubTypesOptions"
           item-text="name"
           return-object
           placeholder="Select"
@@ -62,6 +67,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -72,6 +78,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -86,6 +93,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -96,6 +104,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -110,6 +119,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -120,6 +130,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -134,6 +145,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -144,6 +156,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -158,6 +171,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
           <v-col class="mr-n2">
@@ -168,6 +182,7 @@
               hide-details
               class="text-caption"
               :disabled="edit === false"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -188,7 +203,7 @@
 </template>
 
 <script lang="ts">
-import { ProductDetailModel } from "@/model";
+import { contentModel, ProductDetailModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 
 @Component
@@ -196,15 +211,17 @@ export default class BlendContents extends Vue {
   @Prop() response: ProductDetailModel;
   @Prop() option: string;
   @Prop() edit: boolean;
+  @Prop() melanSlubTypesOptions:Array<contentModel> ;
+  
   created() {
     if (
-      this.option != 'MelangeYarn' &&
-              this.option != 'SlubYarn'  &&
-              this.option != 'MelangeFabric'  &&
-              this.option != 'SlubFabric'
-    ) 
+      this.option != "MelangeYarn" &&
+      this.option != "SlubYarn" &&
+      this.option != "MelangeFabric" &&
+      this.option != "SlubFabric"
+    )
       this.blendContentHeaders.splice(0, 1);
-    
+
   }
   addBlendContent() {
     this.response.blendContents.push({
@@ -225,7 +242,7 @@ export default class BlendContents extends Vue {
       this.response.blendContents[length - 1].melanSlubType = null;
   }
 
-   removeBlendContent(index: number) {
+  removeBlendContent(index: number) {
     this.response.blendContents.splice(index, 1);
   }
 

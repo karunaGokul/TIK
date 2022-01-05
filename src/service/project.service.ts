@@ -695,8 +695,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 					]
 				},
 				{
-					"id": "txtSpunCount",
-					"label": "Spun Count",
+					"id": "txtSpunCount",					
 					"type": "textbox",
 					"selector": false,
 					"data_path": "mil.Yarn.RegularYarn.Counts",
@@ -1016,7 +1015,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						},
 						{
 							"id": "opBlendContent_3",
-							"text": "Cotton Model",
+							"text": "Cotton Modal",
 							"selected": false
 						},
 						{
@@ -1090,7 +1089,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						},
 						{
 							"id": "opBlendContent_3",
-							"text": "Cotton Model",
+							"text": "Cotton Modal",
 							"selected": false
 						},
 						{
@@ -1164,7 +1163,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						},
 						{
 							"id": "opBlendContent_3",
-							"text": "Cotton Model",
+							"text": "Cotton Modal",
 							"selected": false
 						},
 						{
@@ -1589,7 +1588,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						},
 						{
 							"id": "opBlendContent_3",
-							"text": "Cotton Model",
+							"text": "Cotton Modal",
 							"selected": false
 						},
 						{
@@ -1892,7 +1891,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						},
 						{
 							"id": "opBlendContent_3",
-							"text": "Cotton Model",
+							"text": "Cotton Modal",
 							"selected": false
 						},
 						{
@@ -2900,7 +2899,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
                                     },
                                     {
                                         "id": "opBlendContent_3",
-                                        "text": "Cotton Model",
+                                        "text": "Cotton Modal",
                                         "selected": false
                                     },
                                     {
@@ -3418,7 +3417,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
                                     },
                                     {
                                         "id": "opBlendContent_3",
-                                        "text": "Cotton Model",
+                                        "text": "Cotton Modal",
                                         "selected": false
                                     },
                                     {
@@ -3721,7 +3720,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
                                     },
                                     {
                                         "id": "opBlendContent_3",
-                                        "text": "Cotton Model",
+                                        "text": "Cotton Modal",
                                         "selected": false
                                     },
                                     {

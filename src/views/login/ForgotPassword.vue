@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div style="overflow: hidden">
     <v-dialog v-model="dialog" width="500" height="auto">
       <v-card class="px-2" elevation="6">
-        
-          <v-card-title> Forgot Password 
+        <v-card-title>
+          Forgot Password
           <v-spacer></v-spacer>
           <v-btn @click="dialog = false" icon>
             <v-icon id="close-button">mdi-close</v-icon>
           </v-btn>
-          </v-card-title>
-        
+        </v-card-title>
+
         <v-divider></v-divider>
 
         <v-card-subtitle class="pt-2">
@@ -17,7 +17,6 @@
         </v-card-subtitle>
 
         <v-card-text>
-       
           <v-form ref="form">
             <v-text-field
               label="Email"
@@ -31,29 +30,31 @@
               v-model="request.email"
             ></v-text-field>
 
+            <v-row justify="center" class="mt-n5">
+              <v-card-actions>
+                <v-btn
+                  color="primary"
+                  class="rounded-0 white--text font-weight-light text-capitalize"
+                  depressed
+                  @click="forgotPassword"
+                  :loading="loading"
+                  >Send</v-btn
+                >
+              </v-card-actions>
+            </v-row>
             <v-row justify="center">
-            <v-card-actions>
-            <v-btn
-              color="primary"
-              class="rounded-0 white--text font-weight-light text-capitalize"
-              depressed
-              @click="forgotPassword"
-              :loading="loading"
-              >Send</v-btn>
-            </v-card-actions>
+              <v-btn
+                plain
+                class="text-decoration-none text-capitalize my-2"
+                @click="dialog = false"
+              >
+                back to login
+              </v-btn>
             </v-row>
           </v-form>
-        
         </v-card-text>
-        <!-- <v-row justify="center">
-          <v-card-actions>
-            <router-link to="/login" class="text-decoration-none black--text my-2 ">
-              Back To Login 
-              </router-link>
-          </v-card-actions>
-        </v-row> -->
       </v-card>
-      
+
       <v-snackbar
         v-model="snackbar"
         :timeout="2000"

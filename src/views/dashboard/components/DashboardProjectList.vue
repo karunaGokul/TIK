@@ -132,12 +132,22 @@ export default class DashboardProjectList extends Vue {
     // if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
     //   this.searchProject(true);
     // }
-    if (this.role === "Merchandiser") {
+    // if (this.role === "Merchandiser") {
+    //   this.searchProject(true);
+    // }
+
+    if(this.category === "Company" && (this.role === "Quote InCharge" || this.role === "Merchandiser" )&&
+      (this.stagesRequest === "New Projects" ||
+      this.stagesRequest === "Bid Received" ||
+      this.stagesRequest === "Awaiting Authentication" ||
+        this.stagesRequest === "Approval Pending" ||
+        this.stagesRequest === "Cancelled Projects" ||
+        this.stagesRequest === "Confirmed Projects" ||
+        this.stagesRequest === "Completed Projects")
+    ) {
       this.searchProject(true);
     }
-    if(this.category === "Company" && this.role === "Quote InCharge") {
-      this.searchProject(true);
-    }
+   
     if (this.category !== "Company" && this.role === "Quote InCharge" &&
       (this.stagesRequest === "Approved" ||
         this.stagesRequest === "Awaiting Approval" ||
@@ -147,6 +157,7 @@ export default class DashboardProjectList extends Vue {
     ) {
       this.searchProject(true);
     }
+
     if (
       this.category !== "Company" &&
       this.stagesRequest === "Initiated"

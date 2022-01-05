@@ -272,9 +272,11 @@
             :items="response.availableCounts"
             outlined
             dense
+            :filter="customFilter"
             multiple
             :disabled="edit === false"
-            :rules="[(v) => !!v || 'Counts is required']"
+            :rules="[(v) => !!(v && v.length) || 'Counts is required']"
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
           ></v-autocomplete>
           <div
             v-if="
@@ -292,7 +294,8 @@
               dense
               multiple
               :disabled="edit === false"
-              :rules="[(v) => !!v || 'Deniers is required']"
+              :rules="[(v) => !!(v && v.length) || 'Deniers is required']"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
             ></v-autocomplete>
           </div>
           <v-label>Enter AVG Credit time you offer:</v-label>
@@ -467,6 +470,7 @@ export default class MillControl extends Vue {
   public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
+  
  
   created() {
     if (

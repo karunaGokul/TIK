@@ -39,6 +39,7 @@
               class="ml-1 mr-5"
               v-if="selectValue != 'Review'"
               v-model="value"
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-text-field>
             <v-select
               offset-y

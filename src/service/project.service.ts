@@ -2418,6 +2418,405 @@ export class ProjectService extends ServiceHelper implements IProjectService {
                             }
                         ]
                     },
+
+					
+					{
+                        "title": "Choose Fabric Structure",
+                        "path": [
+                            "opFabric-opRegular-opSingle-opSpun-drpSpunQuality",
+							"opFabric-opRegular-opSingle-opFilament-drpFilamentQuality"
+                        ],
+                        "controls": [
+                            {
+                                "id": "tabSpunStructure",
+                                "type": "tab",
+                                "selector": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "options": [
+                                    {
+                                        "id": "opSingleJersey",
+                                        "text": "Single Jersey",
+										"controls": [
+											{
+												"id": "drpSingleJersey",
+												"label": "Select Structure",
+												"type": "dropdown",
+												"selector": false,
+												"data_path": "",
+												"data_id": "",
+												"options": [
+													{
+														"id": "opSingleJersey_1",
+														"text": "Single jersey /Plain / Fine",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_2",
+														"text": "Airtex / Picque / ThicK Picque",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_3",
+														"text": "Honey Comb",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_4",
+														"text": "Herringbone",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_5",
+														"text": "Bubble / Pattani",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_6",
+														"text": "Box Design",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_7",
+														"text": "Feeder Stripes",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_8",
+														"text": "2 Yarn Fleece / French Terry",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_9",
+														"text": "Mini Jacquard Designs",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_10",
+														"text": "Single Jersey + Lycra",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_11",
+														"text": "Picque + Lycra",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_12",
+														"text": "2 Yarn Fleece + Lycra",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_13",
+														"text": "3 Colour Striper",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_14",
+														"text": "4 Colour Striper",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_15",
+														"text": "6 Colour Striper",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_16",
+														"text": "Striper Mini Jacquard",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_17",
+														"text": "Striper Full Jacquard",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_18",
+														"text": "Single Jersey Jacquard",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_19",
+														"text": "Single Jersey Mesh Jacquard",
+														"selected": false
+													},
+													{
+														"id": "opSingleJersey_20",
+														"text": "Single Jersey Plating Eyelet Jacquard",
+														"selected": false
+													}
+												]
+											}
+										]
+                                    },
+                                    {
+                                        "id": "opInterlock",
+                                        "text": "Interlock",
+										"controls": [
+											{
+												"id": "drpInterlock",
+												"label": "Select Structure",
+												"type": "dropdown",
+												"selector": false,
+												"data_path": "",
+												"data_id": "",
+												"options": [
+													{
+														"id": "opInterlock_1",
+														"text": "Plain Interlock",
+														"selected": false
+													},
+													{
+														"id": "opInterlock_2",
+														"text": "4 track designs",
+														"selected": false
+													},
+													{
+														"id": "opInterlock_3",
+														"text": "Interlock Striper",
+														"selected": false
+													},
+													{
+														"id": "opInterlock_4",
+														"text": "Interlock Jacquard",
+														"selected": false
+													},
+													{
+														"id": "opInterlock_5",
+														"text": "Mattress Ticking",
+														"selected": false
+													},
+													{
+														"id": "opInterlock_6",
+														"text": "Plating Interlock",
+														"selected": false
+													}
+												]
+											}
+										]
+                                    },
+                                    {
+                                        "id": "opRib",
+                                        "text": "Rib",
+										"controls": [
+											{
+												"id": "drpRib",
+												"label": "Select Structure",
+												"type": "dropdown",
+												"selector": false,
+												"data_path": "",
+												"data_id": "",
+												"options": [
+													{
+														"id": "opRib_1",
+														"text": "Rib",
+														"selected": false
+													},
+													{
+														"id": "opRib_2",
+														"text": "1 x 1 Rib",
+														"selected": false
+													},
+													{
+														"id": "opRib_3",
+														"text": "2 x 2 Rib",
+														"selected": false
+													},
+													{
+														"id": "opRib_4",
+														"text": "Rib + Lycra",
+														"selected": false
+													},
+													{
+														"id": "opRib_5",
+														"text": "Flat Back Rib",
+														"selected": false
+													},
+													{
+														"id": "opRib_6",
+														"text": "Rib Transfer (Pattern Wheel)",
+														"selected": false
+													},
+													{
+														"id": "opRib_7",
+														"text": "Rib Striper",
+														"selected": false
+													},
+													{
+														"id": "opRib_8",
+														"text": "Rib Transfer Jacquard",
+														"selected": false
+													}
+												]
+											}
+										]
+                                    }
+                                ]
+                            },
+							{
+                                "label": "if Lycra required along with your choosen structure enter the follow details as per your requirement",
+                                "type": "heading",
+                                "selector": false,
+								"optional": true
+							},
+							{
+                                "id": "drpLycraPercentage",
+                                "label": "Choose Your Lycra Percentage",
+                                "type": "dropdown",
+                                "selector": false,
+								"optional": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "options": [
+                                    {
+                                        "id": "opLycraPercentage_1",
+                                        "text": "10%",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraPercentage_2",
+                                        "text": "20%",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraPercentage_3",
+                                        "text": "30%",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraPercentage_4",
+                                        "text": "40%",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraPercentage_5",
+                                        "text": "50%",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+							{
+                                "id": "drpLycraDenier",
+                                "label": "Choose Your Lycra Denier",
+                                "type": "dropdown",
+                                "selector": false,
+								"optional": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "options": [
+                                    {
+                                        "id": "opLycraDenier_1",
+                                        "text": "10",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraDenier_2",
+                                        "text": "20",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraDenier_3",
+                                        "text": "30",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraDenier_4",
+                                        "text": "40",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraDenier_5",
+                                        "text": "50",
+                                        "selected": false
+                                    }
+                                ]
+                            },
+							{
+                                "id": "drpLycraFeeder",
+                                "label": "Choose Lycra Feeder",
+                                "type": "dropdown",
+                                "selector": false,
+								"optional": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "options": [
+                                    {
+                                        "id": "opLycraFeeder_1",
+                                        "text": "All Feeder",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opLycraFeeder_2",
+                                        "text": "Alternate Feeder",
+                                        "selected": false
+                                    }
+                                ]
+                            }
+
+                        ]
+                    },
+
+					{
+                        "title": "Enter below details as per your requirement",
+                        "path": [
+                            "opFabric-opRegular-opSingle-opSpun-drpSpunQuality-tabSpunStructure"
+                        ],
+                        "controls": [
+                            {
+                                "id": "drpGauge",
+                                "label": "Guage",
+                                "type": "dropdown-range",
+                                "selector": false,
+                                "data_path": "",
+                                "data_id": "",
+                                "data": {
+									"start": 1,
+									"end": 100
+								}
+                            },
+							{
+                                "id": "drpDIA",
+                                "label": "DIA",
+                                "type": "dropdown-range",
+                                "selector": false,
+								"multiple": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "data": {
+									"start": 1,
+									"end": 100
+								}
+                            },
+							{
+                                "id": "drpTub",
+                                "label": "Select One",
+                                "type": "dropdown",
+                                "selector": false,
+								"multiple": true,
+                                "data_path": "",
+                                "data_id": "",
+                                "options": [
+                                    {
+                                        "id": "opTub_1",
+                                        "text": "OPW",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opTub_2",
+                                        "text": "TUB",
+                                        "selected": false
+                                    },
+                                    {
+                                        "id": "opTub_3",
+                                        "text": "TUB with Needle Drop",
+                                        "selected": false
+                                    }
+								]
+                            }
+                        ]
+                    },
+
                     {
                         "title": "Choose Filament Quality",
                         "path": [

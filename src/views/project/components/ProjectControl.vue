@@ -1,5 +1,8 @@
  <template>
   <div>
+    <v-row class="pa-3" v-if="control.type === 'heading'">
+      <div class="subtitle-1">{{ control.label }}</div>
+    </v-row>
     <v-row class="pa-3" v-if="control.type === 'dropdown'">
       <v-col cols="6">
         <v-label>{{ control.label }}</v-label>
@@ -11,6 +14,21 @@
           placeholder="Select"
           outlined
           dense
+          hide-details
+          required
+        ></v-select>
+      </v-col>
+    </v-row>
+    <v-row class="pa-3" v-if="control.type === 'dropdown-range'">
+      <v-col cols="6">
+        <v-label>{{ control.label }}</v-label>
+        <v-select
+          :items="rangeValues"
+          v-model="control.value"
+          placeholder="Select"
+          outlined
+          dense
+          :multiple="control.multiple"
           hide-details
           required
         ></v-select>
@@ -32,7 +50,7 @@
     <div class="pa-3" v-if="control.type === 'text-group'">
       <v-label>{{ control.label }}</v-label>
       <v-row>
-        <v-col v-for="(item, index) in control.items" :key="index">          
+        <v-col v-for="(item, index) in control.items" :key="index">
           <v-text-field
             outlined
             dense
@@ -70,6 +88,26 @@
         </v-btn>
       </v-btn-toggle>
     </div>
+    <div class="pa-3" v-else-if="control.type === 'tab'">
+      <v-tabs
+        v-model="control.data"
+        background-color="transparent"
+        color="black accent-4"
+        grow
+      >
+        <v-tab v-for="(tab, index) in control.options" :key="index">
+          <v-icon left color="green"> mdi-check-circle </v-icon>
+          {{ tab.text }}
+        </v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="control.data" style="background-color: transparent">
+        <v-tab-item v-for="(tab, index) in control.options" :key="index">
+          <div v-for="(tControl, j) in tab.controls" :key="j" class="pa-4">
+            <ProjectControl :control="tControl" @change="tabControlChanged(tab, control, tControl)" />
+          </div>
+        </v-tab-item>
+      </v-tabs-items>
+    </div>
   </div>
 </template>
 
@@ -97,7 +135,24 @@ export default class ProjectControl extends Vue {
   }
 
   textGroupChanged() {
-    this.control.value = this.control.items.map(i => i.value).join(",");
+    this.control.value = this.control.items.map((i) => i.value).join(",");
+  }
+
+  tabControlChanged(tab: ProjectFormStepControlOption, control: ProjectFormStepControl, tabControl: ProjectFormStepControl) {
+    control.options.forEach(o => o.selected = false);
+    tab.selected = true;
+
+    control.value = `${tab.text} - ${tabControl.value}`;
+  }
+
+  get rangeValues() {
+    const items: Array<any> = [];
+
+    for (let i = this.control.data.start; i <= this.control.data.end; i++) {
+      items.push({ "label": i, "text": i});
+    }
+
+    return items;
   }
 
   get buttonValue() {

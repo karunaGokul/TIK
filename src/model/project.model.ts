@@ -42,10 +42,13 @@ export class ProjectFormStepControl {
     id: string;
     type: string;
     selector: boolean;
-    options: Array<ProjectFormStepControlOption>;
+    optional: boolean;
+    options: Array<ProjectFormStepControlOption>;    
     items: Array<ProjectFormStepControl>
     value: string;
     label: string;
+    multiple: boolean;
+    data: any;
 
     data_path?: string;
     data_id?: string;
@@ -59,6 +62,8 @@ export class ProjectFormStepControlOption {
     selected: boolean;
 
     data_id?: string;
+
+    controls: Array<ProjectFormStepControl>
 }
 
 export class ProjectRequestModel extends DataRequest {

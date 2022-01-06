@@ -1,61 +1,63 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-card class="px-6" elevation="8">
-      <v-card-title>
-        {{ title }}
-        <v-spacer></v-spacer>
-        <v-btn @click="close()" icon>
-          <v-icon id="close-button">mdi-close</v-icon>
-        </v-btn>
-      </v-card-title>
+    <v-form ref="form">
+      <v-card class="px-6" elevation="8">
+        <v-card-title>
+          {{ title }}
+          <v-spacer></v-spacer>
+          <v-btn @click="close()" icon>
+            <v-icon id="close-button">mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
 
-      <v-divider></v-divider>
+        <v-divider></v-divider>
 
-      <v-card-text>
-        <v-select
-          :items="items"
-          :menu-props="{ offsetY: true }"
-          label="Select Reason"
-          class="shrink py-6"
-          dense
-          hide-details
-          v-model="approvelRequest.message"
-          v-if="title === 'Reasons'"
-        ></v-select>
-        <v-select
-          :items="noResponseItems"
-          :menu-props="{ offsetY: true }"
-          label="No Response"
-          class="shrink py-6"
-          dense
-          hide-details
-          v-model="approvelRequest.message"
-          v-else-if="title === 'Noshow'"
-        ></v-select>
-      </v-card-text>
+        <v-card-text>
+          <v-select
+            :items="items"
+            :menu-props="{ offsetY: true }"
+            label="Select Reason"
+            class="shrink py-6"
+            dense
+            v-model="approvelRequest.message"
+            v-if="title === 'Reasons'"
+            :rules="[(v) => !!v || 'Reason is required']"
+          ></v-select>
+          <v-select
+            :items="noResponseItems"
+            :menu-props="{ offsetY: true }"
+            label="No Response"
+            class="shrink py-6"
+            dense
+            v-model="approvelRequest.message"
+            v-else-if="title === 'Noshow'"
+            :rules="[(v) => !!v || 'NoShow reason is required']"
+          ></v-select>
+        </v-card-text>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          class="white--text font-weight-light text-capitalize rounded"
-          depressed
-          color="primary"
-          v-if="title === 'Reasons'"
-          @click="ApproveBid('Cancelled')"
-        >
-          save
-        </v-btn>
-        <v-btn
-          class="white--text font-weight-light text-capitalize rounded"
-          depressed
-          color="primary"
-          v-else-if="title === 'Noshow'"
-          @click="ApproveBid('NoShow')"
-        >
-          save
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="white--text font-weight-light text-capitalize rounded"
+            depressed
+            color="primary"
+            v-if="title === 'Reasons'"
+            @click="ApproveBid('Cancelled')"
+          >
+            save
+          </v-btn>
+          <v-btn
+            class="white--text font-weight-light text-capitalize rounded"
+            depressed
+            color="primary"
+            v-else-if="title === 'Noshow'"
+            @click="ApproveBid('NoShow')"
+          >
+            save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
   </v-dialog>
 </template>
 
@@ -74,13 +76,17 @@ export default class RejectProject extends Vue {
   public snackbarText: string = "";
 
   public ApproveBid(status: string) {
-    this.approvelRequest.bidId = this.response.bidList[0].id;
-    this.approvelRequest.status = status;
-    this.approvelRequest.projectId = this.response.Id;
-    this.DashboardService.ApproveBid(this.approvelRequest).then((response) => {
-      this.snackbarText = response;
-      this.close();
-    });
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.approvelRequest.bidId = this.response.bidList[0].id;
+      this.approvelRequest.status = status;
+      this.approvelRequest.projectId = this.response.Id;
+      this.DashboardService.ApproveBid(this.approvelRequest).then(
+        (response) => {
+          this.snackbarText = response;
+          this.close();
+        }
+      );
+    }
   }
 
   public close() {

@@ -410,6 +410,7 @@ export default class CreateEmployee extends Vue {
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
     (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
+    (v: any) => !(/[ ]/.test(v)) || 'No spaces allowed',
   ];
 
   public emailRules: any = [

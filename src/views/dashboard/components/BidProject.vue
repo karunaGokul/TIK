@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" width="500">
-    <v-form ref="form" name="forms" onsubmit="return validation()">
+    <v-form ref="form">
       <v-card class="px-6" elevation="8" style="overflow: hidden">
         <v-card-title class="mb-n2">
           Bid Project
@@ -35,7 +35,7 @@
                 dense
                 label="Enter Credit Period in Days"
                 v-model="bidRequest.creditPeriod"
-                :rules="[(v) => !!v || 'Credit Period is required']"
+                :rules="creditRules"
                 required
                 onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
@@ -51,7 +51,7 @@
                 dense
                 label="Enter Delivery Period in Days"
                 v-model="bidRequest.deliveryPeriod"
-                :rules="[(v) => !!v || 'Delivery Period is required']"
+                :rules="deliveryRules"
                 required
                 onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               ></v-text-field>
@@ -145,9 +145,23 @@ export default class BidProject extends Vue {
 
   public priceRules: any = [
     (v: any) => !!v || "Price is required",
-    (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+    // (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number",
   ];
 
+  public creditRules: any = [
+    (v: any) => !!v || "Credit Period is required",
+    (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
+  
+  ];
+
+public deliveryRules: any = [
+    (v: any) => !!v || "Delivery Period is required",
+    (v: any) => (v && v.length <= 4) || "Delivery Period must be a Valid Date",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
+  
+  ];
   public close() {
     this.$emit("closeModel", this.snackbarText);
   }

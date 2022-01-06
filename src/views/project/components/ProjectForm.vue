@@ -369,7 +369,7 @@ export default class ProjectForm extends Vue {
       let valid = true;
       this.steps.forEach((s) => {
         s.controls.forEach((c) => {
-          if (!c.value) valid = false;
+          if (!c.value && !c.optional) valid = false;
         });
       });
 
@@ -408,6 +408,7 @@ export default class ProjectForm extends Vue {
 
       const selectedOption = selector.options.find((o) => o.selected);
       if (!selectedOption) return false;
+      
 
       let path = this.$vuehelper.trimChar(
         `${this.path}-${selectedOption.id}`,

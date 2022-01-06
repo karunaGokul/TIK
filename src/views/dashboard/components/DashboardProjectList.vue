@@ -30,7 +30,9 @@
           @click="searchProject('true')"
           v-if="
             category === 'Company' ||
-              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+              (category !== 'Company' &&
+                searchRequest.stages !== 'Initiated' &&
+                searchRequest.stages !== 'Cancelled')
           "
           >my project</v-tab
         >
@@ -38,13 +40,15 @@
           @click="searchProject('false')"
           v-if="
             category === 'Company' ||
-              (category !== 'Company' && searchRequest.stages !== 'Initiated')
+              (category !== 'Company' &&
+                searchRequest.stages !== 'Initiated' &&
+                searchRequest.stages !== 'Cancelled')
           "
           >all project</v-tab
         >
       </v-tabs>
     </v-row>
-    <!-- (category !== 'Company' && searchRequest.stages !== 'Initiated') -->
+
     <v-row>
       <v-col col="12" md="12">
         <v-data-table
@@ -136,10 +140,12 @@ export default class DashboardProjectList extends Vue {
     //   this.searchProject(true);
     // }
 
-    if(this.category === "Company" && (this.role === "Quote InCharge" || this.role === "Merchandiser" )&&
+    if (
+      this.category === "Company" &&
+      (this.role === "Quote InCharge" || this.role === "Merchandiser") &&
       (this.stagesRequest === "New Projects" ||
-      this.stagesRequest === "Bid Received" ||
-      this.stagesRequest === "Awaiting Authentication" ||
+        this.stagesRequest === "Bid Received" ||
+        this.stagesRequest === "Awaiting Authentication" ||
         this.stagesRequest === "Approval Pending" ||
         this.stagesRequest === "Cancelled Projects" ||
         this.stagesRequest === "Confirmed Projects" ||
@@ -147,8 +153,10 @@ export default class DashboardProjectList extends Vue {
     ) {
       this.searchProject(true);
     }
-   
-    if (this.category !== "Company" && this.role === "Quote InCharge" &&
+
+    if (
+      this.category !== "Company" &&
+      this.role === "Quote InCharge" &&
       (this.stagesRequest === "Approved" ||
         this.stagesRequest === "Awaiting Approval" ||
         this.stagesRequest === "NoShow" ||
@@ -160,7 +168,7 @@ export default class DashboardProjectList extends Vue {
 
     if (
       this.category !== "Company" &&
-      this.stagesRequest === "Initiated"
+      (this.stagesRequest === "Initiated" || this.stagesRequest === "Cancelled")
     ) {
       this.searchProject(false);
     }

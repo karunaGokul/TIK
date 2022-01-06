@@ -233,6 +233,20 @@
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
+            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
+              <!-- <v-badge :content="completedCount" :value="completedCount !== 0"> -->
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Cancelled')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              <!-- </v-badge> -->
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                cancelled <br />projects
+              </v-card-subtitle>
+            </v-col>
             <v-col cols="12" sm="4" md="2">
               <!-- <v-badge> -->
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
@@ -328,7 +342,7 @@ export default class Dashboard extends Vue {
   public notificationResponse = new NotificationModel();
   public stagesMyProject: string = "";
   public tabValue: boolean = false;
-  // public a:number = 0;
+ 
   public newProjectCount: number = 0;
   public bidReceivedCount: number = 0;
   public pendingAuthenticationCount: number = 0;

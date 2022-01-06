@@ -299,6 +299,11 @@ export default class ProjectForm extends Vue {
 
   request: CreateProjectModel = new CreateProjectModel();
 
+  public priceRules: any = [
+    (v: any) => !!v || "Price is required",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number",
+  ];
+
   created() {
     this.buildForm();
   }

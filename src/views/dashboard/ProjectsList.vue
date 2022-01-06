@@ -307,6 +307,7 @@
                               dense
                               class="mt-4"
                               v-model="row.requestPrice"
+                              :rules="priceRules"
                               onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
@@ -327,6 +328,7 @@
                               dense
                               class="mt-4"
                               v-model="row.creditPeriod"
+                              :rules="creditRules"
                               onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
@@ -346,6 +348,7 @@
                               dense
                               class="mt-4"
                               v-model="row.deliveryDate"
+                              :rules="deliveryRules"
                               onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                             ></v-text-field>
                           </td>
@@ -467,7 +470,7 @@
                             >
                               {{ row.status }}
                             </div>
-                            <div v-else-if="row.status === 'NoShow'">
+                            <div v-else-if="(row.status === 'NoShow') || (row.status === 'Cancelled')">
                               {{ row.status }} <br />
                               {{ row.message }}
                             </div>
@@ -644,7 +647,7 @@
                               {{ row.status }}
                             </span>
                             <span
-                              v-else-if="row.status === 'NoShow'"
+                              v-else-if="(row.status === 'NoShow') || (row.status === 'Cancelled')"
                             >
                               {{ row.status }}<br />
                               {{ row.message }}
@@ -953,6 +956,26 @@ export default class ProjectsList extends Vue {
   get approvalAdminAccess(): string {
     return this.$store.getters.approvalAdminAccess;
   }
+
+  public priceRules: any = [
+    (v: any) => !!v || "Price is required",
+    // (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number",
+  ];
+
+  public creditRules: any = [
+    (v: any) => !!v || "Credit Period is required",
+    (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
+  
+  ];
+
+  public deliveryRules: any = [
+    (v: any) => !!v || "Delivery Period is required",
+    (v: any) => (v && v.length <= 4) || "Delivery Period must be a Valid Date",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
+  
+  ];
 
   ProjectRequestheaders: any = [
     "Project Name",

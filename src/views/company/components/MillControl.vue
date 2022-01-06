@@ -305,7 +305,7 @@
             required
             v-model="response.avgCreditTime"
             :disabled="edit === false"  
-            :rules="[(v) => !!v || 'AVG Credit time is required']"  
+            :rules="avgRules"  
             onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"        
           ></v-text-field>
         </v-col>
@@ -470,7 +470,13 @@ export default class MillControl extends Vue {
   public melanSlubTypesOptions: Array<contentModel> = [];
   public tubular: boolean = false;
   public width: boolean = false;
+
+  public avgRules: any = [
+    (v: any) => !!v || 'AVG Credit time is required',
+    (v: any) => (v && v.length <= 4) || "AVG Credit time must be a Valid Date",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "AVG Credit time must be Valid Number",
   
+  ];
  
   created() {
     if (

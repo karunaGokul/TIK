@@ -156,7 +156,7 @@ export default class BidProject extends Vue {
   
   ];
 
-public deliveryRules: any = [
+  public deliveryRules: any = [
     (v: any) => !!v || "Delivery Period is required",
     (v: any) => (v && v.length <= 4) || "Delivery Period must be a Valid Date",
     (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",

@@ -53,7 +53,6 @@
                 <v-text-field
                   outlined
                   dense
-                  required
                   hide-details
                   v-model="request.price"
                   label="Your Price per KG"
@@ -66,6 +65,7 @@
                   label="Request Price"
                   color="red"
                   dense
+                  @change="request.price=''"
                   v-model="request.requestPrice"
                   :readonly="mode == StepMode.Summary"
                 ></v-checkbox>
@@ -266,7 +266,6 @@ const validations: any = {
   request: {
     name: { required },
     noOfKgs: { required },
-    price: { required },
     creditPeriod: { required },
     confirmationDate: { required },
     deliveryDate: { required },
@@ -367,7 +366,12 @@ export default class ProjectForm extends Vue {
       if (this.$v.$invalid) {
         this.error = true;
       } else {
-        this.mode = StepMode.Summary;
+        if (this.request.price || this.request.requestPrice) {
+          this.mode = StepMode.Summary;
+        } else {
+          this.error = true;
+        }
+
         // console.log(JSON.stringify(this.request));
       }
     } else {
@@ -413,7 +417,6 @@ export default class ProjectForm extends Vue {
 
       const selectedOption = selector.options.find((o) => o.selected);
       if (!selectedOption) return false;
-      
 
       let path = this.$vuehelper.trimChar(
         `${this.path}-${selectedOption.id}`,

@@ -5,7 +5,7 @@
         Rejected Projects
       </span>
 
-      <v-dialog v-model="dialog" width="500">
+      <!-- <v-dialog v-model="dialog" width="500">
         <template v-slot:activator="{ on, attrs }">
           <v-icon large color="green darken-4" v-bind="attrs" v-on="on">
             mdi-filter
@@ -62,6 +62,18 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-icon large color="green darken-4" class="ml-4" @click="reset()">
+        mdi-lock-reset
+      </v-icon> -->
+      <!-- <v-icon large color="green darken-4" @click="filter = true">
+        mdi-filter
+      </v-icon> -->
+      <FilterDialog
+        :dialog="dialog"
+        :response="response"
+        :projectId="projectId"
+        @response="response"
+      />
       <v-icon large color="green darken-4" class="ml-4" @click="reset()">
         mdi-lock-reset
       </v-icon>
@@ -133,7 +145,11 @@
 import { BitReceivedModel, FilterRequestModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
-@Component
+import FilterDialog from "./FilterDialog.vue";
+
+@Component({
+  components: { FilterDialog },
+})
 export default class RejectedProject extends Vue {
   @Prop() response: Array<BitReceivedModel>;
   @Prop() projectId: string;
@@ -142,11 +158,13 @@ export default class RejectedProject extends Vue {
 
   public filterRequest = new FilterRequestModel();
   public dialog: boolean = false;
-  public filterValue: boolean = false;
-  public selectValue: string = "";
-  public value: string;
+  // public filterValue: boolean = false;
+  // public selectValue: string = "";
+  // public value: string;
   public sortedValue: any;
   public temp: boolean = false;
+
+  public filter: boolean = false;
 
   public sort() {
     this.response.sort((a, b) => {
@@ -177,27 +195,27 @@ export default class RejectedProject extends Vue {
       }
     );
   }
-  public FilterRejectedBids() {
-    if (this.selectValue === "Price") {
-      this.filterRequest.price = this.value;
-    } else if (this.selectValue === "Credit Period") {
-      this.filterRequest.creditPeriod = this.value;
-    } else if (this.selectValue === "Review") {
-      this.filterRequest.review = this.value;
-    } else {
-      this.filterRequest.deliveryPeriod = this.value;
-    }
+  // public FilterRejectedBids() {
+  //   if (this.selectValue === "Price") {
+  //     this.filterRequest.price = this.value;
+  //   } else if (this.selectValue === "Credit Period") {
+  //     this.filterRequest.creditPeriod = this.value;
+  //   } else if (this.selectValue === "Review") {
+  //     this.filterRequest.review = this.value;
+  //   } else {
+  //     this.filterRequest.deliveryPeriod = this.value;
+  //   }
 
-    this.filterRequest.projectId = this.projectId;
-    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      (response) => {
-        this.response = response;
-        this.dialog = false;
-        this.selectValue = "";
-        this.filterValue = false;
-      }
-    );
-  }
+  //   this.filterRequest.projectId = this.projectId;
+  //   this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+  //     (response) => {
+  //       this.response = response;
+  //       this.dialog = false;
+  //       this.selectValue = "";
+  //       this.filterValue = false;
+  //     }
+  //   );
+  // }
   get category(): string {
     return this.$store.getters.category;
   }

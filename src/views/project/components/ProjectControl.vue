@@ -3,7 +3,7 @@
     <v-row class="pa-3" v-if="control.type === 'heading'">
       <div class="subtitle-1">{{ control.label }}</div>
     </v-row>
-    <v-row class="pa-3" v-if="control.type === 'dropdown'">
+    <v-row class="pa-2" v-if="control.type === 'dropdown'">
       <v-col cols="6">
         <v-label>{{ control.label }}</v-label>
         <v-select

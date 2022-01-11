@@ -4251,14 +4251,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opLycraFeeder_1",
-										"text": "All Feeder",,
-										"data_id":"AllFeeder"
+										"text": "All Feeder",
+										"data_id":"AllFeeder",
 										"selected": false
 									},
 									{
 										"id": "opLycraFeeder_2",
 										"text": "Alternate Feeder",
-										"data_id":"AlternateFeeder"
+										"data_id":"AlternateFeeder",
 										"selected": false
 									}
 								]

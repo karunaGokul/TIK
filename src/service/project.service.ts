@@ -4193,73 +4193,168 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+										
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_id": "GG",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_id": "DIA",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",,
-										"data_id":"AllFeeder"
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"data_id":"AlternateFeeder"
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -4316,7 +4411,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"label": "DIA",
 								"type": "dropdown-range",
 								"selector": false,
-								"multiple": true,					
+								"multiple": true,
 								"data_id": "DIA",
 								"data": {
 									"start": 1,

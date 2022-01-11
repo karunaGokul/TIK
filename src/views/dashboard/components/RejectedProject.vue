@@ -72,7 +72,7 @@
         :dialog="dialog"
         :response="response"
         :projectId="projectId"
-        @response="response"
+       
       />
       <v-icon large color="green darken-4" class="ml-4" @click="reset()">
         mdi-lock-reset

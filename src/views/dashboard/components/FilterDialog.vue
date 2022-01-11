@@ -65,13 +65,12 @@ import { BitReceivedModel, FilterRequestModel } from "@/model";
 
 @Component
 export default class FilterDialog extends Vue {
-  @Prop() dialog: boolean;
-  @Prop() response: Array<BitReceivedModel>;
-  @Prop() projectId: string;
+   @Prop() projectId: string;
 
   @Inject("DashboardService") DashboardService: IDashboardService;
 
   public selectValue: string = "";
+  public dialog: boolean = false;
   public value: string;
   public filterValue: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
@@ -94,10 +93,11 @@ export default class FilterDialog extends Vue {
     this.filterRequest.projectId = this.projectId;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
-        this.response = response;
+        this.filterResponse = response;
         this.dialog = false;
         this.selectValue = "";
         this.filterValue = false;
+        this.$emit("filteredBids", this.filterResponse);
       }
     );
   }

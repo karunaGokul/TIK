@@ -68,11 +68,9 @@
       <!-- <v-icon large color="green darken-4" @click="filter = true">
         mdi-filter
       </v-icon> -->
-      <FilterDialog
-        :dialog="dialog"
-        :response="response"
-        :projectId="projectId"
-       
+      <FilterDialog    
+               :projectId="projectId"
+        @filteredBids="filteredBids"
       />
       <v-icon large color="green darken-4" class="ml-4" @click="reset()">
         mdi-lock-reset
@@ -157,7 +155,7 @@ export default class RejectedProject extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
 
   public filterRequest = new FilterRequestModel();
-  public dialog: boolean = false;
+  // public dialog: boolean = false;
   // public filterValue: boolean = false;
   // public selectValue: string = "";
   // public value: string;
@@ -179,8 +177,7 @@ export default class RejectedProject extends Vue {
         this.temp = false;
         return x < y ? 1 : x > y ? -1 : 0;
       }
-    });
-    console.log(this.response);
+    });   
   }
 
   public reset() {
@@ -194,6 +191,9 @@ export default class RejectedProject extends Vue {
         this.response = response;
       }
     );
+  }
+  public filteredBids(filterResponse: Array<BitReceivedModel>){
+    this.response=filterResponse;
   }
   // public FilterRejectedBids() {
   //   if (this.selectValue === "Price") {

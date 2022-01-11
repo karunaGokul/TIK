@@ -10,8 +10,12 @@
           Dashboard
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        <span v-if="response.InStages == 'Confirmed'"> Confirmed Project</span>
-        <span v-else> New Project</span>
+        <span v-if="response.InStages == 'Enquiry Sent'"> New Project</span>
+        <span v-else-if="response.InStages == 'Awaiting Approval'"> Approval Pending</span>
+        <span v-else-if="response.InStages == 'Awaiting Authentication'"> Approved Bids</span>
+        <span v-else> {{ response.InStages }} Projects</span>
+        <!-- <span v-if="response.InStages == 'Confirmed'"> Confirmed Project</span>
+        <span v-else> New Project</span> -->
       </div>
     </v-container>
 

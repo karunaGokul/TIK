@@ -4,12 +4,8 @@ export class CreateProjectModel {
     name: string;
     category: string;
     merchandiserId: string;
-    noOfKgs: number;
-    price: number;
-    requestPrice: boolean;
-    creditPeriod: number;
-    confirmationDate: Date;
-    deliveryDate: Date;
+    
+    data: any;
 
     bids: Array<any> = [];
     controls: Array<CreateProjectControlModel> = [];

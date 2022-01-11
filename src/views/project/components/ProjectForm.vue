@@ -24,126 +24,11 @@
             </v-row>
           </div>
           <div v-if="mode == StepMode.Detail || mode == StepMode.Summary">
-            <v-row>
-              <v-col cols="6">
-                <v-text-field
-                  outlined
-                  dense
-                  required
-                  v-model="request.name"
-                  label="Enquiry Name"
-                  :readonly="mode == StepMode.Summary"
-                  @input="$v.request.name.$touch"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="6">
-                <v-text-field
-                  outlined
-                  dense
-                  required
-                  v-model="request.noOfKgs"
-                  label="Enter No of Kgs"
-                  :readonly="mode == StepMode.Summary"
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="6">
-                <v-text-field
-                  outlined
-                  dense
-                  hide-details
-                  v-model="request.price"
-                  label="Your Price per KG"
-                  :readonly="mode == StepMode.Summary"
-                  :disabled="request.requestPrice"
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                ></v-text-field>
-                <div class="text-left px-4 pt-2">OR</div>
-                <v-checkbox
-                  label="Request Price"
-                  color="red"
-                  dense
-                  @change="request.price=''"
-                  v-model="request.requestPrice"
-                  :readonly="mode == StepMode.Summary"
-                ></v-checkbox>
-              </v-col>
-              <v-col cols="6">
-                <v-text-field
-                  outlined
-                  dense
-                  required
-                  v-model="request.creditPeriod"
-                  label="Your required Credit Period in Days"
-                  :readonly="mode == StepMode.Summary"
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="6">
-                <v-menu
-                  v-model="confirmationDateControl"
-                  :close-on-content-click="false"
-                  transition="scale-transition"
-                  offset-y
-                  max-width="290px"
-                  min-width="290px"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      :value="request.confirmationDate | dateDisplay"
-                      readonly
-                      v-on="on"
-                      outlined
-                      dense
-                      required
-                      hide-details
-                      label="Order Confirmation Date"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker
-                    v-model="request.confirmationDate"
-                    no-title
-                    @input="confirmationDateControl = false"
-                    v-if="mode != StepMode.Summary"
-                    :min="new Date().toISOString().substr(0, 10)"
-                  ></v-date-picker>
-                </v-menu>
-              </v-col>
-              <v-col cols="6">
-                <v-menu
-                  v-model="deliveryDateControl"
-                  :close-on-content-click="false"
-                  transition="scale-transition"
-                  offset-y
-                  max-width="290px"
-                  min-width="290px"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      :value="request.deliveryDate | dateDisplay"
-                      readonly
-                      v-on="on"
-                      outlined
-                      dense
-                      required
-                      hide-details
-                      label="Expected Delivery Date"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker
-                    v-model="request.deliveryDate"
-                    no-title
-                    @input="deliveryDateControl = false"
-                    v-if="mode != StepMode.Summary"
-                    :min="new Date().toISOString().substr(0, 10)"
-                  ></v-date-picker>
-                </v-menu>
-              </v-col>
-            </v-row>
+            <ProjectDetailControl
+              :request="request"
+              :controls="detailControls"
+              :isSummary="mode == StepMode.Summary"
+            />
           </div>
           <div v-else-if="mode == StepMode.Result">
             <ProjectResult :request="request" />
@@ -155,7 +40,6 @@
             <div v-for="(control, j) in currentStep.controls" :key="j">
               <ProjectControl
                 :control="control"
-                @change="controlChanged(control)"
               />
             </div>
           </div>
@@ -251,7 +135,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Inject } from "vue-property-decorator";
-import { required } from "vuelidate/lib/validators";
 import {
   ProjectFormModel,
   ProjectFormStep,
@@ -260,21 +143,11 @@ import {
 } from "@/model";
 import { IProjectService } from "@/service";
 import ProjectControl from "./ProjectControl.vue";
+import ProjectDetailControl from "./ProjectDetailControl.vue";
 import ProjectResult from "./ProjectResult.vue";
 
-const validations: any = {
-  request: {
-    name: { required },
-    noOfKgs: { required },
-    creditPeriod: { required },
-    confirmationDate: { required },
-    deliveryDate: { required },
-  },
-};
-
 @Component({
-  validations: validations,
-  components: { ProjectControl, ProjectResult },
+  components: { ProjectControl, ProjectDetailControl, ProjectResult },
 })
 export default class ProjectForm extends Vue {
   @Inject("ProjectService") service: IProjectService;
@@ -293,15 +166,8 @@ export default class ProjectForm extends Vue {
   path: string = "";
   error: boolean = false;
 
-  confirmationDateControl: boolean = false;
-  deliveryDateControl: boolean = false;
-
   request: CreateProjectModel = new CreateProjectModel();
-
-  public priceRules: any = [
-    (v: any) => !!v || "Price is required",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number",
-  ];
+  detailControls: Array<any> = [];
 
   created() {
     this.buildForm();
@@ -324,10 +190,6 @@ export default class ProjectForm extends Vue {
         step.stepNumber = 1;
         this.steps.push(step);
       });
-  }
-
-  controlChanged(control: ProjectFormStepControl) {
-    //this.currentStep.selectedOption = control.options.find((o) => o.selected);
   }
 
   create() {
@@ -359,21 +221,9 @@ export default class ProjectForm extends Vue {
   next() {
     this.error = false;
     if (this.mode == StepMode.Result) {
-      if (this.request.bids.length > 0) this.mode = StepMode.Detail;
+      if (this.request.bids.length > 0) this.renderDetail();
     } else if (this.mode == StepMode.Detail) {
-      this.$v.$touch();
-
-      if (this.$v.$invalid) {
-        this.error = true;
-      } else {
-        if (this.request.price || this.request.requestPrice) {
-          this.mode = StepMode.Summary;
-        } else {
-          this.error = true;
-        }
-
-        // console.log(JSON.stringify(this.request));
-      }
+      this.renderSummary();
     } else {
       let valid = true;
       this.steps.forEach((s) => {
@@ -411,7 +261,6 @@ export default class ProjectForm extends Vue {
 
         this.mode = StepMode.Result;
 
-        // console.log(JSON.stringify(this.request));
         return false;
       }
 
@@ -430,8 +279,42 @@ export default class ProjectForm extends Vue {
         this.path = path;
         nextStep.stepNumber = this.steps.length + 1;
         this.steps.push(nextStep);
-      } else this.mode = StepMode.Result;
+      } else {
+        this.mode = StepMode.Result;
+      }
     }
+  }
+
+  renderDetail() {
+    this.mode = StepMode.Detail;
+
+    const category = this.request.controls[0].value;
+
+    this.detailControls = this.detailJson.find(
+      (d: any) => d.category == category
+    ).controls;
+  }
+
+  renderSummary() {
+    this.request.data = {};
+
+    this.detailControls.forEach((c) => {
+      if (c.type == "price") {
+        this.request.data.requestPrice = c.requestPrice ? true : false;
+
+        if (!this.request.data.requestPrice) {
+          if (c.value) this.request.data[c.id] = parseInt(c.value);
+          else this.error = true;
+        }
+      } else {
+        if (c.value) this.request.data[c.id] = c.value;
+        else this.error = true;
+      }
+    });
+
+    if (!this.error) this.mode = StepMode.Summary;
+
+    console.log(JSON.stringify(this.request));
   }
 
   get progress() {
@@ -446,6 +329,74 @@ export default class ProjectForm extends Vue {
   get currentStep() {
     return this.steps.find((s) => s.path.includes(this.path));
   }
+
+  detailJson: any = [
+    {
+      category: "Yarn",
+      controls: [
+        {
+          label: "Enter No of Kgs",
+          id: "noOfKgs",
+          type: "number",
+        },
+        {
+          label: "Your Price per Kg",
+          id: "price",
+          type: "price",
+        },
+        {
+          label: "Order Confirmation Date",
+          id: "confirmationDate",
+          type: "date",
+        },
+        {
+          label: "Expected Delivery Date",
+          id: "deliveryDate",
+          type: "date",
+        },
+        {
+          label: "Your required Credit Period in days",
+          id: "creditPeriod",
+          type: "number",
+        },
+      ],
+    },
+    {
+      category: "Fabric",
+      controls: [
+        {
+          label: "Enter your required GSM",
+          id: "gsm",
+          type: "number",
+        },
+        {
+          label: "Enter your required Loop Length",
+          id: "loopLength",
+          type: "number",
+        },
+        {
+          label: "Enter your required Kgs",
+          id: "noOfKgs",
+          type: "number",
+        },
+        {
+          label: "Your Price per Kg",
+          id: "price",
+          type: "price",
+        },
+        {
+          label: "Your required Credit Period in days",
+          id: "creditPeriod",
+          type: "number",
+        },
+        {
+          label: "Your required Delivery Period in days",
+          id: "deliveryPeriod",
+          type: "number",
+        },
+      ],
+    },
+  ];
 }
 
 enum StepMode {

@@ -26,6 +26,7 @@
             outlined
             dense
             v-model="merchandiser"
+            :loading="merchandiserLoading"
             :rules="[(v) => !!v || 'Merchandiser role is required']"
           >
           </v-select>
@@ -110,6 +111,8 @@ export default class ProjectBuilder extends Vue {
   public categoryName: string = "";
   public snackbar: boolean = false;
   public snackbarText: string = "";
+
+  merchandiserLoading: boolean = false;
   
   created() {
     this.GetMerchandiser();
@@ -117,9 +120,13 @@ export default class ProjectBuilder extends Vue {
 
   public GetMerchandiser() {
     this.adminRequest.companyId = this.$store.getters.companyId;
+
+    this.merchandiserLoading = true;
     this.EmployeeService.GetMerchandiser(this.adminRequest).then(
       (response: Array<MerchandiserResponseModel>) => {
         this.merchandiserResponse = response;
+
+        this.merchandiserLoading = false;
       }
     );
   }

@@ -11,8 +11,12 @@
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         <span v-if="response.InStages == 'Enquiry Sent'"> New Project</span>
-        <span v-else-if="response.InStages == 'Awaiting Approval'"> Approval Pending</span>
-        <span v-else-if="response.InStages == 'Awaiting Authentication'"> Approved Bids</span>
+        <span v-else-if="response.InStages == 'Awaiting Approval'">
+          Approval Pending</span
+        >
+        <span v-else-if="response.InStages == 'Awaiting Authentication'">
+          Approved Bids</span
+        >
         <span v-else> {{ response.InStages }} Projects</span>
         <!-- <span v-if="response.InStages == 'Confirmed'"> Confirmed Project</span>
         <span v-else> New Project</span> -->
@@ -194,7 +198,15 @@
           />
         </v-col>
       </v-row>
-      
+      <v-row
+        v-if="category === 'Company' && response.InStages === 'Bid Received'"
+      >
+        <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
+        <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
+        <v-icon large color="green darken-4" class="ml-4" @click="reset()">
+          mdi-lock-reset
+        </v-icon>
+      </v-row>
       <div v-if="response.bidList" class="mt-5">
         <v-row v-for="row in response.bidList" :key="row.status">
           <v-row
@@ -475,7 +487,12 @@
                             >
                               {{ row.status }}
                             </div>
-                            <div v-else-if="(row.status === 'NoShow') || (row.status === 'Cancelled')">
+                            <div
+                              v-else-if="
+                                row.status === 'NoShow' ||
+                                  row.status === 'Cancelled'
+                              "
+                            >
                               {{ row.status }} <br />
                               {{ row.message }}
                             </div>
@@ -579,18 +596,21 @@
 
                             <div
                               v-if="
-                                row.status === 'Confirmed' && (row.ratings === null) &&
-                                  (role === 'Approval Admin' || role === 'Quote InCharge' || role === 'Merchandiser')
+                                row.status === 'Confirmed' &&
+                                  row.ratings === null &&
+                                  (role === 'Approval Admin' ||
+                                    role === 'Quote InCharge' ||
+                                    role === 'Merchandiser')
                               "
                             >
                               {{ row.status }}
                             </div>
                             <div
                               v-else-if="
-                                  (row.status === 'Confirmed' &&
-                                    row.ratings !== null) ||
-                                    row.status === 'Completed' &&
-                                    role === 'MasterAdmin'
+                                (row.status === 'Confirmed' &&
+                                  row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role === 'MasterAdmin')
                               "
                               class="text-wrap ml-n7"
                             >
@@ -604,10 +624,10 @@
                             </div>
                             <div
                               v-else-if="
-                                  (row.status === 'Confirmed' &&
-                                    row.ratings !== null) ||
-                                    row.status === 'Completed' &&
-                                    role !== 'MasterAdmin'
+                                (row.status === 'Confirmed' &&
+                                  row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role !== 'MasterAdmin')
                               "
                               class="text-wrap ml-n3"
                             >
@@ -664,7 +684,10 @@
                               {{ row.status }}
                             </span>
                             <span
-                              v-else-if="(row.status === 'NoShow') || (row.status === 'Cancelled')"
+                              v-else-if="
+                                row.status === 'NoShow' ||
+                                  row.status === 'Cancelled'
+                              "
                             >
                               {{ row.status }}<br />
                               {{ row.message }}
@@ -709,7 +732,8 @@
                             </div>
                             <div
                               v-if="
-                                row.status === 'Confirmed' && (row.ratings === null) &&
+                                row.status === 'Confirmed' &&
+                                  row.ratings === null &&
                                   (role === 'Approval Admin' ||
                                     role === 'Quote InCharge')
                               "
@@ -720,8 +744,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  row.status === 'Completed' &&
-                                  role === 'MasterAdmin'
+                                  (row.status === 'Completed' &&
+                                    role === 'MasterAdmin')
                               "
                               class="text-wrap ml-n7"
                             >
@@ -737,8 +761,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  row.status === 'Completed' &&
-                                  role !== 'MasterAdmin'
+                                  (row.status === 'Completed' &&
+                                    role !== 'MasterAdmin')
                               "
                               class="text-wrap ml-n3"
                             >
@@ -812,6 +836,8 @@ import RejectProject from "./components/RejectProject.vue";
 import Review from "./components/Review.vue";
 import ProjectSummary from "./components/ProjectSummary.vue";
 import RejectedProject from "./components/RejectedProject.vue";
+import FilterDialog from "./components/FilterDialog.vue";
+
 @Component({
   mixins: [validationMixin],
   components: {
@@ -820,6 +846,7 @@ import RejectedProject from "./components/RejectedProject.vue";
     BidProject,
     RejectProject,
     RejectedProject,
+    FilterDialog,
   },
 })
 export default class ProjectsList extends Vue {
@@ -845,6 +872,10 @@ export default class ProjectsList extends Vue {
   public isRejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
+
+  public filteredBids(filterResponse: Array<BitReceivedModel>) {
+    this.response.bidList = filterResponse;
+  }
 
   created() {
     this.GetProjectEnquiry();
@@ -975,15 +1006,15 @@ export default class ProjectsList extends Vue {
   public creditRules: any = [
     (v: any) => !!v || "Credit Period is required",
     (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
-  
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
   ];
 
   public deliveryRules: any = [
     (v: any) => !!v || "Delivery Period is required",
     (v: any) => (v && v.length <= 4) || "Delivery Period must be a Valid Date",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
-  
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
   ];
 
   ProjectRequestheaders: any = [

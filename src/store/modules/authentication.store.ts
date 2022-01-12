@@ -12,6 +12,7 @@ const state: AuthenticationState = {
     companyId: localStorage.getItem('companyId') || '',
     category: localStorage.getItem('category') || '',
     approvalAdminAccess: localStorage.getItem('approvalAdminAccess') || '',
+    // stages: localStorage.getItem('stages') || '',
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {
@@ -34,7 +35,10 @@ const getters: GetterTree<AuthenticationState, any> = {
     },
     approvalAdminAccess: state => {
         return state.approvalAdminAccess;
-    }
+    },
+    // stages: state => {
+    //     return state.stages;
+    // }
 }
 
 const mutations: MutationTree<AuthenticationState> = {

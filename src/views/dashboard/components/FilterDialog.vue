@@ -97,6 +97,11 @@ export default class FilterDialog extends Vue {
         this.dialog = false;
         this.selectValue = "";
         this.filterValue = false;
+        this.value = "";
+        this.filterRequest.price = null;
+        this.filterRequest.creditPeriod = null;
+        this.filterRequest.deliveryPeriod = null;
+        this.filterRequest.review = null;
         this.$emit("filteredBids", this.filterResponse);
       }
     );

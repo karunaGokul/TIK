@@ -10,16 +10,26 @@
           Dashboard
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
-        <span v-if="response.InStages == 'Enquiry Sent'"> New Project</span>
-        <span v-else-if="response.InStages == 'Awaiting Approval'">
+        <span v-if="response.InStages === 'Enquiry Sent'">
+          New Project
+          <!-- <span v-for="row in response.bidList" :key="row.status">
+              <span v-if="row.status === 'Authenticated'">
+                Approval Pending
+              </span>
+            </span> -->
+        </span>
+        <span v-else-if="response.InStages === 'Awaiting Authentication'">
+          <span v-if="category === 'Company'">
+            Pending Authentication
+          </span>
+          <span v-else>
+            Approved Bids
+          </span>
+        </span>
+        <span v-else-if="response.InStages === 'Awaiting Approval'">
           Approval Pending</span
         >
-        <span v-else-if="response.InStages == 'Awaiting Authentication'">
-          Approved Bids</span
-        >
         <span v-else> {{ response.InStages }} Projects</span>
-        <!-- <span v-if="response.InStages == 'Confirmed'"> Confirmed Project</span>
-        <span v-else> New Project</span> -->
       </div>
     </v-container>
 

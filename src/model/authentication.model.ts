@@ -14,6 +14,7 @@ export class AuthenticationResponse {
     category: string;
     approvalAdminAccess: string;
     userId?: string;
+  
 }
 
 export class AuthenticationState {
@@ -24,6 +25,7 @@ export class AuthenticationState {
     companyId: string = "";
     category: string = "";
     approvalAdminAccess: string = "";
+    // stages: string = "";
 }
 
 export class ForgotPasswordRequestModel {

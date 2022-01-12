@@ -3567,7 +3567,9 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 					{
 						"title": "Choose Fabric Structure",
 						"path": [
-							"opFabric-opRegular-opSingle-opSpun-drpSpunQuality"
+							"opFabric-opRegular-opSingle-opSpun-drpSpunQuality",
+							"opFabric-opRegular-opSingle-opFilament-drpFilamentQuality",
+							"opFabric-opRegular-opBlend-drpBlendContent-drpBlendQuality"
 						],
 						"controls": [
 							{
@@ -3796,8 +3798,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								]
 							},
 							{
-								"label": "if Lycra required along with your choosen structure enter the follow details as per your requirement",
-								"type": "heading",
+								"label": "If Lycra required along with your choosen structure, enter the follow details as per your requirement",
+                         		"type": "heading",
 								"selector": false,
 								"optional": true
 							},

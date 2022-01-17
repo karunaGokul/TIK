@@ -212,7 +212,9 @@
         v-if="category === 'Company' && response.InStages === 'Bid Received'"
       >
         <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
+
         <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
+
         <v-icon large color="green darken-4" class="ml-4" @click="reset()">
           mdi-lock-reset
         </v-icon>
@@ -397,11 +399,32 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'MasterAdmin') &&
-                                  row.status === 'Approved'
+                                  row.status === 'Approved' &&
+                                  row.submittedDate <= response.confirmationDate
                               "
                               @click="ApproveBid('Selected', row)"
                             >
                               Accept
+                            </v-btn>
+                            <v-btn
+                              class="
+                                white--text
+                                font-weight-light
+                                text-capitalize
+                                rounded
+                                ml-n5
+                              "
+                              depressed
+                              color="primary"
+                              v-if="
+                                role === 'MasterAdmin' &&
+                                  row.submittedDate >
+                                    response.confirmationDate &&
+                                  row.status === 'Approved'
+                              "
+                              @click="toggleNoResponse = 'true'"
+                            >
+                              no response
                             </v-btn>
                             <span
                               v-else-if="
@@ -469,7 +492,7 @@
                                   (row.status === 'Approved' ||
                                     row.status === 'Selected')
                               "
-                              class="my-2"
+                              class="my-2 ml-n7"
                             >
                               Pending for Approval
                             </div>
@@ -783,6 +806,33 @@
                       </tbody>
                     </template>
                   </v-simple-table>
+                  <v-simple-table
+                    class="mt-5"
+                    v-if="
+                      category != 'Company' &&
+                        (response.InStages === 'Confirmed' ||
+                          response.InStages === 'Completed')
+                    "
+                  >
+                    <thead
+                      class="teal lighten-4 text-subtitle-2 text-capitalize"
+                    >
+                      <tr>
+                        <th>price</th>
+                        <th>deliveryPeriod</th>
+                        <th>creditPeriod</th>
+                        <th>companyReview</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ confirmedBidResponse.price }}</td>
+                        <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
+                        <td>{{ confirmedBidResponse.creditPeriod }}</td>
+                        <td>{{ confirmedBidResponse.companyReview }}</td>
+                      </tr>
+                    </tbody>
+                  </v-simple-table>
                 </v-col>
               </v-row>
             </v-row>
@@ -794,6 +844,13 @@
           v-if="category === 'Company' && isRejected === true"
         />
       </div>
+
+      <RejectProject
+        :response="response"
+        title="NoResponse"
+        v-if="toggleNoResponse"
+        @closeModel="closeModel"
+      />
 
       <RejectProject
         :response="response"
@@ -837,6 +894,8 @@ import {
   BidRequestModel,
   ApprovalAdminResponseModel,
   AdminRequestModel,
+  FilterRequestModel,
+  ConfirmedBidModel,
 } from "@/model";
 import { IDashboardService, EmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -875,6 +934,7 @@ export default class ProjectsList extends Vue {
   public toggleCancel: boolean = false;
   public toggleReview: boolean = false;
   public toggleNoShow: boolean = false;
+  public toggleNoResponse: boolean = false;
   public toggleSummaryView: boolean = false;
   public showText: boolean = false;
   public snackbarText: string = "";
@@ -882,13 +942,13 @@ export default class ProjectsList extends Vue {
   public isRejected: boolean = false;
   public adminRequest: AdminRequestModel = new AdminRequestModel();
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
-
-  public filteredBids(filterResponse: Array<BitReceivedModel>) {
-    this.response.bidList = filterResponse;
-  }
+  public dialog: boolean = false;
+  public filterRequest = new FilterRequestModel();
+  public confirmedBidResponse = new ConfirmedBidModel();
 
   created() {
     this.GetProjectEnquiry();
+
     if (this.category != "Company") {
       this.BitReceivedheaders.splice(0, 4);
       this.BitReceivedheaders.push(
@@ -900,8 +960,33 @@ export default class ProjectsList extends Vue {
       );
     }
     this.GetApprovalAdmin();
+    this.GetConfirmedBidDetails();
   }
 
+  public GetConfirmedBidDetails() {
+    this.request.id = this.$route.params.Id;
+    this.DashboardService.GetConfirmedBidDetails(this.request.id).then(
+      (response) => {
+        this.confirmedBidResponse = response;
+      }
+    );
+  }
+  public filteredBids(filterResponse: Array<BitReceivedModel>) {
+    this.response.bidList = filterResponse;
+  }
+
+  public reset() {
+    this.filterRequest.projectId = this.response.Id;
+    this.filterRequest.price = null;
+    this.filterRequest.review = null;
+    this.filterRequest.creditPeriod = null;
+    this.filterRequest.deliveryPeriod = null;
+    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+      (response) => {
+        this.response.bidList = response;
+      }
+    );
+  }
   public GetApprovalAdmin() {
     this.adminRequest.companyId = this.$store.getters.companyId;
     this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(

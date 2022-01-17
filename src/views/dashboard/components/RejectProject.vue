@@ -33,9 +33,17 @@
             v-else-if="title === 'Noshow'"
             :rules="[(v) => !!v || 'NoShow reason is required']"
           ></v-select>
+          <v-text-field
+            dense
+            label="Add your Comments"
+            v-else-if="title === 'NoResponse'"
+            :rules="[(v) => !!v || 'NoResponse reason is required']"
+            v-model="approvelRequest.message"
+          >
+          </v-text-field>
         </v-card-text>
 
-        <v-card-actions>
+        <v-card-actions class="pb-5 mt-n8">
           <v-spacer></v-spacer>
           <v-btn
             class="white--text font-weight-light text-capitalize rounded"
@@ -54,6 +62,15 @@
             @click="ApproveBid('NoShow')"
           >
             save
+          </v-btn>
+          <v-btn
+            class="white--text font-weight-light text-capitalize rounded-0"
+            depressed
+            color="primary"
+            v-else-if="title === 'NoResponse'"
+            @click="ApproveBid('NoResponse')"
+          >
+            submit
           </v-btn>
         </v-card-actions>
       </v-card>

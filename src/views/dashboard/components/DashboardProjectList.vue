@@ -108,14 +108,14 @@
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
-import ProjectsList from "../ProjectsList.vue";
+// import ProjectsList from "../ProjectsList.vue";
 import {
   DashboardModel,
   DashboardRequestModel,
   ProjectSearchModel,
 } from "@/model";
 @Component({
-  components: { ProjectsList },
+  // components: { ProjectsList },
 })
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;

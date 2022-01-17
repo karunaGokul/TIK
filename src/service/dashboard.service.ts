@@ -1,7 +1,8 @@
 import { ServiceHelper } from './base.service';
 import {
     DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel,
-    ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel, UserInfomodel, NotificationModel
+    ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel, UserInfomodel, NotificationModel,
+    ConfirmedBidModel
 } from '@/model';
 
 export interface IDashboardService {
@@ -20,7 +21,7 @@ export interface IDashboardService {
     PendingReview(): Promise<Array<DashboardModel>>;
     GetUserFullName(): Promise<UserInfomodel>;
     GetNotification(): Promise<NotificationModel>;
-
+    GetConfirmedBidDetails(projectId: string): Promise<ConfirmedBidModel>;
 }
 export class DashboardService extends ServiceHelper implements IDashboardService {
 
@@ -106,6 +107,12 @@ export class DashboardService extends ServiceHelper implements IDashboardService
 
     public GetNotification(): Promise<NotificationModel> {
         return this.httpGet('Dashboard/GetNotificationCount',null).then(response => {
+            return response.data;
+        });
+    }
+
+    public GetConfirmedBidDetails(projectId: string): Promise<ConfirmedBidModel> {
+        return this.httpGet('dashboard/GetConfirmedBidDetails?projectId=' + projectId, null).then(response => {
             return response.data;
         });
     }

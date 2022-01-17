@@ -2220,7 +2220,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "toggle-button",
 								"selector": true,
 								"data_path": "",
-								"data_id": "mil.Fabric.RegularFabric.AVGCreditTime",
+								"data_id": "mil.Fabric.MelangeSlubFabric.AVGCreditTime",
 								"options": [
 									{
 										"id": "opSingle",
@@ -2633,7 +2633,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"label": "Blend Quality",
 								"type": "toggle-button",
 								"selector": true,
-								"data_path": "mil.Fabric.SpecialFabric.BlendQualities",
+								"data_path": "mil.Fabric.RegularFabric.BlendQualities",
 								"data_id": "Name",
 								"options": [
 									{
@@ -3567,10 +3567,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 					{
 						"title": "Choose Fabric Structure",
 						"path": [
-							"opFabric-opRegular-opSingle-opSpun-drpSpunQuality",
-							
+							"opFabric-opRegular-opSingle-opSpun-drpSpunQuality"
 						],
-						
 						"controls": [
 							{
 								"id": "tabSpunStructure",
@@ -3799,7 +3797,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 							},
 							{
 								"label": "If Lycra required along with your choosen structure, enter the follow details as per your requirement",
-                         		"type": "heading",
+								"type": "heading",
 								"selector": false,
 								"optional": true
 							},
@@ -4210,7 +4208,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												
 												"data_id": "GG",
 												"data": {
 													"start": 1,
@@ -4224,7 +4221,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"selector": false,
 												"multiple": true,
 												"data_id": "DIA",
-										
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4315,7 +4311,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												
 												"data_id": "GG",
 												"data": {
 													"start": 1,
@@ -4329,7 +4324,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"selector": false,
 												"multiple": true,
 												"data_id": "DIA",
-												
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4369,75 +4363,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_id": "GG",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_id": "DIA",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"data_id": "AllFeeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"data_id": "AlternateFeeder",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -4763,71 +4846,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
 										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
-										"selected": false
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_id": "GG",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_id": "DIA",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -4855,8 +5031,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.Special.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -4971,8 +5147,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.Special.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -5017,8 +5193,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.Special.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -5153,74 +5329,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -5236,8 +5502,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -5248,8 +5512,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -5364,8 +5628,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -5410,8 +5674,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -5546,74 +5810,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -5629,8 +5983,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -5641,8 +5993,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -5757,8 +6109,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.Interlock.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -5803,8 +6155,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -5864,8 +6216,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "dropdown",
 								"selector": false,
 								"optional": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opLycraPercentage_1",
@@ -5900,8 +6250,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "dropdown",
 								"selector": false,
 								"optional": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opLycraDenier_1",
@@ -5939,74 +6287,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -6022,8 +6460,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -6034,8 +6470,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -6150,8 +6586,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -6196,8 +6632,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -6332,74 +6768,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -6415,8 +6941,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -6427,8 +6951,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -6543,8 +7067,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -6589,8 +7113,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -6650,8 +7174,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "dropdown",
 								"selector": false,
 								"optional": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opLycraPercentage_1",
@@ -6686,8 +7208,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "dropdown",
 								"selector": false,
 								"optional": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opLycraDenier_1",
@@ -6725,74 +7245,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -6808,8 +7418,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -6820,8 +7428,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -6936,8 +7544,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -6982,8 +7590,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -7118,74 +7726,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}
@@ -7201,8 +7899,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "tabSpunStructure",
 								"type": "tab",
 								"selector": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opSingleJersey",
@@ -7213,8 +7909,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.SingleJersey",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opSingleJersey_1",
@@ -7329,8 +8025,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Interlock",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opInterlock_1",
@@ -7375,8 +8071,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "",
-												"data_id": "",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Rib",
+												"data_id": "Name",
 												"options": [
 													{
 														"id": "opRib_1",
@@ -7511,74 +8207,164 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						],
 						"controls": [
 							{
-								"id": "drpTub",
-								"label": "Select One",
-								"type": "dropdown",
+								"id": "tabSpunStructure",
+								"type": "tab",
 								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
 								"options": [
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									},
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"selected": false
-									}
-								]
-							},
-							{
-								"id": "drpGauge",
-								"label": "Guage",
-								"type": "dropdown-range",
-								"selector": false,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpDIA",
-								"label": "DIA",
-								"type": "dropdown-range",
-								"selector": false,
-								"multiple": true,
-								"data_path": "",
-								"data_id": "",
-								"data": {
-									"start": 1,
-									"end": 100
-								}
-							},
-							{
-								"id": "drpLycraFeeder",
-								"label": "Choose Lycra Feeder",
-								"type": "dropdown",
-								"selector": false,
-								"optional": true,
-								"data_path": "",
-								"data_id": "",
-								"options": [
-									{
-										"id": "opLycraFeeder_1",
-										"text": "All Feeder",
-										"selected": false
-									},
-									{
-										"id": "opLycraFeeder_2",
-										"text": "Alternate Feeder",
-										"selected": false
+										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
+										"controls": [
+											{
+												"id": "drpGauge",
+												"label": "Guage",
+												"type": "dropdown-range",
+												"selector": false,
+												"data_id": "GG",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpDIA",
+												"label": "DIA",
+												"type": "dropdown-range",
+												"selector": false,
+												"multiple": true,
+												"data_id": "DIA",
+												"data": {
+													"start": 1,
+													"end": 100
+												}
+											},
+											{
+												"id": "drpLycraFeeder",
+												"label": "Choose Lycra Feeder",
+												"type": "dropdown",
+												"selector": false,
+												"optional": true,
+												"options": [
+													{
+														"id": "opLycraFeeder_1",
+														"text": "All Feeder",
+														"data_id": "AllFeeder",
+														"selected": false
+													},
+													{
+														"id": "opLycraFeeder_2",
+														"text": "Alternate Feeder",
+														"data_id": "AlternateFeeder",
+														"selected": false
+													}
+												]
+											}
+										]
 									}
 								]
 							}

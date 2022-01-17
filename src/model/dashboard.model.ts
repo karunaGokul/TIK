@@ -112,6 +112,7 @@ export class NotificationModel {
   approvalPendingCount: number;
   approvedBidsCount: number;
   noShowCount: number;
+  noResponseCount: number;
   confirmedCount: number;
   completedCount: number;
   projectReviewCount: number;

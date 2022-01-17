@@ -3568,9 +3568,9 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 						"title": "Choose Fabric Structure",
 						"path": [
 							"opFabric-opRegular-opSingle-opSpun-drpSpunQuality",
-							"opFabric-opRegular-opSingle-opFilament-drpFilamentQuality",
-							"opFabric-opRegular-opBlend-drpBlendContent-drpBlendQuality"
+							
 						],
+						
 						"controls": [
 							{
 								"id": "tabSpunStructure",

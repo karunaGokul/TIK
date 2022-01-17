@@ -139,9 +139,9 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <!-- <v-badge> -->
-                <v-icon x-large dark class="teal">mdi-clipboard-remove</v-icon>
-              <!-- </v-badge> -->
+              <v-badge :content="noResponseCount" :value="noShowCount !== 0">
+                <v-icon x-large dark class="teal" @click="searchProject('No Response')">mdi-clipboard-remove</v-icon>
+              </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no response<br />
                 projects
@@ -153,7 +153,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Cancelled Projects')"
+                  @click="searchProject('NoShow')"
                   >mdi-close-network</v-icon
                 >
               </v-badge>
@@ -233,8 +233,19 @@
                 completed <br />projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
-              <!-- <v-badge :content="completedCount" :value="completedCount !== 0"> -->
+            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('Cancelled Projects')"
+                  >mdi-clipboard-check-outline</v-icon
+                >
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                cancelled <br />projects
+              </v-card-subtitle>
+            </v-col>
+            <v-col cols="12" sm="4" md="2" v-else>
                 <v-icon
                   x-large
                   dark
@@ -242,15 +253,12 @@
                   @click="searchProject('Cancelled')"
                   >mdi-clipboard-check-outline</v-icon
                 >
-              <!-- </v-badge> -->
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 cancelled <br />projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <!-- <v-badge> -->
                 <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
-              <!-- </v-badge> -->
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 communication<br />
                 received
@@ -349,6 +357,7 @@ export default class Dashboard extends Vue {
   public approvalPendingCount: number = 0;
   public approvedBidsCount: number = 0;
   public noShowCount: number = 0;
+  public noResponseCount: number = 0
   public confirmedCount: number = 0;
   public completedCount: number = 0;
   public projectReviewCount: number = 0;
@@ -413,6 +422,7 @@ export default class Dashboard extends Vue {
       this.approvalPendingCount = this.notificationResponse.approvalPendingCount;
       this.approvedBidsCount = this.notificationResponse.approvedBidsCount;
       this.noShowCount = this.notificationResponse.noShowCount;
+      this.noResponseCount = this.notificationResponse.noResponseCount;
       this.confirmedCount = this.notificationResponse.confirmedCount;
       this.completedCount = this.notificationResponse.completedCount;
       this.projectReviewCount = this.notificationResponse.projectReviewCount;

@@ -392,7 +392,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                ml-n5
+                                mt-3
                               "
                               depressed
                               color="primary"
@@ -958,9 +958,10 @@ export default class ProjectsList extends Vue {
         "Your Delivery Period",
         "Status"
       );
+      this.GetConfirmedBidDetails();
     }
     this.GetApprovalAdmin();
-    this.GetConfirmedBidDetails();
+    // this.GetConfirmedBidDetails();
   }
 
   public GetConfirmedBidDetails() {

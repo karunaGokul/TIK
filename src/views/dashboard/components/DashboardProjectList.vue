@@ -147,6 +147,7 @@ export default class DashboardProjectList extends Vue {
         this.stagesRequest === "Bid Received" ||
         this.stagesRequest === "Awaiting Authentication" ||
         this.stagesRequest === "Approval Pending" ||
+        this.stagesRequest === "No Response" ||
         this.stagesRequest === "Cancelled Projects" ||
         this.stagesRequest === "Confirmed Projects" ||
         this.stagesRequest === "Completed Projects")
@@ -159,6 +160,7 @@ export default class DashboardProjectList extends Vue {
       this.role === "Quote InCharge" &&
       (this.stagesRequest === "Approved" ||
         this.stagesRequest === "Awaiting Approval" ||
+        this.stagesRequest === "No Response" ||
         this.stagesRequest === "NoShow" ||
         this.stagesRequest === "Confirmed" ||
         this.stagesRequest === "Completed")

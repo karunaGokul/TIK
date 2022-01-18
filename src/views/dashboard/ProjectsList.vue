@@ -101,7 +101,7 @@
         <v-col
           cols="12"
           sm="2"
-          md="2"
+          md="1"
           v-if="
             category != 'Company' && response.bidList[0].status === 'Initiated'
           "
@@ -115,24 +115,8 @@
             Bid This Project
           </v-btn>
         </v-col>
-        <v-col v-else-if="category != 'Company'" cols="12" sm="2" md="2">
-        </v-col>
-        <v-col cols="12" sm="2" md="2">
+        <v-col v-else cols="12" sm="2" md="1">
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-7"
-            depressed
-            color="primary"
-            @click="toggleCancel = 'true'"
-            v-if="
-              category != 'Company' &&
-                response.bidList[0].status === 'Initiated'
-            "
-          >
-            Cancel
-          </v-btn>
-
-          <v-btn
-            v-else-if="category === 'Company'"
             depressed
             class="
               primary
@@ -145,6 +129,56 @@
           >
             Bids Received : {{ response.bidsReceived }}
           </v-btn>
+        </v-col>
+        <v-col cols="12" sm="2" md="1">
+          <v-btn
+            class="white--text font-weight-light text-capitalize rounded mt-7"
+            depressed
+            color="primary"
+            @click="toggleCancel = 'true'"
+            v-if="
+              category != 'Company' &&
+                response.bidList[0].status === 'Initiated'
+            "
+          >
+            Cancel
+          </v-btn>
+          <div v-else-if="category === 'Company'">
+            <!-- <v-btn
+            depressed
+            class="
+              primary
+              white--text
+              font-weight-light
+              text-capitalize
+              rounded
+              mt-7
+            "
+          >
+            Bids Received : {{ response.bidsReceived }}
+          </v-btn> -->
+            <v-btn
+              depressed
+              class="
+              primary
+              white--text
+              font-weight-light
+              text-capitalize
+              rounded
+              mt-7
+              ml-10"
+              v-if="
+                userResponse.currentDate > response.confirmationDate &&
+                  (response.InStages === 'Enquiry Sent' ||
+                    response.InStages === 'Bid Received' ||
+                    response.InStages === 'Awaiting Authentication' ||
+                    response.InStages === 'Awaiting Approval')
+              "
+              @click="toggleNoResponse = 'true'"
+            >
+              No Response
+            </v-btn>
+          </div>
         </v-col>
       </v-row>
       <v-row class="mb-n10">
@@ -167,7 +201,13 @@
                   <td>{{ response.EnquiryName }}</td>
                   <td>{{ response.Category }}</td>
                   <td>{{ response.Subcategory }}</td>
-                  <td class="blue--text">Rs.{{ response.requestPrice }}</td>
+                  <td
+                    class="blue--text"
+                    v-if="response.requestPrice !== 'Requested'"
+                  >
+                    Rs.{{ response.requestPrice }}
+                  </td>
+                  <td class="blue--text" v-else>{{ response.requestPrice }}</td>
                   <td class="red--text">{{ response.creditPeriod }} days</td>
                   <td class="green--text">{{ response.deliveryDate }} days</td>
                   <td>
@@ -406,7 +446,7 @@
                             >
                               Accept
                             </v-btn>
-                            <v-btn
+                            <!-- <v-btn
                               class="
                                 white--text
                                 font-weight-light
@@ -425,7 +465,7 @@
                               @click="toggleNoResponse = 'true'"
                             >
                               no response
-                            </v-btn>
+                            </v-btn> -->
                             <span
                               v-else-if="
                                 (role === 'Merchandiser' ||
@@ -492,7 +532,7 @@
                                   (row.status === 'Approved' ||
                                     row.status === 'Selected')
                               "
-                              class="my-2 ml-n7"
+                              class="my-2"
                             >
                               Pending for Approval
                             </div>
@@ -896,6 +936,7 @@ import {
   AdminRequestModel,
   FilterRequestModel,
   ConfirmedBidModel,
+  UserInfomodel,
 } from "@/model";
 import { IDashboardService, EmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -945,9 +986,13 @@ export default class ProjectsList extends Vue {
   public dialog: boolean = false;
   public filterRequest = new FilterRequestModel();
   public confirmedBidResponse = new ConfirmedBidModel();
+  public userResponse = new UserInfomodel();
 
   created() {
     this.GetProjectEnquiry();
+    if (this.category === "Company") {
+      this.userInfo();
+    }
 
     if (this.category != "Company") {
       this.BitReceivedheaders.splice(0, 4);
@@ -958,12 +1003,18 @@ export default class ProjectsList extends Vue {
         "Your Delivery Period",
         "Status"
       );
-      this.GetConfirmedBidDetails();
     }
     this.GetApprovalAdmin();
-    // this.GetConfirmedBidDetails();
+    if (this.category != "Company") {
+      this.GetConfirmedBidDetails();
+    }
   }
 
+  public userInfo() {
+    this.DashboardService.GetUserFullName().then((response) => {
+      this.userResponse = response;
+    });
+  }
   public GetConfirmedBidDetails() {
     this.request.id = this.$route.params.Id;
     this.DashboardService.GetConfirmedBidDetails(this.request.id).then(

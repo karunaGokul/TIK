@@ -167,7 +167,7 @@
               rounded
               mt-7
               ml-10"
-              v-if="
+              v-if="role === 'MasterAdmin' &&
                 userResponse.currentDate > response.confirmationDate &&
                   (response.InStages === 'Enquiry Sent' ||
                     response.InStages === 'Bid Received' ||

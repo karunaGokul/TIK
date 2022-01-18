@@ -133,12 +133,7 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-    // if (this.role !== "MasterAdmin" && this.role !== "Approval Admin" ) {
-    //   this.searchProject(true);
-    // }
-    // if (this.role === "Merchandiser") {
-    //   this.searchProject(true);
-    // }
+    
 
     if (
       this.category === "Company" &&

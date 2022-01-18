@@ -167,8 +167,9 @@
               rounded
               mt-7
               ml-10"
-              v-if="role === 'MasterAdmin' &&
-                userResponse.currentDate > response.confirmationDate &&
+              v-if="
+                role === 'MasterAdmin' &&
+                  userResponse.currentDate > response.confirmationDate &&
                   (response.InStages === 'Enquiry Sent' ||
                     response.InStages === 'Bid Received' ||
                     response.InStages === 'Awaiting Authentication' ||
@@ -439,8 +440,7 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'MasterAdmin') &&
-                                  row.status === 'Approved' &&
-                                  row.submittedDate <= response.confirmationDate
+                                  row.status === 'Approved'
                               "
                               @click="ApproveBid('Selected', row)"
                             >

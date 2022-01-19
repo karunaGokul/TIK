@@ -139,7 +139,7 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge :content="noResponseCount" :value="noShowCount !== 0">
+              <v-badge :content="noResponseCount" :value="noResponseCount !== 0">
                 <v-icon x-large dark class="teal" @click="searchProject('No Response')">mdi-clipboard-remove</v-icon>
               </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">

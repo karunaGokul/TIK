@@ -25,6 +25,7 @@
           :label="control.label"
           :readonly="isSummary"
           type="number"
+          min=1
         ></v-text-field>
         <v-menu
           v-if="control.type == 'date'"
@@ -66,6 +67,7 @@
               :readonly="isSummary"
               :disabled="control.requestPrice"
               type="number"
+              min=1
             ></v-text-field>
           </v-col>
           <v-col cols="2">

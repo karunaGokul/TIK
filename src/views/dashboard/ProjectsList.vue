@@ -342,7 +342,7 @@
                       >
                         <tr>
                           <th
-                            class="text-left"
+                            class="text-left text-no-wrap"
                             v-for="(tableHeader, index) in BitReceivedheaders"
                             :key="index"
                           >
@@ -429,7 +429,7 @@
                           <td v-if="category === 'Company'">
                             <span
                               v-if="
-                                row.status === 'Approved'
+                                row.status === 'Approved' && response.InStages !== 'No Response'
                               "
                             >
                               <v-btn
@@ -438,7 +438,7 @@
                                 font-weight-light
                                 text-capitalize
                                 rounded
-                                mt-3
+                                mt-3 ml-n5
                               "
                                 depressed
                                 color="primary"
@@ -447,9 +447,13 @@
                               >
                                 Accept
                               </v-btn>
-                              <div class="my-2"  v-if=" role === 'MasterAdmin'">
+                              <div class="my-2 ml-n5 text-no-wrap"  v-if=" role === 'MasterAdmin'">
                                 Pending for Approval
                               </div>
+                            </span>
+                            <span v-else-if="row.status === 'NoResponse' || row.status === 'Approved'" >
+                              <p class="ml-n3 mt-3"> {{ row.status }} </p>
+                              <p class="ml-n3 mt-n3"> {{ row.message }} </p>
                             </span>
                             <!-- <v-btn
                               class="
@@ -557,14 +561,14 @@
                               {{ row.message }}
                             </div>
 
-                            <div
+                            <!-- <div
                               v-else-if="
                                 row.status === 'BidApproved' &&
                                   role === 'Merchandiser'
                               "
                             >
                               Waiting for Approval
-                            </div>
+                            </div> -->
 
                             <!-- <v-btn
                               class="
@@ -596,15 +600,15 @@
                             >
                               Waiting for Authentication
                             </div>
-                            <div
-                              class="ml-n7"
+                            <p
+                              class="ml-n7 text-no-wrap"
                               v-if="
-                                role === 'Quote InCharge' &&
+                                (role === 'Quote InCharge' || role === 'Merchandiser') &&
                                   row.status === 'BidApproved'
                               "
                             >
                               Waiting for Approval
-                            </div>
+                            </p>
                             <div
                               v-if="
                                 row.status === 'Approved' &&

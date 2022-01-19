@@ -132,7 +132,7 @@
         </v-col>
         <v-col cols="12" sm="2" md="1">
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-7"
+            class="white--text font-weight-light text-capitalize rounded mt-7 ml-16"
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
@@ -166,7 +166,7 @@
               text-capitalize
               rounded
               mt-7
-              ml-10"
+              ml-16"
               v-if="
                 role === 'MasterAdmin' &&
                   userResponse.currentDate > response.confirmationDate &&
@@ -427,7 +427,31 @@
                             days
                           </td>
                           <td v-if="category === 'Company'">
-                            <v-btn
+                            <span
+                              v-if="
+                                row.status === 'Approved'
+                              "
+                            >
+                              <v-btn
+                                class="
+                                white--text
+                                font-weight-light
+                                text-capitalize
+                                rounded
+                                mt-3
+                              "
+                                depressed
+                                color="primary"
+                                @click="ApproveBid('Selected', row)"
+                                v-if=" role === 'MasterAdmin' || role === 'Quote InCharge'"
+                              >
+                                Accept
+                              </v-btn>
+                              <div class="my-2"  v-if=" role === 'MasterAdmin'">
+                                Pending for Approval
+                              </div>
+                            </span>
+                            <!-- <v-btn
                               class="
                                 white--text
                                 font-weight-light
@@ -445,26 +469,6 @@
                               @click="ApproveBid('Selected', row)"
                             >
                               Accept
-                            </v-btn>
-                            <!-- <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                ml-n5
-                              "
-                              depressed
-                              color="primary"
-                              v-if="
-                                role === 'MasterAdmin' &&
-                                  row.submittedDate >
-                                    response.confirmationDate &&
-                                  row.status === 'Approved'
-                              "
-                              @click="toggleNoResponse = 'true'"
-                            >
-                              no response
                             </v-btn> -->
                             <span
                               v-else-if="
@@ -526,7 +530,7 @@
                               Confirm
                             </v-btn>
 
-                            <div
+                            <!-- <div
                               v-else-if="
                                 role === 'MasterAdmin' &&
                                   (row.status === 'Approved' ||
@@ -535,25 +539,8 @@
                               class="my-2"
                             >
                               Pending for Approval
-                            </div>
-                            <!-- <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                mt-2
-                              "
-                              depressed
-                              color="primary"
-                              v-else-if="
-                                role === 'MasterAdmin' &&
-                                  row.status === 'Completed'
-                              "
-                              @click="toggleReview = true"
-                            >
-                              review
-                            </v-btn> -->
+                            </div> -->
+
                             <div
                               v-else-if="row.status === 'Rejected'"
                               class="my-1"

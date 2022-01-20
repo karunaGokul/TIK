@@ -1115,6 +1115,7 @@ export default class ProjectsList extends Vue {
     this.toggleBid = false;
     this.toggleCancel = false;
     this.toggleNoShow = false;
+    this.toggleNoResponse = false;
     this.toggleReview = false;
     if (responseMessage) {
       this.snackbarText = responseMessage;

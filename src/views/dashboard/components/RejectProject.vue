@@ -6,7 +6,7 @@
           {{ title }}
           <v-spacer></v-spacer>
           <v-btn @click="close()" icon>
-            <v-icon id="close-button">mdi-close</v-icon>
+            <v-icon >mdi-close</v-icon>
           </v-btn>
         </v-card-title>
 
@@ -94,6 +94,9 @@ export default class RejectProject extends Vue {
 
   public ApproveBid(status: string) {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      // if(this.response.InStages === 'Enquiry Sent') {
+      //   this.approvelRequest.bidId = '';
+      // }
       this.approvelRequest.bidId = this.response.bidList[0].id;
       this.approvelRequest.status = status;
       this.approvelRequest.projectId = this.response.Id;

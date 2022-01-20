@@ -7,7 +7,9 @@
             <v-icon large dark class="teal"> mdi-home</v-icon>
           </router-link>
           <v-icon large> mdi-chevron-right</v-icon>
-          Dashboard
+         <span> Dashboard </span>
+          <v-icon large v-if="dashboard === false"> mdi-chevron-right</v-icon>
+           {{ stagesRequest }}
         </v-col>
         <v-col md="2" offset-md="6">
           <div class="d-flex justify-end">{{ userResponse.currentDate }}</div>
@@ -46,8 +48,7 @@
                   dark
                   class="teal"
                   @click="searchProject('New Projects')"
-                  >mdi-clipboard-minus-outline</v-icon
-                >
+                  >mdi-clipboard-minus-outline</v-icon>
               </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 new projects

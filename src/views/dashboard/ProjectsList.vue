@@ -451,7 +451,7 @@
                                 Pending for Approval
                               </div>
                             </span>
-                            <span v-else-if="row.status === 'NoResponse' || row.status === 'Approved'" >
+                            <span v-else-if="row.status === 'NoResponse' || response.InStages === 'No Response'" >
                               <p class="ml-n3 mt-3"> {{ row.status }} </p>
                               <p class="ml-n3 mt-n3"> {{ row.message }} </p>
                             </span>
@@ -595,7 +595,7 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'Approval Admin') &&
-                                  row.status === 'Selected'
+                                  row.status === 'Selected' && response.InStages !== 'No Response'
                               "
                             >
                               Waiting for Authentication

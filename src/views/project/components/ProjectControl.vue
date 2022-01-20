@@ -118,7 +118,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 import { ProjectFormStepControl, ProjectFormStepControlOption } from "@/model";
 
-@Component
+@Component({ name: 'ProjectControl' })
 export default class ProjectControl extends Vue {
   @Prop() control: ProjectFormStepControl;
   items: any = ["100% Cotton", "100% Viscose", "100% Modal", "100% polyster"];

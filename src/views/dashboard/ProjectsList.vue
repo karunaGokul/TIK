@@ -329,7 +329,7 @@
                 </v-col>
                 <v-col v-else class="mx-1" cols="12" sm="2" md="3"> </v-col>
                 <v-col cols="12" md="7">
-                  <v-simple-table>
+                  <v-simple-table class="shrink">
                     <template v-slot:default>
                       <thead
                         :class="
@@ -342,7 +342,7 @@
                       >
                         <tr>
                           <th
-                            class="text-left text-no-wrap"
+                            class="text-left text-wrap"
                             v-for="(tableHeader, index) in BitReceivedheaders"
                             :key="index"
                           >

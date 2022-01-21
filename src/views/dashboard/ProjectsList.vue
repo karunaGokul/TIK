@@ -250,7 +250,12 @@
         </v-col>
       </v-row>
       <v-row
-        v-if="category === 'Company' && response.InStages === 'Bid Received'"
+        v-if="
+          category === 'Company' &&
+            (response.InStages === 'Bid Received' ||
+              response.InStages === 'Awaiting Authentication' ||
+              response.InStages === 'Awaiting Approval')
+        "
       >
         <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
 
@@ -429,7 +434,8 @@
                           <td v-if="category === 'Company'">
                             <span
                               v-if="
-                                row.status === 'Approved' && response.InStages !== 'No Response'
+                                row.status === 'Approved' &&
+                                  response.InStages !== 'No Response'
                               "
                             >
                               <v-btn
@@ -443,17 +449,28 @@
                                 depressed
                                 color="primary"
                                 @click="ApproveBid('Selected', row)"
-                                v-if=" role === 'MasterAdmin' || role === 'Quote InCharge'"
+                                v-if="
+                                  role === 'MasterAdmin' ||
+                                    role === 'Quote InCharge'
+                                "
                               >
                                 Accept
                               </v-btn>
-                              <div class="my-2 ml-n5 text-no-wrap"  v-if=" role === 'MasterAdmin'">
+                              <div
+                                class="my-2 ml-n5 text-no-wrap"
+                                v-if="role === 'MasterAdmin'"
+                              >
                                 Pending for Approval
                               </div>
                             </span>
-                            <span v-else-if="row.status === 'NoResponse' || response.InStages === 'No Response'" >
-                              <p class="ml-n3 mt-3"> {{ row.status }} </p>
-                              <p class="ml-n3 mt-n3"> {{ row.message }} </p>
+                            <span
+                              v-else-if="
+                                row.status === 'NoResponse' ||
+                                  response.InStages === 'No Response'
+                              "
+                            >
+                              <p class="ml-n3 mt-3">{{ row.status }}</p>
+                              <p class="ml-n3 mt-n3">{{ row.message }}</p>
                             </span>
                             <!-- <v-btn
                               class="
@@ -595,7 +612,8 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'Approval Admin') &&
-                                  row.status === 'Selected' && response.InStages !== 'No Response'
+                                  row.status === 'Selected' &&
+                                  response.InStages !== 'No Response'
                               "
                             >
                               Waiting for Authentication
@@ -603,7 +621,8 @@
                             <p
                               class="ml-n7 text-no-wrap"
                               v-if="
-                                (role === 'Quote InCharge' || role === 'Merchandiser') &&
+                                (role === 'Quote InCharge' ||
+                                  role === 'Merchandiser') &&
                                   row.status === 'BidApproved'
                               "
                             >

@@ -68,7 +68,7 @@
             depressed
             color="primary"
             v-else-if="title === 'NoResponse'"
-            @click="ApproveBid('NoResponse')"
+            @click="UpdateNoResponse('NoResponse')"
           >
             submit
           </v-btn>
@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-import { ApproveRequestModel, DashboardModel } from "@/model";
+import { ApproveRequestModel, DashboardModel, NoResponseRequestModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
 @Component
@@ -91,12 +91,10 @@ export default class RejectProject extends Vue {
   public approvelRequest = new ApproveRequestModel();
   public dialog: boolean = true;
   public snackbarText: string = "";
+  public noResponseRequest = new NoResponseRequestModel();
 
   public ApproveBid(status: string) {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      // if(this.response.InStages === 'Enquiry Sent') {
-      //   this.approvelRequest.bidId = '';
-      // }
       this.approvelRequest.bidId = this.response.bidList[0].id;
       this.approvelRequest.status = status;
       this.approvelRequest.projectId = this.response.Id;
@@ -107,6 +105,19 @@ export default class RejectProject extends Vue {
         }
       );
     }
+  }
+
+  public UpdateNoResponse(status: string) {
+    // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      this.noResponseRequest.projectId = this.response.Id;
+      this.noResponseRequest.status = status;
+      this.DashboardService.UpdateNoResponse(this.noResponseRequest).then(
+        (response) => {
+          this.snackbarText = response;
+          this.close();
+        }
+      );
+    // }
   }
 
   public close() {

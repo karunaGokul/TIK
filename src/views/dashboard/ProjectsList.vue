@@ -177,7 +177,7 @@
               "
               @click="toggleNoResponse = 'true'"
             >
-              No Response
+              no response
             </v-btn>
           </div>
         </v-col>

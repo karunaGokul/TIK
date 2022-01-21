@@ -2,7 +2,7 @@
   <div class="ml-4 mt-4">
     <v-row>
       <span class="text-subtitle-1 font-weight-bold mr-4">
-        Rejected Projects
+        Rejected Bids
       </span>
 
       <!-- <v-dialog v-model="dialog" width="500">

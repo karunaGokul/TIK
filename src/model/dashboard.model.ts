@@ -124,3 +124,9 @@ export class ConfirmedBidModel {
   creditPeriod: number;
   companyReview: string;
 }
+
+export class NoResponseRequestModel {
+  projectId: string;
+  status: string;
+  message: string = null;
+}

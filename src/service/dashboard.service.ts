@@ -2,7 +2,7 @@ import { ServiceHelper } from './base.service';
 import {
     DashboardRequestModel, DashboardModel, ProjectSearchModel, BidRequestModel, ApproveRequestModel,
     ReviewRequestModel, FilterRequestModel, BitReceivedModel, BitAuditmodel, UserInfomodel, NotificationModel,
-    ConfirmedBidModel
+    ConfirmedBidModel,NoResponseRequestModel
 } from '@/model';
 
 export interface IDashboardService {
@@ -22,6 +22,7 @@ export interface IDashboardService {
     GetUserFullName(): Promise<UserInfomodel>;
     GetNotification(): Promise<NotificationModel>;
     GetConfirmedBidDetails(projectId: string): Promise<ConfirmedBidModel>;
+    UpdateNoResponse(request: NoResponseRequestModel): Promise<any>;
 }
 export class DashboardService extends ServiceHelper implements IDashboardService {
 
@@ -113,6 +114,11 @@ export class DashboardService extends ServiceHelper implements IDashboardService
 
     public GetConfirmedBidDetails(projectId: string): Promise<ConfirmedBidModel> {
         return this.httpGet('dashboard/GetConfirmedBidDetails?projectId=' + projectId, null).then(response => {
+            return response.data;
+        });
+    }
+    public UpdateNoResponse(request: NoResponseRequestModel): Promise<any> {
+        return this.httpPost('dashboard/UpdateNoResponse?projectId=' + request.projectId + '&message=' + request.message + '&status=' + request.status, null).then(response => {
             return response.data;
         });
     }

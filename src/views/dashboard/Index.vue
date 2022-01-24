@@ -41,7 +41,7 @@
       <v-container class="mb-16 mt-10">
         <div v-if="dashboard">
           <v-row class="mb-5">
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
               <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
                 <v-icon
                   x-large
@@ -54,7 +54,7 @@
                 new projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
+            <v-col cols="12" sm="4" md="2" v-if="(category !== 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
               <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
                 <v-icon
                   x-large

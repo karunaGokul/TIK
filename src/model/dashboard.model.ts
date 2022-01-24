@@ -128,5 +128,5 @@ export class ConfirmedBidModel {
 export class NoResponseRequestModel {
   projectId: string;
   status: string;
-  message: string = null;
+  message: string;
 }

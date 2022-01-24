@@ -38,7 +38,7 @@
             label="Add your Comments"
             v-else-if="title === 'NoResponse'"
             :rules="[(v) => !!v || 'NoResponse reason is required']"
-            v-model="approvelRequest.message"
+            v-model="noResponseRequest.message"
           >
           </v-text-field>
         </v-card-text>

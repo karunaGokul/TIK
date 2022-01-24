@@ -108,7 +108,7 @@ export default class RejectProject extends Vue {
   }
 
   public UpdateNoResponse(status: string) {
-    // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.noResponseRequest.projectId = this.response.Id;
       this.noResponseRequest.status = status;
       this.DashboardService.UpdateNoResponse(this.noResponseRequest).then(
@@ -117,7 +117,7 @@ export default class RejectProject extends Vue {
           this.close();
         }
       );
-    // }
+    }
   }
 
   public close() {

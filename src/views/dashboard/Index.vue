@@ -68,7 +68,7 @@
                 new projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
               <v-badge :content="bidReceivedCount" :value="bidReceivedCount !== 0">
                 <v-icon
                   x-large
@@ -82,7 +82,7 @@
                 bids received
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
+            <v-col cols="12" sm="4" md="2" v-if="(category !== 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
               <v-badge :content="approvedBidsCount" :value="approvedBidsCount !== 0">
                 <v-icon
                   x-large
@@ -96,7 +96,7 @@
                 approved bids
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Merchandiser')">
               <v-badge :content="pendingAuthenticationCount" :value="pendingAuthenticationCount !== 0">
                 <v-icon
                   x-large
@@ -111,7 +111,7 @@
                 authentication
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
+            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Approval Admin')">
               <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
@@ -125,7 +125,7 @@
                 approval pending
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
+            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company' && (role === 'MasterAdmin' || role === 'Approval Admin')">
               <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
@@ -190,8 +190,8 @@
                 confirmed <br />projects
               </v-card-subtitle>
             </v-col>
-          </v-row>
-          <v-row class="mb-5 pb-6">
+          <!-- </v-row>
+          <v-row class="mb-5 pb-6"> -->
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
                 <v-icon

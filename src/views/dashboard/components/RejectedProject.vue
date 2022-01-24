@@ -103,7 +103,7 @@
               <thead>
                 <tr>
                   <th
-                    class="text-left teal lighten-4 text-subtitle-2"
+                    class="text-left teal lighten-5 font-weight-medium black--text"
                     v-for="(tableHeader, index) in BitReceivedheaders"
                     :key="index"
                   >

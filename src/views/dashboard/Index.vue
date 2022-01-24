@@ -111,7 +111,7 @@
                 authentication
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Approval Admin')">
+            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Approval Admin' ||  approvalAdminAccess === '1')">
               <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
@@ -125,7 +125,7 @@
                 approval pending
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company' && (role === 'MasterAdmin' || role === 'Approval Admin')">
+            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company' && (role === 'MasterAdmin' || role === 'Approval Admin' ||  approvalAdminAccess === '1')">
               <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
                 <v-icon
                   x-large
@@ -380,6 +380,10 @@ export default class Dashboard extends Vue {
 
   get role(): string {
     return this.$store.getters.role;
+  }
+
+  get approvalAdminAccess(): string {
+    return this.$store.getters.approvalAdminAccess;
   }
 
   public searchProject(stages: string) {

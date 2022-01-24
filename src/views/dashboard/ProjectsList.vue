@@ -55,7 +55,7 @@
             readonly
           ></v-rating>
         </v-col>
-        <v-col cols="12" sm="2" md="2">
+        <!-- <v-col cols="12" sm="2" md="2">
           <p class="font-weight-regular mt-4 text-caption">
             Created By : {{ response.CreatedBy }} <br />
             Date & Time :{{ response.CreatedDate }}
@@ -96,12 +96,12 @@
             Confirm By : {{ bitAuditResponse.confirmedBy }} <br />
             Date & Time :{{ bitAuditResponse.confirmedDate }}
           </p>
-        </v-col>
+        </v-col> -->
 
         <v-col
           cols="12"
           sm="2"
-          md="1"
+          offset-md="7"
           v-if="
             category != 'Company' && response.bidList[0].status === 'Initiated'
           "
@@ -112,10 +112,10 @@
             color="primary"
             @click="toggleBid = 'true'"
           >
-            Bid This Project
+            bid this project
           </v-btn>
         </v-col>
-        <v-col v-else cols="12" sm="2" md="1">
+        <v-col v-else cols="12" sm="2" offset-md="7">
           <v-btn
             depressed
             class="
@@ -132,7 +132,7 @@
         </v-col>
         <v-col cols="12" sm="2" md="1">
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-7 ml-16"
+            class="white--text font-weight-light text-capitalize rounded mt-7 ml-n16"
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
@@ -166,7 +166,7 @@
               text-capitalize
               rounded
               mt-7
-              ml-16"
+              ml-n16"
               v-if="
                 role === 'MasterAdmin' &&
                   userResponse.currentDate > response.confirmationDate &&
@@ -182,14 +182,56 @@
           </div>
         </v-col>
       </v-row>
-      <v-row class="mb-n10">
-        <v-col class="my-5">
+
+      <v-row>
+        <v-col cols="12" md="2">
+          <p class="font-weight-regular mt-4 text-caption">
+            Created By : {{ response.CreatedBy }} <br />
+            Date & Time :{{ response.CreatedDate }}
+          </p>
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="2"
+          v-if="bitAuditResponse.selectedBy && category === 'Company'"
+        >
+          <p class="font-weight-regular mt-4 text-caption text-wrap">
+            Selected By : {{ bitAuditResponse.selectedBy }} <br />
+            Date & Time :{{ bitAuditResponse.selectedDate }}
+          </p>
+        </v-col>
+        <!-- <v-col cols="12" md="3" else></v-col> -->
+        <v-col
+          cols="12"
+          md="2"
+          v-if="bitAuditResponse.approveBy && category === 'Company'"
+        >
+          <p class="font-weight-regular mt-4 text-caption text-wrap">
+            Approve & Authenticate By : {{ bitAuditResponse.approveBy }} <br />
+            Date & Time :{{ bitAuditResponse.approveDate }}
+          </p>
+        </v-col>
+        <!-- <v-col cols="12" md="1" else></v-col> -->
+        <v-col
+          cols="12"
+          md="2"
+          v-if="bitAuditResponse.confirmedBy && category === 'Company'"
+        >
+          <p class="font-weight-regular mt-4 text-caption text-wrap">
+            Confirm By : {{ bitAuditResponse.confirmedBy }} <br />
+            Date & Time :{{ bitAuditResponse.confirmedDate }}
+          </p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <v-simple-table>
             <template v-slot:default>
-              <thead class="teal lighten-4 text-subtitle-2">
+              <thead class="teal lighten-5">
                 <tr>
                   <th
-                    class="text-left"
+                    class="text-left font-weight-medium black--text"
                     v-for="(tableHeader, index) in ProjectRequestheaders"
                     :key="index"
                   >
@@ -200,8 +242,14 @@
               <tbody>
                 <tr>
                   <td>{{ response.EnquiryName }}</td>
+                  <td></td>
+                  <td></td>
                   <td>{{ response.Category }}</td>
+                  <td></td>
+                  <td></td>
                   <td>{{ response.Subcategory }}</td>
+                  <td></td>
+                  <td></td>
                   <td
                     class="blue--text"
                     v-if="response.requestPrice !== 'Requested'"
@@ -281,20 +329,17 @@
               :class="
                 (row.status === 'Confirmed' || row.status === 'Completed') &&
                 category === 'Company'
-                  ? 'deep-orange lighten-3 black--text'
+                  ? 'deep-orange lighten-5 black--text'
                   : ''
               "
             >
               <v-row
-                class="ma-1"
                 v-if="
                   (row.status === 'Confirmed' || row.status === 'Completed') &&
                     category === 'Company'
                 "
               >
-                <v-col>
-                  <h4>Confirmed Project</h4>
-                </v-col>
+                <h4 class="mt-4 ml-4">Confirmed Project</h4>
               </v-row>
 
               <v-row
@@ -307,16 +352,16 @@
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
                   <v-img
                     :src="`data:image/png;base64,${row.logo}`"
-                    width="70%"
+                    width="90%"
                   ></v-img>
                 </v-col>
-                <v-col v-else cols="12" sm="1" md="1"> </v-col>
-
+                <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
+                </v-col>
                 <v-col
                   class="mx-1"
                   cols="12"
                   sm="2"
-                  md="3"
+                  md="2"
                   v-if="category === 'Company'"
                 >
                   <v-row class="ma-1">
@@ -332,22 +377,23 @@
                     ></v-rating>
                   </v-row>
                 </v-col>
-                <v-col v-else class="mx-1" cols="12" sm="2" md="3"> </v-col>
+                <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
+                </v-col>
                 <v-col cols="12" md="7">
-                  <v-simple-table class="shrink">
+                  <v-simple-table>
                     <template v-slot:default>
                       <thead
                         :class="
                           (row.status === 'Confirmed' ||
                             row.status === 'Completed') &&
                           category === 'Company'
-                            ? 'deep-orange lighten-2 black--text'
-                            : 'teal lighten-4 text-subtitle-2'
+                            ? 'deep-orange lighten-3 '
+                            : 'teal lighten-5 text-subtitle-2'
                         "
                       >
                         <tr>
                           <th
-                            class="text-left text-wrap"
+                            class="text-left text-wrap font-weight-medium black--text"
                             v-for="(tableHeader, index) in BitReceivedheaders"
                             :key="index"
                           >
@@ -864,21 +910,37 @@
                           response.InStages === 'Completed')
                     "
                   >
-                    <thead
-                      class="teal lighten-4 text-subtitle-2 text-capitalize"
-                    >
+                    <thead class="teal lighten-5 text-capitalize">
                       <tr>
-                        <th>price</th>
-                        <th>deliveryPeriod</th>
-                        <th>creditPeriod</th>
-                        <th>companyReview</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th class="black--text font-weight-medium">price</th>
+
+                        <th class="black--text font-weight-medium">
+                          creditPeriod
+                        </th>
+                        <th class="black--text font-weight-medium">
+                          deliveryPeriod
+                        </th>
+
+                        <th class="black--text font-weight-medium">
+                          companyReview
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>{{ confirmedBidResponse.price }}</td>
-                        <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
+
                         <td>{{ confirmedBidResponse.creditPeriod }}</td>
+                        <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
+
                         <td>{{ confirmedBidResponse.companyReview }}</td>
                       </tr>
                     </tbody>
@@ -1177,8 +1239,14 @@ export default class ProjectsList extends Vue {
 
   ProjectRequestheaders: any = [
     "Project Name",
+    "",
+    "",
     "Category",
+    "",
+    "",
     "SubCategory",
+    "",
+    "",
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",

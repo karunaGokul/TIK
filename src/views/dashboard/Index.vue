@@ -387,6 +387,8 @@ export default class Dashboard extends Vue {
   }
 
   public searchProject(stages: string) {
+    // this.$router.push('/ProjectList/' + stages);
+    // return;
     this.stagesRequest = stages;
     this.stagesMyProject = stages;
     this.searchRequest.stages = this.stagesRequest;

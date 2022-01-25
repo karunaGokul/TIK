@@ -1,30 +1,6 @@
 <template>
   <div class="ml-4 mt-6">
     <v-row>
-      <!-- <v-select
-        :items="items"
-        v-model="stages"
-        :menu-props="{ offsetY: true }"
-        label="Select"
-        class="shrink my-4"
-        dense
-        hide-details
-        @change="searchProject()"
-      ></v-select> -->
-
-      <!-- <v-spacer></v-spacer> -->
-
-      <!-- <v-text-field
-        v-model="search"
-        label="Search"
-        append-icon="mdi-magnify"
-        class="shrink ma-4 pl-2"
-        outlined
-        dense
-        hide-details
-      ></v-text-field> -->
-    </v-row>
-    <v-row>
       <v-tabs v-if="tabValue">
         <v-tab
           @click="searchProject('true')"
@@ -60,11 +36,6 @@
           :loading="loading"
           loading-text="Loading... Please wait"
         >
-          <!-- <template v-slot:[`header.Merchandiser`]="{ header }">
-            {{ header.text }}
-            <v-icon small> mdi-filter </v-icon>
-          </template> -->
-
           <template v-slot:[`item.Status`]="{ item }">
             <v-badge
               dot
@@ -113,8 +84,7 @@ import {
   DashboardRequestModel,
   ProjectSearchModel,
 } from "@/model";
-@Component({
-})
+@Component({})
 export default class DashboardProjectList extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   @Prop() response: Array<DashboardModel>;
@@ -131,8 +101,6 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-    
-
     if (
       this.category === "Company" &&
       (this.role === "Quote InCharge" || this.role === "Merchandiser") &&

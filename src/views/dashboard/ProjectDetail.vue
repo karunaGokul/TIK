@@ -1031,7 +1031,7 @@ import FilterDialog from "./components/FilterDialog.vue";
     FilterDialog,
   },
 })
-export default class ProjectsList extends Vue {
+export default class ProjectDetail extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
   @Inject("EmployeeService") EmployeeService: EmployeeService;
 

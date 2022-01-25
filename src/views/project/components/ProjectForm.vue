@@ -394,6 +394,16 @@ export default class ProjectForm extends Vue {
           id: "deliveryPeriod",
           type: "number",
         },
+        {
+          label: "Order Confirmation Date",
+          id: "confirmationDate",
+          type: "date",
+        },
+        {
+          label: "Expected Delivery Date",
+          id: "deliveryDate",
+          type: "date",
+        },
       ],
     },
   ];

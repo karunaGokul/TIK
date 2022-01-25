@@ -40,7 +40,7 @@ const routes: Array<RouteConfig> = [
     path: '/projectdetail/:Id',
     name: 'ProjectDetail',
     props: true,
-    component: () => import('../views/dashboard/ProjectsList.vue')
+    component: () => import('../views/dashboard/ProjectDetail.vue')
   },
   {
     path: '/project',
@@ -82,12 +82,6 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/company/KnittingBuilder.vue'),
     meta: { anonymous: true }
   },
-  {
-    path: '/projectslist',
-    name: 'ProjectsList',
-    component: () => import('../views/dashboard/ProjectsList.vue')
-  }
-
 ]
 
 const router = new VueRouter({

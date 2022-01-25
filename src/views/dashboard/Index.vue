@@ -7,9 +7,9 @@
             <v-icon large dark class="teal"> mdi-home</v-icon>
           </router-link>
           <v-icon large> mdi-chevron-right</v-icon>
-         <span> Dashboard </span>
+          <span> Dashboard </span>
           <v-icon large v-if="dashboard === false"> mdi-chevron-right</v-icon>
-           {{ stagesRequest }}
+          {{ stagesRequest }}
         </v-col>
         <v-col md="2" offset-md="6">
           <div class="d-flex justify-end">{{ userResponse.currentDate }}</div>
@@ -41,21 +41,44 @@
       <v-container class="mb-16 mt-10">
         <div v-if="dashboard">
           <v-row class="mb-5">
-            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
-              <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category === 'Company' &&
+                  (role === 'MasterAdmin' || role === 'Quote InCharge')
+              "
+            >
+              <v-badge
+                :content="newProjectCount"
+                :value="newProjectCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
                   class="teal"
                   @click="searchProject('New Projects')"
-                  >mdi-clipboard-minus-outline</v-icon>
+                  >mdi-clipboard-minus-outline</v-icon
+                >
               </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 new projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category !== 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
-              <v-badge :content="newProjectCount" :value="newProjectCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category !== 'Company' &&
+                  (role === 'MasterAdmin' || role === 'Quote InCharge')
+              "
+            >
+              <v-badge
+                :content="newProjectCount"
+                :value="newProjectCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -68,8 +91,19 @@
                 new projects
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
-              <v-badge :content="bidReceivedCount" :value="bidReceivedCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category === 'Company' &&
+                  (role === 'MasterAdmin' || role === 'Quote InCharge')
+              "
+            >
+              <v-badge
+                :content="bidReceivedCount"
+                :value="bidReceivedCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -82,8 +116,19 @@
                 bids received
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category !== 'Company') && (role === 'MasterAdmin' || role === 'Quote InCharge')">
-              <v-badge :content="approvedBidsCount" :value="approvedBidsCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category !== 'Company' &&
+                  (role === 'MasterAdmin' || role === 'Quote InCharge')
+              "
+            >
+              <v-badge
+                :content="approvedBidsCount"
+                :value="approvedBidsCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -96,8 +141,19 @@
                 approved bids
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Merchandiser')">
-              <v-badge :content="pendingAuthenticationCount" :value="pendingAuthenticationCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category === 'Company' &&
+                  (role === 'MasterAdmin' || role === 'Merchandiser')
+              "
+            >
+              <v-badge
+                :content="pendingAuthenticationCount"
+                :value="pendingAuthenticationCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -111,8 +167,21 @@
                 authentication
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="(category === 'Company') && (role === 'MasterAdmin' || role === 'Approval Admin' ||  approvalAdminAccess === '1')">
-              <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category === 'Company' &&
+                  (role === 'MasterAdmin' ||
+                    role === 'Approval Admin' ||
+                    approvalAdminAccess === '1')
+              "
+            >
+              <v-badge
+                :content="approvalPendingCount"
+                :value="approvalPendingCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -125,8 +194,21 @@
                 approval pending
               </v-card-subtitle>
             </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company' && (role === 'MasterAdmin' || role === 'Approval Admin' ||  approvalAdminAccess === '1')">
-              <v-badge :content="approvalPendingCount" :value="approvalPendingCount !== 0">
+            <v-col
+              cols="12"
+              sm="4"
+              md="2"
+              v-if="
+                category !== 'Company' &&
+                  (role === 'MasterAdmin' ||
+                    role === 'Approval Admin' ||
+                    approvalAdminAccess === '1')
+              "
+            >
+              <v-badge
+                :content="approvalPendingCount"
+                :value="approvalPendingCount !== 0"
+              >
                 <v-icon
                   x-large
                   dark
@@ -140,8 +222,17 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge :content="noResponseCount" :value="noResponseCount !== 0">
-                <v-icon x-large dark class="teal" @click="searchProject('No Response')">mdi-clipboard-remove</v-icon>
+              <v-badge
+                :content="noResponseCount"
+                :value="noResponseCount !== 0"
+              >
+                <v-icon
+                  x-large
+                  dark
+                  class="teal"
+                  @click="searchProject('No Response')"
+                  >mdi-clipboard-remove</v-icon
+                >
               </v-badge>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 no response<br />
@@ -190,7 +281,7 @@
                 confirmed <br />projects
               </v-card-subtitle>
             </v-col>
-          <!-- </v-row>
+            <!-- </v-row>
           <v-row class="mb-5 pb-6"> -->
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
               <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
@@ -235,38 +326,41 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Cancelled Projects')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Cancelled Projects')"
+                >mdi-clipboard-check-outline</v-icon
+              >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 cancelled <br />projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2" v-else>
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Cancelled')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
+              <v-icon
+                x-large
+                dark
+                class="teal"
+                @click="searchProject('Cancelled')"
+                >mdi-clipboard-check-outline</v-icon
+              >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 cancelled <br />projects
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-                <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
+              <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
                 communication<br />
                 received
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-badge :content="projectReviewCount" :value="projectReviewCount !== 0">
+              <v-badge
+                :content="projectReviewCount"
+                :value="projectReviewCount !== 0"
+              >
                 <v-icon x-large dark class="teal" @click="pendingReview()"
                   >mdi-card-account-details-star</v-icon
                 >
@@ -351,14 +445,14 @@ export default class Dashboard extends Vue {
   public notificationResponse = new NotificationModel();
   public stagesMyProject: string = "";
   public tabValue: boolean = false;
- 
+
   public newProjectCount: number = 0;
   public bidReceivedCount: number = 0;
   public pendingAuthenticationCount: number = 0;
   public approvalPendingCount: number = 0;
   public approvedBidsCount: number = 0;
   public noShowCount: number = 0;
-  public noResponseCount: number = 0
+  public noResponseCount: number = 0;
   public confirmedCount: number = 0;
   public completedCount: number = 0;
   public projectReviewCount: number = 0;
@@ -386,13 +480,11 @@ export default class Dashboard extends Vue {
     return this.$store.getters.approvalAdminAccess;
   }
 
-  public searchProject(stages: string) {
-    // this.$router.push('/ProjectList/' + stages);
+  public searchProject(status: string) {
+    // this.$router.push('/DashboardProjectList/' + status);
     // return;
-    this.stagesRequest = stages;
-    this.stagesMyProject = stages;
+    this.stagesRequest = status;
     this.searchRequest.stages = this.stagesRequest;
-    // this.searchRequest.myproject = this.myproject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         if (this.role === "MasterAdmin" || this.role === "Approval Admin") {

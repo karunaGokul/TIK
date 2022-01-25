@@ -165,7 +165,7 @@ export default class DashboardProjectList extends Vue {
 
   public searchProject(myproject: boolean) {
     this.searchRequest.myproject = myproject;
-    this.searchRequest.stages = this.stagesMyProject;
+    this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.loading = false;

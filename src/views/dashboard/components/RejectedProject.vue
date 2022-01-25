@@ -97,7 +97,7 @@
           </v-row>
         </v-col>
 
-        <v-col cols="12" md="7">
+        <v-col cols="12" md="7" class="ml-n6">
           <v-simple-table>
             <template v-slot:default>
               <thead>

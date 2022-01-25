@@ -55,7 +55,6 @@
             readonly
           ></v-rating>
         </v-col>
-        
 
         <v-col
           cols="12"
@@ -103,7 +102,6 @@
             Cancel
           </v-btn>
           <div v-else-if="category === 'Company'">
-            
             <v-btn
               depressed
               class="
@@ -286,7 +284,7 @@
                     category === 'Company'
                 "
               >
-                <h4 class="mt-4 ml-4">Confirmed Project</h4>
+                <h4 class="my-4 ml-4">Confirmed Project</h4>
               </v-row>
 
               <v-row
@@ -305,7 +303,7 @@
                 <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
                 </v-col>
                 <v-col
-                  class="mx-1"
+                  class="mx-3"
                   cols="12"
                   sm="2"
                   md="2"
@@ -326,7 +324,7 @@
                 </v-col>
                 <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
                 </v-col>
-                <v-col cols="12" md="7">
+                <v-col cols="12" md="7" class="ml-16">
                   <v-simple-table>
                     <template v-slot:default>
                       <thead
@@ -335,12 +333,12 @@
                             row.status === 'Completed') &&
                           category === 'Company'
                             ? 'deep-orange lighten-3 '
-                            : 'teal lighten-5 text-subtitle-2'
+                            : 'teal lighten-5'
                         "
                       >
                         <tr>
                           <th
-                            class="text-left text-wrap font-weight-medium black--text"
+                            class="text-left font-weight-medium black--text"
                             v-for="(tableHeader, index) in BitReceivedheaders"
                             :key="index"
                           >
@@ -354,7 +352,7 @@
                           (row.status === 'Confirmed' ||
                             row.status === 'Completed') &&
                           category === 'Company'
-                            ? 'deep-orange lighten-3 black--text'
+                            ? 'deep-orange lighten-5 black--text'
                             : ''
                         "
                       >
@@ -465,7 +463,7 @@
                               <p class="ml-n3 mt-3">{{ row.status }}</p>
                               <p class="ml-n3 mt-n3">{{ row.message }}</p>
                             </span>
-                            
+
                             <span
                               v-else-if="
                                 (role === 'Merchandiser' ||
@@ -526,8 +524,6 @@
                               Confirm
                             </v-btn>
 
-                         
-
                             <div
                               v-else-if="row.status === 'Rejected'"
                               class="my-1"
@@ -544,7 +540,6 @@
                               {{ row.message }}
                             </div>
 
-                            
                             <div
                               class="ml-n7"
                               v-if="

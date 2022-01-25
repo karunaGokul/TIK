@@ -55,48 +55,7 @@
             readonly
           ></v-rating>
         </v-col>
-        <!-- <v-col cols="12" sm="2" md="2">
-          <p class="font-weight-regular mt-4 text-caption">
-            Created By : {{ response.CreatedBy }} <br />
-            Date & Time :{{ response.CreatedDate }}
-          </p>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.selectedBy && category === 'Company'"
-          class="ml-n7 mr-n16"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Selected By : {{ bitAuditResponse.selectedBy }} <br />
-            Date & Time :{{ bitAuditResponse.selectedDate }}
-          </p>
-        </v-col>
-        <v-col cols="12" md="1" else></v-col>
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.approveBy && category === 'Company'"
-          class="ml-n16 mr-n16"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Approve & Authenticate By : {{ bitAuditResponse.approveBy }} <br />
-            Date & Time :{{ bitAuditResponse.approveDate }}
-          </p>
-        </v-col>
-        <v-col cols="12" md="1" else></v-col>
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.confirmedBy && category === 'Company'"
-          class="ml-n10"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Confirm By : {{ bitAuditResponse.confirmedBy }} <br />
-            Date & Time :{{ bitAuditResponse.confirmedDate }}
-          </p>
-        </v-col> -->
+        
 
         <v-col
           cols="12"
@@ -144,19 +103,7 @@
             Cancel
           </v-btn>
           <div v-else-if="category === 'Company'">
-            <!-- <v-btn
-            depressed
-            class="
-              primary
-              white--text
-              font-weight-light
-              text-capitalize
-              rounded
-              mt-7
-            "
-          >
-            Bids Received : {{ response.bidsReceived }}
-          </v-btn> -->
+            
             <v-btn
               depressed
               class="
@@ -518,25 +465,7 @@
                               <p class="ml-n3 mt-3">{{ row.status }}</p>
                               <p class="ml-n3 mt-n3">{{ row.message }}</p>
                             </span>
-                            <!-- <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                mt-3
-                              "
-                              depressed
-                              color="primary"
-                              v-if="
-                                (role === 'Quote InCharge' ||
-                                  role === 'MasterAdmin') &&
-                                  row.status === 'Approved'
-                              "
-                              @click="ApproveBid('Selected', row)"
-                            >
-                              Accept
-                            </v-btn> -->
+                            
                             <span
                               v-else-if="
                                 (role === 'Merchandiser' ||
@@ -597,16 +526,7 @@
                               Confirm
                             </v-btn>
 
-                            <!-- <div
-                              v-else-if="
-                                role === 'MasterAdmin' &&
-                                  (row.status === 'Approved' ||
-                                    row.status === 'Selected')
-                              "
-                              class="my-2"
-                            >
-                              Pending for Approval
-                            </div> -->
+                         
 
                             <div
                               v-else-if="row.status === 'Rejected'"
@@ -624,35 +544,7 @@
                               {{ row.message }}
                             </div>
 
-                            <!-- <div
-                              v-else-if="
-                                row.status === 'BidApproved' &&
-                                  role === 'Merchandiser'
-                              "
-                            >
-                              Waiting for Approval
-                            </div> -->
-
-                            <!-- <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                my-1
-                              "
-                              depressed
-                              color="primary"
-                              v-if="
-                                (role === 'MasterAdmin' ||
-                                  role === 'Approval Admin' ||
-                                  role === 'Merchandiser') &&
-                                row.status === 'BidApproved'
-                              "
-                              @click="ApproveBid('Rejected', row)"
-                            >
-                              Reject
-                            </v-btn> -->
+                            
                             <div
                               class="ml-n7"
                               v-if="

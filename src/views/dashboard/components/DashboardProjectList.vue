@@ -155,24 +155,6 @@ export default class DashboardProjectList extends Vue {
     }
   }
 
-  // public getProjectList() {
-  //   this.request.id = this.$store.getters.id;
-  //   this.loading = true;
-  //   this.DashboardService.GetProjectList(this.request).then((response) => {
-  //     this.loading = false;
-  //     this.myproject = false;
-  //     this.response = response;
-  //   });
-  // }
-  // public getMyProjectList() {
-  //   this.request.id = this.$store.getters.id;
-  //   this.loading = true;
-  //   this.DashboardService.GetMyProjectList(this.request).then((response) => {
-  //     this.loading = false;
-  //     this.myproject = true;
-  //     this.response = response;
-  //   });
-  // }
   get category(): string {
     return this.$store.getters.category;
   }
@@ -182,7 +164,6 @@ export default class DashboardProjectList extends Vue {
   }
 
   public searchProject(myproject: boolean) {
-    // this.searchRequest.myproject = this.myproject;
     this.searchRequest.myproject = myproject;
     this.searchRequest.stages = this.stagesMyProject;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(

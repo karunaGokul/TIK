@@ -369,19 +369,6 @@
                 received
               </v-card-subtitle>
             </v-col>
-            <!-- <v-col cols="12" sm="4" md="2">
-              <v-badge
-                :content="projectReviewCount"
-                :value="projectReviewCount !== 0"
-              >
-                <v-icon x-large dark class="teal" @click="pendingReview()"
-                  >mdi-card-account-details-star</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                project reviews
-              </v-card-subtitle>
-            </v-col> -->
             <v-col cols="12" sm="4" md="2">
               <router-link to="/profile" class="text-decoration-none">
                 <v-icon x-large dark class="teal">mdi-account-cog</v-icon>
@@ -492,20 +479,20 @@ export default class Dashboard extends Vue {
   }
 
   public searchProject(status: string) {
-    // this.$router.push('/DashboardProjectList/' + status);
+    this.$router.push('/DashboardProjectList/' + status);
     // return;
-    this.stagesRequest = status;
-    this.searchRequest.stages = this.stagesRequest;
-    this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
-      (response) => {
-        if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
-          this.response = response;
-        }
-        this.dashboard = false;
-        this.dataTable = true;
-        this.searchToggle = true;
-      }
-    );
+    // this.stagesRequest = status;
+    // this.searchRequest.stages = this.stagesRequest;
+    // this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
+    //   (response) => {
+    //     if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
+    //       this.response = response;
+    //     }
+    //     this.dashboard = false;
+    //     this.dataTable = true;
+    //     this.searchToggle = true;
+    //   }
+    // );
   }
 
   public pendingReview() {

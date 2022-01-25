@@ -101,6 +101,9 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
+     if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
+       this.searchProject(false);
+     }
     if (
       this.category === "Company" &&
       (this.role === "Quote InCharge" || this.role === "Merchandiser") &&
@@ -165,7 +168,8 @@ export default class DashboardProjectList extends Vue {
 
   public searchProject(myproject: boolean) {
     this.searchRequest.myproject = myproject;
-    this.searchRequest.stages = this.stagesRequest;
+    this.searchRequest.stages = this.$route.params.status;
+    // this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.loading = false;

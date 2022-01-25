@@ -101,43 +101,81 @@ export default class DashboardProjectList extends Vue {
   public request = new DashboardRequestModel();
 
   created() {
-     if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
-       this.searchProject(false);
-     }
-    if (
-      this.category === "Company" &&
-      (this.role === "Quote InCharge" || this.role === "Merchandiser") &&
-      (this.stagesRequest === "New Projects" ||
-        this.stagesRequest === "Bid Received" ||
-        this.stagesRequest === "Awaiting Authentication" ||
-        this.stagesRequest === "Approval Pending" ||
-        this.stagesRequest === "No Response" ||
-        this.stagesRequest === "Cancelled Projects" ||
-        this.stagesRequest === "Confirmed Projects" ||
-        this.stagesRequest === "Completed Projects")
-    ) {
-      this.searchProject(true);
+    
+    if (this.category === "Company") {
+      if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
+        this.searchProject(false);
+      } else if (
+        (this.role === "Quote InCharge" || this.role === "Merchandiser") &&
+        (this.stagesRequest === "New Projects" ||
+          this.stagesRequest === "Bid Received" ||
+          this.stagesRequest === "Awaiting Authentication" ||
+          this.stagesRequest === "Approval Pending" ||
+          this.stagesRequest === "No Response" ||
+          this.stagesRequest === "Cancelled Projects" ||
+          this.stagesRequest === "Confirmed Projects" ||
+          this.stagesRequest === "Completed Projects")
+      ) {
+        this.searchProject(true);
+      }
+    } else {
+      if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
+        this.searchProject(false);
+      } else if (
+        this.role === "Quote InCharge" &&
+        (this.stagesRequest === "Approved" ||
+          this.stagesRequest === "Awaiting Approval" ||
+          this.stagesRequest === "No Response" ||
+          this.stagesRequest === "NoShow" ||
+          this.stagesRequest === "Confirmed" ||
+          this.stagesRequest === "Completed")
+      ) {
+        this.searchProject(true);
+      } else if (
+        this.category !== "Company" &&
+        (this.stagesRequest === "Initiated" ||
+          this.stagesRequest === "Cancelled")
+      ) {
+        this.searchProject(false);
+      }
     }
+    //  if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
+    //    this.searchProject(false);
+    //  }
+    // if (
+    //   this.category === "Company" &&
+    //   (this.role === "Quote InCharge" || this.role === "Merchandiser") &&
+    //   (this.stagesRequest === "New Projects" ||
+    //     this.stagesRequest === "Bid Received" ||
+    //     this.stagesRequest === "Awaiting Authentication" ||
+    //     this.stagesRequest === "Approval Pending" ||
+    //     this.stagesRequest === "No Response" ||
+    //     this.stagesRequest === "Cancelled Projects" ||
+    //     this.stagesRequest === "Confirmed Projects" ||
+    //     this.stagesRequest === "Completed Projects")
+    // ) {
+    //   this.searchProject(true);
+    // }
 
-    if (
-      this.category !== "Company" &&
-      this.role === "Quote InCharge" &&
-      (this.stagesRequest === "Approved" ||
-        this.stagesRequest === "Awaiting Approval" ||
-        this.stagesRequest === "No Response" ||
-        this.stagesRequest === "NoShow" ||
-        this.stagesRequest === "Confirmed" ||
-        this.stagesRequest === "Completed")
-    ) {
-      this.searchProject(true);
-    }
+    // if (
+    //   this.category !== "Company" &&
+    //   this.role === "Quote InCharge" &&
+    //   (this.stagesRequest === "Approved" ||
+    //     this.stagesRequest === "Awaiting Approval" ||
+    //     this.stagesRequest === "No Response" ||
+    //     this.stagesRequest === "NoShow" ||
+    //     this.stagesRequest === "Confirmed" ||
+    //     this.stagesRequest === "Completed")
+    // ) {
+    //   this.searchProject(true);
+    // }
 
-    if (
-      this.category !== "Company" &&
-      (this.stagesRequest === "Initiated" || this.stagesRequest === "Cancelled")
-    ) {
-      this.searchProject(false);
-    }
+    // if (
+    //   this.category !== "Company" &&
+    //   (this.stagesRequest === "Initiated" || this.stagesRequest === "Cancelled")
+    // ) {
+    //   this.searchProject(false);
+    // }
 
     if (this.category != "Company") {
       this.headers.find((o: any) => {
@@ -169,7 +207,6 @@ export default class DashboardProjectList extends Vue {
   public searchProject(myproject: boolean) {
     this.searchRequest.myproject = myproject;
     this.searchRequest.stages = this.$route.params.status;
-    // this.searchRequest.stages = this.stagesRequest;
     this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
       (response) => {
         this.loading = false;

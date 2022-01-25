@@ -58,7 +58,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('New Projects')"
+                  @click="searchProject('NewProjects')"
                   >mdi-clipboard-minus-outline</v-icon
                 >
               </v-badge>
@@ -108,7 +108,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Bid Received')"
+                  @click="searchProject('BidReceived')"
                   >mdi-human-dolly</v-icon
                 >
               </v-badge>
@@ -158,7 +158,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Awaiting Authentication')"
+                  @click="searchProject('AwaitingAuthentication')"
                   >mdi-clock-alert-outline</v-icon
                 >
               </v-badge>
@@ -186,7 +186,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Approval Pending')"
+                  @click="searchProject('ApprovalPending')"
                   >mdi-clock-alert-outline</v-icon
                 >
               </v-badge>
@@ -230,7 +230,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('No Response')"
+                  @click="searchProject('NoResponse')"
                   >mdi-clipboard-remove</v-icon
                 >
               </v-badge>
@@ -289,7 +289,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Confirmed Projects')"
+                  @click="searchProject('ConfirmedProjects')"
                   >mdi-clipboard-check-outline</v-icon
                 >
               </v-badge>
@@ -303,7 +303,7 @@
                   x-large
                   dark
                   class="teal"
-                  @click="searchProject('Completed Projects')"
+                  @click="searchProject('CompletedProjects')"
                   >mdi-clipboard-check-outline</v-icon
                 >
               </v-badge>
@@ -330,7 +330,7 @@
                 x-large
                 dark
                 class="teal"
-                @click="searchProject('Cancelled Projects')"
+                @click="searchProject('CancelledProjects')"
                 >mdi-clipboard-check-outline</v-icon
               >
               <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
@@ -350,13 +350,6 @@
               </v-card-subtitle>
             </v-col>
             <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                communication<br />
-                received
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
               <v-badge
                 :content="projectReviewCount"
                 :value="projectReviewCount !== 0"
@@ -369,6 +362,26 @@
                 project reviews
               </v-card-subtitle>
             </v-col>
+            <v-col cols="12" sm="4" md="2">
+              <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                communication<br />
+                received
+              </v-card-subtitle>
+            </v-col>
+            <!-- <v-col cols="12" sm="4" md="2">
+              <v-badge
+                :content="projectReviewCount"
+                :value="projectReviewCount !== 0"
+              >
+                <v-icon x-large dark class="teal" @click="pendingReview()"
+                  >mdi-card-account-details-star</v-icon
+                >
+              </v-badge>
+              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
+                project reviews
+              </v-card-subtitle>
+            </v-col> -->
             <v-col cols="12" sm="4" md="2">
               <router-link to="/profile" class="text-decoration-none">
                 <v-icon x-large dark class="teal">mdi-account-cog</v-icon>
@@ -410,7 +423,6 @@
           :response="response"
           :search="search"
           :stagesRequest="stagesRequest"
-          :stagesMyProject="stagesMyProject"
           :tabValue="tabValue"
         />
       </v-container>
@@ -443,7 +455,6 @@ export default class Dashboard extends Vue {
   public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
   public notificationResponse = new NotificationModel();
-  public stagesMyProject: string = "";
   public tabValue: boolean = false;
 
   public newProjectCount: number = 0;

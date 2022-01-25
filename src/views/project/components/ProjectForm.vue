@@ -354,11 +354,11 @@ export default class ProjectForm extends Vue {
           id: "deliveryDate",
           type: "date",
         },
-        {
-          label: "Your required Credit Period in days",
-          id: "creditPeriod",
-          type: "number",
-        },
+        // {
+        //   label: "Your required Credit Period in days",
+        //   id: "creditPeriod",
+        //   type: "number",
+        // },
       ],
     },
     {
@@ -384,16 +384,16 @@ export default class ProjectForm extends Vue {
           id: "price",
           type: "price",
         },
-        {
-          label: "Your required Credit Period in days",
-          id: "creditPeriod",
-          type: "number",
-        },
-        {
-          label: "Your required Delivery Period in days",
-          id: "deliveryPeriod",
-          type: "number",
-        },
+        // {
+        //   label: "Your required Credit Period in days",
+        //   id: "creditPeriod",
+        //   type: "number",
+        // },
+        // {
+        //   label: "Your required Delivery Period in days",
+        //   id: "deliveryPeriod",
+        //   type: "number",
+        // },
         {
           label: "Order Confirmation Date",
           id: "confirmationDate",

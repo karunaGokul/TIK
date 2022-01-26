@@ -1,80 +1,77 @@
 <template>
-    <v-container fluid class="pa-6">
-      <v-row class="align-center my-4" justify="space-between">
-        <v-col>
-          <div class="text-h4" v-if="userResponse.fullName">
-            Welcome back, {{ userResponse.fullName }}
-          </div>
-        </v-col>
-        <v-col>
-          <div class="text-right">
-            {{ userResponse.currentDate }}, {{ userResponse.currentDay }}
-          </div>
+  <v-container fluid class="pa-6">
+    <v-row class="align-center my-4" justify="space-between">
+      <v-col>
+        <div class="text-h4" v-if="userResponse.fullName">
+          Welcome back, {{ userResponse.fullName }}
+        </div>
+      </v-col>
+      <v-col>
+        <div class="text-right">
+          {{ userResponse.currentDate }}, {{ userResponse.currentDay }}
+        </div>
+      </v-col>
+    </v-row>
+
+    <div class="pa-3">
+      <div class="subtitle-1 text-uppercase font-weight-black mb-4">
+        Browse Projects
+      </div>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="4"
+          md="3"
+          v-for="(nav, index) in filteredProjectNavs"
+          :key="index"
+        >
+          <v-card @click="navigateToProjects(nav.status)">
+            <div class="d-flex flex-no-wrap justify-space-between align-center">
+              <div>
+                <v-card-title class="overline font-weight-bold">{{
+                  nav.text
+                }}</v-card-title>
+
+                <v-card-actions>
+                  <v-badge
+                    :content="nav.count"
+                    :value="nav.count ? nav.count : 0"
+                    overlap
+                  >
+                    <v-btn
+                      class="ml-2 grey lighten-3"
+                      fab
+                      icon
+                      height="40px"
+                      right
+                      width="40px"
+                    >
+                      <v-icon color="teal">mdi-chevron-right</v-icon>
+                    </v-btn>
+                  </v-badge>
+                </v-card-actions>
+              </div>
+
+              <v-avatar class="elevation-2 mr-3" color="teal" size="70">
+                <v-icon x-large dark>{{ nav.icon }}</v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
         </v-col>
       </v-row>
-
-      <div class="pa-3">
-        <div class="subtitle-1 text-uppercase font-weight-black mb-4">
-          Browse Projects
-        </div>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="4"
-            md="3"
-            v-for="(nav, index) in filteredProjectNavs"
-            :key="index"
-          >
-            <v-card  @click="navigateToProjects(nav.status)">
-              <div
-                class="d-flex flex-no-wrap justify-space-between align-center"
-              >
-                <div>
-                  <v-card-title class="overline font-weight-bold">{{
-                    nav.text
-                  }}</v-card-title>
-
-                  <v-card-actions>
-                    <v-badge
-                      :content="nav.count"
-                      :value="nav.count ? nav.count : 0"
-                      overlap
-                    >
-                      <v-btn
-                        class="ml-2 grey lighten-3"
-                        fab
-                        icon
-                        height="40px"
-                        right
-                        width="40px"                        
-                      >
-                        <v-icon color="teal">mdi-chevron-right</v-icon>
-                      </v-btn>
-                    </v-badge>
-                  </v-card-actions>
-                </div>
-
-                <v-avatar class="elevation-2 mr-3" color="teal" size="70">
-                  <v-icon x-large dark>{{
-                    nav.icon
-                  }}</v-icon>
-                </v-avatar>
-              </div>
-            </v-card>
-          </v-col>
-        </v-row>
-        <div class="subtitle-1 text-uppercase font-weight-black mt-8 pt-4 mb-4">
-          Other Links
-        </div>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="4"
-            md="3"
-            v-for="(nav, index) in otherNavs"
-            :key="index"
-          >
-            <v-card>
+      <div class="subtitle-1 text-uppercase font-weight-black mt-8 pt-4 mb-4">
+        Other Links
+      </div>
+      <v-row>
+        <v-col
+          cols="12"
+          sm="4"
+          md="3"
+          v-for="(nav, index) in otherNavs"
+          :key="index"
+        >
+          <v-card>
+            <router-link :to="nav.link ? nav.link : '/dashboard'" tag="div">
               <div
                 class="d-flex flex-no-wrap justify-space-between align-center"
               >
@@ -105,16 +102,15 @@
                 </div>
 
                 <v-avatar class="elevation-2 mr-2" color="primary" size="70">
-                  <v-icon x-large dark @click="searchProject('NewProjects')">{{
-                    nav.icon
-                  }}</v-icon>
+                  <v-icon x-large dark>{{ nav.icon }}</v-icon>
                 </v-avatar>
               </div>
-            </v-card>
-          </v-col>
-        </v-row>
-      </div>
-    </v-container>
+            </router-link>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -193,7 +189,7 @@ export default class Dashboard extends Vue {
         response.completedCount;
 
       this.otherNavs.find((n: any) => n.text == "Project Reviews").count =
-        response.projectReviewCount;      
+        response.projectReviewCount;
     });
   }
 
@@ -320,7 +316,7 @@ export default class Dashboard extends Vue {
       text: "Company profile",
       icon: "mdi-domain",
       count: 0,
-      link: "/profile"
+      link: "/profile",
     },
     {
       text: "Advertise in TIK",
@@ -331,14 +327,14 @@ export default class Dashboard extends Vue {
       text: "Contact TIK Support",
       icon: "mdi-phone-outgoing",
       count: 0,
-      link: "/contactUs"
+      link: "/contactUs",
     },
     {
       text: "Manage Users",
       icon: "mdi-account-multiple",
       count: 0,
       link: "/employee",
-      roles: ["MasterAdmin"]
+      roles: ["MasterAdmin"],
     },
   ];
 }

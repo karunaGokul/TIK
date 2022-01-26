@@ -2,8 +2,8 @@
   <div>
     <v-container fluid class="pa-4">
       <div class="ma-2">
-        <router-link to="/" class="text-decoration-none">
-          <v-icon large> mdi-home</v-icon>
+        <router-link to="/dashboard" class="text-decoration-none">
+          <v-icon large dark class="teal"> mdi-home</v-icon>
         </router-link>
         <v-icon large> mdi-chevron-right</v-icon>
         <router-link to="/employee" class="text-decoration-none black--text"
@@ -30,9 +30,8 @@
               outlined
               dense
               autofocus
-              label="Enter First Name"
               v-model="request.FirstName"
-              class="pt-2"
+              class="py-2"
               required
               :rules="nameRules"
             ></v-text-field>
@@ -45,9 +44,8 @@
             <v-text-field
               outlined
               dense
-              label="Enter Last Name"
               v-model="request.LastName"
-              class="pt-2"
+              class="py-2"
               :rules="nameRules"
             ></v-text-field>
           </v-col>
@@ -57,9 +55,8 @@
               <span class="red--text">*</span>
             </v-label>
             <v-select
-              class="pt-2"
+              class="py-2"
               :menu-props="{ offsetY: true }"
-              label="Select Gender"
               :items="gender"
               v-model="request.Gender"
               outlined
@@ -76,8 +73,7 @@
               <span class="red--text">*</span>
             </v-label>
             <v-text-field
-              class="pt-2"
-              label="Enter Email Id"
+              class="py-2"
               v-model="request.EmailAddress"
               outlined
               dense
@@ -95,8 +91,7 @@
               <v-tooltip right>
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
-                    class="pt-2"
-                    label="Enter Password"
+                    class="py-2"
                     v-model="request.Password"
                     :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="() => (value = !value)"
@@ -122,8 +117,7 @@
               <v-tooltip right>
                 <template v-slot:activator="{ on, attrs }">
                   <v-text-field
-                    class="pt-2"
-                    label="Enter Password"
+                    class="py-2"
                     v-model="request.Password"
                     :append-icon="value ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="() => (value = !value)"
@@ -151,8 +145,7 @@
               <span class="red--text">*</span>
             </v-label>
             <v-text-field
-              class="pt-2"
-              label="Enter Phone Number"
+              class="py-2"
               v-model="request.PhoneNumber"
               outlined
               dense
@@ -169,8 +162,7 @@
               <span class="red--text">*</span>
             </v-label>
             <v-text-field
-              class="pt-2"
-              label="Enter Address"
+              class="py-2"
               v-model="request.Address"
               outlined
               dense
@@ -183,10 +175,9 @@
               <span class="red--text">*</span>
             </v-label>
             <v-select
-              class="pt-2"
+              class="py-2"
               :menu-props="{ offsetY: true }"
               :items="role"
-              label="Select Employee Role"
               item-text="EmployeeRole"
               item-value="EmployeeRole"
               v-model="request.EmployeeRole"
@@ -202,9 +193,8 @@
               <span class="red--text">*</span>
             </v-label>
             <v-select
-              class="pt-2"
+              class="py-2"
               :menu-props="{ offsetY: true }"
-              label="Select Category"
               :items="CategoryResponse"
               item-text="categoryName"
               item-value="categoryName"
@@ -216,101 +206,6 @@
             </v-select>
           </v-col>
         </v-row>
-        <!-- <v-col
-            cols="12"
-            md="3"
-            class="ml-4"
-            v-if="
-              category === 'Company' &&
-              !(
-                request.EmployeeRole === 'Merchandiser' ||
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === 'Approval Admin' ||
-                request.EmployeeRole === null
-              )
-            "
-          >
-            <v-label>
-              Merchandiser
-              <span class="red--text">*</span>
-            </v-label>
-            <v-select
-              class="pt-2"
-              :menu-props="{ offsetY: true }"
-              label="Select Merchandiser"
-              :items="Merchandiser"
-              item-text="Merchandiser"
-              item-value="Id"
-              outlined
-              v-model="request.MerchandiserId"
-              dense
-               :rules="[(v) => !!v || 'Merchandiser role is required']"
-            >
-            </v-select>
-          </v-col> -->
-
-        <!-- 
-        <v-row class="mt-n8 mb-2">
-          <v-col
-            cols="12"
-            md="3"
-            class="mr-5"
-            v-if="
-              !(
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === 'Approval Admin' ||
-                request.EmployeeRole === null
-              )
-            "
-          >
-            <v-label>
-              Approval Admin
-              <span class="red--text">*</span>
-            </v-label>
-            <v-select
-              class="pt-2"
-              :menu-props="{ offsetY: true }"
-              label="Select Approval Admin"
-              :items="ApprovalAdmin"
-              item-text="ApprovalAdmin"
-              item-value="Id"
-              outlined
-              v-model="request.ApprovalAdminId"
-              dense
-              :rules="[(v) => !!v || 'Approval Admin role is required']"
-            >
-            </v-select>
-          </v-col>
-          <v-col
-            cols="12"
-            md="3"
-            v-if="
-              !(
-                request.EmployeeRole === 'MasterAdmin' ||
-                request.EmployeeRole === null
-              )
-            "
-          >
-            <v-label>
-              Master Admin
-              <span class="red--text">*</span>
-            </v-label>
-            <v-select
-              class="pt-2"
-              :menu-props="{ offsetY: true }"
-              label="Select Master Admin"
-              :items="MasterAdmin"
-              item-text="MasterAdmin"
-              item-value="Id"
-              v-model="request.MasterAdminId"
-              outlined
-              dense
-               :rules="[(v) => !!v || 'Master Admin role is required']"
-            >
-            </v-select>
-          </v-col>
-        </v-row> -->
-
         <v-row
           class="ml-2 mb-2 mt-n2"
           v-if="
@@ -410,7 +305,7 @@ export default class CreateEmployee extends Vue {
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
     (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
-    (v: any) => !(/[ ]/.test(v)) || 'No spaces allowed',
+    (v: any) => !/[ ]/.test(v) || "No spaces allowed",
   ];
 
   public emailRules: any = [

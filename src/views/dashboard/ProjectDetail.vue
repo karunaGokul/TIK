@@ -1,39 +1,31 @@
 <template>
-  <div>
-    <v-container fluid class="pa-4">
-      <div class="ma-2">
-        <router-link to="/" class="text-decoration-none">
-          <v-icon large> mdi-home</v-icon>
-        </router-link>
-        <v-icon large> mdi-chevron-right</v-icon>
-        <router-link to="/dashboard" class="text-decoration-none black--text">
-          Dashboard
-        </router-link>
-        <v-icon large> mdi-chevron-right</v-icon>
-        <span v-if="response.InStages === 'Enquiry Sent'">
-          New Project
-          <!-- <span v-for="row in response.bidList" :key="row.status">
-              <span v-if="row.status === 'Authenticated'">
-                Approval Pending
-              </span>
-            </span> -->
-        </span>
-        <span v-else-if="response.InStages === 'Awaiting Authentication'">
-          <span v-if="category === 'Company'">
-            Pending Authentication
-          </span>
-          <span v-else>
-            Approved Bids
-          </span>
-        </span>
-        <span v-else-if="response.InStages === 'Awaiting Approval'">
-          Approval Pending</span
-        >
-        <span v-else> {{ response.InStages }} Projects</span>
-      </div>
-    </v-container>
+  <v-container fluid class="pa-8">
+    <div class="ma-2">
+      <router-link to="/dashboard" class="text-decoration-none">
+        <v-icon large dark class="teal"> mdi-home</v-icon>
+      </router-link>
+      <v-icon large> mdi-chevron-right</v-icon>
+      <span v-if="response.InStages === 'Enquiry Sent'"> New Project </span>
+      <span v-else-if="response.InStages === 'Awaiting Authentication'">
+        <span v-if="category === 'Company'"> Pending Authentication </span>
+        <span v-else> Approved Bids </span>
+      </span>
+      <span v-else-if="response.InStages === 'Awaiting Approval'">
+        Approval Pending</span
+      >
+      <span v-else> {{ response.InStages }} Projects </span>
+    </div>
 
-    <div class="mx-5">
+    <div class="text-center ma-8" v-if="loading">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+
+    <div class="mx-5" v-else>
       <v-row>
         <v-col cols="12" sm="2" md="1" class="pt-6">
           <v-img
@@ -90,13 +82,20 @@
         </v-col>
         <v-col cols="12" sm="2" md="1">
           <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-7 ml-n16"
+            class="
+              white--text
+              font-weight-light
+              text-capitalize
+              rounded
+              mt-7
+              ml-n16
+            "
             depressed
             color="primary"
             @click="toggleCancel = 'true'"
             v-if="
               category != 'Company' &&
-                response.bidList[0].status === 'Initiated'
+              response.bidList[0].status === 'Initiated'
             "
           >
             Cancel
@@ -105,20 +104,21 @@
             <v-btn
               depressed
               class="
-              primary
-              white--text
-              font-weight-light
-              text-capitalize
-              rounded
-              mt-7
-              ml-n16"
+                primary
+                white--text
+                font-weight-light
+                text-capitalize
+                rounded
+                mt-7
+                ml-n16
+              "
               v-if="
                 role === 'MasterAdmin' &&
-                  userResponse.currentDate > response.confirmationDate &&
-                  (response.InStages === 'Enquiry Sent' ||
-                    response.InStages === 'Bid Received' ||
-                    response.InStages === 'Awaiting Authentication' ||
-                    response.InStages === 'Awaiting Approval')
+                userResponse.currentDate > response.confirmationDate &&
+                (response.InStages === 'Enquiry Sent' ||
+                  response.InStages === 'Bid Received' ||
+                  response.InStages === 'Awaiting Authentication' ||
+                  response.InStages === 'Awaiting Approval')
               "
               @click="toggleNoResponse = 'true'"
             >
@@ -245,9 +245,9 @@
       <v-row
         v-if="
           category === 'Company' &&
-            (response.InStages === 'Bid Received' ||
-              response.InStages === 'Awaiting Authentication' ||
-              response.InStages === 'Awaiting Approval')
+          (response.InStages === 'Bid Received' ||
+            response.InStages === 'Awaiting Authentication' ||
+            response.InStages === 'Awaiting Approval')
         "
       >
         <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
@@ -281,7 +281,7 @@
               <v-row
                 v-if="
                   (row.status === 'Confirmed' || row.status === 'Completed') &&
-                    category === 'Company'
+                  category === 'Company'
                 "
               >
                 <h4 class="my-4 ml-4">Confirmed Project</h4>
@@ -291,7 +291,7 @@
                 class="ma-1"
                 v-if="
                   (row.status != 'Rejected' && category === 'Company') ||
-                    category != 'Company'
+                  category != 'Company'
                 "
               >
                 <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
@@ -364,8 +364,8 @@
                             v-if="
                               (role === 'Approval Admin' ||
                                 role === 'MasterAdmin') &&
-                                row.status === 'Authenticated' &&
-                                category != 'Company'
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -385,8 +385,8 @@
                             v-if="
                               (role === 'Approval Admin' ||
                                 role === 'MasterAdmin') &&
-                                row.status === 'Authenticated' &&
-                                category != 'Company'
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -405,8 +405,8 @@
                             v-if="
                               (role === 'Approval Admin' ||
                                 role === 'MasterAdmin') &&
-                                row.status === 'Authenticated' &&
-                                category != 'Company'
+                              row.status === 'Authenticated' &&
+                              category != 'Company'
                             "
                           >
                             <v-text-field
@@ -426,23 +426,24 @@
                             <span
                               v-if="
                                 row.status === 'Approved' &&
-                                  response.InStages !== 'No Response'
+                                response.InStages !== 'No Response'
                               "
                             >
                               <v-btn
                                 class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                mt-3 ml-n5
-                              "
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  mt-3
+                                  ml-n5
+                                "
                                 depressed
                                 color="primary"
                                 @click="ApproveBid('Selected', row)"
                                 v-if="
                                   role === 'MasterAdmin' ||
-                                    role === 'Quote InCharge'
+                                  role === 'Quote InCharge'
                                 "
                               >
                                 Accept
@@ -457,7 +458,7 @@
                             <span
                               v-else-if="
                                 row.status === 'NoResponse' ||
-                                  response.InStages === 'No Response'
+                                response.InStages === 'No Response'
                               "
                             >
                               <p class="ml-n3 mt-3">{{ row.status }}</p>
@@ -468,7 +469,7 @@
                               v-else-if="
                                 (role === 'Merchandiser' ||
                                   role === 'MasterAdmin') &&
-                                  row.status === 'Selected'
+                                row.status === 'Selected'
                               "
                             >
                               <v-select
@@ -517,7 +518,7 @@
                                   (role === 'Merchandiser' &&
                                     approvalAdminAccess === '1') ||
                                   role === 'MasterAdmin') &&
-                                  row.status === 'BidApproved'
+                                row.status === 'BidApproved'
                               "
                               @click="ApproveBid('Confirmed', row)"
                             >
@@ -533,7 +534,7 @@
                             <div
                               v-else-if="
                                 row.status === 'NoShow' ||
-                                  row.status === 'Cancelled'
+                                row.status === 'Cancelled'
                               "
                             >
                               {{ row.status }} <br />
@@ -545,8 +546,8 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'Approval Admin') &&
-                                  row.status === 'Selected' &&
-                                  response.InStages !== 'No Response'
+                                row.status === 'Selected' &&
+                                response.InStages !== 'No Response'
                               "
                             >
                               Waiting for Authentication
@@ -556,7 +557,7 @@
                               v-if="
                                 (role === 'Quote InCharge' ||
                                   role === 'Merchandiser') &&
-                                  row.status === 'BidApproved'
+                                row.status === 'BidApproved'
                               "
                             >
                               Waiting for Approval
@@ -564,8 +565,8 @@
                             <div
                               v-if="
                                 row.status === 'Approved' &&
-                                  (role === 'Approval Admin' ||
-                                    role === 'Merchandiser')
+                                (role === 'Approval Admin' ||
+                                  role === 'Merchandiser')
                               "
                               class="my-1 ml-n9"
                             >
@@ -574,19 +575,19 @@
                             <div
                               v-if="
                                 row.status === 'Confirmed' &&
-                                  role === 'MasterAdmin'
+                                role === 'MasterAdmin'
                               "
                             >
                               <div v-if="row.ratings === null">
                                 <v-btn
                                   class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                  mr-2
-                                "
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                    mr-2
+                                  "
                                   depressed
                                   color="red lighten-1"
                                   @click="toggleNoShow = true"
@@ -595,12 +596,12 @@
                                 </v-btn>
                                 <v-btn
                                   class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                "
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                  "
                                   depressed
                                   color="primary"
                                   @click="toggleReview = true"
@@ -613,10 +614,10 @@
                             <div
                               v-if="
                                 row.status === 'Confirmed' &&
-                                  row.ratings === null &&
-                                  (role === 'Approval Admin' ||
-                                    role === 'Quote InCharge' ||
-                                    role === 'Merchandiser')
+                                row.ratings === null &&
+                                (role === 'Approval Admin' ||
+                                  role === 'Quote InCharge' ||
+                                  role === 'Merchandiser')
                               "
                             >
                               {{ row.status }}
@@ -625,8 +626,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role === 'MasterAdmin')
+                                (row.status === 'Completed' &&
+                                  role === 'MasterAdmin')
                               "
                               class="text-wrap ml-n7"
                             >
@@ -642,8 +643,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role !== 'MasterAdmin')
+                                (row.status === 'Completed' &&
+                                  role !== 'MasterAdmin')
                               "
                               class="text-wrap ml-n3"
                             >
@@ -655,7 +656,7 @@
                               v-if="
                                 (role === 'Approval Admin' ||
                                   role === 'MasterAdmin') &&
-                                  row.status === 'Authenticated'
+                                row.status === 'Authenticated'
                               "
                             >
                               <v-btn
@@ -693,8 +694,8 @@
                               v-else-if="
                                 (row.status === 'Authenticated' &&
                                   role === 'Quote InCharge') ||
-                                  row.status === 'Approved' ||
-                                  row.status === 'Rejected'
+                                row.status === 'Approved' ||
+                                row.status === 'Rejected'
                               "
                             >
                               {{ row.status }}
@@ -702,7 +703,7 @@
                             <span
                               v-else-if="
                                 row.status === 'NoShow' ||
-                                  row.status === 'Cancelled'
+                                row.status === 'Cancelled'
                               "
                             >
                               {{ row.status }}<br />
@@ -711,19 +712,19 @@
                             <div
                               v-else-if="
                                 row.status === 'Confirmed' &&
-                                  role === 'MasterAdmin'
+                                role === 'MasterAdmin'
                               "
                             >
                               <div v-if="row.ratings === null">
                                 <v-btn
                                   class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                  mr-2
-                                "
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                    mr-2
+                                  "
                                   depressed
                                   color="red lighten-1"
                                   @click="toggleNoShow = true"
@@ -732,12 +733,12 @@
                                 </v-btn>
                                 <v-btn
                                   class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                "
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                  "
                                   depressed
                                   color="primary"
                                   @click="toggleReview = true"
@@ -749,9 +750,9 @@
                             <div
                               v-if="
                                 row.status === 'Confirmed' &&
-                                  row.ratings === null &&
-                                  (role === 'Approval Admin' ||
-                                    role === 'Quote InCharge')
+                                row.ratings === null &&
+                                (role === 'Approval Admin' ||
+                                  role === 'Quote InCharge')
                               "
                             >
                               {{ row.status }}
@@ -760,8 +761,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role === 'MasterAdmin')
+                                (row.status === 'Completed' &&
+                                  role === 'MasterAdmin')
                               "
                               class="text-wrap ml-n7"
                             >
@@ -777,8 +778,8 @@
                               v-else-if="
                                 (row.status === 'Confirmed' &&
                                   row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role !== 'MasterAdmin')
+                                (row.status === 'Completed' &&
+                                  role !== 'MasterAdmin')
                               "
                               class="text-wrap ml-n3"
                             >
@@ -793,8 +794,8 @@
                     class="mt-5"
                     v-if="
                       category != 'Company' &&
-                        (response.InStages === 'Confirmed' ||
-                          response.InStages === 'Completed')
+                      (response.InStages === 'Confirmed' ||
+                        response.InStages === 'Completed')
                     "
                   >
                     <thead class="teal lighten-5 text-capitalize">
@@ -863,6 +864,7 @@
         @closeModel="closeModel"
       />
     </div>
+
     <v-snackbar
       v-model="snackbar"
       :timeout="2000"
@@ -879,7 +881,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -947,8 +949,13 @@ export default class ProjectDetail extends Vue {
   public confirmedBidResponse = new ConfirmedBidModel();
   public userResponse = new UserInfomodel();
 
+  loading: boolean = false;
+
   created() {
+    this.loading = true;
+
     this.GetProjectEnquiry();
+
     if (this.category === "Company") {
       this.userInfo();
     }
@@ -1008,8 +1015,11 @@ export default class ProjectDetail extends Vue {
   }
 
   public GetCompany(CompanyId: string) {
+    this.loading = true;
     this.DashboardService.GetCompany(CompanyId).then((response) => {
       this.companyResponse = response;
+
+      this.loading = false;
     });
   }
 

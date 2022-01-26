@@ -69,9 +69,9 @@
       >
 
       <v-spacer></v-spacer>
-      <div v-if="isLoggedIn">
+      <!-- <div v-if="isLoggedIn">
         <v-icon medium class="mx-6">mdi-bell</v-icon>
-      </div>
+      </div> -->
       <div class="d-flex align-center">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">

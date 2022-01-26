@@ -33,22 +33,20 @@
                 }}</v-card-title>
 
                 <v-card-actions>
-                  <v-badge
-                    :content="nav.count"
-                    :value="nav.count ? nav.count : 0"
-                    overlap
+                  <v-avatar class="ml-2" color="primary" size="40" v-if="nav.count">
+                    <span class="white--text text-h6">{{ nav.count }}</span>
+                  </v-avatar>
+                  <v-btn
+                    v-else
+                    class="ml-2 grey lighten-3"
+                    fab
+                    icon
+                    height="40px"
+                    right
+                    width="40px"
                   >
-                    <v-btn
-                      class="ml-2 grey lighten-3"
-                      fab
-                      icon
-                      height="40px"
-                      right
-                      width="40px"
-                    >
-                      <v-icon color="teal">mdi-chevron-right</v-icon>
-                    </v-btn>
-                  </v-badge>
+                    <v-icon color="primary">mdi-chevron-right</v-icon>
+                  </v-btn>
                 </v-card-actions>
               </div>
 
@@ -95,7 +93,7 @@
                         right
                         width="40px"
                       >
-                        <v-icon color="primary">mdi-chevron-right</v-icon>
+                        <v-icon color="teal">mdi-chevron-right</v-icon>
                       </v-btn>
                     </v-badge>
                   </v-card-actions>

@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="pa-8">
-    <div class="ma-2">
+    <div>
       <router-link to="/dashboard" class="text-decoration-none">
         <v-icon large dark class="teal"> mdi-home</v-icon>
       </router-link>
@@ -25,819 +25,816 @@
       ></v-progress-circular>
     </div>
 
-    <div class="mx-5" v-else>
-      <v-row>
-        <v-col cols="12" sm="2" md="1" class="pt-6">
-          <v-img
-            :src="`data:image/png;base64,${companyResponse.logo}`"
-            width="80%"
-          ></v-img>
-        </v-col>
-        <v-col cols="12" sm="1" md="1">
-          <v-row class="mt-4 font-weight-regular">
-            {{ companyResponse.companyName }}
-          </v-row>
-          <v-rating
-            v-model="companyResponse.review"
-            color="warning"
-            dense
-            half-increments
-            size="14"
-            class="mt-4 ml-n4"
-            readonly
-          ></v-rating>
-        </v-col>
+    <div v-else>
+      <div class="ma-4">
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-card color="transparent" flat>
+              <div class="d-flex flex-no-wrap">
+                <v-avatar size="80" tile>
+                  <v-img
+                    :src="`data:image/png;base64,${companyResponse.logo}`"
+                  ></v-img>
+                </v-avatar>
+                <div>
+                  <v-card-title class="text-h6 pt-0">{{
+                    companyResponse.companyName
+                  }}</v-card-title>
 
-        <v-col
-          cols="12"
-          sm="2"
-          offset-md="7"
-          v-if="
-            category != 'Company' && response.bidList[0].status === 'Initiated'
-          "
-        >
-          <v-btn
-            class="white--text font-weight-light text-capitalize rounded mt-7"
-            depressed
-            color="primary"
-            @click="toggleBid = 'true'"
-          >
-            bid this project
-          </v-btn>
-        </v-col>
-        <v-col v-else cols="12" sm="2" offset-md="7">
-          <v-btn
-            depressed
-            class="
-              primary
-              white--text
-              font-weight-light
-              text-capitalize
-              rounded
-              mt-7
-            "
-          >
-            Bids Received : {{ response.bidsReceived }}
-          </v-btn>
-        </v-col>
-        <v-col cols="12" sm="2" md="1">
-          <v-btn
-            class="
-              white--text
-              font-weight-light
-              text-capitalize
-              rounded
-              mt-7
-              ml-n16
-            "
-            depressed
-            color="primary"
-            @click="toggleCancel = 'true'"
-            v-if="
-              category != 'Company' &&
-              response.bidList[0].status === 'Initiated'
-            "
-          >
-            Cancel
-          </v-btn>
-          <div v-else-if="category === 'Company'">
+                  <v-card-subtitle
+                    ><v-rating
+                      v-model="companyResponse.review"
+                      color="warning"
+                      dense
+                      half-increments
+                      size="14"
+                      readonly
+                    ></v-rating
+                  ></v-card-subtitle>
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="8" class="text-right">
             <v-btn
+              class="white--text font-weight-light text-capitalize rounded mt-7"
               depressed
-              class="
-                primary
-                white--text
-                font-weight-light
-                text-capitalize
-                rounded
-                mt-7
-                ml-n16
-              "
+              color="primary"
+              @click="toggleBid = 'true'"
               v-if="
-                role === 'MasterAdmin' &&
-                userResponse.currentDate > response.confirmationDate &&
-                (response.InStages === 'Enquiry Sent' ||
-                  response.InStages === 'Bid Received' ||
-                  response.InStages === 'Awaiting Authentication' ||
-                  response.InStages === 'Awaiting Approval')
+                category != 'Company' &&
+                response.bidList[0].status === 'Initiated'
               "
-              @click="toggleNoResponse = 'true'"
             >
-              no response
+              bid this project
             </v-btn>
-          </div>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12" md="2">
-          <p class="font-weight-regular mt-4 text-caption">
-            Created By : {{ response.CreatedBy }} <br />
-            Date & Time :{{ response.CreatedDate }}
-          </p>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.selectedBy && category === 'Company'"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Selected By : {{ bitAuditResponse.selectedBy }} <br />
-            Date & Time :{{ bitAuditResponse.selectedDate }}
-          </p>
-        </v-col>
-        <!-- <v-col cols="12" md="3" else></v-col> -->
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.approveBy && category === 'Company'"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Approve & Authenticate By : {{ bitAuditResponse.approveBy }} <br />
-            Date & Time :{{ bitAuditResponse.approveDate }}
-          </p>
-        </v-col>
-        <!-- <v-col cols="12" md="1" else></v-col> -->
-        <v-col
-          cols="12"
-          md="2"
-          v-if="bitAuditResponse.confirmedBy && category === 'Company'"
-        >
-          <p class="font-weight-regular mt-4 text-caption text-wrap">
-            Confirm By : {{ bitAuditResponse.confirmedBy }} <br />
-            Date & Time :{{ bitAuditResponse.confirmedDate }}
-          </p>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-simple-table>
-            <template v-slot:default>
-              <thead class="teal lighten-5">
-                <tr>
-                  <th
-                    class="text-left font-weight-medium black--text"
-                    v-for="(tableHeader, index) in ProjectRequestheaders"
-                    :key="index"
-                  >
-                    {{ tableHeader }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{ response.EnquiryName }}</td>
-                  <td></td>
-                  <td></td>
-                  <td>{{ response.Category }}</td>
-                  <td></td>
-                  <td></td>
-                  <td>{{ response.Subcategory }}</td>
-                  <td></td>
-                  <td></td>
-                  <td
-                    class="blue--text"
-                    v-if="response.requestPrice !== 'Requested'"
-                  >
-                    Rs.{{ response.requestPrice }}
-                  </td>
-                  <td class="blue--text" v-else>{{ response.requestPrice }}</td>
-                  <td class="red--text">{{ response.creditPeriod }} days</td>
-                  <td class="green--text">{{ response.deliveryDate }} days</td>
-                  <td>
-                    <v-btn
-                      class="
-                        white--text
-                        font-weight-light
-                        text-capitalize
-                        rounded
-                        ml-n4
-                      "
-                      depressed
-                      color="primary"
-                      @click="toggleSummaryView = true"
-                    >
-                      View
-                    </v-btn>
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-          <RejectProject
-            :response="response"
-            title="Reasons"
-            v-if="toggleCancel"
-            @closeModel="closeModel"
-          />
-          <BidProject
-            :response="response"
-            v-if="toggleBid"
-            @closeModel="closeModel"
-          />
-          <ProjectSummary
-            :response="response"
-            v-if="toggleSummaryView"
-            @closeModel="closeModel"
-          />
-        </v-col>
-      </v-row>
-      <v-row
-        v-if="
-          category === 'Company' &&
-          (response.InStages === 'Bid Received' ||
-            response.InStages === 'Awaiting Authentication' ||
-            response.InStages === 'Awaiting Approval')
-        "
-      >
-        <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
-
-        <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
-
-        <v-icon large color="green darken-4" class="ml-4" @click="reset()">
-          mdi-lock-reset
-        </v-icon>
-      </v-row>
-      <div v-if="response.bidList" class="mt-5">
-        <v-row v-for="row in response.bidList" :key="row.status">
-          <v-row
-            class="pa-4 ma-1"
-            :class="
-              (row.status === 'Confirmed' || row.status === 'Completed') &&
-              category === 'Company'
-                ? 'deep-orange'
-                : ''
-            "
-            v-if="row.status != 'Initiated'"
-          >
-            <v-row
-              :class="
-                (row.status === 'Confirmed' || row.status === 'Completed') &&
-                category === 'Company'
-                  ? 'deep-orange lighten-5 black--text'
-                  : ''
-              "
-            >
-              <v-row
+            <div class="overline font-weight-bold" v-else>
+              Bids Received : {{ response.bidsReceived }}
+            </div>
+            <div>
+              <v-btn
+                class="
+                  white--text
+                  font-weight-light
+                  text-capitalize
+                  rounded
+                  mt-7
+                  ml-n16
+                "
+                depressed
+                color="primary"
+                @click="toggleCancel = 'true'"
                 v-if="
-                  (row.status === 'Confirmed' || row.status === 'Completed') &&
-                  category === 'Company'
+                  category != 'Company' &&
+                  response.bidList[0].status === 'Initiated'
                 "
               >
-                <h4 class="my-4 ml-4">Confirmed Project</h4>
-              </v-row>
+                Cancel
+              </v-btn>
+              <div v-else-if="category === 'Company'">
+                <v-btn
+                  depressed
+                  class="
+                    primary
+                    white--text
+                    font-weight-light
+                    text-capitalize
+                    rounded
+                    mt-7
+                    ml-n16
+                  "
+                  v-if="
+                    role === 'MasterAdmin' &&
+                    userResponse.currentDate > response.confirmationDate &&
+                    (response.InStages === 'Enquiry Sent' ||
+                      response.InStages === 'Bid Received' ||
+                      response.InStages === 'Awaiting Authentication' ||
+                      response.InStages === 'Awaiting Approval')
+                  "
+                  @click="toggleNoResponse = 'true'"
+                >
+                  no response
+                </v-btn>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
 
+        <v-row class="mt-4 text-caption text-wrap">
+          <v-col cols="12" md="3">
+            <p class="mb-0">
+              <label class="font-weight-bold">Created By:</label>
+              {{ response.CreatedBy }}
+            </p>
+            <p class="mb-0">
+              <label class="font-weight-bold">Date & Time:</label>
+              {{ response.CreatedDate }}
+            </p>
+          </v-col>
+          <v-col
+            cols="12"
+            md="3"
+            v-if="bitAuditResponse.selectedBy && category === 'Company'"
+          >
+            <p class="mb-0">
+              <label class="font-weight-bold">Selected By:</label>
+              {{ bitAuditResponse.selectedBy }}
+            </p>
+            <p class="mb-0">
+              <label class="font-weight-bold">Date & Time:</label>
+              {{ bitAuditResponse.selectedDate }}
+            </p>
+          </v-col>
+          <v-col
+            cols="12"
+            md="3"
+            v-if="bitAuditResponse.approveBy && category === 'Company'"
+          >
+            <p class="mb-0">
+              <label class="font-weight-bold"
+                >Approved & Authenticated By:</label
+              >
+              {{ bitAuditResponse.approveBy }}
+            </p>
+            <p class="mb-0">
+              <label class="font-weight-bold">Date & Time:</label>
+              {{ bitAuditResponse.approveDate }}
+            </p>
+          </v-col>
+          <v-col
+            cols="12"
+            md="3"
+            v-if="bitAuditResponse.confirmedBy && category === 'Company'"
+          >
+            <p class="mb-0">
+              <label class="font-weight-bold">Confirmed By:</label>
+              {{ bitAuditResponse.confirmedBy }}
+            </p>
+            <p class="mb-0">
+              <label class="font-weight-bold">Date & Time:</label>
+              {{ bitAuditResponse.confirmedDate }}
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th class="black--text table-header-teal" width="20%">
+                      Project Name
+                    </th>
+                    <th class="black--text table-header-teal" width="15%">
+                      Category
+                    </th>
+                    <th class="black--text table-header-teal" width="15%">
+                      SubCategory
+                    </th>
+                    <th class="black--text table-header-teal" width="15%">
+                      Requested Price
+                    </th>
+                    <th class="black--text table-header-teal" width="10%">
+                      Requested Credit
+                    </th>
+                    <th class="black--text table-header-teal" width="15%">
+                      Requested Delivery
+                    </th>
+                    <th class="black--text table-header-teal" width="10%">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ response.EnquiryName }}</td>
+                    <td>{{ response.Category }}</td>
+                    <td>{{ response.Subcategory }}</td>
+                    <td
+                      class="blue--text"
+                      v-if="response.requestPrice !== 'Requested'"
+                    >
+                      Rs.{{ response.requestPrice }}
+                    </td>
+                    <td class="blue--text" v-else>
+                      {{ response.requestPrice }}
+                    </td>
+                    <td class="red--text">{{ response.creditPeriod }} days</td>
+                    <td class="green--text">
+                      {{ response.deliveryDate }} days
+                    </td>
+                    <td>
+                      <v-btn
+                        class="
+                          white--text
+                          font-weight-light
+                          text-capitalize
+                          rounded
+                          ml-n4
+                        "
+                        depressed
+                        color="primary"
+                        @click="toggleSummaryView = true"
+                      >
+                        View
+                      </v-btn>
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+            <RejectProject
+              :response="response"
+              title="Reasons"
+              v-if="toggleCancel"
+              @closeModel="closeModel"
+            />
+            <BidProject
+              :response="response"
+              v-if="toggleBid"
+              @closeModel="closeModel"
+            />
+            <ProjectSummary
+              :response="response"
+              v-if="toggleSummaryView"
+              @closeModel="closeModel"
+            />
+          </v-col>
+        </v-row>
+        <v-row
+          v-if="
+            category === 'Company' &&
+            (response.InStages === 'Bid Received' ||
+              response.InStages === 'Awaiting Authentication' ||
+              response.InStages === 'Awaiting Approval')
+          "
+        >
+          <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
+
+          <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
+
+          <v-icon large color="green darken-4" class="ml-4" @click="reset()">
+            mdi-lock-reset
+          </v-icon>
+        </v-row>
+      </div>
+      <div v-if="response.bidList" class="mt-5">
+        <div v-for="row in response.bidList" :key="row.status">
+          <v-card
+            width="100%"
+            tile
+            flat
+            v-if="row.status != 'Initiated' && row.status != 'Rejected'"
+            :class="{
+              'confirmed-project':
+                (row.status === 'Confirmed' || row.status === 'Completed') &&
+                category === 'Company',
+            }"
+          >
+            <v-card-title tag="h4">Confirmed Project</v-card-title>
+            <v-card-text>
               <v-row
-                class="ma-1"
+                no-gutters
                 v-if="
                   (row.status != 'Rejected' && category === 'Company') ||
                   category != 'Company'
                 "
               >
-                <v-col cols="12" sm="1" md="1" v-if="category === 'Company'">
-                  <v-img
-                    :src="`data:image/png;base64,${row.logo}`"
-                    width="90%"
-                  ></v-img>
+                <v-col cols="12" md="4">
+                  <v-card color="transparent" flat>
+                    <div class="d-flex flex-no-wrap">
+                      <v-avatar size="80" tile>
+                        <v-img
+                          :src="`data:image/png;base64,${row.logo}`"
+                        ></v-img>
+                      </v-avatar>
+                      <div>
+                        <v-card-title class="text-h6 pt-0">{{
+                          row.companyName
+                        }}</v-card-title>
+
+                        <v-card-subtitle
+                          ><v-rating
+                            v-model="row.review"
+                            color="warning"
+                            dense
+                            half-increments
+                            readonly
+                          ></v-rating
+                        ></v-card-subtitle>
+                      </div>
+                    </div>
+                  </v-card>
                 </v-col>
-                <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
-                </v-col>
-                <v-col
-                  class="mx-3"
-                  cols="12"
-                  sm="2"
-                  md="2"
-                  v-if="category === 'Company'"
-                >
-                  <v-row class="ma-1">
-                    <h4>{{ row.companyName }}</h4>
-                  </v-row>
-                  <v-row>
-                    <v-rating
-                      v-model="row.review"
-                      color="warning"
-                      dense
-                      half-increments
-                      readonly
-                    ></v-rating>
-                  </v-row>
-                </v-col>
-                <v-col v-if="category !== 'Company'" cols="12" sm="2" md="2">
-                </v-col>
-                <v-col cols="12" md="7" class="ml-16">
-                  <v-simple-table>
-                    <template v-slot:default>
-                      <thead
-                        :class="
-                          (row.status === 'Confirmed' ||
-                            row.status === 'Completed') &&
-                          category === 'Company'
-                            ? 'deep-orange lighten-3 '
-                            : 'teal lighten-5'
-                        "
-                      >
+                <v-col cols="12" md="8">
+                  <div class="pl-4">
+                    <v-simple-table>
+                      <template v-slot:default>
+                        <thead
+                          :class="
+                            (row.status === 'Confirmed' ||
+                              row.status === 'Completed') &&
+                            category === 'Company'
+                              ? ' table-header-orange '
+                              : ' table-header-teal '
+                          "
+                        >
+                          <tr>
+                            <th
+                              class="black--text"
+                              v-for="(tableHeader, index) in BitReceivedheaders"
+                              :key="index"
+                              width="20%"
+                            >
+                              {{ tableHeader }}
+                            </th>
+                            <th v-if="category === 'Company'"></th>
+                          </tr>
+                        </thead>
+                        <tbody
+                          :class="
+                            (row.status === 'Confirmed' ||
+                              row.status === 'Completed') &&
+                            category === 'Company'
+                              ? 'deep-orange lighten-5 black--text'
+                              : ''
+                          "
+                        >
+                          <tr>
+                            <td>
+                              {{ row.submittedBy }} <br />{{
+                                row.submittedDate
+                              }}
+                            </td>
+                            <td
+                              v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated' &&
+                                category != 'Company'
+                              "
+                            >
+                              <v-text-field
+                                outlined
+                                dense
+                                class="mt-4"
+                                v-model="row.requestPrice"
+                                :rules="priceRules"
+                                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                              ></v-text-field>
+                            </td>
+
+                            <td
+                              v-else
+                              class="blue--text"
+                              vertical-align:
+                              middle
+                            >
+                              Rs.{{ row.requestPrice }}
+                            </td>
+                            <td
+                              v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated' &&
+                                category != 'Company'
+                              "
+                            >
+                              <v-text-field
+                                outlined
+                                dense
+                                class="mt-4"
+                                v-model="row.creditPeriod"
+                                :rules="creditRules"
+                                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                              ></v-text-field>
+                            </td>
+                            <td v-else class="red--text">
+                              {{ row.creditPeriod }} days
+                            </td>
+                            <td
+                              v-if="
+                                (role === 'Approval Admin' ||
+                                  role === 'MasterAdmin') &&
+                                row.status === 'Authenticated' &&
+                                category != 'Company'
+                              "
+                            >
+                              <v-text-field
+                                outlined
+                                dense
+                                class="mt-4"
+                                v-model="row.deliveryDate"
+                                :rules="deliveryRules"
+                                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                              ></v-text-field>
+                            </td>
+                            <td v-else class="green--text">
+                              {{ row.deliveryDate }}
+                              days
+                            </td>
+                            <td v-if="category === 'Company'">
+                              <span
+                                v-if="
+                                  row.status === 'Approved' &&
+                                  response.InStages !== 'No Response'
+                                "
+                              >
+                                <v-btn
+                                  class="
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-3
+                                    ml-n5
+                                  "
+                                  depressed
+                                  color="primary"
+                                  @click="ApproveBid('Selected', row)"
+                                  v-if="
+                                    role === 'MasterAdmin' ||
+                                    role === 'Quote InCharge'
+                                  "
+                                >
+                                  Accept
+                                </v-btn>
+                                <div
+                                  class="my-2 ml-n5 text-no-wrap"
+                                  v-if="role === 'MasterAdmin'"
+                                >
+                                  Pending for Approval
+                                </div>
+                              </span>
+                              <span
+                                v-else-if="
+                                  row.status === 'NoResponse' ||
+                                  response.InStages === 'No Response'
+                                "
+                              >
+                                <p class="ml-n3 mt-3">{{ row.status }}</p>
+                                <p class="ml-n3 mt-n3">{{ row.message }}</p>
+                              </span>
+
+                              <span
+                                v-else-if="
+                                  (role === 'Merchandiser' ||
+                                    role === 'MasterAdmin') &&
+                                  row.status === 'Selected'
+                                "
+                              >
+                                <v-select
+                                  :menu-props="{ offsetY: true }"
+                                  label="Select Approval Admin"
+                                  :items="ApprovalAdmin"
+                                  item-text="ApprovalAdmin"
+                                  item-value="Id"
+                                  outlined
+                                  v-model="approvalRequest.approvalAdminId"
+                                  dense
+                                  class="my-3"
+                                  :rules="
+                                    (v) =>
+                                      !!v || 'Approval Admin role is required'
+                                  "
+                                >
+                                </v-select>
+                                <v-btn
+                                  class="
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-n7
+                                  "
+                                  depressed
+                                  color="primary"
+                                  @click="ApproveBid('BidApproved', row)"
+                                >
+                                  Authenticate
+                                </v-btn>
+                              </span>
+                              <v-btn
+                                class="
+                                  white--text
+                                  font-weight-light
+                                  text-capitalize
+                                  rounded
+                                  ml-n6
+                                "
+                                depressed
+                                color="primary"
+                                v-else-if="
+                                  (role === 'Approval Admin' ||
+                                    (role === 'Merchandiser' &&
+                                      approvalAdminAccess === '1') ||
+                                    role === 'MasterAdmin') &&
+                                  row.status === 'BidApproved'
+                                "
+                                @click="ApproveBid('Confirmed', row)"
+                              >
+                                Confirm
+                              </v-btn>
+
+                              <div
+                                v-else-if="row.status === 'Rejected'"
+                                class="my-1"
+                              >
+                                {{ row.status }}
+                              </div>
+                              <div
+                                v-else-if="
+                                  row.status === 'NoShow' ||
+                                  row.status === 'Cancelled'
+                                "
+                              >
+                                {{ row.status }} <br />
+                                {{ row.message }}
+                              </div>
+
+                              <div
+                                class="ml-n7"
+                                v-if="
+                                  (role === 'Quote InCharge' ||
+                                    role === 'Approval Admin') &&
+                                  row.status === 'Selected' &&
+                                  response.InStages !== 'No Response'
+                                "
+                              >
+                                Waiting for Authentication
+                              </div>
+                              <p
+                                class="ml-n7 text-no-wrap"
+                                v-if="
+                                  (role === 'Quote InCharge' ||
+                                    role === 'Merchandiser') &&
+                                  row.status === 'BidApproved'
+                                "
+                              >
+                                Waiting for Approval
+                              </p>
+                              <div
+                                v-if="
+                                  row.status === 'Approved' &&
+                                  (role === 'Approval Admin' ||
+                                    role === 'Merchandiser')
+                                "
+                                class="my-1 ml-n9"
+                              >
+                                Pending Approval from <br />Quote InCharge
+                              </div>
+                              <div
+                                v-if="
+                                  row.status === 'Confirmed' &&
+                                  role === 'MasterAdmin'
+                                "
+                              >
+                                <div v-if="row.ratings === null">
+                                  <v-btn
+                                    class="
+                                      white--text
+                                      font-weight-light
+                                      text-capitalize
+                                      rounded
+                                      mt-2
+                                      mr-2
+                                    "
+                                    depressed
+                                    color="red lighten-1"
+                                    @click="toggleNoShow = true"
+                                  >
+                                    No Show
+                                  </v-btn>
+                                  <v-btn
+                                    class="
+                                      white--text
+                                      font-weight-light
+                                      text-capitalize
+                                      rounded
+                                      mt-2
+                                    "
+                                    depressed
+                                    color="primary"
+                                    @click="toggleReview = true"
+                                  >
+                                    review
+                                  </v-btn>
+                                </div>
+                              </div>
+
+                              <div
+                                v-if="
+                                  row.status === 'Confirmed' &&
+                                  row.ratings === null &&
+                                  (role === 'Approval Admin' ||
+                                    role === 'Quote InCharge' ||
+                                    role === 'Merchandiser')
+                                "
+                              >
+                                {{ row.status }}
+                              </div>
+                              <div
+                                v-else-if="
+                                  (row.status === 'Confirmed' &&
+                                    row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role === 'MasterAdmin')
+                                "
+                                class="text-wrap ml-n7"
+                              >
+                                <v-rating
+                                  v-model="row.ratings"
+                                  color="warning"
+                                  dense
+                                  half-increments
+                                  readonly
+                                ></v-rating>
+                              </div>
+                              <div
+                                v-else-if="
+                                  (row.status === 'Confirmed' &&
+                                    row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role !== 'MasterAdmin')
+                                "
+                                class="text-wrap ml-n3"
+                              >
+                                {{ row.status }}
+                              </div>
+                            </td>
+                            <td v-else-if="category != 'Company'">
+                              <div
+                                v-if="
+                                  (role === 'Approval Admin' ||
+                                    role === 'MasterAdmin') &&
+                                  row.status === 'Authenticated'
+                                "
+                              >
+                                <v-btn
+                                  class="
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                    ml-3
+                                  "
+                                  depressed
+                                  color="primary"
+                                  @click="Save(row)"
+                                >
+                                  Save
+                                </v-btn>
+                                <v-btn
+                                  class="
+                                    white--text
+                                    font-weight-light
+                                    text-capitalize
+                                    rounded
+                                    mt-2
+                                  "
+                                  depressed
+                                  color="primary"
+                                  @click="ApproveBid('Approved', row)"
+                                >
+                                  Approve
+                                </v-btn>
+                              </div>
+                              <span
+                                class="ml-n3"
+                                v-else-if="
+                                  (row.status === 'Authenticated' &&
+                                    role === 'Quote InCharge') ||
+                                  row.status === 'Approved' ||
+                                  row.status === 'Rejected'
+                                "
+                              >
+                                {{ row.status }}
+                              </span>
+                              <span
+                                v-else-if="
+                                  row.status === 'NoShow' ||
+                                  row.status === 'Cancelled'
+                                "
+                              >
+                                {{ row.status }}<br />
+                                {{ row.message }}
+                              </span>
+                              <div
+                                v-else-if="
+                                  row.status === 'Confirmed' &&
+                                  role === 'MasterAdmin'
+                                "
+                              >
+                                <div v-if="row.ratings === null">
+                                  <v-btn
+                                    class="
+                                      white--text
+                                      font-weight-light
+                                      text-capitalize
+                                      rounded
+                                      mt-2
+                                      mr-2
+                                    "
+                                    depressed
+                                    color="red lighten-1"
+                                    @click="toggleNoShow = true"
+                                  >
+                                    No Show
+                                  </v-btn>
+                                  <v-btn
+                                    class="
+                                      white--text
+                                      font-weight-light
+                                      text-capitalize
+                                      rounded
+                                      mt-2
+                                    "
+                                    depressed
+                                    color="primary"
+                                    @click="toggleReview = true"
+                                  >
+                                    review
+                                  </v-btn>
+                                </div>
+                              </div>
+                              <div
+                                v-if="
+                                  row.status === 'Confirmed' &&
+                                  row.ratings === null &&
+                                  (role === 'Approval Admin' ||
+                                    role === 'Quote InCharge')
+                                "
+                              >
+                                {{ row.status }}
+                              </div>
+                              <div
+                                v-else-if="
+                                  (row.status === 'Confirmed' &&
+                                    row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role === 'MasterAdmin')
+                                "
+                                class="text-wrap ml-n7"
+                              >
+                                <v-rating
+                                  v-model="row.ratings"
+                                  color="warning"
+                                  dense
+                                  half-increments
+                                  readonly
+                                ></v-rating>
+                              </div>
+                              <div
+                                v-else-if="
+                                  (row.status === 'Confirmed' &&
+                                    row.ratings !== null) ||
+                                  (row.status === 'Completed' &&
+                                    role !== 'MasterAdmin')
+                                "
+                                class="text-wrap ml-n3"
+                              >
+                                {{ row.status }}
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                    <v-simple-table
+                      class="mt-5"
+                      v-if="
+                        category != 'Company' &&
+                        (response.InStages === 'Confirmed' ||
+                          response.InStages === 'Completed')
+                      "
+                    >
+                      <thead class="teal lighten-5 text-capitalize">
                         <tr>
-                          <th
-                            class="text-left font-weight-medium black--text"
-                            v-for="(tableHeader, index) in BitReceivedheaders"
-                            :key="index"
-                          >
-                            {{ tableHeader }}
-                          </th>
-                          <th v-if="category === 'Company'">Action</th>
+                          <th class="black--text">Price</th>
+                          <th class="black--text">Credit Period</th>
+                          <th class="black--text">Delivery Period</th>
+                          <th class="black--text">Company Review</th>
                         </tr>
                       </thead>
-                      <tbody
-                        :class="
-                          (row.status === 'Confirmed' ||
-                            row.status === 'Completed') &&
-                          category === 'Company'
-                            ? 'deep-orange lighten-5 black--text'
-                            : ''
-                        "
-                      >
+                      <tbody>
                         <tr>
-                          <td>
-                            {{ row.submittedBy }} <br />{{ row.submittedDate }}
-                          </td>
-                          <td
-                            v-if="
-                              (role === 'Approval Admin' ||
-                                role === 'MasterAdmin') &&
-                              row.status === 'Authenticated' &&
-                              category != 'Company'
-                            "
-                          >
-                            <v-text-field
-                              outlined
-                              dense
-                              class="mt-4"
-                              v-model="row.requestPrice"
-                              :rules="priceRules"
-                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            ></v-text-field>
-                          </td>
+                          <td>{{ confirmedBidResponse.price }}</td>
 
-                          <td v-else class="blue--text" vertical-align: middle>
-                            Rs.{{ row.requestPrice }}
-                          </td>
-                          <td
-                            v-if="
-                              (role === 'Approval Admin' ||
-                                role === 'MasterAdmin') &&
-                              row.status === 'Authenticated' &&
-                              category != 'Company'
-                            "
-                          >
-                            <v-text-field
-                              outlined
-                              dense
-                              class="mt-4"
-                              v-model="row.creditPeriod"
-                              :rules="creditRules"
-                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            ></v-text-field>
-                          </td>
-                          <td v-else class="red--text">
-                            {{ row.creditPeriod }} days
-                          </td>
-                          <td
-                            v-if="
-                              (role === 'Approval Admin' ||
-                                role === 'MasterAdmin') &&
-                              row.status === 'Authenticated' &&
-                              category != 'Company'
-                            "
-                          >
-                            <v-text-field
-                              outlined
-                              dense
-                              class="mt-4"
-                              v-model="row.deliveryDate"
-                              :rules="deliveryRules"
-                              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-                            ></v-text-field>
-                          </td>
-                          <td v-else class="green--text">
-                            {{ row.deliveryDate }}
-                            days
-                          </td>
-                          <td v-if="category === 'Company'">
-                            <span
-                              v-if="
-                                row.status === 'Approved' &&
-                                response.InStages !== 'No Response'
-                              "
-                            >
-                              <v-btn
-                                class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-3
-                                  ml-n5
-                                "
-                                depressed
-                                color="primary"
-                                @click="ApproveBid('Selected', row)"
-                                v-if="
-                                  role === 'MasterAdmin' ||
-                                  role === 'Quote InCharge'
-                                "
-                              >
-                                Accept
-                              </v-btn>
-                              <div
-                                class="my-2 ml-n5 text-no-wrap"
-                                v-if="role === 'MasterAdmin'"
-                              >
-                                Pending for Approval
-                              </div>
-                            </span>
-                            <span
-                              v-else-if="
-                                row.status === 'NoResponse' ||
-                                response.InStages === 'No Response'
-                              "
-                            >
-                              <p class="ml-n3 mt-3">{{ row.status }}</p>
-                              <p class="ml-n3 mt-n3">{{ row.message }}</p>
-                            </span>
+                          <td>{{ confirmedBidResponse.creditPeriod }}</td>
+                          <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
 
-                            <span
-                              v-else-if="
-                                (role === 'Merchandiser' ||
-                                  role === 'MasterAdmin') &&
-                                row.status === 'Selected'
-                              "
-                            >
-                              <v-select
-                                :menu-props="{ offsetY: true }"
-                                label="Select Approval Admin"
-                                :items="ApprovalAdmin"
-                                item-text="ApprovalAdmin"
-                                item-value="Id"
-                                outlined
-                                v-model="approvalRequest.approvalAdminId"
-                                dense
-                                class="my-3"
-                                :rules="
-                                  (v) =>
-                                    !!v || 'Approval Admin role is required'
-                                "
-                              >
-                              </v-select>
-                              <v-btn
-                                class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-n7
-                                "
-                                depressed
-                                color="primary"
-                                @click="ApproveBid('BidApproved', row)"
-                              >
-                                Authenticate
-                              </v-btn>
-                            </span>
-                            <v-btn
-                              class="
-                                white--text
-                                font-weight-light
-                                text-capitalize
-                                rounded
-                                ml-n6
-                              "
-                              depressed
-                              color="primary"
-                              v-else-if="
-                                (role === 'Approval Admin' ||
-                                  (role === 'Merchandiser' &&
-                                    approvalAdminAccess === '1') ||
-                                  role === 'MasterAdmin') &&
-                                row.status === 'BidApproved'
-                              "
-                              @click="ApproveBid('Confirmed', row)"
-                            >
-                              Confirm
-                            </v-btn>
-
-                            <div
-                              v-else-if="row.status === 'Rejected'"
-                              class="my-1"
-                            >
-                              {{ row.status }}
-                            </div>
-                            <div
-                              v-else-if="
-                                row.status === 'NoShow' ||
-                                row.status === 'Cancelled'
-                              "
-                            >
-                              {{ row.status }} <br />
-                              {{ row.message }}
-                            </div>
-
-                            <div
-                              class="ml-n7"
-                              v-if="
-                                (role === 'Quote InCharge' ||
-                                  role === 'Approval Admin') &&
-                                row.status === 'Selected' &&
-                                response.InStages !== 'No Response'
-                              "
-                            >
-                              Waiting for Authentication
-                            </div>
-                            <p
-                              class="ml-n7 text-no-wrap"
-                              v-if="
-                                (role === 'Quote InCharge' ||
-                                  role === 'Merchandiser') &&
-                                row.status === 'BidApproved'
-                              "
-                            >
-                              Waiting for Approval
-                            </p>
-                            <div
-                              v-if="
-                                row.status === 'Approved' &&
-                                (role === 'Approval Admin' ||
-                                  role === 'Merchandiser')
-                              "
-                              class="my-1 ml-n9"
-                            >
-                              Pending Approval from <br />Quote InCharge
-                            </div>
-                            <div
-                              v-if="
-                                row.status === 'Confirmed' &&
-                                role === 'MasterAdmin'
-                              "
-                            >
-                              <div v-if="row.ratings === null">
-                                <v-btn
-                                  class="
-                                    white--text
-                                    font-weight-light
-                                    text-capitalize
-                                    rounded
-                                    mt-2
-                                    mr-2
-                                  "
-                                  depressed
-                                  color="red lighten-1"
-                                  @click="toggleNoShow = true"
-                                >
-                                  No Show
-                                </v-btn>
-                                <v-btn
-                                  class="
-                                    white--text
-                                    font-weight-light
-                                    text-capitalize
-                                    rounded
-                                    mt-2
-                                  "
-                                  depressed
-                                  color="primary"
-                                  @click="toggleReview = true"
-                                >
-                                  review
-                                </v-btn>
-                              </div>
-                            </div>
-
-                            <div
-                              v-if="
-                                row.status === 'Confirmed' &&
-                                row.ratings === null &&
-                                (role === 'Approval Admin' ||
-                                  role === 'Quote InCharge' ||
-                                  role === 'Merchandiser')
-                              "
-                            >
-                              {{ row.status }}
-                            </div>
-                            <div
-                              v-else-if="
-                                (row.status === 'Confirmed' &&
-                                  row.ratings !== null) ||
-                                (row.status === 'Completed' &&
-                                  role === 'MasterAdmin')
-                              "
-                              class="text-wrap ml-n7"
-                            >
-                              <v-rating
-                                v-model="row.ratings"
-                                color="warning"
-                                dense
-                                half-increments
-                                readonly
-                              ></v-rating>
-                            </div>
-                            <div
-                              v-else-if="
-                                (row.status === 'Confirmed' &&
-                                  row.ratings !== null) ||
-                                (row.status === 'Completed' &&
-                                  role !== 'MasterAdmin')
-                              "
-                              class="text-wrap ml-n3"
-                            >
-                              {{ row.status }}
-                            </div>
-                          </td>
-                          <td v-else-if="category != 'Company'">
-                            <div
-                              v-if="
-                                (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
-                                row.status === 'Authenticated'
-                              "
-                            >
-                              <v-btn
-                                class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                  ml-3
-                                "
-                                depressed
-                                color="primary"
-                                @click="Save(row)"
-                              >
-                                Save
-                              </v-btn>
-                              <v-btn
-                                class="
-                                  white--text
-                                  font-weight-light
-                                  text-capitalize
-                                  rounded
-                                  mt-2
-                                "
-                                depressed
-                                color="primary"
-                                @click="ApproveBid('Approved', row)"
-                              >
-                                Approve
-                              </v-btn>
-                            </div>
-                            <span
-                              class="ml-n3"
-                              v-else-if="
-                                (row.status === 'Authenticated' &&
-                                  role === 'Quote InCharge') ||
-                                row.status === 'Approved' ||
-                                row.status === 'Rejected'
-                              "
-                            >
-                              {{ row.status }}
-                            </span>
-                            <span
-                              v-else-if="
-                                row.status === 'NoShow' ||
-                                row.status === 'Cancelled'
-                              "
-                            >
-                              {{ row.status }}<br />
-                              {{ row.message }}
-                            </span>
-                            <div
-                              v-else-if="
-                                row.status === 'Confirmed' &&
-                                role === 'MasterAdmin'
-                              "
-                            >
-                              <div v-if="row.ratings === null">
-                                <v-btn
-                                  class="
-                                    white--text
-                                    font-weight-light
-                                    text-capitalize
-                                    rounded
-                                    mt-2
-                                    mr-2
-                                  "
-                                  depressed
-                                  color="red lighten-1"
-                                  @click="toggleNoShow = true"
-                                >
-                                  No Show
-                                </v-btn>
-                                <v-btn
-                                  class="
-                                    white--text
-                                    font-weight-light
-                                    text-capitalize
-                                    rounded
-                                    mt-2
-                                  "
-                                  depressed
-                                  color="primary"
-                                  @click="toggleReview = true"
-                                >
-                                  review
-                                </v-btn>
-                              </div>
-                            </div>
-                            <div
-                              v-if="
-                                row.status === 'Confirmed' &&
-                                row.ratings === null &&
-                                (role === 'Approval Admin' ||
-                                  role === 'Quote InCharge')
-                              "
-                            >
-                              {{ row.status }}
-                            </div>
-                            <div
-                              v-else-if="
-                                (row.status === 'Confirmed' &&
-                                  row.ratings !== null) ||
-                                (row.status === 'Completed' &&
-                                  role === 'MasterAdmin')
-                              "
-                              class="text-wrap ml-n7"
-                            >
-                              <v-rating
-                                v-model="row.ratings"
-                                color="warning"
-                                dense
-                                half-increments
-                                readonly
-                              ></v-rating>
-                            </div>
-                            <div
-                              v-else-if="
-                                (row.status === 'Confirmed' &&
-                                  row.ratings !== null) ||
-                                (row.status === 'Completed' &&
-                                  role !== 'MasterAdmin')
-                              "
-                              class="text-wrap ml-n3"
-                            >
-                              {{ row.status }}
-                            </div>
-                          </td>
+                          <td>{{ confirmedBidResponse.companyReview }}</td>
                         </tr>
                       </tbody>
-                    </template>
-                  </v-simple-table>
-                  <v-simple-table
-                    class="mt-5"
-                    v-if="
-                      category != 'Company' &&
-                      (response.InStages === 'Confirmed' ||
-                        response.InStages === 'Completed')
-                    "
-                  >
-                    <thead class="teal lighten-5 text-capitalize">
-                      <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th class="black--text font-weight-medium">price</th>
-
-                        <th class="black--text font-weight-medium">
-                          creditPeriod
-                        </th>
-                        <th class="black--text font-weight-medium">
-                          deliveryPeriod
-                        </th>
-
-                        <th class="black--text font-weight-medium">
-                          companyReview
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ confirmedBidResponse.price }}</td>
-
-                        <td>{{ confirmedBidResponse.creditPeriod }}</td>
-                        <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
-
-                        <td>{{ confirmedBidResponse.companyReview }}</td>
-                      </tr>
-                    </tbody>
-                  </v-simple-table>
+                    </v-simple-table>
+                  </div>
                 </v-col>
               </v-row>
-            </v-row>
-          </v-row>
-        </v-row>
+            </v-card-text>
+          </v-card>
+        </div>
         <RejectedProject
           :response="response.bidList"
           :projectId="response.Id"
@@ -1134,21 +1131,6 @@ export default class ProjectDetail extends Vue {
       (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
   ];
 
-  ProjectRequestheaders: any = [
-    "Project Name",
-    "",
-    "",
-    "Category",
-    "",
-    "",
-    "SubCategory",
-    "",
-    "",
-    "Requested Price",
-    "Requested Credit",
-    "Requested Delivery",
-    "Action",
-  ];
   BitReceivedheaders: any = [
     "Auth Approve",
     "Requested Price",
@@ -1157,3 +1139,21 @@ export default class ProjectDetail extends Vue {
   ];
 }
 </script>
+<style scoped>
+.confirmed-project {
+  border: solid 4px #ff6500;
+  background-color: #ffe7d5;
+}
+
+.table-header-teal,
+.table-header-teal th {
+  background-color: #dbeeee;
+  border-bottom: 0 !important;
+}
+
+.table-header-orange,
+.table-header-orange th {
+  background-color: #ffc6a1;
+  border-bottom: 0 !important;
+}
+</style>

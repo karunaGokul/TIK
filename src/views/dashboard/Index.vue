@@ -1,420 +1,120 @@
 <template>
-  <div style="overflow: hidden">
-    <v-container fluid class="pa-4">
-      <v-row class="ma-2">
-        <v-col md="4">
-          <router-link to="/" class="text-decoration-none">
-            <v-icon large dark class="teal"> mdi-home</v-icon>
-          </router-link>
-          <v-icon large> mdi-chevron-right</v-icon>
-          <span> Dashboard </span>
-          <v-icon large v-if="dashboard === false"> mdi-chevron-right</v-icon>
-          {{ stagesRequest }}
+    <v-container fluid class="pa-6">
+      <v-row class="align-center my-4" justify="space-between">
+        <v-col>
+          <div class="text-h4" v-if="userResponse.fullName">
+            Welcome back, {{ userResponse.fullName }}
+          </div>
         </v-col>
-        <v-col md="2" offset-md="6">
-          <div class="d-flex justify-end">{{ userResponse.currentDate }}</div>
-          <div class="d-flex justify-end">{{ userResponse.currentDay }}</div>
+        <v-col>
+          <div class="text-right">
+            {{ userResponse.currentDate }}, {{ userResponse.currentDay }}
+          </div>
         </v-col>
       </v-row>
-    </v-container>
 
-    <v-card class="mx-7 mt-n3 px-6" elevation="8">
-      <v-row>
-        <v-col md="4">
-          <v-card-subtitle class="font-weight-black mt-3 ml-5"
-            >Hi {{ userResponse.fullName }}</v-card-subtitle
-          >
-        </v-col>
-        <v-col md="3" offset-md="5">
-          <v-text-field
-            v-model="search"
-            label="Search"
-            append-icon="mdi-magnify"
-            class="shrink ma-4 pl-2"
-            outlined
-            dense
-            hide-details
-            v-if="searchToggle"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-container class="mb-16 mt-10">
-        <div v-if="dashboard">
-          <v-row class="mb-5">
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category === 'Company' &&
-                  (role === 'MasterAdmin' || role === 'Quote InCharge')
-              "
-            >
-              <v-badge
-                :content="newProjectCount"
-                :value="newProjectCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('NewProjects')"
-                  >mdi-clipboard-minus-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                new projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category !== 'Company' &&
-                  (role === 'MasterAdmin' || role === 'Quote InCharge')
-              "
-            >
-              <v-badge
-                :content="newProjectCount"
-                :value="newProjectCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Initiated')"
-                  >mdi-clipboard-minus-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                new projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category === 'Company' &&
-                  (role === 'MasterAdmin' || role === 'Quote InCharge')
-              "
-            >
-              <v-badge
-                :content="bidReceivedCount"
-                :value="bidReceivedCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('BidReceived')"
-                  >mdi-human-dolly</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                bids received
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category !== 'Company' &&
-                  (role === 'MasterAdmin' || role === 'Quote InCharge')
-              "
-            >
-              <v-badge
-                :content="approvedBidsCount"
-                :value="approvedBidsCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Approved')"
-                  >mdi-human-dolly</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                approved bids
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category === 'Company' &&
-                  (role === 'MasterAdmin' || role === 'Merchandiser')
-              "
-            >
-              <v-badge
-                :content="pendingAuthenticationCount"
-                :value="pendingAuthenticationCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('AwaitingAuthentication')"
-                  >mdi-clock-alert-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                pending<br />
-                authentication
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category === 'Company' &&
-                  (role === 'MasterAdmin' ||
-                    role === 'Approval Admin' ||
-                    approvalAdminAccess === '1')
-              "
-            >
-              <v-badge
-                :content="approvalPendingCount"
-                :value="approvalPendingCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('ApprovalPending')"
-                  >mdi-clock-alert-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                approval pending
-              </v-card-subtitle>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="2"
-              v-if="
-                category !== 'Company' &&
-                  (role === 'MasterAdmin' ||
-                    role === 'Approval Admin' ||
-                    approvalAdminAccess === '1')
-              "
-            >
-              <v-badge
-                :content="approvalPendingCount"
-                :value="approvalPendingCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Awaiting Approval')"
-                  >mdi-clock-alert-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                approval pending
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <v-badge
-                :content="noResponseCount"
-                :value="noResponseCount !== 0"
-              >
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('NoResponse')"
-                  >mdi-clipboard-remove</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                no response<br />
-                projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="noShowCount" :value="noShowCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('NoShow')"
-                  >mdi-close-network</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                no show projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="noShowCount" :value="noShowCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('NoShow')"
-                  >mdi-close-network</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                no show projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category !== 'Company'">
-              <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Confirmed')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                confirmed <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <!-- </v-row>
-          <v-row class="mb-5 pb-6"> -->
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="confirmedCount" :value="confirmedCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('ConfirmedProjects')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                confirmed <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-badge :content="completedCount" :value="completedCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('CompletedProjects')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                completed <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
-              <v-badge :content="completedCount" :value="completedCount !== 0">
-                <v-icon
-                  x-large
-                  dark
-                  class="teal"
-                  @click="searchProject('Completed')"
-                  >mdi-clipboard-check-outline</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                completed <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="category === 'Company'">
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('CancelledProjects')"
-                >mdi-clipboard-check-outline</v-icon
-              >
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                cancelled <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-else>
-              <v-icon
-                x-large
-                dark
-                class="teal"
-                @click="searchProject('Cancelled')"
-                >mdi-clipboard-check-outline</v-icon
-              >
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                cancelled <br />projects
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <v-badge
-                :content="projectReviewCount"
-                :value="projectReviewCount !== 0"
-              >
-                <v-icon x-large dark class="teal" @click="pendingReview()"
-                  >mdi-card-account-details-star</v-icon
-                >
-              </v-badge>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                project reviews
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal">mdi-account-switch</v-icon>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                communication<br />
-                received
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <router-link to="/profile" class="text-decoration-none">
-                <v-icon x-large dark class="teal">mdi-account-cog</v-icon>
-              </router-link>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                company profile
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <v-icon x-large dark class="teal">mdi-image-move</v-icon>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                advertise in tik
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2">
-              <router-link to="/contactUs" class="text-decoration-none">
-                <v-icon x-large dark class="teal">mdi-phone-check</v-icon>
-              </router-link>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                contact tik support
-              </v-card-subtitle>
-            </v-col>
-            <v-col cols="12" sm="4" md="2" v-if="role === 'MasterAdmin'">
-              <router-link
-                :to="{ name: 'CreateEmployee', params: { Id: 'Create' } }"
-                tag="button"
-                class="text-decoration-none"
-              >
-                <v-icon x-large dark class="teal">mdi-account-group</v-icon>
-              </router-link>
-              <v-card-subtitle class="text-capitalize font-weight-black ml-n6">
-                create users
-              </v-card-subtitle>
-            </v-col>
-          </v-row>
+      <div class="pa-3">
+        <div class="subtitle-1 text-uppercase font-weight-black mb-4">
+          Browse Projects
         </div>
-        <DashboardProjectList
-          v-if="dataTable"
-          :response="response"
-          :search="search"
-          :stagesRequest="stagesRequest"
-          :tabValue="tabValue"
-        />
-      </v-container>
-    </v-card>
-  </div>
+        <v-row>
+          <v-col
+            cols="12"
+            sm="4"
+            md="3"
+            v-for="(nav, index) in filteredProjectNavs"
+            :key="index"
+          >
+            <v-card  @click="navigateToProjects(nav.status)">
+              <div
+                class="d-flex flex-no-wrap justify-space-between align-center"
+              >
+                <div>
+                  <v-card-title class="overline font-weight-bold">{{
+                    nav.text
+                  }}</v-card-title>
+
+                  <v-card-actions>
+                    <v-badge
+                      :content="nav.count"
+                      :value="nav.count ? nav.count : 0"
+                      overlap
+                    >
+                      <v-btn
+                        class="ml-2 grey lighten-3"
+                        fab
+                        icon
+                        height="40px"
+                        right
+                        width="40px"                        
+                      >
+                        <v-icon color="teal">mdi-chevron-right</v-icon>
+                      </v-btn>
+                    </v-badge>
+                  </v-card-actions>
+                </div>
+
+                <v-avatar class="elevation-2 mr-3" color="teal" size="70">
+                  <v-icon x-large dark>{{
+                    nav.icon
+                  }}</v-icon>
+                </v-avatar>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+        <div class="subtitle-1 text-uppercase font-weight-black mt-8 pt-4 mb-4">
+          Other Links
+        </div>
+        <v-row>
+          <v-col
+            cols="12"
+            sm="4"
+            md="3"
+            v-for="(nav, index) in otherNavs"
+            :key="index"
+          >
+            <v-card>
+              <div
+                class="d-flex flex-no-wrap justify-space-between align-center"
+              >
+                <div>
+                  <v-card-title class="overline font-weight-bold">{{
+                    nav.text
+                  }}</v-card-title>
+
+                  <v-card-actions>
+                    <v-badge
+                      :content="nav.count"
+                      :value="nav.count ? nav.count : 0"
+                      overlap
+                      color="teal"
+                    >
+                      <v-btn
+                        class="ml-2 grey lighten-3"
+                        fab
+                        icon
+                        height="40px"
+                        right
+                        width="40px"
+                      >
+                        <v-icon color="primary">mdi-chevron-right</v-icon>
+                      </v-btn>
+                    </v-badge>
+                  </v-card-actions>
+                </div>
+
+                <v-avatar class="elevation-2 mr-2" color="primary" size="70">
+                  <v-icon x-large dark @click="searchProject('NewProjects')">{{
+                    nav.icon
+                  }}</v-icon>
+                </v-avatar>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
 </template>
 
 <script lang="ts">
@@ -426,44 +126,25 @@ import {
   UserInfomodel,
   NotificationModel,
 } from "@/model";
-import DashboardProjectList from "./components/DashboardProjectList.vue";
-@Component({
-  components: { DashboardProjectList },
-})
+@Component
 export default class Dashboard extends Vue {
-  @Inject("DashboardService") DashboardService: IDashboardService;
+  @Inject("DashboardService") service: IDashboardService;
 
-  public search: string = "";
-  public stagesRequest: string = "";
-  public dataTable: boolean = false;
-  public dashboard: boolean = true;
-  public searchToggle: boolean = false;
-  public searchRequest = new ProjectSearchModel();
-  public response: Array<DashboardModel> = [];
   public userResponse = new UserInfomodel();
-  public notificationResponse = new NotificationModel();
-  public tabValue: boolean = false;
-
-  public newProjectCount: number = 0;
-  public bidReceivedCount: number = 0;
-  public pendingAuthenticationCount: number = 0;
-  public approvalPendingCount: number = 0;
-  public approvedBidsCount: number = 0;
-  public noShowCount: number = 0;
-  public noResponseCount: number = 0;
-  public confirmedCount: number = 0;
-  public completedCount: number = 0;
-  public projectReviewCount: number = 0;
+  filteredProjectNavs: any = [];
 
   created() {
     this.userInfo();
     this.notification();
 
-    if (this.role === "Merchandiser" || this.role === "Quote InCharge") {
-      this.tabValue = true;
-    } else {
-      this.tabValue = false;
-    }
+    this.filteredProjectNavs = this.projectNavs.filter(
+      (n: any) =>
+        (!n.roles || n.roles.includes(this.role)) &&
+        (n.company == undefined ||
+          (n.company && this.category == "Company") ||
+          (!n.company && this.category !== "Company") ||
+          (n.approvalAdminAccess && this.approvalAdminAccess === "1"))
+    );
   }
 
   get category(): string {
@@ -478,52 +159,187 @@ export default class Dashboard extends Vue {
     return this.$store.getters.approvalAdminAccess;
   }
 
-  public searchProject(status: string) {
-    this.$router.push('/DashboardProjectList/' + status);
-    // return;
-    // this.stagesRequest = status;
-    // this.searchRequest.stages = this.stagesRequest;
-    // this.DashboardService.GetProjectListByFilter(this.searchRequest).then(
-    //   (response) => {
-    //     if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
-    //       this.response = response;
-    //     }
-    //     this.dashboard = false;
-    //     this.dataTable = true;
-    //     this.searchToggle = true;
-    //   }
-    // );
-  }
-
-  public pendingReview() {
-    this.tabValue = false;
-    this.DashboardService.PendingReview().then((response) => {
-      this.response = response;
-      this.dashboard = false;
-      this.dataTable = true;
-    });
+  public navigateToProjects(status: string) {
+    this.$router.push(`/projectlist/${status}`);
   }
 
   public userInfo() {
-    this.DashboardService.GetUserFullName().then((response) => {
+    this.service.GetUserFullName().then((response) => {
       this.userResponse = response;
     });
   }
 
   public notification() {
-    this.DashboardService.GetNotification().then((response) => {
-      this.notificationResponse = response;
-      this.newProjectCount = this.notificationResponse.newProjectCount;
-      this.bidReceivedCount = this.notificationResponse.bidReceivedCount;
-      this.pendingAuthenticationCount = this.notificationResponse.pendingAuthenticationCount;
-      this.approvalPendingCount = this.notificationResponse.approvalPendingCount;
-      this.approvedBidsCount = this.notificationResponse.approvedBidsCount;
-      this.noShowCount = this.notificationResponse.noShowCount;
-      this.noResponseCount = this.notificationResponse.noResponseCount;
-      this.confirmedCount = this.notificationResponse.confirmedCount;
-      this.completedCount = this.notificationResponse.completedCount;
-      this.projectReviewCount = this.notificationResponse.projectReviewCount;
+    this.service.GetNotification().then((response) => {
+      this.projectNavs.find((n: any) => n.text == "New Projects").count =
+        response.newProjectCount;
+      this.projectNavs.find((n: any) => n.text == "Bids Received").count =
+        response.bidReceivedCount;
+      this.projectNavs.find(
+        (n: any) => n.text == "Pending Authentication"
+      ).count = response.pendingAuthenticationCount;
+      this.projectNavs.find((n: any) => n.text == "Approved Bids").count =
+        response.approvedBidsCount;
+      this.projectNavs.find((n: any) => n.text == "Approval Pending").count =
+        response.approvalPendingCount;
+      this.projectNavs.find(
+        (n: any) => n.text == "No Response Projects"
+      ).count = response.noResponseCount;
+      this.projectNavs.find((n: any) => n.text == "No Show Projects").count =
+        response.noShowCount;
+      this.projectNavs.find((n: any) => n.text == "Confirmed Projects").count =
+        response.confirmedCount;
+      this.projectNavs.find((n: any) => n.text == "Completed Projects").count =
+        response.completedCount;
+
+      this.otherNavs.find((n: any) => n.text == "Project Reviews").count =
+        response.projectReviewCount;      
     });
   }
+
+  projectNavs: any = [
+    {
+      text: "New Projects",
+      icon: "mdi-folder-plus",
+      count: 0,
+      company: true,
+      roles: ["MasterAdmin", "Quote InCharge"],
+      status: "NewProjects",
+    },
+    {
+      text: "New Projects",
+      icon: "mdi-folder-plus",
+      count: 0,
+      company: false,
+      roles: ["MasterAdmin", "Quote InCharge"],
+      status: "Initiated",
+    },
+    {
+      text: "Bids Received",
+      icon: "mdi-cash-multiple",
+      count: 0,
+      company: true,
+      roles: ["MasterAdmin", "Quote InCharge"],
+      status: "BidReceived",
+    },
+    {
+      text: "Approved Bids",
+      icon: "mdi-check-decagram",
+      count: 0,
+      company: false,
+      roles: ["MasterAdmin", "Quote InCharge"],
+      status: "Approved",
+    },
+    {
+      text: "Pending Authentication",
+      icon: "mdi-account-clock",
+      count: 0,
+      company: true,
+      roles: ["MasterAdmin", "Merchandiser"],
+      status: "AwaitingAuthentication",
+    },
+    {
+      text: "Approval Pending",
+      icon: "mdi-clock-check-outline",
+      count: 0,
+      company: true,
+      roles: ["MasterAdmin", "Approval Admin"],
+      status: "ApprovalPending",
+      approvalAdminAccess: true,
+    },
+    {
+      text: "Approval Pending",
+      icon: "mdi-clock-check-outline",
+      count: 0,
+      company: false,
+      roles: ["MasterAdmin", "Approval Admin"],
+      status: "AwaitingApproval",
+      approvalAdminAccess: true,
+    },
+    {
+      text: "No Response Projects",
+      icon: "mdi-book-cancel",
+      count: 0,
+      status: "NoResponse",
+    },
+    {
+      text: "No Show Projects",
+      icon: "mdi-thumb-down",
+      count: 0,
+      status: "NoShow",
+    },
+    {
+      text: "Confirmed Projects",
+      icon: "mdi-thumb-up",
+      count: 0,
+      company: true,
+      status: "ConfirmedProjects",
+    },
+    {
+      text: "Completed Projects",
+      icon: "mdi-playlist-check",
+      count: 0,
+      company: true,
+      status: "CompletedProjects",
+    },
+    {
+      text: "Completed Projects",
+      icon: "mdi-playlist-check",
+      count: 0,
+      company: false,
+      status: "Completed",
+    },
+    {
+      text: "Canceled Projects",
+      icon: "mdi-cancel",
+      count: 0,
+      company: true,
+      status: "CancelledProjects",
+    },
+    {
+      text: "Canceled Projects",
+      icon: "mdi-cancel",
+      count: 0,
+      company: false,
+      status: "Cancelled",
+    },
+    {
+      text: "Project Reviews",
+      icon: "mdi-message-star",
+      count: 0,
+    },
+  ];
+
+  otherNavs: any = [
+    {
+      text: "Communications",
+      icon: "mdi-email-multiple",
+      count: 0,
+    },
+    {
+      text: "Company profile",
+      icon: "mdi-domain",
+      count: 0,
+      link: "/profile"
+    },
+    {
+      text: "Advertise in TIK",
+      icon: "mdi-advertisements",
+      count: 0,
+    },
+    {
+      text: "Contact TIK Support",
+      icon: "mdi-phone-outgoing",
+      count: 0,
+      link: "/contactUs"
+    },
+    {
+      text: "Manage Users",
+      icon: "mdi-account-multiple",
+      count: 0,
+      link: "/employee",
+      roles: ["MasterAdmin"]
+    },
+  ];
 }
 </script>

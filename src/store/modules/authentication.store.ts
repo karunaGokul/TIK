@@ -97,8 +97,6 @@ const actions: ActionTree<AuthenticationState, any> = {
         localStorage.removeItem('role');
         localStorage.removeItem('approvalAdminAccess');
         context.commit('onLogout');
-        return 'logout Successfully';
-
     },
 }
 

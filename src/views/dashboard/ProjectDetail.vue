@@ -37,7 +37,7 @@
       ></v-progress-circular>
     </div>
 
-    <div v-else>
+    <div class="mt-8" v-else>
       <div class="ma-4">
         <v-row>
           <v-col cols="12" md="4">
@@ -356,7 +356,6 @@
                             >
                               {{ tableHeader }}
                             </th>
-                            <th width="20%" v-if="category === 'Company'"></th>
                           </tr>
                         </thead>
                         <tbody
@@ -667,7 +666,7 @@
                                 {{ row.status }}
                               </div>
                             </td>
-                            <td v-else-if="category != 'Company'">
+                            <td v-else>
                               <div
                                 v-if="
                                   (role === 'Approval Admin' ||
@@ -806,7 +805,7 @@
                         </tbody>
                       </template>
                     </v-simple-table>
-                    <v-simple-table
+                    <!-- <v-simple-table
                       class="mt-5"
                       v-if="
                         category != 'Company' &&
@@ -832,7 +831,7 @@
                           <td>{{ confirmedBidResponse.companyReview }}</td>
                         </tr>
                       </tbody>
-                    </v-simple-table>
+                    </v-simple-table> -->
                   </div>
                 </v-col>
               </v-row>
@@ -968,7 +967,7 @@ export default class ProjectDetail extends Vue {
         "Price",
         "Your Credit Period",
         "Your Delivery Period",
-        "Status"
+        ""
       );
     }
     this.GetApprovalAdmin();
@@ -1148,7 +1147,7 @@ export default class ProjectDetail extends Vue {
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",
-    "Action"
+    ""
   ];
 }
 </script>

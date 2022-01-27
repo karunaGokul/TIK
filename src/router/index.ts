@@ -65,15 +65,15 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/employee/CreateEmployee.vue')
   },
   {
-    path: '/aboutUs',
-    name: 'AboutUs',
-    component: () => import('../views/aboutUs/Index.vue'),
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/about/Index.vue'),
     meta: { anonymous: true }
   },
   {
-    path: '/contactUs',
-    name: 'ContactUs',
-    component: () => import('../views/contactUs/Index.vue'),
+    path: '/contact',
+    name: 'Contact',
+    component: () => import('../views/contact/Index.vue'),
     meta: { anonymous: true }
   },
   {

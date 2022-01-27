@@ -1,24 +1,17 @@
 <template>
   <div>
-    <v-container>
-      <div justify="center" align="center">
-        <h1 class="mt-15 text-capitalize">
-          customer say
-        </h1>
-        <Divider />
-      </div>
+    <div class="mt-16" justify="center" align="center">
+      <h1 class="text-capitalize">customer say</h1>
+      <Divider />
+    </div>
 
-      <v-carousel v-model="model" hide-delimiters cycle>
-        <v-carousel-item
-          v-for="customer in customers"
-          :key="customer.name"
-          class="px-10 mb-16"
-        >
+    <v-carousel v-model="model" hide-delimiters cycle height="300" class="mt-16">
+      <v-carousel-item v-for="customer in customers" :key="customer.name">
+        <v-sheet height="100%" class="mx-16">
           <v-row class="fill-height" align="center" justify="center">
             <v-col cols="12" sm="6">
               <v-card
-                class="grey lighten-4 color black--text mx-auto px-5 pb-10"
-                width="500"
+                class="grey lighten-4 black--text pa-10"
               >
                 <v-icon x-large color="teal">mdi-comma</v-icon>
                 <p>{{ customer.description }}</p>
@@ -49,8 +42,7 @@
 
             <v-col cols="12" sm="6">
               <v-card
-                class="grey lighten-4 color black--text mx-auto px-5 pb-10"
-                width="500"
+                class="grey lighten-4 black--text pa-10"
               >
                 <v-icon x-large color="teal">mdi-comma</v-icon>
                 <p>{{ customer.description }}</p>
@@ -79,90 +71,76 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-carousel-item>
-      </v-carousel>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
 
-      <div
-        class="white--text teal darken-4 color rounded-xl py-10 mt-16"
-        height="300"
-        justify="center"
-        align="center"
-        no-gutters
+    <div
+      class="white--text teal darken-4 rounded-xl pa-10 mt-16"
+      justify="center"
+      align="center"
+    >
+      <h1 class="text-capitalize">register</h1>
+
+      <Divider />
+
+      <p class="my-10">Register your company today and Start your business.</p>
+
+      <v-btn
+        color="primary"
+        class="font-weight-light text-capitalize rounded-0"
       >
-       
-          <h1 class="text-capitalize">
-            register
-          </h1>
-       
-          <Divider />
-        
-
-        <p class="my-10">
-          Register your company today and Start your business.
-        </p>
-
-        <v-btn
-          color="primary"
-          class="font-weight-light text-capitalize rounded-0"
+        <router-link to="/registration" class="white--text text-decoration-none"
+          >Register</router-link
         >
-          <router-link
-            to="/registration"
-            class="white--text text-decoration-none"
-            >Register</router-link
-          >
-        </v-btn>
-      </div>
+      </v-btn>
+    </div>
 
-      <div class="py-10" height="300" justify="center" align="center">
-        <h1 class="text-capitalize">
-          download the app
-        </h1>
+    <div class="my-16" justify="center" align="center">
+      <h1 class="text-capitalize">download the app</h1>
 
-        <Divider />
+      <Divider />
 
-        <p class="my-10 font-weight-medium">
-          The Best Business app for you.
-        </p>
+      <p class="my-10 font-weight-medium">The Best Business app for you.</p>
 
-        <v-row>
-          <v-col align="end">
-            <v-btn class="text-capitalize rounded-lg mr-2" dark large>
-              <v-row>
-                <v-icon class="pr-2"> mdi-google-play </v-icon>
+      <v-row>
+        <v-col align="end">
+          <v-btn class="text-capitalize rounded-lg pa-8" dark large>
+            <v-row>
+              <v-icon class="pr-2"> mdi-google-play </v-icon>
 
-                <v-col class="py-3">
-                  <v-row>
-                    <p class="subtitle-1 mb-n1 font-weight-light">get it on</p>
-                  </v-row>
-                  <v-row>
-                    <h2 class="mt-n1 font-weight-regular">google play</h2>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-btn>
-          </v-col>
+              <v-col class="py-3">
+                <v-row>
+                  <p class="subtitle-1 mb-n1 font-weight-light">get it on</p>
+                </v-row>
+                <v-row>
+                  <h2 class="mt-n1 font-weight-regular">google play</h2>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-btn>
+        </v-col>
 
-          <v-col align="start">
-            <v-btn class="text-capitalize rounded-lg ml-2" dark large>
-              <v-row>
-                <v-icon class="pr-2"> mdi-apple </v-icon>
+        <v-col align="start">
+          <v-btn class="text-capitalize rounded-lg pa-8" dark large>
+            <v-row>
+              <v-icon class="pr-2"> mdi-apple </v-icon>
 
-                <v-col>
-                  <v-row>
-                    <p class="subtitle-1 mb-n1 font-weight-light">
-                      Download on the
-                    </p>
-                  </v-row>
-                  <v-row>
-                    <h2 class="mt-n1 font-weight-regular">app store</h2>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-btn>
-          </v-col>
-        </v-row>
-      </div>
-    </v-container>
+              <v-col>
+                <v-row>
+                  <p class="subtitle-1 mb-n1 font-weight-light">
+                    Download on the
+                  </p>
+                </v-row>
+                <v-row>
+                  <h2 class="mt-n1 font-weight-regular">app store</h2>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 

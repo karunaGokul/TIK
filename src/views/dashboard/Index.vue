@@ -356,7 +356,7 @@ export default class Dashboard extends Vue {
       text: "Contact TIK Support",
       icon: "mdi-phone-outgoing",
       count: 0,
-      link: "/contactUs",
+      link: "/contact",
     },
     {
       text: "Manage Users",

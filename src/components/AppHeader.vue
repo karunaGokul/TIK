@@ -50,7 +50,7 @@
             <v-list-item link to="/" class="text-capitalize">
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
-            <v-list-item link to="/aboutUs" class="text-capitalize">
+            <v-list-item link to="/about" class="text-capitalize">
               <v-list-item-title>About</v-list-item-title>
             </v-list-item>
             <v-list-item link to="/contact" class="text-capitalize">

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-footer dark padless v-if="!isLoggedIn">
+    <v-footer dark padless v-if="!isLoggedIn" color="#242424">
       <v-row class="pt-10 px-16">
         <v-col cols="6" md="2" class="text-left">
           <div>
             <h2 class="pb-4">TIK</h2>
             <p class="subtitle-1">Location</p>
-            <p class="pt-3">
+            <p>
               1/22, Raja Street Tirupur, <br />
               Tamilnadu <br />
               +91 912344 98763 <br />
@@ -17,37 +17,72 @@
         </v-col>
 
         <v-col class="text-left" cols="6" md="2">
-          <div>
-            <h4 class="pb-4">Popular Category</h4>
-            <p>Yarns</p>
-            <p>Mens Wear</p>
-            <p>Womens Wear</p>
-            <p>T-Shirt</p>
-            <p>Cotton Cloths</p>
-          </div>
+          <v-list nav dense flat color="transparent" class="pa-0">
+            <v-list-item-title class="pl-2 pb-2 font-weight-bold">Popular Category</v-list-item-title>
+            <v-list-item-group>
+              <v-list-item>
+                <v-list-item-title>Yarns</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Mens Wear</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Womens Wear</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>T-Shirt</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Cotton Cloths</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-col>
 
         <v-col class="text-left" cols="6" md="2">
-          <div>
-            <h4 class="pb-4">Quick Links</h4>
-            <p>About us</p>
-            <p>Category</p>
-            <p>Affilaites</p>
-            <p>Register</p>
-            <p>Contact us</p>
-          </div>
+          <v-list nav dense flat color="transparent" class="pa-0">
+            <v-list-item-title class="pl-2 pb-2 font-weight-bold">Quick Links</v-list-item-title>
+            <v-list-item-group>
+              <v-list-item>
+                <v-list-item-title>About us</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Category</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Affilaites</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Register</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Contact us</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-col>
 
         <v-col class="text-left" cols="6" md="2">
-          <div>
-            <h4 class="pb-4">Terms</h4>
-            <!-- <router-link link to="/aboutUs" class="text-decoration-none white--text">About us</router-link> -->
-            <p>About us</p>
-            <p>How it works</p>
-            <p>Affilaites</p>
-            <p>Testimonails</p>
-            <p>Contact us</p>
-          </div>
+         <v-list nav dense flat color="transparent" class="pa-0">
+            <v-list-item-title class="pl-2 pb-2 font-weight-bold">Terms</v-list-item-title>
+            <v-list-item-group>
+              <v-list-item>
+                <v-list-item-title>About us</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Category</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Affilaites</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Register</v-list-item-title>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-title>Contact us</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
         </v-col>
 
         <v-col cols="12" md="4" class="text-left">
@@ -61,7 +96,7 @@
             dense
           >
             <template slot="append-outer">
-              <v-btn dark color="#fd7e14" class="mt-n1"> Subscribe </v-btn>
+              <v-btn color="primary" class="mt-n2 pa-5"> Subscribe </v-btn>
             </template>
           </v-text-field>
 

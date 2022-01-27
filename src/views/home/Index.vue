@@ -24,7 +24,7 @@
                 of textiles that have led to it becoming one of the largest
                 spinning mill in india.
               </p>
-              <v-btn rounded color="orange" dark> know more </v-btn>
+              <v-btn rounded color="primary"> know more </v-btn>
             </v-col>
           </v-row>
         </div>
@@ -123,7 +123,7 @@
           </v-col>
         </v-row>
         <div class="center" no-gutters>
-          <v-btn rounded color="orange" dark> know more </v-btn>
+          <v-btn rounded color="primary"> know more </v-btn>
         </div>
       </div>
     </v-parallax>
@@ -151,8 +151,9 @@
       </v-row>
     </div>
 
+    <v-container>
     <CustomerFeedback />
-
+    </v-container>
     <v-row justify="center" class="ma-5" no-gutters>
       <v-col cols="10">
         <h2

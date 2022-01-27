@@ -107,21 +107,6 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-snackbar
-          v-model="snackbar"
-          :timeout="2000"
-          color="green lighten-5 green--text"
-          right
-          top
-        >
-          <v-icon color="green">mdi-exclamation-thick </v-icon>
-          {{ snackbarText }}
-          <template v-slot:action="{ attrs }">
-            <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
-              <v-icon> mdi-close-box</v-icon>
-            </v-btn>
-          </template>
-        </v-snackbar>
       </div>
     </v-app-bar>
   </div>
@@ -133,8 +118,6 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class AppHeader extends Vue {
   public drawer: boolean = false;
-  public snackbar: boolean = false;
-  public snackbarText: string = "";
 
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
@@ -149,11 +132,7 @@ export default class AppHeader extends Vue {
 
   public logout() {
     this.$store.dispatch("logout").then((response: any) => {
-      if (response) {
-        this.snackbarText = response;
-        this.snackbar = true;
-        this.$router.push("/");
-      }
+      this.$router.push("/");
     });
   }
 }

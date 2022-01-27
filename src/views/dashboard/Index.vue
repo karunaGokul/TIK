@@ -20,8 +20,9 @@
       <v-row>
         <v-col
           cols="12"
-          sm="4"
-          md="3"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="(nav, index) in filteredProjectNavs"
           :key="index"
         >
@@ -68,8 +69,9 @@
       <v-row>
         <v-col
           cols="12"
-          sm="4"
-          md="3"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="(nav, index) in otherNavs"
           :key="index"
         >
@@ -205,7 +207,6 @@ export default class Dashboard extends Vue {
   }
 
   projectNavs: any = [
-   
     {
       text: "New Projects",
       icon: "mdi-folder-plus",
@@ -214,7 +215,7 @@ export default class Dashboard extends Vue {
       roles: ["MasterAdmin", "Quote InCharge"],
       status: "Initiated",
     },
-     {
+    {
       text: "New Projects",
       icon: "mdi-folder-plus",
       count: 0,
@@ -271,7 +272,7 @@ export default class Dashboard extends Vue {
       company: false,
       status: "No Response",
     },
-     {
+    {
       text: "No Response Projects",
       icon: "mdi-book-cancel",
       count: 0,
@@ -330,7 +331,7 @@ export default class Dashboard extends Vue {
       text: "Project Reviews",
       icon: "mdi-message-star",
       count: 0,
-      status: "ProjectReviews"
+      status: "ProjectReviews",
     },
   ];
 

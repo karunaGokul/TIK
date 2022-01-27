@@ -33,7 +33,12 @@
                 }}</v-card-title>
 
                 <v-card-actions>
-                  <v-avatar class="ml-2" color="primary" size="40" v-if="nav.count">
+                  <v-avatar
+                    class="ml-2"
+                    color="primary"
+                    size="40"
+                    v-if="nav.count"
+                  >
                     <span class="white--text text-h6">{{ nav.count }}</span>
                   </v-avatar>
                   <v-btn
@@ -165,29 +170,36 @@ export default class Dashboard extends Vue {
 
   public notification() {
     this.service.GetNotification().then((response) => {
-      this.projectNavs.find((n: any) => n.text == "New Projects").count =
-        response.newProjectCount;
-      this.projectNavs.find((n: any) => n.text == "Bids Received").count =
-        response.bidReceivedCount;
-      this.projectNavs.find(
-        (n: any) => n.text == "Pending Authentication"
-      ).count = response.pendingAuthenticationCount;
-      this.projectNavs.find((n: any) => n.text == "Approved Bids").count =
-        response.approvedBidsCount;
-      this.projectNavs.find((n: any) => n.text == "Approval Pending").count =
-        response.approvalPendingCount;
-      this.projectNavs.find(
-        (n: any) => n.text == "No Response Projects"
-      ).count = response.noResponseCount;
-      this.projectNavs.find((n: any) => n.text == "No Show Projects").count =
-        response.noShowCount;
-      this.projectNavs.find((n: any) => n.text == "Confirmed Projects").count =
-        response.confirmedCount;
-      this.projectNavs.find((n: any) => n.text == "Completed Projects").count =
-        response.completedCount;
-
-      this.otherNavs.find((n: any) => n.text == "Project Reviews").count =
-        response.projectReviewCount;
+      this.projectNavs
+        .filter((n: any) => n.text == "New Projects")
+        .forEach((n: any) => (n.count = response.newProjectCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Bids Received")
+        .forEach((n: any) => (n.count = response.bidReceivedCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Pending Authentication")
+        .forEach((n: any) => (n.count = response.pendingAuthenticationCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Approved Bids")
+        .forEach((n: any) => (n.count = response.approvedBidsCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Approval Pending")
+        .forEach((n: any) => (n.count = response.approvalPendingCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "No Response Projects")
+        .forEach((n: any) => (n.count = response.noResponseCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "No Show Projects")
+        .forEach((n: any) => (n.count = response.noShowCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Confirmed Projects")
+        .forEach((n: any) => (n.count = response.confirmedCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Completed Projects")
+        .forEach((n: any) => (n.count = response.completedCount));
+      this.projectNavs
+        .filter((n: any) => n.text == "Project Reviews")
+        .forEach((n: any) => (n.count = response.projectReviewCount));
     });
   }
 

@@ -5,15 +5,27 @@
         <v-icon large dark class="teal"> mdi-home</v-icon>
       </router-link>
       <v-icon large> mdi-chevron-right</v-icon>
-      <span v-if="response.InStages === 'Enquiry Sent'"> New Project </span>
-      <span v-else-if="response.InStages === 'Awaiting Authentication'">
-        <span v-if="category === 'Company'"> Pending Authentication </span>
-        <span v-else> Approved Bids </span>
-      </span>
-      <span v-else-if="response.InStages === 'Awaiting Approval'">
-        Approval Pending</span
+      <a
+        v-if="response.InStages === 'Enquiry Sent'"
+        @click="navigateToProjects('NewProjects')"
+        class="black--text"
       >
-      <span v-else> {{ response.InStages }} Projects </span>
+        New Project
+      </a>
+      <a
+        v-else
+        @click="navigateToProjects(response.InStages)"
+        class="black--text"
+      >
+        <span v-if="response.InStages === 'Awaiting Authentication'">
+          <span v-if="category === 'Company'"> Pending Authentication </span>
+          <span v-else> Approved Bids </span>
+        </span>
+        <span v-else-if="response.InStages === 'Awaiting Approval'">
+          Approval Pending</span
+        >
+        <span v-else> {{ response.InStages }} Projects </span>
+      </a>
     </div>
 
     <div class="text-center ma-8" v-if="loading">
@@ -264,7 +276,7 @@
         </v-row>
       </div>
       <div v-if="response.bidList" class="mt-5">
-        <div v-for="row in response.bidList" :key="row.status">
+        <div v-for="(row, i) in response.bidList" :key="i">
           <v-card
             width="100%"
             tile
@@ -441,7 +453,8 @@
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    my-1 mr-1
+                                    my-1
+                                    mr-1
                                   "
                                   depressed
                                   small
@@ -486,10 +499,7 @@
                                   dense
                                   small
                                   hide-details
-                                  :rules="
-                                    (v) =>
-                                      !!v || 'Approval Admin role is required'
-                                  "
+                                  :rules="approvalAdminRules"
                                   class="my-1 mr-1"
                                 >
                                 </v-select>
@@ -498,7 +508,8 @@
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    my-1 mr-1
+                                    my-1
+                                    mr-1
                                   "
                                   depressed
                                   color="primary"
@@ -513,7 +524,8 @@
                                   font-weight-light
                                   text-capitalize
                                   rounded
-                                  my-1 mr-1
+                                  my-1
+                                  mr-1
                                 "
                                 depressed
                                 small
@@ -583,11 +595,12 @@
                                 <div v-if="row.ratings === null">
                                   <v-btn
                                     class="
-                                    white--text
+                                      white--text
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      my-1 mr-1
+                                      my-1
+                                      mr-1
                                     "
                                     depressed
                                     small
@@ -601,7 +614,8 @@
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      my-1 mr-1
+                                      my-1
+                                      mr-1
                                     "
                                     depressed
                                     small
@@ -666,7 +680,8 @@
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    my-1 mr-1
+                                    my-1
+                                    mr-1
                                   "
                                   depressed
                                   small
@@ -680,7 +695,8 @@
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    my-1 mr-1
+                                    my-1
+                                    mr-1
                                   "
                                   depressed
                                   small
@@ -721,7 +737,8 @@
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      my-1 mr-1
+                                      my-1
+                                      mr-1
                                     "
                                     depressed
                                     small
@@ -735,7 +752,8 @@
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      my-1 mr-1
+                                      my-1
+                                      mr-1
                                     "
                                     depressed
                                     color="primary"
@@ -1085,6 +1103,10 @@ export default class ProjectDetail extends Vue {
     this.GetProjectEnquiry();
   }
 
+  public navigateToProjects(status: string) {
+    this.$router.push(`/projectlist/${status.replaceAll(" ", "")}`);
+  }
+
   get category(): string {
     return this.$store.getters.category;
   }
@@ -1117,6 +1139,10 @@ export default class ProjectDetail extends Vue {
       (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
   ];
 
+  public approvalAdminRules: any = [
+     (v: any) => !!v || 'Approval Admin role is required'
+  ];
+  
   BitReceivedheaders: any = [
     "Auth Approve",
     "Requested Price",

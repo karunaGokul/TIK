@@ -191,6 +191,12 @@ export default class ProjectList extends Vue {
   }
 
   public searchProject(myproject: boolean) {
+    if(this.stagesRequest == "ProjectReviews") {
+      this.service.PendingReview().then((response) => {
+        this.response = response;
+
+    });
+    } else {
     this.searchRequest.myproject = myproject;
     this.searchRequest.stages = this.stagesRequest;
     this.loading = true;
@@ -200,6 +206,7 @@ export default class ProjectList extends Vue {
 
       this.searchToggle = true;
     });
+    }
   }
 
   items: any = [

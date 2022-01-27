@@ -105,13 +105,13 @@
                   depressed
                   class="font-weight-light text-capitalize"
                   color="error"
-                  v-if="
-                    role === 'MasterAdmin' &&
+                  v-if=" 
+                    (role === 'MasterAdmin' &&
                     userResponse.currentDate > response.confirmationDate &&
                     (response.InStages === 'Enquiry Sent' ||
                       response.InStages === 'Bid Received' ||
                       response.InStages === 'Awaiting Authentication' ||
-                      response.InStages === 'Awaiting Approval')
+                      response.InStages === 'Awaiting Approval'))  
                   "
                   @click="toggleNoResponse = 'true'"
                 >
@@ -962,7 +962,7 @@ export default class ProjectDetail extends Vue {
     }
 
     if (this.category != "Company") {
-      this.BitReceivedheaders.splice(0, 4);
+      this.BitReceivedheaders.splice(0, 5);
       this.BitReceivedheaders.push(
         "Bit Submit & Approve",
         "Price",
@@ -1148,6 +1148,7 @@ export default class ProjectDetail extends Vue {
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",
+    "Action"
   ];
 }
 </script>

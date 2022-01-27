@@ -205,14 +205,7 @@ export default class Dashboard extends Vue {
   }
 
   projectNavs: any = [
-    {
-      text: "New Projects",
-      icon: "mdi-folder-plus",
-      count: 0,
-      company: true,
-      roles: ["MasterAdmin", "Quote InCharge"],
-      status: "NewProjects",
-    },
+   
     {
       text: "New Projects",
       icon: "mdi-folder-plus",
@@ -220,6 +213,14 @@ export default class Dashboard extends Vue {
       company: false,
       roles: ["MasterAdmin", "Quote InCharge"],
       status: "Initiated",
+    },
+     {
+      text: "New Projects",
+      icon: "mdi-folder-plus",
+      count: 0,
+      company: true,
+      roles: ["MasterAdmin", "Quote InCharge"],
+      status: "NewProjects",
     },
     {
       text: "Bids Received",
@@ -249,24 +250,32 @@ export default class Dashboard extends Vue {
       text: "Approval Pending",
       icon: "mdi-clock-check-outline",
       count: 0,
-      company: true,
+      company: false,
       roles: ["MasterAdmin", "Approval Admin"],
-      status: "ApprovalPending",
+      status: "Awaiting Approval",
       approvalAdminAccess: true,
     },
     {
       text: "Approval Pending",
       icon: "mdi-clock-check-outline",
       count: 0,
-      company: false,
+      company: true,
       roles: ["MasterAdmin", "Approval Admin"],
-      status: "AwaitingApproval",
+      status: "ApprovalPending",
       approvalAdminAccess: true,
     },
     {
       text: "No Response Projects",
       icon: "mdi-book-cancel",
       count: 0,
+      company: false,
+      status: "No Response",
+    },
+     {
+      text: "No Response Projects",
+      icon: "mdi-book-cancel",
+      count: 0,
+      company: true,
       status: "NoResponse",
     },
     {
@@ -274,6 +283,13 @@ export default class Dashboard extends Vue {
       icon: "mdi-thumb-down",
       count: 0,
       status: "NoShow",
+    },
+    {
+      text: "Confirmed Projects",
+      icon: "mdi-thumb-up",
+      count: 0,
+      company: false,
+      status: "ConfirmedProjects",
     },
     {
       text: "Confirmed Projects",
@@ -314,6 +330,7 @@ export default class Dashboard extends Vue {
       text: "Project Reviews",
       icon: "mdi-message-star",
       count: 0,
+      status: "ProjectReviews"
     },
   ];
 

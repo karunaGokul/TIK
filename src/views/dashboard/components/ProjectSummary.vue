@@ -22,17 +22,14 @@
                   col="12"
                   sm="6"
                   md="6"
-                  v-for="(SummaryItem, index) in response.summary"
+                  v-for="(control, index) in summaryControls"
                   :key="index"
                 >
-                  <v-label> {{ SummaryItem.label }} </v-label>
-                  <!-- <div class="primary black--text pa-2">
-                    {{ SummaryItem.value }}
-                  </div> -->
+                  <v-label> {{ control.label? control.label : "&nbsp;" }} </v-label>
                   <v-text-field
                     outlined
                     dense
-                    v-model="SummaryItem.value"
+                    v-model="control.value"
                     background-color="primary"
                     class="my-1 mb-n7"
                     disabled
@@ -127,6 +124,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class ProjectSummary extends Vue {
   @Prop() response: DashboardModel;
   public dialog: boolean = true;
+
+  get summaryControls() {
+    return this.response.summary.filter(s => s.value);
+  }
 
   public close() {
     this.$emit("closeModel");

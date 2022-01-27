@@ -16,6 +16,7 @@ export class CreateProjectControlModel {
     path: string;
     value: string;
     label: string;
+    type: string;
 
     data_path?: string;
     data_id?: string;

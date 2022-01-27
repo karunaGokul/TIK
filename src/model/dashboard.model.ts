@@ -51,6 +51,7 @@ export class SummaryModel {
   label: string;
   value: string;
 }
+
 export class ProjectSearchModel {
   stages: string;
   myproject: boolean;

@@ -1,6 +1,6 @@
  <template>
   <div>
-    <v-container class="pa-8" v-if="!toggleCategory">
+    <v-container fluid class="mt-4 pa-8" v-if="!toggleCategory">
       <v-row>
         <v-col cols="8" md="4">
           <h3 class="mb-2">

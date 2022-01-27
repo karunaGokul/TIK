@@ -12,7 +12,7 @@
           <div v-if="mode == StepMode.Summary">
             <h4 class="text-h6 mb-4">Summary</h4>
             <v-row>
-              <v-col cols="6" v-for="(c, i) in request.controls" :key="i">
+              <v-col cols="6" v-for="(c, i) in getSummaryControls(request.controls)" :key="i">
                 <v-text-field
                   :value="c.value"
                   :label="c.label"
@@ -140,6 +140,7 @@ import {
   ProjectFormStep,
   ProjectFormStepControl,
   CreateProjectModel,
+  CreateProjectControlModel,
 } from "@/model";
 import { IProjectService } from "@/service";
 import ProjectControl from "./ProjectControl.vue";
@@ -251,6 +252,7 @@ export default class ProjectForm extends Vue {
             this.request.controls.push({
               id: c.id,
               value: c.value,
+              type: c.type,
               path: s.path[0],
               label: c.label,
               data_path: c.data_path,
@@ -313,8 +315,10 @@ export default class ProjectForm extends Vue {
     });
 
     if (!this.error) this.mode = StepMode.Summary;
+  }
 
-    console.log(JSON.stringify(this.request));
+  getSummaryControls(controls: Array<CreateProjectControlModel>) {
+    return controls.filter(c => c.type !== "heading");
   }
 
   get progress() {

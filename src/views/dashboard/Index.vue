@@ -141,7 +141,8 @@ export default class Dashboard extends Vue {
         (!n.roles || n.roles.includes(this.role)) &&
         (n.company == undefined ||
           (n.company && this.category == "Company") ||
-          (!n.company && this.category !== "Company") ||
+          (!n.company && this.category !== "Company")) &&
+        (!n.approvalAdminAccess ||
           (n.approvalAdminAccess && this.approvalAdminAccess === "1"))
     );
   }

@@ -69,21 +69,17 @@
             >
               bid this project
             </v-btn>
-            <div class="overline font-weight-bold" v-else>
+            <div
+              class="overline font-weight-bold"
+              v-else-if="response.bidsReceived"
+            >
               Bids Received : {{ response.bidsReceived }}
             </div>
             <div>
               <v-btn
-                class="
-                  white--text
-                  font-weight-light
-                  text-capitalize
-                  rounded
-                  mt-7
-                  ml-n16
-                "
+                class="font-weight-light text-capitalize white--text"
+                color="blue-grey"
                 depressed
-                color="primary"
                 @click="toggleCancel = 'true'"
                 v-if="
                   category != 'Company' &&
@@ -95,15 +91,8 @@
               <div v-else-if="category === 'Company'">
                 <v-btn
                   depressed
-                  class="
-                    primary
-                    white--text
-                    font-weight-light
-                    text-capitalize
-                    rounded
-                    mt-7
-                    ml-n16
-                  "
+                  class="font-weight-light text-capitalize"
+                  color="error"
                   v-if="
                     role === 'MasterAdmin' &&
                     userResponse.currentDate > response.confirmationDate &&
@@ -114,7 +103,7 @@
                   "
                   @click="toggleNoResponse = 'true'"
                 >
-                  no response
+                  No Response
                 </v-btn>
               </div>
             </div>
@@ -226,13 +215,7 @@
                     </td>
                     <td>
                       <v-btn
-                        class="
-                          white--text
-                          font-weight-light
-                          text-capitalize
-                          rounded
-                          ml-n4
-                        "
+                        class="font-weight-light text-capitalize rounded"
                         depressed
                         color="primary"
                         @click="toggleSummaryView = true"
@@ -269,8 +252,9 @@
               response.InStages === 'Awaiting Authentication' ||
               response.InStages === 'Awaiting Approval')
           "
+          class="mt-8 ml-2"
         >
-          <h4 class="ml-10 mr-3 mt-1">Bids Received</h4>
+          <h4 class="text-h5 mr-4">Bids Received</h4>
 
           <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
 
@@ -360,7 +344,7 @@
                             >
                               {{ tableHeader }}
                             </th>
-                            <th v-if="category === 'Company'"></th>
+                            <th width="20%" v-if="category === 'Company'"></th>
                           </tr>
                         </thead>
                         <tbody
@@ -446,7 +430,7 @@
                               days
                             </td>
                             <td v-if="category === 'Company'">
-                              <span
+                              <div
                                 v-if="
                                   row.status === 'Approved' &&
                                   response.InStages !== 'No Response'
@@ -454,14 +438,13 @@
                               >
                                 <v-btn
                                   class="
-                                    white--text
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    mt-3
-                                    ml-n5
+                                    my-1 mr-1
                                   "
                                   depressed
+                                  small
                                   color="primary"
                                   @click="ApproveBid('Selected', row)"
                                   v-if="
@@ -471,24 +454,21 @@
                                 >
                                   Accept
                                 </v-btn>
-                                <div
-                                  class="my-2 ml-n5 text-no-wrap"
-                                  v-if="role === 'MasterAdmin'"
-                                >
+                                <div v-if="role === 'MasterAdmin'">
                                   Pending for Approval
                                 </div>
-                              </span>
-                              <span
+                              </div>
+                              <div
                                 v-else-if="
                                   row.status === 'NoResponse' ||
                                   response.InStages === 'No Response'
                                 "
                               >
-                                <p class="ml-n3 mt-3">{{ row.status }}</p>
-                                <p class="ml-n3 mt-n3">{{ row.message }}</p>
-                              </span>
+                                <p>{{ row.status }}</p>
+                                <p>{{ row.message }}</p>
+                              </div>
 
-                              <span
+                              <div
                                 v-else-if="
                                   (role === 'Merchandiser' ||
                                     role === 'MasterAdmin') &&
@@ -504,37 +484,39 @@
                                   outlined
                                   v-model="approvalRequest.approvalAdminId"
                                   dense
-                                  class="my-3"
+                                  small
+                                  hide-details
                                   :rules="
                                     (v) =>
                                       !!v || 'Approval Admin role is required'
                                   "
+                                  class="my-1 mr-1"
                                 >
                                 </v-select>
                                 <v-btn
                                   class="
-                                    white--text
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    mt-n7
+                                    my-1 mr-1
                                   "
                                   depressed
                                   color="primary"
+                                  small
                                   @click="ApproveBid('BidApproved', row)"
                                 >
                                   Authenticate
                                 </v-btn>
-                              </span>
+                              </div>
                               <v-btn
                                 class="
-                                  white--text
                                   font-weight-light
                                   text-capitalize
                                   rounded
-                                  ml-n6
+                                  my-1 mr-1
                                 "
                                 depressed
+                                small
                                 color="primary"
                                 v-else-if="
                                   (role === 'Approval Admin' ||
@@ -550,7 +532,7 @@
 
                               <div
                                 v-else-if="row.status === 'Rejected'"
-                                class="my-1"
+                                class="my-1 mr-1"
                               >
                                 {{ row.status }}
                               </div>
@@ -565,7 +547,6 @@
                               </div>
 
                               <div
-                                class="ml-n7"
                                 v-if="
                                   (role === 'Quote InCharge' ||
                                     role === 'Approval Admin') &&
@@ -576,7 +557,6 @@
                                 Waiting for Authentication
                               </div>
                               <p
-                                class="ml-n7 text-no-wrap"
                                 v-if="
                                   (role === 'Quote InCharge' ||
                                     role === 'Merchandiser') &&
@@ -591,7 +571,6 @@
                                   (role === 'Approval Admin' ||
                                     role === 'Merchandiser')
                                 "
-                                class="my-1 ml-n9"
                               >
                                 Pending Approval from <br />Quote InCharge
                               </div>
@@ -604,14 +583,14 @@
                                 <div v-if="row.ratings === null">
                                   <v-btn
                                     class="
-                                      white--text
+                                    white--text
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      mt-2
-                                      mr-2
+                                      my-1 mr-1
                                     "
                                     depressed
+                                    small
                                     color="red lighten-1"
                                     @click="toggleNoShow = true"
                                   >
@@ -619,13 +598,13 @@
                                   </v-btn>
                                   <v-btn
                                     class="
-                                      white--text
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      mt-2
+                                      my-1 mr-1
                                     "
                                     depressed
+                                    small
                                     color="primary"
                                     @click="toggleReview = true"
                                   >
@@ -684,14 +663,13 @@
                               >
                                 <v-btn
                                   class="
-                                    white--text
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    mt-2
-                                    ml-3
+                                    my-1 mr-1
                                   "
                                   depressed
+                                  small
                                   color="primary"
                                   @click="Save(row)"
                                 >
@@ -699,21 +677,20 @@
                                 </v-btn>
                                 <v-btn
                                   class="
-                                    white--text
                                     font-weight-light
                                     text-capitalize
                                     rounded
-                                    mt-2
+                                    my-1 mr-1
                                   "
                                   depressed
+                                  small
                                   color="primary"
                                   @click="ApproveBid('Approved', row)"
                                 >
                                   Approve
                                 </v-btn>
                               </div>
-                              <span
-                                class="ml-n3"
+                              <div
                                 v-else-if="
                                   (row.status === 'Authenticated' &&
                                     role === 'Quote InCharge') ||
@@ -722,8 +699,8 @@
                                 "
                               >
                                 {{ row.status }}
-                              </span>
-                              <span
+                              </div>
+                              <div
                                 v-else-if="
                                   row.status === 'NoShow' ||
                                   row.status === 'Cancelled'
@@ -731,7 +708,7 @@
                               >
                                 {{ row.status }}<br />
                                 {{ row.message }}
-                              </span>
+                              </div>
                               <div
                                 v-else-if="
                                   row.status === 'Confirmed' &&
@@ -741,14 +718,13 @@
                                 <div v-if="row.ratings === null">
                                   <v-btn
                                     class="
-                                      white--text
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      mt-2
-                                      mr-2
+                                      my-1 mr-1
                                     "
                                     depressed
+                                    small
                                     color="red lighten-1"
                                     @click="toggleNoShow = true"
                                   >
@@ -756,11 +732,10 @@
                                   </v-btn>
                                   <v-btn
                                     class="
-                                      white--text
                                       font-weight-light
                                       text-capitalize
                                       rounded
-                                      mt-2
+                                      my-1 mr-1
                                     "
                                     depressed
                                     color="primary"

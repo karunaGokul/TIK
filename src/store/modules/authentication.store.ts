@@ -5,14 +5,13 @@ import { AuthenticationService } from '@/service';
 
 const state: AuthenticationState = {
 
-    accessToken: localStorage.getItem('accessToken') || '',
-    refreshToken: localStorage.getItem('refreshToken') || '',
-    id: localStorage.getItem('id') || '',
-    role: localStorage.getItem('role') || '',
-    companyId: localStorage.getItem('companyId') || '',
-    category: localStorage.getItem('category') || '',
-    approvalAdminAccess: localStorage.getItem('approvalAdminAccess') || '',
-    // stages: localStorage.getItem('stages') || '',
+    accessToken: sessionStorage.getItem('accessToken') || '',
+    refreshToken: sessionStorage.getItem('refreshToken') || '',
+    id: sessionStorage.getItem('id') || '',
+    role: sessionStorage.getItem('role') || '',
+    companyId: sessionStorage.getItem('companyId') || '',
+    category: sessionStorage.getItem('category') || '',
+    approvalAdminAccess: sessionStorage.getItem('approvalAdminAccess') || ''
 }
 const getters: GetterTree<AuthenticationState, any> = {
     accessToken: state => {

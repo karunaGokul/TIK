@@ -292,7 +292,14 @@
                 category === 'Company',
             }"
           >
-            <v-card-title tag="h4">Confirmed Project</v-card-title>
+            <v-card-title
+              tag="h4"
+              v-if="
+                (row.status === 'Confirmed' || row.status === 'Completed') &&
+                category === 'Company'
+              "
+              >Confirmed Project</v-card-title
+            >
             <v-card-text>
               <v-row
                 no-gutters
@@ -302,7 +309,11 @@
                 "
               >
                 <v-col cols="12" md="4">
-                  <v-card color="transparent" flat>
+                  <v-card
+                    color="transparent"
+                    flat
+                    v-if="category === 'Company'"
+                  >
                     <div class="d-flex flex-no-wrap">
                       <v-avatar size="80" tile>
                         <v-img

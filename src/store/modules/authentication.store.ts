@@ -68,13 +68,13 @@ const actions: ActionTree<AuthenticationState, any> = {
     login(context, request: AuthenticationRequestModel) {
         const service = new AuthenticationService();
         return service.login(request).then(response => {
-            localStorage.setItem('accessToken', response.accessToken);
-            localStorage.setItem('category', response.category);
-            localStorage.setItem('companyId', response.companyId);
-            localStorage.setItem('id', response.id);
-            localStorage.setItem('refreshToken', response.refreshToken);
-            localStorage.setItem('role', response.role);
-            localStorage.setItem('approvalAdminAccess', response.approvalAdminAccess);
+            sessionStorage.setItem('accessToken', response.accessToken);
+            sessionStorage.setItem('category', response.category);
+            sessionStorage.setItem('companyId', response.companyId);
+            sessionStorage.setItem('id', response.id);
+            sessionStorage.setItem('refreshToken', response.refreshToken);
+            sessionStorage.setItem('role', response.role);
+            sessionStorage.setItem('approvalAdminAccess', response.approvalAdminAccess);
             context.commit('onAuthenticate', response);
             axios.defaults.headers.common["Authorization"] = `Bearer ${response.accessToken}`;
             return response;
@@ -89,13 +89,13 @@ const actions: ActionTree<AuthenticationState, any> = {
 
     logout(context) {
 
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('category');
-        localStorage.removeItem('companyId');
-        localStorage.removeItem('id');
-        localStorage.removeItem('role');
-        localStorage.removeItem('approvalAdminAccess');
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('category');
+        sessionStorage.removeItem('companyId');
+        sessionStorage.removeItem('id');
+        sessionStorage.removeItem('role');
+        sessionStorage.removeItem('approvalAdminAccess');
         context.commit('onLogout');
     },
 }

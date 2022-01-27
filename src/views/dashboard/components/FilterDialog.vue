@@ -73,7 +73,7 @@ export default class FilterDialog extends Vue {
 
   public selectValue: string = "";
   public dialog: boolean = false;
-  public value: string;
+  public value: string = "";
   public filterValue: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();

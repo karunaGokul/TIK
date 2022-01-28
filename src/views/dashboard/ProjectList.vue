@@ -132,6 +132,7 @@ export default class ProjectList extends Vue {
           this.stagesRequest === "AwaitingAuthentication" ||
           this.stagesRequest === "ApprovalPending" ||
           this.stagesRequest === "NoResponse" ||
+          this.stagesRequest === "NoShow" ||
           this.stagesRequest === "CancelledProjects" ||
           this.stagesRequest === "ConfirmedProjects" ||
           this.stagesRequest === "CompletedProjects")

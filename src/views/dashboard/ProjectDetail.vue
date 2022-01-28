@@ -17,14 +17,14 @@
         @click="navigateToProjects(response.InStages)"
         class="black--text"
       >
-        <span v-if="response.InStages === 'Awaiting Authentication'">
+        <!-- <span v-if="response.InStages === 'Awaiting Authentication'">
           <span v-if="category === 'Company'"> Pending Authentication </span>
           <span v-else> Approved Bids </span>
         </span>
         <span v-else-if="response.InStages === 'Awaiting Approval'">
           Approval Pending</span
-        >
-        <span v-else> {{ response.InStages }} Projects </span>
+        > -->
+        <span > {{ response.InStages }} Projects </span>
       </a>
     </div>
 

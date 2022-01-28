@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="footer-wave-top"></div>
-    <div class="footer-wave" style="background: #242424">
+    <div class="footer-wave">
       <svg>
         <clipPath id="wave" clipPathUnits="objectBoundingBox">
           <path d="M1,0c0,0-0.3,0.1-0.5,0.1S0.3,0,0,0.1V1h1L1,0z" />
@@ -11,7 +10,7 @@
         <v-row class="pa-16">
           <v-col cols="6" md="2" class="text-left">
             <div>
-              <h5 class="text-h5 pb-4">T I K</h5>
+              <h5 class="text-h5 pb-6">T I K</h5>
               <p class="subtitle-1 mt-4">Location</p>
               <p>
                 1/22, Raja Street Tirupur, <br />
@@ -150,12 +149,10 @@ export default class AppFooter extends Vue {
 }
 </script>
 <style scoped>
-.footer-wave-top {
-  height: 100px;
-}
-
 .footer-wave {
+  background: #242424;
   clip-path: url(#wave);
+  margin-top: -50px;
 }
 .footer-wave svg {
   position: absolute;

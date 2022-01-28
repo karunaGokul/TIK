@@ -20,20 +20,19 @@
     </v-col>
     <v-col>
       <v-container fill-height fluid class="pa-8">
-        <v-row align="center" justify="center">
-          <v-col>
-            <h2 class="mb-4 pl-8">Sign In</h2>
+        <v-row align="center" justify="center" style="min-height: 800px;">
+          <v-col class="pa-16">
+            <h2 class="mb-4">Sign In</h2>
             <v-form
               ref="form"
-              class="pa-8"
               autocomplete="off"
               @submit="signIn"
             >
-              <v-label>Email ID</v-label>
+              <v-label>Email</v-label>
               <v-text-field
                 outlined
                 dense
-                placeholder="Enter Email ID"
+                placeholder="Enter Email"
                 class="py-2 rounded-0"
                 v-model="request.EmailAddress"
                 :rules="emailRules"

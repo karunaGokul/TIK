@@ -21,7 +21,7 @@
     <v-col>
       <v-container fill-height fluid class="pa-8">
         <v-row align="center" justify="center">
-          <v-col>
+          <v-col class="pa-16">
             <h2 class="mb-4">Sign Up</h2>
 
             <v-form

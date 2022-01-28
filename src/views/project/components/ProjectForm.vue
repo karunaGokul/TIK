@@ -12,7 +12,11 @@
           <div v-if="mode == StepMode.Summary">
             <h4 class="text-h6 mb-4">Summary</h4>
             <v-row>
-              <v-col cols="6" v-for="(c, i) in getSummaryControls(request.controls)" :key="i">
+              <v-col
+                cols="6"
+                v-for="(c, i) in getSummaryControls(request.controls)"
+                :key="i"
+              >
                 <v-text-field
                   :value="c.value"
                   :label="c.label"
@@ -38,9 +42,7 @@
               {{ currentStep.stepNumber }}. {{ currentStep.title }}
             </h4>
             <div v-for="(control, j) in currentStep.controls" :key="j">
-              <ProjectControl
-                :control="control"
-              />
+              <ProjectControl :control="control" />
             </div>
           </div>
           <v-alert outlined dense type="error" class="ma-6" v-if="error">
@@ -244,20 +246,17 @@ export default class ProjectForm extends Vue {
 
         this.steps.forEach((s) => {
           s.controls.forEach((c) => {
-            let dataId = c.data_id;
-            if (c.options) {
-              const selected = c.options.find((o) => o.selected);
-              if (selected && selected.data_id) dataId = selected.data_id;
-            }
-            this.request.controls.push({
-              id: c.id,
-              value: c.value,
-              type: c.type,
-              path: s.path[0],
-              label: c.label,
-              data_path: c.data_path,
-              data_id: dataId,
-            });
+            if (c.type == "tab") {
+              c.options.forEach((o, i) => {
+                if (c.data == i) {
+                  if (o.controls) {
+                    o.controls.forEach((oc) => {
+                      this.addStepControl(s, oc);
+                    });
+                  }
+                }
+              });
+            } else if (c.type != "heading") this.addStepControl(s, c);
           });
         });
 
@@ -285,6 +284,23 @@ export default class ProjectForm extends Vue {
         this.mode = StepMode.Result;
       }
     }
+  }
+
+  addStepControl(s: ProjectFormStep, c: ProjectFormStepControl) {
+    let dataId = c.data_id;
+    if (c.options) {
+      const selected = c.options.find((o) => o.selected);
+      if (selected && selected.data_id) dataId = selected.data_id;
+    }
+    this.request.controls.push({
+      id: c.id,
+      value: c.value,
+      type: c.type,
+      path: s.path[0],
+      label: c.label,
+      data_path: c.data_path,
+      data_id: dataId,
+    });
   }
 
   renderDetail() {
@@ -318,7 +334,7 @@ export default class ProjectForm extends Vue {
   }
 
   getSummaryControls(controls: Array<CreateProjectControlModel>) {
-    return controls.filter(c => c.type !== "heading");
+    return controls.filter((c) => c.type !== "heading");
   }
 
   get progress() {

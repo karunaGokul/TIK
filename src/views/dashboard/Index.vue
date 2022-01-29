@@ -2,7 +2,7 @@
   <v-container fluid class="pa-6">
     <v-row class="align-center my-4" justify="space-between">
       <v-col>
-        <div class="text-h4" v-if="userResponse.fullName">
+        <div class="text-h5" v-if="userResponse.fullName">
           Welcome back, {{ userResponse.fullName }}
         </div>
       </v-col>
@@ -261,7 +261,7 @@ export default class Dashboard extends Vue {
       icon: "mdi-clock-check-outline",
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Approval Admin"],
+      roles: ["MasterAdmin", "Approval Admin","Merchandiser"],
       status: "ApprovalPending",
       approvalAdminAccess: true,
     },

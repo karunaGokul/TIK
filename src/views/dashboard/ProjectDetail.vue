@@ -5,25 +5,15 @@
         <v-icon large dark class="teal"> mdi-home</v-icon>
       </router-link>
       <v-icon large> mdi-chevron-right</v-icon>
-      <!-- <span v-if="response.bidList">
-        <span v-for="(row, i) in response.bidList" :key="i"> -->
+      
+      
       <a
-        v-if="response.InStages === 'Enquiry Sent'"
-        @click="navigateToProjects('NewProjects')"
+        
+        @click="navigateToProjects($route.params.status)"
         class="black--text"
       >
-        New Project
+        {{ $route.params.status.replace(/([a-zA-Z])([A-Z])([a-z])/g, "$1 $2$3") }} 
       </a>
-      <a
-        v-else
-        @click="navigateToProjects(response.InStages)"
-        class="black--text"
-      >
-        {{ response.InStages }} Projects
-        <!-- {{ row.status }} Projects -->
-      </a>
-      <!-- </span>
-      </span> -->
     </div>
 
     <div class="text-center ma-8" v-if="loading">
@@ -1053,7 +1043,7 @@ export default class ProjectDetail extends Vue {
   }
 
   public GetProjectEnquiry() {
-    this.request.id = this.$route.params.Id;
+    this.request.id = this.$route.params.id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
       this.GetCompany(this.response.CompanyId);

@@ -79,7 +79,7 @@
           <router-link
             :to="{
               name: 'ProjectDetail',
-              params: { Id: item.Id },
+              params: { id: item.Id, status: stagesRequest},
             }"
             tag="button"
           >

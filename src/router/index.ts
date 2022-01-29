@@ -37,7 +37,7 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/dashboard/Index.vue')
   },
   {
-    path: '/projectdetail/:Id',
+    path: '/projectdetail/:status/:id',
     name: 'ProjectDetail',
     props: true,
     component: () => import('../views/dashboard/ProjectDetail.vue')

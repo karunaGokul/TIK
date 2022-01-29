@@ -699,7 +699,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.RegularYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -756,7 +756,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.SpecialYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -813,7 +813,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.DyedYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -868,7 +868,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
 								"data_path": "mil.Yarn.RegularYarn.Deniers",
-								"data_id": "",
+								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
 								"label": "Enter Your Denier"
@@ -925,7 +925,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
 								"data_path": "mil.Yarn.SpecialYarn.Deniers",
-								"data_id": "",
+								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
 								"label": "Enter Your Denier"
@@ -982,7 +982,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
 								"data_path": "mil.Yarn.DyedYarn.Deniers",
-								"data_id": "",
+								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
 								"label": "Enter Your Denier"
@@ -1335,7 +1335,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.RegularYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -1392,7 +1392,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.SpecialYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -1449,7 +1449,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.DyedYarn.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -1734,7 +1734,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.MelangeSlubYarn.Melange.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -1797,7 +1797,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.MelangeSlubYarn.Melange.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2004,7 +2004,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.MelangeSlubYarn.Slub.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2049,7 +2049,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Yarn.MelangeSlubYarn.Slub.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2412,7 +2412,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.RegularFabric.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2467,7 +2467,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
 								"data_path": "mil.Fabric.SpecialFabric.Deniers",
-								"data_id": "",
+								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
 								"label": "Enter Your Denier"
@@ -2674,7 +2674,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.RegularFabric.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2839,7 +2839,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.SpecialFabric.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -2894,7 +2894,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
 								"data_path": "mil.Fabric.SpecialFabric.Deniers",
-								"data_id": "",
+								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
 								"label": "Enter Your Denier"
@@ -2989,7 +2989,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.SpecialFabric.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -3244,7 +3244,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.MelangeSlubFabric.Melange.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -3307,7 +3307,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.MelangeSlubFabric.Melange.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -3514,7 +3514,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.MelangeSlubFabric.Slub.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -3559,7 +3559,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "textbox",
 								"selector": false,
 								"data_path": "mil.Fabric.MelangeSlubFabric.Slub.Counts",
-								"data_id": "",
+								"data_id": "Array",
 								"label": "Enter Your Count"
 							}
 						]
@@ -4199,8 +4199,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4208,7 +4207,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4220,7 +4220,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4236,13 +4237,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4251,8 +4254,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									},
 									{
 										"id": "opTub_2",
-										"text": "TUB",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
+										"text": "TUB",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4260,7 +4262,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4272,7 +4275,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4288,13 +4292,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4304,14 +4310,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4323,7 +4329,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4339,13 +4346,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4369,8 +4378,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4378,7 +4386,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4390,7 +4399,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4406,13 +4416,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4422,7 +4434,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4430,7 +4441,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4442,7 +4454,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4458,13 +4471,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4474,14 +4489,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4493,7 +4508,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4509,13 +4525,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4852,8 +4870,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4861,7 +4878,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4873,7 +4891,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4889,13 +4908,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",								
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",								"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4905,7 +4925,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -4913,7 +4932,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4925,7 +4945,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4941,13 +4962,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -4957,14 +4980,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4976,7 +4999,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -4992,13 +5016,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5031,7 +5057,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "mil.Fabric.Special.FabricStructure.SingleJersey",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.SingleJersey",
 												"data_id": "Name",
 												"options": [
 													{
@@ -5147,7 +5173,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "mil.Fabric.Special.FabricStructure.Interlock",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Interlock",
 												"data_id": "Name",
 												"options": [
 													{
@@ -5193,7 +5219,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "mil.Fabric.Special.FabricStructure.Rib",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Rib",
 												"data_id": "Name",
 												"options": [
 													{
@@ -5335,8 +5361,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -5344,7 +5369,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5356,7 +5382,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5372,13 +5399,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5388,7 +5417,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -5396,7 +5424,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5408,7 +5437,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5424,13 +5454,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5440,14 +5472,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5459,7 +5491,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5475,13 +5508,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5817,7 +5852,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -5825,7 +5859,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5837,7 +5872,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5853,13 +5889,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5869,7 +5907,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -5877,7 +5914,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5889,7 +5927,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5905,13 +5944,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -5921,14 +5962,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5940,7 +5981,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -5956,13 +5998,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6109,7 +6153,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"label": "Select Structure",
 												"type": "dropdown",
 												"selector": false,
-												"data_path": "mil.Fabric.SpecialFabric.Interlock.SingleJersey",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Interlock",
 												"data_id": "Name",
 												"options": [
 													{
@@ -6294,7 +6338,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -6302,7 +6345,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6314,7 +6358,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6330,13 +6375,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6346,7 +6393,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -6354,7 +6400,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6366,7 +6413,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6382,13 +6430,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6398,14 +6448,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6417,7 +6467,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6433,13 +6484,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6774,8 +6827,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -6783,7 +6835,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6795,7 +6848,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6811,13 +6865,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6827,7 +6883,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -6835,7 +6890,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6847,7 +6903,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6863,13 +6920,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -6879,14 +6938,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6898,7 +6957,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -6914,13 +6974,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7252,7 +7314,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -7260,7 +7321,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7272,7 +7334,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7288,13 +7351,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7304,7 +7369,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -7312,7 +7376,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7324,7 +7389,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7340,13 +7406,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7356,14 +7424,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7375,7 +7443,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7391,13 +7460,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7732,8 +7803,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"options": [
 									{
 										"id": "opTub_1",
-										"text": "OPW",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth",
+										"text": "OPW",							
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -7741,7 +7811,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7753,7 +7824,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7769,13 +7841,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7785,7 +7859,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -7793,7 +7866,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7805,7 +7879,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7821,13 +7896,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -7837,14 +7914,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7856,7 +7933,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -7872,13 +7950,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -8214,7 +8294,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_1",
 										"text": "OPW",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -8222,7 +8301,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8234,7 +8314,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.DIA",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8250,13 +8331,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -8266,7 +8349,6 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_2",
 										"text": "TUB",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
@@ -8274,7 +8356,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8286,7 +8369,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8302,13 +8386,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]
@@ -8318,14 +8404,14 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									{
 										"id": "opTub_3",
 										"text": "TUB with Needle Drop",
-										"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular",
 										"controls": [
 											{
 												"id": "drpGauge",
 												"label": "Guage",
 												"type": "dropdown-range",
 												"selector": false,
-												"data_id": "GG",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.GG",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8337,7 +8423,8 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"type": "dropdown-range",
 												"selector": false,
 												"multiple": true,
-												"data_id": "DIA",
+												"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.Dia",
+												"data_id": "Array",
 												"data": {
 													"start": 1,
 													"end": 100
@@ -8353,13 +8440,15 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_id": "AllFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													},
 													{
 														"id": "opLycraFeeder_2",
 														"text": "Alternate Feeder",
-														"data_id": "AlternateFeeder",
+														"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
+														"data_id": "ExcludeJoins",
 														"selected": false
 													}
 												]

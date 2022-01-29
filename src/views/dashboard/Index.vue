@@ -22,7 +22,7 @@
           cols="12"
           sm="6"
           md="4"
-          lg="3"
+          xl="3"
           v-for="(nav, index) in filteredProjectNavs"
           :key="index"
         >
@@ -144,7 +144,7 @@ export default class Dashboard extends Vue {
         (n.company == undefined ||
           (n.company && this.category == "Company") ||
           (!n.company && this.category !== "Company")) &&
-        (!n.approvalAdminAccess ||
+        (!n.approvalAdminAccess || this.role == "MasterAdmin" ||
           (n.approvalAdminAccess && this.approvalAdminAccess === "1"))
     );
   }
@@ -353,7 +353,7 @@ export default class Dashboard extends Vue {
       count: 0,
     },
     {
-      text: "Contact TIK Support",
+      text: "Contact Support",
       icon: "mdi-phone-outgoing",
       count: 0,
       link: "/contact",

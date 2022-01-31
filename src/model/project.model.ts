@@ -59,6 +59,7 @@ export class ProjectFormStepControlOption {
     selected: boolean;
 
     data_id?: string;
+    data_path?: string;
 
     controls: Array<ProjectFormStepControl>
 }

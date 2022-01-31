@@ -15,20 +15,22 @@
         <v-tab
           @click="searchProject('true')"
           v-if="
-            category === 'Company' ||
-            (category !== 'Company' &&
-              searchRequest.stages !== 'Initiated' &&
-              searchRequest.stages !== 'Cancelled')
+            (category === 'Company' ||
+              (category !== 'Company' &&
+                searchRequest.stages !== 'Initiated' &&
+                searchRequest.stages !== 'Cancelled')) &&
+                this.stagesRequest !== 'ProjectReviews'
           "
           >my project</v-tab
         >
         <v-tab
           @click="searchProject('false')"
           v-if="
-            category === 'Company' ||
-            (category !== 'Company' &&
-              searchRequest.stages !== 'Initiated' &&
-              searchRequest.stages !== 'Cancelled')
+            (category === 'Company'  ||
+              (category !== 'Company' &&
+                searchRequest.stages !== 'Initiated' &&
+                searchRequest.stages !== 'Cancelled')) &&
+              this.stagesRequest !== 'ProjectReviews'
           "
           >all project</v-tab
         >
@@ -79,7 +81,7 @@
           <router-link
             :to="{
               name: 'ProjectDetail',
-              params: { id: item.Id, status: stagesRequest},
+              params: { id: item.Id, status: stagesRequest },
             }"
             tag="button"
           >
@@ -122,6 +124,9 @@ export default class ProjectList extends Vue {
   created() {
     this.stagesRequest = this.$route.params.status;
 
+    if (this.stagesRequest === "ProjectReviews") {
+      this.searchProject(false);
+    }
     if (this.category === "Company") {
       if (this.role === "MasterAdmin" || this.role === "Approval Admin") {
         this.searchProject(false);
@@ -192,21 +197,22 @@ export default class ProjectList extends Vue {
   }
 
   public searchProject(myproject: boolean) {
-    if(this.stagesRequest == "ProjectReviews") {
+    if (this.stagesRequest == "ProjectReviews") {
       this.service.PendingReview().then((response) => {
         this.response = response;
-
-    });
+      });
     } else {
-    this.searchRequest.myproject = myproject;
-    this.searchRequest.stages = this.stagesRequest;
-    this.loading = true;
-    this.service.GetProjectListByFilter(this.searchRequest).then((response) => {
-      this.loading = false;
-      this.response = response;
+      this.searchRequest.myproject = myproject;
+      this.searchRequest.stages = this.stagesRequest;
+      this.loading = true;
+      this.service
+        .GetProjectListByFilter(this.searchRequest)
+        .then((response) => {
+          this.loading = false;
+          this.response = response;
 
-      this.searchToggle = true;
-    });
+          this.searchToggle = true;
+        });
     }
   }
 

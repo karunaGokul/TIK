@@ -77,6 +77,6 @@ export class fabricStructureModel {
 export class tubularModel {
     gg: Array<string> = [];
     dia: Array<string> = [];
-    allFeeder:boolean;
-    alternateFeeder:boolean;
+    allFeeder: string;
+    alternateFeeder: string;
 }

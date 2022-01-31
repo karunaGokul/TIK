@@ -529,14 +529,14 @@ export default class MillControl extends Vue {
     if (option === "tubular") {
       this.response.fabricStructure.openWidth.gg = null;
       this.response.fabricStructure.openWidth.dia = null;
-      this.response.fabricStructure.openWidth.allFeeder = false;
-      this.response.fabricStructure.openWidth.alternateFeeder = false;
+      this.response.fabricStructure.openWidth.allFeeder = '';
+      this.response.fabricStructure.openWidth.alternateFeeder = '';
       this.width = false;
     } else if (option === "width") {
       this.response.fabricStructure.tubular.gg = null;
       this.response.fabricStructure.tubular.dia = null;
-      this.response.fabricStructure.tubular.allFeeder = false;
-      this.response.fabricStructure.tubular.alternateFeeder = false;
+      this.response.fabricStructure.tubular.allFeeder = '';
+      this.response.fabricStructure.tubular.alternateFeeder = '';
       this.tubular = false;
     }
   }

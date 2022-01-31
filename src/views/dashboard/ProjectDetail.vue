@@ -71,7 +71,7 @@
           <v-col v-else cols="12" md="3" offset-md="3"></v-col>
           <v-col cols="12" md="2" class="text-right">
             <v-btn
-              class="white--text font-weight-light text-capitalize rounded mt-7"
+              class="white--text font-weight-light text-capitalize rounded"
               depressed
               color="primary"
               @click="toggleBid = 'true'"
@@ -282,7 +282,7 @@
             width="100%"
             tile
             flat
-            v-if="row.status != 'Initiated' && row.status != 'Rejected'"
+            v-if="row.status != 'Initiated' "
             :class="{
               'confirmed-project':
                 (row.status === 'Confirmed' || row.status === 'Completed') &&
@@ -826,17 +826,16 @@
                       class="mt-5"
                       v-if="
                         category != 'Company' &&
-                          (response.InStages === 'Confirmed' ||
-                            response.InStages === 'Completed') 
+                             row.status === 'Rejected' && confirmedBidResponse !== ''
                       "
                     >
                       <thead class="teal lighten-5 text-capitalize">
                         <tr>
-                          <th width="10%"></th>
-                          <th class="black--text" width="10%">Price</th>
-                          <th class="black--text" width="10%">Credit Period</th>
-                          <th class="black--text" width="10%">Delivery Period</th>
-                          <th class="black--text" width="8%">Company Review</th>
+                          <th width="15%"></th>
+                          <th class="black--text" width="16%">Price</th>
+                          <th class="black--text" width="16%">Credit Period</th>
+                          <th class="black--text" width="15%">Delivery Period</th>
+                          <th class="black--text" width="1%">Review</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -847,7 +846,16 @@
                           <td>{{ confirmedBidResponse.creditPeriod }}</td>
                           <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
 
-                          <td>{{ confirmedBidResponse.companyReview }}</td>
+                          <td>
+                            <v-rating v-model="confirmedBidResponse.companyReview"
+                                  color="warning"
+                                  dense
+                                  size="20"
+                                  half-increments
+                                  readonly>
+
+                            </v-rating>
+                          </td>
                         </tr>
                       </tbody>
                     </v-simple-table>
@@ -971,6 +979,8 @@ export default class ProjectDetail extends Vue {
   loading: boolean = false;
 
   created() {
+
+
     this.loading = true;
 
     this.GetProjectEnquiry();
@@ -1001,7 +1011,7 @@ export default class ProjectDetail extends Vue {
     });
   }
   public GetConfirmedBidDetails() {
-    this.request.id = this.$route.params.Id;
+    this.request.id = this.$route.params.id;
     this.DashboardService.GetConfirmedBidDetails(this.request.id).then(
       (response) => {
         this.confirmedBidResponse = response;

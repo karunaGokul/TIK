@@ -144,7 +144,9 @@ export default class Dashboard extends Vue {
         (n.company == undefined ||
           (n.company && this.category == "Company") ||
           (!n.company && this.category !== "Company")) &&
-        (!n.approvalAdminAccess || this.role == "MasterAdmin" ||
+        (!n.approvalAdminAccess ||
+          this.role == "MasterAdmin" ||
+          this.role == "Approval Admin" ||
           (n.approvalAdminAccess && this.approvalAdminAccess === "1"))
     );
   }
@@ -261,7 +263,7 @@ export default class Dashboard extends Vue {
       icon: "mdi-clock-check-outline",
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Approval Admin","Merchandiser"],
+      roles: ["MasterAdmin", "Approval Admin", "Merchandiser"],
       status: "ApprovalPending",
       approvalAdminAccess: true,
     },

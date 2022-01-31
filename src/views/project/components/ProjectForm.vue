@@ -288,9 +288,11 @@ export default class ProjectForm extends Vue {
 
   addStepControl(s: ProjectFormStep, c: ProjectFormStepControl) {
     let dataId = c.data_id;
+    let dataPath = c.data_path;
     if (c.options) {
       const selected = c.options.find((o) => o.selected);
       if (selected && selected.data_id) dataId = selected.data_id;
+      if (selected && selected.data_path) dataPath = selected.data_path;
     }
     this.request.controls.push({
       id: c.id,
@@ -298,7 +300,7 @@ export default class ProjectForm extends Vue {
       type: c.type,
       path: s.path[0],
       label: c.label,
-      data_path: c.data_path,
+      data_path: dataPath,
       data_id: dataId,
     });
   }

@@ -3589,7 +3589,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -3900,7 +3900,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -4571,7 +4571,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -5062,7 +5062,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -5552,7 +5552,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -6042,7 +6042,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -6528,7 +6528,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -7018,7 +7018,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -7504,7 +7504,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{
@@ -7994,7 +7994,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 												"options": [
 													{
 														"id": "opSingleJersey_1",
-														"text": "Single jersey /Plain / Fine",
+														"text": "Single Jersey / Plain / Fine",
 														"selected": false
 													},
 													{

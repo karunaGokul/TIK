@@ -148,7 +148,7 @@ export default class ProjectList extends Vue {
           this.stagesRequest === "AwaitingApproval" ||
           this.stagesRequest === "NoResponse" ||
           this.stagesRequest === "NoShow" ||
-          this.stagesRequest === "Confirmed" ||
+          this.stagesRequest === "ConfirmedProjects" ||
           this.stagesRequest === "Completed")
       ) {
         this.searchProject(true);

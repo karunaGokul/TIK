@@ -252,8 +252,8 @@ export default class Dashboard extends Vue {
       icon: "mdi-clock-check-outline",
       count: 0,
       company: false,
-      roles: ["MasterAdmin", "Approval Admin"],
-      status: "Awaiting Approval",
+      roles: ["MasterAdmin", "Approval Admin", "Quote InCharge"],
+      status: "AwaitingApproval",
       approvalAdminAccess: true,
     },
     {
@@ -270,7 +270,7 @@ export default class Dashboard extends Vue {
       icon: "mdi-book-cancel",
       count: 0,
       company: false,
-      status: "No Response",
+      status: "NoResponse",
     },
     {
       text: "No Response Projects",

@@ -107,12 +107,7 @@
                   class="font-weight-light text-capitalize"
                   color="error"
                   v-if="
-                    role === 'MasterAdmin' &&
-                      userResponse.currentDate > response.confirmationDate &&
-                      (response.InStages === 'Enquiry Sent' ||
-                        response.InStages === 'Bid Received' ||
-                        response.InStages === 'Awaiting Authentication' ||
-                        response.InStages === 'Awaiting Approval')
+                    role === 'MasterAdmin' && $route.params.status === 'NoResponse'
                   "
                   @click="toggleNoResponse = 'true'"
                 >
@@ -483,8 +478,8 @@
                                     response.InStages === 'No Response'
                                 "
                               >
-                                <p>{{ row.status }}</p>
-                                <p>{{ response.message }}</p>
+                                <p class="mt-2">{{ row.status }}</p>
+                                <p class="mt-n3">{{ response.message }}</p>
                               </div>
 
                               <div

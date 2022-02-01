@@ -205,13 +205,13 @@ export default class MillBuilder extends Vue {
       this.millData.fabric.melangeSlubFabric.slub,
       "SlubFabric"
     );
-    if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+    // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.ProfileService.AddMills(this.millData).then((response: any) => {
         this.snackbarText = response;
         this.snackbar = true;
         this.createMill();
       });
-    }
+    // }
   }
 
   public removeOtherOption(data: ProductDetailModel, option: string) {
@@ -268,25 +268,25 @@ export default class MillBuilder extends Vue {
 
       if (data.fabricStructure) {
         if (data.fabricStructure.tubular.allFeeder) {
-          data.fabricStructure.tubular.allFeeder = "allFeeder";
+          data.fabricStructure.tubular.allFeeder = "All Feeder";
         } else {
           data.fabricStructure.tubular.allFeeder = null;
         }
 
         if (data.fabricStructure.openWidth.allFeeder) {
-          data.fabricStructure.openWidth.allFeeder = "allFeeder";
+          data.fabricStructure.openWidth.allFeeder = "All Feeder";
         } else {
           data.fabricStructure.openWidth.allFeeder = null;
         }
 
         if (data.fabricStructure.tubular.alternateFeeder) {
-          data.fabricStructure.tubular.alternateFeeder = "alternateFeeder";
+          data.fabricStructure.tubular.alternateFeeder = "Alternate Feeder";
         } else {
           data.fabricStructure.tubular.alternateFeeder = null;
         }
 
         if (data.fabricStructure.openWidth.alternateFeeder) {
-          data.fabricStructure.openWidth.alternateFeeder = "alternateFeeder";
+          data.fabricStructure.openWidth.alternateFeeder = "Alternate Feeder";
         } else {
           data.fabricStructure.openWidth.alternateFeeder = null;
         }

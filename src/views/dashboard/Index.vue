@@ -13,6 +13,9 @@
       </v-col>
     </v-row>
 
+    <!-- <v-row class="mb-4">
+      <v-img src="@/assets/banner.png" height="50%"></v-img>
+    </v-row> -->
     <div class="pa-3">
       <div class="subtitle-1 text-uppercase font-weight-black mb-4">
         Browse Projects
@@ -114,6 +117,9 @@
           </v-card>
         </v-col>
       </v-row>
+      <!-- <v-row class="mt-5">
+        <v-img src="@/assets/banner.png" height="50%"></v-img>
+      </v-row> -->
     </div>
   </v-container>
 </template>

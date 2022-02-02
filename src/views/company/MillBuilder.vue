@@ -161,6 +161,7 @@ import MillControl from "./components/MillControl.vue";
 })
 export default class MillBuilder extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
+
   public response = new CompanyProfileModel();
   public millData = new CompanyProfileModel();
   public edit: boolean = false;
@@ -270,25 +271,25 @@ export default class MillBuilder extends Vue {
         if (data.fabricStructure.tubular.allFeeder) {
           data.fabricStructure.tubular.allFeeder = "All Feeder";
         } else {
-          data.fabricStructure.tubular.allFeeder = null;
+          data.fabricStructure.tubular.allFeeder = "";
         }
 
         if (data.fabricStructure.openWidth.allFeeder) {
           data.fabricStructure.openWidth.allFeeder = "All Feeder";
         } else {
-          data.fabricStructure.openWidth.allFeeder = null;
+          data.fabricStructure.openWidth.allFeeder = "";
         }
 
         if (data.fabricStructure.tubular.alternateFeeder) {
           data.fabricStructure.tubular.alternateFeeder = "Alternate Feeder";
         } else {
-          data.fabricStructure.tubular.alternateFeeder = null;
+          data.fabricStructure.tubular.alternateFeeder = "";
         }
 
         if (data.fabricStructure.openWidth.alternateFeeder) {
           data.fabricStructure.openWidth.alternateFeeder = "Alternate Feeder";
         } else {
-          data.fabricStructure.openWidth.alternateFeeder = null;
+          data.fabricStructure.openWidth.alternateFeeder = "";
         }
       }
     }

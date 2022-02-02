@@ -2466,7 +2466,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 							{
 								"id": "txtFilamentDenier",
 								"label": "Filament Denier",
-								"data_path": "mil.Fabric.SpecialFabric.Deniers",
+								"data_path": "mil.Fabric.RegularFabric.Deniers",
 								"data_id": "Array",
 								"type": "textbox",
 								"selector": false,
@@ -4237,7 +4237,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
 														"data_id": "ExcludeJoins",
 														"selected": false
 													},
@@ -4908,7 +4908,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													{
 														"id": "opLycraFeeder_1",
 														"text": "All Feeder",
-														"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",								
+														"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",								
 														"data_id": "ExcludeJoins",
 														"selected": false
 													},

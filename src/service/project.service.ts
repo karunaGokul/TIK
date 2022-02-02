@@ -2074,7 +2074,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 									},
 									{
 										"id": "opMelangeSlub",
-										"label": "D",
+										"label": "B",
 										"text": "Melange / Slub Fabric",
 										"selected": false
 									},
@@ -3594,12 +3594,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -3639,7 +3639,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -3756,12 +3756,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -3905,12 +3905,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -3950,7 +3950,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -4067,12 +4067,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -4576,12 +4576,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -4621,7 +4621,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -4738,12 +4738,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -5067,12 +5067,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -5112,7 +5112,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -5229,12 +5229,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -5557,12 +5557,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -5602,7 +5602,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -5719,12 +5719,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -6047,12 +6047,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -6092,7 +6092,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -6209,12 +6209,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -6533,12 +6533,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -6578,7 +6578,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -6695,12 +6695,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -7023,12 +7023,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -7068,7 +7068,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -7185,12 +7185,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -7509,12 +7509,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -7554,7 +7554,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -7671,12 +7671,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{
@@ -7999,12 +7999,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_2",
-														"text": "Airtex / Picque / ThicK Picque",
+														"text": "Airtex / Pique / Thick Pique",
 														"selected": false
 													},
 													{
 														"id": "opSingleJersey_3",
-														"text": "Honey Comb",
+														"text": "Honeycomb",
 														"selected": false
 													},
 													{
@@ -8044,7 +8044,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opSingleJersey_11",
-														"text": "Picque + Lycra",
+														"text": "Pique + Lycra",
 														"selected": false
 													},
 													{
@@ -8161,12 +8161,12 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 													},
 													{
 														"id": "opRib_2",
-														"text": "1 x 1 Rib",
+														"text": "1x1 RIB",
 														"selected": false
 													},
 													{
 														"id": "opRib_3",
-														"text": "2 x 2 Rib",
+														"text": "2x2 RIB",
 														"selected": false
 													},
 													{

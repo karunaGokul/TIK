@@ -441,8 +441,7 @@
                             <td v-if="category === 'Company'">
                               <div
                                 v-if="
-                                  row.status === 'Approved' &&
-                                    response.InStages !== 'No Response'
+                                  row.status === 'Approved'
                                 "
                               >
                                 <v-btn
@@ -678,7 +677,7 @@
                               <div
                                 v-if="
                                   (role === 'Approval Admin' ||
-                                    role === 'MasterAdmin') &&
+                                    role === 'MasterAdmin' || approvalAdminAccess === '1') &&
                                     row.status === 'Authenticated'
                                 "
                               >

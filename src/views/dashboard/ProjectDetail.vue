@@ -5,14 +5,11 @@
         <v-icon large dark class="teal"> mdi-home</v-icon>
       </router-link>
       <v-icon large> mdi-chevron-right</v-icon>
-      
-      
-      <a
-        
-        @click="navigateToProjects($route.params.status)"
-        class="black--text"
-      >
-        {{ $route.params.status.replace(/([a-zA-Z])([A-Z])([a-z])/g, "$1 $2$3") }} 
+
+      <a @click="navigateToProjects($route.params.status)" class="black--text">
+        {{
+          $route.params.status.replace(/([a-zA-Z])([A-Z])([a-z])/g, "$1 $2$3")
+        }}
       </a>
     </div>
 
@@ -107,7 +104,8 @@
                   class="font-weight-light text-capitalize"
                   color="error"
                   v-if="
-                    role === 'MasterAdmin' && $route.params.status === 'NoResponse'
+                    role === 'MasterAdmin' &&
+                      $route.params.status === 'NoResponse'
                   "
                   @click="toggleNoResponse = 'true'"
                 >
@@ -277,7 +275,7 @@
             width="100%"
             tile
             flat
-            v-if="row.status != 'Initiated' "
+            v-if="row.status != 'Initiated'"
             :class="{
               'confirmed-project':
                 (row.status === 'Confirmed' || row.status === 'Completed') &&
@@ -374,7 +372,8 @@
                             <td
                               v-if="
                                 (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
+                                  role === 'MasterAdmin' ||
+                                  approvalAdminAccess === '1') &&
                                   row.status === 'Authenticated' &&
                                   category != 'Company'
                               "
@@ -400,7 +399,8 @@
                             <td
                               v-if="
                                 (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
+                                  role === 'MasterAdmin' ||
+                                  approvalAdminAccess === '1') &&
                                   row.status === 'Authenticated' &&
                                   category != 'Company'
                               "
@@ -420,7 +420,8 @@
                             <td
                               v-if="
                                 (role === 'Approval Admin' ||
-                                  role === 'MasterAdmin') &&
+                                  role === 'MasterAdmin' ||
+                                  approvalAdminAccess === '1') &&
                                   row.status === 'Authenticated' &&
                                   category != 'Company'
                               "
@@ -441,7 +442,8 @@
                             <td v-if="category === 'Company'">
                               <div
                                 v-if="
-                                  row.status === 'Approved'
+                                  row.status === 'Approved' &&
+                                    response.InStages !== 'No Response'
                                 "
                               >
                                 <v-btn
@@ -485,7 +487,8 @@
                                 v-else-if="
                                   (role === 'Merchandiser' ||
                                     role === 'MasterAdmin') &&
-                                    row.status === 'Selected'
+                                    row.status === 'Selected' &&
+                                    response.InStages !== 'No Response'
                                 "
                               >
                                 <v-select
@@ -535,7 +538,8 @@
                                     (role === 'Merchandiser' &&
                                       approvalAdminAccess === '1') ||
                                     role === 'MasterAdmin') &&
-                                    row.status === 'BidApproved'
+                                    row.status === 'BidApproved' &&
+                                    response.InStages !== 'No Response'
                                 "
                                 @click="ApproveBid('Confirmed', row)"
                               >
@@ -593,7 +597,8 @@
                               <div
                                 v-if="
                                   row.status === 'Confirmed' &&
-                                    role === 'MasterAdmin'
+                                    role === 'MasterAdmin' &&
+                                    response.InStages !== 'No Response'
                                 "
                               >
                                 <div v-if="row.ratings === null">
@@ -677,8 +682,10 @@
                               <div
                                 v-if="
                                   (role === 'Approval Admin' ||
-                                    role === 'MasterAdmin' || approvalAdminAccess === '1') &&
-                                    row.status === 'Authenticated'
+                                    role === 'MasterAdmin' ||
+                                    approvalAdminAccess === '1') &&
+                                    row.status === 'Authenticated' &&
+                                    response.InStages !== 'No Response'
                                 "
                               >
                                 <v-btn
@@ -736,7 +743,8 @@
                               <div
                                 v-else-if="
                                   row.status === 'Confirmed' &&
-                                    role === 'MasterAdmin'
+                                    role === 'MasterAdmin' &&
+                                    response.InStages !== 'No Response'
                                 "
                               >
                                 <div v-if="row.ratings === null">
@@ -820,7 +828,8 @@
                       class="mt-5"
                       v-if="
                         category != 'Company' &&
-                             row.status === 'Rejected' && confirmedBidResponse !== ''
+                          row.status === 'Rejected' &&
+                          confirmedBidResponse !== ''
                       "
                     >
                       <thead class="teal lighten-5 text-capitalize">
@@ -828,7 +837,9 @@
                           <th width="15%"></th>
                           <th class="black--text" width="16%">Price</th>
                           <th class="black--text" width="16%">Credit Period</th>
-                          <th class="black--text" width="15%">Delivery Period</th>
+                          <th class="black--text" width="15%">
+                            Delivery Period
+                          </th>
                           <th class="black--text" width="1%">Review</th>
                         </tr>
                       </thead>
@@ -841,13 +852,14 @@
                           <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
 
                           <td>
-                            <v-rating v-model="confirmedBidResponse.companyReview"
-                                  color="warning"
-                                  dense
-                                  size="20"
-                                  half-increments
-                                  readonly>
-
+                            <v-rating
+                              v-model="confirmedBidResponse.companyReview"
+                              color="warning"
+                              dense
+                              size="20"
+                              half-increments
+                              readonly
+                            >
                             </v-rating>
                           </td>
                         </tr>
@@ -973,8 +985,6 @@ export default class ProjectDetail extends Vue {
   loading: boolean = false;
 
   created() {
-
-
     this.loading = true;
 
     this.GetProjectEnquiry();

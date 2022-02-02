@@ -131,13 +131,14 @@
     </v-form>
     <v-snackbar
       v-model="snackbar"
-      :timeout="2000"
+      :timeout="5000"
       color="green lighten-5 green--text"
       right
       top
     >
       <v-icon color="green">mdi-exclamation-thick </v-icon>
-      {{ snackbarText }}
+      <!-- {{ snackbarText }} -->
+      <p v-html="snackbarText"></p>
 
       <template v-slot:action="{ attrs }">
         <v-btn color="red" text v-bind="attrs" @click="snackbar = false">
@@ -208,7 +209,7 @@ export default class MillBuilder extends Vue {
     );
     // if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.ProfileService.AddMills(this.millData).then((response: any) => {
-        this.snackbarText = response;
+        this.snackbarText = response.split('\n').join('</p><p>');
         this.snackbar = true;
         this.createMill();
       });

@@ -172,6 +172,8 @@ export default class ProjectForm extends Vue {
   request: CreateProjectModel = new CreateProjectModel();
   detailControls: Array<any> = [];
 
+  detailJson: Array<any> = [];
+
   created() {
     this.buildForm();
   }
@@ -185,14 +187,12 @@ export default class ProjectForm extends Vue {
     this.mode = StepMode.Form;
     this.path = "";
 
-    this.service
-      .newProject(this.categoryName, this.projectName)
-      .then((response: ProjectFormModel) => {
-        this.data = response;
-        const step = this.$vuehelper.clone(this.data.steps[0]);
-        step.stepNumber = 1;
-        this.steps.push(step);
-      });
+    this.data = this.service.getProjectForm(this.categoryName);
+    const step = this.$vuehelper.clone(this.data.steps[0]);
+    step.stepNumber = 1;
+    this.steps.push(step);
+
+    this.detailJson = this.service.getProjectDetail(this.categoryName);
   }
 
   create() {
@@ -351,84 +351,6 @@ export default class ProjectForm extends Vue {
   get currentStep() {
     return this.steps.find((s) => s.path.includes(this.path));
   }
-
-  detailJson: any = [
-    {
-      category: "Yarn",
-      controls: [
-        {
-          label: "Enter No of Kgs",
-          id: "noOfKgs",
-          type: "number",
-        },
-        {
-          label: "Your Price per Kg",
-          id: "price",
-          type: "price",
-        },
-        {
-          label: "Order Confirmation Date",
-          id: "confirmationDate",
-          type: "date",
-        },
-        {
-          label: "Expected Delivery Date",
-          id: "deliveryDate",
-          type: "date",
-        },
-        {
-          label: "Your required Credit Period in days",
-          id: "creditPeriod",
-          type: "number",
-        },
-      ],
-    },
-    {
-      category: "Fabric",
-      controls: [
-        {
-          label: "Enter your required GSM",
-          id: "gsm",
-          type: "number",
-        },
-        {
-          label: "Enter your required Loop Length",
-          id: "loopLength",
-          type: "number",
-        },
-        {
-          label: "Enter your required Kgs",
-          id: "noOfKgs",
-          type: "number",
-        },
-        {
-          label: "Your Price per Kg",
-          id: "price",
-          type: "price",
-        },
-        {
-          label: "Your required Credit Period in days",
-          id: "creditPeriod",
-          type: "number",
-        },
-        // {
-        //   label: "Your required Delivery Period in days",
-        //   id: "deliveryPeriod",
-        //   type: "number",
-        // },
-        {
-          label: "Order Confirmation Date",
-          id: "confirmationDate",
-          type: "date",
-        },
-        {
-          label: "Expected Delivery Date",
-          id: "deliveryDate",
-          type: "date",
-        },
-      ],
-    },
-  ];
 }
 
 enum StepMode {

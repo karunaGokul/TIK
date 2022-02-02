@@ -2190,7 +2190,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "toggle-button",
 								"selector": true,
 								"data_path": "",
-								"data_id": "mil.Fabric.MelangeSlubFabric.AVGCreditTime",
+								"data_id": "",
 								"options": [
 									{
 										"id": "opSingle",
@@ -2220,7 +2220,7 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 								"type": "toggle-button",
 								"selector": true,
 								"data_path": "",
-								"data_id": "mil.Fabric.MelangeSlubFabric.AVGCreditTime",
+								"data_id": "",
 								"options": [
 									{
 										"id": "opSingle",

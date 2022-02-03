@@ -1,0 +1,73 @@
+[
+  {
+    "category": "Yarn",
+    "controls": [
+      {
+        "label": "Enter No of Kgs",
+        "id": "noOfKgs",
+        "type": "number"
+      },
+      {
+        "label": "Your Price per Kg",
+        "id": "price",
+        "type": "price"
+      },
+      {
+        "label": "Order Confirmation Date",
+        "id": "confirmationDate",
+        "type": "date"
+      },
+      {
+        "label": "Expected Delivery Date",
+        "id": "deliveryDate",
+        "type": "date"
+      },
+      {
+        "label": "Your required Credit Period in days",
+        "id": "creditPeriod",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "category": "Fabric",
+    "controls": [
+      {
+        "label": "Enter your required GSM",
+        "id": "gsm",
+        "type": "number"
+      },
+      {
+        "label": "Enter your required Loop Length",
+        "id": "loopLength",
+        "type": "number"
+      },
+      {
+        "label": "Your required Credit Period in days",
+        "id": "creditPeriod",
+        "type": "number"
+      },
+      {
+        "label": "Enter your required Kgs",
+        "id": "noOfKgs",
+        "type": "dia",
+        "control": "drpDIA"
+      },
+      {
+        "label": "Your Price per Kg",
+        "id": "price",
+        "type": "price"
+      },
+      {
+        "label": "Order Confirmation Date",
+        "id": "confirmationDate",
+        "type": "date"
+      },
+      {
+        "label": "Expected Delivery Date",
+        "id": "deliveryDate",
+        "type": "date"
+      }
+    ]
+  }
+]

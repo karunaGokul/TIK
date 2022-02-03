@@ -14,7 +14,7 @@ export class CreateProjectModel {
 export class CreateProjectControlModel {
     id: string;
     path: string;
-    value: string;
+    value: any;
     label: string;
     type: string;
 

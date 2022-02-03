@@ -11,11 +11,7 @@
           :readonly="isSummary"
         ></v-text-field>
       </v-col>
-      <v-col
-        v-for="(control, j) in controls"
-        :key="j"
-        :cols="control.type == 'price' ? 12 : 6"
-      >
+      <v-col v-for="(control, j) in controls" :key="j" cols="6">
         <v-text-field
           v-if="control.type == 'number'"
           outlined
@@ -25,7 +21,7 @@
           :label="control.label"
           :readonly="isSummary"
           type="number"
-          min=1
+          min="1"
         ></v-text-field>
         <v-menu
           v-if="control.type == 'date'"
@@ -56,36 +52,70 @@
             :min="new Date().toISOString().substr(0, 10)"
           ></v-date-picker>
         </v-menu>
-        <v-row v-if="control.type == 'price'">
-          <v-col cols="6">
+        <div v-if="control.type == 'price'">
+          <v-card color="transparent" class="pa-8">
             <v-text-field
               outlined
               dense
               hide-details
-              v-model="control.value"
+              v-model="control.value.price"
               :label="control.label"
               :readonly="isSummary"
-              :disabled="control.requestPrice"
+              :disabled="control.value.requestPrice"
               type="number"
-              min=1
+              min="1"
             ></v-text-field>
-          </v-col>
-          <v-col cols="2">
-            <div class="text-center px-4">
+            <div class="pa-2">
               <v-chip :ripple="false" outlined class="ma-2" small> OR </v-chip>
             </div>
-          </v-col>
-          <v-col cols="4">
             <v-checkbox
               label="Request Price"
               color="red"
               dense
-              @change="control.value = ''"
-              v-model="control.requestPrice"
+              @change="updatePrice(control, j)"
+              v-model="control.value.requestPrice"
               :readonly="isSummary"
             ></v-checkbox>
-          </v-col>
-        </v-row>
+          </v-card>
+        </div>
+        <div v-if="control.type == 'dia'">
+          <v-card color="transparent" class="pb-2">
+            <v-simple-table style="background: transparent">
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th>DIA</th>
+                    <th>Enter your required Kgs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(d, k) in control.value" :key="k">
+                    <td>{{ d.dia }}</td>
+                    <td>
+                      <v-text-field
+                        dense
+                        hide-details
+                        v-model="d.kgs"
+                        :readonly="isSummary"
+                        type="number"
+                        min="1"
+                        @change="getDIATotal(control, j)"
+                      ></v-text-field>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Total</td>
+                    <td>
+                      {{ control.total }}
+                    </td>
+                  </tr>
+                </tfoot>
+              </template>
+            </v-simple-table>
+          </v-card>
+        </div>
       </v-col>
     </v-row>
   </div>
@@ -100,6 +130,40 @@ export default class ProjectDetailControl extends Vue {
   @Prop() controls: Array<any>;
   @Prop() request: CreateProjectModel;
   @Prop() isSummary: boolean;
+
+  created() {
+    this.controls.forEach((c: any) => {
+      if (!c.value) {
+        if (c.type == "price") {
+          c.value = {};
+        } else if (c.type == "dia") {
+          c.value = [];
+          const dia = this.request.controls.find((c) => c.id == "drpDIA");
+          if (dia && dia.value) {
+            dia.value.forEach((v: any) => {
+              c.value.push({ dia: v });
+            });
+          }
+        }
+      }
+    });
+  }
+
+  updatePrice(control: any, index: number) {
+    control.value.price = "";
+
+    this.$set(this.controls, index, control);
+  }
+
+  getDIATotal(control: any, index: number) {
+    control.total = control.value
+      .map((a: any) => parseInt(a.kgs ? a.kgs : 0))
+      .reduce((a: number, b: number) => {
+        return a + b;
+      });
+
+    this.$set(this.controls, index, control);
+  }
 }
 </script>
 

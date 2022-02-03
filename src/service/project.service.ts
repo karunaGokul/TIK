@@ -1,8 +1,8 @@
 import { ServiceHelper } from "./base.service";
 import { ProjectFormModel, ProjectRequestModel } from "@/model";
 
-import millsForm from "@/assets/data/mills-form.json";
-import millsDetail from "@/assets/data/mills-detail.json";
+import millsForm from '@/data/mills-form.json';
+import millsDetail from '@/data/mills-detail.json';
 
 export interface IProjectService {
 	getProjectForm(categoryName: string): ProjectFormModel;

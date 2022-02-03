@@ -260,7 +260,7 @@ export default class ProjectForm extends Vue {
           });
         });
 
-        this.mode = StepMode.Result;
+        this.renderDetail(); //this.mode = StepMode.Result;
 
         return false;
       }
@@ -281,7 +281,7 @@ export default class ProjectForm extends Vue {
         nextStep.stepNumber = this.steps.length + 1;
         this.steps.push(nextStep);
       } else {
-        this.mode = StepMode.Result;
+        this.renderDetail(); //this.mode = StepMode.Result;
       }
     }
   }
@@ -310,6 +310,8 @@ export default class ProjectForm extends Vue {
 
     const category = this.request.controls[0].value;
 
+    console.log(this.request);
+
     this.detailControls = this.detailJson.find(
       (d: any) => d.category == category
     ).controls;
@@ -318,18 +320,19 @@ export default class ProjectForm extends Vue {
   renderSummary() {
     this.request.data = {};
 
+    this.error = false;
     this.detailControls.forEach((c) => {
       if (c.type == "price") {
-        this.request.data.requestPrice = c.requestPrice ? true : false;
-
-        if (!this.request.data.requestPrice) {
-          if (c.value) this.request.data[c.id] = parseInt(c.value);
-          else this.error = true;
-        }
+        if (!c.value.price && !c.value.requestPrice) this.error = true;
+      } else if (c.type == "dia") {
+        c.value.forEach((d: any) => {
+          if (!d.kgs) this.error = true;
+        });
       } else {
-        if (c.value) this.request.data[c.id] = c.value;
-        else this.error = true;
+        if (!c.value) this.error = true;
       }
+
+      if (!this.error) this.request.data[c.id] = c.value;
     });
 
     if (!this.error) this.mode = StepMode.Summary;

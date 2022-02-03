@@ -8,7 +8,7 @@
         "type": "number"
       },
       {
-        "label": "Your Price per Kg",
+        "label": "Your Requested Price",
         "id": "price",
         "type": "price"
       },
@@ -54,7 +54,7 @@
         "control": "drpDIA"
       },
       {
-        "label": "Your Price per Kg",
+        "label": "Your Requested Price",
         "id": "price",
         "type": "price"
       },

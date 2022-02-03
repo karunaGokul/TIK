@@ -89,7 +89,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="(d, k) in control.value" :key="k">
+                  <tr v-for="(d, k) in control.value.items" :key="k">
                     <td>{{ d.dia }}</td>
                     <td>
                       <v-text-field
@@ -108,7 +108,7 @@
                   <tr>
                     <td>Total</td>
                     <td>
-                      {{ control.total }}
+                      {{ control.value.total }}
                     </td>
                   </tr>
                 </tfoot>
@@ -137,11 +137,12 @@ export default class ProjectDetailControl extends Vue {
         if (c.type == "price") {
           c.value = {};
         } else if (c.type == "dia") {
-          c.value = [];
+          c.value = {};
+          c.value.items = [];
           const dia = this.request.controls.find((c) => c.id == "drpDIA");
           if (dia && dia.value) {
             dia.value.forEach((v: any) => {
-              c.value.push({ dia: v });
+              c.value.items.push({ dia: v });
             });
           }
         }
@@ -156,7 +157,7 @@ export default class ProjectDetailControl extends Vue {
   }
 
   getDIATotal(control: any, index: number) {
-    control.total = control.value
+    control.value.total = control.value.items
       .map((a: any) => parseInt(a.kgs ? a.kgs : 0))
       .reduce((a: number, b: number) => {
         return a + b;

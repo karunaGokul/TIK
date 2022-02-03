@@ -260,7 +260,7 @@ export default class ProjectForm extends Vue {
           });
         });
 
-        this.renderDetail(); //this.mode = StepMode.Result;
+        this.mode = StepMode.Result;
 
         return false;
       }
@@ -281,7 +281,7 @@ export default class ProjectForm extends Vue {
         nextStep.stepNumber = this.steps.length + 1;
         this.steps.push(nextStep);
       } else {
-        this.renderDetail(); //this.mode = StepMode.Result;
+        this.mode = StepMode.Result;
       }
     }
   }
@@ -325,7 +325,7 @@ export default class ProjectForm extends Vue {
       if (c.type == "price") {
         if (!c.value.price && !c.value.requestPrice) this.error = true;
       } else if (c.type == "dia") {
-        c.value.forEach((d: any) => {
+        c.value.items.forEach((d: any) => {
           if (!d.kgs) this.error = true;
         });
       } else {

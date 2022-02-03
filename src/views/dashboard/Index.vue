@@ -59,14 +59,16 @@
                 </v-card-actions>
               </div>
 
-              <v-avatar class="elevation-2 mr-3" color="teal" size="70">
-                <v-icon x-large dark>{{ nav.icon }}</v-icon>
+              <v-avatar class="elevation-2 mr-3" size="70">
+                <!-- <v-icon x-large dark>{{ nav.icon }}</v-icon> -->
+                <img
+                  :src="nav.icon"
+                  :alt="nav.text"
+                />
               </v-avatar>
             </div>
           </v-card>
         </v-col>
-
-       
       </v-row>
       <div class="subtitle-1 text-uppercase font-weight-black mt-8 pt-4 mb-4">
         Other Links
@@ -219,7 +221,8 @@ export default class Dashboard extends Vue {
   projectNavs: any = [
     {
       text: "New Projects",
-      icon: "mdi-folder-plus",
+      // icon: "mdi-folder-plus",
+      icon: require("@/assets/icons/new project.png"),
       count: 0,
       company: false,
       roles: ["MasterAdmin", "Quote InCharge"],
@@ -227,7 +230,8 @@ export default class Dashboard extends Vue {
     },
     {
       text: "New Projects",
-      icon: "mdi-folder-plus",
+      // icon: "mdi-folder-plus",
+      icon: require("@/assets/icons/new project.png"),
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Quote InCharge"],
@@ -235,7 +239,8 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Bids Received",
-      icon: "mdi-cash-multiple",
+      // icon: "mdi-cash-multiple",
+      icon: require("@/assets/icons/approved bid.png"),
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Quote InCharge"],
@@ -243,7 +248,8 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Approved Bids",
-      icon: "mdi-check-decagram",
+      // icon: "mdi-check-decagram",
+      icon: require("@/assets/icons/approved bid.png"),
       count: 0,
       company: false,
       roles: ["MasterAdmin", "Quote InCharge"],
@@ -251,7 +257,8 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Pending Authentication",
-      icon: "mdi-account-clock",
+      // icon: "mdi-account-clock",
+      icon: require("@/assets/icons/pending.png"),
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Merchandiser"],
@@ -259,7 +266,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Approval Pending",
-      icon: "mdi-clock-check-outline",
+      // icon: "mdi-clock-check-outline",
       count: 0,
       company: false,
       roles: ["MasterAdmin", "Approval Admin", "Quote InCharge"],
@@ -268,7 +275,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Approval Pending",
-      icon: "mdi-clock-check-outline",
+      // icon: "mdi-clock-check-outline",
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Approval Admin", "Merchandiser"],
@@ -277,69 +284,79 @@ export default class Dashboard extends Vue {
     },
     {
       text: "No Response Projects",
-      icon: "mdi-book-cancel",
+      // icon: "mdi-book-cancel",
+      icon: require("@/assets/icons/no response.png"),
       count: 0,
       company: false,
       status: "NoResponse",
     },
     {
       text: "No Response Projects",
-      icon: "mdi-book-cancel",
+      // icon: "mdi-book-cancel",
+      icon: require("@/assets/icons/no response.png"),
       count: 0,
       company: true,
       status: "NoResponse",
     },
     {
       text: "No Show Projects",
-      icon: "mdi-thumb-down",
+      // icon: "mdi-thumb-down",
+      icon: require("@/assets/icons/no show project.png"),
       count: 0,
       status: "NoShow",
     },
     {
       text: "Confirmed Projects",
-      icon: "mdi-thumb-up",
+      // icon: "mdi-thumb-up",
+      icon: require("@/assets/icons/confirmed project.png"),
       count: 0,
       company: false,
       status: "ConfirmedProjects",
     },
     {
       text: "Confirmed Projects",
-      icon: "mdi-thumb-up",
+      // icon: "mdi-thumb-up",
+      icon: require("@/assets/icons/confirmed project.png"),
       count: 0,
       company: true,
       status: "ConfirmedProjects",
     },
     {
       text: "Completed Projects",
-      icon: "mdi-playlist-check",
+      // icon: "mdi-playlist-check",
+      icon: require("@/assets/icons/completed project.png"),
       count: 0,
       company: true,
       status: "CompletedProjects",
     },
     {
       text: "Completed Projects",
-      icon: "mdi-playlist-check",
+      // icon: "mdi-playlist-check",
+      icon: require("@/assets/icons/completed project.png"),
       count: 0,
       company: false,
       status: "Completed",
     },
     {
       text: "Canceled Projects",
-      icon: "mdi-cancel",
+      // icon: "mdi-cancel",
+      icon: require("@/assets/icons/canceled project.png"),
       count: 0,
       company: true,
       status: "CancelledProjects",
     },
     {
       text: "Canceled Projects",
-      icon: "mdi-cancel",
+      // icon: "mdi-cancel",
+       icon: require("@/assets/icons/canceled project.png"),
       count: 0,
       company: false,
       status: "Cancelled",
     },
     {
       text: "Project Reviews",
-      icon: "mdi-message-star",
+      // icon: "mdi-message-star",
+       icon: require("@/assets/icons/project review.png"),
       count: 0,
       status: "ProjectReviews",
     },

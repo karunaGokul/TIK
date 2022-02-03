@@ -679,6 +679,16 @@
                             </td>
                             <td v-else>
                               <div
+                                class="text-caption"
+                                v-if="
+                                  row.status === 'NoResponse' ||
+                                    response.InStages === 'No Response'
+                                "
+                              >
+                                <p class="mt-2">{{ row.status }}</p>
+                                <p class="mt-n3">{{ response.message }}</p>
+                              </div>
+                              <div
                                 v-if="
                                   (role === 'Approval Admin' ||
                                     role === 'MasterAdmin' ||

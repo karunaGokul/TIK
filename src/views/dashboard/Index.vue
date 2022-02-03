@@ -14,7 +14,7 @@
     </v-row>
 
     <!-- <v-row class="mb-4">
-      <v-img src="@/assets/banner.png" height="50%"></v-img>
+      <v-img src="@/assets/banner/banner.png" height="50%"></v-img>
     </v-row> -->
     <div class="pa-3">
       <div class="subtitle-1 text-uppercase font-weight-black mb-4">
@@ -32,9 +32,9 @@
           <v-card @click="navigateToProjects(nav.status)">
             <div class="d-flex flex-no-wrap justify-space-between align-center">
               <div>
-                <v-card-title class="overline font-weight-bold">{{
-                  nav.text
-                }}</v-card-title>
+                <v-card-title class="overline font-weight-bold">
+                  {{ nav.text }}
+                </v-card-title>
 
                 <v-card-actions>
                   <v-avatar
@@ -120,7 +120,7 @@
         </v-col>
       </v-row>
       <!-- <v-row class="mt-5">
-        <v-img src="@/assets/banner.png" height="50%"></v-img>
+        <v-img src="@/assets/banner/banner.png" height="50%"></v-img>
       </v-row> -->
     </div>
   </v-container>

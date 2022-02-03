@@ -87,7 +87,7 @@
             </div>
             <div>
               <v-btn
-                class="font-weight-light text-capitalize white--text"
+                class="font-weight-light text-capitalize white--text mt-1 mr-7"
                 color="blue-grey"
                 depressed
                 @click="toggleCancel = 'true'"
@@ -350,7 +350,6 @@
                               width="20%"
                             >
                               {{ tableHeader }}
-                              <!-- {{ tableHeader.text }} -->
                             </th>
                           </tr>
                         </thead>

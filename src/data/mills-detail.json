@@ -49,7 +49,7 @@
       },
       {
         "label": "Enter your required Kgs",
-        "id": "noOfKgs",
+        "id": "dia",
         "type": "dia",
         "control": "drpDIA"
       },

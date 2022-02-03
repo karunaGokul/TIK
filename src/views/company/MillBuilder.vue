@@ -131,7 +131,7 @@
     </v-form>
     <v-snackbar
       v-model="snackbar"
-      :timeout="5000"
+      :timeout="2000"
       color="green lighten-5 green--text"
       right
       top
@@ -267,32 +267,6 @@ export default class MillBuilder extends Vue {
         (item) => item.isSelected === true
       );
       delete data.availableDeniers;
-
-      // if (data.fabricStructure) {
-      //   if (data.fabricStructure.tubular.allFeeder) {
-      //     data.fabricStructure.tubular.allFeeder = "All Feeder";
-      //   } else {
-      //     data.fabricStructure.tubular.allFeeder = null;
-      //   }
-
-      //   if (data.fabricStructure.openWidth.allFeeder) {
-      //     data.fabricStructure.openWidth.allFeeder = "All Feeder";
-      //   } else {
-      //     data.fabricStructure.openWidth.allFeeder = null;
-      //   }
-
-      //   if (data.fabricStructure.tubular.alternateFeeder) {
-      //     data.fabricStructure.tubular.alternateFeeder = "Alternate Feeder";
-      //   } else {
-      //     data.fabricStructure.tubular.alternateFeeder = null;
-      //   }
-
-      //   if (data.fabricStructure.openWidth.alternateFeeder) {
-      //     data.fabricStructure.openWidth.alternateFeeder = "Alternate Feeder";
-      //   } else {
-      //     data.fabricStructure.openWidth.alternateFeeder = null;
-      //   }
-      // }
     }
     if (
       option === "RegularFabric" ||
@@ -300,16 +274,7 @@ export default class MillBuilder extends Vue {
       option === "MelangeFabric" ||
       option === "SlubFabric"
     ) {
-      // data.fabricStructure.singleJersey =
-      //   data.fabricStructure.singleJersey.filter(
-      //     (item) => item.isSelected === true
-      //   );
-      // data.fabricStructure.interlock = data.fabricStructure.interlock.filter(
-      //   (item) => item.isSelected === true
-      // );
-      // data.fabricStructure.rib = data.fabricStructure.rib.filter(
-      //   (item) => item.isSelected === true
-      // );
+     
       if (data.fabricStructure) {
         if (data.fabricStructure.tubular.allFeeder) {
           data.fabricStructure.tubular.allFeeder = "All Feeder";

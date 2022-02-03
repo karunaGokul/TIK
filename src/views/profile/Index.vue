@@ -64,7 +64,7 @@
           </v-card>
         </v-col>
         <v-col col="5">
-          <h3 class="text-h6">About</h3>
+          <h3 class="text-h6 mt-6">About</h3>
           <p>{{ response.title }}</p>
           <p>{{ response.description }}</p>
         </v-col>
@@ -85,7 +85,7 @@
       <Divider />
     </div>
 
-    <v-sheet class="mx-auto" max-width="1450">
+    <v-sheet class="mx-auto" >
       <v-slide-group class="pa-4" active-class="success" show-arrows>
         <v-slide-item v-for="n in 10" :key="n">
           <v-row class="fill-height ma-1" align="center" justify="center">
@@ -97,7 +97,7 @@
       </v-slide-group>
     </v-sheet>
 
-    <v-container>
+    <v-container fluid class="mx-16">
       <div class="my-15" justify="center" align="center">
         <h1>Company Details</h1>
         <Divider />
@@ -120,101 +120,89 @@
       </v-card>
 
       <v-row>
-        <v-col class="mx-1" v-if="this.category != 'Company'">
-          <v-card width="250px">
+        <v-col cols="3" v-if="this.category != 'Company'">
+          <v-card>
             <v-img
               src="@/assets/mill/yarn.png"
               alt="Yarn (or) Fabric Update"
               class="white--text align-end"
-              width="250"
-              height="250"
+              gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
-              <Divider />
+              <Divider class="ml-4" />
               <router-link to="/mill" class="text-decoration-none">
-                <v-card-title class="white--text"
+                <v-card-title class="white--text pt-0"
                   >Yarn (or) Fabric Update</v-card-title
                 >
               </router-link>
             </v-img>
           </v-card>
         </v-col>
-        <v-col class="mx-1">
-          <v-card width="250px">
+        <v-col cols="3">
+          <v-card>
             <v-img
               src="@/assets/mill/fabric.png"
               alt="Brochures"
               class="white--text align-end"
-              width="250"
-              height="250"
+              gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
-              <Divider />
+              <Divider class="ml-4" />
               <router-link to="/knitting" class="text-decoration-none">
-                <v-card-title class="white--text"> Brochures </v-card-title>
+                <v-card-title class="white--text pt-0"> Brochures </v-card-title>
               </router-link>
             </v-img>
           </v-card>
         </v-col>
-        <v-col class="mx-1">
-          <v-card width="250px">
+        <v-col cols="3">
+          <v-card>
             <v-img
               src="@/assets/mill/textile-machine.png"
               alt="Machineries"
               class="white--text align-end"
-              width="250"
-              height="250"
+              gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
-              <Divider />
-              <v-card-title class="white--text">Machineries </v-card-title>
+              <Divider class="ml-4" />
+              <v-card-title class="white--text pt-0">Machineries </v-card-title>
             </v-img>
           </v-card>
         </v-col>
-        <v-col class="mx-1">
-          <v-card width="250px">
+        <v-col cols="3">
+          <v-card>
             <v-img
               src="@/assets/mill/certificate.png"
               alt="Certificates"
               class="white--text align-end"
-              width="250"
-              height="250"
+              gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
-              <Divider />
-              <v-card-title class="white--text">Certificates </v-card-title>
+              <Divider class="ml-4" />
+              <v-card-title class="white--text pt-0">Certificates </v-card-title>
             </v-img>
           </v-card>
         </v-col>
       </v-row>
 
-      <div class="my-15" justify="center" align="center">
+      <div class="my-15 mb-6" justify="center" align="center">
         <h1>Completed Projects</h1>
         <Divider />
+
+         <v-select
+            outlined
+            dense
+            label="Select Your Category"
+            :items="categorys"
+            style="max-width: 400px;"
+            class="ma-6"
+          >
+          </v-select>
       </div>
 
       <v-row>
-        <v-col col="6" md="3">
-          <v-select
-            filled
-            dense
-            solo
-            dark
-            label="Select Your Category"
-            :items="categorys"
-            background-color="primary"
-            item-color="primary"
-          >
-          </v-select>
-        </v-col>
-        <v-col col="6" md="9"></v-col>
-      </v-row>
-
-      <v-row>
         <v-col v-for="image in galleryImages" :key="image.img">
-          <v-card :loading="loading" class="mx-0 my-12" max-width="200">
-            <v-img height="250" :src="image.img" alt="gallery"></v-img>
+          <v-card :loading="loading" height="100%">
+            <v-img :src="image.img" alt="gallery" height="250"></v-img>
 
             <v-card-title>{{ image.title }}</v-card-title>
 
             <v-card-text>
-              <v-row align="center" class="mx-0">
                 <v-rating
                   :value="4.5"
                   color="#fd7e14"
@@ -223,7 +211,6 @@
                   readonly
                   size="14"
                 ></v-rating>
-              </v-row>
 
               <div class="mt-5">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -233,9 +220,9 @@
               </div>
             </v-card-text>
 
-            <v-card-actions>
+            <v-card-actions class="pb-4">
               <v-btn
-                class="white--text font-weight-regular text-capitalize"
+                class="white--text font-weight-regular text-capitalize mx-auto"
                 color="#fd7e14"
               >
                 View Project

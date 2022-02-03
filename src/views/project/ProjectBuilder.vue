@@ -6,11 +6,7 @@
           <h3 class="mb-2">
             Enter Enquiry Name <span class="red--text">*</span>
           </h3>
-          <v-text-field 
-            outlined 
-            dense 
-            v-model="projectName">
-          </v-text-field>
+          <v-text-field outlined dense v-model="projectName"> </v-text-field>
         </v-col>
         <v-col cols="8" md="4" class="ml-10">
           <h3 class="mb-2">
@@ -88,6 +84,27 @@
       :merchandiser="merchandiser"
       v-else
     />
+
+    <v-footer fixed bottom padless>
+      <v-carousel
+        :show-arrows="false"
+        hide-delimiters
+        height="200"
+        cycle
+        class="mt-12"
+      >
+        <v-carousel-item
+          v-for="(item, i) in ads"
+          :key="i"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        >
+          <v-sheet tile>
+            <v-img :src="item.src" contain></v-img>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+    </v-footer>
   </div>
 </template>
 
@@ -113,7 +130,7 @@ export default class ProjectBuilder extends Vue {
   public snackbarText: string = "";
 
   merchandiserLoading: boolean = false;
-  
+
   created() {
     this.GetMerchandiser();
   }
@@ -184,6 +201,15 @@ export default class ProjectBuilder extends Vue {
     {
       categoryName: "Accessories",
       categoryImage: require("@/assets/accessories.png"),
+    },
+  ];
+
+  ads: any = [
+    {
+      src: require("@/assets/ads-2.jpg"),
+    },
+    {
+      src: require("@/assets/ads-1.jpg"),
     },
   ];
 }

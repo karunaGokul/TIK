@@ -13,6 +13,11 @@
         "type": "price"
       },
       {
+        "label": "Your required Credit Period in days",
+        "id": "creditPeriod",
+        "type": "number"
+      },
+      {
         "label": "Order Confirmation Date",
         "id": "confirmationDate",
         "type": "date"
@@ -21,12 +26,8 @@
         "label": "Expected Delivery Date",
         "id": "deliveryDate",
         "type": "date"
-      },
-      {
-        "label": "Your required Credit Period in days",
-        "id": "creditPeriod",
-        "type": "number"
       }
+     
     ]
   },
   {

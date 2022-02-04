@@ -239,7 +239,7 @@ export default class Dashboard extends Vue {
     {
       text: "Bids Received",
       color: "teal lighten-3",
-      icon: require("@/assets/icons/approved bid.png"),
+      icon: require("@/assets/icons/bid received.png"),
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Quote InCharge"],
@@ -266,6 +266,7 @@ export default class Dashboard extends Vue {
     {
       text: "Approval Pending",
       color: "light-blue lighten-2",
+      icon: require("@/assets/icons/approval pending.png"),
       count: 0,
       company: false,
       roles: ["MasterAdmin", "Approval Admin", "Quote InCharge"],
@@ -275,6 +276,7 @@ export default class Dashboard extends Vue {
     {
       text: "Approval Pending",
       color: "light-blue lighten-2",
+      icon: require("@/assets/icons/approval pending.png"),
       count: 0,
       company: true,
       roles: ["MasterAdmin", "Approval Admin", "Merchandiser"],

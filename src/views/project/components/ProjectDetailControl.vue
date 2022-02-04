@@ -53,9 +53,8 @@
           ></v-date-picker>
         </v-menu>
         <div v-if="control.type == 'price'">
-          <v-card color="transparent" class="pa-8">
+          <v-card color="transparent" flat class="pa-8" style="border:solid 1px rgba(0, 0, 0, 0.38) !important">
             <v-text-field
-              outlined
               dense
               hide-details
               v-model="control.value.price"
@@ -79,7 +78,7 @@
           </v-card>
         </div>
         <div v-if="control.type == 'dia'">
-          <v-card color="transparent" class="pb-2">
+          <v-card color="transparent" class="pb-2" flat  style="border:solid 1px rgba(0, 0, 0, 0.38) !important">
             <v-simple-table style="background: transparent">
               <template v-slot:default>
                 <thead>

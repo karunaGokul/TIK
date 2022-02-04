@@ -27,13 +27,13 @@
         <v-card elevation="2" tile class="mt-2 pa-6">
           <v-card-text>
             <v-tabs-items v-model="tab1">
-              <v-tab-item>
+              <v-tab-item v-if="response.yarn">
                 <v-tabs v-model="tab2">
                   <v-tab v-for="item in tab2Items" :key="item.tab">
                     {{ item.tab }}
                   </v-tab>
 
-                  <v-tab-item>
+                  <v-tab-item >
                     <MillControl
                       :response="response.yarn.regularYarn"
                       option="RegularYarn"
@@ -77,7 +77,7 @@
                   </v-tab-item>
                 </v-tabs>
               </v-tab-item>
-              <v-tab-item>
+              <v-tab-item v-if="response.fabric">
                 <v-tabs v-model="tab4">
                   <v-tab v-for="item in tab4Items" :key="item.tab">
                     {{ item.tab }}

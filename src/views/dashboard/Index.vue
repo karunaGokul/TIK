@@ -57,7 +57,7 @@
                     class="ml-4 mt-4"
                     v-if="nav.count"
                   >
-                    <span class="teal--text text-h5">{{ nav.count }}</span>
+                    <span class="primary--text text-h5">{{ nav.count }}</span>
                   </v-avatar>
                   <v-card-title
                     v-text="nav.text"
@@ -229,7 +229,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "New Projects",
-      color: "amber lighten-3",
+      color: "cyan lighten-4",
       icon: require("@/assets/icons/new project.png"),
       count: 0,
       company: true,
@@ -238,7 +238,8 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Bids Received",
-      color: "teal lighten-3",
+      // color: "teal lighten-3",
+      color: "white",
       icon: require("@/assets/icons/bid received.png"),
       count: 0,
       company: true,

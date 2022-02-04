@@ -85,7 +85,7 @@
       v-else
     />
 
-    <v-footer fixed bottom padless>
+    <v-footer bottom padless>
       <v-carousel
         :show-arrows="false"
         hide-delimiters

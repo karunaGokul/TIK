@@ -37,7 +37,7 @@
             <v-card
               @click="navigateToProjects(nav.status)"
               class="pt-4 pr-4"
-              :color="nav.color"
+              color="cyan lighten-4"
             >
               <v-img
                 :src="nav.icon"
@@ -257,7 +257,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Pending Authentication",
-      color: "cyan lighten-3",
+      color: "cyan lighten-4",
       icon: require("@/assets/icons/pending.png"),
       count: 0,
       company: true,
@@ -276,7 +276,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "Approval Pending",
-      color: "light-blue lighten-2",
+      color: "white",
       icon: require("@/assets/icons/approval pending.png"),
       count: 0,
       company: true,
@@ -294,7 +294,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "No Response Projects",
-      color: "deep-orange accent-1",
+      color: "cyan lighten-4",
       icon: require("@/assets/icons/no response.png"),
       count: 0,
       company: true,
@@ -302,7 +302,7 @@ export default class Dashboard extends Vue {
     },
     {
       text: "No Show Projects",
-      color: "brown lighten-2",
+      color: "white",
       icon: require("@/assets/icons/no show project.png"),
       count: 0,
       status: "NoShow",

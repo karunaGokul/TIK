@@ -13,17 +13,12 @@
 
         <v-col>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi harum
-            reiciendis voluptatum praesentium temporibus provident voluptas
-            accusamus est vel fuga fugit neque illo dolorum, eum modi quo
-            reprehenderit ad cupiditate? Consectetur error, suscipit architecto
-            quia quos libero asperiores labore eos ea itaque quod quibusdam nam
-            quam id enim modi placeat totam voluptas praesentium beatae
-            molestiae et. Earum doloremque maxime qui? Possimus aperiam, beatae
-            blanditiis saepe sed hic temporibus. Tempore, quaerat. Alias,
-            pariatur? Illo asperiores corporis praesentium animi reiciendis
-            earum eos nulla magnam. Ipsam odit asperiores, fugit explicabo
-            voluptatibus aliquid quidem.
+            Efficient time management with timely and committed delivery
+            schedules. Sourcing reliability through high Quality and competitive
+            availability of resources. Exclusive space for the best and most
+            reliable vendors. Cost efficiency with timely payments and high
+            quality vendor management. Avoidance of middlemen and commissions.
+            Efficient business operations with smooth cash flow operations.
           </p>
           <v-btn color="primary" class="mt-2 text-capitalize">
             contact us
@@ -38,57 +33,61 @@
       </div>
 
       <p class="text-center">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet commodi
-        voluptate distinctio dicta, vel repudiandae animi ab nesciunt sapiente
-        quidem quod ipsam minima adipisci error. Aliquam quae possimus a
-        consequatur? Ad nemo earum numquam odit magni sapiente quidem sint
-        obcaecati voluptate rerum dolorum officia exercitationem veniam libero
-        enim inventore commodi voluptatum, voluptas voluptatem quae tenetur
-        provident ratione. Nam, animi ipsum. Distinctio, dicta laboriosam. Error
-        necessitatibus praesentium temporibus id explicabo tenetur illum
-        adipisci repellat, totam doloribus. Voluptatem, laborum. Dignissimos,
-        numquam quos quia corporis qui quidem illo, error id hic, repellendus
-        exercitationem. Consequuntur, aperiam. Cumque distinctio corporis nihil,
-        recusandae ad quod, assumenda dignissimos, doloribus adipisci esse
-        magnam minus! Porro suscipit fugit modi, nam ex accusantium maiores
-        omnis recusandae consequatur, obcaecati doloribus fuga! Qui libero
-        deserunt modi explicabo aut dolorum, voluptas, tempora itaque error
-        facere adipisci blanditiis iste nostrum? Dignissimos quis esse explicabo
-        quam in iste velit quos illo accusamus dolor. Temporibus, doloremque!
+        The presence of a strong vendor network is the backbone of any
+        successful garment enterprise. But in today’s scenario where this
+        network is still only in its basic and physical form, the possibility of
+        creating a robust business scenario becomes a challenge. Today, when
+        everything has shifted to the virtual platform, it’s inevitable for the
+        garment industry to move along with the trend. The introduction of the
+        TIK App into the market is to make good this gap in furthering the
+        business possibilities of the garment industry. TIK App replaces
+        extensive manpower, exorbitant expenses, dependency on certain fixed
+        vendors, paperwork, manual scouting and emails that was used to run your
+        textile business. Today all you need is the TIK App. This integrated app
+        brings it all to you at one single place. You can get the best and most
+        competitive bids from the best vendors from all over. Vendor management
+        is a big challenge and to recognize the best vendors keeping in mind all
+        aspects of transparency in operations, work ethics, market reputation,
+        credit terms, quality of product and service etc is not easy. TIK App
+        simply integrates all these aspects to magically simplify your vendor
+        management system with flawless, efficient functioning and utmost
+        productivity and transparency. Once in our system there would never be
+        any looking back to the old school processes for your business. TIK App
+        also integrates an efficient logistics system by ensuring timely input
+        of resources and that the output also is delivered to the market on
+        time. This brings about high efficiency and scales of economy to the
+        operations of your business. Reviving your textile business from the
+        current pandemic situation is also easy as TIK app helps with services
+        like finding new buyers for your dead stock and seconds and excess
+        material and reestablishing your vendor system in a new way to set your
+        business rolling in complete gusto.
       </p>
 
-        <ul class="d-flex justify-center text-capitalize">
-          <li class="pr-16">management team</li>
-          <li>executive team</li>
-        </ul>
+      <ul class="d-flex justify-center text-capitalize">
+        <li class="pr-16">management team</li>
+        <li>executive team</li>
+      </ul>
 
-      <v-row class="grey lighten-4 color px-16 my-10" align="center" justify="center" height="240">
+      <v-row
+        class="grey lighten-4 color px-16 my-10"
+        align="center"
+        justify="center"
+        height="240"
+      >
         <v-col cols="12" sm="3">
-          <v-img
-            src="@/assets/gallery/gallery1.png"
-            alt="gallery1"
-          />
+          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
         </v-col>
 
         <v-col cols="12" sm="3">
-          <v-img
-            src="@/assets/gallery/gallery1.png"
-            alt="gallery1"
-          />
+          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
         </v-col>
 
         <v-col cols="12" sm="3">
-          <v-img
-            src="@/assets/gallery/gallery1.png"
-            alt="gallery1"
-          />
+          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
         </v-col>
 
         <v-col cols="12" sm="3">
-          <v-img
-            src="@/assets/gallery/gallery1.png"
-            alt="gallery1"
-          />
+          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
         </v-col>
       </v-row>
     </v-container>

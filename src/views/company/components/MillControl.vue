@@ -272,7 +272,6 @@
             :items="response.availableCounts"
             outlined
             dense
-            :filter="customFilter"
             multiple
             :disabled="edit === false"
             :rules="[(v) => !!(v && v.length) || 'Counts is required']"

@@ -19,11 +19,7 @@
             <v-col col="12" md="5">
               <h1>All Your Textile Needs</h1>
 
-              <p class="my-5">
-                Check out the major milestones and achievements in the history
-                of textiles that have led to it becoming one of the largest
-                spinning mill in india.
-              </p>
+              <p class="my-5"> {{ item.text }} </p>
               <v-btn rounded color="primary"> know more </v-btn>
             </v-col>
           </v-row>
@@ -144,7 +140,6 @@
 
             <v-card-text class="mb-1">
               {{ carddetail.cardText1 }}
-              {{ carddetail.cardText2 }}
             </v-card-text>
           </v-card>
         </v-col>
@@ -152,7 +147,7 @@
     </div>
 
     <v-container>
-    <CustomerFeedback />
+      <CustomerFeedback />
     </v-container>
     <v-row justify="center" class="ma-5" no-gutters>
       <v-col cols="10">
@@ -180,15 +175,19 @@ export default class Home extends Vue {
     {
       src: "/carosel-1.jpg",
       category: "../assets.factory.png",
+      text:
+        "Presenting an integrated platform bringing the best of the textile industry together.Seamless business dealing now on your finger tips; experience the best with us.",
     },
 
     {
       src: "/carosel-2.jpg",
       category: "../assets.factory.png",
+      text: "We provide you with the most competitive and competent technological platforms tailor made for your business needs. ",
     },
     {
       src: "/carosel-3.jpg",
       category: "../assets.factory.png",
+      text: "Experience the ultimate ease in business performance with quality par excellence.",
     },
   ];
   cardDetails: any = [
@@ -196,33 +195,25 @@ export default class Home extends Vue {
       icon: "@/assets/i1.png",
       cardTitle: "A textile industry",
       cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-      cardText2:
-        "primarily concerned with the design, production and distribution",
+        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
       icon: "@/assets/i1.png",
       cardTitle: "Best material Collection",
       cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-      cardText2:
-        "primarily concerned with the design, production and distribution",
+        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
       icon: "@/assets/i1.png",
       cardTitle: "Nice collection for you",
       cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-      cardText2:
-        "primarily concerned with the design, production and distribution",
+        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
       icon: "@/assets/i1.png",
       cardTitle: "A fabrics and material",
       cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers.",
-      cardText2:
-        "primarily concerned with the design, production and distribution",
+        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
   ];
   benifits: any = [

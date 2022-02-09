@@ -833,47 +833,75 @@
                         </tbody>
                       </template>
                     </v-simple-table>
-                    <v-simple-table
-                      class="mt-5"
+                    <div
+                    class="mt-3"
                       v-if="
                         category != 'Company' &&
                           row.status === 'Rejected' &&
                           confirmedBidResponse !== ''
                       "
+                      :class="{
+                        'confirmed-project':
+                          category != 'Company' &&
+                          row.status === 'Rejected' &&
+                          confirmedBidResponse !== '',
+                      }"
                     >
-                      <thead class="teal lighten-5 text-capitalize">
-                        <tr>
-                          <th width="15%"></th>
-                          <th class="black--text" width="16%">Price</th>
-                          <th class="black--text" width="16%">Credit Period</th>
-                          <th class="black--text" width="15%">
-                            Delivery Period
-                          </th>
-                          <th class="black--text" width="1%">Review</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td></td>
-                          <td>{{ confirmedBidResponse.price }}</td>
+                      <h4 class="my-3 ml-2 black--text">Confirmed Bid</h4>
+                      <v-simple-table
+                        :class="
+                          category != 'Company' &&
+                          row.status === 'Rejected' &&
+                          confirmedBidResponse !== ''
+                            ? ' table-header-orange '
+                            : ' '
+                        "
+                      >
+                        
+                          <thead class="teal lighten-5 text-capitalize">
+                            <tr>
+                              <th width="15%"></th>
+                              <th class="black--text" width="16%">Price</th>
+                              <th class="black--text" width="16%">
+                                Credit Period
+                              </th>
+                              <th class="black--text" width="15%">
+                                Delivery Period
+                              </th>
+                              <th class="black--text" width="1%">Review</th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            :class="
+                              category != 'Company' &&
+                              row.status === 'Rejected' &&
+                              confirmedBidResponse !== ''
+                                ? 'deep-orange lighten-5 black--text'
+                                : ''
+                            "
+                          >
+                            <tr>
+                              <td></td>
+                              <td>{{ confirmedBidResponse.price }}</td>
 
-                          <td>{{ confirmedBidResponse.creditPeriod }}</td>
-                          <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
+                              <td>{{ confirmedBidResponse.creditPeriod }}</td>
+                              <td>{{ confirmedBidResponse.deliveryPeriod }}</td>
 
-                          <td>
-                            <v-rating
-                              v-model="confirmedBidResponse.companyReview"
-                              color="warning"
-                              dense
-                              size="20"
-                              half-increments
-                              readonly
-                            >
-                            </v-rating>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </v-simple-table>
+                              <td>
+                                <v-rating
+                                  v-model="confirmedBidResponse.companyReview"
+                                  color="warning"
+                                  dense
+                                  size="20"
+                                  half-increments
+                                  readonly
+                                >
+                                </v-rating>
+                              </td>
+                            </tr>
+                          </tbody>
+                      </v-simple-table>
+                    </div>
                   </div>
                 </v-col>
               </v-row>

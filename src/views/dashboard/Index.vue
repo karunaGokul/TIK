@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-carousel :show-arrows="false" height="200" cycle>
+    <v-carousel :show-arrows="false" height="200" hide-delimiters cycle>
       <v-carousel-item
         v-for="(item, i) in ads"
         :key="i"
@@ -8,7 +8,7 @@
         transition="fade-transition"
       >
         <v-sheet tile>
-          <v-img :src="item.src" contain></v-img>
+          <v-img :src="item.src" contain position="bottom center"></v-img>
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
@@ -406,3 +406,8 @@ export default class Dashboard extends Vue {
   ];
 }
 </script>
+<style>
+.v-carousel__item {
+  align-items: flex-end !important;
+}
+</style>

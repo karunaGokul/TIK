@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="footer-wave">
+    <div class="footer-wave" v-if="!isLoggedIn">
       <svg>
         <clipPath id="wave" clipPathUnits="objectBoundingBox">
           <path d="M1,0c0,0-0.3,0.1-0.5,0.1S0.3,0,0,0.1V1h1L1,0z" />
         </clipPath>
       </svg>
-      <v-footer dark v-if="!isLoggedIn" class="pt-16" color="transparent">
+      <v-footer dark  class="pt-16" color="transparent">
         <v-row class="pa-16">
           <v-col cols="6" md="2" class="text-left">
             <div>

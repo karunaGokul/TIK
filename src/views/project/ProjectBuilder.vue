@@ -90,7 +90,6 @@
         :show-arrows="false"
         hide-delimiters
         height="200"
-        cycle
         class="mt-12 mb-n16"
       >
         <v-carousel-item
@@ -214,8 +213,8 @@ export default class ProjectBuilder extends Vue {
   ];
 }
 </script>
-
-
-  
-
-
+<style>
+.v-carousel__item {
+  align-items: flex-end !important;
+}
+</style>

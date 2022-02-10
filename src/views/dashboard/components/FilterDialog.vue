@@ -2,9 +2,9 @@
   <div>
     <v-dialog v-model="dialog" width="500">
       <template v-slot:activator="{ on, attrs }">
-        <v-icon large color="green darken-4" v-bind="attrs" v-on="on">
-          mdi-filter
-        </v-icon>
+        <v-btn icon color="green darken-4" v-bind="attrs" v-on="on">
+          <v-icon> mdi-filter </v-icon>
+        </v-btn>
       </template>
       <v-card elevation="2">
         <v-card-title>

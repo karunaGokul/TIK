@@ -4,12 +4,12 @@
       <h4 class="text-h5 mr-4">Rejected Bids</h4>
 
       <FilterDialog :projectId="projectId" @filteredBids="filteredBids" />
-      <v-icon large color="green darken-4" class="ml-4" @click="reset()">
-        mdi-lock-reset
-      </v-icon>
-      <v-icon large color="green darken-4" class="ml-4" @click="sort">
-        mdi-sort-ascending
-      </v-icon>
+      <v-btn icon color="green darken-4" class="ml-2" @click="reset">
+        <v-icon> mdi-lock-reset</v-icon>
+      </v-btn>
+      <v-btn icon color="green darken-4" class="ml-2" @click="sort">
+        <v-icon> mdi-sort-ascending </v-icon>
+      </v-btn>
     </v-row>
 
     <v-row v-for="row in response" :key="row.status">
@@ -31,6 +31,7 @@
                     color="warning"
                     dense
                     half-increments
+                    size="14"
                     readonly
                   ></v-rating
                 ></v-card-subtitle>

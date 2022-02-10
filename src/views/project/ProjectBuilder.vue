@@ -85,25 +85,7 @@
       v-else
     />
 
-    <v-footer bottom padless>
-      <v-carousel
-        :show-arrows="false"
-        hide-delimiters
-        height="200"
-        class="mt-12 mb-n16"
-      >
-        <v-carousel-item
-          v-for="(item, i) in ads"
-          :key="i"
-          reverse-transition="fade-transition"
-          transition="fade-transition"
-        >
-          <v-sheet tile>
-            <v-img :src="item.src" contain></v-img>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
-    </v-footer>
+    
   </div>
 </template>
 
@@ -201,20 +183,6 @@ export default class ProjectBuilder extends Vue {
       categoryName: "Accessories",
       categoryImage: require("@/assets/accessories.png"),
     },
-  ];
-
-  ads: any = [
-    {
-      src: require("@/assets/ads-2.jpg"),
-    },
-    {
-      src: require("@/assets/ads-1.jpg"),
-    },
-  ];
+  ];  
 }
 </script>
-<style>
-.v-carousel__item {
-  align-items: flex-end !important;
-}
-</style>

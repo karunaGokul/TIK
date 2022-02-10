@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="mt-16" justify="center" align="center">
-      <h1 class="text-capitalize">customer say</h1>
+      <h2 class="text-h4">Customer Say</h2>
       <Divider />
     </div>
 
-    <v-carousel v-model="model" hide-delimiters cycle height="300" class="mt-16">
+    <v-carousel v-model="model" hide-delimiters cycle height="300" class="mt-12">
       <v-carousel-item v-for="customer in customers" :key="customer.name">
         <v-sheet height="100%" class="mx-16">
           <v-row class="fill-height" align="center" justify="center">
@@ -13,8 +13,8 @@
               <v-card
                 class="grey lighten-4 black--text pa-10"
               >
-                <v-icon x-large color="teal">mdi-comma</v-icon>
-                <p>{{ customer.description }}</p>
+                <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
+                <p class="mt-2">{{ customer.description }}</p>
 
                 <v-row>
                   <v-col>
@@ -31,9 +31,9 @@
                       size="14"
                     ></v-rating>
                   </v-col>
-                  <v-col class="d-flex justify-right">
+                  <v-col class="text-right">
                     <v-avatar>
-                      <img :src="customer.src" alt="James" />
+                      <img :src="customer.src" alt="" />
                     </v-avatar>
                   </v-col>
                 </v-row>
@@ -44,8 +44,8 @@
               <v-card
                 class="grey lighten-4 black--text pa-10"
               >
-                <v-icon x-large color="teal">mdi-comma</v-icon>
-                <p>{{ customer.description }}</p>
+                <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
+                <p class="mt-2">{{ customer.description }}</p>
 
                 <v-row>
                   <v-col>
@@ -62,7 +62,7 @@
                       size="14"
                     ></v-rating>
                   </v-col>
-                  <v-col class="d-flex justify-right">
+                  <v-col class="text-right">
                     <v-avatar>
                       <img :src="customer.src" alt="James" />
                     </v-avatar>
@@ -80,15 +80,15 @@
       justify="center"
       align="center"
     >
-      <h1 class="text-capitalize">register</h1>
+     <h2 class="text-h4">Register</h2>
 
       <Divider />
 
-      <p class="my-10">Register your company today and Start your business.</p>
+      <p class="my-10 text-body-1">Register your company today and Start your business.</p>
 
       <v-btn
         color="primary"
-        class="font-weight-light text-capitalize rounded-0"
+        class="text-capitalize rounded-0"
       >
         <router-link to="/registration" class="white--text text-decoration-none"
           >Register</router-link
@@ -97,11 +97,11 @@
     </div>
 
     <div class="my-16" justify="center" align="center">
-      <h1 class="text-capitalize">download the app</h1>
+      <h2 class="text-h4">Download the App</h2>
 
       <Divider />
 
-      <p class="my-10 font-weight-medium">The Best Business app for you.</p>
+      <p class="my-6 text-h6">The Best Business app for you.</p>
 
       <v-row>
         <v-col align="end">
@@ -160,13 +160,13 @@ export default Vue.extend({
           name: "james sulivan",
           description:
             "The Goverment for initiating policies that ensure creation of world class texttile infrastructure in the country and management tech.",
-          src: "../assets/img/face4.jpg",
+          src: require("@/assets/face4.jpg"),
         },
         {
           name: "sam smith",
           description:
             "This sector is highly responsible for propelling india's overall and develop development and enjoys intense focus from it policies and energy of health.",
-          src: "../assets/img/face1.jpg",
+          src: require("@/assets/face4.jpg"),
         },
       ],
     };

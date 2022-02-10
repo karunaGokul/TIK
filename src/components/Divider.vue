@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <v-divider class="pb-1" color="primary" width="50px" />
-  </div>
+    <v-divider width="80px" />
 </template>
 
 <script lang="ts">

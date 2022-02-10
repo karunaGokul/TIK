@@ -187,7 +187,9 @@ export default class ProjectForm extends Vue {
     this.mode = StepMode.Form;
     this.path = "";
 
-    this.data = this.$vuehelper.clone(this.service.getProjectForm(this.categoryName));
+    this.data = this.$vuehelper.clone(
+      this.service.getProjectForm(this.categoryName)
+    );
     const step = this.data.steps[0];
     step.stepNumber = 1;
     this.steps.push(step);
@@ -345,10 +347,13 @@ export default class ProjectForm extends Vue {
   get progress() {
     if (this.mode == StepMode.Result || this.mode == StepMode.Detail) return 90;
     else if (this.mode == StepMode.Summary) return 100;
-    else
-      return this.steps.length > 1
-        ? ((this.steps.length - 1) / this.data.maxSteps) * 100
-        : 0;
+    else {
+      const p =
+        this.steps.length > 1
+          ? ((this.steps.length - 1) / this.data.maxSteps) * 100
+          : 0;
+      return p < 90 ? p : 90;
+    }
   }
 
   get currentStep() {

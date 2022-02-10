@@ -1,17 +1,6 @@
 <template>
   <div>
-    <v-carousel :show-arrows="false" height="200" hide-delimiters cycle>
-      <v-carousel-item
-        v-for="(item, i) in ads"
-        :key="i"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      >
-        <v-sheet tile>
-          <v-img :src="item.src" contain position="bottom center"></v-img>
-        </v-sheet>
-      </v-carousel-item>
-    </v-carousel>
+    <Advertisement />
 
     <v-container fluid class="pa-6">
       <v-banner tile class="pt-8">
@@ -136,7 +125,11 @@ import {
   UserInfomodel,
   NotificationModel,
 } from "@/model";
-@Component
+import Advertisement from "@/components/Advertisement.vue";
+
+@Component({
+  components: { Advertisement },
+})
 export default class Dashboard extends Vue {
   @Inject("DashboardService") service: IDashboardService;
 
@@ -395,19 +388,6 @@ export default class Dashboard extends Vue {
       roles: ["MasterAdmin"],
     },
   ];
-
-  ads: any = [
-    {
-      src: require("@/assets/ads-2.jpg"),
-    },
-    {
-      src: require("@/assets/ads-1.jpg"),
-    },
-  ];
+  
 }
 </script>
-<style>
-.v-carousel__item {
-  align-items: flex-end !important;
-}
-</style>

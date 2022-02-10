@@ -6,7 +6,7 @@
           <path d="M1,0c0,0-0.3,0.1-0.5,0.1S0.3,0,0,0.1V1h1L1,0z" />
         </clipPath>
       </svg>
-      <v-footer dark  class="pt-16" color="transparent">
+      <v-footer dark class="pt-16" color="transparent">
         <v-row class="pa-16">
           <v-col cols="6" md="2" class="text-left">
             <div>
@@ -134,18 +134,29 @@
         </v-row>
       </v-footer>
     </div>
+    <v-footer bottom padless v-else-if="isProjectBuilder">
+      <Advertisement />
+    </v-footer>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component
+import Advertisement from "@/components/Advertisement.vue";
+
+@Component({
+  components: { Advertisement },
+})
 export default class AppFooter extends Vue {
   icons: any = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
   }
+
+  get isProjectBuilder(): boolean {
+    return this.$route.name == "Project";
+  } 
 }
 </script>
 <style scoped>

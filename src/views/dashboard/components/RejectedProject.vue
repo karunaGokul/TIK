@@ -97,10 +97,6 @@ export default class RejectedProject extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
 
   public filterRequest = new FilterRequestModel();
-  // public dialog: boolean = false;
-  // public filterValue: boolean = false;
-  // public selectValue: string = "";
-  // public value: string;
   public sortedValue: any;
   public temp: boolean = false;
 

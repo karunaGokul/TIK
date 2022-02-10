@@ -90,7 +90,6 @@
         :show-arrows="false"
         hide-delimiters
         height="200"
-        class="mt-12 mb-n16"
       >
         <v-carousel-item
           v-for="(item, i) in ads"

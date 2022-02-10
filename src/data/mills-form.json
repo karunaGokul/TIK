@@ -2129,9 +2129,7 @@
 					"id": "btnContenttype",
 					"label": "Fabric Content",
 					"type": "toggle-button",
-					"selector": true,
-					"data_path": "",
-					"data_id": "mil.Fabric.MelangeSlubFabric.AVGCreditTime",
+					"selector": true,					
 					"options": [
 						{
 							"id": "opMelange",
@@ -2161,7 +2159,7 @@
 					"type": "toggle-button",
 					"selector": true,
 					"data_path": "",
-					"data_id": "",
+					"data_id": "mil.Fabric.MelangeSlubFabric.Melange.AVGCreditTime",
 					"options": [
 						{
 							"id": "opSingle",
@@ -2191,7 +2189,7 @@
 					"type": "toggle-button",
 					"selector": true,
 					"data_path": "",
-					"data_id": "",
+					"data_id": "mil.Fabric.MelangeSlubFabric.Slub.AVGCreditTime",
 					"options": [
 						{
 							"id": "opSingle",
@@ -8285,7 +8283,7 @@
 									"type": "dropdown-range",
 									"selector": false,
 									"multiple": true,
-									"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.DIA",
+									"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.Dia",
 									"data_id": "Array",
 									"data": {
 										"start": 1,

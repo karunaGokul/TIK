@@ -85,7 +85,28 @@
       v-else
     />
 
+<<<<<<< HEAD
     
+=======
+    <v-footer bottom padless>
+      <v-carousel
+        :show-arrows="false"
+        hide-delimiters
+        height="200"
+      >
+        <v-carousel-item
+          v-for="(item, i) in ads"
+          :key="i"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        >
+          <v-sheet tile>
+            <v-img :src="item.src" contain></v-img>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+    </v-footer>
+>>>>>>> 1b35824939f9eb072ec1482b41822a2c92bd8313
   </div>
 </template>
 

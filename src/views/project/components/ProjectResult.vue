@@ -1,4 +1,4 @@
- <template>
+<template>
   <div>
     <v-data-table
       :headers="headers"
@@ -29,6 +29,19 @@
             </v-col>
           </v-row>
         </v-toolbar>
+      </template>
+      <template v-slot:[`item.review`]="{ item }">
+        <div class="ml-n6">
+          <v-rating
+            v-model="item.review"
+            color="warning"
+            dense
+            size="20"
+            half-increments
+            readonly
+          >
+          </v-rating>
+        </div>
       </template>
     </v-data-table>
   </div>
@@ -75,7 +88,6 @@ export default class ProjectResult extends Vue {
     },
   ];
 
-
   certificate: any = [
     "certification one",
     "certification two",
@@ -85,4 +97,3 @@ export default class ProjectResult extends Vue {
   ];
 }
 </script>
-

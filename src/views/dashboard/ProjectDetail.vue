@@ -277,7 +277,7 @@
             flat
             v-if="
               (row.status != 'Rejected' && category === 'Company') ||
-              category != 'Company'
+              (category != 'Company' && row.status != 'Initiated')
             "
             :class="{
               'confirmed-project':
@@ -645,11 +645,10 @@
                                 {{ row.status }}
                               </div>
                               <div
-                                v-else-if="
-                                  (row.status === 'Confirmed' &&
+                                v-else-if="role === 'MasterAdmin' &&
+                                  ((row.status === 'Confirmed' && 
                                     row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role === 'MasterAdmin')
+                                  (row.status === 'Completed'))
                                 "
                                 class="text-wrap"
                               >
@@ -797,11 +796,10 @@
                                 {{ row.status }}
                               </div>
                               <div
-                                v-else-if="
-                                  (row.status === 'Confirmed' &&
+                                v-else-if=" role === 'MasterAdmin' &&
+                                  ((row.status === 'Confirmed' &&
                                     row.ratings !== null) ||
-                                  (row.status === 'Completed' &&
-                                    role === 'MasterAdmin')
+                                  (row.status === 'Completed'))
                                 "
                                 class="text-wrap"
                               >

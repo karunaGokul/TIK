@@ -5,9 +5,9 @@
         <v-container fill-height fluid class="white--text pa-8">
           <v-row align="center" justify="center">
             <v-col>
-              <h1>Welcome To Textile</h1>
-              <h2 class="py-2">Login to continue Access</h2>
-              <p>
+              <h3 class="text-h3">Welcome To Textile</h3>
+              <h2 class="py-2 text-h5">Login to continue Access</h2>
+              <p class="text-body-1">
                 Today we are thinking of all our members across the world and
                 are encouraged by the support our networks bring in times such
                 as these. Use the left test instrument details to attempt a

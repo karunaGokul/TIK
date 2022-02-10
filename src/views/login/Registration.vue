@@ -5,8 +5,8 @@
         <v-container fill-height fluid class="white--text pa-8">
           <v-row align="center" justify="center">
             <v-col>
-              <h1>Let's Get Started</h1>
-              <p>
+              <h3 class="text-h3">Let's Get Started</h3>
+              <p class="text-body-1">
                 Today we are thinking of all our members across the world and
                 are encouraged by the support our networks bring in times such
                 as these. Use the left test instrument details to attempt a
@@ -169,7 +169,6 @@
                     class="
                       white--text
                       font-weight-light
-                      text-capitalize
                       rounded-0
                     "
                     color="primary"
@@ -285,7 +284,7 @@
 
               <v-btn
                 color="primary"
-                class="rounded-0 white--text font-weight-light text-capitalize"
+                class="rounded-0 white--text font-weight-light"
                 depressed
                 block
                 :loading="loading"

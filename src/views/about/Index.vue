@@ -1,96 +1,131 @@
 <template>
   <div>
-    <v-container fluid class="pa-16">
-      <div class="my-15" justify="center" align="center">
-        <h1 class="text-capitalize">about us</h1>
+    <v-img src="@/assets/gallery/banner.jpeg" height="500"> </v-img>
+
+    <v-container class="my-10">
+      <div justify="center" align="center">
+        <h2 class="text-h4">Who we are</h2>
         <Divider />
       </div>
-
-      <v-row>
-        <v-col cols="12" sm="4">
-          <v-img src="@/assets/gallery/gallery1.png" height="250"></v-img>
-        </v-col>
-
-        <v-col>
-          <p>
-            Efficient time management with timely and committed delivery
-            schedules. Sourcing reliability through high Quality and competitive
-            availability of resources. Exclusive space for the best and most
-            reliable vendors. Cost efficiency with timely payments and high
-            quality vendor management. Avoidance of middlemen and commissions.
-            Efficient business operations with smooth cash flow operations.
-          </p>
-          <v-btn color="primary" class="mt-2 text-capitalize">
-            contact us
-          </v-btn>
-        </v-col>
-      </v-row>
-
-      <div class="my-15" justify="center" align="center">
-        <h1 class="text-capitalize">what we do</h1>
+      <div class="pa-6 text-body-1 text-center">
+        <p>
+          Textile Industry Konnect, connecting bridges between the Mills,
+          Knitting, Dyeing, Printing and Processing industries. The app lets you
+          monitor the workflow, attract bids from multiple vendors, complete
+          transparency and awareness of market trends. What TIK App opens to you
+          is a wide array of services for which to date you’ve been depending on
+          extensive manpower, exorbitant expenses, dependency on certain fixed
+          vendors with their monopolistic policies, and many more such practices
+          which have only been challenging and not contributing to the business.
+        </p>
+      </div>
+      <div justify="center" align="center">
+        <h2 class="text-h4">What We Do</h2>
 
         <Divider />
       </div>
 
-      <p class="text-center">
-        The presence of a strong vendor network is the backbone of any
-        successful garment enterprise. But in today’s scenario where this
-        network is still only in its basic and physical form, the possibility of
-        creating a robust business scenario becomes a challenge. Today, when
-        everything has shifted to the virtual platform, it’s inevitable for the
-        garment industry to move along with the trend. The introduction of the
-        TIK App into the market is to make good this gap in furthering the
-        business possibilities of the garment industry. TIK App replaces
-        extensive manpower, exorbitant expenses, dependency on certain fixed
-        vendors, paperwork, manual scouting and emails that was used to run your
-        textile business. Today all you need is the TIK App. This integrated app
-        brings it all to you at one single place. You can get the best and most
-        competitive bids from the best vendors from all over. Vendor management
-        is a big challenge and to recognize the best vendors keeping in mind all
-        aspects of transparency in operations, work ethics, market reputation,
-        credit terms, quality of product and service etc is not easy. TIK App
-        simply integrates all these aspects to magically simplify your vendor
-        management system with flawless, efficient functioning and utmost
-        productivity and transparency. Once in our system there would never be
-        any looking back to the old school processes for your business. TIK App
-        also integrates an efficient logistics system by ensuring timely input
-        of resources and that the output also is delivered to the market on
-        time. This brings about high efficiency and scales of economy to the
-        operations of your business. Reviving your textile business from the
-        current pandemic situation is also easy as TIK app helps with services
-        like finding new buyers for your dead stock and seconds and excess
-        material and reestablishing your vendor system in a new way to set your
-        business rolling in complete gusto.
+      <p class="pa-6 text-center text-body-1">
+        Vendor management is a big challenge especially to manage the enormous
+        levels of manipulation and lack of transparency in the system. To
+        recognize the best vendors keeping in mind all aspects of transparency
+        in operations, work ethics, market reputation, credit terms, quality of
+        product and service, etc is a big task. TIK App simply integrates all
+        these aspects to magically simplify your vendor management system with
+        flawless, efficient functioning and utmost productivity and
+        transparency. Once in our system, there would never be any looking back
+        to the old school processes for your business.
       </p>
-
-      <ul class="d-flex justify-center text-capitalize">
-        <li class="pr-16">management team</li>
-        <li>executive team</li>
-      </ul>
-
-      <v-row
-        class="grey lighten-4 color px-16 my-10"
-        align="center"
-        justify="center"
-        height="240"
-      >
-        <v-col cols="12" sm="3">
-          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
-        </v-col>
-
-        <v-col cols="12" sm="3">
-          <v-img src="@/assets/gallery/gallery1.png" alt="gallery1" />
-        </v-col>
-      </v-row>
     </v-container>
+
+    <v-img src="@/assets/benifits/benifits-background.png">
+      <v-container class="fill-height justify-end">
+        <div justify="center" align="center">
+          <h2 class="text-h4">Why TIK?</h2>
+          <Divider />
+
+          <div class="pa-6 text-body-1 text-center">
+            <ul class="bulleted-list">
+              <li>
+                ★ Efficient time management with timely and committed delivery
+                schedules
+              </li>
+              <li>
+                ★ Efficient time management with timely and committed delivery
+                schedules
+              </li>
+              <li>★ Exclusive space for the best and most reliable vendors</li>
+              <li>
+                ★ Cost efficiency with timely payments and high quality vendor
+                management
+              </li>
+              <li>★ Avoidance of middlemen and commissions</li>
+              <li>
+                ★ Efficient business operations with smooth cash flow operations
+              </li>
+            </ul>
+            <v-btn color="primary" class="mt-6 text-capitalize">
+              contact us
+            </v-btn>
+          </div>
+        </div>
+      </v-container>
+    </v-img>
+
+    <v-container class="my-10">
+      <div justify="center" align="center">
+        <h2 class="text-h4">The Magic of TIK</h2>
+
+        <Divider />
+      </div>
+
+      <div class="pa-6 text-justify text-body-1">
+        <p>
+          The presence of a strong vendor network is the backbone of any
+          successful garment enterprise. But in today’s scenario where this
+          network is still only in its basic and physical form, the possibility
+          of creating a robust business scenario becomes a challenge.
+        </p>
+        <p>
+          Today, when everything has shifted to the virtual platform, it’s
+          inevitable for the garment industry to move along with the trend. The
+          introduction of the TIK App into the market is to make good this gap
+          in furthering the business possibilities of the garment industry.
+        </p>
+        <p>
+          TIK App replaces extensive manpower, exorbitant expenses, dependency
+          on certain fixed vendors, paperwork, manual scouting and emails that
+          was used to run your textile business. Today all you need is the TIK
+          App. This integrated app brings it all to you at one single place. You
+          can get the best and most competitive bids from the best vendors from
+          all over.
+        </p>
+        <p>
+          Vendor management is a big challenge and to recognize the best vendors
+          keeping in mind all aspects of transparency in operations, work
+          ethics, market reputation, credit terms, quality of product and
+          service etc is not easy. TIK App simply integrates all these aspects
+          to magically simplify your vendor management system with flawless,
+          efficient functioning and utmost productivity and transparency. Once
+          in our system there would never be any looking back to the old school
+          processes for your business.
+        </p>
+        <p>
+          TIK App also integrates an efficient logistics system by ensuring
+          timely input of resources and that the output also is delivered to the
+          market on time. This brings about high efficiency and scales of
+          economy to the operations of your business.
+        </p>
+        <p>
+          Reviving your textile business from the current pandemic situation is
+          also easy as TIK app helps with services like finding new buyers for
+          your dead stock and seconds and excess material and reestablishing
+          your vendor system in a new way to set your business rolling in
+          complete gusto.
+        </p>
+      </div>
+    </v-container>
+
     <div class="white--text teal darken-4 pa-16">
       <v-row>
         <v-col class="pl-16" cols="12" sm="4">
@@ -140,4 +175,12 @@ import Divider from "@/components/Divider.vue";
 export default class About extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped>
+.bulleted-list {
+  list-style: none;
+}
+
+.bulleted-list li {
+  padding-bottom: 10px;
+}
+</style>

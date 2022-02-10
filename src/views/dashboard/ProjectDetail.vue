@@ -13,7 +13,7 @@
       </a>
     </div>
 
-    <div class="text-center ma-8" v-if="loading">
+    <div class="text-center ma-16" v-if="loading">
       <v-progress-circular
         :size="70"
         :width="7"
@@ -645,10 +645,11 @@
                                 {{ row.status }}
                               </div>
                               <div
-                                v-else-if="role === 'MasterAdmin' &&
-                                  ((row.status === 'Confirmed' && 
+                                v-else-if="
+                                  role === 'MasterAdmin' &&
+                                  ((row.status === 'Confirmed' &&
                                     row.ratings !== null) ||
-                                  (row.status === 'Completed'))
+                                    row.status === 'Completed')
                                 "
                                 class="text-wrap"
                               >
@@ -796,10 +797,11 @@
                                 {{ row.status }}
                               </div>
                               <div
-                                v-else-if=" role === 'MasterAdmin' &&
+                                v-else-if="
+                                  role === 'MasterAdmin' &&
                                   ((row.status === 'Confirmed' &&
                                     row.ratings !== null) ||
-                                  (row.status === 'Completed'))
+                                    row.status === 'Completed')
                                 "
                                 class="text-wrap"
                               >

@@ -13,7 +13,6 @@
         </template>
       </v-banner>
       <div class="pa-3 mt-8">
-        <!-- <div class="text-h5 text-uppercase mb-4">Browse Projects</div> -->
         <v-row>
           <v-col
             cols="12"
@@ -388,6 +387,5 @@ export default class Dashboard extends Vue {
       roles: ["MasterAdmin"],
     },
   ];
-  
 }
 </script>

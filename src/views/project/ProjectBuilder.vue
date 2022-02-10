@@ -3,15 +3,15 @@
     <v-container fluid class="mt-4 pa-8" v-if="!toggleCategory">
       <v-row>
         <v-col cols="8" md="4">
-          <h3 class="mb-2">
+          <div class="mb-2 text-h6">
             Enter Enquiry Name <span class="red--text">*</span>
-          </h3>
+          </div>
           <v-text-field outlined dense v-model="projectName"> </v-text-field>
         </v-col>
         <v-col cols="8" md="4" class="ml-10">
-          <h3 class="mb-2">
+          <div class="mb-2 text-h6">
             Select Merchandiser <span class="red--text">*</span>
-          </h3>
+          </div>
 
           <v-select
             :menu-props="{ offsetY: true }"
@@ -30,7 +30,7 @@
       </v-row>
 
       <div>
-        <h3 class="mb-2">Select Category</h3>
+        <div class="mb-2 text-h6">Select Category</div>
         <v-row no-gutters>
           <v-col
             cols="4"
@@ -84,8 +84,6 @@
       :merchandiser="merchandiser"
       v-else
     />
-
-    
   </div>
 </template>
 
@@ -183,6 +181,6 @@ export default class ProjectBuilder extends Vue {
       categoryName: "Accessories",
       categoryImage: require("@/assets/accessories.png"),
     },
-  ];  
+  ];
 }
 </script>

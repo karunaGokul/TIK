@@ -13,7 +13,7 @@
     <template>
       <v-card class="mx-3" elevation="8">
         <v-card-title class="mx-6">
-          <h5>Employee List</h5>
+          <h5 class="text-h5">Employee List</h5>
           <router-link
             :to="{ name: 'CreateEmployee', params: { Id: 'Create' }}"
             tag="button"

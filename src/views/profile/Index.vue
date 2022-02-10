@@ -49,7 +49,7 @@
                     dense
                     half-increments
                     readonly
-                    size="14"
+                    size="18"
                   ></v-rating
                 ></v-card-subtitle>
                 <v-card-text>
@@ -81,11 +81,11 @@
     </v-card>
 
     <div class="my-15" justify="center" align="center">
-      <h1>Gallery</h1>
+      <h2 class="text-h4">Gallery</h2>
       <Divider />
     </div>
 
-    <v-sheet class="mx-auto" >
+    <v-sheet class="mx-auto">
       <v-slide-group class="pa-4" active-class="success" show-arrows>
         <v-slide-item v-for="n in 10" :key="n">
           <v-row class="fill-height ma-1" align="center" justify="center">
@@ -97,9 +97,9 @@
       </v-slide-group>
     </v-sheet>
 
-    <v-container fluid class="mx-16">
+    <v-container fluid class="px-16">
       <div class="my-15" justify="center" align="center">
-        <h1>Company Details</h1>
+        <h2 class="text-h4">Company Details</h2>
         <Divider />
       </div>
 
@@ -147,7 +147,9 @@
             >
               <Divider class="ml-4" />
               <router-link to="/knitting" class="text-decoration-none">
-                <v-card-title class="white--text pt-0"> Brochures </v-card-title>
+                <v-card-title class="white--text pt-0">
+                  Brochures
+                </v-card-title>
               </router-link>
             </v-img>
           </v-card>
@@ -174,43 +176,45 @@
               gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
               <Divider class="ml-4" />
-              <v-card-title class="white--text pt-0">Certificates </v-card-title>
+              <v-card-title class="white--text pt-0"
+                >Certificates
+              </v-card-title>
             </v-img>
           </v-card>
         </v-col>
       </v-row>
 
       <div class="my-15 mb-6" justify="center" align="center">
-        <h1>Completed Projects</h1>
+        <h2 class="text-h4">Completed Projects</h2>
         <Divider />
 
-         <v-select
-            outlined
-            dense
-            label="Select Your Category"
-            :items="categorys"
-            style="max-width: 400px;"
-            class="ma-6"
-          >
-          </v-select>
+        <v-select
+          outlined
+          dense
+          label="Select Your Category"
+          :items="categorys"
+          style="max-width: 400px"
+          class="ma-6"
+        >
+        </v-select>
       </div>
 
       <v-row>
-        <v-col v-for="image in galleryImages" :key="image.img">
+        <v-col cols="12" md="3" v-for="image in galleryImages" :key="image.img">
           <v-card :loading="loading" height="100%">
             <v-img :src="image.img" alt="gallery" height="250"></v-img>
 
             <v-card-title>{{ image.title }}</v-card-title>
 
             <v-card-text>
-                <v-rating
-                  :value="4.5"
-                  color="#fd7e14"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-                ></v-rating>
+              <v-rating
+                :value="4.5"
+                color="#fd7e14"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
 
               <div class="mt-5">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -298,10 +302,7 @@ export default class Profile extends Vue {
     },
     {
       img: require("@/assets/gallery/gallery4.png"),
-    },
-    {
-      img: require("@/assets/gallery/gallery5.png"),
-    },
+    }
   ];
   // companyImages: any = [
   //   {

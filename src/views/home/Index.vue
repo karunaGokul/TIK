@@ -126,18 +126,18 @@
         <v-col
           cols="12"
           md="3"
-          v-for="(carddetail, index) in cardDetails"
+          v-for="(item, index) in cardDetails"
           :key="index"
         >
           <v-card class="text-center" flat>
-            <img src="@/assets/i1.png" style="max-height: 50px" />
+            <img :src="item.image" style="max-height: 80px" />
 
             <v-card-subtitle class="black--text text-subtitle-1">
-              <h3>{{ carddetail.cardTitle }}</h3>
+              <h3>{{ item.title }}</h3>
             </v-card-subtitle>
 
             <v-card-text class="pa-4 pt-0 black--text text-body-1">
-              {{ carddetail.cardText1 }}
+              {{ item.text }}
             </v-card-text>
           </v-card>
         </v-col>
@@ -147,7 +147,7 @@
     <v-container>
       <CustomerFeedback />
     </v-container>
-     <v-container fluid class="mb-16 pb-16">
+    <v-container fluid class="mb-16 pb-16">
       <Advertisement />
     </v-container>
   </div>
@@ -175,7 +175,7 @@ export default class Home extends Vue {
     {
       src: "/carosel-2.jpg",
       category: "../assets.factory.png",
-      text: "We provide you with the most competitive and competent technological platforms tailor made for your business needs. ",
+      text: "We provide you with the most competitive and competent technological platforms tailor made for your business needs.",
     },
     {
       src: "/carosel-3.jpg",
@@ -185,28 +185,24 @@ export default class Home extends Vue {
   ];
   cardDetails: any = [
     {
-      icon: "@/assets/i1.png",
-      cardTitle: "A textile industry",
-      cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      image: require("@/assets/i1.png"),
+      title: "A textile industry",
+      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
-      icon: "@/assets/i1.png",
-      cardTitle: "Best material Collection",
-      cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      image: require("@/assets/i2.png"),
+      title: "Best material Collection",
+      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
-      icon: "@/assets/i1.png",
-      cardTitle: "Nice collection for you",
-      cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      image: require("@/assets/i3.png"),
+      title: "Nice collection for you",
+      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
     {
-      icon: "@/assets/i1.png",
-      cardTitle: "A fabrics and material",
-      cardText1:
-        "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      image: require("@/assets/i4.png"),
+      title: "A fabrics and material",
+      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
     },
   ];
   benifits: any = [
@@ -235,7 +231,6 @@ export default class Home extends Vue {
       details: "Reduce commusion by employee",
     },
   ];
-  
 }
 </script>
 <style>

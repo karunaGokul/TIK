@@ -134,7 +134,7 @@
         </v-row>
       </v-footer>
     </div>
-    <v-footer bottom padless v-else-if="isProjectBuilder">
+    <v-footer bottom padless color="transparent" v-else-if="isProjectBuilder">
       <Advertisement />
     </v-footer>
   </div>
@@ -155,7 +155,7 @@ export default class AppFooter extends Vue {
   }
 
   get isProjectBuilder(): boolean {
-    return this.$route.name == "Project";
+    return this.$route.name === "Project";
   } 
 }
 </script>

@@ -277,7 +277,7 @@
             flat
             v-if="
               (row.status != 'Rejected' && category === 'Company') ||
-              category != 'Company'
+              (category != 'Company' && row.status != 'Initiated')
             "
             :class="{
               'confirmed-project':

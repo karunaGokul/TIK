@@ -24,7 +24,7 @@
 
           <v-col class="text-left" cols="6" md="2">
             <v-list nav dense flat color="transparent" class="pa-0">
-              <v-list-item-title class="pl-2 pb-2 font-weight-bold"
+              <v-list-item-title class="pl-2 pb-2 text-subtitle-1"
                 >Popular Category</v-list-item-title
               >
               <v-list-item-group>
@@ -49,7 +49,7 @@
 
           <v-col class="text-left" cols="6" md="2">
             <v-list nav dense flat color="transparent" class="pa-0">
-              <v-list-item-title class="pl-2 pb-2 font-weight-bold"
+              <v-list-item-title class="pl-2 pb-2 text-subtitle-1"
                 >Quick Links</v-list-item-title
               >
               <v-list-item-group>
@@ -74,7 +74,7 @@
 
           <v-col class="text-left" cols="6" md="2">
             <v-list nav dense flat color="transparent" class="pa-0">
-              <v-list-item-title class="pl-2 pb-2 font-weight-bold"
+              <v-list-item-title class="pl-2 pb-2 text-subtitle-1"
                 >Terms</v-list-item-title
               >
               <v-list-item-group>
@@ -100,7 +100,7 @@
           <v-col cols="12" md="4" class="text-left">
             <div class="d-flex flex-column" style="height: 100%">
               <div>
-                <h4 class="pb-4">Newsletter</h4>
+                <div class="pb-4 text-subtitle-1">Newsletter</div>
                 <v-text-field
                   background-color="white"
                   light

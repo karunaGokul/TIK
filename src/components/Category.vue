@@ -33,7 +33,7 @@
                 >{{ category.categoryName }}</v-toolbar
               >
               <v-card-text>
-                <div class="text-body-1 pa-12 text-justify">{{ category.text }}</div>
+                <div class="text-body-1 pa-12 text-justify black--text">{{ category.text }}</div>
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn text @click="dialog.value = false">Close</v-btn>

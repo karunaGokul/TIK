@@ -40,12 +40,12 @@
                   style="height: 100%"
                 >
                   <v-avatar
-                    color="grey lighten-2"
+                    color="primary"
                     size="50"
                     class="ml-4 mt-4"
                     v-if="nav.count"
                   >
-                    <span class="primary--text text-h5">{{ nav.count }}</span>
+                    <span class="white--text text-h5">{{ nav.count }}</span>
                   </v-avatar>
                   <v-card-title
                     v-text="nav.text"

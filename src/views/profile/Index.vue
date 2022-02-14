@@ -108,7 +108,8 @@
           <v-btn color="primary" class="mx-1 my-4"> Company </v-btn></span
         >
         <span v-else>
-          <v-btn
+          <router-link to="/mill" class="text-decoration-none">
+            <v-btn
             color="primary"
             class="mx-1 my-4"
             v-for="(category, index) in categorys"
@@ -116,6 +117,8 @@
           >
             {{ category }}
           </v-btn>
+          </router-link>
+          
         </span>
       </v-card>
 
@@ -314,7 +317,7 @@ export default class Profile extends Vue {
   //   { title: "Certificates", src: require("@/assets/mill/certificate.png") },
   // ];
   categorys: any = [
-    "Mills",
+    "mill",
     "Knitting",
     "Dyeing",
     "Processing",

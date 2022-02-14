@@ -65,6 +65,20 @@
               Comments: {{ response.message }}
             </span>
           </v-col>
+          <!-- <v-col v-else cols="12" md="3" offset-md="3"></v-col> -->
+           <v-col
+            cols="12"
+            md="3"
+            offset-md="3"
+            class="text-right"
+            v-if="
+              category === 'Company'
+            "
+          >
+            <span class="overline font-weight-bold text-wrap text-capitalize">
+             Bidding Time: {{ response.message }}
+            </span>
+          </v-col>
           <v-col v-else cols="12" md="3" offset-md="3"></v-col>
           <v-col cols="12" md="2" class="text-right">
             <v-btn

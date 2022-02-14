@@ -88,6 +88,12 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/company/KnittingBuilder.vue'),
     meta: { anonymous: true }
   },
+  {
+    path: '/dyeing',
+    name: 'Dyeing',
+    component: () => import('../views/company/DyeBuilder.vue'),
+    meta: { anonymous: true }
+  },
 ]
 
 const router = new VueRouter({

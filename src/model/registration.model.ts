@@ -20,6 +20,12 @@ export class CategoryResponseModel{
     id: number;
     categoryName: string;
 }
+
+export class GetNotificationResponseModel {
+    id: number;
+    status: string;
+}
+
 export class CountryResponseModel{
     id: number;
     countryName: string;

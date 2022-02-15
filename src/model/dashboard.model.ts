@@ -24,6 +24,7 @@ export class DashboardModel {
   CreatedBy: string;
   CreatedDate: string;
   bidsReceived: number;
+  biddingTime: number;
   confirmationDate: number;
   requestedDeliveryDate: number;
   noOfKg: number;

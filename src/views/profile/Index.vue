@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="pl-4">
-                <v-card-title class="text-h5 pt-0">{{
+                <v-card-title class="text-h5 d-flex text-no-wrap pt-0">{{
                   response.unitName
                 }}</v-card-title>
 
@@ -108,17 +108,18 @@
           <v-btn color="primary" class="mx-1 my-4"> Company </v-btn></span
         >
         <span v-else>
-          <router-link to="/mill" class="text-decoration-none">
+          <span v-for="(category, index) in categorys"
+            :key="index">
+          <router-link to="/dyeing" class="text-decoration-none">
             <v-btn
             color="primary"
             class="mx-1 my-4"
-            v-for="(category, index) in categorys"
-            :key="index"
+            
           >
             {{ category }}
           </v-btn>
           </router-link>
-          
+          </span>
         </span>
       </v-card>
 

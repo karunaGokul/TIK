@@ -1,5 +1,5 @@
 import { ServiceHelper } from './base.service';
-import { CompanyProfileModel, ProfileRequestModel, ProfileResponse } from '@/model';
+import { CompanyProfileModel, ProfileRequestModel, ProfileResponse, DyeingProfileModel } from '@/model';
 import { AxiosRequestConfig } from 'axios';
 
 export interface IProfileService {
@@ -7,6 +7,7 @@ export interface IProfileService {
     editProfile(request: ProfileResponse, logo: File): Promise<any>;
     CreateMills(companyId: string): Promise<CompanyProfileModel>;    
     AddMills(request: CompanyProfileModel): Promise<any>;
+    CreateDyeing(companyId: string): Promise<DyeingProfileModel>;
 }
 
 export class ProfileService extends ServiceHelper implements IProfileService {
@@ -42,6 +43,12 @@ export class ProfileService extends ServiceHelper implements IProfileService {
         return this.httpGet('Profile/CreateMills?companyId=' + companyId, null).then(response => {
             return response.data;
         });        
-    }   
+    } 
+    
+    CreateDyeing(companyId: string): Promise<DyeingProfileModel> {
+        return this.httpGet('Profile/CreateDyeing?companyId=' + companyId, null).then(response => {
+            return response.data;
+        });        
+    }
 
 }

@@ -135,20 +135,51 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-
-              <v-label>select your category</v-label>
-              <v-select
-                outlined
-                dense
-                placeholder="Select Category"
-                v-model="request.categoryName"
-                :items="category"
-                item-text="categoryName"
-                item-value="id"
-                class="rounded-0"
-                required
-                :rules="[(v) => !!v || 'Category is required']"
-              ></v-select>
+              <v-row>
+                <v-col>
+                  <v-label>select your category</v-label>
+                  <v-select
+                    outlined
+                    dense
+                    placeholder="Select Category"
+                    v-model="request.categoryName"
+                    :items="category"
+                    item-text="categoryName"
+                    item-value="id"
+                    class="rounded-0"
+                    required
+                    :rules="[(v) => !!v || 'Category is required']"
+                  ></v-select>
+                </v-col>
+                <v-col>
+                  <v-label>select your certification</v-label>
+                  <v-combobox
+                    multiple
+                    outlined
+                    dense
+                    placeholder="Select Certificate"
+                    :items="CategoryResponse"
+                    item-text="categoryName"
+                    item-value="categoryName"
+                    required
+                    :rules="[(v) => !!v || 'Certificate is required']"
+                    class="rounded-0"
+                  >
+                  </v-combobox>
+                  <!-- <v-select
+                    outlined
+                    dense
+                    placeholder="Select Certificate"
+                    v-model="request.categoryName"
+                    :items="category"
+                    item-text="categoryName"
+                    item-value="id"
+                    class="rounded-0"
+                    required
+                    :rules="[(v) => !!v || 'Certificate is required']"
+                  ></v-select> -->
+                </v-col>
+              </v-row>
 
               <v-row>
                 <v-col sm="8">
@@ -164,15 +195,15 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col class="pt-13 pl-16 mt-n5">
+                <v-col class="mt-6">
                   <v-btn
                     class="
                       white--text
                       font-weight-light
                       rounded-0
+                      text-capitalize
                     "
                     color="primary"
-                    large
                     depressed
                     >Verify</v-btn
                   >

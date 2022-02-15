@@ -65,18 +65,17 @@
               Comments: {{ response.message }}
             </span>
           </v-col>
-          <!-- <v-col v-else cols="12" md="3" offset-md="3"></v-col> -->
            <v-col
             cols="12"
             md="3"
             offset-md="3"
             class="text-right"
             v-if="
-              category === 'Company'
+              category === 'Company' && (response.InStages === 'Confirmed' || response.InStages === 'Completed')
             "
           >
             <span class="overline font-weight-bold text-wrap text-capitalize">
-             Bidding Time: {{ response.message }}
+             Bidding Time: {{ response.biddingTime }}
             </span>
           </v-col>
           <v-col v-else cols="12" md="3" offset-md="3"></v-col>

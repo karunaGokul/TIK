@@ -1,7 +1,7 @@
 import { ServiceHelper } from './base.service';
 import {
     RegistrationRequestModel, CountryResponseModel, StateRequestModel, StateResponseModel,
-    CityRequestModel, CityResponseModel, CategoryResponseModel
+    CityRequestModel, CityResponseModel, CategoryResponseModel, GetNotificationResponseModel
 } from '@/model';
 
 export interface IRegistrationService {
@@ -10,6 +10,7 @@ export interface IRegistrationService {
     getCountry(): Promise<Array<CountryResponseModel>>;
     getState(request: StateRequestModel): Promise<Array<StateResponseModel>>;
     getCity(request: CityRequestModel): Promise<Array<CityResponseModel>>;
+    getNotificationList(): Promise<Array<GetNotificationResponseModel>>;
 }
 export class RegistrationService extends ServiceHelper implements IRegistrationService {
 
@@ -23,6 +24,13 @@ export class RegistrationService extends ServiceHelper implements IRegistrationS
             return response.data;
         });
     }
+
+    public getNotificationList(): Promise<Array<GetNotificationResponseModel>> {
+        return this.httpGet('common/GetNotificationList', null).then(response => {
+            return response.data;
+        });
+    }
+
     public getCountry(): Promise<Array<CountryResponseModel>> {
         return this.httpGet('common/Country', null).then(response => {
             return response.data;

@@ -206,12 +206,30 @@
             </v-select>
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="12" md="3">
+            <v-label>
+              Notification
+              <span class="red--text">*</span>
+            </v-label>
+            <v-combobox
+              multiple
+              outlined
+              dense
+              :items="NotificationResponse"
+              item-text="status"
+              item-value="status"
+            >
+            </v-combobox>
+          </v-col>
+        </v-row>
         <v-row
           class="ml-2 mb-2 mt-n2"
           v-if="
             (category === 'Company' &&
               request.EmployeeRole === 'Merchandiser') ||
-            (category != 'Company' && request.EmployeeRole === 'Quote InCharge')
+              (category != 'Company' &&
+                request.EmployeeRole === 'Quote InCharge')
           "
         >
           <v-checkbox
@@ -292,6 +310,7 @@ import {
   MasterAdminResponseModel,
   MerchandiserResponseModel,
   RoleResponseModel,
+  GetNotificationResponseModel,
 } from "@/model";
 import { IEmployeeService, IRegistrationService } from "@/service";
 
@@ -340,6 +359,7 @@ export default class CreateEmployee extends Vue {
   public Merchandiser: Array<MerchandiserResponseModel> = [];
   public MasterAdmin: Array<MasterAdminResponseModel> = [];
   public CategoryResponse: Array<CategoryResponseModel> = [];
+  public NotificationResponse: Array<GetNotificationResponseModel> = [];
   public ApprovalAdmin: Array<ApprovalAdminResponseModel> = [];
   public gender: any = ["Male", "Female"];
   public EmployeeId: string = "";
@@ -357,16 +377,22 @@ export default class CreateEmployee extends Vue {
       this.option = "Create";
     }
     this.GetRoles();
-    // this.GetMerchandiser();
-    // this.GetMasterAdmin();
-    // this.GetApprovalAdmin();
     this.getCategory();
+    this.getNotificationList();
   }
   public getCategory() {
     this.registrationService
       .getCategory()
       .then((response: Array<CategoryResponseModel>) => {
         this.CategoryResponse = response;
+      });
+  }
+
+public getNotificationList() {
+    this.registrationService
+      .getNotificationList()
+      .then((response: Array<GetNotificationResponseModel>) => {
+        this.NotificationResponse = response;
       });
   }
 

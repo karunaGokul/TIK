@@ -1,11 +1,326 @@
 <template>
   <div>
+    <!-- <v-card class="px-2 py-12" flat>
+      <div v-if=" option === 'softFlow'">
+      <v-row>
+        <v-col cols="8">
+          <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+            <v-toolbar-title class="subtitle-1">
+              Type of Process you offer in SoftFlow
+            </v-toolbar-title>
+          </v-toolbar>
+          <v-row class="ml-2 mt-2">
+            <v-col>
+              <v-checkbox label="Washing"></v-checkbox>
+            </v-col>
+            <v-col>
+              <v-checkbox label="Bleaching"></v-checkbox>
+            </v-col>
+            <v-col>
+              <v-checkbox label="Dyeing"></v-checkbox>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <div class="subtitle-1 mt-7">
+        Choose Single & Blend Content in SoftFlow
+      </div>
+      <v-row>
+        <v-col cols="6">
+          <v-list flat>
+            <v-toolbar flat color="#c2e2e2" dense>
+              <v-toolbar-title class="subtitle-1">
+                Single Content
+              </v-toolbar-title>
+            </v-toolbar>
+            <v-list-item
+              v-for="(item, index) in response.melanSlubTypes"
+              :key="index"
+            >
+              <v-list-item-content>{{ item.name }}</v-list-item-content>
+              <v-list-item-action>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                  @change="updateMelanSlubTypes()"
+                ></v-checkbox>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-col>
+        <v-col cols="6">
+          <v-list flat>
+            <v-toolbar flat color="#c2e2e2" dense>
+              <v-toolbar-title class="subtitle-1">
+                Blend Content
+              </v-toolbar-title>
+            </v-toolbar>
+            <v-list-item
+              v-for="(item, index) in response.melanSlubTypes"
+              :key="index"
+            >
+              <v-list-item-content>{{ item.name }}</v-list-item-content>
+              <v-list-item-action>
+                <v-checkbox
+                  v-model="item.isSelected"
+                  :disabled="edit === false"
+                  @change="updateMelanSlubTypes()"
+                ></v-checkbox>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+          <v-checkbox label="Lycra Blends" class="ml-3"></v-checkbox>
+        </v-col>
+      </v-row>
+
+      <div class="subtitle-1 mt-7">
+        Choose the Structures you do in SoftFlow process
+      </div>
+      <Structure :response="response" :option="option" :edit="edit" />
+
+      <v-row
+        class="mt-12"
+        v-if="
+          option === 'RegularFabric' ||
+            option === 'SpecialFabric' ||
+            option === 'MelangeFabric' ||
+            option === 'SlubFabric'
+        "
+      >
+        <v-col cols="6">
+          <input
+            type="checkbox"
+            @change="enableRadioGroup('tubular')"
+            v-model="tubular"
+            class="mr-3"
+            :disabled="edit === false"
+          />
+          <v-label> Tubular </v-label>
+
+          <v-checkbox dense label="Tubular Heatsetting"></v-checkbox>
+          <v-row>
+            <v-col cols="6">
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    Special Finishes
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col cols="6">
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    Tubular Drying Process
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
+          
+            <div class="ml-2 subtitle-1">OPW Stentering</div>
+          
+          <v-row>
+            <v-col>
+          <v-checkbox label="Stenter DIP"></v-checkbox>
+          </v-col>
+          <v-col>
+            <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    DIP Stenter
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+          </v-col>
+          </v-row>
+         
+            <div class="subtitle-1 ml-2">Compacting</div>
+             <v-row>
+            <v-col>
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    Tubular
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col>
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    OPW
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col cols="6">
+          <input
+            type="checkbox"
+            @change="enableRadioGroup('tubular')"
+            v-model="tubular"
+            class="mr-3"
+            :disabled="edit === false"
+          />
+          <v-label> OpenWidth </v-label>
+          <v-checkbox dense label="OPW Heatsetting"></v-checkbox>
+          <v-row>
+            <v-col cols="6">
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    Special Finishes
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+            <v-col cols="6">
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    OPW Compacting
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
+          <v-row class="ml-2">
+            <div class="subtitle-1">OPW Drying Process</div>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-checkbox label="Stenter Dryer"></v-checkbox>
+              <v-checkbox label="Relax Dryer"></v-checkbox>
+            </v-col>
+            <v-col>
+              <v-list flat>
+                <v-toolbar flat color="#c2e2e2" dense>
+                  <v-toolbar-title class="subtitle-1">
+                    DIP Stenter
+                  </v-toolbar-title>
+                </v-toolbar>
+                <v-list-item
+                  v-for="(item, index) in response.melanSlubTypes"
+                  :key="index"
+                >
+                  <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  <v-list-item-action>
+                    <v-checkbox
+                      v-model="item.isSelected"
+                      :disabled="edit === false"
+                      @change="updateMelanSlubTypes()"
+                    ></v-checkbox>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+            </div>
+    </v-card> -->
     <v-card class="px-2 py-12" flat>
       <div
         v-if="
           option === 'SpecialYarn' ||
-          option === 'DyedYarn' ||
-          option === 'SpecialFabric'
+            option === 'DyedYarn' ||
+            option === 'SpecialFabric'
         "
       >
         <v-row justify="center" class="py-5">
@@ -91,14 +406,14 @@
       <div
         v-if="
           option != 'MelangeYarn' &&
-          option != 'SlubYarn' &&
-          option != 'MelangeFabric' &&
-          option != 'SlubFabric'
+            option != 'SlubYarn' &&
+            option != 'MelangeFabric' &&
+            option != 'SlubFabric'
         "
       >
         <v-row justify="center" class="py-4">
           <h2 class="font-weight-regular">
-            {{ response.contentLable }}
+            {{ response.countLable }}
           </h2>
         </v-row>
         <v-row>
@@ -123,9 +438,9 @@
       <v-row
         v-if="
           option === 'MelangeYarn' ||
-          option === 'SlubYarn' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
+            option === 'SlubYarn' ||
+            option === 'MelangeFabric' ||
+            option === 'SlubFabric'
         "
       >
         <v-col cols="6">
@@ -171,9 +486,9 @@
       <div
         v-if="
           option === 'MelangeYarn' ||
-          option === 'SlubYarn' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
+            option === 'SlubYarn' ||
+            option === 'MelangeFabric' ||
+            option === 'SlubFabric'
         "
       >
         <v-row justify="center" class="py-4">
@@ -204,9 +519,9 @@
       <div
         v-if="
           option != 'MelangeYarn' &&
-          option != 'SlubYarn' &&
-          option != 'MelangeFabric' &&
-          option != 'SlubFabric'
+            option != 'SlubYarn' &&
+            option != 'MelangeFabric' &&
+            option != 'SlubFabric'
         "
       >
         <v-row justify="center" class="py-5">
@@ -275,14 +590,15 @@
             multiple
             :disabled="edit === false"
             :rules="[(v) => !!(v && v.length) || 'Counts is required']"
-            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
           ></v-autocomplete>
+          
           <div
             v-if="
               option != 'MelangeYarn' &&
-              option != 'SlubYarn' &&
-              option != 'MelangeFabric' &&
-              option != 'SlubFabric'
+                option != 'SlubYarn' &&
+                option != 'MelangeFabric' &&
+                option != 'SlubFabric'
             "
           >
             <v-label> Deniers: </v-label>
@@ -294,7 +610,7 @@
               multiple
               :disabled="edit === false"
               :rules="[(v) => !!(v && v.length) || 'Deniers is required']"
-              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;" 
+              onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
             ></v-autocomplete>
           </div>
           <v-label>Enter AVG Credit time you offer:</v-label>
@@ -303,18 +619,18 @@
             dense
             required
             v-model="response.avgCreditTime"
-            :disabled="edit === false"  
-            :rules="avgRules"  
-            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"        
+            :disabled="edit === false"
+            :rules="avgRules"
+            onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
           ></v-text-field>
         </v-col>
       </v-row>
       <div
         v-if="
           option === 'RegularFabric' ||
-          option === 'SpecialFabric' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
+            option === 'SpecialFabric' ||
+            option === 'MelangeFabric' ||
+            option === 'SlubFabric'
         "
       >
         <v-row justify="center" class="py-5">
@@ -328,9 +644,9 @@
         class="mt-12"
         v-if="
           option === 'RegularFabric' ||
-          option === 'SpecialFabric' ||
-          option === 'MelangeFabric' ||
-          option === 'SlubFabric'
+            option === 'SpecialFabric' ||
+            option === 'MelangeFabric' ||
+            option === 'SlubFabric'
         "
       >
         <v-col cols="4" class="mx-3">
@@ -352,41 +668,6 @@
               :edit="edit"
             />
           </div>
-          <!-- <v-row class="pt-6">
-            <v-label>GG:</v-label>
-            <v-text-field
-              class="mx-2"
-              outlined
-              dense
-              v-model="response.fabricStructure.tubular.gg"
-              :disabled="edit === false || tubular === false"
-            ></v-text-field>
-          </v-row>
-          <v-row>
-            <v-label>DIA:</v-label>
-            <v-text-field
-              class="mx-2"
-              outlined
-              dense
-              v-model="response.fabricStructure.tubular.dia"
-              :disabled="edit === false || tubular === false"
-            ></v-text-field>
-          </v-row>
-          <v-row>
-            <v-label>Lycra:</v-label>
-            <v-checkbox
-              class="mt-n2 ml-4"
-              v-model="response.fabricStructure.tubular.allFeeder"
-              :disabled="edit === false || tubular === false"
-            ></v-checkbox>
-            <v-label>All Feeder</v-label>
-            <v-checkbox
-              class="mt-n2 ml-4"
-              v-model="response.fabricStructure.tubular.alternateFeeder"
-              :disabled="edit === false || tubular === false"
-            ></v-checkbox>
-            <v-label>Alternate Feeder</v-label>
-          </v-row> -->
         </v-col>
         <v-col cols="4" class="mx-3">
           <v-row>
@@ -407,41 +688,6 @@
               :edit="edit"
             />
           </div>
-          <!-- <v-row class="pt-6">
-            <v-label>GG:</v-label>
-            <v-text-field
-              class="mx-2"
-              outlined
-              dense
-              v-model="response.fabricStructure.openWidth.gg"
-              :disabled="edit === false || width === false"
-            ></v-text-field>
-          </v-row>
-          <v-row>
-            <v-label>DIA:</v-label>
-            <v-text-field
-              class="mx-2"
-              outlined
-              dense
-              v-model="response.fabricStructure.openWidth.dia"
-              :disabled="edit === false || width === false"
-            ></v-text-field>
-          </v-row>
-          <v-row>
-            <v-label>Lycra:</v-label>
-            <v-checkbox
-              class="mt-n2 ml-4"
-              v-model="response.fabricStructure.openWidth.allFeeder"
-              :disabled="edit === false || width === false"
-            ></v-checkbox>
-            <v-label>All Feeder</v-label>
-            <v-checkbox
-              class="mt-n2 ml-4"
-              v-model="response.fabricStructure.openWidth.alternateFeeder"
-              :disabled="edit === false || width === false"
-            ></v-checkbox>
-            <v-label>Alternate Feeder</v-label>
-          </v-row> -->
         </v-col>
       </v-row>
     </v-card>
@@ -471,12 +717,12 @@ export default class MillControl extends Vue {
   public width: boolean = false;
 
   public avgRules: any = [
-    (v: any) => !!v || 'AVG Credit time is required',
+    (v: any) => !!v || "AVG Credit time is required",
     (v: any) => (v && v.length <= 4) || "AVG Credit time must be a Valid Date",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "AVG Credit time must be Valid Number",
-  
+    (v: any) =>
+      (!isNaN(parseInt(v)) && v != 0) || "AVG Credit time must be Valid Number",
   ];
- 
+
   created() {
     if (
       this.option === "MelangeYarn" ||
@@ -499,7 +745,7 @@ export default class MillControl extends Vue {
     this.intializeBlendContents();
   }
 
-    intializeBlendContents() {
+  intializeBlendContents() {
     this.response.blendContents.forEach((b) => {
       b.combos.forEach((c) => {
         if (c.combinationOne === 0) c.combinationOne = null;
@@ -528,14 +774,14 @@ export default class MillControl extends Vue {
     if (option === "tubular") {
       this.response.fabricStructure.openWidth.gg = null;
       this.response.fabricStructure.openWidth.dia = null;
-      this.response.fabricStructure.openWidth.allFeeder = '';
-      this.response.fabricStructure.openWidth.alternateFeeder = '';
+      this.response.fabricStructure.openWidth.allFeeder = "";
+      this.response.fabricStructure.openWidth.alternateFeeder = "";
       this.width = false;
     } else if (option === "width") {
       this.response.fabricStructure.tubular.gg = null;
       this.response.fabricStructure.tubular.dia = null;
-      this.response.fabricStructure.tubular.allFeeder = '';
-      this.response.fabricStructure.tubular.alternateFeeder = '';
+      this.response.fabricStructure.tubular.allFeeder = "";
+      this.response.fabricStructure.tubular.alternateFeeder = "";
       this.tubular = false;
     }
   }
@@ -547,4 +793,3 @@ export default class MillControl extends Vue {
   }
 }
 </script>
-

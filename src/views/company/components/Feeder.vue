@@ -2,14 +2,7 @@
   <div>
     <v-row class="pt-6">
       <span class="my-2" >GG:</span>
-      <!-- <v-label>GG:</v-label> -->
-      <!-- <v-text-field
-        class="mx-2"
-        outlined
-        dense
-        v-model="response.gg"
-        :disabled="edit === false || enable === false"
-      ></v-text-field> -->
+     
       <v-autocomplete
         v-model="response.gg"
         :items="values"
@@ -22,14 +15,7 @@
     </v-row>
     <v-row>
       <span class="my-2" >DIA:</span>
-      <!-- <v-label>DIA:</v-label> -->
-      <!-- <v-text-field
-        class="mx-2"
-        outlined
-        dense
-        v-model="response.dia"
-        :disabled="edit === false || enable === false"
-      ></v-text-field> -->
+     
       <v-autocomplete
         v-model="response.dia"
         :items="values"
@@ -57,7 +43,54 @@
 
       <v-label>Alternate Feeder</v-label>
     </v-row>
+
+    <!-- <div>
+      <v-row class="pt-6">
+      <span class="my-2" >Special Finishes:</span>
+     
+      <v-autocomplete
+        v-model="response.gg"
+        :items="values"
+        class="mx-2 my-1"
+        outlined
+        dense       
+        multiple
+        :disabled="edit === false || enable === false"
+      ></v-autocomplete>
+    </v-row>
+    <v-row>
+      <span class="my-2" >Tubular Drying Process:</span>
+     
+      <v-autocomplete
+        v-model="response.dia"
+        :items="values"
+        class="mx-2"
+        outlined
+        dense       
+        multiple
+        :disabled="edit === false || enable === false"
+      ></v-autocomplete>
+    </v-row>
+    <v-row>
+      <v-label>Lycra:</v-label>
+      <v-checkbox
+        class="mt-n2 ml-4"
+        v-model="response.allFeeder"
+        :disabled="edit === false || enable === false"
+      ></v-checkbox>
+
+      <v-label>All Feeder</v-label>
+      <v-checkbox
+        class="mt-n2 ml-4"
+        v-model="response.alternateFeeder"
+        :disabled="edit === false || enable === false"
+      ></v-checkbox>
+
+      <v-label>Alternate Feeder</v-label>
+    </v-row>
+    </div> -->
   </div>
+  
 </template>
 
 <script lang="ts">

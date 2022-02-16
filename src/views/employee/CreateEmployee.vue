@@ -218,9 +218,32 @@
               dense
               :items="NotificationResponse"
               item-text="status"
-              item-value="status"
+              item-value="id"
+              required
+              v-model="request.notification"
+              :rules="[(v) => !!v || 'Notification is required']"
             >
             </v-combobox>
+          </v-col>
+          <v-col cols="12" md="3" offset-md="1">
+            <span v-for="(item, index) in icons" :key="index">
+            <v-tooltip top>
+              <template v-slot:activator="{ on, attrs }">
+                
+                  <v-icon
+                    large
+                    color="primary"
+                    class="mt-7 mr-4"
+                    @click="bindData(request, item.data)"
+                    v-bind="attrs"
+                    v-on="on"
+                    >{{ item.icon }}</v-icon
+                  >
+               
+              </template>
+              <span>{{ item.tip }}</span>
+            </v-tooltip>
+             </span>
           </v-col>
         </v-row>
         <v-row
@@ -311,6 +334,7 @@ import {
   MerchandiserResponseModel,
   RoleResponseModel,
   GetNotificationResponseModel,
+  
 } from "@/model";
 import { IEmployeeService, IRegistrationService } from "@/service";
 
@@ -320,6 +344,15 @@ import { IEmployeeService, IRegistrationService } from "@/service";
 export default class CreateEmployee extends Vue {
   @Inject("EmployeeService") EmployeeService: IEmployeeService;
   @Inject("registrationService") registrationService: IRegistrationService;
+
+  icons: any = [
+    { icon: "mdi-message-processing", tip: "SMS", data: "isSMS" },
+    { icon: "mdi-email-multiple", tip: "E-Mail", data: "isEmail"  },
+    { icon: "mdi-whatsapp", tip: "WhatsApp", data: "isWhatsApp"  },
+    // "mdi-message-processing",
+    // "mdi-email-multiple",
+    // "mdi-whatsapp",
+  ];
 
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
@@ -352,6 +385,7 @@ export default class CreateEmployee extends Vue {
       "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
   ];
 
+  public data: string = "";
   public value: boolean = true;
   public request: EmployeeModel = new EmployeeModel();
   public adminRequest: AdminRequestModel = new AdminRequestModel();
@@ -380,6 +414,7 @@ export default class CreateEmployee extends Vue {
     this.getCategory();
     this.getNotificationList();
   }
+
   public getCategory() {
     this.registrationService
       .getCategory()
@@ -388,12 +423,12 @@ export default class CreateEmployee extends Vue {
       });
   }
 
-public getNotificationList() {
-    this.registrationService
-      .getNotificationList()
-      .then((response: Array<GetNotificationResponseModel>) => {
+  public getNotificationList() {
+    this.EmployeeService.getNotificationList().then(
+      (response: Array<GetNotificationResponseModel>) => {
         this.NotificationResponse = response;
-      });
+      }
+    );
   }
 
   public GetEmployee() {
@@ -409,6 +444,11 @@ public getNotificationList() {
       }
     );
   }
+
+  bindData(request: EmployeeModel, data: any) {
+    request[data] = !request[data];
+  }
+
   // public GetMerchandiser() {
   //   this.adminRequest.companyId = this.$store.getters.companyId;
   //   this.EmployeeService.GetMerchandiser(this.adminRequest).then(

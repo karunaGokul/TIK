@@ -39,4 +39,19 @@ export class EmployeeModel {
     ApprovalAdminId?: string;
     ApprovalAdminAccess: string = "0";
     EmployeeId: string;
+    IsSMS: boolean;
+    IsEmail: boolean;
+    IsWhatsApp: boolean;
+}
+
+export class GetNotificationResponseModel {
+    id: number;
+    status: string;
+}
+
+export class NotificatioRequestModel {
+    StatusList: Array<string>;
+    IsSMS: boolean;
+    IsEmail: boolean;
+    IsWhatsApp: boolean;
 }

@@ -21,10 +21,7 @@ export class CategoryResponseModel{
     categoryName: string;
 }
 
-export class GetNotificationResponseModel {
-    id: number;
-    status: string;
-}
+
 
 export class CountryResponseModel{
     id: number;

@@ -37,19 +37,16 @@
                 </v-tab>
 
                 <v-tab-item>
-                  <DyeControl
-                    :response="response.fabricDyeing"
-                    :option="softFlow"
-                  />
-                  
-                </v-tab-item>
-                <v-tab-item>
-                  <!-- <DyeControl
+                  <DyeingControl
                     :response="response.fabricDyeing.softFlow"
                     option="softFlow"
-                    :edit="edit"
-                  /> -->
-                  
+                  />
+                </v-tab-item>
+                <v-tab-item>
+                   <DyeingControl
+                    :response="response.fabricDyeing.softFlow"
+                    option="softFlow"
+                  />
                 </v-tab-item>
               </v-tabs>
             </v-tab-item>
@@ -80,22 +77,20 @@
 import { Component, Inject, Vue } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import { IProfileService } from "@/service";
-import DyeControl from "./components/MillControl.vue";
+import DyeingControl from "./components/DyeingControl.vue";
 import { DyeingProfileModel } from "@/model";
-
-import MillControl from "./components/MillControl.vue";
 
 @Component({
   mixins: [validationMixin],
-  components: { DyeControl, MillControl },
+  components: { DyeingControl },
 })
 export default class DyeBuilder extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
 
-
   public response = new DyeingProfileModel();
   public edit: boolean = false;
   public option: string = "";
+  $store: any;
 
   created() {
     this.createDyeing();

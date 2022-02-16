@@ -446,7 +446,7 @@ export default class CreateEmployee extends Vue {
   }
 
   bindData(request: EmployeeModel, data: any) {
-    request[data] = !request[data];
+    // request[data] = !request[data];
   }
 
   // public GetMerchandiser() {

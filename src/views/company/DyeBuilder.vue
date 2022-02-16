@@ -40,12 +40,14 @@
                   <DyeingControl
                     :response="response.fabricDyeing.softFlow"
                     option="softFlow"
+                    :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
                    <DyeingControl
                     :response="response.fabricDyeing.softFlow"
                     option="softFlow"
+                    :edit="edit"
                   />
                 </v-tab-item>
               </v-tabs>

@@ -15,13 +15,17 @@ export class RegistrationRequestModel extends DataRequest {
     stateId: number;
     cityId: number;
     zipCode: number;
+    certification: string
 }
 export class CategoryResponseModel{
     id: number;
     categoryName: string;
 }
 
-
+export class CertificationResponseModel{
+    certificateId: number;
+    certificateName: string;
+}
 
 export class CountryResponseModel{
     id: number;

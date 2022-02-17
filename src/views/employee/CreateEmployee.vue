@@ -212,26 +212,27 @@
               Notification
               <span class="red--text">*</span>
             </v-label>
-            <v-combobox
+            <v-select
               multiple
               outlined
               dense
               :items="NotificationResponse"
               item-text="status"
               item-value="id"
-              required
               v-model="request.StatusList"
-              :rules="[(v) => !!v || 'Notification is required']"
             >
-            </v-combobox>
+            </v-select>
           </v-col>
-          <v-col cols="12" md="3" offset-md="1">
-            <v-tooltip top>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-btn outlined large text tile>
+              <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     large
                     color="primary"
-                    class="mt-7 mr-4"
+                    class="pr-2"
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
                     v-bind="attrs"
@@ -246,7 +247,7 @@
                   <v-icon
                     large
                     color="primary"
-                    class="mt-7 mr-4"
+                    
                     v-model="request.IsEmail"
                     @click="request.IsEmail = !request.IsEmail"
                     v-bind="attrs"
@@ -261,9 +262,8 @@
                   <v-icon
                     large
                     color="primary"
-                    class="mt-7 mr-4"
                     v-model="request.IsWhatsApp"
-                     @click="request.IsWhatsApp = !request.IsWhatsApp"
+                    @click="request.IsWhatsApp = !request.IsWhatsApp"
                     v-bind="attrs"
                     v-on="on"
                     >mdi-whatsapp</v-icon
@@ -271,6 +271,7 @@
                 </template>
                 <span>WhatsApp</span>
               </v-tooltip>
+            </v-btn>
             <!-- <span v-for="(item, index) in icons" :key="index">
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
@@ -457,7 +458,7 @@ export default class CreateEmployee extends Vue {
   // bindData(request: EmployeeModel, data: any) {
   //   request[data] = !request[data];
   // }
-  
+
   public getCategory() {
     this.registrationService
       .getCategory()

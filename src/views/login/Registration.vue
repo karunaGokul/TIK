@@ -158,26 +158,15 @@
                     outlined
                     dense
                     placeholder="Select Certificate"
+                    v-model="request.certification"
                     :items="CategoryResponse"
-                    item-text="categoryName"
-                    item-value="categoryName"
+                    item-text="certificateName"
+                    item-value="certificateName"
                     required
                     :rules="[(v) => !!v || 'Certificate is required']"
                     class="rounded-0"
                   >
                   </v-combobox>
-                  <!-- <v-select
-                    outlined
-                    dense
-                    placeholder="Select Certificate"
-                    v-model="request.categoryName"
-                    :items="category"
-                    item-text="categoryName"
-                    item-value="id"
-                    class="rounded-0"
-                    required
-                    :rules="[(v) => !!v || 'Certificate is required']"
-                  ></v-select> -->
                 </v-col>
               </v-row>
 

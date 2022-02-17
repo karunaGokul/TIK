@@ -1,3 +1,4 @@
+import { NotificationModel } from '.';
 import { BaseModel, DataRequest } from './base.model';
 
 export class EmployeeRequestModel {
@@ -39,6 +40,7 @@ export class EmployeeModel {
     ApprovalAdminId?: string;
     ApprovalAdminAccess: string = "0";
     EmployeeId: string;
+    Notification: NotificatioRequestModel;
     StatusList: Array<GetNotificationResponseModel>;
     IsSMS: boolean;
     IsEmail: boolean;
@@ -50,9 +52,9 @@ export class GetNotificationResponseModel {
     status: string;
 }
 
-// export class NotificatioRequestModel {
+export class NotificatioRequestModel {
     
-//     IsSMS: boolean;
-//     IsEmail: boolean;
-//     IsWhatsApp: boolean;
-// }
+    IsSMS: boolean;
+    IsEmail: boolean;
+    IsWhatsApp: boolean;
+}

@@ -15,7 +15,7 @@ export class RegistrationRequestModel extends DataRequest {
     stateId: number;
     cityId: number;
     zipCode: number;
-    certification: string
+    certification: CertificationResponseModel;
 }
 export class CategoryResponseModel{
     id: number;

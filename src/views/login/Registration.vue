@@ -153,20 +153,20 @@
                 </v-col>
                 <v-col>
                   <v-label>select your certification</v-label>
-                  <v-combobox
+                  <v-select
                     multiple
                     outlined
                     dense
                     placeholder="Select Certificate"
                     v-model="request.certification"
-                    :items="CategoryResponse"
+                    :items="certification"
                     item-text="certificateName"
-                    item-value="certificateName"
+                    item-value="certificateId"
                     required
                     :rules="[(v) => !!v || 'Certificate is required']"
                     class="rounded-0"
                   >
-                  </v-combobox>
+                  </v-select>
                 </v-col>
               </v-row>
 
@@ -359,6 +359,7 @@ import {
   CityRequestModel,
   CityResponseModel,
   CategoryResponseModel,
+  CertificationResponseModel
 } from "@/model";
 import { IRegistrationService } from "@/service";
 
@@ -369,6 +370,7 @@ export default class Registration extends Vue {
   @Inject("registrationService") registrationService: IRegistrationService;
   public request = new RegistrationRequestModel();
   public category: Array<CategoryResponseModel> = [];
+  public certification: Array<CertificationResponseModel> = [];
   public country: Array<CountryResponseModel> = [];
   public state: Array<StateResponseModel> = [];
   public city: Array<CityResponseModel> = [];
@@ -414,7 +416,16 @@ export default class Registration extends Vue {
   created() {
     this.getCountry();
     this.getCategory();
+    this.getCertification();
   }
+  private getCertification() {
+    this.registrationService
+      .getCertification()
+      .then((response: Array<CertificationResponseModel>) => {
+        this.certification = response;
+      });
+  }
+
   private getCategory() {
     this.registrationService
       .getCategory()

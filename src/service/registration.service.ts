@@ -27,7 +27,7 @@ export class RegistrationService extends ServiceHelper implements IRegistrationS
     }
 
     public getCertification(): Promise<Array<CertificationResponseModel>> {
-        return this.httpGet('common/Category', null).then(response => {
+        return this.httpGet('common/Certification', null).then(response => {
             return response.data;
         });
     }

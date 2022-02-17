@@ -208,25 +208,26 @@
         </v-row>
         <v-row>
           <v-col cols="12" md="3">
-            <v-label>
-              Notification
-              <span class="red--text">*</span>
-            </v-label>
-            <v-select
-              multiple
-              outlined
-              dense
-              :items="NotificationResponse"
-              item-text="status"
-              item-value="id"
-              v-model="request.StatusList"
+            <v-card
+              color="transparent"
+              flat
+              class="pa-5"
+              style="border:solid 1px rgba(0, 0, 0, 0.38) !important"
             >
-            </v-select>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" md="4">
-            <v-btn outlined large text tile>
+              <v-label>
+                Notification
+                <span class="red--text">*</span>
+              </v-label>
+              <v-select
+                multiple
+                outlined
+                dense
+                :items="NotificationResponse"
+                item-text="status"
+                item-value="id"
+                v-model="request.StatusList"
+              >
+              </v-select>
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
@@ -247,7 +248,7 @@
                   <v-icon
                     large
                     color="primary"
-                    
+                    class="pr-2"
                     v-model="request.IsEmail"
                     @click="request.IsEmail = !request.IsEmail"
                     v-bind="attrs"
@@ -271,8 +272,11 @@
                 </template>
                 <span>WhatsApp</span>
               </v-tooltip>
-            </v-btn>
-            <!-- <span v-for="(item, index) in icons" :key="index">
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <!-- <span v-for="(item, index) in icons" :key="index">
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon
@@ -288,7 +292,6 @@
                 <span>{{ item.tip }}</span>
               </v-tooltip>
             </span> -->
-          </v-col>
         </v-row>
         <v-row
           class="ml-2 mb-2 mt-n2"
@@ -489,31 +492,6 @@ export default class CreateEmployee extends Vue {
     );
   }
 
-  // public GetMerchandiser() {
-  //   this.adminRequest.companyId = this.$store.getters.companyId;
-  //   this.EmployeeService.GetMerchandiser(this.adminRequest).then(
-  //     (response: Array<MerchandiserResponseModel>) => {
-  //       this.Merchandiser = response;
-  //     }
-  //   );
-  // }
-
-  // public GetMasterAdmin() {
-  //   this.adminRequest.companyId = this.$store.getters.companyId;
-  //   this.EmployeeService.GetMasterAdmin(this.adminRequest).then(
-  //     (response: Array<MasterAdminResponseModel>) => {
-  //       this.MasterAdmin = response;
-  //     }
-  //   );
-  // }
-  // public GetApprovalAdmin() {
-  //   this.adminRequest.companyId = this.$store.getters.companyId;
-  //   this.EmployeeService.GetApprovalAdmin(this.adminRequest).then(
-  //     (response: Array<ApprovalAdminResponseModel>) => {
-  //       this.ApprovalAdmin = response;
-  //     }
-  //   );
-  // }
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.EmployeeService.CreateEmployee(this.request).then(
@@ -534,18 +512,6 @@ export default class CreateEmployee extends Vue {
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.request.EmployeeId = this.$route.params.Id;
-      // if (this.request.EmployeeRole === "Merchandiser") {
-      //   this.request.MerchandiserId = null;
-      // }
-      // if (this.request.EmployeeRole === "Approval Admin") {
-      //   this.request.MerchandiserId = null;
-      //   this.request.ApprovalAdminId = null;
-      // }
-      // if (this.request.EmployeeRole === "MasterAdmin") {
-      //   this.request.MerchandiserId = null;
-      //   this.request.ApprovalAdminId = null;
-      //   this.request.MasterAdminId = null;
-      // }
       this.EmployeeService.EditEmployee(
         this.request,
         this.request.EmployeeId

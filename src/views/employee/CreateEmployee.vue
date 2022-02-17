@@ -220,16 +220,60 @@
               item-text="status"
               item-value="id"
               required
-              v-model="request.notification"
+              v-model="request.StatusList"
               :rules="[(v) => !!v || 'Notification is required']"
             >
             </v-combobox>
           </v-col>
           <v-col cols="12" md="3" offset-md="1">
-            <span v-for="(item, index) in icons" :key="index">
             <v-tooltip top>
-              <template v-slot:activator="{ on, attrs }">
-                
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    large
+                    color="primary"
+                    class="mt-7 mr-4"
+                    v-model="request.IsSMS"
+                    @click="request.IsSMS = !request.IsSMS"
+                    v-bind="attrs"
+                    v-on="on"
+                    >mdi-message-processing</v-icon
+                  >
+                </template>
+                <span>SMS </span>
+              </v-tooltip>
+              <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    large
+                    color="primary"
+                    class="mt-7 mr-4"
+                    v-model="request.IsEmail"
+                    @click="request.IsEmail = !request.IsEmail"
+                    v-bind="attrs"
+                    v-on="on"
+                    >mdi-email-multiple</v-icon
+                  >
+                </template>
+                <span>E-Mail</span>
+              </v-tooltip>
+              <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    large
+                    color="primary"
+                    class="mt-7 mr-4"
+                    v-model="request.IsWhatsApp"
+                     @click="request.IsWhatsApp = !request.IsWhatsApp"
+                    v-bind="attrs"
+                    v-on="on"
+                    >mdi-whatsapp</v-icon
+                  >
+                </template>
+                <span>WhatsApp</span>
+              </v-tooltip>
+            <!-- <span v-for="(item, index) in icons" :key="index">
+              <v-tooltip top>
+                <template v-slot:activator="{ on, attrs }">
                   <v-icon
                     large
                     color="primary"
@@ -239,11 +283,10 @@
                     v-on="on"
                     >{{ item.icon }}</v-icon
                   >
-               
-              </template>
-              <span>{{ item.tip }}</span>
-            </v-tooltip>
-             </span>
+                </template>
+                <span>{{ item.tip }}</span>
+              </v-tooltip>
+            </span> -->
           </v-col>
         </v-row>
         <v-row
@@ -334,7 +377,6 @@ import {
   MerchandiserResponseModel,
   RoleResponseModel,
   GetNotificationResponseModel,
-  
 } from "@/model";
 import { IEmployeeService, IRegistrationService } from "@/service";
 
@@ -346,12 +388,9 @@ export default class CreateEmployee extends Vue {
   @Inject("registrationService") registrationService: IRegistrationService;
 
   icons: any = [
-    { icon: "mdi-message-processing", tip: "SMS", data: "isSMS" },
-    { icon: "mdi-email-multiple", tip: "E-Mail", data: "isEmail"  },
-    { icon: "mdi-whatsapp", tip: "WhatsApp", data: "isWhatsApp"  },
-    // "mdi-message-processing",
-    // "mdi-email-multiple",
-    // "mdi-whatsapp",
+    { icon: "mdi-message-processing", tip: "SMS", data: "IsSMS" },
+    { icon: "mdi-email-multiple", tip: "E-Mail", data: "IsEmail" },
+    { icon: "mdi-whatsapp", tip: "WhatsApp", data: "IsWhatsApp" },
   ];
 
   public nameRules: any = [
@@ -415,6 +454,10 @@ export default class CreateEmployee extends Vue {
     this.getNotificationList();
   }
 
+  // bindData(request: EmployeeModel, data: any) {
+  //   request[data] = !request[data];
+  // }
+  
   public getCategory() {
     this.registrationService
       .getCategory()
@@ -443,10 +486,6 @@ export default class CreateEmployee extends Vue {
         this.role = response;
       }
     );
-  }
-
-  bindData(request: EmployeeModel, data: any) {
-    // request[data] = !request[data];
   }
 
   // public GetMerchandiser() {

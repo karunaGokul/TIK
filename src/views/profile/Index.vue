@@ -108,17 +108,12 @@
           <v-btn color="primary" class="mx-1 my-4"> Company </v-btn></span
         >
         <span v-else>
-          <span v-for="(category, index) in categorys"
-            :key="index">
-          <router-link to="/dyeing" class="text-decoration-none">
-            <v-btn
-            color="primary"
-            class="mx-1 my-4"
-            
-          >
-            {{ category }}
-          </v-btn>
-          </router-link>
+          <span v-for="(category, index) in categorys" :key="index">
+            <router-link :to="category.route" class="text-decoration-none">
+              <v-btn color="primary" class="mx-1 my-4">
+                {{ category.text }}
+              </v-btn>
+            </router-link>
           </span>
         </span>
       </v-card>
@@ -306,7 +301,7 @@ export default class Profile extends Vue {
     },
     {
       img: require("@/assets/gallery/gallery4.png"),
-    }
+    },
   ];
   // companyImages: any = [
   //   {
@@ -318,17 +313,43 @@ export default class Profile extends Vue {
   //   { title: "Certificates", src: require("@/assets/mill/certificate.png") },
   // ];
   categorys: any = [
-    "mill",
-    "Knitting",
-    "Dyeing",
-    "Processing",
-    "Printing",
-    "Ready Fabrics",
-    "Embroidery",
-    "Job Work Units",
-    "Pieces",
+    {
+      text: "Mills",
+      route: "/mill",
+    },
+    {
+      text: "Dyeing",
+      route: "/dyeing",
+    },
+    {
+      text: "Knitting",
+      route: "/knitting",
+    },
+    {
+      text: "Processing",
+      route: "/mill",
+    },
+    {
+      text: "Printing",
+      route: "/mill",
+    },
+     {
+      text: "Ready Fabrics",
+      route: "/mill",
+    },
+     {
+      text: "Embroidery",
+      route: "/mill",
+    },
+     {
+      text: "Job Work Units",
+      route: "/mill",
+    },
+    {
+      text: "Pieces",
+      route: "/mill",
+    }
+    
   ];
 }
 </script>
-
-

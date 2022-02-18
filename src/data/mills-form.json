@@ -2129,7 +2129,7 @@
 					"id": "btnContenttype",
 					"label": "Fabric Content",
 					"type": "toggle-button",
-					"selector": true,					
+					"selector": true,
 					"options": [
 						{
 							"id": "opMelange",
@@ -3841,6 +3841,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -4152,6 +4175,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -4168,7 +4214,7 @@
 					"options": [
 						{
 							"id": "opTub_1",
-							"text": "OPW",							
+							"text": "OPW",
 							"controls": [
 								{
 									"id": "drpGauge",
@@ -4195,208 +4241,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
-								}
-							]
-						},
-						{
-							"id": "opTub_2",
-							"text": "TUB",							
-							"controls": [
-								{
-									"id": "drpGauge",
-									"label": "Guage",
-									"type": "dropdown-range",
-									"selector": false,
-									"multiple": true,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpDIA",
-									"label": "DIA",
-									"type": "dropdown-range",
-									"selector": false,
-									"multiple": true,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
-								}
-							]
-						},
-						{
-							"id": "opTub_3",
-							"text": "TUB with Needle Drop",
-							"controls": [
-								{
-									"id": "drpGauge",
-									"label": "Guage",
-									"type": "dropdown-range",
-									"selector": false,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpDIA",
-									"label": "DIA",
-									"type": "dropdown-range",
-									"selector": false,
-									"multiple": true,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"title": "Enter below details as per your requirement",
-			"path": [
-				"opFabric-opRegular-opSingle-opFilament-drpFilamentQuality-tabSpunStructure"
-			],
-			"controls": [
-				{
-					"id": "tabSpunStructure",
-					"type": "tab",
-					"selector": false,
-					"options": [
-						{
-							"id": "opTub_1",
-							"text": "OPW",							
-							"controls": [
-								{
-									"id": "drpGauge",
-									"label": "Guage",
-									"type": "dropdown-range",
-									"selector": false,
-									"multiple": true,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.GG",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpDIA",
-									"label": "DIA",
-									"type": "dropdown-range",
-									"selector": false,
-									"multiple": true,
-									"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.Dia",
-									"data_id": "Array",
-									"data": {
-										"start": 1,
-										"end": 100
-									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -4429,29 +4273,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -4483,29 +4304,116 @@
 										"start": 1,
 										"end": 100
 									}
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Enter below details as per your requirement",
+			"path": [
+				"opFabric-opRegular-opSingle-opFilament-drpFilamentQuality-tabSpunStructure"
+			],
+			"controls": [
+				{
+					"id": "tabSpunStructure",
+					"type": "tab",
+					"selector": false,
+					"options": [
+						{
+							"id": "opTub_1",
+							"text": "OPW",
+							"controls": [
+								{
+									"id": "drpGauge",
+									"label": "Guage",
+									"type": "dropdown-range",
+									"selector": false,
+									"multiple": true,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.GG",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
 								},
 								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
+									"id": "drpDIA",
+									"label": "DIA",
+									"type": "dropdown-range",
 									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
+									"multiple": true,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.OpenWidth.Dia",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
+								}
+							]
+						},
+						{
+							"id": "opTub_2",
+							"text": "TUB",
+							"controls": [
+								{
+									"id": "drpGauge",
+									"label": "Guage",
+									"type": "dropdown-range",
+									"selector": false,
+									"multiple": true,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
+								},
+								{
+									"id": "drpDIA",
+									"label": "DIA",
+									"type": "dropdown-range",
+									"selector": false,
+									"multiple": true,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
+								}
+							]
+						},
+						{
+							"id": "opTub_3",
+							"text": "TUB with Needle Drop",
+							"controls": [
+								{
+									"id": "drpGauge",
+									"label": "Guage",
+									"type": "dropdown-range",
+									"selector": false,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.GG",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
+								},
+								{
+									"id": "drpDIA",
+									"label": "DIA",
+									"type": "dropdown-range",
+									"selector": false,
+									"multiple": true,
+									"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.Dia",
+									"data_id": "Array",
+									"data": {
+										"start": 1,
+										"end": 100
+									}
 								}
 							]
 						}
@@ -4823,6 +4731,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -4839,7 +4770,7 @@
 					"options": [
 						{
 							"id": "opTub_1",
-							"text": "OPW",							
+							"text": "OPW",
 							"controls": [
 								{
 									"id": "drpGauge",
@@ -4866,28 +4797,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AllFeeder",								
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path":"mil.Fabric.RegularFabric.FabricStructure.OpenWidth.AlternateFeeder",								"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -4920,29 +4829,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -4974,29 +4860,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.RegularFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -5314,6 +5177,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -5330,7 +5216,7 @@
 					"options": [
 						{
 							"id": "opTub_1",
-							"text": "OPW",							
+							"text": "OPW",
 							"controls": [
 								{
 									"id": "drpGauge",
@@ -5357,29 +5243,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -5412,29 +5275,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -5466,29 +5306,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -5804,6 +5621,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -5847,29 +5687,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -5902,29 +5719,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -5956,29 +5750,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -6290,6 +6061,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -6333,29 +6127,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -6388,29 +6159,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -6442,29 +6190,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.SpecialFabric.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -6780,6 +6505,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -6796,7 +6544,7 @@
 					"options": [
 						{
 							"id": "opTub_1",
-							"text": "OPW",							
+							"text": "OPW",
 							"controls": [
 								{
 									"id": "drpGauge",
@@ -6823,29 +6571,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -6878,29 +6603,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -6932,29 +6634,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -7266,6 +6945,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -7309,29 +7011,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -7364,29 +7043,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -7418,29 +7074,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Melange.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -7756,6 +7389,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -7772,7 +7428,7 @@
 					"options": [
 						{
 							"id": "opTub_1",
-							"text": "OPW",							
+							"text": "OPW",
 							"controls": [
 								{
 									"id": "drpGauge",
@@ -7799,29 +7455,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -7854,29 +7487,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -7908,29 +7518,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}
@@ -8246,6 +7833,29 @@
 							"selected": false
 						}
 					]
+				},
+				{
+					"id": "drpLycraFeeder",
+					"label": "Choose Lycra Feeder",
+					"type": "dropdown",
+					"selector": false,
+					"optional": true,
+					"options": [
+						{
+							"id": "opLycraFeeder_1",
+							"text": "All Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						},
+						{
+							"id": "opLycraFeeder_2",
+							"text": "Alternate Feeder",
+							"data_path": "",
+							"data_id": "",
+							"selected": false
+						}
+					]
 				}
 			]
 		},
@@ -8289,29 +7899,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.OpenWidth.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -8344,29 +7931,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						},
@@ -8398,29 +7962,6 @@
 										"start": 1,
 										"end": 100
 									}
-								},
-								{
-									"id": "drpLycraFeeder",
-									"label": "Choose Lycra Feeder",
-									"type": "dropdown",
-									"selector": false,
-									"optional": true,
-									"options": [
-										{
-											"id": "opLycraFeeder_1",
-											"text": "All Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AllFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										},
-										{
-											"id": "opLycraFeeder_2",
-											"text": "Alternate Feeder",
-											"data_path": "mil.Fabric.MelangeSlubFabric.Slub.FabricStructure.Tubular.AlternateFeeder",
-											"data_id": "ExcludeJoins",
-											"selected": false
-										}
-									]
 								}
 							]
 						}

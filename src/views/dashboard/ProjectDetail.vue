@@ -52,9 +52,81 @@
               </div>
             </v-card>
           </v-col>
-          <v-col
+          <v-col cols="12" md="5" offset-md="3" >
+            <v-card color="transparent" flat>
+              <div class="d-flex flex-no-wrap">
+                <div
+                  class="overline font-weight-bold text-wrap text-capitalize"
+                  v-if="
+                    response.InStages === 'No Response' &&
+                      response.message !== null
+                  "
+                >
+                  Comments: {{ response.message }}
+                </div>
+                <div v-if="category === 'Company'">
+                  <div
+                    class="overline font-weight-bold text-wrap text-capitalize"
+                    v-if="
+                      response.InStages === 'Confirmed' ||
+                        response.InStages === 'Completed'
+                    "
+                  >
+                    Bidding Time: {{ response.biddingTime }}
+                  </div>
+                  <div>
+                    <v-btn
+                      depressed
+                      class="font-weight-light text-capitalize"
+                      color="error"
+                      v-if="
+                        role === 'MasterAdmin' &&
+                          $route.params.status === 'NoResponse' &&
+                          response.message === null
+                      "
+                      @click="toggleNoResponse = 'true'"
+                    >
+                      No Response
+                    </v-btn>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <span
+                    v-if="response.bidsReceived"
+                    class="overline font-weight-bold text-capitalize"
+                  >
+                    Bids Received : {{ response.bidsReceived }}
+                  </span>
+                </div>
+                <div
+                  v-if="
+                    category != 'Company' &&
+                      response.bidList[0].status === 'Initiated'
+                  "
+                >
+                  <v-btn
+                    class="white--text font-weight-light text-capitalize rounded"
+                    depressed
+                    color="primary"
+                    @click="toggleBid = 'true'"
+                  >
+                    bid this project
+                  </v-btn>
+                  <v-btn
+                    class="font-weight-light text-capitalize white--text mt-1 mr-7"
+                    color="blue-grey"
+                    depressed
+                    @click="toggleCancel = 'true'"
+                  >
+                    Cancel
+                  </v-btn>
+                </div>
+              </div>
+            </v-card>
+          </v-col>
+          <!-- <v-col
             cols="12"
-            md="3"
+            md="2"
             offset-md="3"
             class="text-right"
             v-if="
@@ -64,9 +136,9 @@
             <span class="overline font-weight-bold text-wrap text-capitalize">
               Comments: {{ response.message }}
             </span>
-          </v-col>
+          </v-col> -->
 
-          <v-col
+          <!-- <v-col
             cols="12"
             md="3"
             class="text-right"
@@ -79,9 +151,9 @@
             <span class="overline font-weight-bold text-wrap text-capitalize">
               Bidding Time: {{ response.biddingTime }}
             </span>
-          </v-col>
+          </v-col> -->
 
-          <v-col
+          <!-- <v-col
             cols="12"
             md="2"
             class="text-right"
@@ -106,8 +178,8 @@
             >
               Cancel
             </v-btn>
-          </v-col>
-          <v-col
+          </v-col> -->
+          <!-- <v-col
             cols="12"
             md="2"
             offset-md="3"
@@ -115,8 +187,8 @@
             v-if="response.bidsReceived"
           >
             Bids Received : {{ response.bidsReceived }}
-          </v-col>
-          <v-col
+          </v-col> -->
+          <!-- <v-col
             cols="12"
             md="2"
             offset-md="3"
@@ -136,7 +208,7 @@
             >
               No Response
             </v-btn>
-          </v-col>
+          </v-col> -->
         </v-row>
 
         <v-row class="mt-4 text-caption text-wrap">

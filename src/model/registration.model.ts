@@ -23,7 +23,7 @@ export class CategoryResponseModel{
 }
 
 export class CertificationResponseModel{
-    certificateId: number;
+    certificateID: number;
     certificateName: string;
 }
 

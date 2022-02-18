@@ -39,14 +39,14 @@
                 <v-tab-item>
                   <DyeingControl
                     :response="response.fabricDyeing.softFlow"
-                    option="softFlow"
+                    option="SoftFlow"
                     :edit="edit"
                   />
                 </v-tab-item>
                 <v-tab-item>
                    <DyeingControl
-                    :response="response.fabricDyeing.softFlow"
-                    option="softFlow"
+                    :response="response.fabricDyeing.winch"
+                    option="Winch"
                     :edit="edit"
                   />
                 </v-tab-item>
@@ -92,7 +92,6 @@ export default class DyeBuilder extends Vue {
   public response = new DyeingProfileModel();
   public edit: boolean = false;
   public option: string = "";
-  $store: any;
 
   created() {
     this.createDyeing();

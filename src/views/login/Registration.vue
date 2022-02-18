@@ -161,7 +161,7 @@
                     v-model="request.certification"
                     :items="certification"
                     item-text="certificateName"
-                    item-value="certificateId"
+                    item-value="certificateID"
                     required
                     :rules="[(v) => !!v || 'Certificate is required']"
                     class="rounded-0"

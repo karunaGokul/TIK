@@ -30,8 +30,8 @@
           <v-tabs-items v-model="tab1">
             <v-tab-item> </v-tab-item>
 
-            <v-tab-item>
-              <v-tabs v-model="tab3">
+            <v-tab-item >
+              <v-tabs v-model="tab3" v-if="response.fabricDyeing">
                 <v-tab v-for="item in tab3Items" :key="item.tab">
                   {{ item.tab }}
                 </v-tab>

@@ -119,11 +119,12 @@
               <v-tab-item>
                 <!-- <DyeingProcess /> -->
                 <v-row>
-                  <v-col class="ml-1 mt-8">
+                  <v-col class="ml-1 mt-8" >
                     <v-checkbox
                       dense
                       label="Tubular Heatsetting"
-                      v-model="response.tubularProcess.openWidthProcess.heatSetting"
+                      v-model="response.tubularProcess.heatSetting"
+                    
                     ></v-checkbox>
                   </v-col>
                   <v-col cols="4">

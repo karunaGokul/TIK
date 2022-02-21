@@ -367,3 +367,11 @@ export default class MillBuilder extends Vue {
   ];
 }
 </script>
+
+<style scoped>
+div[disabled]
+{
+    pointer-events: none;
+    opacity: 0.7; 
+}
+</style>

@@ -230,16 +230,17 @@
               </v-select>
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon
-                    large
-                    color="primary"
-                    class="pr-2"
-                    v-model="request.IsSMS"
-                    @click="request.IsSMS = !request.IsSMS"
-                    v-bind="attrs"
-                    v-on="on"
-                    >mdi-message-processing</v-icon
-                  >
+                  <v-hover v-slot:default="{ hover }">
+                    <v-icon
+                      large
+                      :color="hover ? 'primary' : 'deep-orange lighten-2'"
+                      class="pr-2"
+                      v-model="request.IsSMS"
+                      @click="request.IsSMS = !request.IsSMS"
+                      v-bind="attrs"
+                      v-on="on"
+                      >mdi-message-processing</v-icon
+                    ></v-hover>
                 </template>
                 <span>SMS </span>
               </v-tooltip>
@@ -536,3 +537,5 @@ export default class CreateEmployee extends Vue {
   }
 }
 </script>
+
+

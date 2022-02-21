@@ -83,6 +83,54 @@ const routes: Array<RouteConfig> = [
     meta: { anonymous: true }
   },
   {
+    path: '/millDetail',
+    name: 'MillDetail',
+    component: () => import('@/components/categoryDetail/MillDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/knittingDetail',
+    name: 'KnittingDetail',
+    component: () => import('@/components/categoryDetail/KnittingDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/dyeingDetail',
+    name: 'DyeingDetail',
+    component: () => import('@/components/categoryDetail/DyeingDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/printingDetail',
+    name: 'PrintingDetail',
+    component: () => import('@/components/categoryDetail/PrintingDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/jobworkDetail',
+    name: 'JobworkDetail',
+    component: () => import('@/components/categoryDetail/JobworkDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/finishingfabricDetail',
+    name: 'FinishingFabricDetail',
+    component: () => import('@/components/categoryDetail/FinishingFabricDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/secondfabricDetail',
+    name: 'SecondFabricDetail',
+    component: () => import('@/components/categoryDetail/SecondFabricDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
+    path: '/accessoriesDetail',
+    name: 'AccessoriesDetail',
+    component: () => import('@/components/categoryDetail/AccessoriesDetail.vue'),
+    meta: { anonymous: true }
+  },
+  {
     path: '/knitting',
     name: 'Knitting',
     component: () => import('../views/company/KnittingBuilder.vue'),

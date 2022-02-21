@@ -28,7 +28,7 @@
       </v-carousel-item>
     </v-carousel>
 
-    <Advertisement />
+    <!-- <Advertisement /> -->
 
     <div justify="center" align="center" class="py-12">
       <h2 class="text-h4">Category</h2>

@@ -119,12 +119,12 @@
               <v-tab-item>
                 <!-- <DyeingProcess /> -->
                 <v-row>
-                  <v-col class="ml-1 mt-8" >
+                  <v-col class="ml-1 mt-8">
                     <v-checkbox
                       dense
                       label="Tubular Heatsetting"
                       v-model="response.tubularProcess.heatSetting"
-                    
+                      v-if="response.tubularProcess"
                     ></v-checkbox>
                   </v-col>
                   <v-col cols="4">
@@ -135,9 +135,9 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.tubularProcess.specialFinishes"
                         :items="
-                          response.openWidthProcess.availableSpecialFinishes
+                          response.tubularProcess.availableSpecialFinishes
                         "
                         filled
                         chips
@@ -161,7 +161,7 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.tubularProcess.tubularDryingProcesses"
                         :items="
                           response.tubularProcess
                             .availableTubularDryingProcesses
@@ -193,7 +193,15 @@
 
                 <v-row>
                   <v-col>
-                    <v-checkbox dense label="Stenter DRY"></v-checkbox>
+                    <v-checkbox
+                      dense
+                      v-model="
+                        response.tubularProcess.openWidthDryingProcesses
+                          .stenterDryer
+                      "
+                      v-if="response.tubularProcess"
+                      label="Stenter DRY"
+                    ></v-checkbox>
                   </v-col>
                   <v-col>
                     <v-list flat>
@@ -203,10 +211,11 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model=" response.tubularProcess.openWidthDryingProcesses
+                          .dipStenters"
                         :items="
-                          response.openWidthProcess.openWidthDryingProcesses
-                            .availableDipStenters
+                           response.tubularProcess.openWidthDryingProcesses
+                          .availableDipStenters
                         "
                         filled
                         chips
@@ -230,10 +239,10 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.tubularProcess.tubularCompactingMachines"
                         :items="
                           response.tubularProcess
-                            .availableTubularDryingProcesses
+                            .availableTubularCompactingMachines
                         "
                         filled
                         chips
@@ -257,9 +266,9 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.tubularProcess.openWidthCompactingMachines"
                         :items="
-                          response.openWidthProcess
+                          response.tubularProcess
                             .availableOpenWidthCompactingMachines
                         "
                         filled
@@ -296,7 +305,7 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.openWidthProcess.specialFinishes"
                         :items="
                           response.openWidthProcess.availableSpecialFinishes
                         "
@@ -322,7 +331,8 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.openWidthProcess
+                            .openWidthCompactingMachines"
                         :items="
                           response.openWidthProcess
                             .availableOpenWidthCompactingMachines
@@ -370,7 +380,8 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.interlock"
+                        v-model="response.openWidthProcess.openWidthDryingProcesses
+                            .dipStenters"
                         :items="
                           response.openWidthProcess.openWidthDryingProcesses
                             .availableDipStenters

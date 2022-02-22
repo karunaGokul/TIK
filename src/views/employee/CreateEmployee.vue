@@ -230,46 +230,67 @@
               </v-select>
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-hover v-slot:default="{ hover }">
-                    <v-icon
-                      large
-                      :color="hover ? 'primary' : 'deep-orange lighten-2'"
-                      class="pr-2"
-                      v-model="request.IsSMS"
-                      @click="request.IsSMS = !request.IsSMS"
-                      v-bind="attrs"
-                      v-on="on"
+                  <v-btn
+                    fab
+                    plain
+                    x-large
+                    class="pr-2"
+                    v-bind="attrs"
+                    v-on="on"
+                    v-model="request.IsSMS"
+                    @click="request.IsSMS = !request.IsSMS"
+                  >
+                    <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
-                    ></v-hover>
+                    >
+                    <v-icon v-else color="grey"
+                      >mdi-message-processing</v-icon
+                    >
+                  </v-btn>
                 </template>
                 <span>SMS </span>
               </v-tooltip>
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon
-                    large
-                    color="primary"
+                  <v-btn
+                    fab
+                    plain
+                    x-large
                     class="pr-2"
-                    v-model="request.IsEmail"
-                    @click="request.IsEmail = !request.IsEmail"
                     v-bind="attrs"
                     v-on="on"
-                    >mdi-email-multiple</v-icon
+                    v-model="request.IsEmail"
+                    @click="request.IsEmail = !request.IsEmail"
                   >
+                    <v-icon v-if="request.IsEmail" color="primary"
+                      >mdi-email-multiple</v-icon
+                    >
+                    <v-icon v-else color="grey"
+                      >mdi-email-multiple</v-icon
+                    >
+                  </v-btn>
                 </template>
                 <span>E-Mail</span>
               </v-tooltip>
               <v-tooltip top>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon
-                    large
-                    color="primary"
-                    v-model="request.IsWhatsApp"
-                    @click="request.IsWhatsApp = !request.IsWhatsApp"
+                  <v-btn
+                    fab
+                    plain
+                    x-large
+                    class="pr-2"
                     v-bind="attrs"
                     v-on="on"
-                    >mdi-whatsapp</v-icon
+                   v-model="request.IsWhatsApp"
+                    @click="request.IsWhatsApp = !request.IsWhatsApp"
                   >
+                    <v-icon v-if="request.IsWhatsApp" color="primary"
+                      >mdi-whatsapp</v-icon
+                    >
+                    <v-icon v-else color="grey"
+                      >mdi-whatsapp</v-icon
+                    >
+                  </v-btn>
                 </template>
                 <span>WhatsApp</span>
               </v-tooltip>
@@ -537,5 +558,3 @@ export default class CreateEmployee extends Vue {
   }
 }
 </script>
-
-

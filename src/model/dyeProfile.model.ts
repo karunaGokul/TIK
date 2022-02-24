@@ -17,7 +17,7 @@ export class fabricdyeModel {
 
 export class productDetailModel {
   dyeingProcesses: Array<dyeingProcessesModel>;
-  lycraBlend: Array<dyeingProcessesModel>;
+  lycraBlend: string;
   singleContents: Array<dyeingProcessesModel> ;
   blendContents: Array<dyeingProcessesModel>;
 
@@ -46,7 +46,13 @@ export class dyeingProcessesModel {
 }
 
 export class tubulardyeModel {
-  openWidthProcess: openWidthdyeModel;
+  heatSetting: string;
+  availableSpecialFinishes: Array<dyeingProcessesModel> = [];
+  specialFinishes: string;
+  openWidthDryingProcesses: openWidthDryingProcessesModel;
+  availableOpenWidthCompactingMachines: Array<dyeingProcessesModel> = [];
+  openWidthCompactingMachines: string;
+  
   availableTubularDryingProcesses: Array<dyeingProcessesModel> = [];
   availableTubularCompactingMachines: Array<dyeingProcessesModel> = [];
   tubularDryingProcesses: string;

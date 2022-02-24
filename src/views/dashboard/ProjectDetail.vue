@@ -52,7 +52,7 @@
               </div>
             </v-card>
           </v-col>
-          <v-col cols="12" md="5" offset-md="3" >
+          <v-col cols="12" md="5" offset-md="3">
             <v-card color="transparent" flat>
               <div class="d-flex flex-no-wrap">
                 <div
@@ -68,8 +68,11 @@
                   <div
                     class="overline font-weight-bold text-wrap text-capitalize"
                     v-if="
-                      response.InStages === 'Confirmed' ||
-                        response.InStages === 'Completed'
+                      (response.InStages === 'Awaiting Authentication' ||
+                        response.InStages === 'Confirmed' ||
+                        response.InStages === 'Completed' ||
+                        response.InStages === 'Awaiting Approval') &&
+                        response.biddingTime !== null
                     "
                   >
                     Bidding Time: {{ response.biddingTime }}
@@ -92,13 +95,13 @@
                 </div>
                 <div class="ml-4">
                   <span
-                    v-if="response.bidsReceived"
+                    v-if="response.bidsReceived && response.InStages !== 'Enquiry Sent'"
                     class="overline font-weight-bold text-capitalize"
                   >
                     Bids Received : {{ response.bidsReceived }}
                   </span>
                 </div>
-                <div
+                <div class="text-right ml-16"
                   v-if="
                     category != 'Company' &&
                       response.bidList[0].status === 'Initiated'
@@ -111,7 +114,7 @@
                     @click="toggleBid = 'true'"
                   >
                     bid this project
-                  </v-btn>
+                  </v-btn><br />
                   <v-btn
                     class="font-weight-light text-capitalize white--text mt-1 mr-7"
                     color="blue-grey"

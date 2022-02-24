@@ -16,6 +16,7 @@ export class ProfileResponse {
     imageName: string;
     image: string;
     review?: number;
+    certification: Array<string>;
 }
 
 

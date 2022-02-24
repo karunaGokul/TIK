@@ -94,6 +94,17 @@
                 onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 v-model="request.phoneNumber2"
               ></v-text-field>
+              <v-select
+                dense
+                outlined
+                multiple
+                class="my-n2"
+                placeholder="Enter Certificatoin"
+                v-model="request.certification"
+                :items="certification"
+                item-text="certificateName"
+                item-value="certificateID"
+              ></v-select>
             </v-form>
           </v-col>
           <v-col cols="12" sm="3" md="4" class="mt-3">
@@ -146,17 +157,22 @@
 <script lang="ts">
 import { Component, Vue, Prop, Inject } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
-import { IProfileService } from "@/service";
-import { ProfileResponse } from "@/model";
+import { IProfileService, IRegistrationService } from "@/service";
+import { ProfileResponse, CertificationResponseModel } from "@/model";
 @Component({
   mixins: [validationMixin],
 })
 export default class EditProfile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
+  @Inject("registrationService") registrationService: IRegistrationService;
   @Prop() request: ProfileResponse;
 
-  snackbarText: string = "";
-  snackbar: boolean = false;
+  public certification: Array<CertificationResponseModel> = [];
+  public img: string = "";
+  public dialog: boolean = true;
+  public logo: File;
+  public snackbarText: string = "";
+  public snackbar: boolean = false;
 
   public emailRules: any = [
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -168,9 +184,19 @@ export default class EditProfile extends Vue {
 
     (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
   ];
-  public img: string = "";
-  public dialog: boolean = true;
-  public logo: File;
+
+  created() {
+    this.getCertification();
+  }
+  
+
+  private getCertification() {
+    this.registrationService
+      .getCertification()
+      .then((response: Array<CertificationResponseModel>) => {
+        this.certification = response;
+      });
+  }
 
   public handleimage(e: File) {
     this.logo = e;

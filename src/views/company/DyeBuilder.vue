@@ -137,11 +137,14 @@ export default class DyeBuilder extends Vue {
         );
       });
 
-      if (data.lycraBlend) {
-        data.lycraBlend = "LycraBlends";
-      } else {
-        data.lycraBlend = null;
-      }
+      data.forEach((b) => {
+        if (b.lycraBlend) {
+          b.lycraBlend = "LycraBlends";
+        } else {
+          b.lycraBlend = null;
+        }
+      });
+      
 
       if (data.tubularProcess.heatSetting) {
         data.tubularProcess.heatSetting = "HeatSetting";
@@ -205,11 +208,13 @@ export default class DyeBuilder extends Vue {
         (item) => item.isSelected === true
       );
 
-      if (data.lycraBlend) {
-        data.lycraBlend = "LycraBlends";
-      } else {
-        data.lycraBlend = null;
-      }
+      data.forEach((b) => {
+        if (b.lycraBlend) {
+          b.lycraBlend = "LycraBlends";
+        } else {
+          b.lycraBlend = null;
+        }
+      });
 
       if (data.tubularProcess.heatSetting) {
         data.tubularProcess.heatSetting = "HeatSetting";
@@ -223,7 +228,7 @@ export default class DyeBuilder extends Vue {
       } else {
         data.tubularProcess.openWidthDryingProcesses.stenterDryer = null;
       }
-      
+
       if (data.tubularProcess.openWidthDryingProcesses.relaxDryer) {
         data.tubularProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
       } else {
@@ -242,7 +247,7 @@ export default class DyeBuilder extends Vue {
       } else {
         data.openWidthProcess.openWidthDryingProcesses.stenterDryer = null;
       }
-      
+
       if (data.openWidthProcess.openWidthDryingProcesses.relaxDryer) {
         data.openWidthProcess.openWidthDryingProcesses.relaxDryer =
           "RelaxDryer";

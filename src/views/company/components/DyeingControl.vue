@@ -116,7 +116,6 @@
           <v-card-text>
             <v-tabs-items v-model="tab">
               <v-tab-item>
-                <!-- <DyeingProcess /> -->
                 <v-row>
                   <v-col class="ml-1 mt-8">
                     <v-checkbox
@@ -287,7 +286,6 @@
                 </v-row>
               </v-tab-item>
               <v-tab-item>
-                <!-- <DyeingProcess /> -->
                 <v-row>
                   <v-col>
                     <v-checkbox
@@ -414,11 +412,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { validationMixin } from "vuelidate";
 import { productDetailModel } from "@/model";
 import DyeingStructure from "./DyeingStructure.vue";
-import DyeingProcess from "./DyeingProcess.vue";
 
 @Component({
   mixins: [validationMixin],
-  components: { DyeingStructure, DyeingProcess },
+  components: { DyeingStructure },
 })
 export default class DyeingControl extends Vue {
   @Prop() response: productDetailModel;

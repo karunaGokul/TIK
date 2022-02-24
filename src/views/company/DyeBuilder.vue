@@ -30,7 +30,7 @@
           <v-tabs-items v-model="tab1">
             <v-tab-item> </v-tab-item>
 
-            <v-tab-item >
+            <v-tab-item>
               <v-tabs v-model="tab3" v-if="response.fabricDyeing">
                 <v-tab v-for="item in tab3Items" :key="item.tab">
                   {{ item.tab }}
@@ -44,7 +44,7 @@
                   />
                 </v-tab-item>
                 <v-tab-item>
-                   <DyeingControl
+                  <DyeingControl
                     :response="response.fabricDyeing.winch"
                     option="Winch"
                     :edit="edit"
@@ -71,9 +71,9 @@
           </v-tabs-items>
         </v-card-text>
         <v-card-actions v-if="edit">
-            <v-spacer></v-spacer>
-            <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
-          </v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn elevation="2" color="primary" @click="save()"> Save </v-btn>
+        </v-card-actions>
       </v-card>
     </div>
   </div>
@@ -130,69 +130,57 @@ export default class DyeBuilder extends Vue {
   }
 
   public removeOtherOption(data: productDetailModel, option: string) {
-    if(option === "SoftFlow" ) {
+    if (option === "SoftFlow") {
       data.dyeingProcesses.forEach((b) => {
         data.dyeingProcesses = data.dyeingProcesses.filter(
-        (item) => item.isSelected === true
-      );
-      })
-       
+          (item) => item.isSelected === true
+        );
+      });
 
-       if(data.lycraBlend) {
-        data.lycraBlend = "LycraBlend";
+      if (data.lycraBlend) {
+        data.lycraBlend = "LycraBlends";
       } else {
         data.lycraBlend = null;
       }
 
-      // data.tubularProcess.forEach((b) => {
-        if (data.tubularProcess.heatSetting) {
-         data.tubularProcess.heatSetting = "HeatSetting";
-        } else {
-          data.tubularProcess.heatSetting = null;
-        }
-        
-        if (data.tubularProcess.openWidthDryingProcesses.stenterDryer) {
-          data.tubularProcess.openWidthDryingProcesses.stenterDryer = "StenterDryer";
-        } else {
-          data.tubularProcess.openWidthDryingProcesses.stenterDryer = null;
-        }
+      if (data.tubularProcess.heatSetting) {
+        data.tubularProcess.heatSetting = "HeatSetting";
+      } else {
+        data.tubularProcess.heatSetting = null;
+      }
 
-        if (data.tubularProcess.openWidthDryingProcesses.dipStenters) {
-          data.tubularProcess.openWidthDryingProcesses.dipStenters = "DipStenters";
-        } else {
-         data.tubularProcess.openWidthDryingProcesses.dipStenters = null;
-        }
+      if (data.tubularProcess.openWidthDryingProcesses.stenterDryer) {
+        data.tubularProcess.openWidthDryingProcesses.stenterDryer =
+          "StenterDryer";
+      } else {
+        data.tubularProcess.openWidthDryingProcesses.stenterDryer = null;
+      }
 
-        if (data.tubularProcess.openWidthDryingProcesses.relaxDryer) {
-         data.tubularProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
-        } else {
-          data.tubularProcess.openWidthDryingProcesses.relaxDryer = null;
-        }
-      // });
+      if (data.tubularProcess.openWidthDryingProcesses.relaxDryer) {
+        data.tubularProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
+      } else {
+        data.tubularProcess.openWidthDryingProcesses.relaxDryer = null;
+      }
 
-      // data.openWidthProcess.forEach((b) => {
-        if (data.openWidthProcess.heatSetting) {
-          data.openWidthProcess.heatSetting = "HeatSetting";
-        } else {
-         data.openWidthProcess.heatSetting = null;
-        }
-       
-        if (data.openWidthProcess.openWidthDryingProcesses.stenterDryer) {
-          data.openWidthProcess.openWidthDryingProcesses.stenterDryer = "StenterDryer";
-        } else {
-          data.openWidthProcess.openWidthDryingProcesses.stenterDryer = null;
-        }
-        if (data.openWidthProcess.openWidthDryingProcesses.dipStenters) {
-          data.openWidthProcess.openWidthDryingProcesses.dipStenters = "DipStenters";
-        } else {
-         data.openWidthProcess.openWidthDryingProcesses.dipStenters = null;
-        }
-        if (data.openWidthProcess.openWidthDryingProcesses.relaxDryer) {
-          data.openWidthProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
-        } else {
-          data.openWidthProcess.openWidthDryingProcesses.relaxDryer = null;
-        }
-      // });
+      if (data.openWidthProcess.heatSetting) {
+        data.openWidthProcess.heatSetting = "HeatSetting";
+      } else {
+        data.openWidthProcess.heatSetting = null;
+      }
+
+      if (data.openWidthProcess.openWidthDryingProcesses.stenterDryer) {
+        data.openWidthProcess.openWidthDryingProcesses.stenterDryer =
+          "StenterDryer";
+      } else {
+        data.openWidthProcess.openWidthDryingProcesses.stenterDryer = null;
+      }
+
+      if (data.openWidthProcess.openWidthDryingProcesses.relaxDryer) {
+        data.openWidthProcess.openWidthDryingProcesses.relaxDryer =
+          "RelaxDryer";
+      } else {
+        data.openWidthProcess.openWidthDryingProcesses.relaxDryer = null;
+      }
 
       delete data.tubularProcess.availableSpecialFinishes;
       delete data.tubularProcess.availableTubularDryingProcesses;
@@ -202,7 +190,8 @@ export default class DyeBuilder extends Vue {
 
       delete data.openWidthProcess.availableSpecialFinishes;
       delete data.openWidthProcess.availableOpenWidthCompactingMachines;
-      delete data.openWidthProcess.openWidthDryingProcesses.availableDipStenters;
+      delete data.openWidthProcess.openWidthDryingProcesses
+        .availableDipStenters;
 
       delete data.availableSingleContents;
       delete data.availableBlendContents;
@@ -211,66 +200,56 @@ export default class DyeBuilder extends Vue {
       delete data.availableInterlocks;
       delete data.availableVesselSizes;
     }
-    if(option === "Winch" ) {
-       data.dyeingProcesses = data.dyeingProcesses.filter(
+    if (option === "Winch") {
+      data.dyeingProcesses = data.dyeingProcesses.filter(
         (item) => item.isSelected === true
       );
 
-      if(data.lycraBlend) {
-        data.lycraBlend = "LycraBlend";
+      if (data.lycraBlend) {
+        data.lycraBlend = "LycraBlends";
       } else {
         data.lycraBlend = null;
       }
 
-      // data.tubularProcess.forEach((b) => {
-        if (data.tubularProcess.heatSetting) {
-          data.tubularProcess.heatSetting = "HeatSetting";
-        } else {
-          data.tubularProcess.heatSetting = null;
-        }
-        
-        if (data.tubularProcess.openWidthDryingProcesses.stenterDryer) {
-          data.tubularProcess.openWidthDryingProcesses.stenterDryer = "StenterDryer";
-        } else {
-          data.tubularProcess.openWidthDryingProcesses.stenterDryer = null;
-        }
-        if (data.tubularProcess.openWidthDryingProcesses.dipStenters) {
-          data.tubularProcess.openWidthDryingProcesses.dipStenters = "DipStenters";
-        } else {
-          data.tubularProcess.openWidthDryingProcesses.dipStenters = null;
-        }
-        if (data.tubularProcess.openWidthDryingProcesses.relaxDryer) {
-          data.tubularProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
-        } else {
-          data.tubularProcess.openWidthDryingProcesses.relaxDryer = null;
-        }
-      // });
-      
-      // data.openWidthProcess.forEach((b) => {
-        if (data.openWidthProcess.heatSetting) {
-          data.openWidthProcess.heatSetting = "HeatSetting";
-        } else {
-         data.openWidthProcess.heatSetting = null;
-        }
+      if (data.tubularProcess.heatSetting) {
+        data.tubularProcess.heatSetting = "HeatSetting";
+      } else {
+        data.tubularProcess.heatSetting = null;
+      }
 
-        if (data.openWidthProcess.openWidthDryingProcesses.stenterDryer) {
-          data.openWidthProcess.openWidthDryingProcesses.stenterDryer = "StenterDryer";
-        } else {
-          data.openWidthProcess.openWidthDryingProcesses.stenterDryer = null;
-        }
-        if (data.openWidthProcess.openWidthDryingProcesses.dipStenters) {
-          data.openWidthProcess.openWidthDryingProcesses.dipStenters = "DipStenters";
-        } else {
-          data.openWidthProcess.openWidthDryingProcesses.dipStenters = null;
-        }
-        if (data.openWidthProcess.openWidthDryingProcesses.relaxDryer) {
-          data.openWidthProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
-        } else {
-          data.openWidthProcess.openWidthDryingProcesses.relaxDryer = null;
-        }
-      // });
+      if (data.tubularProcess.openWidthDryingProcesses.stenterDryer) {
+        data.tubularProcess.openWidthDryingProcesses.stenterDryer =
+          "StenterDryer";
+      } else {
+        data.tubularProcess.openWidthDryingProcesses.stenterDryer = null;
+      }
       
+      if (data.tubularProcess.openWidthDryingProcesses.relaxDryer) {
+        data.tubularProcess.openWidthDryingProcesses.relaxDryer = "RelaxDryer";
+      } else {
+        data.tubularProcess.openWidthDryingProcesses.relaxDryer = null;
+      }
+
+      if (data.openWidthProcess.heatSetting) {
+        data.openWidthProcess.heatSetting = "HeatSetting";
+      } else {
+        data.openWidthProcess.heatSetting = null;
+      }
+
+      if (data.openWidthProcess.openWidthDryingProcesses.stenterDryer) {
+        data.openWidthProcess.openWidthDryingProcesses.stenterDryer =
+          "StenterDryer";
+      } else {
+        data.openWidthProcess.openWidthDryingProcesses.stenterDryer = null;
+      }
       
+      if (data.openWidthProcess.openWidthDryingProcesses.relaxDryer) {
+        data.openWidthProcess.openWidthDryingProcesses.relaxDryer =
+          "RelaxDryer";
+      } else {
+        data.openWidthProcess.openWidthDryingProcesses.relaxDryer = null;
+      }
+
       delete data.tubularProcess.availableSpecialFinishes;
       delete data.tubularProcess.availableTubularDryingProcesses;
       delete data.tubularProcess.availableOpenWidthCompactingMachines;
@@ -279,7 +258,8 @@ export default class DyeBuilder extends Vue {
 
       delete data.openWidthProcess.availableSpecialFinishes;
       delete data.openWidthProcess.availableOpenWidthCompactingMachines;
-      delete data.openWidthProcess.openWidthDryingProcesses.availableDipStenters;
+      delete data.openWidthProcess.openWidthDryingProcesses
+        .availableDipStenters;
 
       delete data.availableSingleContents;
       delete data.availableBlendContents;
@@ -298,13 +278,13 @@ export default class DyeBuilder extends Vue {
     this.removeOtherOption(this.dyeingData.fabricDyeing.softFlow, "SoftFlow");
     this.removeOtherOption(this.dyeingData.fabricDyeing.winch, "Winch");
 
-      this.ProfileService.AddDyeing(this.dyeingData).then((response: any) => {
-        this.snackbarText = response.split('\n').join('</p><p>');
-        this.snackbar = true;
-        this.createDyeing();
-      });
+    this.ProfileService.AddDyeing(this.dyeingData).then((response: any) => {
+      this.snackbarText = response.split("\n").join("</p><p>");
+      this.snackbar = true;
+      this.createDyeing();
+    });
   }
-  
+
   tab1: any = null;
   tab2: any = null;
   tab3: any = null;

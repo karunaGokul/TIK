@@ -126,7 +126,7 @@
                     dense
                     v-bind="attrs"
                     v-on="on"
-                    :rules="request.Password ? passwordRules1 : ''"
+                    :rules="request.Password ? passwordRules1 : []"
                     autocomplete="new-password"
                   ></v-text-field>
                 </template>
@@ -216,7 +216,6 @@
             >
               <v-label>
                 Notification
-                <span class="red--text">*</span>
               </v-label>
               <v-select
                 multiple
@@ -239,6 +238,7 @@
                     v-on="on"
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
+                    :rules="request.StatusList !== [] ? [(v) => !!v || 'Category is required'] : []"
                   >
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
@@ -260,6 +260,7 @@
                     v-bind="attrs"
                     v-on="on"
                     v-model="request.IsEmail"
+                    v-validate="{ required: request.StatusList !== [] }"
                     @click="request.IsEmail = !request.IsEmail"
                   >
                     <v-icon v-if="request.IsEmail" color="primary"

@@ -2,6 +2,8 @@ import { BaseModel, DataRequest } from "./base.model";
 
 export class DyeingProfileModel {
   id: string;
+  companyId: string;
+  creatorId: string;
   yarnDyeing: yarndyeModel;
   fabricDyeing: fabricdyeModel;
 }
@@ -14,9 +16,10 @@ export class fabricdyeModel {
 }
 
 export class productDetailModel {
-  dyeingProcesses: string;
-  singleContents: Array<string> ;
-  blendContents: Array<string>;
+  dyeingProcesses: Array<dyeingProcessesModel>;
+  lycraBlend: Array<dyeingProcessesModel>;
+  singleContents: Array<dyeingProcessesModel> ;
+  blendContents: Array<dyeingProcessesModel>;
 
   availableDyeingProcesses: Array<dyeingProcessesModel> = [];
   availableSingleContents: Array<dyeingProcessesModel> = [];
@@ -30,8 +33,8 @@ export class productDetailModel {
   interlock: Array<dyeingProcessesModel> = [];
   rib: Array<dyeingProcessesModel> = [];
   vesselSizes: Array<dyeingProcessesModel> = [];
-  tubular: string;
-  openWidth: string;
+  tubular?: string;
+  openWidth?: string;
   tubularProcess: tubulardyeModel;
   openWidthProcess: openWidthdyeModel;
 }

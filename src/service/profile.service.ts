@@ -8,6 +8,7 @@ export interface IProfileService {
     CreateMills(companyId: string): Promise<CompanyProfileModel>;    
     AddMills(request: CompanyProfileModel): Promise<any>;
     CreateDyeing(companyId: string): Promise<DyeingProfileModel>;
+    AddDyeing(request: DyeingProfileModel): Promise<any>;
 }
 
 export class ProfileService extends ServiceHelper implements IProfileService {
@@ -49,6 +50,12 @@ export class ProfileService extends ServiceHelper implements IProfileService {
         return this.httpGet('Profile/CreateDyeing?companyId=' + companyId, null).then(response => {
             return response.data;
         });        
+    }
+    AddDyeing(request: DyeingProfileModel): Promise<any> {
+        return this.httpPost('Profile/AddDyeing', request).then(response => {
+            return response.data;
+        });
+
     }
 
 }

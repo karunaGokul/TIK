@@ -73,6 +73,30 @@
           </v-autocomplete>
         </v-list>
       </v-col>
+      <v-col>
+          <v-list flat>
+          <v-toolbar flat color="#c2e2e2" dense class="mb-2">
+            <v-toolbar-title class="subtitle-1">
+              Vessel Sizes
+            </v-toolbar-title>
+          </v-toolbar>
+          <v-autocomplete
+            v-model="response.vesselSizes"
+            :items="response.availableVesselSizes"
+            filled
+            chips
+            color="blue-grey lighten-2"
+            label="Select"
+            item-text="size"
+            item-value="size"
+            return-object
+            multiple
+            dense
+            :disabled="edit === false"
+          >
+          </v-autocomplete>
+        </v-list>
+      </v-col>
     </v-row>
   </div>
 </template>

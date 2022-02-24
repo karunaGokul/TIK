@@ -19,7 +19,7 @@
               </v-toolbar>
             </div>
             <v-list-item
-              v-for="(item, index) in response.availableDyeingProcesses"
+              v-for="(item, index) in response.dyeingProcesses"
               :key="index"
             >
               <v-list-item-content>{{ item.name }}</v-list-item-content>
@@ -27,7 +27,6 @@
                 <v-checkbox
                   v-model="item.isSelected"
                   :disabled="edit === false"
-                  @change="updateMelanSlubTypes()"
                 ></v-checkbox>
               </v-list-item-action>
             </v-list-item>
@@ -90,7 +89,7 @@
                   >
                   </v-autocomplete>
                 </v-list>
-                <v-checkbox label="Lycra Blends" class="ml-3"></v-checkbox>
+                <v-checkbox label="Lycra Blends" v-model="response.lycraBlend" class="ml-3"></v-checkbox>
               </v-col>
             </v-row>
           </v-row>

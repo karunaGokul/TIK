@@ -137,13 +137,11 @@ export default class DyeBuilder extends Vue {
         );
       });
 
-      data.forEach((b) => {
-        if (b.lycraBlend) {
-          b.lycraBlend = "LycraBlends";
+        if (data.lycraBlend) {
+          data.lycraBlend = "LycraBlends";
         } else {
-          b.lycraBlend = null;
+          data.lycraBlend = null;
         }
-      });
       
 
       if (data.tubularProcess.heatSetting) {
@@ -208,13 +206,11 @@ export default class DyeBuilder extends Vue {
         (item) => item.isSelected === true
       );
 
-      data.forEach((b) => {
-        if (b.lycraBlend) {
-          b.lycraBlend = "LycraBlends";
+        if (data.lycraBlend) {
+          data.lycraBlend = "LycraBlends";
         } else {
-          b.lycraBlend = null;
+          data.lycraBlend = null;
         }
-      });
 
       if (data.tubularProcess.heatSetting) {
         data.tubularProcess.heatSetting = "HeatSetting";

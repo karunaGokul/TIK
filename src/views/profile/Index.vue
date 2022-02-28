@@ -67,6 +67,15 @@
           <h3 class="text-h6 mt-6">About</h3>
           <p>{{ response.title }}</p>
           <p>{{ response.description }}</p>
+          <p>{{ response.certification }}</p>
+          <!-- <v-select solo
+                outlined
+                dense
+                :items="NotificationResponse"
+                item-text="status"
+                item-value="id"
+                v-model="request.StatusList"
+          ></v-select> -->
         </v-col>
         <v-col col="5">
           <iframe
@@ -262,10 +271,7 @@ export default class Profile extends Vue {
   public value: string;
 
   created() {
-    // if (this.category === "Company") {
-    //   this.categorys.splice(0, 9);
-    //   this.categorys.push('Company');
-    // }
+    
     this.loadprofile();
   }
   public loadprofile() {
@@ -303,15 +309,7 @@ export default class Profile extends Vue {
       img: require("@/assets/gallery/gallery4.png"),
     },
   ];
-  // companyImages: any = [
-  //   {
-  //     title: "Yarn (or) Fabric Update",
-  //     src: require("@/assets/mill/yarn.png"),
-  //   },
-  //   { title: "Brochures", src: require("@/assets/mill/fabric.png") },
-  //   { title: "Machineries", src: require("@/assets/mill/textile-machine.png") },
-  //   { title: "Certificates", src: require("@/assets/mill/certificate.png") },
-  // ];
+ 
   categorys: any = [
     {
       text: "Mills",

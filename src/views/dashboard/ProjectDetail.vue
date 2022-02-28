@@ -95,7 +95,7 @@
                 </div>
                 <div class="ml-4">
                   <span
-                    v-if="response.bidsReceived && response.InStages !== 'Enquiry Sent'"
+                    v-if="response.bidsReceived && category === 'Company'"
                     class="overline font-weight-bold text-capitalize"
                   >
                     Bids Received : {{ response.bidsReceived }}

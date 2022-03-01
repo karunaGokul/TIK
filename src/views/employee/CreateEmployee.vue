@@ -213,7 +213,6 @@
               flat
               class="pa-5"
               style="border:solid 1px rgba(0, 0, 0, 0.38) !important"
-              
             >
               <v-label>
                 Notification
@@ -240,13 +239,10 @@
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
                   >
-                  {{ request.IsSMS }}
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
                     >
-                    <v-icon v-else color="grey"
-                      >mdi-message-processing</v-icon
-                    >
+                    <v-icon v-else color="grey">mdi-message-processing</v-icon>
                   </v-btn>
                 </template>
                 <span>SMS </span>
@@ -266,9 +262,7 @@
                     <v-icon v-if="request.IsEmail" color="primary"
                       >mdi-email-multiple</v-icon
                     >
-                    <v-icon v-else color="grey"
-                      >mdi-email-multiple</v-icon
-                    >
+                    <v-icon v-else color="grey">mdi-email-multiple</v-icon>
                   </v-btn>
                 </template>
                 <span>E-Mail</span>
@@ -288,14 +282,15 @@
                     <v-icon v-if="request.IsWhatsApp" color="primary"
                       >mdi-whatsapp</v-icon
                     >
-                    <v-icon v-else color="grey"
-                      >mdi-whatsapp</v-icon
-                    >
+                    <v-icon v-else color="grey">mdi-whatsapp</v-icon>
                   </v-btn>
                 </template>
                 <span>WhatsApp</span>
               </v-tooltip>
             </v-card>
+            <div class="red--text" v-if="notification">
+              "Please Select atleast one media method..."
+            </div>
           </v-col>
         </v-row>
         <v-row>
@@ -420,11 +415,6 @@ export default class CreateEmployee extends Vue {
     { icon: "mdi-whatsapp", tip: "WhatsApp", data: "IsWhatsApp" },
   ];
 
-  public notificationRules: any = [
-    (v: any) => !!v || "Name is required",
-    (v: any) => v=="FALSE" || "Name is required",
-  ]
-
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
     (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
@@ -473,6 +463,7 @@ export default class CreateEmployee extends Vue {
   public snackbar: boolean = false;
   public snackbarText1: string = "";
   public snackbar1: boolean = false;
+  public notification: boolean = false;
 
   created() {
     if (this.$route.params.Id != "Create") {
@@ -539,24 +530,34 @@ export default class CreateEmployee extends Vue {
   }
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      
-      this.request.EmployeeId = this.$route.params.Id;
-      this.EmployeeService.EditEmployee(
-        this.request,
-        this.request.EmployeeId
-      ).then(
-        (response) => {
-          this.snackbarText = response;
-          this.snackbar = true;
-          this.$router.push("/employee");
-        },
-        (err) => {
-          if (err.response.status == 400) {
-            this.snackbarText1 = err.response.data;
-            this.snackbar1 = true;
+      if (
+        (this.request.StatusList !== [] &&
+          (this.request.IsSMS === true ||
+            this.request.IsEmail === true ||
+            this.request.IsWhatsApp === true)) ||
+        this.request.StatusList === []
+      ) {
+        this.request.EmployeeId = this.$route.params.Id;
+        this.EmployeeService.EditEmployee(
+          this.request,
+          this.request.EmployeeId
+        ).then(
+          (response) => {
+            this.snackbarText = response;
+            this.snackbar = true;
+            this.$router.push("/employee");
+          },
+          (err) => {
+            if (err.response.status == 400) {
+              this.snackbarText1 = err.response.data;
+              this.snackbar1 = true;
+            }
           }
-        }
-      );
+        );
+      }
+      else {
+        this.notification = true;
+      }
     }
   }
 

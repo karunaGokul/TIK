@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card flat class="ma-5"> 
+    <v-card flat class="ma-5 mb-16"> 
       <v-card-title>
         Mill Details
       </v-card-title>

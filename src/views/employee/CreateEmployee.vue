@@ -213,6 +213,7 @@
               flat
               class="pa-5"
               style="border:solid 1px rgba(0, 0, 0, 0.38) !important"
+              
             >
               <v-label>
                 Notification
@@ -238,8 +239,8 @@
                     v-on="on"
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
-                    :rules="request.StatusList !== [] ? [(v) => !!v || 'Category is required'] : []"
                   >
+                  {{ request.IsSMS }}
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
                     >
@@ -260,7 +261,6 @@
                     v-bind="attrs"
                     v-on="on"
                     v-model="request.IsEmail"
-                    v-validate="{ required: request.StatusList !== [] }"
                     @click="request.IsEmail = !request.IsEmail"
                   >
                     <v-icon v-if="request.IsEmail" color="primary"
@@ -282,7 +282,7 @@
                     class="pr-2"
                     v-bind="attrs"
                     v-on="on"
-                   v-model="request.IsWhatsApp"
+                    v-model="request.IsWhatsApp"
                     @click="request.IsWhatsApp = !request.IsWhatsApp"
                   >
                     <v-icon v-if="request.IsWhatsApp" color="primary"
@@ -420,6 +420,11 @@ export default class CreateEmployee extends Vue {
     { icon: "mdi-whatsapp", tip: "WhatsApp", data: "IsWhatsApp" },
   ];
 
+  public notificationRules: any = [
+    (v: any) => !!v || "Name is required",
+    (v: any) => v=="FALSE" || "Name is required",
+  ]
+
   public nameRules: any = [
     (v: any) => !!v || "Name is required",
     (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
@@ -534,6 +539,7 @@ export default class CreateEmployee extends Vue {
   }
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
+      
       this.request.EmployeeId = this.$route.params.Id;
       this.EmployeeService.EditEmployee(
         this.request,

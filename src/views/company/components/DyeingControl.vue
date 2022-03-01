@@ -89,7 +89,12 @@
                   >
                   </v-autocomplete>
                 </v-list>
-                <v-checkbox label="Lycra Blends" v-model="response.lycraBlend" class="ml-3"></v-checkbox>
+                <v-checkbox
+                  label="Lycra Blends"
+                  v-model="response.lycraBlend"
+                  class="ml-3"
+                  :disabled="edit === false"
+                ></v-checkbox>
               </v-col>
             </v-row>
           </v-row>
@@ -123,6 +128,7 @@
                       label="Tubular Heatsetting"
                       v-model="response.tubularProcess.heatSetting"
                       v-if="response.tubularProcess"
+                      :disabled="edit === false"
                     ></v-checkbox>
                   </v-col>
                   <v-col cols="4">
@@ -199,6 +205,7 @@
                       "
                       v-if="response.tubularProcess"
                       label="Stenter DRY"
+                      :disabled="edit === false"
                     ></v-checkbox>
                   </v-col>
                   <v-col>
@@ -209,11 +216,13 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model=" response.tubularProcess.openWidthDryingProcesses
-                          .dipStenters"
+                        v-model="
+                          response.tubularProcess.openWidthDryingProcesses
+                            .dipStenters
+                        "
                         :items="
-                           response.tubularProcess.openWidthDryingProcesses
-                          .availableDipStenters
+                          response.tubularProcess.openWidthDryingProcesses
+                            .availableDipStenters
                         "
                         filled
                         chips
@@ -237,7 +246,9 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.tubularProcess.tubularCompactingMachines"
+                        v-model="
+                          response.tubularProcess.tubularCompactingMachines
+                        "
                         :items="
                           response.tubularProcess
                             .availableTubularCompactingMachines
@@ -264,7 +275,9 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.tubularProcess.openWidthCompactingMachines"
+                        v-model="
+                          response.tubularProcess.openWidthCompactingMachines
+                        "
                         :items="
                           response.tubularProcess
                             .availableOpenWidthCompactingMachines
@@ -292,6 +305,7 @@
                       dense
                       label="OPW Heatsetting"
                       v-model="response.openWidthProcess.heatSetting"
+                      :disabled="edit === false"
                     ></v-checkbox>
                   </v-col>
                   <v-col cols="4">
@@ -328,8 +342,9 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.openWidthProcess
-                            .openWidthCompactingMachines"
+                        v-model="
+                          response.openWidthProcess.openWidthCompactingMachines
+                        "
                         :items="
                           response.openWidthProcess
                             .availableOpenWidthCompactingMachines
@@ -360,6 +375,7 @@
                         response.openWidthProcess.openWidthDryingProcesses
                           .stenterDryer
                       "
+                      :disabled="edit === false"
                     ></v-checkbox>
                     <v-checkbox
                       label="Relax Dryer"
@@ -367,6 +383,7 @@
                         response.openWidthProcess.openWidthDryingProcesses
                           .relaxDryer
                       "
+                      :disabled="edit === false"
                     ></v-checkbox>
                   </v-col>
                   <v-col cols="6">
@@ -377,8 +394,10 @@
                         </v-toolbar-title>
                       </v-toolbar>
                       <v-autocomplete
-                        v-model="response.openWidthProcess.openWidthDryingProcesses
-                            .dipStenters"
+                        v-model="
+                          response.openWidthProcess.openWidthDryingProcesses
+                            .dipStenters
+                        "
                         :items="
                           response.openWidthProcess.openWidthDryingProcesses
                             .availableDipStenters

@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <v-card height="350px" flat class="ma-5 mb-16"> 
+  <div>
+    <v-card min-height="350px" flat class="ma-5"> 
       <v-card-title>
         Mill Details
       </v-card-title>

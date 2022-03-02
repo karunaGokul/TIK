@@ -535,7 +535,7 @@ export default class CreateEmployee extends Vue {
           (this.request.IsSMS === true ||
             this.request.IsEmail === true ||
             this.request.IsWhatsApp === true)) ||
-        this.request.StatusList === []
+        (this.request.StatusList === [])
       ) {
         this.request.EmployeeId = this.$route.params.Id;
         this.EmployeeService.EditEmployee(

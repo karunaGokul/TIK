@@ -146,7 +146,7 @@
       <CustomerFeedback />
     </v-container>
     <v-container fluid class="mb-16 pb-16">
-      <Advertisement />
+      <!-- <Advertisement /> -->
     </v-container>
   </div>
 </template>

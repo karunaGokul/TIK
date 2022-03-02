@@ -513,21 +513,32 @@ export default class CreateEmployee extends Vue {
 
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      this.EmployeeService.CreateEmployee(this.request).then(
-        (response) => {
-          this.snackbarText = response;
-          this.snackbar = true;
-          this.$router.push("/employee");
-        },
-        (err) => {
-          if (err.response.status == 400) {
-            this.snackbarText1 = err.response.data;
-            this.snackbar1 = true;
+      if (
+        (this.request.StatusList !== [] &&
+          (this.request.IsSMS === true ||
+            this.request.IsEmail === true ||
+            this.request.IsWhatsApp === true)) ||
+        (this.request.StatusList === null)
+      ) {
+        this.EmployeeService.CreateEmployee(this.request).then(
+          (response) => {
+            this.snackbarText = response;
+            this.snackbar = true;
+            this.$router.push("/employee");
+          },
+          (err) => {
+            if (err.response.status == 400) {
+              this.snackbarText1 = err.response.data;
+              this.snackbar1 = true;
+            }
           }
-        }
-      );
+        );
+      } else {
+        this.notification = true;
+      }
     }
   }
+
   public updateEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       if (
@@ -535,7 +546,7 @@ export default class CreateEmployee extends Vue {
           (this.request.IsSMS === true ||
             this.request.IsEmail === true ||
             this.request.IsWhatsApp === true)) ||
-        (this.request.StatusList === [])
+        (this.request.StatusList === null)
       ) {
         this.request.EmployeeId = this.$route.params.Id;
         this.EmployeeService.EditEmployee(
@@ -554,8 +565,7 @@ export default class CreateEmployee extends Vue {
             }
           }
         );
-      }
-      else {
+      } else {
         this.notification = true;
       }
     }

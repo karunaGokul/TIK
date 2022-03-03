@@ -31,6 +31,7 @@
           :multiple="control.multiple"
           hide-details
           required
+           @change="rangeChanged"
         ></v-select>
       </v-col>
     </v-row>
@@ -129,6 +130,10 @@ export default class ProjectControl extends Vue {
     option.selected = true;
 
     this.control.value = option.text;
+    this.$emit("change");
+  }
+  
+   rangeChanged(value: any) {
     this.$emit("change");
   }
 

@@ -108,7 +108,7 @@ export default class ProjectBuilder extends Vue {
   public snackbar: boolean = false;
   public snackbarText: string = "";
 
-  merchandiserLoading: boolean = false;
+  public merchandiserLoading: boolean = false;
 
   created() {
     this.GetMerchandiser();

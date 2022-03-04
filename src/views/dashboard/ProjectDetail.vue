@@ -77,6 +77,12 @@
                   >
                     Bidding Time: {{ response.biddingTime }}
                   </div>
+                  <span
+                    v-if="response.bidsReceived"
+                    class="overline font-weight-bold text-capitalize ml-4"
+                  >
+                    Bids Received : {{ response.bidsReceived }}
+                  </span>
                   <div>
                     <v-btn
                       depressed
@@ -93,14 +99,7 @@
                     </v-btn>
                   </div>
                 </div>
-                <div class="ml-4">
-                  <span
-                    v-if="response.bidsReceived && category === 'Company'"
-                    class="overline font-weight-bold text-capitalize"
-                  >
-                    Bids Received : {{ response.bidsReceived }}
-                  </span>
-                </div>
+                
                 <div class="text-right ml-16"
                   v-if="
                     category != 'Company' &&

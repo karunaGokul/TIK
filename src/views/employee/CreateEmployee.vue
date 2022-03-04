@@ -184,6 +184,7 @@
               outlined
               dense
               :rules="[(v) => !!v || 'Role is required']"
+              :loading="loading"
             >
             </v-select>
           </v-col>
@@ -202,6 +203,7 @@
               v-model="request.Category"
               dense
               :rules="[(v) => !!v || 'Category is required']"
+              :loading="loading"
             >
             </v-select>
           </v-col>
@@ -225,6 +227,7 @@
                 item-text="status"
                 item-value="id"
                 v-model="request.StatusList"
+                :loading="loading"
               >
               </v-select>
               <v-tooltip top>
@@ -464,7 +467,7 @@ export default class CreateEmployee extends Vue {
   public snackbarText1: string = "";
   public snackbar1: boolean = false;
   public notification: boolean = false;
-
+  public loading: boolean = false;
   created() {
     if (this.$route.params.Id != "Create") {
       this.option = "Edit";
@@ -482,17 +485,21 @@ export default class CreateEmployee extends Vue {
   // }
 
   public getCategory() {
+    this.loading = true;
     this.registrationService
       .getCategory()
       .then((response: Array<CategoryResponseModel>) => {
         this.CategoryResponse = response;
+         this.loading = false;
       });
   }
 
   public getNotificationList() {
+    this.loading = true;
     this.EmployeeService.getNotificationList().then(
       (response: Array<GetNotificationResponseModel>) => {
         this.NotificationResponse = response;
+        this.loading = false;
       }
     );
   }
@@ -504,22 +511,24 @@ export default class CreateEmployee extends Vue {
   }
 
   public GetRoles() {
+    this.loading = true;
     this.EmployeeService.GetRoles().then(
       (response: Array<RoleResponseModel>) => {
         this.role = response;
+        this.loading = false;
       }
     );
   }
 
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      if (
-        (this.request.StatusList !== [] &&
-          (this.request.IsSMS === true ||
-            this.request.IsEmail === true ||
-            this.request.IsWhatsApp === true)) ||
-        (this.request.StatusList === null)
-      ) {
+      // if (
+      //   (this.request.StatusList !== [] &&
+      //     (this.request.IsSMS === true ||
+      //       this.request.IsEmail === true ||
+      //       this.request.IsWhatsApp === true)) ||
+      //   (this.request.StatusList === [])
+      // ) {
         this.EmployeeService.CreateEmployee(this.request).then(
           (response) => {
             this.snackbarText = response;
@@ -533,9 +542,10 @@ export default class CreateEmployee extends Vue {
             }
           }
         );
-      } else {
-        this.notification = true;
-      }
+      // } 
+      // else {
+      //   this.notification = true;
+      // }
     }
   }
 

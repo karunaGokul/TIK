@@ -31,7 +31,7 @@
           :multiple="control.multiple"
           hide-details
           required
-           @change="rangeChanged"
+          @change="rangeChanged"
         ></v-select>
       </v-col>
     </v-row>

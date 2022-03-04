@@ -67,15 +67,8 @@
           <h3 class="text-h6 mt-6">About</h3>
           <p>{{ response.title }}</p>
           <p>{{ response.description }}</p>
-          <p>{{ response.certification }}</p>
-          <!-- <v-select solo
-                outlined
-                dense
-                :items="NotificationResponse"
-                item-text="status"
-                item-value="id"
-                v-model="request.StatusList"
-          ></v-select> -->
+          <!-- <p>{{ response.certification }}</p> -->
+          
         </v-col>
         <v-col col="5">
           <iframe

@@ -104,6 +104,7 @@
                 :items="certification"
                 item-text="certificateName"
                 item-value="certificateID"
+                :loading="loading"
               ></v-select>
             </v-form>
           </v-col>
@@ -173,6 +174,7 @@ export default class EditProfile extends Vue {
   public logo: File;
   public snackbarText: string = "";
   public snackbar: boolean = false;
+  public loading: boolean = false;
 
   public emailRules: any = [
     (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
@@ -191,10 +193,12 @@ export default class EditProfile extends Vue {
   
 
   private getCertification() {
+    this.loading = true;
     this.registrationService
       .getCertification()
       .then((response: Array<CertificationResponseModel>) => {
         this.certification = response;
+        this.loading = false;
       });
   }
 

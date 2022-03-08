@@ -242,6 +242,7 @@
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
                   >
+                  <!-- {{ request.StatusList }} -->
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
                     >
@@ -468,6 +469,7 @@ export default class CreateEmployee extends Vue {
   public snackbar1: boolean = false;
   public notification: boolean = false;
   public loading: boolean = false;
+
   created() {
     if (this.$route.params.Id != "Create") {
       this.option = "Edit";
@@ -522,13 +524,13 @@ export default class CreateEmployee extends Vue {
 
   public createEmployee() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-      // if (
-      //   (this.request.StatusList !== [] &&
-      //     (this.request.IsSMS === true ||
-      //       this.request.IsEmail === true ||
-      //       this.request.IsWhatsApp === true)) ||
-      //   (this.request.StatusList === [])
-      // ) {
+      if (
+        (this.request.StatusList !== [] &&
+          (this.request.IsSMS === true ||
+            this.request.IsEmail === true ||
+            this.request.IsWhatsApp === true)) ||
+        (this.request.StatusList === [])
+      ) {
         this.EmployeeService.CreateEmployee(this.request).then(
           (response) => {
             this.snackbarText = response;
@@ -542,10 +544,10 @@ export default class CreateEmployee extends Vue {
             }
           }
         );
-      // } 
-      // else {
-      //   this.notification = true;
-      // }
+      } 
+      else {
+        this.notification = true;
+      }
     }
   }
 

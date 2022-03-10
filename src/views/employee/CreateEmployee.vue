@@ -242,7 +242,7 @@
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
                   >
-                  <!-- {{ request.StatusList }} -->
+                    {{ request.StatusList }}
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
                     >
@@ -492,7 +492,7 @@ export default class CreateEmployee extends Vue {
       .getCategory()
       .then((response: Array<CategoryResponseModel>) => {
         this.CategoryResponse = response;
-         this.loading = false;
+        this.loading = false;
       });
   }
 
@@ -529,7 +529,7 @@ export default class CreateEmployee extends Vue {
           (this.request.IsSMS === true ||
             this.request.IsEmail === true ||
             this.request.IsWhatsApp === true)) ||
-        (this.request.StatusList === [])
+        this.request.StatusList.length === 0
       ) {
         this.EmployeeService.CreateEmployee(this.request).then(
           (response) => {
@@ -544,8 +544,7 @@ export default class CreateEmployee extends Vue {
             }
           }
         );
-      } 
-      else {
+      } else {
         this.notification = true;
       }
     }
@@ -558,7 +557,8 @@ export default class CreateEmployee extends Vue {
           (this.request.IsSMS === true ||
             this.request.IsEmail === true ||
             this.request.IsWhatsApp === true)) ||
-        (this.request.StatusList === null)
+        this.request.StatusList === null ||
+        this.request.StatusList.length === 0
       ) {
         this.request.EmployeeId = this.$route.params.Id;
         this.EmployeeService.EditEmployee(

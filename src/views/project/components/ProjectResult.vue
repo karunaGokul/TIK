@@ -84,7 +84,11 @@ export default class ProjectResult extends Vue {
     {
       text: "Reviews",
       value: "review",
-      filterable: false,
+      // filterable: false,
+    },
+    {
+      text: "Certificates",
+      value: "certification",
     },
   ];
 

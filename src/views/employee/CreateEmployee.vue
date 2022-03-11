@@ -242,7 +242,6 @@
                     v-model="request.IsSMS"
                     @click="request.IsSMS = !request.IsSMS"
                   >
-                    {{ request.StatusList }}
                     <v-icon v-if="request.IsSMS" color="primary"
                       >mdi-message-processing</v-icon
                     >

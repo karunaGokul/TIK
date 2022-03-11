@@ -68,7 +68,8 @@
           <p>{{ response.title }}</p>
           <p>{{ response.description }}</p>
           <p class="text-h6">Certification:</p>
-          <p class="mt-n2"
+          <p
+            class="mt-n2"
             v-for="(certificationName, index) in response.certification"
             :key="index"
           >
@@ -182,9 +183,11 @@
               gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
               <Divider class="ml-4" />
-              <v-card-title class="white--text pt-0"
-                >Certificates
-              </v-card-title>
+              <router-link to="/certificates" class="text-decoration-none">
+                <v-card-title class="white--text pt-0"
+                  >Certificates
+                </v-card-title>
+              </router-link>
             </v-img>
           </v-card>
         </v-col>

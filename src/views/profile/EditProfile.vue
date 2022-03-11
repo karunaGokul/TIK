@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog max-width="1200px" v-model="dialog" class="d-flex">
-      <v-card style="overflow: hidden"> 
+      <v-card style="overflow: hidden">
         <v-row class="mt-1 px-4">
           <v-card-title class="ml-3"> Profile </v-card-title>
           <v-spacer></v-spacer>
@@ -57,15 +57,15 @@
                 placeholder="Enter Description"
                 v-model="request.description"
               ></v-text-field>
-            <div class="text-subtitle-1 my-n3">
-              Contact Information
-              <v-text-field
-                dense
-                outlined
-                placeholder="Enter Address"
-                v-model="request.address"
-              ></v-text-field>
-            </div>
+              <div class="text-subtitle-1 my-n3">
+                Contact Information
+                <v-text-field
+                  dense
+                  outlined
+                  placeholder="Enter Address"
+                  v-model="request.address"
+                ></v-text-field>
+              </div>
               <v-text-field
                 dense
                 outlined
@@ -103,7 +103,7 @@
                 v-model="request.certification"
                 :items="certification"
                 item-text="certificateName"
-                item-value="certificateID"
+                item-value="certificateName"
                 :loading="loading"
               ></v-select>
             </v-form>
@@ -129,8 +129,7 @@
             @click="edit"
           >
             save
-          </v-btn>        
-          
+          </v-btn>
         </v-row>
 
         <v-snackbar
@@ -149,7 +148,6 @@
             </v-btn>
           </template>
         </v-snackbar>
-
       </v-card>
     </v-dialog>
   </div>
@@ -190,7 +188,6 @@ export default class EditProfile extends Vue {
   created() {
     this.getCertification();
   }
-  
 
   private getCertification() {
     this.loading = true;
@@ -208,20 +205,20 @@ export default class EditProfile extends Vue {
   }
   public edit() {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
-    this.request.id = this.$store.getters.id;
-    this.ProfileService.editProfile(this.request, this.logo).then(
-      (response: any) => {
-        this.snackbarText = response;
-        this.snackbar = true;
-        this.$emit("onEditProfileModel");
-      },
-      (err) => {
-        if (err.response.status == 400) {
-          this.snackbarText = err.response.data;
+      this.request.id = this.$store.getters.id;
+      this.ProfileService.editProfile(this.request, this.logo).then(
+        (response: any) => {
+          this.snackbarText = response;
           this.snackbar = true;
+          this.$emit("onEditProfileModel");
+        },
+        (err) => {
+          if (err.response.status == 400) {
+            this.snackbarText = err.response.data;
+            this.snackbar = true;
+          }
         }
-      }
-    );
+      );
     }
   }
   public close() {
@@ -229,5 +226,3 @@ export default class EditProfile extends Vue {
   }
 }
 </script>
-
-

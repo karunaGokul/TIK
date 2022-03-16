@@ -150,7 +150,7 @@ export default class ProjectBuilder extends Vue {
       categoryImage: require("@/assets/knitting.png"),
     },
     {
-      categoryName: "Deying",
+      categoryName: "Dyeing",
       categoryImage: require("@/assets/dyeing.png"),
     },
     {

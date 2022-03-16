@@ -4,8 +4,11 @@ import { ProjectFormModel, ProjectRequestModel } from "@/model";
 import millsForm from '@/data/mills-form.json';
 import millsDetail from '@/data/mills-detail.json';
 
+import dyeingForm from '@/data/dyeing-form.json';
+
 export interface IProjectService {
 	getProjectForm(categoryName: string): ProjectFormModel;
+	getProjectFormDyeing(categoryName: string): ProjectFormModel;
 	getProjectDetail(categoryName: string): any;
 
 	createProject(request: any): Promise<any>;
@@ -27,6 +30,10 @@ export class ProjectService extends ServiceHelper implements IProjectService {
 
 	public getProjectForm(categoryName: string): ProjectFormModel {
 		return <ProjectFormModel>millsForm;
+	}
+
+	public getProjectFormDyeing(categoryName: string): ProjectFormModel {
+		return <ProjectFormModel>dyeingForm;
 	}
 
 	public getProjectDetail(categoryName: string): any {

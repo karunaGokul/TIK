@@ -67,15 +67,14 @@
           <h3 class="text-h6 mt-6">About</h3>
           <p>{{ response.title }}</p>
           <p>{{ response.description }}</p>
-          <p>{{ response.certification }}</p>
-          <!-- <v-select solo
-                outlined
-                dense
-                :items="NotificationResponse"
-                item-text="status"
-                item-value="id"
-                v-model="request.StatusList"
-          ></v-select> -->
+          <p class="text-h6">Certification:</p>
+          <p
+            class="mt-n2"
+            v-for="(certificationName, index) in response.certification"
+            :key="index"
+          >
+            {{ certificationName }}
+          </p>
         </v-col>
         <v-col col="5">
           <iframe
@@ -184,9 +183,11 @@
               gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.33)"
             >
               <Divider class="ml-4" />
-              <v-card-title class="white--text pt-0"
-                >Certificates
-              </v-card-title>
+              <router-link to="/certificates" class="text-decoration-none">
+                <v-card-title class="white--text pt-0"
+                  >Certificates
+                </v-card-title>
+              </router-link>
             </v-img>
           </v-card>
         </v-col>
@@ -271,7 +272,6 @@ export default class Profile extends Vue {
   public value: string;
 
   created() {
-    
     this.loadprofile();
   }
   public loadprofile() {
@@ -309,7 +309,7 @@ export default class Profile extends Vue {
       img: require("@/assets/gallery/gallery4.png"),
     },
   ];
- 
+
   categorys: any = [
     {
       text: "Mills",
@@ -331,23 +331,22 @@ export default class Profile extends Vue {
       text: "Printing",
       route: "/mill",
     },
-     {
+    {
       text: "Ready Fabrics",
       route: "/mill",
     },
-     {
+    {
       text: "Embroidery",
       route: "/mill",
     },
-     {
+    {
       text: "Job Work Units",
       route: "/mill",
     },
     {
       text: "Pieces",
       route: "/mill",
-    }
-    
+    },
   ];
 }
 </script>

@@ -147,6 +147,7 @@
                     item-text="categoryName"
                     item-value="id"
                     class="rounded-0"
+                    :loading="loading"
                     required
                     :rules="[(v) => !!v || 'Category is required']"
                   ></v-select>
@@ -162,6 +163,7 @@
                     :items="certification"
                     item-text="certificateName"
                     item-value="certificateID"
+                    :loading="loading"
                     required
                     :rules="[(v) => !!v || 'Certificate is required']"
                     class="rounded-0"
@@ -237,6 +239,7 @@
                     item-text="countryName"
                     item-value="id"
                     class="rounded-0"
+                    :loading="loading"
                     @change="getState"
                     required
                     :rules="[(v) => !!v || 'Country is required']"
@@ -419,25 +422,31 @@ export default class Registration extends Vue {
     this.getCertification();
   }
   private getCertification() {
+    this.loading = true;
     this.registrationService
       .getCertification()
       .then((response: Array<CertificationResponseModel>) => {
         this.certification = response;
+        this.loading = false;
       });
   }
 
   private getCategory() {
+    this.loading = true;
     this.registrationService
       .getCategory()
       .then((response: Array<CategoryResponseModel>) => {
         this.category = response;
+        this.loading = false;
       });
   }
   private getCountry() {
+    this.loading = true;
     this.registrationService
       .getCountry()
       .then((response: Array<CountryResponseModel>) => {
         this.country = response;
+        this.loading = false;
       });
   }
   private getState() {

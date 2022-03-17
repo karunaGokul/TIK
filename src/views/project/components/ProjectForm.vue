@@ -186,10 +186,16 @@ export default class ProjectForm extends Vue {
     this.steps = [];
     this.mode = StepMode.Form;
     this.path = "";
-
-    this.data = this.$vuehelper.clone(
-      this.service.getProjectForm(this.categoryName)
-    );
+    if (this.categoryName === "Mills") {
+      this.data = this.$vuehelper.clone(
+        this.service.getProjectForm(this.categoryName)
+      );
+    } else if(this.categoryName === "Dyeing") {
+      this.data = this.$vuehelper.clone(
+        this.service.getProjectFormDyeing(this.categoryName)
+      );
+    }
+    
     const step = this.data.steps[0];
     step.stepNumber = 1;
     this.steps.push(step);

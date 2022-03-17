@@ -13,15 +13,57 @@
 
           <v-divider></v-divider>
 
-          <v-card-text>
-            <div class="my-4">Review Here</div>
-            <v-rating
+          <v-card-text v-if="category === 'Company'">
+            <!-- <div class="my-4">Review Here</div> -->
+            <!-- <v-rating
               v-model="reviewRequest.reviewRating"
               color="warning"
               dense
               half-increments
               size="30"
               class="ml-n4"
+            ></v-rating> -->
+            <div class="mb-2 mt-4">Quality of the Product</div>
+            <v-rating
+              v-model="reviewRequest.productQualityRating"
+              color="warning"
+              dense
+              half-increments
+              size="30"
+              class="ml-n2"
+            ></v-rating><br />
+            
+            <div class="my-2">Timely Delivery</div>
+            <v-rating
+              v-model="reviewRequest.timelyDeliveryRating"
+              color="warning"
+              dense
+              half-increments
+              size="30"
+              class="ml-n2"
+            ></v-rating>
+          </v-card-text>
+
+          <v-card-text v-if="category !== 'Company'">
+            
+            <div class="mb-2 mt-4">Input time of the Product</div>
+            <v-rating
+              v-model="reviewRequest.inputMaterialRating"
+              color="warning"
+              dense
+              half-increments
+              size="30"
+              class="ml-n2"
+            ></v-rating><br />
+            
+            <div class="my-2">Payment</div>
+            <v-rating
+              v-model="reviewRequest.paymentRating"
+              color="warning"
+              dense
+              half-increments
+              size="30"
+              class="ml-n2"
             ></v-rating>
           </v-card-text>
 
@@ -33,7 +75,7 @@
               color="primary"
               @click="Review('Confirmed', row)"
             >
-              Review Update
+              Save
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -90,6 +132,10 @@ export default class Review extends Vue {
   public snackbar1: boolean;
   public snackbarText1: string = "";
   public bid = new BitReceivedModel();
+
+  get category(): string {
+    return this.$store.getters.category;
+  }
 
   public Review() {
     this.reviewRequest.projectId = this.response.Id;

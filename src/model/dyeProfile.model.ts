@@ -33,8 +33,6 @@ export class productDetailModel {
   interlock: Array<dyeingProcessesModel> = [];
   rib: Array<dyeingProcessesModel> = [];
   vesselSizes: Array<dyeingProcessesModel> = [];
-  tubular?: string;
-  openWidth?: string;
   tubularProcess: tubulardyeModel;
   openWidthProcess: openWidthdyeModel;
 }

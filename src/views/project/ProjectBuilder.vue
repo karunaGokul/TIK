@@ -108,7 +108,7 @@ export default class ProjectBuilder extends Vue {
   public snackbar: boolean = false;
   public snackbarText: string = "";
 
-  merchandiserLoading: boolean = false;
+  public merchandiserLoading: boolean = false;
 
   created() {
     this.GetMerchandiser();
@@ -150,7 +150,7 @@ export default class ProjectBuilder extends Vue {
       categoryImage: require("@/assets/knitting.png"),
     },
     {
-      categoryName: "Deying",
+      categoryName: "Dyeing",
       categoryImage: require("@/assets/dyeing.png"),
     },
     {

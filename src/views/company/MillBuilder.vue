@@ -136,8 +136,7 @@
       right
       top
     >
-      <v-icon color="green">mdi-exclamation-thick </v-icon>
-      <!-- {{ snackbarText }} -->
+      <!-- <v-icon color="green">mdi-exclamation-thick </v-icon> -->
       <p v-html="snackbarText"></p>
 
       <template v-slot:action="{ attrs }">

@@ -21,7 +21,7 @@
               <h1 class="text-h3">All Your Textile Needs</h1>
 
               <p class="text-body-1 my-5">{{ item.text }}</p>
-              <v-btn rounded color="primary"> know more </v-btn>
+              <v-btn link to="/about" rounded color="primary"> know more </v-btn>
             </v-col>
           </v-row>
         </div>
@@ -146,7 +146,7 @@
       <CustomerFeedback />
     </v-container>
     <v-container fluid class="mb-16 pb-16">
-      <Advertisement />
+      <!-- <Advertisement /> -->
     </v-container>
   </div>
 </template>

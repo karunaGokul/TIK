@@ -32,6 +32,12 @@ const routes: Array<RouteConfig> = [
     meta: { anonymous: true }
   },
   {
+    path: '/certificates',
+    name: 'Certificates',
+    component: () => import('../views/profile/Certificates.vue'),
+    meta: { anonymous: true }
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Index.vue')

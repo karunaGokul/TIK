@@ -78,8 +78,11 @@ export class ApproveRequestModel {
   approvalAdminId: string = null;
 }
 export class ReviewRequestModel {
-  reviewRating: string = "";
-  // comments: string = " ";
+  // reviewRating: string = "";
+  productQualityRating?: string = "";
+  timelyDeliveryRating?: string = "";
+  paymentRating?: string = "";
+  inputMaterialRating?: string = "";
   projectId: string;
   biddingId: string;
 }

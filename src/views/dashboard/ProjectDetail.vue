@@ -54,7 +54,7 @@
           </v-col>
           <v-col cols="12" md="5" offset-md="3">
             <v-card color="transparent" flat>
-              <div class="d-flex flex-no-wrap">
+              <div class="d-flex flex-no-wrap justify-end">
                 <div
                   class="overline font-weight-bold text-wrap text-capitalize"
                   v-if="
@@ -77,6 +77,12 @@
                   >
                     Bidding Time: {{ response.biddingTime }}
                   </div>
+                  <span
+                    v-if="response.bidsReceived"
+                    class="overline font-weight-bold text-capitalize ml-4"
+                  >
+                    Bids Received : {{ response.bidsReceived }}
+                  </span>
                   <div>
                     <v-btn
                       depressed
@@ -93,14 +99,7 @@
                     </v-btn>
                   </div>
                 </div>
-                <div class="ml-4">
-                  <span
-                    v-if="response.bidsReceived && category === 'Company'"
-                    class="overline font-weight-bold text-capitalize"
-                  >
-                    Bids Received : {{ response.bidsReceived }}
-                  </span>
-                </div>
+                
                 <div class="text-right ml-16"
                   v-if="
                     category != 'Company' &&
@@ -127,91 +126,7 @@
               </div>
             </v-card>
           </v-col>
-          <!-- <v-col
-            cols="12"
-            md="2"
-            offset-md="3"
-            class="text-right"
-            v-if="
-              response.InStages === 'No Response' && response.message !== null
-            "
-          >
-            <span class="overline font-weight-bold text-wrap text-capitalize">
-              Comments: {{ response.message }}
-            </span>
-          </v-col> -->
-
-          <!-- <v-col
-            cols="12"
-            md="3"
-            class="text-right"
-            v-if="
-              category === 'Company' &&
-                (response.InStages === 'Confirmed' ||
-                  response.InStages === 'Completed')
-            "
-          >
-            <span class="overline font-weight-bold text-wrap text-capitalize">
-              Bidding Time: {{ response.biddingTime }}
-            </span>
-          </v-col> -->
-
-          <!-- <v-col
-            cols="12"
-            md="2"
-            class="text-right"
-            v-if="
-              category != 'Company' &&
-                response.bidList[0].status === 'Initiated'
-            "
-          >
-            <v-btn
-              class="white--text font-weight-light text-capitalize rounded"
-              depressed
-              color="primary"
-              @click="toggleBid = 'true'"
-            >
-              bid this project
-            </v-btn>
-            <v-btn
-              class="font-weight-light text-capitalize white--text mt-1 mr-7"
-              color="blue-grey"
-              depressed
-              @click="toggleCancel = 'true'"
-            >
-              Cancel
-            </v-btn>
-          </v-col> -->
-          <!-- <v-col
-            cols="12"
-            md="2"
-            offset-md="3"
-            class="text-right overline font-weight-bold"
-            v-if="response.bidsReceived"
-          >
-            Bids Received : {{ response.bidsReceived }}
-          </v-col> -->
-          <!-- <v-col
-            cols="12"
-            md="2"
-            offset-md="3"
-            class="text-right"
-            v-if="category === 'Company'"
-          >
-            <v-btn
-              depressed
-              class="font-weight-light text-capitalize"
-              color="error"
-              v-if="
-                role === 'MasterAdmin' &&
-                  $route.params.status === 'NoResponse' &&
-                  response.message === null
-              "
-              @click="toggleNoResponse = 'true'"
-            >
-              No Response
-            </v-btn>
-          </v-col> -->
+          
         </v-row>
 
         <v-row class="mt-4 text-caption text-wrap">

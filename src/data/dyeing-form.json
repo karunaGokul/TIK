@@ -521,47 +521,41 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "id": "drpVesselSize",
+          "label": "Select VesselSize",
+          "type": "dropdown",
+          "selector": false,
+          "data_path": "",
+          "data_id": "Name",
+          "options": [
+            {
+              "id": "opVesselSize_1",
+              "text": "50",
+              "selected": false
             },
             {
-              "id": "opVesselSize",
-              "text": "VesselSize",
-              "controls": [
-                {
-                  "id": "drpVesselSize",
-                  "label": "Select Structure",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "Name",
-                  "options": [
-                    {
-                      "id": "opVesselSize_1",
-                      "text": "50",
-                      "selected": false
-                    },
-                    {
-                      "id": "opVesselSize_2",
-                      "text": "100",
-                      "selected": false
-                    },
-                    {
-                      "id": "opVesselSize_3",
-                      "text": "200",
-                      "selected": false
-                    },
-                    {
-                      "id": "opVesselSize_4",
-                      "text": "500",
-                      "selected": false
-                    },
-                    {
-                      "id": "opVesselSize_5",
-                      "text": "1000",
-                      "selected": false
-                    }
-                  ]
-                }
-              ]
+              "id": "opVesselSize_2",
+              "text": "100",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_3",
+              "text": "200",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_4",
+              "text": "500",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_5",
+              "text": "1000",
+              "selected": false
             }
           ]
         },
@@ -1559,20 +1553,20 @@
               "text": "Tubular",
               "controls": [
                 {
-                    "id": "btnTubularHeatsetting",
-					"label": "Tubular Heatsetting",
-					"type": "toggle-button",
-					"selector": true,
-					"data_path": "",
-                    "options": [
-						{
-                            "id": "opTubularHeatsetting",
-							"data_id": "",
-							"label": "A",
-							"text": "Tubular Heatsetting",
-							"selected": false
-                        }
-                    ]
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
                 },
                 {
                   "id": "drpSpecialFinishes",
@@ -1628,9 +1622,22 @@
                       "id": "opOPWStentering_1",
                       "text": "OPWStentering",
                       "controls": [
-                          {
-
-                          },
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
                         {
                           "id": "drpDIPStenter",
                           "label": "DIP Stenter",
@@ -1659,56 +1666,56 @@
                       ]
                     },
                     {
-                        "id": "opCompacting_1",
-                        "text": "Compacting",
-                        "controls": [
-                          {
-                            "id": "drpTubularMachine",
-                            "label": "Tubular",
-                            "type": "dropdown",
-                            "selector": false,
-                            "data_path": "",
-                            "data_id": "",
-                            "options": [
-                              {
-                                "id": "opTubularMachine_1",
-                                "text": "Tubular Machine 1",
-                                "selected": false
-                              },
-                              {
-                                "id": "opTubularMachine_2",
-                                "text": "Tubular Machine 2",
-                                "selected": false
-                              }
-                            ]
-                          },
-                          {
-                            "id": "drpOPWMachine",
-                            "label": "OPW",
-                            "type": "dropdown",
-                            "selector": false,
-                            "data_path": "",
-                            "data_id": "",
-                            "options": [
-                              {
-                                "id": "opOPWMachine_1",
-                                "text": "OPW Machine 1",
-                                "selected": false
-                              },
-                              {
-                                "id": "opOPWMachine_2",
-                                "text": "OPW Machine 2",
-                                "selected": false
-                              },
-                              {
-                                "id": "opOPWMachine_3",
-                                "text": "OPW Machine 3",
-                                "selected": false
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -1719,109 +1726,9 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "label": "SpecialFinishes",
+                  "label": "Special Finishes",
                   "type": "dropdown",
                   "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opSpecialFinishes_1",
-                      "text": "SpecialFinishes 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_2",
-                      "text": "SpecialFinishes 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_3",
-                      "text": "SpecialFinishes 3",
-                      "selected": false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Choose Additional Process",
-      "path": [
-        "opFabric-opSoftFlow-opBleaching-opBlend-drpBlendContent-tabStructure"
-      ],
-      "controls": [
-        {
-          "id": "tabProcessStructure",
-          "type": "tab",
-          "selector": true,
-          "options": [
-            {
-              "id": "opTub_1",
-              "text": "Tubular",
-              "controls": [
-                {
-                  "id": "drpSpecialFinishes",
-                  "label": "SpecialFinishes",
-                  "type": "dropdown-range",
-                  "selector": false,
-                  "multiple": true,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opSpecialFinishes_1",
-                      "text": "SpecialFinishes 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_2",
-                      "text": "SpecialFinishes 2",
-                      "selected": false
-                    }
-                  ]
-                },
-                {
-                  "id": "drpTubularDryingProcess",
-                  "label": "TubularDryingProcess",
-                  "type": "dropdown-range",
-                  "selector": false,
-                  "multiple": true,
-                  "data_path": "",
-                  "data_id": "Array",
-                  "options": [
-                    {
-                      "id": "opTubularDryingProcess_1",
-                      "text": "Drying Process 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opTubularDryingProcess_2",
-                      "text": "Drying Process 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opTubularDryingProcess_2",
-                      "text": "Drying Process 3",
-                      "selected": false
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "opTub_2",
-              "text": "OPW",
-              "controls": [
-                {
-                  "id": "drpSpecialFinishes",
-                  "label": "SpecialFinishes",
-                  "type": "dropdown-range",
-                  "selector": false,
-                  "multiple": true,
                   "data_path": "",
                   "data_id": "",
                   "options": [
@@ -1844,26 +1751,1570 @@
                 },
                 {
                   "id": "drpOPWCompacting",
-                  "label": "OPWCompacting",
-                  "type": "dropdown-range",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
                   "selector": false,
-                  "multiple": true,
                   "data_path": "",
-                  "data_id": "Array",
+                  "data_id": "",
                   "options": [
                     {
-                      "id": "opOPWCompacting_1",
+                      "id": "opOPWMachine_1",
                       "text": "OPW Machine 1",
                       "selected": false
                     },
                     {
-                      "id": "opOPWCompacting_2",
+                      "id": "opOPWMachine_2",
                       "text": "OPW Machine 2",
                       "selected": false
                     },
                     {
-                      "id": "opOPWCompacting_3",
+                      "id": "opOPWMachine_3",
                       "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Additional Process",
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opBlend-drpBlendContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "tabProcessStructure",
+          "type": "tab",
+          "selector": true,
+          "options": [
+            {
+              "id": "opTubular_1",
+              "text": "Tubular",
+              "controls": [
+                {
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpTubularDrying",
+                  "label": "Tubular Drying Process",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opTubularDrying_1",
+                      "text": "DryingProcesses 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_2",
+                      "text": "DryingProcesses 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_3",
+                      "text": "DryingProcesses 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "tabProcessStructure_1",
+                  "type": "tab",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWStentering_1",
+                      "text": "OPWStentering",
+                      "controls": [
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpDIPStenter",
+                          "label": "DIP Stenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDIPStenter_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "opTubular_2",
+              "text": "OPW",
+              "controls": [
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "SpecialFinishes 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpOPWCompacting",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "OPW Machine 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "OPW Machine 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_3",
+                      "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Additional Process",
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-opSingle-drpSingleContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "tabProcessStructure",
+          "type": "tab",
+          "selector": true,
+          "options": [
+            {
+              "id": "opTubular_1",
+              "text": "Tubular",
+              "controls": [
+                {
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpTubularDrying",
+                  "label": "Tubular Drying Process",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opTubularDrying_1",
+                      "text": "DryingProcesses 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_2",
+                      "text": "DryingProcesses 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_3",
+                      "text": "DryingProcesses 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "tabProcessStructure_1",
+                  "type": "tab",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWStentering_1",
+                      "text": "OPWStentering",
+                      "controls": [
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpDIPStenter",
+                          "label": "DIP Stenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDIPStenter_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "opTubular_2",
+              "text": "OPW",
+              "controls": [
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "SpecialFinishes 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpOPWCompacting",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "OPW Machine 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "OPW Machine 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_3",
+                      "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Additional Process",
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-opBlend-drpBlendContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "tabProcessStructure",
+          "type": "tab",
+          "selector": true,
+          "options": [
+            {
+              "id": "opTubular_1",
+              "text": "Tubular",
+              "controls": [
+                {
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpTubularDrying",
+                  "label": "Tubular Drying Process",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opTubularDrying_1",
+                      "text": "DryingProcesses 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_2",
+                      "text": "DryingProcesses 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_3",
+                      "text": "DryingProcesses 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "tabProcessStructure_1",
+                  "type": "tab",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWStentering_1",
+                      "text": "OPWStentering",
+                      "controls": [
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpDIPStenter",
+                          "label": "DIP Stenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDIPStenter_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "opTubular_2",
+              "text": "OPW",
+              "controls": [
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "SpecialFinishes 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpOPWCompacting",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "OPW Machine 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "OPW Machine 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_3",
+                      "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Additional Process",
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opSingle-drpSingleContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "tabProcessStructure",
+          "type": "tab",
+          "selector": true,
+          "options": [
+            {
+              "id": "opTubular_1",
+              "text": "Tubular",
+              "controls": [
+                {
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpTubularDrying",
+                  "label": "Tubular Drying Process",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opTubularDrying_1",
+                      "text": "DryingProcesses 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_2",
+                      "text": "DryingProcesses 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_3",
+                      "text": "DryingProcesses 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "tabProcessStructure_1",
+                  "type": "tab",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWStentering_1",
+                      "text": "OPWStentering",
+                      "controls": [
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpDIPStenter",
+                          "label": "DIP Stenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDIPStenter_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "opTubular_2",
+              "text": "OPW",
+              "controls": [
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "SpecialFinishes 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpOPWCompacting",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "OPW Machine 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "OPW Machine 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_3",
+                      "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Additional Process",
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opBlend-drpBlendContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "tabProcessStructure",
+          "type": "tab",
+          "selector": true,
+          "options": [
+            {
+              "id": "opTubular_1",
+              "text": "Tubular",
+              "controls": [
+                {
+                  "id": "btnTubularHeatsetting",
+                  "label": "Tubular Heatsetting",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opTubularHeatsetting",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Tubular Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpTubularDrying",
+                  "label": "Tubular Drying Process",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opTubularDrying_1",
+                      "text": "DryingProcesses 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_2",
+                      "text": "DryingProcesses 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opTubularDrying_3",
+                      "text": "DryingProcesses 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "tabProcessStructure_1",
+                  "type": "tab",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWStentering_1",
+                      "text": "OPWStentering",
+                      "controls": [
+                        {
+                          "id": "btnStenterDry",
+                          "label": "Stenter Dry",
+                          "type": "toggle-button",
+                          "selector": true,
+                          "data_path": "",
+                          "options": [
+                            {
+                              "id": "opStenterDry",
+                              "data_id": "",
+                              "label": "A",
+                              "text": "Stenter Dry",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpDIPStenter",
+                          "label": "DIP Stenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDIPStenter_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDIPStenter_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "opCompacting_1",
+                      "text": "Compacting",
+                      "controls": [
+                        {
+                          "id": "drpTubularMachine",
+                          "label": "Tubular",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opTubularMachine_1",
+                              "text": "Tubular Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opTubularMachine_2",
+                              "text": "Tubular Machine 2",
+                              "selected": false
+                            }
+                          ]
+                        },
+                        {
+                          "id": "drpOPWMachine",
+                          "label": "OPW",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opOPWMachine_1",
+                              "text": "OPW Machine 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_2",
+                              "text": "OPW Machine 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opOPWMachine_3",
+                              "text": "OPW Machine 3",
+                              "selected": false
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "opTubular_2",
+              "text": "OPW",
+              "controls": [
+                {
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "SpecialFinishes 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "SpecialFinishes 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "SpecialFinishes 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "id": "drpOPWCompacting",
+                  "label": "OPW Compacting",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "OPW Machine 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "OPW Machine 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_3",
+                      "text": "OPW Machine 3",
+                      "selected": false
+                    }
+                  ]
+                },
+                {
+                  "label": "OPW Drying Process",
+                  "type": "heading",
+                  "selector": false,
+                  "optional": true
+                },
+                {
+                  "id": "btnStenterDryer",
+                  "label": "Stenter Dryer",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
                       "selected": false
                     }
                   ]

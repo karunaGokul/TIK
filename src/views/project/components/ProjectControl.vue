@@ -135,7 +135,7 @@ export default class ProjectControl extends Vue {
   
    rangeChanged(value: any) {
     this.$emit("change");
-  }
+  }  
 
   textChanged(value: any) {
     this.control.value = value;

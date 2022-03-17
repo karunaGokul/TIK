@@ -112,9 +112,49 @@
               </v-list>
             </v-col>
           </v-row>
-          <div class="mt-9">
-            <v-btn rounded color="primary"> Know More </v-btn>
-          </div>
+           <div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <template v-slot:activator="{ on, attrs }">
+           <div class="mt-9">
+        <v-btn
+          dark
+          v-bind="attrs"
+          v-on="on"
+          rounded color="primary"
+        >
+          Know More 
+        </v-btn>
+         </div>
+      </template>
+      <v-card>
+        <div  class="d-flex justify-end mr-1">
+        <v-btn 
+            icon
+            @click="dialog = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+        <v-card-text class="pt-4">
+        TIK allows you to connect with ease with your vendors and suppliers and smoothens the entire process of sourcing. It creates robust economies of scale for your business through efficient time and resource management. Collaborating with TIK opens a whole new world of benefits and growth for your business. So join hands with TIK and witness your business scale greater heights.
+        </v-card-text>
+        
+        <v-card-actions class="">
+          <v-spacer></v-spacer>
+          <v-btn
+            color="teal darken-4"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
         </div>
       </v-container>
     </v-img>
@@ -163,6 +203,11 @@ import CustomerFeedback from "@/components/CustomerFeedback.vue";
   components: { Category, CustomerFeedback, Divider, Advertisement },
 })
 export default class Home extends Vue {
+  data(){
+    return{
+       dialog: false,
+    }
+  }
   items: any = [
     {
       src: "/carosel-1.jpg",
@@ -184,23 +229,23 @@ export default class Home extends Vue {
   cardDetails: any = [
     {
       image: require("@/assets/i1.png"),
-      title: "A textile industry",
-      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      title: "Bond with Vendor",
+      text: "TIK brings you closer to your vendors and suppliers, offering a transparent platform to interact with them. So, no more worries of commissions and lobbying with brokers and agents.",
     },
     {
       image: require("@/assets/i2.png"),
-      title: "Best material Collection",
-      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      title: "Save Resources",
+      text: "Experience the most efficient management of Business Resources only with TIK. Optimize the use of your time, money & manpower with TIK.",
     },
     {
       image: require("@/assets/i3.png"),
-      title: "Nice collection for you",
-      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      title: "Best Quality",
+      text: "Best Quality products are easily sourced through TIK from the best vendors. TIK gives you the opportunity to get the best quality product at Best Rates.",
     },
     {
       image: require("@/assets/i4.png"),
-      title: "A fabrics and material",
-      text: "A textile is a flexible material consisting of a network of natural or artificial fibers. Primarily concerned with the design, production and distribution",
+      title: "Business Growth",
+      text: "Optimum Use of Resources, Best Quality Products, Timely Delivery, and Strong Vendor Relations- Your Mantra for Success in Business is Ready.",
     },
   ];
   benifits: any = [

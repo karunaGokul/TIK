@@ -16,7 +16,7 @@
                 <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
                 <p class="mt-2">{{ customer.description }}</p>
 
-                <v-row>
+                <v-row >
                   <v-col>
                     <h4 class="text-capitalize">{{ customer.name }}</h4>
                     <div class="text-caption grey--text text-capitalize">
@@ -43,9 +43,10 @@
             <v-col cols="12" sm="6">
               <v-card
                 class="grey lighten-4 black--text pa-10"
+                
               >
                 <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
-                <p class="mt-2">{{ customer.description }}</p>
+                <p class="mt-2">{{ customer.secondCustomer.description }}</p>
 
                 <v-row>
                   <v-col>
@@ -159,16 +160,25 @@ export default Vue.extend({
         {
           name: "james sulivan",
           description:
-            "The Goverment for initiating policies that ensure creation of world class texttile infrastructure in the country and management tech.",
+            "I tried the TIK platform with great hesitation, but the results really surprised me. TIK got me quality vendors and ensured timely delivery.",
           src: require("@/assets/face4.jpg"),
+          secondCustomer: {
+             description: 'TIK has helped me save all the time and effort that my company and employees spent on sourcing all these years.',
+          
+        }
         },
         {
           name: "sam smith",
           description:
-            "This sector is highly responsible for propelling india's overall and develop development and enjoys intense focus from it policies and energy of health.",
+            "The Pandemic saw piles of dead stock in my business. TIK came as a true savior and found me good business for all the stock.",
           src: require("@/assets/face4.jpg"),
+           secondCustomer: {
+            description: 'I ve been struggling for the past 3 years to establish my products & their quality in the textile industry. TIK gave me great business within the first month itself.',
+          
+        }
         },
       ],
+    
     };
   },
 });

@@ -5,18 +5,22 @@
       <Divider />
     </div>
 
-    <v-carousel v-model="model" hide-delimiters cycle height="300" class="mt-12">
+    <v-carousel
+      v-model="model"
+      hide-delimiters
+      cycle
+      height="300"
+      class="mt-12"
+    >
       <v-carousel-item v-for="customer in customers" :key="customer.name">
         <v-sheet height="100%" class="mx-16">
           <v-row class="fill-height" align="center" justify="center">
             <v-col cols="12" sm="6">
-              <v-card
-                class="grey lighten-4 black--text pa-10"
-              >
+              <v-card class="grey lighten-4 black--text pa-10">
                 <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
                 <p class="mt-2">{{ customer.description }}</p>
 
-                <v-row >
+                <v-row>
                   <v-col>
                     <h4 class="text-capitalize">{{ customer.name }}</h4>
                     <div class="text-caption grey--text text-capitalize">
@@ -41,10 +45,7 @@
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-card
-                class="grey lighten-4 black--text pa-10"
-                
-              >
+              <v-card class="grey lighten-4 black--text pa-10">
                 <v-icon x-large color="teal">mdi-format-quote-open</v-icon>
                 <p class="mt-2">{{ customer.secondCustomer.description }}</p>
 
@@ -81,16 +82,15 @@
       justify="center"
       align="center"
     >
-     <h2 class="text-h4">Register</h2>
+      <h2 class="text-h4">Register</h2>
 
       <Divider />
 
-      <p class="my-10 text-body-1">Register your company today and Start your business.</p>
+      <p class="my-10 text-body-1">
+        Register your company today and Start your business.
+      </p>
 
-      <v-btn
-        color="primary"
-        class="text-capitalize rounded-0"
-      >
+      <v-btn color="primary" class="text-capitalize rounded-0">
         <router-link to="/registration" class="white--text text-decoration-none"
           >Register</router-link
         >
@@ -163,22 +163,21 @@ export default Vue.extend({
             "I tried the TIK platform with great hesitation, but the results really surprised me. TIK got me quality vendors and ensured timely delivery.",
           src: require("@/assets/face4.jpg"),
           secondCustomer: {
-             description: 'TIK has helped me save all the time and effort that my company and employees spent on sourcing all these years.',
-          
-        }
+            description:
+              "TIK has helped me save all the time and effort that my company and employees spent on sourcing all these years.",
+          },
         },
         {
           name: "sam smith",
           description:
             "The Pandemic saw piles of dead stock in my business. TIK came as a true savior and found me good business for all the stock.",
           src: require("@/assets/face4.jpg"),
-           secondCustomer: {
-            description: 'I ve been struggling for the past 3 years to establish my products & their quality in the textile industry. TIK gave me great business within the first month itself.',
-          
-        }
+          secondCustomer: {
+            description:
+              "I ve been struggling for the past 3 years to establish my products & their quality in the textile industry. TIK gave me great business within the first month itself.",
+          },
         },
       ],
-    
     };
   },
 });

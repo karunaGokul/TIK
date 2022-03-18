@@ -21,7 +21,9 @@
               <h1 class="text-h3">All Your Textile Needs</h1>
 
               <p class="text-body-1 my-5">{{ item.text }}</p>
-              <v-btn link to="/about" rounded color="primary"> know more </v-btn>
+              <v-btn link to="/about" rounded color="primary">
+                know more
+              </v-btn>
             </v-col>
           </v-row>
         </div>
@@ -112,37 +114,32 @@
               </v-list>
             </v-col>
           </v-row>
-           <div class="text-center">
-    <v-dialog
-      v-model="dialog"
-      width="500"
-    >
-      <template v-slot:activator="{ on, attrs }">
-           <div class="mt-9">
-        <v-btn
-          dark
-          v-bind="attrs"
-          v-on="on"
-          rounded color="primary"
-        >
-          Know More 
-        </v-btn>
-         </div>
-      </template>
-      <v-card>
-        <div  class="d-flex justify-end mr-1">
-        <v-btn 
-            icon
-            @click="dialog = false"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
-        <v-card-text class="pt-4">
-        TIK allows you to connect with ease with your vendors and suppliers and smoothens the entire process of sourcing. It creates robust economies of scale for your business through efficient time and resource management. Collaborating with TIK opens a whole new world of benefits and growth for your business. So join hands with TIK and witness your business scale greater heights.
-        </v-card-text>
-        
-        <v-card-actions class="">
+          <div class="text-center">
+            <v-dialog v-model="dialog" width="500">
+              <template v-slot:activator="{ on, attrs }">
+                <div class="mt-9">
+                  <v-btn dark v-bind="attrs" v-on="on" rounded color="primary">
+                    Know More
+                  </v-btn>
+                </div>
+              </template>
+              <v-card>
+                <v-card-title class="teal d-flex justify-end">
+                  <v-btn icon @click="dialog = false">
+                    <v-icon color="white">mdi-close</v-icon>
+                  </v-btn></v-card-title
+                >
+                <v-card-text class="pt-4">
+                  TIK allows you to connect with ease with your vendors and
+                  suppliers and smoothens the entire process of sourcing. It
+                  creates robust economies of scale for your business through
+                  efficient time and resource management. Collaborating with TIK
+                  opens a whole new world of benefits and growth for your
+                  business. So join hands with TIK and witness your business
+                  scale greater heights.
+                </v-card-text>
+
+                <!-- <v-card-actions class="">
           <v-spacer></v-spacer>
           <v-btn
             color="teal darken-4"
@@ -151,10 +148,10 @@
           >
             I accept
           </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+        </v-card-actions> -->
+              </v-card>
+            </v-dialog>
+          </div>
         </div>
       </v-container>
     </v-img>
@@ -203,49 +200,56 @@ import CustomerFeedback from "@/components/CustomerFeedback.vue";
   components: { Category, CustomerFeedback, Divider, Advertisement },
 })
 export default class Home extends Vue {
-  data(){
-    return{
-       dialog: false,
-    }
+  data() {
+    return {
+      dialog: false,
+    };
   }
   items: any = [
     {
       src: "/carosel-1.jpg",
       category: "../assets.factory.png",
-      text: "Presenting an integrated platform bringing the best of the textile industry together. Seamless business dealing now on your finger tips; experience the best with us.",
+      text:
+        "Presenting an integrated platform bringing the best of the textile industry together. Seamless business dealing now on your finger tips; experience the best with us.",
     },
 
     {
       src: "/carosel-2.jpg",
       category: "../assets.factory.png",
-      text: "We provide you with the most competitive and competent technological platforms tailor made for your business needs.",
+      text:
+        "We provide you with the most competitive and competent technological platforms tailor made for your business needs.",
     },
     {
       src: "/carosel-3.jpg",
       category: "../assets.factory.png",
-      text: "Experience the ultimate ease in business performance with quality par excellence.",
+      text:
+        "Experience the ultimate ease in business performance with quality par excellence.",
     },
   ];
   cardDetails: any = [
     {
       image: require("@/assets/i1.png"),
       title: "Bond with Vendor",
-      text: "TIK brings you closer to your vendors and suppliers, offering a transparent platform to interact with them. So, no more worries of commissions and lobbying with brokers and agents.",
+      text:
+        "TIK brings you closer to your vendors and suppliers, offering a transparent platform to interact with them. So, no more worries of commissions and lobbying with brokers and agents.",
     },
     {
       image: require("@/assets/i2.png"),
       title: "Save Resources",
-      text: "Experience the most efficient management of Business Resources only with TIK. Optimize the use of your time, money & manpower with TIK.",
+      text:
+        "Experience the most efficient management of Business Resources only with TIK. Optimize the use of your time, money & manpower with TIK.",
     },
     {
       image: require("@/assets/i3.png"),
       title: "Best Quality",
-      text: "Best Quality products are easily sourced through TIK from the best vendors. TIK gives you the opportunity to get the best quality product at Best Rates.",
+      text:
+        "Best Quality products are easily sourced through TIK from the best vendors. TIK gives you the opportunity to get the best quality product at Best Rates.",
     },
     {
       image: require("@/assets/i4.png"),
       title: "Business Growth",
-      text: "Optimum Use of Resources, Best Quality Products, Timely Delivery, and Strong Vendor Relations- Your Mantra for Success in Business is Ready.",
+      text:
+        "Optimum Use of Resources, Best Quality Products, Timely Delivery, and Strong Vendor Relations- Your Mantra for Success in Business is Ready.",
     },
   ];
   benifits: any = [

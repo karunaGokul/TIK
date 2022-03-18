@@ -54,32 +54,72 @@
               >
               <v-list-item-group>
                 <v-list-item>
-                  <v-list-item-title>About us</v-list-item-title>
+                  <v-list-item-title>
+                    <router-link
+                      to="/about"
+                      tag="a"
+                      class="text-decoration-none white--text"
+                    >
+                      About us
+                    </router-link>
+                  </v-list-item-title>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-title>Category</v-list-item-title>
+                  <v-list-item-title>
+                    <router-link
+                      to="/category"
+                      tag="a"
+                      class="text-decoration-none white--text"
+                    >
+                      Category
+                    </router-link></v-list-item-title
+                  >
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title>Affilaites</v-list-item-title>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-title>Register</v-list-item-title>
+                  <v-list-item-title>
+                    <router-link
+                      to="/registration"
+                      tag="a"
+                      class="text-decoration-none white--text"
+                    >
+                      Register
+                    </router-link>
+                  </v-list-item-title>
                 </v-list-item>
                 <v-list-item>
-                  <v-list-item-title>Contact us</v-list-item-title>
+                  <v-list-item-title>
+                    <router-link
+                      to="/contact"
+                      tag="a"
+                      class="text-decoration-none white--text"
+                    >
+                      Contact us
+                    </router-link></v-list-item-title
+                  >
                 </v-list-item>
               </v-list-item-group>
             </v-list>
           </v-col>
 
-          <v-col class="text-left" cols="6" md="2">
+          <!-- <v-col class="text-left" cols="6" md="2">
             <v-list nav dense flat color="transparent" class="pa-0">
               <v-list-item-title class="pl-2 pb-2 text-subtitle-1"
                 >Terms</v-list-item-title
               >
               <v-list-item-group>
                 <v-list-item>
-                  <v-list-item-title>About us</v-list-item-title>
+                  <v-list-item-title>
+                    <router-link
+                      to="/registration"
+                      tag="a"
+                      class="text-decoration-none white--text"
+                    >
+                      About us</router-link
+                    >
+                  </v-list-item-title>
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title>Category</v-list-item-title>
@@ -95,7 +135,7 @@
                 </v-list-item>
               </v-list-item-group>
             </v-list>
-          </v-col>
+          </v-col> -->
 
           <v-col cols="12" md="4" class="text-left">
             <div class="d-flex flex-column" style="height: 100%">
@@ -140,23 +180,23 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator';
 
-import Advertisement from "@/components/Advertisement.vue";
+import Advertisement from '@/components/Advertisement.vue';
 
 @Component({
-  components: { Advertisement },
+  components: { Advertisement }
 })
 export default class AppFooter extends Vue {
-  icons: any = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
+  icons: any = ['mdi-facebook', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram'];
 
   get isLoggedIn(): boolean {
     return this.$store.getters.isLoggedIn;
   }
 
   get isProjectBuilder(): boolean {
-    return this.$route.name === "Project";
-  } 
+    return this.$route.name === 'Project';
+  }
 }
 </script>
 <style scoped>

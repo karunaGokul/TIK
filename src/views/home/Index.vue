@@ -200,11 +200,8 @@ import CustomerFeedback from "@/components/CustomerFeedback.vue";
   components: { Category, CustomerFeedback, Divider, Advertisement },
 })
 export default class Home extends Vue {
-  data() {
-    return {
-      dialog: false,
-    };
-  }
+  public dialog: boolean = false;
+
   items: any = [
     {
       src: "/carosel-1.jpg",

@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import store from '@/store'
-import Home from '../views/home/Index.vue'
-import Login from '../views/login/Index.vue'
+import Vue from 'vue';
+import VueRouter, { RouteConfig } from 'vue-router';
+import store from '@/store';
+import Home from '../views/home/Index.vue';
+import Login from '../views/login/Index.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
@@ -121,19 +121,22 @@ const routes: Array<RouteConfig> = [
   {
     path: '/finishingfabricDetail',
     name: 'FinishingFabricDetail',
-    component: () => import('@/components/categoryDetail/FinishingFabricDetail.vue'),
+    component: () =>
+      import('@/components/categoryDetail/FinishingFabricDetail.vue'),
     meta: { anonymous: true }
   },
   {
     path: '/secondfabricDetail',
     name: 'SecondFabricDetail',
-    component: () => import('@/components/categoryDetail/SecondFabricDetail.vue'),
+    component: () =>
+      import('@/components/categoryDetail/SecondFabricDetail.vue'),
     meta: { anonymous: true }
   },
   {
     path: '/accessoriesDetail',
     name: 'AccessoriesDetail',
-    component: () => import('@/components/categoryDetail/AccessoriesDetail.vue'),
+    component: () =>
+      import('@/components/categoryDetail/AccessoriesDetail.vue'),
     meta: { anonymous: true }
   },
   {
@@ -148,23 +151,28 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/company/DyeBuilder.vue'),
     meta: { anonymous: true }
   },
-]
+  {
+    path: '/category',
+    name: 'Category',
+    component: () => import('@/components/FooterCategory.vue'),
+    meta: { anonymous: true }
+  }
+];
 
 const router = new VueRouter({
   routes
-})
+});
 
-export default router
-
+export default router;
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => !record.meta.anonymous)) {
     if (store.getters.isLoggedIn) {
-      next()
-      return
+      next();
+      return;
     }
-    next('/login')
+    next('/login');
   } else {
-    next()
+    next();
   }
-})
+});

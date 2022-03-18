@@ -5,12 +5,14 @@
         <v-container fill-height fluid class="white--text pa-8">
           <v-row align="center" justify="center">
             <v-col>
-              <h3 class="text-h3">Let's Get Started</h3>
+              <h3 class="text-h3">
+                We Promise Quality Service and Business Growth
+              </h3>
               <p class="text-body-1">
-                Today we are thinking of all our members across the world and
-                are encouraged by the support our networks bring in times such
-                as these. Use the left test instrument details to attempt a
-                transaction on the staging environment and login.
+                Every person associated with TIK as a vendor or buyer is
+                required to register with us. This is to ensure complete
+                transparency in the transactions and also to minimize fraud and
+                malpractices.
               </p></v-col
             >
           </v-row>
@@ -149,7 +151,7 @@
                     class="rounded-0"
                     :loading="loading"
                     required
-                    :rules="[(v) => !!v || 'Category is required']"
+                    :rules="[v => !!v || 'Category is required']"
                   ></v-select>
                 </v-col>
                 <v-col>
@@ -165,7 +167,7 @@
                     item-value="certificateID"
                     :loading="loading"
                     required
-                    :rules="[(v) => !!v || 'Certificate is required']"
+                    :rules="[v => !!v || 'Certificate is required']"
                     class="rounded-0"
                   >
                   </v-select>
@@ -182,7 +184,7 @@
                     class="rounded-0"
                     v-model="request.gstNumber"
                     required
-                    :rules="[(v) => !!v || 'GST is required']"
+                    :rules="[v => !!v || 'GST is required']"
                   ></v-text-field>
                 </v-col>
 
@@ -210,7 +212,7 @@
                     placeholder="Enter Address"
                     v-model="request.address"
                     class="rounded-0"
-                    :rules="[(v) => !!v || 'Address is required']"
+                    :rules="[v => !!v || 'Address is required']"
                   ></v-text-field>
                 </v-col>
 
@@ -222,7 +224,7 @@
                     placeholder="Enter Appartment, Unit, Office"
                     v-model="request.apartmentUnitOffice"
                     class="rounded-0"
-                    :rules="[(v) => !!v || 'Appartment is required']"
+                    :rules="[v => !!v || 'Appartment is required']"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -242,7 +244,7 @@
                     :loading="loading"
                     @change="getState"
                     required
-                    :rules="[(v) => !!v || 'Country is required']"
+                    :rules="[v => !!v || 'Country is required']"
                   ></v-select>
                 </v-col>
 
@@ -259,7 +261,7 @@
                     class="rounded-0"
                     @change="getCity"
                     required
-                    :rules="[(v) => !!v || 'State is required']"
+                    :rules="[v => !!v || 'State is required']"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -277,7 +279,7 @@
                     item-value="id"
                     class="rounded-0"
                     required
-                    :rules="[(v) => !!v || 'City is required']"
+                    :rules="[v => !!v || 'City is required']"
                   ></v-select>
                 </v-col>
 
@@ -302,7 +304,7 @@
                 type="checkbox"
                 required
                 v-model="checkbox"
-                :rules="[(v) => !!v || 'You must agree to continue!']"
+                :rules="[v => !!v || 'You must agree to continue!']"
               ></v-checkbox>
 
               <v-btn
@@ -352,8 +354,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
-import { validationMixin } from "vuelidate";
+import { Component, Vue, Inject } from 'vue-property-decorator';
+import { validationMixin } from 'vuelidate';
 import {
   RegistrationRequestModel,
   CountryResponseModel,
@@ -363,14 +365,14 @@ import {
   CityResponseModel,
   CategoryResponseModel,
   CertificationResponseModel
-} from "@/model";
-import { IRegistrationService } from "@/service";
+} from '@/model';
+import { IRegistrationService } from '@/service';
 
 @Component({
-  mixins: [validationMixin],
+  mixins: [validationMixin]
 })
 export default class Registration extends Vue {
-  @Inject("registrationService") registrationService: IRegistrationService;
+  @Inject('registrationService') registrationService: IRegistrationService;
   public request = new RegistrationRequestModel();
   public category: Array<CategoryResponseModel> = [];
   public certification: Array<CertificationResponseModel> = [];
@@ -380,40 +382,40 @@ export default class Registration extends Vue {
   public CountryId = new StateRequestModel();
   public StateId = new CityRequestModel();
   public snackbar: boolean = false;
-  public snackbarText: string = "";
+  public snackbarText: string = '';
   public checkbox: boolean = false;
   public value: boolean = true;
   public value1: boolean = true;
   public loading: boolean = false;
 
   public nameRules: any = [
-    (v: any) => !!v || "Name is required",
-    (v: any) => (v && v.length <= 50) || "Name must be less than 10 characters",
+    (v: any) => !!v || 'Name is required',
+    (v: any) => (v && v.length <= 50) || 'Name must be less than 10 characters'
   ];
 
   public emailRules: any = [
-    (v: any) => !!v || "E-mail is required",
-    (v: any) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    (v: any) => !!v || 'E-mail is required',
+    (v: any) => /.+@.+\..+/.test(v) || 'E-mail must be valid'
   ];
 
   public phoneRules: any = [
-    (v: any) => !!v || "Phone Number is required",
+    (v: any) => !!v || 'Phone Number is required',
     (v: any) =>
-      (!isNaN(parseInt(v)) && v >= 0) || "Phone Number must be Valid Number",
+      (!isNaN(parseInt(v)) && v >= 0) || 'Phone Number must be Valid Number',
 
-    (v: any) => (v && v.length == 10) || "Phone Number must be 10 Numbers",
+    (v: any) => (v && v.length == 10) || 'Phone Number must be 10 Numbers'
   ];
 
   public ZipCodeRules: any = [
     (v: any) =>
-      (!isNaN(parseInt(v)) && v >= 0) || "Zipcode must be Valid Number",
+      (!isNaN(parseInt(v)) && v >= 0) || 'Zipcode must be Valid Number'
   ];
 
   public passwordRules: any = [
-    (v: any) => !!v || "Password is required",
+    (v: any) => !!v || 'Password is required',
     (v: any) =>
       /(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(v) ||
-      "Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.",
+      'Your password must be at least 8 characters long with 1 uppercase & 1 lowercase character, 1 number and a special character.'
   ];
 
   created() {
@@ -469,11 +471,11 @@ export default class Registration extends Vue {
     if ((this.$refs.form as Vue & { validate: () => boolean }).validate()) {
       this.loading = true;
       this.registrationService.registration(this.request).then(
-        (response) => {
+        response => {
           this.loading = false;
-          this.$router.push("/");
+          this.$router.push('/');
         },
-        (err) => {
+        err => {
           this.loading = false;
           if (err.response.status == 400) {
             this.snackbarText = err.response.data;

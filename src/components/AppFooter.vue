@@ -137,7 +137,7 @@
             </v-list>
           </v-col> -->
 
-          <v-col cols="12" md="4" class="text-left">
+          <v-col cols="12" offset-md="2" md="4" class="text-left">
             <div class="d-flex flex-column" style="height: 100%">
               <div>
                 <div class="pb-4 text-subtitle-1">Newsletter</div>

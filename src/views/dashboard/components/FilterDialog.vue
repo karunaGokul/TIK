@@ -24,7 +24,7 @@
           :items="items"
           @change="(filterValue = true) && (value = null)"
         ></v-select>
-        <v-card-actions>
+        <v-card-actions class="d-flex justify-end">
           <!-- <v-text-field
             label="Enter a value"
             dense
@@ -78,21 +78,20 @@ export default class FilterDialog extends Vue {
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
 
-  items: any = ["Price", "CreditPeriod", "DeliveryPeriod", "Review"];
+  items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   reviweItems: any = [1, 2, 3, 4, 5];
 
   public FilterRejectedBids() {
-    // if (this.selectValue === "Price") {
-    //   this.filterRequest.price = this.value;
-    // } else if (this.selectValue === "Credit Period") {
-    //   this.filterRequest.creditPeriod = this.value;
-    // } else if (this.selectValue === "Review") {
-    //   this.filterRequest.review = this.value;
-    // } else {
-    //   this.filterRequest.deliveryPeriod = this.value;
-    // }
+    if (this.selectValue === "Price") {
+      this.filterRequest.sortBy = "RequestedPrice";
+    } else if (this.selectValue === "Credit Period") {
+      this.filterRequest.sortBy = "RequestedCredit";
+    } else if (this.selectValue === "Review") {
+      this.filterRequest.sortBy = "Review";
+    } else {
+      this.filterRequest.sortBy = "RequestedDelivery";
+    }
 
-    this.filterRequest.sortBy = this.selectValue;
     this.filterRequest.projectId = this.projectId;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {

@@ -1074,10 +1074,10 @@ export default class ProjectDetail extends Vue {
 
   public reset() {
     this.filterRequest.projectId = this.response.Id;
-    this.filterRequest.price = null;
-    this.filterRequest.review = null;
-    this.filterRequest.creditPeriod = null;
-    this.filterRequest.deliveryPeriod = null;
+    // this.filterRequest.price = null;
+    // this.filterRequest.review = null;
+    // this.filterRequest.creditPeriod = null;
+    // this.filterRequest.deliveryPeriod = null;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response.bidList = response;
@@ -1206,8 +1206,8 @@ export default class ProjectDetail extends Vue {
   public creditRules: any = [
     (v: any) => !!v || "Credit Period is required",
     (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
-    (v: any) =>
-      (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
+    // (v: any) =>
+    //   (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
   ];
 
   public deliveryRules: any = [

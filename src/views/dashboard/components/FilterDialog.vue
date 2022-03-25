@@ -25,7 +25,7 @@
           @change="(filterValue = true) && (value = null)"
         ></v-select>
         <v-card-actions>
-          <v-text-field
+          <!-- <v-text-field
             label="Enter a value"
             dense
             outlined
@@ -33,8 +33,8 @@
             v-model="value"
             v-if="selectValue != 'Review'"
             onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
-          ></v-text-field>
-          <v-select
+          ></v-text-field> -->
+          <!-- <v-select
             offset-y
             outlined
             dense
@@ -43,7 +43,7 @@
             class="mx-5"
             v-model="value"
             v-else-if="selectValue === 'Review'"
-          ></v-select>
+          ></v-select> -->
           <v-btn
             dense
             color="primary"
@@ -78,20 +78,21 @@ export default class FilterDialog extends Vue {
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
 
-  items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
+  items: any = ["Price", "CreditPeriod", "DeliveryPeriod", "Review"];
   reviweItems: any = [1, 2, 3, 4, 5];
 
   public FilterRejectedBids() {
-    if (this.selectValue === "Price") {
-      this.filterRequest.price = this.value;
-    } else if (this.selectValue === "Credit Period") {
-      this.filterRequest.creditPeriod = this.value;
-    } else if (this.selectValue === "Review") {
-      this.filterRequest.review = this.value;
-    } else {
-      this.filterRequest.deliveryPeriod = this.value;
-    }
+    // if (this.selectValue === "Price") {
+    //   this.filterRequest.price = this.value;
+    // } else if (this.selectValue === "Credit Period") {
+    //   this.filterRequest.creditPeriod = this.value;
+    // } else if (this.selectValue === "Review") {
+    //   this.filterRequest.review = this.value;
+    // } else {
+    //   this.filterRequest.deliveryPeriod = this.value;
+    // }
 
+    this.filterRequest.sortBy = this.selectValue;
     this.filterRequest.projectId = this.projectId;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
@@ -100,10 +101,10 @@ export default class FilterDialog extends Vue {
         this.selectValue = "";
         this.filterValue = false;
         this.value = "";
-        this.filterRequest.price = null;
-        this.filterRequest.creditPeriod = null;
-        this.filterRequest.deliveryPeriod = null;
-        this.filterRequest.review = null;
+        // this.filterRequest.price = null;
+        // this.filterRequest.creditPeriod = null;
+        // this.filterRequest.deliveryPeriod = null;
+        // this.filterRequest.review = null;
         this.$emit("filteredBids", this.filterResponse);
       }
     );

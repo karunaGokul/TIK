@@ -121,10 +121,10 @@ export default class RejectedProject extends Vue {
 
   public reset() {
     this.filterRequest.projectId = this.projectId;
-    this.filterRequest.price = null;
-    this.filterRequest.review = null;
-    this.filterRequest.creditPeriod = null;
-    this.filterRequest.deliveryPeriod = null;
+    // this.filterRequest.price = null;
+    // this.filterRequest.review = null;
+    // this.filterRequest.creditPeriod = null;
+    // this.filterRequest.deliveryPeriod = null;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response = response;

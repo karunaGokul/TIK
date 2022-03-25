@@ -152,7 +152,7 @@ export default class BidProject extends Vue {
   public creditRules: any = [
     (v: any) => !!v || "Credit Period is required",
     (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
+    // (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
   
   ];
 

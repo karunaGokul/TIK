@@ -1,7 +1,10 @@
- <template>
+<template>
   <div>
     <v-row class="pa-3" v-if="control.type === 'heading'">
       <div class="subtitle-1">{{ control.label }}</div>
+    </v-row>
+    <v-row class="pa-3" v-if="control.type === 'sub-heading'">
+      <div class="text-md-h6">{{ control.label }}</div>
     </v-row>
     <v-row class="pa-2" v-if="control.type === 'dropdown'">
       <v-col cols="6">
@@ -65,9 +68,25 @@
         </v-col>
       </v-row>
     </div>
-    <!-- <div v-else-if="control.type === 'radio-button'">
-
+    <!-- <div class="pa-3" v-else-if="control.type === 'check-box'">
+      <v-checkbox
+        v-for="(option, index) in control.options"
+        :key="index"
+        @click="controlSelected(option)"
+        :label="option.text"
+        style="width: 50%"
+      ></v-checkbox>
     </div> -->
+    <div class="pa-3 mt-n8" v-else-if="control.type === 'radio-button'">
+      <v-radio-group v-model="radioValue">
+        <v-radio
+          v-for="(option, index) in control.options"
+          :key="index"
+          @click="controlSelected(option)"
+          :label="option.text"
+        ></v-radio>
+      </v-radio-group>
+    </div>
     <div class="pa-3" v-else-if="control.type === 'toggle-button'">
       <v-btn-toggle
         v-model="buttonValue"
@@ -106,10 +125,16 @@
           {{ tab.text }}
         </v-tab>
       </v-tabs>
-      <v-tabs-items v-model="control.data" style="background-color: transparent">
+      <v-tabs-items
+        v-model="control.data"
+        style="background-color: transparent"
+      >
         <v-tab-item v-for="(tab, index) in control.options" :key="index">
           <div v-for="(tControl, j) in tab.controls" :key="j" class="pa-4">
-            <ProjectControl :control="tControl" @change="tabControlChanged(tab, control, tControl)" />
+            <ProjectControl
+              :control="tControl"
+              @change="tabControlChanged(tab, control, tControl)"
+            />
           </div>
         </v-tab-item>
       </v-tabs-items>
@@ -122,7 +147,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 import { ProjectFormStepControl, ProjectFormStepControlOption } from "@/model";
 
-@Component({ name: 'ProjectControl' })
+@Component({ name: "ProjectControl" })
 export default class ProjectControl extends Vue {
   @Prop() control: ProjectFormStepControl;
   items: any = ["100% Cotton", "100% Viscose", "100% Modal", "100% polyster"];
@@ -135,10 +160,10 @@ export default class ProjectControl extends Vue {
     this.control.value = option.text;
     this.$emit("change");
   }
-  
-   rangeChanged(value: any) {
+
+  rangeChanged(value: any) {
     this.$emit("change");
-  }  
+  }
 
   textChanged(value: any) {
     this.control.value = value;
@@ -148,8 +173,12 @@ export default class ProjectControl extends Vue {
     this.control.value = this.control.items.map((i) => i.value).join(",");
   }
 
-  tabControlChanged(tab: ProjectFormStepControlOption, control: ProjectFormStepControl, tabControl: ProjectFormStepControl) {
-    control.options.forEach(o => o.selected = false);
+  tabControlChanged(
+    tab: ProjectFormStepControlOption,
+    control: ProjectFormStepControl,
+    tabControl: ProjectFormStepControl
+  ) {
+    control.options.forEach((o) => (o.selected = false));
     tab.selected = true;
 
     control.value = `${tab.text} - ${tabControl.value}`;
@@ -159,7 +188,7 @@ export default class ProjectControl extends Vue {
     const items: Array<any> = [];
 
     for (let i = this.control.data.start; i <= this.control.data.end; i++) {
-      items.push({ "label": i, "text": i});
+      items.push({ label: i, text: i });
     }
 
     return items;
@@ -170,6 +199,12 @@ export default class ProjectControl extends Vue {
   }
 
   set buttonValue(value: any) {}
+
+  get radioValue() {
+    return this.control.options.findIndex((o) => o.selected);
+  }
+
+  set radioValue(value: any) {}
 
   get dropdownValue() {
     const option = this.control.options.find((o) => o.selected);
@@ -191,4 +226,3 @@ export default class ProjectControl extends Vue {
   }
 }
 </script>
-

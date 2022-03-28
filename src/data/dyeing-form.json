@@ -273,6 +273,29 @@
               "selected": false
             }
           ]
+        },
+        {
+          "id": "btnSingleContent",
+          "label": "Single Content",
+          "type": "radio-button",
+          "selector": true,
+          "data_path": "",
+          "options": [
+            {
+              "id": "opSpun",
+              "data_id": "Spun",
+              "label": "A",
+              "text": "Spun",
+              "selected": false
+            },
+            {
+              "id": "opFilament",
+              "data_id": "Filament",
+              "label": "B",
+              "text": "Filament",
+              "selected": false
+            }
+          ]
         }
       ]
     },
@@ -286,7 +309,7 @@
           "type": "dropdown",
           "selector": true,
           "data_path": "",
-          "data_id": "Content.Name",
+          "data_id": "",
           "options": [
             {
               "id": "opBlendContent_1",
@@ -312,6 +335,26 @@
               "id": "opBlendContent_5",
               "text": "Cotton Viscose",
               "selected": false
+            }
+          ]
+        },
+        {
+          "id": "txtBlendContent",
+          "type": "text-group",
+          "label": "Enter Your Required Blend Combination",
+          "data_path": "",
+          "data_id": "",
+          "selector": false,
+          "items": [
+            {
+              "id": "txtBlendContent_1",
+              "type": "textbox",
+              "selector": false
+            },
+            {
+              "id": "txtBlendContent_2",
+              "type": "textbox",
+              "selector": false
             }
           ]
         }
@@ -1890,7 +1933,7 @@
         {
           "id": "btnContent",
           "label": "Content Type",
-          "type": "toggle-button",
+          "type": "radio-button",
           "selector": true,
           "options": [
             {
@@ -2026,6 +2069,7 @@
         }
       ]
     },
+
     {
       "title": "Choose Additional Process",
       "path": [
@@ -2033,119 +2077,139 @@
       ],
       "controls": [
         {
-          "id": "btnOPWHeatsetting",
-          "label": "OPW Heatsetting",
-          "type": "toggle-button",
+          "id": "tabOPWStructure",
+          "type": "tab",
           "selector": true,
-          "data_path": "",
           "options": [
             {
-              "id": "opOPWHeatsetting",
-              "data_id": "",
-              "label": "A",
-              "text": "OPW Heatsetting",
-              "selected": false
-            }
-          ]
-        },
-        {
-          "id": "drpSpecialFinishes",
-          "label": "Special Finishes",
-          "type": "dropdown",
-          "multiple": true,
-          "selector": false,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opSpecialFinishes_1",
-              "text": "SpecialFinishes 1",
-              "selected": false
+              "id": "opOPWHeatSetting",
+              "text": "OPWHeatSetting",
+              "controls": [
+                {
+                  "id": "btnOPW",
+                  "label": "OPW",
+                  "type": "toggle-button",
+                  "selector": true,
+                  "options": [
+                    {
+                      "id": "opOPWHeatsetting",
+                      "label": "A",
+                      "text": "OPW Heatsetting",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "id": "opSpecialFinishes_2",
-              "text": "SpecialFinishes 2",
-              "selected": false
+              "id": "opOPWCompacting",
+              "text": "OPWCompacting",
+              "controls": [
+                {
+					"label": "OPW Compacting",
+					"type": "sub-heading",
+					"selector": false,
+					"optional": true
+				},
+                {
+                  "type": "radio-button",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opOPWMachine_1",
+                      "text": "Tubetex",
+                      "selected": false
+                    },
+                    {
+                      "id": "opOPWMachine_2",
+                      "text": "Lafer",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
             },
             {
-              "id": "opSpecialFinishes_3",
-              "text": "SpecialFinishes 3",
-              "selected": false
-            }
-          ]
-        },
-        {
-          "id": "drpOPWCompacting",
-          "label": "OPW Compacting",
-          "type": "dropdown",
-          "selector": false,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opOPWMachine_1",
-              "text": "Tubetex",
-              "selected": false
+              "id": "opOPWDrying",
+              "text": "OPWDrying",
+              "controls": [
+                {
+					"label": "OPW Drying",
+					"type": "sub-heading",
+					"selector": false,
+					"optional": true
+				},
+                {
+                    "id": "btnDryer",
+                    "label": "Dryer",
+                    "type": "radio-button",
+                    "selector": true,
+                    "data_path": "",
+                    "options": [
+                      {
+                        "id": "opStenterDryer",
+                        "data_id": "",
+                        "label": "A",
+                        "text": "Stenter Dryer",
+                        "selected": false
+                      },
+                      {
+                        "id": "oRelaxDryer",
+                        "data_id": "",
+                        "label": "B",
+                        "text": "Relax Dryer",
+                        "selected": false
+                      }
+                    ]
+                  },
+          
+                  {
+                    "id": "drpDIPStenter",
+                    "label": "DIP Stenter",
+                    "type": "dropdown",
+                    "selector": false,
+                    "data_path": "",
+                    "data_id": "",
+                    "options": [
+                      {
+                        "id": "opDP_1",
+                        "text": "DP 1",
+                        "selected": false
+                      },
+                      {
+                        "id": "opDP_2",
+                        "text": "DP 2",
+                        "selected": false
+                      },
+                      {
+                        "id": "opDP_3",
+                        "text": "DP 3",
+                        "selected": false
+                      }
+                    ]
+                  }
+                ]
             },
             {
-              "id": "opOPWMachine_2",
-              "text": "Lafer",
-              "selected": false
-            }
-          ]
-        },
-        {
-          "label": "OPW Drying Process",
-          "type": "heading",
-          "selector": false,
-          "optional": true
-        },
-        {
-          "id": "btnDryer",
-          "label": "Dryer",
-          "type": "toggle-button",
-          "selector": true,
-          "data_path": "",
-          "options": [
-            {
-              "id": "opStenterDryer",
-              "data_id": "",
-              "label": "A",
-              "text": "Stenter Dryer",
-              "selected": false
-            },
-            {
-              "id": "oRelaxDryer",
-              "data_id": "",
-              "label": "B",
-              "text": "Relax Dryer",
-              "selected": false
-            }
-          ]
-        },
-
-        {
-          "id": "drpDIPStenter",
-          "label": "DIP Stenter",
-          "type": "dropdown",
-          "selector": false,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opDP_1",
-              "text": "DP 1",
-              "selected": false
-            },
-            {
-              "id": "opDP_2",
-              "text": "DP 2",
-              "selected": false
-            },
-            {
-              "id": "opDP_3",
-              "text": "DP 3",
-              "selected": false
+              "id": "opSpecialFinishes",
+              "text": "SpecialFinishes",
+              "controls": [
+                {
+                    "id": "drpSpecialFinishes",
+                    "label": "Special Finishes",
+                    "type": "dropdown-range",
+                    "multiple": true,
+                    "selector": false,
+                    "data_path": "",
+                    "data_id": "",
+                    "data": {
+                      "start": 1,
+                      "end": 3
+                  }
+                }
+                ]
             }
           ]
         }
@@ -3004,108 +3068,108 @@
         }
       ]
     },
+
     {
-        "title": "Choose Details as per requirements",
-        "path": [
-          "opFabric-opSoftFlow-opWashing-opDIPStenter-opSingle-drpSingleContent-tabStructure"
-        ],
-        "controls": [
-          {
-            "id": "txtCount",
-            "type": "textbox",
-            "selector": false,
-            "multiple": true,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your Count"
-          },
-          {
-            "id": "txtGSM",
-            "type": "textbox",
-            "selector": false,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your GSM"
-          },
-          {
-            "id": "drpDIPStenter",
-            "label": "Select DIP Stenter Type",
-            "type": "dropdown",
-            "selector": true,
-            "data_path": "",
-            "data_id": "Name",
-            "options": [
-              {
-                "id": "opDIP_1",
-                "text": "DIP 1",
-                "selected": false
-              },
-              {
-                "id": "opDIP_2",
-                "text": "DIP 2",
-                "selected": false
-              },
-              {
-                "id": "opDIP_3",
-                "text": "DIP 3",
-                "selected": false
-              }
-            ]
-          }
-          
-        ]
-      },
-      {
-        "title": "Choose Details as per requirements",
-        "path": [
-          "opFabric-opSoftFlow-opWashing-opDIPStenter-opBlend-drpBlendContent-tabStructure"
-        ],
-        "controls": [
-          {
-            "id": "txtCount",
-            "type": "textbox",
-            "selector": false,
-            "multiple": true,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your Count"
-          },
-          {
-            "id": "txtGSM",
-            "type": "textbox",
-            "selector": false,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your GSM"
-          },
-          {
-            "id": "drpDIPStenter",
-            "label": "Select DIP Stenter Type",
-            "type": "dropdown",
-            "selector": true,
-            "data_path": "",
-            "data_id": "Name",
-            "options": [
-              {
-                "id": "opDIP_1",
-                "text": "DIP 1",
-                "selected": false
-              },
-              {
-                "id": "opDIP_2",
-                "text": "DIP 2",
-                "selected": false
-              },
-              {
-                "id": "opDIP_3",
-                "text": "DIP 3",
-                "selected": false
-              }
-            ]
-          }
-          
-        ]
-      },
+      "title": "Choose Details as per requirements",
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opDIPStenter-opSingle-drpSingleContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "txtCount",
+          "type": "textbox",
+          "selector": false,
+          "multiple": true,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your Count"
+        },
+        {
+          "id": "txtGSM",
+          "type": "textbox",
+          "selector": false,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your GSM"
+        },
+        {
+          "id": "drpDIPStenter",
+          "label": "Select DIP Stenter Type",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "Name",
+          "options": [
+            {
+              "id": "opDIP_1",
+              "text": "DIP 1",
+              "selected": false
+            },
+            {
+              "id": "opDIP_2",
+              "text": "DIP 2",
+              "selected": false
+            },
+            {
+              "id": "opDIP_3",
+              "text": "DIP 3",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "title": "Choose Details as per requirements",
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opDIPStenter-opBlend-drpBlendContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "txtCount",
+          "type": "textbox",
+          "selector": false,
+          "multiple": true,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your Count"
+        },
+        {
+          "id": "txtGSM",
+          "type": "textbox",
+          "selector": false,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your GSM"
+        },
+        {
+          "id": "drpDIPStenter",
+          "label": "Select DIP Stenter Type",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "Name",
+          "options": [
+            {
+              "id": "opDIP_1",
+              "text": "DIP 1",
+              "selected": false
+            },
+            {
+              "id": "opDIP_2",
+              "text": "DIP 2",
+              "selected": false
+            },
+            {
+              "id": "opDIP_3",
+              "text": "DIP 3",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
     {
       "title": "Choose Additional Process",
       "path": [

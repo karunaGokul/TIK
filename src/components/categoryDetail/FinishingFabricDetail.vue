@@ -1,14 +1,23 @@
 <template>
   <div>
-    <v-card min-height="350px" flat class="ma-5"> 
-        <div class="d-flex justify-space-between">
-      <v-card-title>
-        FinishingFabric Details
-      </v-card-title>
-      <v-btn link to="/registration" rounded color="primary" class="ma-5" >
-                Register
-              </v-btn>
-     </div>
+    <v-card min-height="350px" flat class="ma-5">
+      <v-row>
+        <v-card-title>
+          FinishingFabric Details
+        </v-card-title>
+        <v-spacer></v-spacer>
+        <v-card-action>
+          <v-btn
+            link
+            to="/registration"
+            rounded-0
+            color="primary"
+            class="mt-4 mr-4 text-capitalize"
+          >
+            Register
+          </v-btn>
+        </v-card-action>
+      </v-row>
       <v-card-text>
         Fabric finishing as a process may or may not be an individual unit in
         the textile industry, it can be part of a knitting unit or a large

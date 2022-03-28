@@ -1,14 +1,23 @@
 <template>
   <div>
     <v-card min-height="350px" flat class="ma-5">
-        <div class="d-flex justify-space-between"> 
-      <v-card-title>
-        Dyeing Details
-      </v-card-title>
-      <v-btn link to="/registration" rounded color="primary" class="ma-5" >
-                Register
-              </v-btn>
-     </div>
+      <v-row>
+        <v-card-title>
+          Dyeing Details
+        </v-card-title>
+        <v-spacer></v-spacer>
+        <v-card-action>
+          <v-btn
+            link
+            to="/registration"
+            rounded-0
+            color="primary"
+            class="mt-4 mr-4 text-capitalize"
+          >
+            Register
+          </v-btn>
+        </v-card-action>
+      </v-row>
       <v-card-text>
         To project your business outside your location if you are in this niche
         sector of the dyeing industry will be very difficult. The process of

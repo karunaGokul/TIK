@@ -1,9 +1,14 @@
 <template>
   <div>
-    <v-card flat class="ma-5">
+    <v-card min-height="350px" flat class="ma-5"> 
+        <div class="d-flex justify-space-between">
       <v-card-title>
         Printing Details
       </v-card-title>
+      <v-btn link to="/registration" rounded color="primary" class="ma-5" >
+                Register
+              </v-btn>
+     </div>
       <v-card-text>
         The textile printing industry is more or less like a cottage industry.
         Every little home in small towns will set up small units where they take

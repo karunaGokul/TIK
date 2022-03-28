@@ -1,9 +1,14 @@
 <template>
   <div>
-    <v-card flat class="ma-5">
+   <v-card min-height="350px" flat class="ma-5"> 
+       <div class="d-flex justify-space-between">
       <v-card-title>
         JobWork Details
       </v-card-title>
+      <v-btn link to="/registration" rounded color="primary" class="ma-5" >
+                Register
+              </v-btn>
+     </div>
       <v-card-text>
         There are innumerable small scale job work units in the textile industry
         which support the mainstream manufacturers. Connecting these job workers

@@ -1,9 +1,14 @@
 <template>
   <div>
-    <v-card flat class="ma-5">
+   <v-card min-height="350px" flat class="ma-5"> 
+       <div class="d-flex justify-space-between">
       <v-card-title>
         Knitting Details
       </v-card-title>
+      <v-btn link to="/registration" rounded color="primary" class="ma-5" >
+                Register
+              </v-btn>
+     </div>
       <v-card-text>
         The knitting industry has several industries as their clients. There are
         clothing companies, hosiery manufacturers to medical companies which buy

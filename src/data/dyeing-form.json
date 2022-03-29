@@ -185,8 +185,36 @@
       ]
     },
     {
-      "title": "Choose Fabric Content",
+        "title": "Choose Fabric Content",
       "path": ["opFabric-opSoftFlow-opBleaching"],
+      "controls": [
+        {
+            "id": "btnBleachingtype",
+            "label": "Bleaching Type",
+            "type": "toggle-button",
+            "selector": true,
+            "data_path": "",
+            "data_id": "",
+            "options": [
+              {
+                "id": "opRFD",
+                "label": "A",
+                "text": "RFD",
+                "selected": false
+              },
+              {
+                "id": "opOpticWhitner",
+                "label": "B",
+                "text": "Optic Whitner",
+                "selected": false
+              }
+            ]
+          }
+    ]
+    },
+    {
+      "title": "Choose Fabric Content",
+      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype"],
       "controls": [
         {
           "id": "btnContenttype",
@@ -393,7 +421,30 @@
               "selected": false
             }
           ]
-        }
+        },
+        {
+            "id": "btnSingleContent",
+            "label": "Single Content",
+            "type": "radio-button",
+            "selector": true,
+            "data_path": "",
+            "options": [
+              {
+                "id": "opSpun",
+                "data_id": "Spun",
+                "label": "A",
+                "text": "Spun",
+                "selected": false
+              },
+              {
+                "id": "opFilament",
+                "data_id": "Filament",
+                "label": "B",
+                "text": "Filament",
+                "selected": false
+              }
+            ]
+          }
       ]
     },
     {
@@ -406,7 +457,7 @@
           "type": "dropdown",
           "selector": true,
           "data_path": "",
-          "data_id": "Content.Name",
+          "data_id": "",
           "options": [
             {
               "id": "opBlendContent_1",
@@ -434,12 +485,32 @@
               "selected": false
             }
           ]
-        }
+        },
+        {
+            "id": "txtBlendContent",
+            "type": "text-group",
+            "label": "Enter Your Required Blend Combination",
+            "data_path": "",
+            "data_id": "",
+            "selector": false,
+            "items": [
+              {
+                "id": "txtBlendContent_1",
+                "type": "textbox",
+                "selector": false
+              },
+              {
+                "id": "txtBlendContent_2",
+                "type": "textbox",
+                "selector": false
+              }
+            ]
+          }
       ]
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opSoftFlow-opBleaching-opSingle"],
+      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle"],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -470,12 +541,35 @@
               "selected": false
             }
           ]
-        }
+        },
+        {
+            "id": "btnSingleContent",
+            "label": "Single Content",
+            "type": "radio-button",
+            "selector": true,
+            "data_path": "",
+            "options": [
+              {
+                "id": "opSpun",
+                "data_id": "Spun",
+                "label": "A",
+                "text": "Spun",
+                "selected": false
+              },
+              {
+                "id": "opFilament",
+                "data_id": "Filament",
+                "label": "B",
+                "text": "Filament",
+                "selected": false
+              }
+            ]
+          }
       ]
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opSoftFlow-opBleaching-opBlend"],
+      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend"],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -483,7 +577,7 @@
           "type": "dropdown",
           "selector": true,
           "data_path": "",
-          "data_id": "Content.Name",
+          "data_id": "",
           "options": [
             {
               "id": "opBlendContent_1",
@@ -511,7 +605,27 @@
               "selected": false
             }
           ]
-        }
+        },
+        {
+            "id": "txtBlendContent",
+            "type": "text-group",
+            "label": "Enter Your Required Blend Combination",
+            "data_path": "",
+            "data_id": "",
+            "selector": false,
+            "items": [
+              {
+                "id": "txtBlendContent_1",
+                "type": "textbox",
+                "selector": false
+              },
+              {
+                "id": "txtBlendContent_2",
+                "type": "textbox",
+                "selector": false
+              }
+            ]
+          }
       ]
     },
     {
@@ -1189,7 +1303,7 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opBleaching-opSingle-drpSingleContent"],
+      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle-drpSingleContent"],
       "controls": [
         {
           "id": "tabStructure",
@@ -1293,41 +1407,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "id": "drpVesselSize",
-          "label": "Select VesselSize",
-          "type": "dropdown",
-          "selector": false,
-          "data_path": "",
-          "data_id": "Name",
-          "options": [
-            {
-              "id": "opVesselSize_1",
-              "text": "50",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_2",
-              "text": "100",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_3",
-              "text": "200",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_4",
-              "text": "500",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_5",
-              "text": "1000",
-              "selected": false
             }
           ]
         },
@@ -1371,7 +1450,7 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opBleaching-opBlend-drpBlendContent"],
+      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent"],
       "controls": [
         {
           "id": "tabStructure",
@@ -1475,41 +1554,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "id": "drpVesselSize",
-          "label": "Select VesselSize",
-          "type": "dropdown",
-          "selector": false,
-          "data_path": "",
-          "data_id": "Name",
-          "options": [
-            {
-              "id": "opVesselSize_1",
-              "text": "50",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_2",
-              "text": "100",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_3",
-              "text": "200",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_4",
-              "text": "500",
-              "selected": false
-            },
-            {
-              "id": "opVesselSize_5",
-              "text": "1000",
-              "selected": false
             }
           ]
         },
@@ -1931,8 +1975,8 @@
           ]
         },
         {
-          "id": "btnContent",
-          "label": "Content Type",
+          "id": "btnDetail",
+          "label": "Requirement Detail",
           "type": "radio-button",
           "selector": true,
           "options": [
@@ -2042,8 +2086,8 @@
           ]
         },
         {
-          "id": "btnContent",
-          "label": "Content Type",
+          "id": "btnDetail",
+          "label": "Requirement Detail",
           "type": "toggle-button",
           "selector": true,
           "options": [
@@ -2106,11 +2150,11 @@
               "text": "OPWCompacting",
               "controls": [
                 {
-					"label": "OPW Compacting",
-					"type": "sub-heading",
-					"selector": false,
-					"optional": true
-				},
+                  "label": "OPW Compacting",
+                  "type": "sub-heading",
+                  "selector": false,
+                  "optional": true
+                },
                 {
                   "type": "radio-button",
                   "selector": false,
@@ -2136,80 +2180,80 @@
               "text": "OPWDrying",
               "controls": [
                 {
-					"label": "OPW Drying",
-					"type": "sub-heading",
-					"selector": false,
-					"optional": true
-				},
+                  "label": "OPW Drying",
+                  "type": "sub-heading",
+                  "selector": false,
+                  "optional": true
+                },
                 {
-                    "id": "btnDryer",
-                    "label": "Dryer",
-                    "type": "radio-button",
-                    "selector": true,
-                    "data_path": "",
-                    "options": [
-                      {
-                        "id": "opStenterDryer",
-                        "data_id": "",
-                        "label": "A",
-                        "text": "Stenter Dryer",
-                        "selected": false
-                      },
-                      {
-                        "id": "oRelaxDryer",
-                        "data_id": "",
-                        "label": "B",
-                        "text": "Relax Dryer",
-                        "selected": false
-                      }
-                    ]
-                  },
-          
-                  {
-                    "id": "drpDIPStenter",
-                    "label": "DIP Stenter",
-                    "type": "dropdown",
-                    "selector": false,
-                    "data_path": "",
-                    "data_id": "",
-                    "options": [
-                      {
-                        "id": "opDP_1",
-                        "text": "DP 1",
-                        "selected": false
-                      },
-                      {
-                        "id": "opDP_2",
-                        "text": "DP 2",
-                        "selected": false
-                      },
-                      {
-                        "id": "opDP_3",
-                        "text": "DP 3",
-                        "selected": false
-                      }
-                    ]
-                  }
-                ]
+                  "id": "btnDryer",
+                  "label": "Dryer",
+                  "type": "radio-button",
+                  "selector": true,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "opStenterDryer",
+                      "data_id": "",
+                      "label": "A",
+                      "text": "Stenter Dryer",
+                      "selected": false
+                    },
+                    {
+                      "id": "oRelaxDryer",
+                      "data_id": "",
+                      "label": "B",
+                      "text": "Relax Dryer",
+                      "selected": false
+                    }
+                  ]
+                },
+
+                {
+                  "id": "drpDIPStenter",
+                  "label": "DIP Stenter",
+                  "type": "dropdown",
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
+                }
+              ]
             },
             {
               "id": "opSpecialFinishes",
               "text": "SpecialFinishes",
               "controls": [
                 {
-                    "id": "drpSpecialFinishes",
-                    "label": "Special Finishes",
-                    "type": "dropdown-range",
-                    "multiple": true,
-                    "selector": false,
-                    "data_path": "",
-                    "data_id": "",
-                    "data": {
-                      "start": 1,
-                      "end": 3
+                  "id": "drpSpecialFinishes",
+                  "label": "Special Finishes",
+                  "type": "dropdown-range",
+                  "multiple": true,
+                  "selector": false,
+                  "data_path": "",
+                  "data_id": "",
+                  "data": {
+                    "start": 1,
+                    "end": 3
                   }
                 }
-                ]
+              ]
             }
           ]
         }
@@ -3068,7 +3112,6 @@
         }
       ]
     },
-
     {
       "title": "Choose Details as per requirements",
       "path": [
@@ -3119,7 +3162,6 @@
         }
       ]
     },
-
     {
       "title": "Choose Details as per requirements",
       "path": [
@@ -3259,319 +3301,177 @@
       ]
     },
     {
-      "title": "Choose Additional Process",
+      "title": "Choose Details as per requirements",
       "path": [
-        "opFabric-opSoftFlow-opBleaching-opSingle-drpSingleContent-tabStructure"
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle-drpSingleContent-tabStructure"
       ],
       "controls": [
         {
-          "id": "tabProcessStructure",
-          "type": "tab",
-          "selector": true,
-          "options": [
+            "id": "txtCount",
+            "type": "textbox",
+            "selector": false,
+            "multiple": true,
+            "data_path": "",
+            "data_id": "",
+            "label": "Enter Your Count"
+          },
+          {
+            "id": "txtGSM",
+            "type": "textbox",
+            "selector": false,
+            "data_path": "",
+            "data_id": "",
+            "label": "Enter Your GSM"
+          },
+          {
+            "id": "drpVesselSize",
+            "label": "Select VesselSize",
+            "type": "dropdown",
+            "selector": false,
+            "data_path": "",
+            "data_id": "Name",
+            "options": [
+              {
+                "id": "opVesselSize_1",
+                "text": "50",
+                "selected": false
+              },
+              {
+                "id": "opVesselSize_2",
+                "text": "100",
+                "selected": false
+              },
+              {
+                "id": "opVesselSize_3",
+                "text": "200",
+                "selected": false
+              },
+              {
+                "id": "opVesselSize_4",
+                "text": "500",
+                "selected": false
+              },
+              {
+                "id": "opVesselSize_5",
+                "text": "1000",
+                "selected": false
+              }
+            ]
+          },
+          {
+            "id": "btnDetail",
+            "label": "Requirement Detail",
+            "type": "radio-button",
+            "selector": true,
+            "options": [
+              {
+                "id": "opOPW",
+                "label": "A",
+                "text": "OPW",
+                "selected": false
+              },
+              {
+                "id": "opTUB",
+                "label": "B",
+                "text": "TUB",
+                "selected": false
+              },
+              {
+                "id": "opTUBNeedleDrop",
+                "label": "C",
+                "text": "TUB with Needle Drop",
+                "selected": false
+              }
+            ]
+          }
+      ]
+    },
+    {
+        "title": "Choose Details as per requirements",
+        "path": [
+          "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent-tabStructure"
+        ],
+        "controls": [
+          {
+              "id": "txtCount",
+              "type": "textbox",
+              "selector": false,
+              "multiple": true,
+              "data_path": "",
+              "data_id": "",
+              "label": "Enter Your Count"
+            },
             {
-              "id": "opTubular_1",
-              "text": "Tubular",
-              "controls": [
+              "id": "txtGSM",
+              "type": "textbox",
+              "selector": false,
+              "data_path": "",
+              "data_id": "",
+              "label": "Enter Your GSM"
+            },
+            {
+              "id": "drpVesselSize",
+              "label": "Select VesselSize",
+              "type": "dropdown",
+              "selector": false,
+              "data_path": "",
+              "data_id": "Name",
+              "options": [
                 {
-                  "id": "btnTubularHeatsetting",
-                  "label": "Tubular Heatsetting",
-                  "type": "toggle-button",
-                  "selector": true,
-                  "data_path": "",
-                  "options": [
-                    {
-                      "id": "opTubularHeatsetting",
-                      "data_id": "",
-                      "label": "A",
-                      "text": "Tubular Heatsetting",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opVesselSize_1",
+                  "text": "50",
+                  "selected": false
                 },
                 {
-                  "id": "drpSpecialFinishes",
-                  "label": "Special Finishes",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opSpecialFinishes_1",
-                      "text": "SpecialFinishes 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_2",
-                      "text": "SpecialFinishes 2",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opVesselSize_2",
+                  "text": "100",
+                  "selected": false
                 },
                 {
-                  "id": "drpTubularDrying",
-                  "label": "Tubular Drying Process",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opTubularDrying_1",
-                      "text": "DryingProcesses 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opTubularDrying_2",
-                      "text": "DryingProcesses 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opTubularDrying_3",
-                      "text": "DryingProcesses 3",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opVesselSize_3",
+                  "text": "200",
+                  "selected": false
                 },
                 {
-                  "id": "tabProcessStructure_1",
-                  "type": "tab",
-                  "selector": true,
-                  "options": [
-                    {
-                      "id": "opOPWStentering_1",
-                      "text": "OPWStentering",
-                      "controls": [
-                        {
-                          "id": "btnStenterDry",
-                          "label": "Stenter Dry",
-                          "type": "toggle-button",
-                          "selector": true,
-                          "data_path": "",
-                          "options": [
-                            {
-                              "id": "opStenterDry",
-                              "data_id": "",
-                              "label": "A",
-                              "text": "Stenter Dry",
-                              "selected": false
-                            }
-                          ]
-                        },
-                        {
-                          "id": "drpDIPStenter",
-                          "label": "DIP Stenter",
-                          "type": "dropdown",
-                          "selector": false,
-                          "data_path": "",
-                          "data_id": "",
-                          "options": [
-                            {
-                              "id": "opDIPStenter_1",
-                              "text": "DP 1",
-                              "selected": false
-                            },
-                            {
-                              "id": "opDIPStenter_2",
-                              "text": "DP 2",
-                              "selected": false
-                            },
-                            {
-                              "id": "opDIPStenter_3",
-                              "text": "DP 3",
-                              "selected": false
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "id": "opCompacting_1",
-                      "text": "Compacting",
-                      "controls": [
-                        {
-                          "id": "drpTubularMachine",
-                          "label": "Tubular",
-                          "type": "dropdown",
-                          "selector": false,
-                          "data_path": "",
-                          "data_id": "",
-                          "options": [
-                            {
-                              "id": "opTubularMachine_1",
-                              "text": "Tubular Machine 1",
-                              "selected": false
-                            },
-                            {
-                              "id": "opTubularMachine_2",
-                              "text": "Tubular Machine 2",
-                              "selected": false
-                            }
-                          ]
-                        },
-                        {
-                          "id": "drpOPWMachine",
-                          "label": "OPW",
-                          "type": "dropdown",
-                          "selector": false,
-                          "data_path": "",
-                          "data_id": "",
-                          "options": [
-                            {
-                              "id": "opOPWMachine_1",
-                              "text": "OPW Machine 1",
-                              "selected": false
-                            },
-                            {
-                              "id": "opOPWMachine_2",
-                              "text": "OPW Machine 2",
-                              "selected": false
-                            },
-                            {
-                              "id": "opOPWMachine_3",
-                              "text": "OPW Machine 3",
-                              "selected": false
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "id": "opVesselSize_4",
+                  "text": "500",
+                  "selected": false
+                },
+                {
+                  "id": "opVesselSize_5",
+                  "text": "1000",
+                  "selected": false
                 }
               ]
             },
             {
-              "id": "opTubular_2",
-              "text": "OPW",
-              "controls": [
+              "id": "btnDetail",
+              "label": "Requirement Detail",
+              "type": "radio-button",
+              "selector": true,
+              "options": [
                 {
-                  "id": "btnOPWHeatsetting",
-                  "label": "OPW Heatsetting",
-                  "type": "toggle-button",
-                  "selector": true,
-                  "data_path": "",
-                  "options": [
-                    {
-                      "id": "opOPWHeatsetting",
-                      "data_id": "",
-                      "label": "A",
-                      "text": "OPW Heatsetting",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opOPW",
+                  "label": "A",
+                  "text": "OPW",
+                  "selected": false
                 },
                 {
-                  "id": "drpSpecialFinishes",
-                  "label": "Special Finishes",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opSpecialFinishes_1",
-                      "text": "SpecialFinishes 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_2",
-                      "text": "SpecialFinishes 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opSpecialFinishes_3",
-                      "text": "SpecialFinishes 3",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opTUB",
+                  "label": "B",
+                  "text": "TUB",
+                  "selected": false
                 },
                 {
-                  "id": "drpOPWCompacting",
-                  "label": "OPW Compacting",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opOPWMachine_1",
-                      "text": "OPW Machine 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opOPWMachine_2",
-                      "text": "OPW Machine 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opOPWMachine_3",
-                      "text": "OPW Machine 3",
-                      "selected": false
-                    }
-                  ]
-                },
-                {
-                  "label": "OPW Drying Process",
-                  "type": "heading",
-                  "selector": false,
-                  "optional": true
-                },
-                {
-                  "id": "btnStenterDryer",
-                  "label": "Stenter Dryer",
-                  "type": "toggle-button",
-                  "selector": true,
-                  "data_path": "",
-                  "options": [
-                    {
-                      "id": "opStenterDryer",
-                      "data_id": "",
-                      "label": "A",
-                      "text": "Stenter Dryer",
-                      "selected": false
-                    },
-                    {
-                      "id": "oRelaxDryer",
-                      "data_id": "",
-                      "label": "B",
-                      "text": "Relax Dryer",
-                      "selected": false
-                    }
-                  ]
-                },
-
-                {
-                  "id": "drpDIPStenter",
-                  "label": "DIP Stenter",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opDP_1",
-                      "text": "DP 1",
-                      "selected": false
-                    },
-                    {
-                      "id": "opDP_2",
-                      "text": "DP 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opDP_3",
-                      "text": "DP 3",
-                      "selected": false
-                    }
-                  ]
+                  "id": "opTUBNeedleDrop",
+                  "label": "C",
+                  "text": "TUB with Needle Drop",
+                  "selected": false
                 }
               ]
             }
-          ]
-        }
-      ]
-    },
+        ]
+      },
     {
       "title": "Choose Additional Process",
       "path": [

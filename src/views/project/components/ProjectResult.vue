@@ -17,7 +17,34 @@
       <template v-slot:top>
         <v-toolbar flat dense height="auto" color="transparent">
           <v-row align="center" class="pb-4">
-            <v-col> </v-col>
+            <v-col>
+              <v-select
+                multiple
+                label="Certificate"
+                v-model="selectedCertificate"
+                :items="certification"
+                item-text="certificateName"
+                item-value="certificateName"
+                :loading="loading"
+                required
+                class="mt-5"
+                @input="filterCertificate"
+              >
+              </v-select>
+            </v-col>
+            <v-col>
+              <v-select
+                multiple
+                label="Review"
+                v-model="search"
+                :items="review"
+                item-text="text"
+                item-value="value"
+                :loading="loading"
+                required
+                class="mt-5"
+              >
+              </v-select> </v-col>
             <v-col>
               <v-text-field
                 v-model="search"
@@ -48,18 +75,22 @@
 </template>
 
 <script lang="ts">
-import { CreateProjectModel } from "@/model";
-import { IProjectService } from "@/service";
+import { CreateProjectModel, CertificationResponseModel } from "@/model";
+import { IProjectService, IRegistrationService } from "@/service";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class ProjectResult extends Vue {
   @Inject("ProjectService") service: IProjectService;
+  @Inject("registrationService") registrationService: IRegistrationService;
   @Prop() request: CreateProjectModel;
 
-  search: string = "";
-  items: any = [];
-  loading: boolean = false;
+  public search: string = "";
+  public items: any = [];
+  public dataResource: any = [];
+  public loading: boolean = false;
+  public certification: Array<CertificationResponseModel> = [];
+  public selectedCertificate: any;
 
   created() {
     this.loading = true;
@@ -68,10 +99,49 @@ export default class ProjectResult extends Vue {
       .then((response) => {
         this.loading = false;
         this.items = response;
+
+        this.dataResource = response;
+      });
+
+    this.getCertification();
+    
+  }
+
+  private getCertification() {
+    this.loading = true;
+    this.registrationService
+      .getCertification()
+      .then((response: Array<CertificationResponseModel>) => {
+        this.certification = response;
+        this.loading = false;
       });
   }
 
-  headers: any = [
+  public filterCertificate() {
+    //console.log(this.selectedCertificate);
+    //item.certification.toLowerCase().includes(this.selectedCertificate.toLowerCase())
+    /*this.items = this.dataResource.filter(
+      (item:any) => {
+        console.log(item.certification && item.certification.includes("BLUE SIGN"));
+        (item.certification && item.certification.includes("BLUE SIGN")
+        (item.certification && this.selectedCertificate.filter((data: any) => {
+          item.certification.includes(data);
+        })
+        )
+      })*/
+    console.log(this.dataResource);
+
+    this.items = this.dataResource.filter((item: any) =>
+      (item.certification && this.selectedCertificate.some((data: any) =>
+        item.certification.includes(data)
+      )
+    )
+    )
+
+
+  }
+
+  public headers: any = [
     {
       text: "Mill Name",
       value: "Mill Name",
@@ -89,15 +159,31 @@ export default class ProjectResult extends Vue {
     {
       text: "Certificates",
       value: "certification",
-    },
-  ];
+      // filterable: false,
+    }
+  ]
 
-  certificate: any = [
-    "certification one",
-    "certification two",
-    "certification three",
-    "certification four",
-    "certification five",
-  ];
+  public review: any = [
+    {
+      text: "Review 1",
+      value: 1,
+    },
+    {
+      text: "Review 2",
+      value: 2,
+    },
+    {
+      text: "Review 3",
+      value: 3,
+    },
+    {
+      text: "Review 4",
+      value: 4,
+    },
+    {
+      text: "Review 5",
+      value: 5,
+    }
+  ]
 }
 </script>

@@ -28,7 +28,7 @@
                 :loading="loading"
                 required
                 class="mt-5"
-                @input="filterCertificate"
+                @change="filterCertificate"
               >
               </v-select>
             </v-col>
@@ -36,15 +36,28 @@
               <v-select
                 multiple
                 label="Review"
-                v-model="search"
+                v-model="selectedReview"
                 :items="review"
-                item-text="text"
+                item-text="value"
                 item-value="value"
                 :loading="loading"
                 required
                 class="mt-5"
+                @change="filterReview"
               >
-              </v-select> </v-col>
+              <template v-slot:[`item`]="{ item }">
+                  <v-rating
+                    v-model="item.value"
+                    color="warning"
+                    dense
+                    size="20"
+                    half-increments
+                    readonly
+                  >
+                  </v-rating>
+              </template>
+              </v-select>
+            </v-col>
             <v-col>
               <v-text-field
                 v-model="search"
@@ -91,6 +104,7 @@ export default class ProjectResult extends Vue {
   public loading: boolean = false;
   public certification: Array<CertificationResponseModel> = [];
   public selectedCertificate: any;
+  public selectedReview: any;
 
   created() {
     this.loading = true;
@@ -104,7 +118,6 @@ export default class ProjectResult extends Vue {
       });
 
     this.getCertification();
-    
   }
 
   private getCertification() {
@@ -117,9 +130,19 @@ export default class ProjectResult extends Vue {
       });
   }
 
+  public filterReview() {
+    console.log(this.selectedReview);
+    if (this.selectedReview.length !== 0) {
+      this.items = this.dataResource.filter(
+        (item: any) =>
+          item.certification &&
+          this.selectedReview.some((data: any) => item.review.includes(data))
+      );
+    } else {
+      this.items = this.dataResource;
+    }
+  }
   public filterCertificate() {
-    //console.log(this.selectedCertificate);
-    //item.certification.toLowerCase().includes(this.selectedCertificate.toLowerCase())
     /*this.items = this.dataResource.filter(
       (item:any) => {
         console.log(item.certification && item.certification.includes("BLUE SIGN"));
@@ -130,15 +153,17 @@ export default class ProjectResult extends Vue {
         )
       })*/
     console.log(this.dataResource);
-
-    this.items = this.dataResource.filter((item: any) =>
-      (item.certification && this.selectedCertificate.some((data: any) =>
-        item.certification.includes(data)
-      )
-    )
-    )
-
-
+    if (this.selectedCertificate.length !== 0) {
+      this.items = this.dataResource.filter(
+        (item: any) =>
+          item.certification &&
+          this.selectedCertificate.some((data: any) =>
+            item.certification.includes(data)
+          )
+      );
+    } else {
+      this.items = this.dataResource;
+    }
   }
 
   public headers: any = [
@@ -160,30 +185,35 @@ export default class ProjectResult extends Vue {
       text: "Certificates",
       value: "certification",
       // filterable: false,
-    }
-  ]
+    },
+  ];
 
   public review: any = [
     {
       text: "Review 1",
       value: 1,
+      icon: "mdi-star",
     },
     {
       text: "Review 2",
       value: 2,
+      icon: "mdi-star",
     },
     {
       text: "Review 3",
       value: 3,
+      icon: "mdi-star",
     },
     {
       text: "Review 4",
       value: 4,
+      icon: "mdi-star",
     },
     {
       text: "Review 5",
       value: 5,
-    }
-  ]
+      icon: "mdi-star",
+    },
+  ];
 }
 </script>

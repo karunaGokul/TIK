@@ -160,7 +160,10 @@ const routes: Array<RouteConfig> = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior() {
+    window.scrollTo(0,0);
+  }
 });
 
 export default router;

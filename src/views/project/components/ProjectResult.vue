@@ -53,8 +53,7 @@
                     size="20"
                     half-increments
                     readonly
-                  >
-                  </v-rating>
+                  ></v-rating>
               </template>
               </v-select>
             </v-col>

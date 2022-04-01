@@ -29,6 +29,9 @@ export class DashboardModel {
   confirmationDate: number;
   requestedDeliveryDate: number;
   noOfKg: number;
+  maxCreditPeriod: number;
+  maxDeliveryPeriod: number;
+  maxPrice: number;
 }
 
 export class BitReceivedModel {

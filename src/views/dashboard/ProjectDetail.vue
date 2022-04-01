@@ -1106,24 +1106,14 @@ export default class ProjectDetail extends Vue {
     this.request.id = this.$route.params.id;
     this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
       this.response = response;
+      console.log(this.response.certification);
       this.GetCompany(this.response.CompanyId);
       this.response.bidList.forEach((b) => {
         if (b.status == "Rejected") {
           this.isRejected = true;
         }
       });
-      // if (this.category != "Company") {
-      //   this.GetCompany(this.response.bidList[0].companyId);
-      // } else {
-      //   this.GetCompany(this.response.CompanyId);
-      // }
-      //       this.response.bidList.forEach((b) => {
-      //        this.DashboardService.GetCompany(b.companyId).then((c) => {
-      //          b.companyName = c.companyName;
-      //          b.companyLogo = c.logo;
-      //          b.review = c.review;
-      //        });
-      //      });
+     
       this.GetBidAudit();
     });
   }

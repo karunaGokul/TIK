@@ -109,6 +109,20 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
+                <v-row class="my-n8">
+                <v-col col="12" md="6">
+                  <v-label>Certification</v-label>
+                  <v-text-field
+                    outlined
+                    dense
+                    background-color="white"
+                    v-model="response.certification"
+                    class="my-2"
+                    disabled
+                  ></v-text-field>
+                </v-col>
+                </v-row>
+              
             </v-card>
           </v-col>
         </v-row>

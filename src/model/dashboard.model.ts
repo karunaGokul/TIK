@@ -17,6 +17,7 @@ export class DashboardModel {
   requestPrice?: number;
   creditPeriod?: number;
   deliveryDate?: number;
+  certification: string;
   logoName?: string;
   logo: string;
   bidList?: Array<BitReceivedModel> = [];

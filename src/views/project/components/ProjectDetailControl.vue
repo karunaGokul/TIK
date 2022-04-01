@@ -23,6 +23,15 @@
           type="number"
           min="1"
         ></v-text-field>
+        <v-text-field
+          v-if="control.type == 'text'"
+          outlined
+          dense
+          required
+          v-model="control.value"
+          :label="control.label"
+          :readonly="isSummary"
+        ></v-text-field>
         <v-menu
           v-if="control.type == 'date'"
           v-model="control.enabled"

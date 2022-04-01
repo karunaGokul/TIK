@@ -191,27 +191,22 @@ export default class ProjectResult extends Vue {
     {
       text: "Review 1",
       value: 1,
-      icon: "mdi-star",
     },
     {
       text: "Review 2",
       value: 2,
-      icon: "mdi-star",
     },
     {
       text: "Review 3",
       value: 3,
-      icon: "mdi-star",
     },
     {
       text: "Review 4",
       value: 4,
-      icon: "mdi-star",
     },
     {
       text: "Review 5",
       value: 5,
-      icon: "mdi-star",
     },
   ];
 }

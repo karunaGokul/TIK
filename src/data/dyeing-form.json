@@ -661,6 +661,29 @@
               "selected": false
             }
           ]
+        },
+        {
+          "id": "btnSingleContent",
+          "label": "Single Content",
+          "type": "radio-button",
+          "selector": true,
+          "data_path": "",
+          "options": [
+            {
+              "id": "opSpun",
+              "data_id": "Spun",
+              "label": "A",
+              "text": "Spun",
+              "selected": false
+            },
+            {
+              "id": "opFilament",
+              "data_id": "Filament",
+              "label": "B",
+              "text": "Filament",
+              "selected": false
+            }
+          ]
         }
       ]
     },
@@ -700,6 +723,26 @@
               "id": "opBlendContent_5",
               "text": "Cotton Viscose",
               "selected": false
+            }
+          ]
+        },
+        {
+          "id": "txtBlendContent",
+          "type": "text-group",
+          "label": "Enter Your Required Blend Combination",
+          "data_path": "",
+          "data_id": "",
+          "selector": false,
+          "items": [
+            {
+              "id": "txtBlendContent_1",
+              "type": "textbox",
+              "selector": false
+            },
+            {
+              "id": "txtBlendContent_2",
+              "type": "textbox",
+              "selector": false
             }
           ]
         }

@@ -22,9 +22,9 @@
 
               <v-slider
                 v-if="n === 'Price'"
-                track-color="#4DB6AC"
-                track-fill-color="#004D40"
-                thumb-color="#004D40"
+                track-color="theme--light teal"
+                track-fill-color="primary"
+                thumb-color="primary"
                 min="10"
                 max="50"
                 v-model="ex3.val"
@@ -33,27 +33,26 @@
               ></v-slider>
               <v-slider
                 v-if="n === 'Credit Period'"
-                track-color="#4DB6AC"
-                track-fill-color="#004D40"
-                thumb-color="#004D40"
+                track-color="theme--light teal"
+                track-fill-color="primary"
+                thumb-color="primary"
                 v-model="ex2.val"
                 :label="ex2.label"
                 thumb-label="always"
               ></v-slider>
               <v-slider
                 v-if="n === 'Delivery Period'"
-                track-color="#4DB6AC"
-                track-fill-color="#004D40"
-                thumb-color="#004D40"
+                track-color="theme--light teal"
+                track-fill-color="primary"
+                thumb-color="primary"
                 v-model="ex1.val"
                 :label="ex1.label"
                 thumb-label="always"
               ></v-slider>
               <v-col>
-                <v-row>
+                <v-row class="mb-1">
                   <div v-if="n === 'Review'">
                     <v-rating
-                      color="#004D40"
                       class="d-inline mouse"
                       readonly
                       dense
@@ -65,7 +64,6 @@
                   </div>
                   <div v-if="n === 'Review'">
                     <v-rating
-                      color="#004D40"
                       class="d-inline mouse"
                       readonly
                       dense
@@ -81,7 +79,6 @@
                 <v-row>
                   <div v-if="n === 'Review'">
                     <v-rating
-                      color="#004D40"
                       class="d-inline mouse"
                       readonly
                       dense
@@ -89,11 +86,10 @@
                       size="18"
                       value="2"
                     ></v-rating
-                    ><span class="mr-8 mouse"> &up</span>
+                    ><span class="mr-16 mouse"> &up</span>
                   </div>
-                  <div v-if="n === 'Review'">
+                  <div v-if="n === 'Review'" class="ml-3">
                     <v-rating
-                      color="#004D40"
                       class="d-inline mouse"
                       readonly
                       dense
@@ -157,7 +153,7 @@
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { IDashboardService } from '@/service';
-import { BitReceivedModel, FilterRequestModel } from '@/model';
+import { BitReceivedModel, FilterRequestModel, DashboardModel } from '@/model';
 
 @Component
 export default class FilterDialog extends Vue {
@@ -171,6 +167,7 @@ export default class FilterDialog extends Vue {
   public filterValue: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
+  public maxMixValue: Array<DashboardModel> = [];
 
   // items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   any = ['Price', 'Credit Period', 'Delivery Period', 'Review'];

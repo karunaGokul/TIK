@@ -116,21 +116,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Inject } from "vue-property-decorator";
-import { IDashboardService } from "@/service";
+import { Component, Vue, Inject } from 'vue-property-decorator';
+import { IDashboardService } from '@/service';
 import {
   ProjectSearchModel,
   DashboardModel,
   UserInfomodel,
-  NotificationModel,
-} from "@/model";
-import Advertisement from "@/components/Advertisement.vue";
+  NotificationModel
+} from '@/model';
+import Advertisement from '@/components/Advertisement.vue';
 
 @Component({
-  components: { Advertisement },
+  components: { Advertisement }
 })
 export default class Dashboard extends Vue {
-  @Inject("DashboardService") service: IDashboardService;
+  @Inject('DashboardService') service: IDashboardService;
 
   public userResponse = new UserInfomodel();
   filteredProjectNavs: any = [];
@@ -143,12 +143,12 @@ export default class Dashboard extends Vue {
       (n: any) =>
         (!n.roles || n.roles.includes(this.role)) &&
         (n.company == undefined ||
-          (n.company && this.category == "Company") ||
-          (!n.company && this.category !== "Company")) &&
+          (n.company && this.category == 'Company') ||
+          (!n.company && this.category !== 'Company')) &&
         (!n.approvalAdminAccess ||
-          this.role == "MasterAdmin" ||
-          this.role == "Approval Admin" ||
-          (n.approvalAdminAccess && this.approvalAdminAccess === "1"))
+          this.role == 'MasterAdmin' ||
+          this.role == 'Approval Admin' ||
+          (n.approvalAdminAccess && this.approvalAdminAccess === '1'))
     );
   }
 
@@ -169,223 +169,223 @@ export default class Dashboard extends Vue {
   }
 
   public userInfo() {
-    this.service.GetUserFullName().then((response) => {
+    this.service.GetUserFullName().then(response => {
       this.userResponse = response;
     });
   }
 
   public notification() {
-    this.service.GetNotification().then((response) => {
+    this.service.GetNotification().then(response => {
       this.projectNavs
-        .filter((n: any) => n.text == "New Projects")
+        .filter((n: any) => n.text == 'New Projects')
         .forEach((n: any) => (n.count = response.newProjectCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Bids Received")
+        .filter((n: any) => n.text == 'Bids Received')
         .forEach((n: any) => (n.count = response.bidReceivedCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Pending Authentication")
+        .filter((n: any) => n.text == 'Pending Authentication')
         .forEach((n: any) => (n.count = response.pendingAuthenticationCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Approved Bids")
+        .filter((n: any) => n.text == 'Approved Bids')
         .forEach((n: any) => (n.count = response.approvedBidsCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Approval Pending")
+        .filter((n: any) => n.text == 'Approval Pending')
         .forEach((n: any) => (n.count = response.approvalPendingCount));
       this.projectNavs
-        .filter((n: any) => n.text == "No Response Projects")
+        .filter((n: any) => n.text == 'No Response Projects')
         .forEach((n: any) => (n.count = response.noResponseCount));
       this.projectNavs
-        .filter((n: any) => n.text == "No Show Projects")
+        .filter((n: any) => n.text == 'No Show Projects')
         .forEach((n: any) => (n.count = response.noShowCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Confirmed Projects")
+        .filter((n: any) => n.text == 'Confirmed Projects')
         .forEach((n: any) => (n.count = response.confirmedCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Completed Projects")
+        .filter((n: any) => n.text == 'Completed Projects')
         .forEach((n: any) => (n.count = response.completedCount));
       this.projectNavs
-        .filter((n: any) => n.text == "Project Reviews")
+        .filter((n: any) => n.text == 'Project Reviews')
         .forEach((n: any) => (n.count = response.projectReviewCount));
     });
   }
 
   projectNavs: any = [
     {
-      text: "New Projects",
-      color: "amber lighten-3",
-      icon: require("@/assets/icons/new project.png"),
+      text: 'New Projects',
+      color: 'amber lighten-3',
+      icon: require('@/assets/icons/new project.png'),
       count: 0,
       company: false,
-      roles: ["MasterAdmin", "Quote InCharge"],
-      status: "Initiated",
+      roles: ['MasterAdmin', 'Quote InCharge'],
+      status: 'Initiated'
     },
     {
-      text: "New Projects",
-      color: "cyan lighten-4",
-      icon: require("@/assets/icons/new project.png"),
+      text: 'New Projects',
+      color: 'cyan lighten-4',
+      icon: require('@/assets/icons/new project.png'),
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Quote InCharge"],
-      status: "NewProjects",
+      roles: ['MasterAdmin', 'Quote InCharge'],
+      status: 'NewProjects'
     },
     {
-      text: "Bids Received",
+      text: 'Bids Received',
       // color: "teal lighten-3",
-      color: "white",
-      icon: require("@/assets/icons/bid received.png"),
+      color: 'white',
+      icon: require('@/assets/icons/bid received.png'),
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Quote InCharge"],
-      status: "BidReceived",
+      roles: ['MasterAdmin', 'Quote InCharge'],
+      status: 'BidReceived'
     },
     {
-      text: "Approved Bids",
-      color: "light-blue lighten-2",
-      icon: require("@/assets/icons/approved bid.png"),
+      text: 'Approved Bids',
+      color: 'light-blue lighten-2',
+      icon: require('@/assets/icons/approved bid.png'),
       count: 0,
       company: false,
-      roles: ["MasterAdmin", "Quote InCharge"],
-      status: "Approved",
+      roles: ['MasterAdmin', 'Quote InCharge'],
+      status: 'Approved'
     },
     {
-      text: "Pending Authentication",
-      color: "cyan lighten-4",
-      icon: require("@/assets/icons/pending.png"),
+      text: 'Pending Authentication',
+      color: 'cyan lighten-4',
+      icon: require('@/assets/icons/pending.png'),
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Merchandiser"],
-      status: "AwaitingAuthentication",
+      roles: ['MasterAdmin', 'Merchandiser'],
+      status: 'AwaitingAuthentication'
     },
     {
-      text: "Approval Pending",
-      color: "light-blue lighten-2",
-      icon: require("@/assets/icons/approval pending.png"),
+      text: 'Approval Pending',
+      color: 'light-blue lighten-2',
+      icon: require('@/assets/icons/approval pending.png'),
       count: 0,
       company: false,
-      roles: ["MasterAdmin", "Approval Admin", "Quote InCharge"],
-      status: "AwaitingApproval",
-      approvalAdminAccess: true,
+      roles: ['MasterAdmin', 'Approval Admin', 'Quote InCharge'],
+      status: 'AwaitingApproval',
+      approvalAdminAccess: true
     },
     {
-      text: "Approval Pending",
-      color: "white",
-      icon: require("@/assets/icons/approval pending.png"),
+      text: 'Approval Pending',
+      color: 'white',
+      icon: require('@/assets/icons/approval pending.png'),
       count: 0,
       company: true,
-      roles: ["MasterAdmin", "Approval Admin", "Merchandiser"],
-      status: "ApprovalPending",
-      approvalAdminAccess: true,
+      roles: ['MasterAdmin', 'Approval Admin', 'Merchandiser'],
+      status: 'ApprovalPending',
+      approvalAdminAccess: true
     },
     {
-      text: "No Response Projects",
-      color: "deep-orange accent-1",
-      icon: require("@/assets/icons/no response.png"),
+      text: 'No Response Projects',
+      color: 'deep-orange accent-1',
+      icon: require('@/assets/icons/no response.png'),
       count: 0,
       company: false,
-      status: "NoResponse",
+      status: 'NoResponse'
     },
     {
-      text: "No Response Projects",
-      color: "cyan lighten-4",
-      icon: require("@/assets/icons/no response.png"),
+      text: 'No Response Projects',
+      color: 'cyan lighten-4',
+      icon: require('@/assets/icons/no response.png'),
       count: 0,
       company: true,
-      status: "NoResponse",
+      status: 'NoResponse'
     },
     {
-      text: "No Show Projects",
-      color: "white",
-      icon: require("@/assets/icons/no show project.png"),
+      text: 'No Show Projects',
+      color: 'white',
+      icon: require('@/assets/icons/no show project.png'),
       count: 0,
-      status: "NoShow",
+      status: 'NoShow'
     },
     {
-      text: "Confirmed Projects",
-      color: "green lighten-2",
-      icon: require("@/assets/icons/confirmed project.png"),
+      text: 'Confirmed Projects',
+      color: 'green lighten-2',
+      icon: require('@/assets/icons/confirmed project.png'),
       count: 0,
       company: false,
-      status: "ConfirmedProjects",
+      status: 'ConfirmedProjects'
     },
     {
-      text: "Confirmed Projects",
-      color: "green lighten-2",
-      icon: require("@/assets/icons/confirmed project.png"),
+      text: 'Confirmed Projects',
+      color: 'green lighten-2',
+      icon: require('@/assets/icons/confirmed project.png'),
       count: 0,
       company: true,
-      status: "ConfirmedProjects",
+      status: 'ConfirmedProjects'
     },
     {
-      text: "Completed Projects",
-      color: "light-green lighten-1",
-      icon: require("@/assets/icons/completed project.png"),
+      text: 'Completed Projects',
+      color: 'light-green lighten-1',
+      icon: require('@/assets/icons/completed project.png'),
       count: 0,
       company: true,
-      status: "CompletedProjects",
+      status: 'CompletedProjects'
     },
     {
-      text: "Completed Projects",
-      color: "light-green lighten-1",
-      icon: require("@/assets/icons/completed project.png"),
+      text: 'Completed Projects',
+      color: 'light-green lighten-1',
+      icon: require('@/assets/icons/completed project.png'),
       count: 0,
       company: false,
-      status: "Completed",
+      status: 'Completed'
     },
     {
-      text: "Canceled Projects",
-      color: "red lighten-2",
-      icon: require("@/assets/icons/canceled project.png"),
+      text: 'Canceled Projects',
+      color: 'red lighten-2',
+      icon: require('@/assets/icons/canceled project.png'),
       count: 0,
       company: true,
-      status: "CancelledProjects",
+      status: 'CancelledProjects'
     },
     {
-      text: "Canceled Projects",
-      color: "red lighten-2",
-      icon: require("@/assets/icons/canceled project.png"),
+      text: 'Canceled Projects',
+      color: 'red lighten-2',
+      icon: require('@/assets/icons/canceled project.png'),
       count: 0,
       company: false,
-      status: "Cancelled",
+      status: 'Cancelled'
     },
     {
-      text: "Project Reviews",
-      color: "yellow lighten-4",
-      icon: require("@/assets/icons/project review.png"),
+      text: 'Project Reviews',
+      color: 'yellow lighten-4',
+      icon: require('@/assets/icons/project review.png'),
       count: 0,
-      status: "ProjectReviews",
-    },
+      status: 'ProjectReviews'
+    }
   ];
 
   otherNavs: any = [
     {
-      text: "Communications",
-      icon: "mdi-email-multiple",
-      count: 0,
+      text: 'Communications',
+      icon: 'mdi-email-multiple',
+      count: 0
     },
     {
-      text: "Company profile",
-      icon: "mdi-domain",
+      text: 'Company profile',
+      icon: 'mdi-domain',
       count: 0,
-      link: "/profile",
+      link: '/profile'
     },
     {
-      text: "Advertise in TIK",
-      icon: "mdi-advertisements",
-      count: 0,
+      text: 'Advertise in TIK',
+      icon: 'mdi-advertisements',
+      count: 0
     },
     {
-      text: "Contact Support",
-      icon: "mdi-phone-outgoing",
+      text: 'Contact Support',
+      icon: 'mdi-phone-outgoing',
       count: 0,
-      link: "/contact",
+      link: '/contact'
     },
     {
-      text: "Manage Users",
-      icon: "mdi-account-multiple",
+      text: 'Manage Users',
+      icon: 'mdi-account-multiple',
       count: 0,
-      link: "/employee",
-      roles: ["MasterAdmin"],
-    },
+      link: '/employee',
+      roles: ['MasterAdmin']
+    }
   ];
 }
 </script>

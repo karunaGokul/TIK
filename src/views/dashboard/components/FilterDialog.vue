@@ -153,7 +153,12 @@
 <script lang="ts">
 import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
 import { IDashboardService } from '@/service';
-import { BitReceivedModel, FilterRequestModel, DashboardModel } from '@/model';
+import {
+  BitReceivedModel,
+  FilterRequestModel,
+  DashboardModel,
+  DashboardRequestModel
+} from '@/model';
 
 @Component
 export default class FilterDialog extends Vue {
@@ -168,6 +173,7 @@ export default class FilterDialog extends Vue {
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
   public maxMixValue: Array<DashboardModel> = [];
+  public Dashboard: DashboardRequestModel;
 
   // items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   any = ['Price', 'Credit Period', 'Delivery Period', 'Review'];
@@ -203,6 +209,13 @@ export default class FilterDialog extends Vue {
         this.$emit('filteredBids', this.filterResponse);
       }
     );
+  }
+
+  private GetProjectEnquiry() {
+    this.Dashboard;
+    this.GetProjectEnquiry().then((response: Array<DashboardModel>) => {
+      this.maxMixValue = response;
+    });
   }
 }
 </script>

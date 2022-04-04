@@ -116,7 +116,7 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.certification"
+                    v-model="response.data.certification"
                     class="my-2"
                     disabled
                   ></v-text-field>

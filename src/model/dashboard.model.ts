@@ -93,11 +93,13 @@ export class ReviewRequestModel {
 
 export class FilterRequestModel {
   projectId: string;
-  sortBy: string;
-  // price?: string;
-  // review?: string;
-  // deliveryPeriod?: string;
-  // creditPeriod?: string;
+  minPrice: number;
+  maxPrice: number;
+  minCreditPeriod: number;
+  maxCreditPeriod: number;
+  minDeliveryPeriod: number;
+  maxDeliveryPeriod: number;
+  Review: number;
 }
 export class BitAuditmodel {
   projectId: string;

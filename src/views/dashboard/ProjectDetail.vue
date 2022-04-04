@@ -275,7 +275,7 @@
         >
           <h4 class="text-h5 mr-4">Bids Received</h4>
 
-          <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" />
+          <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" :response="response" />
 
           <v-icon large color="green darken-4" class="ml-4" @click="reset()">
             mdi-lock-reset

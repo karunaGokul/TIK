@@ -64,14 +64,8 @@
                     readonly
                     dense
                     size="18"
-<<<<<<< HEAD
-                    class="d-inline"
-                    :value="n"
-=======
                     class="d-inline mouse"
-                    :value=n
-                    v-model="filterRequest.Review"
->>>>>>> 019860445c12ca1797c1e421f3f554a13486a741
+                    :value="n"
                   >
                   </v-rating>
                   <span class="mouse"> &up</span>
@@ -204,10 +198,7 @@ export default class FilterDialog extends Vue {
 
   @Inject('DashboardService') DashboardService: IDashboardService;
 
-  public selectValue: string = '';
   public dialog: boolean = false;
-  public value: string = '';
-  public filterValue: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
   public maxMixValue: Array<DashboardModel> = [];
@@ -217,15 +208,7 @@ export default class FilterDialog extends Vue {
   review: any = [4, 3, 2, 1];
 
   public FilterRejectedBids() {
-    if (this.selectValue === 'Price') {
-      this.filterRequest.sortBy = 'RequestedPrice';
-    } else if (this.selectValue === 'Credit Period') {
-      this.filterRequest.sortBy = 'RequestedCredit';
-    } else if (this.selectValue === 'Review') {
-      this.filterRequest.sortBy = 'Review';
-    } else {
-      this.filterRequest.sortBy = 'RequestedDelivery';
-    }
+   
 
     this.filterRequest.projectId = this.projectId;
     this.filterRequest.minPrice = 0;
@@ -235,9 +218,7 @@ export default class FilterDialog extends Vue {
       response => {
         this.filterResponse = response;
         this.dialog = false;
-        this.selectValue = '';
-        this.filterValue = false;
-        this.value = '';
+       
         this.$emit('filteredBids', this.filterResponse);
       }
     );

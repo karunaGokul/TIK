@@ -66,6 +66,7 @@
                     size="18"
                     class="d-inline mouse"
                     :value="n"
+                    :length="n"
                   >
                   </v-rating>
                   <span class="mouse"> &up</span>
@@ -74,40 +75,7 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <!-- <v-row no-gutters justify="center" class="mt-10">
-          <v-col v-for="item in items" :key="item" cols="12" md="6">
-            <v-card class="pa-2" flat>
-              {{ item }}
-
-              <v-slider
-                v-if="item === 'Price'"
-                track-color="theme--light teal"
-                track-fill-color="primary"
-                thumb-color="primary"
-                min="10"
-                max="50"
-                v-model="ex3.val"
-                :label="ex3.label"
-                thumb-label="always"
-              ></v-slider>
-              <v-slider
-                v-if="item === 'Credit Period'"
-                track-color="theme--light teal"
-                track-fill-color="primary"
-                thumb-color="primary"
-                v-model="ex2.val"
-                :label="ex2.label"
-                thumb-label="always"
-              ></v-slider>
-              <v-slider
-                v-if="item === 'Delivery Period'"
-                track-color="theme--light teal"
-                track-fill-color="primary"
-                thumb-color="primary"
-                v-model="ex1.val"
-                :label="ex1.label"
-                thumb-label="always"
-              ></v-slider>
+        <!--              
               <v-col>
                 <v-row class="mb-1">
                   <div v-if="item === 'Review'">
@@ -218,7 +186,6 @@ export default class FilterDialog extends Vue {
       response => {
         this.filterResponse = response;
         this.dialog = false;
-       
         this.$emit('filteredBids', this.filterResponse);
       }
     );

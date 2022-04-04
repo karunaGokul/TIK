@@ -34,6 +34,7 @@
                 :thumb-size="20"
                 :min="0"
                 :max="response.maxPrice"
+                v-model="filterRequest.maxPrice"
               ></v-slider>
               <v-slider
                 v-if="item === 'Credit Period'"
@@ -44,6 +45,7 @@
                 :thumb-size="20"
                 :min="0"
                 :max="response.maxCreditPeriod"
+                v-model="filterRequest.maxCreditPeriod"
               ></v-slider>
               <v-slider
                 v-if="item === 'Delivery Period'"
@@ -54,6 +56,7 @@
                 :thumb-size="20"
                 :min="0"
                 :max="response.maxDeliveryPeriod"
+                v-model="filterRequest.maxDeliveryPeriod"
               ></v-slider>
               <div v-if="item === 'Review'">
                 <div v-for="n in review" :key="n">
@@ -61,8 +64,14 @@
                     readonly
                     dense
                     size="18"
+<<<<<<< HEAD
                     class="d-inline"
                     :value="n"
+=======
+                    class="d-inline mouse"
+                    :value=n
+                    v-model="filterRequest.Review"
+>>>>>>> 019860445c12ca1797c1e421f3f554a13486a741
                   >
                   </v-rating>
                   <span class="mouse"> &up</span>
@@ -160,16 +169,7 @@
             </v-card>
           </v-col>
         </v-row> -->
-        <!-- <v-select
-          offset-y
-          outlined
-          dense
-          label="Select Filter"
-          class="mx-5"
-          v-model="selectValue"
-          :items="items"
-          @change="(filterValue = true) && (value = null)"
-        ></v-select> -->
+       
         <v-card-actions class="d-flex justify-end">
           <v-btn
             dense
@@ -228,6 +228,9 @@ export default class FilterDialog extends Vue {
     }
 
     this.filterRequest.projectId = this.projectId;
+    this.filterRequest.minPrice = 0;
+    this.filterRequest.minCreditPeriod = 0;
+    this.filterRequest.minDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       response => {
         this.filterResponse = response;

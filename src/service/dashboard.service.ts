@@ -1,4 +1,4 @@
-import { ServiceHelper } from './base.service';
+import { ServiceHelper } from "./base.service";
 import {
   DashboardRequestModel,
   DashboardModel,
@@ -12,8 +12,8 @@ import {
   UserInfomodel,
   NotificationModel,
   ConfirmedBidModel,
-  NoResponseRequestModel
-} from '@/model';
+  NoResponseRequestModel,
+} from "@/model";
 
 export interface IDashboardService {
   GetProjectList(
@@ -47,15 +47,15 @@ export class DashboardService extends ServiceHelper
   public GetProjectList(
     request: DashboardRequestModel
   ): Promise<Array<DashboardModel>> {
-    return this.httpGet('dashboard/Dashboard', request).then(response => {
+    return this.httpGet("dashboard/Dashboard", request).then((response) => {
       return response.data;
     });
   }
   public GetMyProjectList(
     request: DashboardRequestModel
   ): Promise<Array<DashboardModel>> {
-    return this.httpGet('dashboard/GetMyProjectList', request).then(
-      response => {
+    return this.httpGet("dashboard/GetMyProjectList", request).then(
+      (response) => {
         return response.data;
       }
     );
@@ -63,8 +63,8 @@ export class DashboardService extends ServiceHelper
   public GetProjectEnquiry(
     request: DashboardRequestModel
   ): Promise<DashboardModel> {
-    return this.httpGet('dashboard/GetProjectEnquiry', request).then(
-      response => {
+    return this.httpGet("dashboard/GetProjectEnquiry", request).then(
+      (response) => {
         return response.data;
       }
     );
@@ -72,24 +72,26 @@ export class DashboardService extends ServiceHelper
   GetProjectListByFilter(
     request: ProjectSearchModel
   ): Promise<Array<DashboardModel>> {
-    return this.httpPost('dashboard/GetProjectListByFilter', request).then(
-      response => {
+    return this.httpPost("dashboard/GetProjectListByFilter", request).then(
+      (response) => {
         return response.data;
       }
     );
   }
 
   public CreateProject(request: DashboardModel): Promise<any> {
-    return this.httpPost('dashboard/CreateProject', request).then(response => {
-      return response.data;
-    });
+    return this.httpPost("dashboard/CreateProject", request).then(
+      (response) => {
+        return response.data;
+      }
+    );
   }
 
   public SearchProject(
     request: DashboardModel
   ): Promise<Array<DashboardModel>> {
-    return this.httpPost('dashboard/SearchProjectFunc', request).then(
-      response => {
+    return this.httpPost("dashboard/SearchProjectFunc", request).then(
+      (response) => {
         return response.data;
       }
     );
@@ -97,40 +99,40 @@ export class DashboardService extends ServiceHelper
 
   public BidProject(request: BidRequestModel): Promise<any> {
     return this.httpPost(
-      'dashboard/BidProject?projectId=' + request.projectId,
+      "dashboard/BidProject?projectId=" + request.projectId,
       request
-    ).then(response => {
+    ).then((response) => {
       return response.data;
     });
   }
   public ApproveBid(request: ApproveRequestModel): Promise<any> {
     return this.httpPost(
-      'dashboard/ApproveBid?projectId=' +
+      "dashboard/ApproveBid?projectId=" +
         request.projectId +
-        '&bidId=' +
+        "&bidId=" +
         request.bidId +
-        '&status=' +
+        "&status=" +
         request.status +
-        '&message=' +
+        "&message=" +
         request.message +
-        '&approvalAdminId=' +
+        "&approvalAdminId=" +
         request.approvalAdminId,
       null
-    ).then(response => {
+    ).then((response) => {
       return response.data;
     });
   }
 
   public GetCompany(companyId: string): Promise<any> {
-    return this.httpGet('common/GetCompany?companyId=' + companyId, null).then(
-      response => {
+    return this.httpGet("common/GetCompany?companyId=" + companyId, null).then(
+      (response) => {
         return response.data;
       }
     );
   }
 
   public Review(request: ReviewRequestModel): Promise<any> {
-    return this.httpPost('profile/Review', request).then(response => {
+    return this.httpPost("profile/Review", request).then((response) => {
       return response.data;
     });
   }
@@ -138,8 +140,8 @@ export class DashboardService extends ServiceHelper
   public FilterRejectedBids(
     request: FilterRequestModel
   ): Promise<Array<BitReceivedModel>> {
-    return this.httpPost('dashboard/FilterRejectedBids', request).then(
-      response => {
+    return this.httpPost("dashboard/FilterRejectedBids", request).then(
+      (response) => {
         return response.data;
       }
     );
@@ -147,28 +149,28 @@ export class DashboardService extends ServiceHelper
 
   public GetBidAudit(projectId: string): Promise<BitAuditmodel> {
     return this.httpPost(
-      'dashboard/GetBidAudit?projectId=' + projectId,
+      "dashboard/GetBidAudit?projectId=" + projectId,
       null
-    ).then(response => {
+    ).then((response) => {
       return response.data;
     });
   }
 
   public PendingReview(): Promise<Array<DashboardModel>> {
-    return this.httpGet('Dashboard/PendingReview', null).then(response => {
+    return this.httpGet("Dashboard/PendingReview", null).then((response) => {
       return response.data;
     });
   }
 
   public GetUserFullName(): Promise<UserInfomodel> {
-    return this.httpGet('Dashboard/GetUserFullName', null).then(response => {
+    return this.httpGet("Dashboard/GetUserFullName", null).then((response) => {
       return response.data;
     });
   }
 
   public GetNotification(): Promise<NotificationModel> {
-    return this.httpGet('Dashboard/GetNotificationCount', null).then(
-      response => {
+    return this.httpGet("Dashboard/GetNotificationCount", null).then(
+      (response) => {
         return response.data;
       }
     );
@@ -176,22 +178,22 @@ export class DashboardService extends ServiceHelper
 
   public GetConfirmedBidDetails(projectId: string): Promise<ConfirmedBidModel> {
     return this.httpGet(
-      'dashboard/GetConfirmedBidDetails?projectId=' + projectId,
+      "dashboard/GetConfirmedBidDetails?projectId=" + projectId,
       null
-    ).then(response => {
+    ).then((response) => {
       return response.data;
     });
   }
   public UpdateNoResponse(request: NoResponseRequestModel): Promise<any> {
     return this.httpPost(
-      'dashboard/UpdateNoResponse?projectId=' +
+      "dashboard/UpdateNoResponse?projectId=" +
         request.projectId +
-        '&message=' +
+        "&message=" +
         request.message +
-        '&status=' +
+        "&status=" +
         request.status,
       null
-    ).then(response => {
+    ).then((response) => {
       return response.data;
     });
   }

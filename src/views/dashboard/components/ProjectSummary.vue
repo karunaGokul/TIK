@@ -25,7 +25,9 @@
                   v-for="(control, index) in summaryControls"
                   :key="index"
                 >
-                  <v-label> {{ control.label? control.label : "&nbsp;" }} </v-label>
+                  <v-label>
+                    {{ control.label ? control.label : "&nbsp;" }}
+                  </v-label>
                   <v-text-field
                     outlined
                     dense
@@ -55,7 +57,7 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.noOfKg"
+                    v-model="response.data.noOfKgs"
                     class="my-2"
                     disabled
                   ></v-text-field>
@@ -65,10 +67,20 @@
                 <v-col col="12" md="6">
                   <v-label>Price</v-label>
                   <v-text-field
+                    v-if="response.data.requestPrice === false"
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.requestPrice"
+                    v-model="response.data.price"
+                    class="my-2"
+                    disabled
+                  ></v-text-field>
+                  <v-text-field
+                    v-else
+                    outlined
+                    dense
+                    background-color="white"
+                    placeholder="Requested"
                     class="my-2"
                     disabled
                   ></v-text-field>
@@ -79,7 +91,7 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.creditPeriod"
+                    v-model="response.data.creditPeriod"
                     class="my-2"
                     disabled
                   ></v-text-field>
@@ -92,7 +104,7 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.confirmationDate"
+                    v-model="response.data.confirmationDate"
                     class="my-2"
                     disabled
                   ></v-text-field>
@@ -103,13 +115,13 @@
                     outlined
                     dense
                     background-color="white"
-                    v-model="response.requestedDeliveryDate"
+                    v-model="response.data.deliveryDate"
                     class="my-2"
                     disabled
                   ></v-text-field>
                 </v-col>
               </v-row>
-                <v-row class="my-n8">
+              <v-row class="my-n8">
                 <v-col col="12" md="6">
                   <v-label>Certification</v-label>
                   <v-text-field
@@ -121,8 +133,7 @@
                     disabled
                   ></v-text-field>
                 </v-col>
-                </v-row>
-              
+              </v-row>
             </v-card>
           </v-col>
         </v-row>
@@ -140,7 +151,7 @@ export default class ProjectSummary extends Vue {
   public dialog: boolean = true;
 
   get summaryControls() {
-    return this.response.summary.filter(s => s.value);
+    return this.response.summary.filter((s) => s.value);
   }
 
   public close() {

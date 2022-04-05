@@ -59,79 +59,40 @@
                 v-model="filterRequest.maxDeliveryPeriod"
               ></v-slider>
               <div v-if="item === 'Review'">
-                <div v-for="n in review" :key="n">
+                <v-btn depressed text v-for="n in review" :key="n" @click="filterValue">
+                  <v-rating  readonly
+                    dense
+                    size="18"
+                    :value="n"
+                    :length="n"
+                    :v-model="filter = n"
+                    ></v-rating>
+                  <span class="text-capitalize"> &up</span>
+                </v-btn>
+                <!-- <v-btn depressed :v-model="(filterRequest.Review = 4)">
                   <v-rating
                     readonly
                     dense
                     size="18"
-                    class="d-inline mouse"
-                    :value="n"
-                    :length="n"
-                  >
-                  </v-rating>
-                  <span class="mouse"> &up</span>
-                </div>
+                    value="4"
+                    length="4"
+                  ></v-rating>
+                  <span class="text-capitalize"> &up</span>
+                </v-btn>
+                <v-btn depressed :v-model="(filterRequest.Review = 3)">
+                  <v-rating
+                    readonly
+                    dense
+                    size="18"
+                    value="3"
+                    length="3"
+                  ></v-rating>
+                  <span class="text-capitalize"> &up</span>
+                </v-btn> -->
               </div>
             </v-col>
           </v-row>
         </v-card-text>
-        <!--              
-              <v-col>
-                <v-row class="mb-1">
-                  <div v-if="item === 'Review'">
-                    <v-rating
-                      class="d-inline mouse"
-                      readonly
-                      dense
-                      length="4"
-                      size="18"
-                      value="4"
-                    ></v-rating
-                    ><span class="mouse mr-8"> &up</span>
-                  </div>
-                  <div v-if="item === 'Review'">
-                    <v-rating
-                      class="d-inline mouse"
-                      readonly
-                      dense
-                      length="3"
-                      size="18"
-                      value="3"
-                    ></v-rating
-                    ><span class="mouse"> &up</span>
-                  </div>
-                </v-row>
-              </v-col>
-              <v-col>
-                <v-row>
-                  <div v-if="item === 'Review'">
-                    <v-rating
-                      class="d-inline mouse"
-                      readonly
-                      dense
-                      length="2"
-                      size="18"
-                      value="2"
-                    ></v-rating
-                    ><span class="mr-16 mouse"> &up</span>
-                  </div>
-                  <div v-if="item === 'Review'" class="ml-3">
-                    <v-rating
-                      class="d-inline mouse"
-                      readonly
-                      dense
-                      length="1"
-                      size="18"
-                      value="1"
-                    ></v-rating
-                    ><span class="mouse"> &up</span>
-                  </div>
-                </v-row>
-              </v-col>
-            </v-card>
-          </v-col>
-        </v-row> -->
-       
         <v-card-actions class="d-flex justify-end">
           <v-btn
             dense
@@ -150,43 +111,45 @@
 </template>
 
 <script lang="ts">
-import { Component, Inject, Prop, Vue } from 'vue-property-decorator';
-import { IDashboardService } from '@/service';
+import { Component, Inject, Prop, Vue } from "vue-property-decorator";
+import { IDashboardService } from "@/service";
 import {
   BitReceivedModel,
   FilterRequestModel,
   DashboardModel,
-  DashboardRequestModel
-} from '@/model';
+  DashboardRequestModel,
+} from "@/model";
 
 @Component
 export default class FilterDialog extends Vue {
   @Prop() projectId: string;
   @Prop() response: DashboardModel;
 
-  @Inject('DashboardService') DashboardService: IDashboardService;
+  @Inject("DashboardService") DashboardService: IDashboardService;
 
   public dialog: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
   public maxMixValue: Array<DashboardModel> = [];
   public Dashboard: DashboardRequestModel;
+  public filter: any = "";
 
-  items: any = ['Price', 'Credit Period', 'Delivery Period', 'Review'];
+  items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
 
+  filterValue() {
+    this.filterRequest.Review = this.filter;
+  }
   public FilterRejectedBids() {
-   
-
     this.filterRequest.projectId = this.projectId;
     this.filterRequest.minPrice = 0;
     this.filterRequest.minCreditPeriod = 0;
     this.filterRequest.minDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      response => {
+      (response) => {
         this.filterResponse = response;
         this.dialog = false;
-        this.$emit('filteredBids', this.filterResponse);
+        this.$emit("filteredBids", this.filterResponse);
       }
     );
   }

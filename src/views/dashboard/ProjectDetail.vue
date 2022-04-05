@@ -1073,16 +1073,12 @@ export default class ProjectDetail extends Vue {
   }
 
   public reset() {
-    this.filterRequest.projectId = this.response.Id;
-    // this.filterRequest.price = null;
-    // this.filterRequest.review = null;
-    // this.filterRequest.creditPeriod = null;
-    // this.filterRequest.deliveryPeriod = null;
-    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      (response) => {
-        this.response.bidList = response;
-      }
-    );
+    this.GetProjectEnquiry();
+    // this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+    //   (response) => {
+    //     this.response.bidList = response;
+    //   }
+    // );
   }
   public GetApprovalAdmin() {
     this.adminRequest.companyId = this.$store.getters.companyId;

@@ -59,36 +59,22 @@
                 v-model="filterRequest.maxDeliveryPeriod"
               ></v-slider>
               <div v-if="item === 'Review'">
-                <v-btn depressed text v-for="n in review" :key="n" @click="filterValue">
-                  <v-rating  readonly
+                <v-btn
+                  depressed
+                  text
+                  v-for="n in review"
+                  :key="n"
+                  @click="filterValue(n)"
+                >
+                  <v-rating
+                    readonly
                     dense
                     size="18"
                     :value="n"
                     :length="n"
-                    :v-model="filter = n"
-                    ></v-rating>
-                  <span class="text-capitalize"> &up</span>
-                </v-btn>
-                <!-- <v-btn depressed :v-model="(filterRequest.Review = 4)">
-                  <v-rating
-                    readonly
-                    dense
-                    size="18"
-                    value="4"
-                    length="4"
                   ></v-rating>
                   <span class="text-capitalize"> &up</span>
                 </v-btn>
-                <v-btn depressed :v-model="(filterRequest.Review = 3)">
-                  <v-rating
-                    readonly
-                    dense
-                    size="18"
-                    value="3"
-                    length="3"
-                  ></v-rating>
-                  <span class="text-capitalize"> &up</span>
-                </v-btn> -->
               </div>
             </v-col>
           </v-row>
@@ -132,14 +118,14 @@ export default class FilterDialog extends Vue {
   public filterRequest = new FilterRequestModel();
   public maxMixValue: Array<DashboardModel> = [];
   public Dashboard: DashboardRequestModel;
-  public filter: any = "";
 
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
 
-  filterValue() {
-    this.filterRequest.Review = this.filter;
+  public filterValue(n: any) {
+    this.filterRequest.Review = n;
   }
+
   public FilterRejectedBids() {
     this.filterRequest.projectId = this.projectId;
     this.filterRequest.minPrice = 0;
@@ -162,8 +148,3 @@ export default class FilterDialog extends Vue {
   // }
 }
 </script>
-<style>
-.mouse {
-  cursor: pointer;
-}
-</style>

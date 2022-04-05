@@ -256,12 +256,12 @@ export default class ProjectList extends Vue {
     },
     {
       text: "Bids Received",
-      value: "BidsReceived",
+      value: "bidsReceived",
       class: "teal lighten-3 subtitle-2",
     },
     {
       text: "Bidding Time",
-      value: "BiddingTime",
+      value: "biddingTime",
       class: "teal lighten-3 subtitle-2",
     },
 

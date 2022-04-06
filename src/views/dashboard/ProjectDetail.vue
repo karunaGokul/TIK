@@ -221,14 +221,14 @@
                     <td>{{ response.Subcategory }}</td>
                     <td
                       class="blue--text"
-                      v-if="response.requestPrice !== 'Requested'"
+                      v-if="response.data.price !== ''"
                     >
-                      Rs.{{ response.requestPrice }}
+                      Rs.{{ response.data.price }}
                     </td>
                     <td class="blue--text" v-else>
-                      {{ response.requestPrice }}
+                      Requested
                     </td>
-                    <td class="red--text">{{ response.creditPeriod }} days</td>
+                    <td class="red--text">{{ response.data.creditPeriod }} days</td>
                     <td class="green--text">
                       {{ response.deliveryDate }} days
                     </td>

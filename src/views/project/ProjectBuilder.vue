@@ -2,13 +2,13 @@
   <div>
     <v-container fluid class="mt-4 pa-8" v-if="!toggleCategory">
       <v-row>
-        <v-col cols="8" md="4">
+        <v-col cols="12" md="4">
           <div class="mb-2 text-h6">
             Enter Enquiry Name <span class="red--text">*</span>
           </div>
           <v-text-field outlined dense v-model="projectName"> </v-text-field>
         </v-col>
-        <v-col cols="8" md="4" class="ml-10">
+        <v-col cols="12" md="4">
           <div class="mb-2 text-h6">
             Select Merchandiser <span class="red--text">*</span>
           </div>
@@ -22,8 +22,25 @@
             outlined
             dense
             v-model="merchandiser"
-            :loading="merchandiserLoading"
+            :loading="loading"
             :rules="[(v) => !!v || 'Merchandiser role is required']"
+          >
+          </v-select>
+        </v-col>
+        <v-col>
+          <div class="mb-2 text-h6">
+            Choose Employees <span class="red--text">*</span>
+          </div>
+          <v-select
+            :menu-props="{ offsetY: true }"
+            label="Choose Employees"
+            :items="response.FirstName"
+            item-text="FirstName"
+            item-value="FirstName"
+            outlined
+            dense
+            :loading="loading"
+            :rules="[(v) => !!v || 'Employee is required']"
           >
           </v-select>
         </v-col>
@@ -88,7 +105,7 @@
 </template>
 
 <script lang="ts">
-import { AdminRequestModel, MerchandiserResponseModel } from "@/model";
+import { AdminRequestModel, MerchandiserResponseModel, EmployeeRequestModel, EmployeeModel } from "@/model";
 import { IEmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
 import ProjectForm from "./components/ProjectForm.vue";
@@ -101,6 +118,8 @@ export default class ProjectBuilder extends Vue {
 
   public merchandiserResponse: Array<MerchandiserResponseModel> = [];
   public adminRequest: AdminRequestModel = new AdminRequestModel();
+  public request: EmployeeRequestModel = new EmployeeRequestModel();
+  public response: Array<EmployeeModel> = [];
   public projectName: string = "";
   public merchandiser: string = "";
   public toggleCategory: boolean = false;
@@ -108,21 +127,36 @@ export default class ProjectBuilder extends Vue {
   public snackbar: boolean = false;
   public snackbarText: string = "";
 
-  public merchandiserLoading: boolean = false;
+  public loading: boolean = false;
 
   created() {
     this.GetMerchandiser();
+    this.getEmployees();
+    // this.filter();
+  }
+
+  public filter() {
+
+  }
+
+  public getEmployees() {
+    this.request.id = this.$store.getters.id;
+    this.loading = true;
+    this.EmployeeService.GetEmployees(this.request).then((response) => {
+      this.loading = false;
+      this.response = response;
+    });
   }
 
   public GetMerchandiser() {
     this.adminRequest.companyId = this.$store.getters.companyId;
 
-    this.merchandiserLoading = true;
+    this.loading = true;
     this.EmployeeService.GetMerchandiser(this.adminRequest).then(
       (response: Array<MerchandiserResponseModel>) => {
         this.merchandiserResponse = response;
 
-        this.merchandiserLoading = false;
+        this.loading = false;
       }
     );
   }

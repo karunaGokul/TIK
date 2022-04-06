@@ -60,11 +60,16 @@
               ></v-slider>
               <div v-if="item === 'Review'">
                 <v-btn
+                  class="btn-review"
                   depressed
                   text
-                  v-for="n in review"
-                  :key="n"
+                  v-for="(n, index) in review"
+                  :key="(n, index)"
                   @click="filterValue(n)"
+                  :style="{
+                    background:
+                      filterResponse.Review === index ? 'pink' : 'blue',
+                  }"
                 >
                   <v-rating
                     readonly
@@ -139,12 +144,11 @@ export default class FilterDialog extends Vue {
       }
     );
   }
-
-  // private GetProjectEnquiry() {
-  //   this.Dashboard;
-  //   this.GetProjectEnquiry().then((response: Array<DashboardModel>) => {
-  //     this.maxMixValue = response;
-  //   });
-  // }
 }
 </script>
+
+<style scoped>
+.btn-review:hover {
+  background: olive;
+}
+</style>

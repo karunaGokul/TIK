@@ -130,11 +130,10 @@ export default class ProjectResult extends Vue {
   }
 
   public filterReview() {
-    console.log(this.selectedReview);
     if (this.selectedReview.length !== 0) {
       this.items = this.dataResource.filter(
         (item: any) =>
-          item.certification &&
+          item.review &&
           this.selectedReview.some((data: any) => item.review.includes(data))
       );
     } else {
@@ -151,7 +150,6 @@ export default class ProjectResult extends Vue {
         })
         )
       })*/
-    console.log(this.dataResource);
     if (this.selectedCertificate.length !== 0) {
       this.items = this.dataResource.filter(
         (item: any) =>

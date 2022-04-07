@@ -134,7 +134,7 @@ export default class ProjectResult extends Vue {
       this.items = this.dataResource.filter(
         (item: any) =>
           item.review &&
-          this.selectedReview.some((data: any) => item.review.includes(data))
+          this.selectedReview.some((data: number) => item.review >= data)
       );
     } else {
       this.items = this.dataResource;

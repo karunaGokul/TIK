@@ -1,4 +1,4 @@
- <template>
+<template>
   <div>
     <v-container fluid class="mt-4 pa-8" v-if="!toggleCategory">
       <v-row>
@@ -34,7 +34,8 @@
           <v-select
             :menu-props="{ offsetY: true }"
             label="Choose Employees"
-            :items="response.FirstName"
+            :items="response"
+            name="FirstName"
             item-text="FirstName"
             item-value="FirstName"
             outlined
@@ -105,7 +106,12 @@
 </template>
 
 <script lang="ts">
-import { AdminRequestModel, MerchandiserResponseModel, EmployeeRequestModel, EmployeeModel } from "@/model";
+import {
+  AdminRequestModel,
+  MerchandiserResponseModel,
+  EmployeeRequestModel,
+  EmployeeModel,
+} from "@/model";
 import { IEmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
 import ProjectForm from "./components/ProjectForm.vue";
@@ -126,6 +132,7 @@ export default class ProjectBuilder extends Vue {
   public categoryName: string = "";
   public snackbar: boolean = false;
   public snackbarText: string = "";
+  public filterValue: any;
 
   public loading: boolean = false;
 
@@ -135,9 +142,14 @@ export default class ProjectBuilder extends Vue {
     // this.filter();
   }
 
-  public filter() {
-
-  }
+  // public filter() {
+  //   this.filterValue = this.response.filter(
+  //     (item: any)=>{
+  //       return item.indexOf(item.FirstName)
+  //     }
+  //   );
+  //   console.log(this.filterValue);
+  // }
 
   public getEmployees() {
     this.request.id = this.$store.getters.id;
@@ -155,7 +167,6 @@ export default class ProjectBuilder extends Vue {
     this.EmployeeService.GetMerchandiser(this.adminRequest).then(
       (response: Array<MerchandiserResponseModel>) => {
         this.merchandiserResponse = response;
-
         this.loading = false;
       }
     );

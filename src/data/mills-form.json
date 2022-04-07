@@ -1013,7 +1013,6 @@
 				},
 				{
 					"id": "txtBlendContent",
-					"label": "Blend Content",
 					"type": "text-group",
 					"label": "Enter Your Required Blend Combination",
 					"data_path": "mil.Yarn.RegularYarn.BlendContents",

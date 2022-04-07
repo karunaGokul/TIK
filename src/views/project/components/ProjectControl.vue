@@ -113,6 +113,27 @@
         </v-btn>
       </v-btn-toggle>
     </div>
+    <div class="pa-3" v-else-if="control.type === 'radio-group'">
+      <v-radio-group row v-model="control.data">
+        <v-row>
+          <v-col v-for="(option, index) in control.options" :key="index">
+            <v-radio :label="option.text" :value="index"></v-radio>
+            <v-card :disabled="control.data !== index" flat color="transparent">
+              <div
+                v-for="(tControl, j) in option.controls"
+                :key="j"
+                class="pa-4"
+              >
+                <ProjectControl
+                  :control="tControl"
+                  @change="tabControlChanged(tab, control, tControl)"
+                />
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-radio-group>
+    </div>
     <div class="pa-3" v-else-if="control.type === 'tab'">
       <v-tabs
         v-model="control.data"

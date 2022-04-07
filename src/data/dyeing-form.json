@@ -1,10 +1,12 @@
 {
   "category": "Dyeing",
   "maxSteps": 6,
-  "steps": [
+  "steps": [    
     {
       "title": "Choose Your Content",
-      "path": [""],
+      "path": [
+        ""
+      ],
       "controls": [
         {
           "id": "btnContent",
@@ -42,7 +44,9 @@
     },
     {
       "title": "Choose Fabric Method",
-      "path": ["opFabric"],
+      "path": [
+        "opFabric"
+      ],
       "controls": [
         {
           "id": "btnFabricType",
@@ -68,7 +72,9 @@
     },
     {
       "title": "Choose Fabric Process",
-      "path": ["opFabric-opSoftFlow"],
+      "path": [
+        "opFabric-opSoftFlow"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -102,7 +108,9 @@
     },
     {
       "title": "Choose Washing Type",
-      "path": ["opFabric-opSoftFlow-opWashing"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing"
+      ],
       "controls": [
         {
           "id": "btnWashingtype",
@@ -129,8 +137,86 @@
       ]
     },
     {
+      "title": "Choose Content for your Fabric",
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opMachineWash"
+      ],
+      "controls": [
+        {
+          "id": "btnFabricContent",
+          "type": "radio-group",
+          "selector": false,
+          "data": 0,
+          "options": [
+						{
+							"id": "opFabricContent_Single",
+							"text": "Single",
+							"controls": [
+                {
+                  "id": "txtFabricContent_Single",
+                  "type": "textbox",
+                  "selector": false
+                },
+								{
+                  "id": "rbFabricContent_Single",
+                  "type": "radio-button",
+                  "selector": false,
+                  "data_path": "",
+                  "options": [
+                    {
+                      "id": "rbFabricContent_Single_Spun",
+                      "data_id": "Spun",
+                      "text": "Spun",
+                      "selected": false
+                    },
+                    {
+                      "id": "rbFabricContent_Single_Filament",
+                      "data_id": "Filament",
+                      "text": "Filament",
+                      "selected": false
+                    }
+                  ]
+                }
+							]
+						},
+						{
+							"id": "opFabricContent_Blend",
+              "text": "Blend",
+							"controls": [
+                {
+                  "id": "txtFabricContent_Blend",
+                  "type": "textbox",
+                  "selector": false
+                },
+								{
+                  "id": "txtGrpFabricContent_Blend",
+                  "label": "Enter Blend Combination",
+							    "type": "text-group",
+                  "selector": false,
+                  "items": [
+                    {
+                      "id": "txtGrpFabricContent_Blend_1",
+                      "type": "textbox",
+                      "selector": false
+                    },
+                    {
+                      "id": "txtGrpFabricContent_Blend_2",
+                      "type": "textbox",
+                      "selector": false
+                    }
+                  ]
+                }
+							]
+						}
+					]
+				}
+      ]
+    },
+    {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opMachineWash"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opDIPStenter"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -158,26 +244,28 @@
     },
     {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opDIPStenter"],
+      "path": [
+        "opFabric-opSoftFlow-opBleaching"
+      ],
       "controls": [
         {
-          "id": "btnContenttype",
-          "label": "Fabric Content",
+          "id": "btnBleachingtype",
+          "label": "Bleaching Type",
           "type": "toggle-button",
           "selector": true,
           "data_path": "",
           "data_id": "",
           "options": [
             {
-              "id": "opSingle",
+              "id": "opRFD",
               "label": "A",
-              "text": "Single",
+              "text": "RFD",
               "selected": false
             },
             {
-              "id": "opBlend",
+              "id": "opOpticWhitner",
               "label": "B",
-              "text": "Blends",
+              "text": "Optic Whitner",
               "selected": false
             }
           ]
@@ -185,36 +273,10 @@
       ]
     },
     {
-        "title": "Choose Fabric Content",
-      "path": ["opFabric-opSoftFlow-opBleaching"],
-      "controls": [
-        {
-            "id": "btnBleachingtype",
-            "label": "Bleaching Type",
-            "type": "toggle-button",
-            "selector": true,
-            "data_path": "",
-            "data_id": "",
-            "options": [
-              {
-                "id": "opRFD",
-                "label": "A",
-                "text": "RFD",
-                "selected": false
-              },
-              {
-                "id": "opOpticWhitner",
-                "label": "B",
-                "text": "Optic Whitner",
-                "selected": false
-              }
-            ]
-          }
-    ]
-    },
-    {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype"],
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -242,7 +304,9 @@
     },
     {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opSoftFlow-opDyeing"],
+      "path": [
+        "opFabric-opSoftFlow-opDyeing"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -270,7 +334,9 @@
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opMachineWash-opSingle"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opMachineWash-opSingle"
+      ],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -329,7 +395,9 @@
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opMachineWash-opBlend"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opMachineWash-opBlend"
+      ],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -390,247 +458,9 @@
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opDIPStenter-opSingle"],
-      "controls": [
-        {
-          "id": "drpSingleContent",
-          "label": "Single Content",
-          "type": "dropdown",
-          "selector": true,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opSingleContent_1",
-              "text": "100% Cotton",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_2",
-              "text": "100% Viscose",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_3",
-              "text": "100% Modal",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_4",
-              "text": "100% Polyster",
-              "selected": false
-            }
-          ]
-        },
-        {
-            "id": "btnSingleContent",
-            "label": "Single Content",
-            "type": "radio-button",
-            "selector": true,
-            "data_path": "",
-            "options": [
-              {
-                "id": "opSpun",
-                "data_id": "Spun",
-                "label": "A",
-                "text": "Spun",
-                "selected": false
-              },
-              {
-                "id": "opFilament",
-                "data_id": "Filament",
-                "label": "B",
-                "text": "Filament",
-                "selected": false
-              }
-            ]
-          }
-      ]
-    },
-    {
-      "title": "Choose Blend Content",
-      "path": ["opFabric-opSoftFlow-opWashing-opDIPStenter-opBlend"],
-      "controls": [
-        {
-          "id": "drpBlendContent",
-          "label": "Blend Content",
-          "type": "dropdown",
-          "selector": true,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opBlendContent_1",
-              "text": "Cotton Poly",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_2",
-              "text": "Poly Cotton",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_3",
-              "text": "Cotton Modal",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_4",
-              "text": "Poly Viscose",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_5",
-              "text": "Cotton Viscose",
-              "selected": false
-            }
-          ]
-        },
-        {
-            "id": "txtBlendContent",
-            "type": "text-group",
-            "label": "Enter Your Required Blend Combination",
-            "data_path": "",
-            "data_id": "",
-            "selector": false,
-            "items": [
-              {
-                "id": "txtBlendContent_1",
-                "type": "textbox",
-                "selector": false
-              },
-              {
-                "id": "txtBlendContent_2",
-                "type": "textbox",
-                "selector": false
-              }
-            ]
-          }
-      ]
-    },
-    {
-      "title": "Choose Single Content",
-      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle"],
-      "controls": [
-        {
-          "id": "drpSingleContent",
-          "label": "Single Content",
-          "type": "dropdown",
-          "selector": true,
-          "data_path": "",
-          "data_id": "Content.Name",
-          "options": [
-            {
-              "id": "opSingleContent_1",
-              "text": "100% Cotton",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_2",
-              "text": "100% Viscose",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_3",
-              "text": "100% Modal",
-              "selected": false
-            },
-            {
-              "id": "opSingleContent_4",
-              "text": "100% Polyster",
-              "selected": false
-            }
-          ]
-        },
-        {
-            "id": "btnSingleContent",
-            "label": "Single Content",
-            "type": "radio-button",
-            "selector": true,
-            "data_path": "",
-            "options": [
-              {
-                "id": "opSpun",
-                "data_id": "Spun",
-                "label": "A",
-                "text": "Spun",
-                "selected": false
-              },
-              {
-                "id": "opFilament",
-                "data_id": "Filament",
-                "label": "B",
-                "text": "Filament",
-                "selected": false
-              }
-            ]
-          }
-      ]
-    },
-    {
-      "title": "Choose Blend Content",
-      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend"],
-      "controls": [
-        {
-          "id": "drpBlendContent",
-          "label": "Blend Content",
-          "type": "dropdown",
-          "selector": true,
-          "data_path": "",
-          "data_id": "",
-          "options": [
-            {
-              "id": "opBlendContent_1",
-              "text": "Cotton Poly",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_2",
-              "text": "Poly Cotton",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_3",
-              "text": "Cotton Modal",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_4",
-              "text": "Poly Viscose",
-              "selected": false
-            },
-            {
-              "id": "opBlendContent_5",
-              "text": "Cotton Viscose",
-              "selected": false
-            }
-          ]
-        },
-        {
-            "id": "txtBlendContent",
-            "type": "text-group",
-            "label": "Enter Your Required Blend Combination",
-            "data_path": "",
-            "data_id": "",
-            "selector": false,
-            "items": [
-              {
-                "id": "txtBlendContent_1",
-                "type": "textbox",
-                "selector": false
-              },
-              {
-                "id": "txtBlendContent_2",
-                "type": "textbox",
-                "selector": false
-              }
-            ]
-          }
-      ]
-    },
-    {
-      "title": "Choose Single Content",
-      "path": ["opFabric-opSoftFlow-opDyeing-opSingle"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opDIPStenter-opSingle"
+      ],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -689,7 +519,257 @@
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opSoftFlow-opDyeing-opBlend"],
+      "path": [
+        "opFabric-opSoftFlow-opWashing-opDIPStenter-opBlend"
+      ],
+      "controls": [
+        {
+          "id": "drpBlendContent",
+          "label": "Blend Content",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "",
+          "options": [
+            {
+              "id": "opBlendContent_1",
+              "text": "Cotton Poly",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_2",
+              "text": "Poly Cotton",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_3",
+              "text": "Cotton Modal",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_4",
+              "text": "Poly Viscose",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_5",
+              "text": "Cotton Viscose",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "id": "txtBlendContent",
+          "type": "text-group",
+          "label": "Enter Your Required Blend Combination",
+          "data_path": "",
+          "data_id": "",
+          "selector": false,
+          "items": [
+            {
+              "id": "txtBlendContent_1",
+              "type": "textbox",
+              "selector": false
+            },
+            {
+              "id": "txtBlendContent_2",
+              "type": "textbox",
+              "selector": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Single Content",
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle"
+      ],
+      "controls": [
+        {
+          "id": "drpSingleContent",
+          "label": "Single Content",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "Content.Name",
+          "options": [
+            {
+              "id": "opSingleContent_1",
+              "text": "100% Cotton",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_2",
+              "text": "100% Viscose",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_3",
+              "text": "100% Modal",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_4",
+              "text": "100% Polyster",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "id": "btnSingleContent",
+          "label": "Single Content",
+          "type": "radio-button",
+          "selector": true,
+          "data_path": "",
+          "options": [
+            {
+              "id": "opSpun",
+              "data_id": "Spun",
+              "label": "A",
+              "text": "Spun",
+              "selected": false
+            },
+            {
+              "id": "opFilament",
+              "data_id": "Filament",
+              "label": "B",
+              "text": "Filament",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Blend Content",
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend"
+      ],
+      "controls": [
+        {
+          "id": "drpBlendContent",
+          "label": "Blend Content",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "",
+          "options": [
+            {
+              "id": "opBlendContent_1",
+              "text": "Cotton Poly",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_2",
+              "text": "Poly Cotton",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_3",
+              "text": "Cotton Modal",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_4",
+              "text": "Poly Viscose",
+              "selected": false
+            },
+            {
+              "id": "opBlendContent_5",
+              "text": "Cotton Viscose",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "id": "txtBlendContent",
+          "type": "text-group",
+          "label": "Enter Your Required Blend Combination",
+          "data_path": "",
+          "data_id": "",
+          "selector": false,
+          "items": [
+            {
+              "id": "txtBlendContent_1",
+              "type": "textbox",
+              "selector": false
+            },
+            {
+              "id": "txtBlendContent_2",
+              "type": "textbox",
+              "selector": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Single Content",
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opSingle"
+      ],
+      "controls": [
+        {
+          "id": "drpSingleContent",
+          "label": "Single Content",
+          "type": "dropdown",
+          "selector": true,
+          "data_path": "",
+          "data_id": "",
+          "options": [
+            {
+              "id": "opSingleContent_1",
+              "text": "100% Cotton",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_2",
+              "text": "100% Viscose",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_3",
+              "text": "100% Modal",
+              "selected": false
+            },
+            {
+              "id": "opSingleContent_4",
+              "text": "100% Polyster",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "id": "btnSingleContent",
+          "label": "Single Content",
+          "type": "radio-button",
+          "selector": true,
+          "data_path": "",
+          "options": [
+            {
+              "id": "opSpun",
+              "data_id": "Spun",
+              "label": "A",
+              "text": "Spun",
+              "selected": false
+            },
+            {
+              "id": "opFilament",
+              "data_id": "Filament",
+              "label": "B",
+              "text": "Filament",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Choose Blend Content",
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opBlend"
+      ],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -1346,7 +1426,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle-drpSingleContent"],
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opSingle-drpSingleContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -1493,7 +1575,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent"],
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -1640,7 +1724,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opDyeing-opSingle-drpSingleContent"],
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opSingle-drpSingleContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -1747,7 +1833,6 @@
             }
           ]
         },
-
         {
           "id": "drpLycraPercentage",
           "label": "Choose Your Lycra Percentage",
@@ -1788,7 +1873,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opSoftFlow-opDyeing-opBlend-drpBlendContent"],
+      "path": [
+        "opFabric-opSoftFlow-opDyeing-opBlend-drpBlendContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -1895,7 +1982,6 @@
             }
           ]
         },
-
         {
           "id": "drpLycraPercentage",
           "label": "Choose Your Lycra Percentage",
@@ -2156,7 +2242,6 @@
         }
       ]
     },
-
     {
       "title": "Choose Additional Process",
       "path": [
@@ -2251,7 +2336,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -2403,7 +2487,6 @@
             }
           ]
         },
-
         {
           "id": "drpDIPStenter",
           "label": "DIP Stenter",
@@ -2429,14 +2512,12 @@
             }
           ]
         },
-
         {
           "label": "OPW Compacting",
           "type": "heading",
           "selector": false,
           "optional": true
         },
-
         {
           "id": "drpTubularMachine",
           "label": "Tubular",
@@ -2585,7 +2666,6 @@
             }
           ]
         },
-
         {
           "id": "drpDIPStenter",
           "label": "DIP Stenter",
@@ -2611,14 +2691,12 @@
             }
           ]
         },
-
         {
           "label": "OPW Compacting",
           "type": "heading",
           "selector": false,
           "optional": true
         },
-
         {
           "id": "drpTubularMachine",
           "label": "Tubular",
@@ -2763,7 +2841,6 @@
             }
           ]
         },
-
         {
           "id": "drpDIPStenter",
           "label": "DIP Stenter",
@@ -2892,7 +2969,6 @@
             }
           ]
         },
-
         {
           "id": "drpDIPStenter",
           "label": "DIP Stenter",
@@ -2918,14 +2994,12 @@
             }
           ]
         },
-
         {
           "label": "OPW Compacting",
           "type": "heading",
           "selector": false,
           "optional": true
         },
-
         {
           "id": "drpTubularMachine",
           "label": "Tubular",
@@ -3074,7 +3148,6 @@
             }
           ]
         },
-
         {
           "id": "drpDIPStenter",
           "label": "DIP Stenter",
@@ -3100,14 +3173,12 @@
             }
           ]
         },
-
         {
           "label": "OPW Compacting",
           "type": "heading",
           "selector": false,
           "optional": true
         },
-
         {
           "id": "drpTubularMachine",
           "label": "Tubular",
@@ -3350,171 +3421,171 @@
       ],
       "controls": [
         {
-            "id": "txtCount",
-            "type": "textbox",
-            "selector": false,
-            "multiple": true,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your Count"
-          },
-          {
-            "id": "txtGSM",
-            "type": "textbox",
-            "selector": false,
-            "data_path": "",
-            "data_id": "",
-            "label": "Enter Your GSM"
-          },
-          {
-            "id": "drpVesselSize",
-            "label": "Select VesselSize",
-            "type": "dropdown",
-            "selector": false,
-            "data_path": "",
-            "data_id": "Name",
-            "options": [
-              {
-                "id": "opVesselSize_1",
-                "text": "50",
-                "selected": false
-              },
-              {
-                "id": "opVesselSize_2",
-                "text": "100",
-                "selected": false
-              },
-              {
-                "id": "opVesselSize_3",
-                "text": "200",
-                "selected": false
-              },
-              {
-                "id": "opVesselSize_4",
-                "text": "500",
-                "selected": false
-              },
-              {
-                "id": "opVesselSize_5",
-                "text": "1000",
-                "selected": false
-              }
-            ]
-          },
-          {
-            "id": "btnDetail",
-            "label": "Requirement Detail",
-            "type": "radio-button",
-            "selector": true,
-            "options": [
-              {
-                "id": "opOPW",
-                "label": "A",
-                "text": "OPW",
-                "selected": false
-              },
-              {
-                "id": "opTUB",
-                "label": "B",
-                "text": "TUB",
-                "selected": false
-              },
-              {
-                "id": "opTUBNeedleDrop",
-                "label": "C",
-                "text": "TUB with Needle Drop",
-                "selected": false
-              }
-            ]
-          }
+          "id": "txtCount",
+          "type": "textbox",
+          "selector": false,
+          "multiple": true,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your Count"
+        },
+        {
+          "id": "txtGSM",
+          "type": "textbox",
+          "selector": false,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your GSM"
+        },
+        {
+          "id": "drpVesselSize",
+          "label": "Select VesselSize",
+          "type": "dropdown",
+          "selector": false,
+          "data_path": "",
+          "data_id": "Name",
+          "options": [
+            {
+              "id": "opVesselSize_1",
+              "text": "50",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_2",
+              "text": "100",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_3",
+              "text": "200",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_4",
+              "text": "500",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_5",
+              "text": "1000",
+              "selected": false
+            }
+          ]
+        },
+        {
+          "id": "btnDetail",
+          "label": "Requirement Detail",
+          "type": "radio-button",
+          "selector": true,
+          "options": [
+            {
+              "id": "opOPW",
+              "label": "A",
+              "text": "OPW",
+              "selected": false
+            },
+            {
+              "id": "opTUB",
+              "label": "B",
+              "text": "TUB",
+              "selected": false
+            },
+            {
+              "id": "opTUBNeedleDrop",
+              "label": "C",
+              "text": "TUB with Needle Drop",
+              "selected": false
+            }
+          ]
+        }
       ]
     },
     {
-        "title": "Choose Details as per requirements",
-        "path": [
-          "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent-tabStructure"
-        ],
-        "controls": [
-          {
-              "id": "txtCount",
-              "type": "textbox",
-              "selector": false,
-              "multiple": true,
-              "data_path": "",
-              "data_id": "",
-              "label": "Enter Your Count"
+      "title": "Choose Details as per requirements",
+      "path": [
+        "opFabric-opSoftFlow-opBleaching-btnBleachingtype-opBlend-drpBlendContent-tabStructure"
+      ],
+      "controls": [
+        {
+          "id": "txtCount",
+          "type": "textbox",
+          "selector": false,
+          "multiple": true,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your Count"
+        },
+        {
+          "id": "txtGSM",
+          "type": "textbox",
+          "selector": false,
+          "data_path": "",
+          "data_id": "",
+          "label": "Enter Your GSM"
+        },
+        {
+          "id": "drpVesselSize",
+          "label": "Select VesselSize",
+          "type": "dropdown",
+          "selector": false,
+          "data_path": "",
+          "data_id": "Name",
+          "options": [
+            {
+              "id": "opVesselSize_1",
+              "text": "50",
+              "selected": false
             },
             {
-              "id": "txtGSM",
-              "type": "textbox",
-              "selector": false,
-              "data_path": "",
-              "data_id": "",
-              "label": "Enter Your GSM"
+              "id": "opVesselSize_2",
+              "text": "100",
+              "selected": false
             },
             {
-              "id": "drpVesselSize",
-              "label": "Select VesselSize",
-              "type": "dropdown",
-              "selector": false,
-              "data_path": "",
-              "data_id": "Name",
-              "options": [
-                {
-                  "id": "opVesselSize_1",
-                  "text": "50",
-                  "selected": false
-                },
-                {
-                  "id": "opVesselSize_2",
-                  "text": "100",
-                  "selected": false
-                },
-                {
-                  "id": "opVesselSize_3",
-                  "text": "200",
-                  "selected": false
-                },
-                {
-                  "id": "opVesselSize_4",
-                  "text": "500",
-                  "selected": false
-                },
-                {
-                  "id": "opVesselSize_5",
-                  "text": "1000",
-                  "selected": false
-                }
-              ]
+              "id": "opVesselSize_3",
+              "text": "200",
+              "selected": false
             },
             {
-              "id": "btnDetail",
-              "label": "Requirement Detail",
-              "type": "radio-button",
-              "selector": true,
-              "options": [
-                {
-                  "id": "opOPW",
-                  "label": "A",
-                  "text": "OPW",
-                  "selected": false
-                },
-                {
-                  "id": "opTUB",
-                  "label": "B",
-                  "text": "TUB",
-                  "selected": false
-                },
-                {
-                  "id": "opTUBNeedleDrop",
-                  "label": "C",
-                  "text": "TUB with Needle Drop",
-                  "selected": false
-                }
-              ]
+              "id": "opVesselSize_4",
+              "text": "500",
+              "selected": false
+            },
+            {
+              "id": "opVesselSize_5",
+              "text": "1000",
+              "selected": false
             }
-        ]
-      },
+          ]
+        },
+        {
+          "id": "btnDetail",
+          "label": "Requirement Detail",
+          "type": "radio-button",
+          "selector": true,
+          "options": [
+            {
+              "id": "opOPW",
+              "label": "A",
+              "text": "OPW",
+              "selected": false
+            },
+            {
+              "id": "opTUB",
+              "label": "B",
+              "text": "TUB",
+              "selected": false
+            },
+            {
+              "id": "opTUBNeedleDrop",
+              "label": "C",
+              "text": "TUB with Needle Drop",
+              "selected": false
+            }
+          ]
+        }
+      ]
+    },
     {
       "title": "Choose Additional Process",
       "path": [
@@ -3797,7 +3868,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -4111,7 +4181,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -4425,7 +4494,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -4459,7 +4527,9 @@
     },
     {
       "title": "Choose Fabric Process",
-      "path": ["opFabric-opWinch"],
+      "path": [
+        "opFabric-opWinch"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -4493,7 +4563,9 @@
     },
     {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opWinch-opWashing"],
+      "path": [
+        "opFabric-opWinch-opWashing"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -4521,7 +4593,9 @@
     },
     {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opWinch-opBleaching"],
+      "path": [
+        "opFabric-opWinch-opBleaching"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -4549,7 +4623,9 @@
     },
     {
       "title": "Choose Fabric Content",
-      "path": ["opFabric-opWinch-opDyeing"],
+      "path": [
+        "opFabric-opWinch-opDyeing"
+      ],
       "controls": [
         {
           "id": "btnContenttype",
@@ -4577,7 +4653,9 @@
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opWinch-opWashing-opSingle"],
+      "path": [
+        "opFabric-opWinch-opWashing-opSingle"
+      ],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -4613,7 +4691,9 @@
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opWinch-opWashing-opBlend"],
+      "path": [
+        "opFabric-opWinch-opWashing-opBlend"
+      ],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -4654,7 +4734,9 @@
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opWinch-opBleaching-opSingle"],
+      "path": [
+        "opFabric-opWinch-opBleaching-opSingle"
+      ],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -4690,7 +4772,9 @@
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opWinch-opBleaching-opBlend"],
+      "path": [
+        "opFabric-opWinch-opBleaching-opBlend"
+      ],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -4731,7 +4815,9 @@
     },
     {
       "title": "Choose Single Content",
-      "path": ["opFabric-opWinch-opDyeing-opSingle"],
+      "path": [
+        "opFabric-opWinch-opDyeing-opSingle"
+      ],
       "controls": [
         {
           "id": "drpSingleContent",
@@ -4767,7 +4853,9 @@
     },
     {
       "title": "Choose Blend Content",
-      "path": ["opFabric-opWinch-opDyeing-opBlend"],
+      "path": [
+        "opFabric-opWinch-opDyeing-opBlend"
+      ],
       "controls": [
         {
           "id": "drpBlendContent",
@@ -4808,7 +4896,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opWashing-opSingle-drpSingleContent"],
+      "path": [
+        "opFabric-opWinch-opWashing-opSingle-drpSingleContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -4990,7 +5080,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opWashing-opBlend-drpBlendContent"],
+      "path": [
+        "opFabric-opWinch-opWashing-opBlend-drpBlendContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -5172,7 +5264,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opBleaching-opSingle-drpSingleContent"],
+      "path": [
+        "opFabric-opWinch-opBleaching-opSingle-drpSingleContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -5354,7 +5448,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opBleaching-opBlend-drpBlendContent"],
+      "path": [
+        "opFabric-opWinch-opBleaching-opBlend-drpBlendContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -5536,7 +5632,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opDyeing-opSingle-drpSingleContent"],
+      "path": [
+        "opFabric-opWinch-opDyeing-opSingle-drpSingleContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -5718,7 +5816,9 @@
     },
     {
       "title": "Choose Fabric Structure",
-      "path": ["opFabric-opWinch-opDyeing-opBlend-drpBlendContent"],
+      "path": [
+        "opFabric-opWinch-opDyeing-opBlend-drpBlendContent"
+      ],
       "controls": [
         {
           "id": "tabStructure",
@@ -6180,7 +6280,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -6494,7 +6593,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -6808,7 +6906,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -7122,7 +7219,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -7436,7 +7532,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",
@@ -7750,7 +7845,6 @@
                     }
                   ]
                 },
-
                 {
                   "id": "drpDIPStenter",
                   "label": "DIP Stenter",

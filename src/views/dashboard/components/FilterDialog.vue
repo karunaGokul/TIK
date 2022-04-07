@@ -129,9 +129,9 @@ export default class FilterDialog extends Vue {
 
   public FilterRejectedBids() {
     this.filterRequest.projectId = this.projectId;
-    this.filterRequest.minPrice = 0;
-    this.filterRequest.minCreditPeriod = 0;
-    this.filterRequest.minDeliveryPeriod = 0;
+    this.filterRequest.maxPrice = 0;
+    this.filterRequest.maxCreditPeriod = 0;
+    this.filterRequest.maxDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.filterResponse = response;

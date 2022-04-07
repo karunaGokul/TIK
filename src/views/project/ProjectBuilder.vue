@@ -35,11 +35,12 @@
             :menu-props="{ offsetY: true }"
             label="Choose Employees"
             :items="response"
-            name="FirstName"
-            item-text="FirstName"
-            item-value="FirstName"
+            name="FullName"
+            item-text="FullName"
+            item-value="EmployeeId"
             outlined
             dense
+            multiple
             :loading="loading"
             :rules="[(v) => !!v || 'Employee is required']"
           >
@@ -132,25 +133,12 @@ export default class ProjectBuilder extends Vue {
   public categoryName: string = "";
   public snackbar: boolean = false;
   public snackbarText: string = "";
-  public filterValue: any;
-
   public loading: boolean = false;
 
   created() {
     this.GetMerchandiser();
     this.getEmployees();
-    // this.filter();
   }
-
-  // public filter() {
-  //   this.filterValue = this.response.filter(
-  //     (item: any)=>{
-  //       return item.indexOf(item.FirstName)
-  //     }
-  //   );
-  //   console.log(this.filterValue);
-  // }
-
   public getEmployees() {
     this.request.id = this.$store.getters.id;
     this.loading = true;

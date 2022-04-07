@@ -1074,7 +1074,6 @@ export default class ProjectDetail extends Vue {
   }
 
   public reset() {
-    // this.GetProjectEnquiry();
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {

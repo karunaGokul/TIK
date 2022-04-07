@@ -45,7 +45,7 @@
                 class="mt-5"
                 @change="filterReview"
               >
-              <template v-slot:[`item`]="{ item }">
+                <template v-slot:[`item`]="{ item }">
                   <v-rating
                     v-model="item.value"
                     color="warning"
@@ -54,7 +54,7 @@
                     half-increments
                     readonly
                   ></v-rating>
-              </template>
+                </template>
               </v-select>
             </v-col>
             <v-col>
@@ -104,6 +104,7 @@ export default class ProjectResult extends Vue {
   public certification: Array<CertificationResponseModel> = [];
   public selectedCertificate: any;
   public selectedReview: any;
+  public filter: any;
 
   created() {
     this.loading = true;
@@ -129,27 +130,30 @@ export default class ProjectResult extends Vue {
       });
   }
 
+  // public filterReview() {
+  //   if (this.selectedReview.length !== 0) {
+  //     this.items = this.dataResource.filter(
+  //       (item: any) =>
+  //         item.review &&
+  //         this.selectedReview.some((data: number) => item.review >= data)
+  //     );
+  //   } else {
+  //     this.items = this.dataResource;
+  //   }
+  // }
   public filterReview() {
     if (this.selectedReview.length !== 0) {
-      this.items = this.dataResource.filter(
-        (item: any) =>
-          item.review &&
-          this.selectedReview.some((data: number) => item.review >= data)
-      );
+        this.items = this.filter.filter(
+          (item: any) =>
+            item.review &&
+            this.selectedReview.some((data: number) => item.review >= data)
+        );
+      
     } else {
       this.items = this.dataResource;
     }
   }
   public filterCertificate() {
-    /*this.items = this.dataResource.filter(
-      (item:any) => {
-        console.log(item.certification && item.certification.includes("BLUE SIGN"));
-        (item.certification && item.certification.includes("BLUE SIGN")
-        (item.certification && this.selectedCertificate.filter((data: any) => {
-          item.certification.includes(data);
-        })
-        )
-      })*/
     if (this.selectedCertificate.length !== 0) {
       this.items = this.dataResource.filter(
         (item: any) =>
@@ -158,6 +162,8 @@ export default class ProjectResult extends Vue {
             item.certification.includes(data)
           )
       );
+      this.filter = this.items;
+      console.log(this.filter);
     } else {
       this.items = this.dataResource;
     }

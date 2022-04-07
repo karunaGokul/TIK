@@ -3,7 +3,7 @@
     <v-row>
       <h4 class="text-h5 mr-4">Rejected Bids</h4>
 
-      <FilterDialog :projectId="projectId" @filteredBids="filteredBids" />
+      <FilterDialog :projectId="projectId" @filteredBids="filteredBids" :response="responseFilter"/>
       <v-btn icon color="green darken-4" class="ml-2" @click="reset">
         <v-icon> mdi-lock-reset</v-icon>
       </v-btn>
@@ -83,7 +83,7 @@
 </template>
 
 <script lang="ts">
-import { BitReceivedModel, FilterRequestModel } from "@/model";
+import { BitReceivedModel, DashboardModel, FilterRequestModel } from "@/model";
 import { Component, Inject, Prop, Vue } from "vue-property-decorator";
 import { IDashboardService } from "@/service";
 import FilterDialog from "./FilterDialog.vue";
@@ -94,6 +94,7 @@ import FilterDialog from "./FilterDialog.vue";
 export default class RejectedProject extends Vue {
   @Prop() response: Array<BitReceivedModel>;
   @Prop() projectId: string;
+  @Prop() responseFilter: DashboardModel;
 
   @Inject("DashboardService") DashboardService: IDashboardService;
 
@@ -121,10 +122,6 @@ export default class RejectedProject extends Vue {
 
   public reset() {
     this.filterRequest.projectId = this.projectId;
-    // this.filterRequest.price = null;
-    // this.filterRequest.review = null;
-    // this.filterRequest.creditPeriod = null;
-    // this.filterRequest.deliveryPeriod = null;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response = response;

@@ -117,7 +117,6 @@ export default class FilterDialog extends Vue {
   public dialog: boolean = false;
   public filterResponse: Array<BitReceivedModel> = [];
   public filterRequest = new FilterRequestModel();
-  public maxMixValue: Array<DashboardModel> = [];
   public Dashboard: DashboardRequestModel;
 
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];

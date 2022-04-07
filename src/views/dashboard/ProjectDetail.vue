@@ -919,6 +919,7 @@
         </div>
         <RejectedProject
           :response="response.bidList"
+          :responseFilter="response"
           :projectId="response.Id"
           v-if="category === 'Company' && isRejected === true"
         />
@@ -1073,12 +1074,13 @@ export default class ProjectDetail extends Vue {
   }
 
   public reset() {
-    this.GetProjectEnquiry();
-    // this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-    //   (response) => {
-    //     this.response.bidList = response;
-    //   }
-    // );
+    // this.GetProjectEnquiry();
+    this.filterRequest.projectId = this.response.Id;
+    this.DashboardService.FilterRejectedBids(this.filterRequest).then(
+      (response) => {
+        this.response.bidList = response;
+      }
+    );
   }
   public GetApprovalAdmin() {
     this.adminRequest.companyId = this.$store.getters.companyId;

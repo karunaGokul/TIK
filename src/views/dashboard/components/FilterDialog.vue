@@ -65,7 +65,7 @@
                   v-for="item in review"
                   :key="item"
                   @click="(selectedReview = item) && filterValue(item)"
-                  :class="{'bg-primary': item == selectedReview}"
+                  :class="{ 'bg-primary': item == selectedReview }"
                 >
                   <v-rating
                     readonly
@@ -121,7 +121,7 @@ export default class FilterDialog extends Vue {
 
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
-  selectedReview: any = '';
+  selectedReview: any = "";
 
   public filterValue(n: any) {
     this.filterRequest.Review = n;
@@ -129,14 +129,14 @@ export default class FilterDialog extends Vue {
 
   public FilterRejectedBids() {
     this.filterRequest.projectId = this.projectId;
-    this.filterRequest.maxPrice = 0;
-    this.filterRequest.maxCreditPeriod = 0;
-    this.filterRequest.maxDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.filterResponse = response;
         this.dialog = false;
         this.$emit("filteredBids", this.filterResponse);
+        this.filterRequest.maxPrice = 0;
+        this.filterRequest.maxCreditPeriod = 0;
+        this.filterRequest.maxDeliveryPeriod = 0;
       }
     );
   }
@@ -144,7 +144,6 @@ export default class FilterDialog extends Vue {
 </script>
 
 <style scoped>
-
 .bg-primary {
   background-color: #c7eaea;
 }

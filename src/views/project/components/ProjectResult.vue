@@ -143,12 +143,19 @@ export default class ProjectResult extends Vue {
   // }
   public filterReview() {
     if (this.selectedReview.length !== 0) {
+      if (this.selectedCertificate.length >= 1) {
         this.items = this.filter.filter(
           (item: any) =>
             item.review &&
             this.selectedReview.some((data: number) => item.review >= data)
         );
-      
+      } else {
+        this.items = this.dataResource.filter(
+          (item: any) =>
+            item.review &&
+            this.selectedReview.some((data: number) => item.review >= data)
+        );
+      }
     } else {
       this.items = this.dataResource;
     }

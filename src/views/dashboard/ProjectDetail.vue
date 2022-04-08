@@ -99,8 +99,9 @@
                     </v-btn>
                   </div>
                 </div>
-                
-                <div class="text-right ml-16"
+
+                <div
+                  class="text-right ml-16"
                   v-if="
                     category != 'Company' &&
                       response.bidList[0].status === 'Initiated'
@@ -112,8 +113,8 @@
                     color="primary"
                     @click="toggleBid = 'true'"
                   >
-                    bid this project
-                  </v-btn><br />
+                    bid this project </v-btn
+                  ><br />
                   <v-btn
                     class="font-weight-light text-capitalize white--text mt-1 mr-7"
                     color="blue-grey"
@@ -126,7 +127,6 @@
               </div>
             </v-card>
           </v-col>
-          
         </v-row>
 
         <v-row class="mt-4 text-caption text-wrap">
@@ -219,16 +219,15 @@
                     <td>{{ response.EnquiryName }}</td>
                     <td>{{ response.Category }}</td>
                     <td>{{ response.Subcategory }}</td>
-                    <td
-                      class="blue--text"
-                      v-if="response.data.price !== ''"
-                    >
+                    <td class="blue--text" v-if="response.data.price !== ''">
                       Rs.{{ response.data.price }}
                     </td>
                     <td class="blue--text" v-else>
                       Requested
                     </td>
-                    <td class="red--text">{{ response.data.creditPeriod }} days</td>
+                    <td class="red--text">
+                      {{ response.data.creditPeriod }} days
+                    </td>
                     <td class="green--text">
                       {{ response.deliveryDate }} days
                     </td>
@@ -275,7 +274,11 @@
         >
           <h4 class="text-h5 mr-4">Bids Received</h4>
 
-          <FilterDialog :projectId="response.Id" @filteredBids="filteredBids" :response="response" />
+          <FilterDialog
+            :projectId="response.Id"
+            @filteredBids="filteredBids"
+            :response="response"
+          />
 
           <v-icon large color="green darken-4" class="ml-4" @click="reset()">
             mdi-lock-reset
@@ -1075,6 +1078,9 @@ export default class ProjectDetail extends Vue {
 
   public reset() {
     this.filterRequest.projectId = this.response.Id;
+    this.filterRequest.maxPrice = 0;
+    this.filterRequest.maxCreditPeriod = 0;
+    this.filterRequest.maxDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response.bidList = response;
@@ -1109,7 +1115,7 @@ export default class ProjectDetail extends Vue {
           this.isRejected = true;
         }
       });
-     
+
       this.GetBidAudit();
     });
   }

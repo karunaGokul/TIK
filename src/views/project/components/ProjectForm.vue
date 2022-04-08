@@ -157,6 +157,7 @@ export default class ProjectForm extends Vue {
   @Prop() categoryName: string;
   @Prop() projectName: string;
   @Prop() merchandiser: string;
+  @Prop() employeeID: string;
 
   StepMode = StepMode;
 
@@ -182,6 +183,7 @@ export default class ProjectForm extends Vue {
     this.request.name = this.projectName;
     this.request.category = this.categoryName;
     this.request.merchandiserId = this.merchandiser;
+    this.request.userList = this.employeeID;
 
     this.steps = [];
     this.mode = StepMode.Form;

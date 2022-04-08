@@ -4,7 +4,8 @@ export class CreateProjectModel {
     name: string;
     category: string;
     merchandiserId: string;
-    
+    userList: string;
+
     data: any;
 
     bids: Array<any> = [];

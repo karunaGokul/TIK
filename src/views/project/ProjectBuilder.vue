@@ -29,7 +29,7 @@
         </v-col>
         <v-col>
           <div class="mb-2 text-h6">
-            Choose Employees <span class="red--text">*</span>
+            Communication <span class="red--text">*</span>
           </div>
           <v-select
             :menu-props="{ offsetY: true }"
@@ -38,6 +38,7 @@
             name="FullName"
             item-text="FullName"
             item-value="EmployeeId"
+            v-model="employeeID"
             outlined
             dense
             multiple
@@ -101,6 +102,7 @@
       :categoryName="categoryName"
       :projectName="projectName"
       :merchandiser="merchandiser"
+      :employeeID="employeeID"
       v-else
     />
   </div>
@@ -129,6 +131,7 @@ export default class ProjectBuilder extends Vue {
   public response: Array<EmployeeModel> = [];
   public projectName: string = "";
   public merchandiser: string = "";
+  public employeeID: string = "";
   public toggleCategory: boolean = false;
   public categoryName: string = "";
   public snackbar: boolean = false;
@@ -167,7 +170,11 @@ export default class ProjectBuilder extends Vue {
     } else if (this.merchandiser === "") {
       this.snackbarText = "Please Select Merchandiser";
       this.snackbar = true;
-    } else {
+    } else if (this.employeeID === ""){
+      this.snackbarText = "Please Select Employee";
+      this.snackbar = true;
+    } 
+    else {
       this.toggleCategory = true;
       this.categoryName = categoryName;
     }

@@ -1078,9 +1078,6 @@ export default class ProjectDetail extends Vue {
 
   public reset() {
     this.filterRequest.projectId = this.response.Id;
-    this.filterRequest.maxPrice = 0;
-    this.filterRequest.maxCreditPeriod = 0;
-    this.filterRequest.maxDeliveryPeriod = 0;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
       (response) => {
         this.response.bidList = response;

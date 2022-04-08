@@ -24,7 +24,19 @@
               md="6"
               class="mb-3"
             >
-              <h4>{{ item }}</h4>
+              <div class="d-inline-flex mb-3">
+                <h4 class="mr-2 mt-n1">{{ item }} :</h4>
+                <v-label v-if="item === 'Price'"
+                  >0 to {{ response.maxPrice }}
+                </v-label>
+                <v-label v-if="item === 'Credit Period'"
+                  >0 to {{ response.maxCreditPeriod }}
+                </v-label>
+                <v-label v-if="item === 'Delivery Period'"
+                  >0 to {{ response.maxDeliveryPeriod }}
+                </v-label>
+              </div>
+
               <v-slider
                 v-if="item === 'Price'"
                 track-color="teal"
@@ -35,7 +47,8 @@
                 :min="0"
                 :max="response.maxPrice"
                 v-model="filterRequest.maxPrice"
-              ></v-slider>
+              >
+              </v-slider>
               <v-slider
                 v-if="item === 'Credit Period'"
                 track-color="teal"
@@ -73,8 +86,9 @@
                     size="18"
                     :value="item"
                     :length="item"
+                    class="ml-n4"
                   ></v-rating>
-                  <span class="text-capitalize"> &up</span>
+                  <span class="text-capitalize mr-4"> &up</span>
                 </v-btn>
               </div>
             </v-col>
@@ -122,6 +136,7 @@ export default class FilterDialog extends Vue {
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
   selectedReview: any = "";
+  min: number = 0;
 
   public filterValue(n: any) {
     this.filterRequest.Review = n;

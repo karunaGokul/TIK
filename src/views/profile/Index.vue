@@ -275,7 +275,7 @@ export default class Profile extends Vue {
     this.loadprofile();
   }
   public loadprofile() {
-    this.request.id = this.$store.getters.id;
+    this.request.companyId = this.$store.getters.companyId;
     this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {
         this.response = response;

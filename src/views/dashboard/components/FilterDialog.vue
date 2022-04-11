@@ -77,8 +77,8 @@
                   text
                   v-for="item in review"
                   :key="item"
-                  @click="(selectedReview = item) && filterValue(item)"
-                  :class="{ 'bg-primary': item == selectedReview }"
+                  @click="(selectedReview = item) && (toggleButton = !toggleButton) && filterValue(item)"
+                  :class="{ 'bg-primary': item == selectedReview && toggleButton }"
                 >
                   <v-rating
                     readonly
@@ -135,8 +135,8 @@ export default class FilterDialog extends Vue {
 
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
-  selectedReview: any = "";
-  min: number = 0;
+  selectedReview: number = 0;
+  toggleButton: boolean = false;
 
   public filterValue(n: any) {
     this.filterRequest.Review = n;
@@ -148,6 +148,7 @@ export default class FilterDialog extends Vue {
       (response) => {
         this.filterResponse = response;
         this.dialog = false;
+        this.selectedReview = null;
         this.$emit("filteredBids", this.filterResponse);
         this.filterRequest.maxPrice = 0;
         this.filterRequest.maxCreditPeriod = 0;

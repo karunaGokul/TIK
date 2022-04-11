@@ -298,7 +298,7 @@
             :class="{
               'confirmed-project':
                 (row.status === 'Confirmed' || row.status === 'Completed') &&
-                category === 'Company',
+                category === 'Company'
             }"
           >
             <v-card-title
@@ -324,9 +324,20 @@
                         ></v-img>
                       </v-avatar>
                       <div>
-                        <v-card-title class="text-h6 pt-0">{{
-                          row.companyName
-                        }}</v-card-title>
+                        <router-link
+                          class="router"
+                          link
+                          :to="{
+                            name: 'Profile',
+                            params: {
+                              companyId: row.companyId
+                            }
+                          }"
+                        >
+                          <v-card-title class="text-h6 pt-0">{{
+                            row.companyName
+                          }}</v-card-title>
+                        </router-link>
 
                         <v-card-subtitle
                           ><v-rating
@@ -857,7 +868,7 @@
                         'confirmed-project':
                           category != 'Company' &&
                           row.status === 'Rejected' &&
-                          confirmedBidResponse !== '',
+                          confirmedBidResponse !== ''
                       }"
                     >
                       <h4 class="my-3 ml-2 black--text">Confirmed Bid</h4>
@@ -980,7 +991,7 @@ import {
   AdminRequestModel,
   FilterRequestModel,
   ConfirmedBidModel,
-  UserInfomodel,
+  UserInfomodel
 } from "@/model";
 import { IDashboardService, EmployeeService } from "@/service";
 import { Component, Inject, Vue } from "vue-property-decorator";
@@ -1000,8 +1011,8 @@ import FilterDialog from "./components/FilterDialog.vue";
     BidProject,
     RejectProject,
     RejectedProject,
-    FilterDialog,
-  },
+    FilterDialog
+  }
 })
 export default class ProjectDetail extends Vue {
   @Inject("DashboardService") DashboardService: IDashboardService;
@@ -1060,14 +1071,14 @@ export default class ProjectDetail extends Vue {
   }
 
   public userInfo() {
-    this.DashboardService.GetUserFullName().then((response) => {
+    this.DashboardService.GetUserFullName().then(response => {
       this.userResponse = response;
     });
   }
   public GetConfirmedBidDetails() {
     this.request.id = this.$route.params.id;
     this.DashboardService.GetConfirmedBidDetails(this.request.id).then(
-      (response) => {
+      response => {
         this.confirmedBidResponse = response;
       }
     );
@@ -1079,7 +1090,7 @@ export default class ProjectDetail extends Vue {
   public reset() {
     this.filterRequest.projectId = this.response.Id;
     this.DashboardService.FilterRejectedBids(this.filterRequest).then(
-      (response) => {
+      response => {
         this.response.bidList = response;
       }
     );
@@ -1095,7 +1106,7 @@ export default class ProjectDetail extends Vue {
 
   public GetCompany(CompanyId: string) {
     this.loading = true;
-    this.DashboardService.GetCompany(CompanyId).then((response) => {
+    this.DashboardService.GetCompany(CompanyId).then(response => {
       this.companyResponse = response;
 
       this.loading = false;
@@ -1104,10 +1115,10 @@ export default class ProjectDetail extends Vue {
 
   public GetProjectEnquiry() {
     this.request.id = this.$route.params.id;
-    this.DashboardService.GetProjectEnquiry(this.request).then((response) => {
+    this.DashboardService.GetProjectEnquiry(this.request).then(response => {
       this.response = response;
       this.GetCompany(this.response.CompanyId);
-      this.response.bidList.forEach((b) => {
+      this.response.bidList.forEach(b => {
         if (b.status == "Rejected") {
           this.isRejected = true;
         }
@@ -1118,7 +1129,7 @@ export default class ProjectDetail extends Vue {
   }
 
   public GetBidAudit() {
-    this.DashboardService.GetBidAudit(this.response.Id).then((response) => {
+    this.DashboardService.GetBidAudit(this.response.Id).then(response => {
       this.bitAuditResponse = response;
     });
   }
@@ -1134,13 +1145,11 @@ export default class ProjectDetail extends Vue {
       this.approvalRequest.bidId = bid.id;
       this.approvalRequest.status = status;
       this.approvalRequest.projectId = this.response.Id;
-      this.DashboardService.ApproveBid(this.approvalRequest).then(
-        (response) => {
-          this.snackbarText = response;
-          this.snackbar = true;
-          this.GetProjectEnquiry();
-        }
-      );
+      this.DashboardService.ApproveBid(this.approvalRequest).then(response => {
+        this.snackbarText = response;
+        this.snackbar = true;
+        this.GetProjectEnquiry();
+      });
     }
   }
 
@@ -1150,7 +1159,7 @@ export default class ProjectDetail extends Vue {
     this.bidRequest.price = bid.requestPrice;
     this.bidRequest.creditPeriod = bid.creditPeriod;
     this.bidRequest.deliveryPeriod = bid.deliveryDate;
-    this.DashboardService.BidProject(this.bidRequest).then((response) => {
+    this.DashboardService.BidProject(this.bidRequest).then(response => {
       this.snackbarText = response;
       this.snackbar = true;
     });
@@ -1189,12 +1198,12 @@ export default class ProjectDetail extends Vue {
   public priceRules: any = [
     (v: any) => !!v || "Price is required",
     // (v: any) => (!isNaN(parseInt(v)) && v >= 0) || "Price must be Valid Number",
-    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number",
+    (v: any) => (!isNaN(parseInt(v)) && v != 0) || "Price must be Valid Number"
   ];
 
   public creditRules: any = [
     (v: any) => !!v || "Credit Period is required",
-    (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date",
+    (v: any) => (v && v.length <= 4) || "Credit Period must be a Valid Date"
     // (v: any) =>
     //   (!isNaN(parseInt(v)) && v != 0) || "Credit Period must be Valid Number",
   ];
@@ -1203,11 +1212,11 @@ export default class ProjectDetail extends Vue {
     (v: any) => !!v || "Delivery Period is required",
     (v: any) => (v && v.length <= 4) || "Delivery Period must be a Valid Date",
     (v: any) =>
-      (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number",
+      (!isNaN(parseInt(v)) && v != 0) || "Delivery Period must be Valid Number"
   ];
 
   public approvalAdminRules: any = [
-    (v: any) => !!v || "Approval Admin role is required",
+    (v: any) => !!v || "Approval Admin role is required"
   ];
 
   BitReceivedheaders: any = [
@@ -1220,11 +1229,14 @@ export default class ProjectDetail extends Vue {
     "Requested Price",
     "Requested Credit",
     "Requested Delivery",
-    "",
+    ""
   ];
 }
 </script>
 <style scoped>
+.router {
+  text-decoration: none;
+}
 .confirmed-project {
   border: solid 4px #ff6500;
   background-color: #ffe7d5;

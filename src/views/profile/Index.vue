@@ -259,7 +259,7 @@ import { IProfileService } from "@/service";
 import { ProfileRequestModel, ProfileResponse } from "@/model";
 
 @Component({
-  components: { Divider, EditProfile, ResetPassword },
+  components: { Divider, EditProfile, ResetPassword }
 })
 export default class Profile extends Vue {
   @Inject("ProfileService") ProfileService: IProfileService;
@@ -270,12 +270,19 @@ export default class Profile extends Vue {
   public toggleResetPassword: boolean = false;
   public loading: boolean = false;
   public value: string;
-
+  public companyName: string = "";
   created() {
+    this.companyName = this.$route.params.companyId;
     this.loadprofile();
   }
   public loadprofile() {
-    this.request.companyId = this.$store.getters.companyId;
+    if (this.companyName === undefined) {
+      this.request.companyId = this.$store.getters.companyId;
+    } else {
+      this.request.companyId = this.companyName;
+    }
+    // this.request.companyId = this.companyName;
+    console.log(this.request.companyId);
     this.ProfileService.getProfile(this.request).then(
       (response: ProfileResponse) => {
         this.response = response;
@@ -297,56 +304,56 @@ export default class Profile extends Vue {
 
   galleryImages: any = [
     {
-      img: require("@/assets/gallery/gallery1.png"),
+      img: require("@/assets/gallery/gallery1.png")
     },
     {
-      img: require("@/assets/gallery/gallery2.png"),
+      img: require("@/assets/gallery/gallery2.png")
     },
     {
-      img: require("@/assets/gallery/gallery3.png"),
+      img: require("@/assets/gallery/gallery3.png")
     },
     {
-      img: require("@/assets/gallery/gallery4.png"),
-    },
+      img: require("@/assets/gallery/gallery4.png")
+    }
   ];
 
   categorys: any = [
     {
       text: "Mills",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Dyeing",
-      route: "/dyeing",
+      route: "/dyeing"
     },
     {
       text: "Knitting",
-      route: "/knitting",
+      route: "/knitting"
     },
     {
       text: "Processing",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Printing",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Ready Fabrics",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Embroidery",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Job Work Units",
-      route: "/mill",
+      route: "/mill"
     },
     {
       text: "Pieces",
-      route: "/mill",
-    },
+      route: "/mill"
+    }
   ];
 }
 </script>

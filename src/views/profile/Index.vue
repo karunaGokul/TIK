@@ -5,7 +5,7 @@
     </v-card>
 
     <v-card elevation="4" class="mx-16 mt-n16 pa-16" color="#EEEEEE">
-      <div class="text-right" v-if="role === 'MasterAdmin'">
+      <div class="text-right" v-if="role === 'MasterAdmin' && !this.companyName">
         <v-btn
           class="hidden-sm-and-down rounded-0 mb-6"
           color="primary"
@@ -271,6 +271,7 @@ export default class Profile extends Vue {
   public loading: boolean = false;
   public value: string;
   public companyName: string = "";
+  
   created() {
     this.companyName = this.$route.params.companyId;
     this.loadprofile();

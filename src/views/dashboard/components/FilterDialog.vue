@@ -153,6 +153,7 @@ export default class FilterDialog extends Vue {
         this.filterRequest.maxPrice = 0;
         this.filterRequest.maxCreditPeriod = 0;
         this.filterRequest.maxDeliveryPeriod = 0;
+        this.filterRequest.Review = 0;
       }
     );
   }

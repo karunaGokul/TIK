@@ -28,7 +28,7 @@
                 :loading="loading"
                 required
                 class="mt-5"
-                @change="filterCertificate"
+                @change="filter"
               >
               </v-select>
             </v-col>
@@ -43,7 +43,7 @@
                 :loading="loading"
                 required
                 class="mt-5"
-                @change="filterCertificate"
+                @change="filter"
               >
                 <template v-slot:[`item`]="{ item }">
                   <v-rating
@@ -104,7 +104,6 @@ export default class ProjectResult extends Vue {
   public certification: Array<CertificationResponseModel> = [];
   public selectedCertificate: any = [];
   public selectedReview: any = [];
-  public filter: any;
 
   created() {
     this.loading = true;
@@ -130,45 +129,17 @@ export default class ProjectResult extends Vue {
       });
   }
 
-  // public filterReview() {
-  //   if (this.selectedReview.length !== 0) {
-  //     this.items = this.dataResource.filter(
-  //       (item: any) =>
-  //         item.review &&
-  //         this.selectedReview.some((data: number) => item.review >= data)
-  //     );
-  //   } else {
-  //     this.items = this.dataResource;
-  //   }
-  // }
-  public filterReview() {
-    if (this.selectedReview.length !== 0) {
-      if (this.selectedCertificate.length >= 1) {
-        this.items = this.filter.filter(
-          (item: any) =>
-            item.review &&
-            this.selectedReview.some((data: number) => item.review >= data)
-        );
-      } else {
-        this.items = this.dataResource.filter(
-          (item: any) =>
-            item.review &&
-            this.selectedReview.some((data: number) => item.review >= data)
-        );
-      }
-    } else {
-      this.items = this.dataResource;
-    }
-  }
-  public filterCertificate() {
+  public filter() {
     this.items = this.dataResource.filter(
       (item: any) =>
-        (this.selectedCertificate.length == 0 || (item.certification &&
-          this.selectedCertificate.some((data: any) =>
-            item.certification.includes(data)
-          ))) &&
-        (this.selectedReview.length == 0 || (item.review &&
-          this.selectedReview.some((data: number) => item.review >= data)))
+        (this.selectedCertificate.length == 0 ||
+          (item.certification &&
+            this.selectedCertificate.some((data: any) =>
+              item.certification.includes(data)
+            ))) &&
+        (this.selectedReview.length == 0 ||
+          (item.review &&
+            this.selectedReview.some((data: number) => item.review >= data)))
     );
   }
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <Advertisement />
 
     <v-container fluid class="pa-6">

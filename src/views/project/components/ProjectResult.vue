@@ -38,8 +38,6 @@
                 label="Review"
                 v-model="selectedReview"
                 :items="review"
-                item-text="value"
-                item-value="value"
                 :loading="loading"
                 required
                 class="mt-5"
@@ -47,13 +45,14 @@
               >
                 <template v-slot:[`item`]="{ item }">
                   <v-rating
-                    v-model="item.value"
                     color="warning"
                     dense
-                    size="20"
-                    half-increments
+                    size="16"
+                    :length="item"
+                    :value="item"
                     readonly
-                  ></v-rating>
+                  ></v-rating> 
+                  <span class="ml-1">&Up</span> 
                 </template>
               </v-select>
             </v-col>
@@ -142,6 +141,7 @@ export default class ProjectResult extends Vue {
             this.selectedReview.some((data: number) => item.review >= data)))
     );
   }
+  public review: any = [4,3,2,1] 
 
   public headers: any = [
     {
@@ -156,36 +156,14 @@ export default class ProjectResult extends Vue {
     {
       text: "Reviews",
       value: "review",
-      // filterable: false,
+      filterable: false,
     },
     {
       text: "Certificates",
       value: "certification",
-      // filterable: false,
+      filterable: false,
     },
   ];
-
-  public review: any = [
-    {
-      text: "Review 1",
-      value: 1,
-    },
-    {
-      text: "Review 2",
-      value: 2,
-    },
-    {
-      text: "Review 3",
-      value: 3,
-    },
-    {
-      text: "Review 4",
-      value: 4,
-    },
-    {
-      text: "Review 5",
-      value: 5,
-    },
-  ];
+  
 }
 </script>

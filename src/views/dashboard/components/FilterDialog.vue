@@ -139,7 +139,11 @@ export default class FilterDialog extends Vue {
   toggleButton: boolean = false;
 
   public filterValue(n: any) {
-    this.filterRequest.Review = n;
+    // if(this.toggleButton) {
+    //   this.filterRequest.Review = n;
+    // }
+    // this.filterRequest.Review = 0;
+     this.filterRequest.Review = n;
   }
 
   public FilterRejectedBids() {
@@ -153,7 +157,7 @@ export default class FilterDialog extends Vue {
         this.filterRequest.maxPrice = 0;
         this.filterRequest.maxCreditPeriod = 0;
         this.filterRequest.maxDeliveryPeriod = 0;
-        this.filterRequest.Review = 0;
+        this.filterRequest.Review = 0
       }
     );
   }

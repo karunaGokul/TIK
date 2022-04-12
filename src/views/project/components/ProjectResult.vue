@@ -43,7 +43,7 @@
                 :loading="loading"
                 required
                 class="mt-5"
-                @change="filterReview"
+                @change="filterCertificate"
               >
                 <template v-slot:[`item`]="{ item }">
                   <v-rating
@@ -102,8 +102,8 @@ export default class ProjectResult extends Vue {
   public dataResource: any = [];
   public loading: boolean = false;
   public certification: Array<CertificationResponseModel> = [];
-  public selectedCertificate: any;
-  public selectedReview: any;
+  public selectedCertificate: any = [];
+  public selectedReview: any = [];
   public filter: any;
 
   created() {
@@ -161,19 +161,15 @@ export default class ProjectResult extends Vue {
     }
   }
   public filterCertificate() {
-    if (this.selectedCertificate.length !== 0) {
-      this.items = this.dataResource.filter(
-        (item: any) =>
-          item.certification &&
+    this.items = this.dataResource.filter(
+      (item: any) =>
+        (this.selectedCertificate.length == 0 || (item.certification &&
           this.selectedCertificate.some((data: any) =>
             item.certification.includes(data)
-          )
-      );
-      this.filter = this.items;
-      console.log(this.filter);
-    } else {
-      this.items = this.dataResource;
-    }
+          ))) &&
+        (this.selectedReview.length == 0 || (item.review &&
+          this.selectedReview.some((data: number) => item.review >= data)))
+    );
   }
 
   public headers: any = [

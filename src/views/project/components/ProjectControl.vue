@@ -7,7 +7,7 @@
       <div class="text-md-h6">{{ control.label }}</div>
     </v-row>
     <v-row class="pa-2" v-if="control.type === 'dropdown'">
-      <v-col cols="6">
+      <v-col :cols="fullWidth ? 10 : 6">
         <v-label>{{ control.label }}</v-label>
         <v-select
           :items="control.options"
@@ -23,7 +23,7 @@
       </v-col>
     </v-row>
     <v-row class="pa-3" v-if="control.type === 'dropdown-range'">
-      <v-col cols="6">
+      <v-col :cols="fullWidth ? 10 : 6">
         <v-label>{{ control.label }}</v-label>
         <v-select
           :items="rangeValues"
@@ -39,7 +39,7 @@
       </v-col>
     </v-row>
     <v-row class="pa-3" v-if="control.type === 'textbox'">
-      <v-col cols="6">
+      <v-col :cols="fullWidth ? 10 : 6">
         <v-label>{{ control.label }}</v-label>
         <v-text-field
           outlined
@@ -68,23 +68,24 @@
         </v-col>
       </v-row>
     </div>
-    <!-- <div class="pa-3" v-else-if="control.type === 'check-box'">
-      <v-checkbox
-        v-for="(option, index) in control.options"
-        :key="index"
-        @click="controlSelected(option)"
-        :label="option.text"
-        style="width: 50%"
-      ></v-checkbox>
-    </div> -->
     <div class="pa-3 mt-n8" v-else-if="control.type === 'radio-button'">
       <v-radio-group v-model="radioValue">
-        <v-radio
-          v-for="(option, index) in control.options"
-          :key="index"
-          @click="controlSelected(option)"
-          :label="option.text"
-        ></v-radio>
+        <div v-for="(option, index) in control.options" :key="index">
+          <v-radio @click="controlSelected(option)" :label="option.text" dense>
+            <template v-slot:label>
+              <div class="d-flex align-center">
+                <span>{{ option.text }}</span>
+                <div
+                  v-for="(tControl, j) in option.controls"
+                  :key="j"
+                  class="pb-2"
+                >
+                  <ProjectControl :control="tControl" :fullWidth="true" />
+                </div>
+              </div>
+            </template>
+          </v-radio>
+        </div>
       </v-radio-group>
     </div>
     <div class="pa-3" v-else-if="control.type === 'toggle-button'">
@@ -113,7 +114,7 @@
         </v-btn>
       </v-btn-toggle>
     </div>
-    <div class="pa-3" v-else-if="control.type === 'radio-group'">
+    <!-- <div class="pa-3" v-else-if="control.type === 'radio-group'">
       <v-radio-group row v-model="control.data">
         <v-row>
           <v-col v-for="(option, index) in control.options" :key="index">
@@ -127,12 +128,34 @@
                 <ProjectControl
                   :control="tControl"
                   @change="tabControlChanged(tab, control, tControl)"
+                  :fullWidth="true"
                 />
               </div>
             </v-card>
           </v-col>
         </v-row>
       </v-radio-group>
+    </div> -->
+    <div class="pa-3" v-else-if="control.type === 'radio-group'">
+      <v-row>
+        <v-col cols="6" v-for="(option, index) in control.options" :key="index">
+          <v-checkbox
+            :label="option.text"
+            v-model="option.value"
+            hide-details
+            @change="radioGroupChanged(control, option, index, null)"
+          ></v-checkbox>
+          <v-card :disabled="!option.value" flat color="transparent">
+            <div v-for="(tControl, j) in option.controls" :key="j" class="pa-4">
+              <ProjectControl
+                :control="tControl"
+                @change="radioGroupChanged(control, option, index, tControl)"
+                :fullWidth="true"
+              />
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
     </div>
     <div class="pa-3" v-else-if="control.type === 'tab'">
       <v-tabs
@@ -155,6 +178,7 @@
             <ProjectControl
               :control="tControl"
               @change="tabControlChanged(tab, control, tControl)"
+              :fullWidth="true"
             />
           </div>
         </v-tab-item>
@@ -171,6 +195,8 @@ import { ProjectFormStepControl, ProjectFormStepControlOption } from "@/model";
 @Component({ name: "ProjectControl" })
 export default class ProjectControl extends Vue {
   @Prop() control: ProjectFormStepControl;
+  @Prop() fullWidth: boolean = false;
+
   items: any = ["100% Cotton", "100% Viscose", "100% Modal", "100% polyster"];
 
   controlSelected(option: ProjectFormStepControlOption) {
@@ -192,6 +218,28 @@ export default class ProjectControl extends Vue {
 
   textGroupChanged() {
     this.control.value = this.control.items.map((i) => i.value).join(",");
+  }
+
+  radioGroupChanged(
+    control: ProjectFormStepControl,
+    option: ProjectFormStepControlOption,
+    index: number,
+    childControl: ProjectFormStepControl
+  ) {
+    if (!control.data) control.data = [];
+
+    if (option.value)
+      control.data[index] = {
+        name: option.text,
+        value: childControl ? childControl.value : null,
+      };
+    else control.data[index] = null;
+
+    control.value = "";
+    control.data.forEach((d: any) => {
+      if (d)
+        control.value = control.value ? `${control.value}, ${d.name}` : d.name;
+    });
   }
 
   tabControlChanged(

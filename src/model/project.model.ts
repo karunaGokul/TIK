@@ -43,7 +43,7 @@ export class ProjectFormStepControl {
     optional: boolean;
     options: Array<ProjectFormStepControlOption>;    
     items: Array<ProjectFormStepControl>
-    value: string;
+    value: any;
     label: string;
     multiple: boolean;
     data: any;

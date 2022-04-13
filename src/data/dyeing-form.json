@@ -2176,27 +2176,13 @@
           "options": [
             {
               "id": "opOPWHeatSetting",
-              "text": "OPWHeatSetting",
+              "text": "OPW HeatSetting",
               "controls": [
-                {
-                  "id": "btnOPW",
-                  "label": "OPW",
-                  "type": "toggle-button",
-                  "selector": true,
-                  "options": [
-                    {
-                      "id": "opOPWHeatsetting",
-                      "label": "A",
-                      "text": "OPW Heatsetting",
-                      "selected": false
-                    }
-                  ]
-                }
               ]
             },
             {
               "id": "opOPWCompacting",
-              "text": "OPWCompacting",
+              "text": "OPW Compacting",
               "controls": [
                 {
                   "type": "radio-button",
@@ -2220,7 +2206,7 @@
             },
             {
               "id": "opOPWDrying",
-              "text": "OPWDrying",
+              "text": "OPW Drying",
               "controls": [
                 {
                   "id": "btnDryer",
@@ -2232,53 +2218,57 @@
                     {
                       "id": "opStenterDryer",
                       "data_id": "",
-                      "label": "A",
                       "text": "Stenter Dryer",
                       "selected": false
                     },
                     {
                       "id": "opRelaxDryer",
                       "data_id": "",
-                      "label": "B",
                       "text": "Relax Dryer",
                       "selected": false
-                    }
-                  ]
-                },
-                {
-                  "id": "drpDIPStenter",
-                  "label": "DIP Stenter",
-                  "type": "dropdown",
-                  "selector": false,
-                  "data_path": "",
-                  "data_id": "",
-                  "options": [
-                    {
-                      "id": "opDP_1",
-                      "text": "DP 1",
-                      "selected": false
                     },
                     {
-                      "id": "opDP_2",
-                      "text": "DP 2",
-                      "selected": false
-                    },
-                    {
-                      "id": "opDP_3",
-                      "text": "DP 3",
-                      "selected": false
+                      "id": "opDIPStenter",
+                      "data_id": "",
+                      "text": "DIP Stenter",
+                      "selected": false,
+                      "controls": [
+                        {
+                          "id": "drpDIPStenter",
+                          "type": "dropdown",
+                          "selector": false,
+                          "data_path": "",
+                          "data_id": "",
+                          "options": [
+                            {
+                              "id": "opDP_1",
+                              "text": "DP 1",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDP_2",
+                              "text": "DP 2",
+                              "selected": false
+                            },
+                            {
+                              "id": "opDP_3",
+                              "text": "DP 3",
+                              "selected": false
+                            }
+                          ]
+                        }      
+                      ]
                     }
                   ]
-                }                
+                }                          
               ]
             },
             {
               "id": "opSpecialFinishes",
-              "text": "SpecialFinishes",
+              "text": "Special Finishes",
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "label": "Special Finishes",
                   "type": "dropdown-range",
                   "multiple": true,
                   "selector": false,

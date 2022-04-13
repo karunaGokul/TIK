@@ -246,6 +246,8 @@ export default class ProjectForm extends Vue {
       });
 
       if (!valid) {
+        console.log(this.steps[1].controls);
+
         this.error = true;
         return false;
       }
@@ -271,6 +273,7 @@ export default class ProjectForm extends Vue {
         });
 
         this.mode = StepMode.Result;
+        console.log(this.steps[1].controls);
 
         return false;
       }

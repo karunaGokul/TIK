@@ -2135,7 +2135,7 @@
         {
           "id": "btnDetail",
           "label": "Requirement Detail",
-          "type": "toggle-button",
+          "type": "radio-button",
           "selector": true,
           "options": [
             {

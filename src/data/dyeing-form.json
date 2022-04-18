@@ -4,7 +4,9 @@
   "steps": [
     {
       "title": "Choose Your Content",
-      "path": [""],
+      "path": [
+        ""
+      ],
       "controls": [
         {
           "id": "btnContent",

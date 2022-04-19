@@ -72,24 +72,23 @@
                 v-model="filterRequest.maxDeliveryPeriod"
               ></v-slider>
               <div v-if="item === 'Review'">
-                <v-btn
-                  depressed
-                  text
-                  v-for="item in review"
-                  :key="item"
-                  @click="(selectedReview = item) && (toggleButton = !toggleButton) && filterValue(item)"
-                  :class="{ 'bg-primary': item == selectedReview && toggleButton }"
+                <v-btn-toggle
+                  v-model="selectedReview"
+                  @change="filterValue"
                 >
-                  <v-rating
-                    readonly
-                    dense
-                    size="18"
-                    :value="item"
-                    :length="item"
-                    class="ml-n4"
-                  ></v-rating>
-                  <span class="text-capitalize mr-4"> &up</span>
-                </v-btn>
+                <div class="d-flex flex-column justify-start">
+                  <v-btn depressed text v-for="item in review" :key="item" class="justify-start">
+                    <v-rating
+                      readonly
+                      dense
+                      size="18"
+                      :value="item"
+                      :length="item"
+                      class="ml-n4"
+                    ></v-rating>
+                    <span class="text-capitalize mr-4"> &up</span>
+                  </v-btn></div>
+                  </v-btn-toggle>
               </div>
             </v-col>
           </v-row>
@@ -135,15 +134,12 @@ export default class FilterDialog extends Vue {
 
   items: any = ["Price", "Credit Period", "Delivery Period", "Review"];
   review: any = [4, 3, 2, 1];
-  selectedReview: number = 0;
+  selectedReview: number = null;
   toggleButton: boolean = false;
 
-  public filterValue(n: any) {
-    // if(this.toggleButton) {
-    //   this.filterRequest.Review = n;
-    // }
-    // this.filterRequest.Review = 0;
-     this.filterRequest.Review = n;
+  public filterValue() {
+    this.filterRequest.Review =
+      this.selectedReview != null ? this.review[this.selectedReview] : null;
   }
 
   public FilterRejectedBids() {
@@ -157,7 +153,7 @@ export default class FilterDialog extends Vue {
         this.filterRequest.maxPrice = 0;
         this.filterRequest.maxCreditPeriod = 0;
         this.filterRequest.maxDeliveryPeriod = 0;
-        this.filterRequest.Review = 0
+        this.filterRequest.Review = 0;
       }
     );
   }

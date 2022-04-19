@@ -2268,15 +2268,28 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opDP_1",
+                      "text": "DP 1",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_2",
+                      "text": "DP 2",
+                      "selected": false
+                    },
+                    {
+                      "id": "opDP_3",
+                      "text": "DP 3",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }

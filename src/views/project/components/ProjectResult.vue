@@ -34,7 +34,6 @@
             </v-col>
             <v-col>
               <v-select
-                multiple
                 label="Review"
                 v-model="selectedReview"
                 :items="review"

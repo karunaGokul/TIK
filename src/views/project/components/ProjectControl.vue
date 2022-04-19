@@ -22,6 +22,23 @@
         ></v-select>
       </v-col>
     </v-row>
+    <v-row class="pa-2" v-if="control.type === 'dropdown-multi'">
+      <v-col :cols="fullWidth ? 10 : 6">
+        <v-label>{{ control.label }}</v-label>
+        <v-select
+          :items="control.options"
+          v-model="dropdownValue"
+          item-text="text"
+          item-value="id"
+          placeholder="Select"
+          outlined
+          dense
+          multiple
+          hide-details
+          required
+        ></v-select>
+      </v-col>
+    </v-row>
     <v-row class="pa-3" v-if="control.type === 'dropdown-range'">
       <v-col :cols="fullWidth ? 10 : 6">
         <v-label>{{ control.label }}</v-label>
@@ -75,13 +92,14 @@
             <template v-slot:label>
               <div class="d-flex align-center">
                 <span>{{ option.text }}</span>
+                <v-card :disabled="!option.selected" flat color="transparent">
                 <div
                   v-for="(tControl, j) in option.controls"
                   :key="j"
                   class="pb-2"
                 >
                   <ProjectControl :control="tControl" :fullWidth="true" />
-                </div>
+                </div></v-card>
               </div>
             </template>
           </v-radio>

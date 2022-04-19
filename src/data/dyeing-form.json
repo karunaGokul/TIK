@@ -2275,18 +2275,23 @@
                   "data_id": "",
                   "options": [
                     {
-                      "id": "opDP_1",
-                      "text": "DP 1",
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
                       "selected": false
                     },
                     {
-                      "id": "opDP_2",
-                      "text": "DP 2",
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
                       "selected": false
                     },
                     {
-                      "id": "opDP_3",
-                      "text": "DP 3",
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
                       "selected": false
                     }
                   ]
@@ -2321,7 +2326,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -2529,7 +2534,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -2819,15 +2824,33 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }
@@ -2859,7 +2882,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -3067,7 +3090,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -3633,15 +3656,33 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }
@@ -3673,7 +3714,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -3881,7 +3922,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -4257,15 +4298,33 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }
@@ -4297,7 +4356,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -4505,7 +4564,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -4881,15 +4940,33 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }
@@ -4921,7 +4998,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -5129,7 +5206,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -5505,15 +5582,33 @@
               "controls": [
                 {
                   "id": "drpSpecialFinishes",
-                  "type": "dropdown-range",
+                  "type": "dropdown-multi",
                   "multiple": true,
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
-                  "data": {
-                    "start": 1,
-                    "end": 3
-                  }
+                  "options": [
+                    {
+                      "id": "opSpecialFinishes_1",
+                      "text": "Plain Softner",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_2",
+                      "text": "Silicon Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_3",
+                      "text": "Bio Wash",
+                      "selected": false
+                    },
+                    {
+                      "id": "opSpecialFinishes_4",
+                      "text": "Enzyme Wash",
+                      "selected": false
+                    }
+                  ]
                 }
               ]
             }
@@ -5545,7 +5640,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",
@@ -5753,7 +5848,7 @@
                 {
                   "id": "drpSpecialFinishes",
                   "label": "Special Finishes",
-                  "type": "dropdown",
+                  "type": "dropdown-multi",
                   "selector": false,
                   "data_path": "",
                   "data_id": "",

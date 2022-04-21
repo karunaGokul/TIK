@@ -39,6 +39,7 @@
                 :items="review"
                 :loading="loading"
                 required
+                multiple
                 class="mt-5"
                 @change="filter"
               >

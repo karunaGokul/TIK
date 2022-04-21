@@ -85,10 +85,10 @@
         </v-col>
       </v-row>
     </div>
-    <div class="pa-3 mt-n8" v-else-if="control.type === 'radio-button'">
+    <div class="pa-3" v-else-if="control.type === 'radio-button'">
       <v-radio-group v-model="radioValue">
         <div v-for="(option, index) in control.options" :key="index">
-          <v-radio @click="controlSelected(option)" :label="option.text" dense>
+          <v-radio @click="controlSelected(option)" :label="option.text" dense class="mb-3">
             <template v-slot:label>
               <div class="d-flex align-center">
                 <span>{{ option.text }}</span>

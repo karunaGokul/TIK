@@ -1,50 +1,57 @@
-import { ServiceHelper } from './base.service';
+import { ServiceHelper } from "./base.service";
 import {
-    RegistrationRequestModel, CountryResponseModel, StateRequestModel, StateResponseModel,
-    CityRequestModel, CityResponseModel, CategoryResponseModel, CertificationResponseModel
-} from '@/model';
+  RegistrationRequestModel,
+  CountryResponseModel,
+  StateRequestModel,
+  StateResponseModel,
+  CityRequestModel,
+  CityResponseModel,
+  CategoryResponseModel,
+  CertificationResponseModel,
+} from "@/model";
 
 export interface IRegistrationService {
-    registration(request: RegistrationRequestModel): Promise<any>;
-    getCategory(): Promise<Array<CategoryResponseModel>>;
-    getCountry(): Promise<Array<CountryResponseModel>>;
-    getState(request: StateRequestModel): Promise<Array<StateResponseModel>>;
-    getCity(request: CityRequestModel): Promise<Array<CityResponseModel>>;
-    getCertification(): Promise<Array<CertificationResponseModel>>;
-    
+  registration(request: RegistrationRequestModel): Promise<any>;
+  getCategory(): Promise<Array<CategoryResponseModel>>;
+  getCountry(): Promise<Array<CountryResponseModel>>;
+  getState(request: StateRequestModel): Promise<Array<StateResponseModel>>;
+  getCity(request: CityRequestModel): Promise<Array<CityResponseModel>>;
+  getCertification(): Promise<Array<CertificationResponseModel>>;
 }
-export class RegistrationService extends ServiceHelper implements IRegistrationService {
+export class RegistrationService extends ServiceHelper
+  implements IRegistrationService {
+  public registration(request: RegistrationRequestModel): Promise<any> {
+    return this.httpPost("login/registration", request).then((response) => {
+      return response.data;
+    });
+  }
+  public getCategory(): Promise<Array<CategoryResponseModel>> {
+    return this.httpGet("common/Category", null).then((response) => {
+      return response.data;
+    });
+  }
 
-    public registration(request: RegistrationRequestModel): Promise<any> {
-        return this.httpPost('login/registration', request).then(response => {
-            return response.data;
-        });
-    }
-    public getCategory(): Promise<Array<CategoryResponseModel>> {
-        return this.httpGet('common/Category', null).then(response => {
-            return response.data;
-        });
-    }
+  public getCertification(): Promise<Array<CertificationResponseModel>> {
+    return this.httpGet("common/Certification", null).then((response) => {
+      return response.data;
+    });
+  }
 
-    public getCertification(): Promise<Array<CertificationResponseModel>> {
-        return this.httpGet('common/Certification', null).then(response => {
-            return response.data;
-        });
-    }
-
-    public getCountry(): Promise<Array<CountryResponseModel>> {
-        return this.httpGet('common/Country', null).then(response => {
-            return response.data;
-        });
-    }
-    public getState(request: StateRequestModel): Promise<Array<StateResponseModel>> {
-        return this.httpGet('common/State', request).then(response => {
-            return response.data;
-        });
-    }
-    public getCity(request: CityRequestModel): Promise<Array<CityResponseModel>> {
-        return this.httpGet('common/City', request).then(response => {
-            return response.data;
-        });
-    }
+  public getCountry(): Promise<Array<CountryResponseModel>> {
+    return this.httpGet("common/Country", null).then((response) => {
+      return response.data;
+    });
+  }
+  public getState(
+    request: StateRequestModel
+  ): Promise<Array<StateResponseModel>> {
+    return this.httpGet("common/State", request).then((response) => {
+      return response.data;
+    });
+  }
+  public getCity(request: CityRequestModel): Promise<Array<CityResponseModel>> {
+    return this.httpGet("common/City", request).then((response) => {
+      return response.data;
+    });
+  }
 }
